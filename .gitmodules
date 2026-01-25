@@ -1,0 +1,3 @@
+[submodule "urf-core"]
+	path = urf-core
+	url = https://github.com/inaciovasquez2020/urf-core.git

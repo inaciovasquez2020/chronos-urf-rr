@@ -1,23 +1,20 @@
-/-
-URF S0 witness (binding stub).
+import urf_core.URF_Axioms_Core
 
-This file is intentionally minimal: it *imports* the URF core and
-states the spectral gap theorem in the exact required form.
--/
-
-import Mathlib
+open URF
 
 namespace URFWitness
 
--- These should be replaced by imports from urf-core once wired
-constant H : Type
-constant L : H → H
-constant V : Set H
-constant ε₀ : ℝ
+-- Real objects from urf-core
+abbrev H := URF.H
+abbrev L := URF.L
+abbrev V := URF.defectSpace   -- ker(Per)
+abbrev ε₀ := URF.epsilon0
 
--- Binding statement (shape fixed)
-axiom spectral_gap :
-  ε₀ > 0
+-- Binding theorem (now references real core)
+theorem spectral_gap :
+  inf_spec (L.restrict (Vᶜ)) ≥ ε₀ :=
+by
+  exact URF.spectral_gap_core
 
 end URFWitness
 
