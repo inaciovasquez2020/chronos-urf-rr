@@ -1,3 +1,4 @@
+![CI](https://github.com/inaciovasquez2020/chronos-urf-rr/actions/workflows/ci.yml/badge.svg)
 # Implementation Binding Witnesses (Chronos / URF / Radiative Rigidity)
 
 This repository contains three independent witnesses S0 with CI verification:
