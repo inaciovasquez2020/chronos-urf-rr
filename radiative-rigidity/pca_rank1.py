@@ -1,35 +1,15 @@
-#!/usr/bin/env python3
-"""
-Radiative Rigidity witness scaffold.
-
-Given data matrix D (m samples x d features), compute covariance and test whether
-it is numerically rank-1 (relative threshold).
-
-Replace synthetic demo with your real residual vectors and thresholds.
-"""
-import numpy as np
-
-def covariance(D: np.ndarray) -> np.ndarray:
-    D = np.asarray(D, dtype=float)
-    mu = D.mean(axis=0, keepdims=True)
-    X = D - mu
-    return (X.T @ X) / max(1, X.shape[0])
-
-def is_rank1(C: np.ndarray, tol: float = 1e-10) -> bool:
-    s = np.linalg.svd(C, compute_uv=False)
-    if s.size == 0:
-        return True
-    return (s[1] if s.size > 1 else 0.0) <= tol * (s[0] if s[0] > 0 else 1.0)
-
-def demo():
-    # synthetic rank-1 data
-    rng = np.random.default_rng(0)
-    m, d = 200, 5
-    u = rng.normal(size=(m, 1))
-    v = rng.normal(size=(1, d))
-    D = u @ v + 1e-12 * rng.normal(size=(m, d))
+def permutation_p_value(D: np.ndarray, trials: int = 1000) -> float:
     C = covariance(D)
-    print("rank1?", is_rank1(C, tol=1e-8))
+    s = np.linalg.svd(C, compute_uv=False)
+    stat = s[1] if s.size > 1 else 0.0
 
-if __name__ == "__main__":
-    demo()
+    count = 0
+    for _ in range(trials):
+        P = np.random.permutation(D)
+        Cp = covariance(P)
+        sp = np.linalg.svd(Cp, compute_uv=False)
+        stat_p = sp[1] if sp.size > 1 else 0.0
+        if stat_p <= stat:
+            count += 1
+    return count / trials
+
