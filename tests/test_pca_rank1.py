@@ -1,5 +1,5 @@
 import numpy as np
-from radiative_rigidity_pca import covariance, is_rank1
+from radiative_rigidity_pca.radiative_rigidity_pca import covariance, is_rank1
 
 def test_rank1_synthetic():
     rng = np.random.default_rng(0)
