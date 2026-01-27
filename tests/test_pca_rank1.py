@@ -7,7 +7,7 @@ import numpy as np
 # This line tells Python: "Look one folder up to find the packages"
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Import the Binding Witnesses from the packages
+# Import the Binding Witnesses from the specific package
 from radiative_rigidity_pca.radiative_rigidity_pca import covariance, is_rank1
 
 def test_rank1_synthetic():
@@ -38,7 +38,7 @@ def test_noisy_rigidity_wall():
     v = np.array([1.0, 2.0, 3.0])
     pure_data = np.outer(v, v)
     
-    # Introduce noise that exceeds the structural gap
+    # Introduce noise that exceeds the structural gap (Rigidity Wall)
     noisy_data = pure_data + np.eye(3) * 0.5
     
     # Should fail the rank-1 rigidity test
