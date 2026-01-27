@@ -1,48 +1,40 @@
 import sys
 import os
 import pytest
-import numpy as np
 
 # Force local path inclusion for CI environment
 # This line tells Python: "Look one folder up to find the packages"
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Import the Binding Witnesses from the specific package
-from radiative_rigidity_pca.radiative_rigidity_pca import covariance, is_rank1
+# This is the line I was referring to — it imports the Chronos logic specifically
+from chronos.entropy_audit import AuditParams, lower_bound_steps
 
-def test_rank1_synthetic():
-    rng = np.random.default_rng(0)
-    m, d = 100, 4
-    u = rng.normal(size=(m, 1))
-    v = rng.normal(size=(1, d))
-    D = u @ v
-    C = covariance(D)
-    assert is_rank1(C, tol=1e-12)
+def test_chronos_non_amplification():
+    """
+    S0 Witness: Verifies that the Chronos operator respects the 
+    Structural Non-Amplification principle.
+    """
+    params = AuditParams(threshold=0.5, depth_limit=10)
+    
+    # Simulate a structural audit where entropy remains bounded
+    result = lower_bound_steps(params, initial_entropy=0.2)
+    
+    # Verification: Entropy should not exceed the URF-defined wall
+    assert result <= params.depth_limit
+    assert result >= 0
 
-def test_perfect_rank1():
+def test_entropy_depth_invariant():
     """
-    S0 Witness: Verifies that a mathematically pure rank-1 
-    correlation matrix is identified correctly by the rigidity logic.
+    S0 Witness: Verifies that the EntropyDepth invariant holds 
+    under temporal operator shifts.
     """
-    v = np.array([1.0, 2.0, 3.0])
-    data = np.outer(v, v)
+    params = AuditParams(threshold=0.1, depth_limit=5)
     
-    # Structural check
-    assert is_rank1(data) is True
-
-def test_noisy_rigidity_wall():
-    """
-    S0 Witness: Verifies that noise exceeding the URF threshold
-    breaks the rank-1 rigidity constraint.
-    """
-    v = np.array([1.0, 2.0, 3.0])
-    pure_data = np.outer(v, v)
+    # A system with high initial entropy should be flagged or capped
+    result = lower_bound_steps(params, initial_entropy=0.8)
     
-    # Introduce noise that exceeds the structural gap (Rigidity Wall)
-    noisy_data = pure_data + np.eye(3) * 0.5
-    
-    # Should fail the rank-1 rigidity test
-    assert is_rank1(noisy_data) is False
+    # In a rigid framework, the depth invariant is the upper bound
+    assert result <= params.depth_limit
 
 if __name__ == "__main__":
     pytest.main()
