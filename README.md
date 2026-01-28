@@ -35,29 +35,22 @@ The Continuous Integration (CI) pipeline executes the following verification pro
 * **Python Suites:** Structural auditing and rank-analysis tests.
 * **Lean Toolchain:** (Optional) Formal build of the certified spectral gap statements.
 
-## Reproducibility
-To execute the binding witnesses locally:
 
-```bash
-# Run Python-based structural audits
-pytest tests/
+---
 
-# Verify Lean proofs (requires Lean 4 toolchain)
-lake build
-Related Repositories
-Chronos / EntropyDepth: Theoretical foundation.
+```markdown
+## Research Status
 
-Radiative Rigidity: Physical manuscript.
+The Chronos refinement–rigidity operator is formally defined and internally consistent.
+All remaining uncertainty concerns normalization assumptions external to this codebase.
 
-Cycle Local Rigidity: Core URF proofs.
+## Citation
 
-Contact
-Inacio F. Vasquez — Independent Research Program
-
-Email: inacio@vasquezresearch.com
-
-Web: www.vasquezresearch.com
-
-ORCID: 0009-0008-8459-3400
-
-© 2026 Inacio F. Vasquez. CI-Verification Active.
+```bibtex
+@manual{Vasquez_Chronos_RR_2026,
+  author       = {Vasquez, Inacio F.},
+  title        = {Chronos — Rigidity and Refinement Dynamics},
+  institution  = {Independent Research Program},
+  year         = {2026},
+  url          = {https://github.com/inaciovasquez2020/chronos-urf-rr}
+}
