@@ -5,7 +5,7 @@
 
 ---
 
-### 🛡️ Institutional Verification
+###  Institutional Verification
 * **Registry ID:** `WIT-BIND-01`
 * **Artifact Type:** Multi-Module Verification Scaffold
 * **Status:** CI-Active / Logic-Verified
