@@ -1,15 +1,29 @@
-def permutation_p_value(D: np.ndarray, trials: int = 1000) -> float:
-    C = covariance(D)
-    s = np.linalg.svd(C, compute_uv=False)
-    stat = s[1] if s.size > 1 else 0.0
+import numpy as np
 
-    count = 0
-    for _ in range(trials):
-        P = np.random.permutation(D)
-        Cp = covariance(P)
-        sp = np.linalg.svd(Cp, compute_uv=False)
-        stat_p = sp[1] if sp.size > 1 else 0.0
-        if stat_p <= stat:
-            count += 1
-    return count / trials
+
+def is_rank1(x, *, rtol=1e-7, atol=1e-12) -> bool:
+    """
+    Return True iff matrix x is (numerically) rank-1.
+
+    Criterion: s2 <= atol + rtol*s1 where s1>=s2 are top two singular values.
+    """
+    a = np.asarray(x, dtype=float)
+    if a.ndim != 2:
+        raise ValueError("is_rank1 expects a 2D array/matrix")
+
+    # Degenerate shapes
+    m, n = a.shape
+    if m == 0 or n == 0:
+        return True
+    if m == 1 or n == 1:
+        return True
+
+    s = np.linalg.svd(a, compute_uv=False)
+    if s.size == 0:
+        return True
+    if s.size == 1:
+        return True
+
+    s1, s2 = float(s[0]), float(s[1])
+    return s2 <= (atol + rtol * s1)
 
