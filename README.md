@@ -1,55 +1,106 @@
-![CI](https://github.com/inaciovasquez2020/chronos-urf-rr/actions/workflows/ci.yml/badge.svg)
+# Implementation Binding Witnesses (S0)
+**Computational Verification Layer for Chronos, URF, and Radiative Rigidity**
 
-# Implementation Binding Witnesses
-**Computational Verification of Chronos, URF, and Radiative Rigidity**
-
----
-
-###  Institutional Verification
-* **Registry ID:** `WIT-BIND-01`
-* **Artifact Type:** Multi-Module Verification Scaffold
-* **Status:** CI-Active / Logic-Verified
-* **Framework Alignment:** Unified Rigidity Framework (URF) — Cross-Module Binding
+[![CI](https://github.com/inaciovasquez2020/chronos-urf-rr/actions/workflows/ci.yml/badge.svg)](https://github.com/inaciovasquez2020/chronos-urf-rr/actions)
 
 ---
 
-## Purpose
-This repository serves as the **Execution Layer** for the Vasquez Lab research program. It contains three independent **Implementation Binding Witnesses (S0)** that provide automated CI verification for core theoretical claims. By binding formal logic to runnable tests, this repository ensures that the "Rigidity Wall" is computationally reproducible.
+## Institutional Verification
+
+* **Registry ID:** `WIT-BIND-01`  
+* **Artifact Type:** Multi-Module Verification Scaffold  
+* **Status:** CI-Active / Logic-Verified  
+* **Framework Alignment:** Unified Rigidity Framework (URF) — Cross-Module Binding Layer  
+
+---
+
+## Role in the Scientific Infrastructure
+
+This repository is the **execution and verification layer** of the Unified Rigidity Framework.
+
+It contains **Implementation Binding Witnesses (S0)**: runnable, deterministic
+artifacts that bind formal theory to machine-executable verification.
+
+This repository:
+
+- introduces **no new theory**,  
+- defines **no new axioms**,  
+- proves **no new theorems**.
+
+Its sole purpose is to ensure that **existing Tier A theory remains computationally reproducible**.
+
+---
 
 ## Witness Modules
 
-### 1. Chronos (Entropy-Audit)
-* **Function:** Scaffold for establishing **$ED(F_n)$ lower bounds**.
-* **Method:** Interface and test suite for auditing entropy-depth invariants in temporal operators.
+### 1. Chronos — Entropy Audit
 
-### 2. URF (Certified Spectral Gap)
-* **Function:** **Lean 4 scaffold** for certified spectral gap statements.
-* **Method:** Machine-verified proofs ensuring the stability of the logic-width dependency ($k \ge f(tw)$).
-
-### 3. Radiative Rigidity (Geometric Rank)
-* **Function:** **PCA Rank-1 test scaffold**.
-* **Method:** Automated interface and tests verifying that radiative corrections are forced into low-rank geometric forms.
-
-## Technical Execution
-The Continuous Integration (CI) pipeline executes the following verification protocols:
-* **Python Suites:** Structural auditing and rank-analysis tests.
-* **Lean Toolchain:** (Optional) Formal build of the certified spectral gap statements.
-
+* **Function:** Interface for auditing **EntropyDepth lower bounds**.
+* **Role:** Verifies that Chronos invariants behave consistently under refinement.
+* **Scope:** Structural tests only (no universality claims).
 
 ---
 
-```markdown
+### 2. URF — Certified Spectral Gap
+
+* **Function:** Lean 4 scaffold for certified spectral gap statements.
+* **Role:** Binds the Logic–Width Dependency ($k \ge f(tw)$) to machine-verifiable proofs.
+* **Scope:** Formal consistency checking only.
+
+---
+
+### 3. Radiative Rigidity — Geometric Rank
+
+* **Function:** PCA Rank-1 test scaffold.
+* **Role:** Verifies low-rank geometric collapse in radiative correction models.
+* **Scope:** Deterministic rank diagnostics only.
+
+---
+
+## Technical Execution
+
+The CI pipeline executes:
+
+- **Python test suites** for structural audits and rank analysis.  
+- **Lean toolchain builds** for formal proof scaffolds (when enabled).
+
+All tests are:
+
+- deterministic,  
+- replayable,  
+- free of stochastic components.
+
+---
+
+## Ontological Status
+
+In the infrastructure model:
+
+| Component | Role |
+|----------|------|
+| URF-Core, Chronos, Radiative Rigidity | Theorems / frameworks |
+| scientific-infrastructure | Kernel manifest |
+| **chronos-urf-rr (this repo)** | **Verification instrument** |
+| vasquez-index / website | Human interface |
+| Journals / DOIs | External certification |
+
+This repository is **the lab instrument**, not the law.
+
+---
+
 ## Research Status
 
-The Chronos refinement–rigidity operator is formally defined and internally consistent.
-All remaining uncertainty concerns normalization assumptions external to this codebase.
+The binding layer is internally consistent and CI-stable.  
+All remaining uncertainty concerns **external normalization assumptions**, not this codebase.
+
+---
 
 ## Citation
 
 ```bibtex
-@manual{Vasquez_Chronos_RR_2026,
+@manual{Vasquez_Binding_Witnesses_2026,
   author       = {Vasquez, Inacio F.},
-  title        = {Chronos — Rigidity and Refinement Dynamics},
+  title        = {Implementation Binding Witnesses for URF},
   institution  = {Independent Research Program},
   year         = {2026},
   url          = {https://github.com/inaciovasquez2020/chronos-urf-rr}
