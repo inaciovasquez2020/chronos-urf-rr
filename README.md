@@ -1,21 +1,33 @@
-Chronos URF RR
+# chronos-urf-rr
 
-Lean formalization of Chronos refinement rules and admissibility scaffolding.
+This repository contains the research implementation and analysis for Chronos Universal Reference Frame (URF) Relative Rigidity. It is an indexed component of the Vasquez research ecosystem.
 
-Scope
-This repository contains Lean code for refinement-rule representations, admissibility conditions, and related verification hooks used by the Chronos and EntropyDepth program.
+## Overview
+The `chronos-urf-rr` module provides the computational logic and mathematical modeling for relative rigidity within the Chronos framework, serving as a key analytical layer of the URF environment.
 
-Related repositories
-urf-core
-urf-axioms
-Chronos-EntropyDepth
-scientific-infrastructure
-vasquez-index
+## Canonical Registry
+This repository is a registered module of the Vasquez Index. Stable references, archival DOIs, and reproducibility links are maintained at:
+* [Vasquez Index Dashboard](https://inaciovasquez2020.github.io/vasquez-index/dashboard.html)
 
-DOI
-10.5281/zenodo.18403707
+## Repository Status
+* **Repository Handle:** inaciovasquez2020/chronos-urf-rr
+* **DOI Reference:** [10.5281/zenodo.18403707](https://doi.org/10.5281/zenodo.18403707)
+* **Infrastructure:** [scientific-infrastructure](https://github.com/inaciovasquez2020/scientific-infrastructure)
 
-Build
-Lake build on the default toolchain.
+---
 
-Status: executable Lean project.
+## Technical Notes
+* **Integration:** This module is designed to interface with `urf-core` and `support-drift` to maintain theoretical consistency across the ecosystem.
+* **Reproducibility:** To ensure consistent computational results, utilize the environment configurations defined in the `scientific-infrastructure` module.
+* **Scope:** This repository focuses on the formal verification of relative rigidity parameters and temporal stability.
+
+## Citation
+If you use this research or implementation in your work, please cite it as follows:
+
+```bibtex
+@manual{Vasquez_Chronos_URF_RR_2026,
+  author = {Vasquez, Inacio F.},
+  title  = {chronos-urf-rr: Research Implementation and Analysis},
+  year   = {2026},
+  url    = {[https://github.com/inaciovasquez2020/chronos-urf-rr](https://github.com/inaciovasquez2020/chronos-urf-rr)}
+}
