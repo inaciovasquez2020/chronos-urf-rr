@@ -1,6 +1,6 @@
 # chronos-urf-rr
 
-[Referee Map](REFEREE.md) · Explicit Claims Classification
+[Referee Map](REFEREE.md) · [Claims Policy](CLAIMS.md) · Explicit Claims Classification
 
 This repository contains the research implementation and analysis for Chronos Universal Reference Frame (URF) Relative Rigidity. It is an indexed component of the Vasquez research ecosystem.
 
