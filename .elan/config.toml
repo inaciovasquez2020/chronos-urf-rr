@@ -1,0 +1,2 @@
+[toolchain]
+channel = "leanprover/lean4:v4.27.0"
