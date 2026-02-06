@@ -15,15 +15,15 @@ jobs:
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
 
-      - name: Install Lean toolchain
+      - name: Select Lean toolchain
         run: |
           elan toolchain install $(cat lean-toolchain)
           elan default $(cat lean-toolchain)
 
       - name: Build (no mathlib cache)
         env:
-        MATHLIB_CACHE: "false"
+          MATHLIB_CACHE: "false"
         run: |
-        lake update
-        lake build
+          lake update
+          lake build
 
