@@ -19,6 +19,11 @@ jobs:
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
 
+      - name: Enforce lean-toolchain
+        run: |
+          elan override set $(cat lean-toolchain)
+          lean --version
+
       # IMPORTANT:
       # Do NOT select or install a toolchain explicitly here.
       # Lake/elan will read the version from ./lean-toolchain (v4.27.0).
