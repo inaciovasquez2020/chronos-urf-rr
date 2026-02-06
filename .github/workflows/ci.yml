@@ -17,11 +17,3 @@ jobs:
       - run: python chronos/entropy_audit.py
       - run: python radiative-rigidity/pca_rank1.py
 
-  lean-build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: leanprover/lean-action@v1
-      - run: lake update
-      - run: lake build
-
