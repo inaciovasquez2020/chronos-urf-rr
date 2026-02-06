@@ -1,4 +1,4 @@
-name: lean
+name: Lean
 
 on:
   push:
@@ -15,6 +15,9 @@ jobs:
           use-mathlib-cache: false
           use-github-cache: false
 
-      - run: lake update
-      - run: lake build
+      - run: |
+          echo "Lean toolchain:"
+          cat lean-toolchain
+          lake update
+          lake build
 
