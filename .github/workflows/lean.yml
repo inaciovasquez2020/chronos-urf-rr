@@ -20,8 +20,10 @@ jobs:
           elan toolchain install $(cat lean-toolchain)
           elan default $(cat lean-toolchain)
 
-      - name: Build
+      - name: Build (no mathlib cache)
+        env:
+        MATHLIB_CACHE: "false"
         run: |
-          lake update
-          lake build
+        lake update
+        lake build
 
