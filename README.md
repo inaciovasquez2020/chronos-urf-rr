@@ -33,3 +33,12 @@ If you use this research or implementation in your work, please cite it as follo
 }
 Status: executable Lean project. Chronos / EntropyDepth reduction core referenced by active submissions including Foundations of Science: "Thermodynamic Limits on Empirical Discovery in Finite Information System.
  (Update README status with Chronos / EntropyDepth submission reference)
+
+--------------------------------------------------
+Referee and Review Guidance
+--------------------------------------------------
+
+An explicit classification of unconditional results, conditional results, framework reductions, and non-claims is provided for reviewers and editors:
+
+docs/referee/REFEREE_MAP.md
+
