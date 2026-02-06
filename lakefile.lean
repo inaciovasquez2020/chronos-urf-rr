@@ -9,5 +9,5 @@ require mathlib from git
   "https://github.com/leanprover-community/mathlib4.git" @ "v4.27.0"
 
 require urf_core from git
-  "https://github.com/inaciovasquez2020/urf-core.git" @ "main"
+  "https://github.com/inaciovasquez2020/urf-core.git" @ "clr-lean-ok"
 
