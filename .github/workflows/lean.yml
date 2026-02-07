@@ -7,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
@@ -22,11 +21,7 @@ jobs:
           lean --version
           lake --version
 
-      - name: Disable git submodule recursion
-        run: |
-          git config --global submodule.recurse false
-
-      - name: Build (no mathlib cache, no inherited scripts)
+      - name: Build (no mathlib cache)
         env:
           MATHLIB_CACHE: "0"
         run: |
