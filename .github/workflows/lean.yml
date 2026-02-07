@@ -1,46 +1,22 @@
-name: Lean CI
+- name: Install elan
+  run: |
+    curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+    echo "$HOME/.elan/bin" >> $GITHUB_PATH
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+- name: Verify Lean toolchain
+  run: |
+    cat lean-toolchain
+    lean --version
+    lake --version
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+- name: Disable git submodule recursion (Lake packages are not submodules)
+  run: |
+    git config --global submodule.recurse false
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install elan
-        run: |
-          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
-          echo "$HOME/.elan/bin" >> $GITHUB_PATH
-
-      - name: Enforce lean-toolchain
-        run: |
-          elan override set $(cat lean-toolchain)
-          lean --version
-
-      # IMPORTANT:
-      # Do NOT select or install a toolchain explicitly here.
-      # Lake/elan will read the version from ./lean-toolchain (v4.27.0).
-      - name: Verify Lean toolchain
-        run: |
-          cat lean-toolchain
-          lean --version
-          lake --version
-
-      - name: Disable git submodule recursion (Lake packages are not submodules)
-        run: |
-          git config --global submodule.recurse false
-
-      - name: Build (disable mathlib cache)
-        env:
-          MATHLIB_CACHE: "0"
-        run: |
-          lake update
-          lake build
+- name: Build (disable mathlib cache)
+  env:
+    MATHLIB_CACHE: "0"
+  run: |
+    lake update
+    lake build
 
