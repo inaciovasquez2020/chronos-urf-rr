@@ -1,0 +1,12 @@
+name: Toolchain Consistency
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check lean-toolchain matches mathlib
+        run: |
+          test -f lean-toolchain
+          test -f .lake/packages/mathlib/lean-toolchain
+          diff -u lean-toolchain .lake/packages/mathlib/lean-toolchain

@@ -2,7 +2,6 @@ import Lake
 open Lake DSL
 
 package chronos_urf_rr where
-  leanVersion := "leanprover/lean4:v4.27.0"
   moreServerArgs := #["-K", "1024"]
 
 require mathlib from git
