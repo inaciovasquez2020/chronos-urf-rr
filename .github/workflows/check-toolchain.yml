@@ -8,6 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Lean toolchain
+        uses: leanprover/lean-action@v1
+        with:
+          version: leanprover/lean4:v4.27.0
+
       - name: Fetch dependencies
         run: lake update
 
