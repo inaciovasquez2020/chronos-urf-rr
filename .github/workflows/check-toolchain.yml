@@ -8,12 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Debug toolchains
-        run: |
-          echo "=== lean-toolchain ==="
-          cat lean-toolchain || true
-          echo "=== mathlib lean-toolchain ==="
-          cat .lake/packages/mathlib/lean-toolchain || true
+      - name: Fetch dependencies
+        run: lake update
 
       - name: Check lean-toolchain matches mathlib
         run: |
