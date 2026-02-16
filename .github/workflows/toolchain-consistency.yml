@@ -1,0 +1,7 @@
+- name: Debug toolchains
+  run: |
+    echo "=== lean-toolchain ==="
+    cat lean-toolchain || true
+    echo "=== mathlib lean-toolchain ==="
+    cat .lake/packages/mathlib/lean-toolchain || true
+
