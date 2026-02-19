@@ -1,0 +1,31 @@
+{
+  "cert_id": "CHRONOS-URF-RR-CERT-POS-0001",
+  "mode": "POSITIVE",
+  "claim": "This repository is a reference implementation and reproducible verification scaffold for Chronos/EntropyDepth URF binding; it introduces no new axioms or theorems beyond declared artifacts",
+  "artifacts": [
+    "README.md",
+    "STATUS.md",
+    "src",
+    "tools",
+    "tests",
+    "docs"
+  ],
+  "constraints": [
+    "deterministic execution under fixed parameters",
+    "no hidden data sources",
+    "no external network access during verification",
+    "bounded resource usage as declared",
+    "reproducible outputs for included tests"
+  ],
+  "capacity": {
+    "tokens": 12000,
+    "time_sec": 300,
+    "memory_mb": 2048
+  },
+  "non_claims": [
+    "no claim of resolving P vs NP or any Clay problem",
+    "no claim of completeness of Chronos consequences",
+    "no guarantees beyond documented tests and checks",
+    "no claim that passing tests implies mathematical truth beyond stated invariants"
+  ]
+}

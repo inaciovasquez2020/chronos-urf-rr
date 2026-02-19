@@ -1,0 +1,29 @@
+{
+  "cert_id": "CHRONOS-URF-RR-CERT-NEG-0001",
+  "mode": "NEGATIVE",
+  "claim": "Certification refusal template for chronos-urf-rr when constraints are violated or artifacts are incomplete",
+  "artifacts": [
+    "README.md",
+    "STATUS.md",
+    "src",
+    "tools",
+    "tests",
+    "docs"
+  ],
+  "constraints": [
+    "refuse if verification requires network access",
+    "refuse if deterministic reproduction fails",
+    "refuse if undeclared inputs are required",
+    "refuse if resource bounds are exceeded"
+  ],
+  "capacity": {
+    "tokens": 12000,
+    "time_sec": 300,
+    "memory_mb": 2048
+  },
+  "non_claims": [
+    "refusal is not a claim of incorrectness",
+    "refusal is not a claim of insecurity",
+    "refusal is only a scope/constraint violation signal"
+  ]
+}
