@@ -48,3 +48,19 @@ An explicit classification of unconditional results, conditional results, framew
 
 docs/referee/REFEREE_MAP.md
 
+
+## Chronos–URF–RR Certification (Released)
+
+This repository includes a released certification layer for the Chronos–URF–RR reference implementation and reproducibility checks.
+
+Scope:
+- Deterministic verification scaffolds (tests, scripts, proof-check hooks)
+- Reproducible execution under declared constraints
+- Verifier-checkable certification artifacts (schema + signed examples)
+
+Non-scope:
+- No new axioms, theorems, or proof claims
+- No claim that passing tests implies truth beyond stated invariants
+- No resolution of open complexity problems
+
+Certification artifacts are immutable once released.
