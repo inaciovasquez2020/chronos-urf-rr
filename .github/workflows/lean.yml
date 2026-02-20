@@ -50,3 +50,10 @@ jobs:
         run: |
           lake update
           lake build
+
+    - name: Verify Lean on PATH
+      run: |
+        echo "PATH=/Users/inaciof.vasquez/.elan/bin:/Users/inaciof.vasquez/.elan/bin:/Users/inaciof.vasquez/Library/Python/3.9/bin:/Users/inaciof.vasquez/.elan/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pmk/env/global/bin:/Library/Apple/usr/bin:/Library/TeX/texbin:/opt/homebrew/bin"
+        which lean
+        lean --version
+        lake --version
