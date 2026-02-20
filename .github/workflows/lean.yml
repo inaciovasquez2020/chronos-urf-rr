@@ -27,4 +27,6 @@ jobs:
 
       - name: Build
         run: |
+- name: Lake update
+  run: lake update
           lake build
