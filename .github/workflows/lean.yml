@@ -10,7 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Verify Lean toolchain file
-        run: |
+        run:     echo "/.elan/bin" >> 
+|
           test -f lean-toolchain
           cat lean-toolchain
 
@@ -21,6 +22,7 @@ jobs:
       - name: Check elan / lake availability
         run: |
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh 
+echo "/.elan/bin" >> 
 echo "$HOME/.elan/bin" >> $GITHUB_PATH| sh -s -- -y
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
 
