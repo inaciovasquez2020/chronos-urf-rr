@@ -5,12 +5,14 @@ on:
   pull_request:
 
 jobs:
+
+  lean:
   check-toolchain:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Verify Lean toolchain file
-        run:     echo "/.elan/bin" >> 
+        run:     echo "/.elan/bin" 
 |
           test -f lean-toolchain
           cat lean-toolchain
@@ -22,9 +24,9 @@ jobs:
       - name: Check elan / lake availability
         run: |
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh 
-echo "/.elan/bin" >> 
-echo "$HOME/.elan/bin" >> $GITHUB_PATH| sh -s -- -y
-          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+echo "/.elan/bin" 
+echo "$HOME/.elan/bin" $GITHUB_PATH| sh -s -- -y
+          echo "$HOME/.elan/bin" $GITHUB_PATH
 
   build:
     needs:
@@ -34,20 +36,22 @@ echo "$HOME/.elan/bin" >> $GITHUB_PATH| sh -s -- -y
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install elan
+      - name: Install elan and Lean
         run: |
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
 
-      - name: Verify Lean toolchain
+      - name: Verify Lean
         run: |
+
+          lean --version
+          lake --version
+
           cat lean-toolchain
 
-      - name: Build (no mathlib cache)
-        env:
-          MATHLIB_CACHE: "0"
+
+      - name: Build
         run: |
-          lake update
           lake build
 
     - name: Verify Lean on PATH
