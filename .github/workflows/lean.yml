@@ -5,7 +5,30 @@ on:
   pull_request:
 
 jobs:
+  check-toolchain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Lean toolchain file
+        run: |
+          test -f lean-toolchain
+          cat lean-toolchain
+
+  toolchain-consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check elan / lake availability
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+          lean --version
+          lake --version
+
   build:
+    needs:
+      - check-toolchain
+      - toolchain-consistency
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,4 +50,3 @@ jobs:
         run: |
           lake update
           lake build
-
