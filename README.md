@@ -64,3 +64,12 @@ Non-scope:
 - No resolution of open complexity problems
 
 Certification artifacts are immutable once released.
+
+## Reference Status
+
+This repository is a **reference implementation**.
+It is executable but non-normative.
+
+Canonical specifications:
+- https://github.com/inaciovasquez2020/Chronos-EntropyDepth
+- https://github.com/inaciovasquez2020/urf-core
