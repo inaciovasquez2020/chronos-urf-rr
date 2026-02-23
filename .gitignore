@@ -1,3 +1,8 @@
 .lake/
 .DS_Store
 certs/chronos-urf-rr/*.key
+*.aux
+*.log
+*.pdf
+*.fls
+*.fdb_latexmk
