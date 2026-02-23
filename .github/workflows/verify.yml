@@ -1,0 +1,6 @@
+
+      - name: RR invariant checks
+        run: |
+          test -f docs/RR_INVARIANTS.md
+          test -f CONTRIBUTING.md
+          test -f docs/REFEREE_OVERVIEW.md
