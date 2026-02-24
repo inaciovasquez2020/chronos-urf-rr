@@ -6,3 +6,14 @@ certs/chronos-urf-rr/*.key
 *.pdf
 *.fls
 *.fdb_latexmk
+
+Chronos-EntropyDepth/
+Exchange-Force-Framework/
+Operational-Wavefunction-Collapse/
+URC/
+URF-P-000*/
+mathlib4/
+urf-*/
+overlap-rigidity-*/
+phase-transition-pnp*/
+yang-mills-hs-gap-cert/
