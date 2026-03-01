@@ -31,5 +31,15 @@ Canonical specifications:
 - https://github.com/inaciovasquez2020/Chronos-EntropyDepth
 - https://github.com/inaciovasquez2020/urf-core
 
+## GxD (Global × Detectability)
+
+Quantitative key-to-keyhole invariant measuring exponential detectability
+of global expansion through bounded observers.
+
+See:
+- toolkit/gxd/GxD_Canonical_Module.md
+- toolkit/gxd/GxD_Chronos_Bridge.md
+- models/gxd_f2/
+
 Referee classification and review guidance are provided in:
 - docs/referee/REFEREE_MAP.md
