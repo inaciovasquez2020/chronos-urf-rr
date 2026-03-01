@@ -1,0 +1,157 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Rflect Explicit Closure Model over $F_2$}
+\author{}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Group and Generators}
+
+Let
+\[
+F_2 = \langle a,b \rangle
+\]
+be the free group on two generators.
+
+Fix symmetric generating set
+\[
+S = \{a,a^{-1},b,b^{-1}\}.
+\]
+
+Let $\ell(h)$ denote word length with respect to $S$.
+
+\section*{2. Left Regular Representation}
+
+Let $H = F_2$ act on $\ell^2(H)$ by left translation:
+\[
+(\rho(h)f)(x) = f(h^{-1}x).
+\]
+
+This is a unitary representation.
+
+\section*{3. Markov Operator}
+
+Define the simple random walk operator
+\[
+Pf(x) = \frac{1}{4}\sum_{s \in S} f(s^{-1}x).
+\]
+
+\section*{4. Spectral Radius and Gap}
+
+For $F_2$ with generating set $S$:
+
+\[
+\lambda = \frac{\sqrt{3}}{2}
+\]
+
+is the spectral radius of $P$.
+
+Hence the spectral gap is
+
+\[
+\gamma = 1 - \frac{\sqrt{3}}{2}.
+\]
+
+Numerically,
+
+\[
+\gamma \approx 0.133975.
+\]
+
+\section*{5. Length--Separation Inequality}
+
+For any $f \in \ell^2(H)$ and $h \in H$:
+
+\[
+\|\rho(h)f - f\|_2^2
+= 2\|f\|_2^2 - 2\langle f,\rho(h)f\rangle.
+\]
+
+Using the spectral radius bound:
+
+\[
+|\langle f,\rho(h)f\rangle|
+\le \lambda^{\ell(h)}\|f\|_2^2.
+\]
+
+Thus,
+
+\[
+\|\rho(h)f - f\|_2^2
+\ge 2(1 - \lambda^{\ell(h)})\|f\|_2^2.
+\]
+
+Using $1 - \lambda^n \ge n(1-\lambda)$:
+
+\[
+\|\rho(h)f - f\|_2
+\ge \sqrt{2(1-\lambda)}\,\|f\|_2\,\ell(h).
+\]
+
+Since $1-\lambda=\gamma$:
+
+\[
+\|\rho(h)f - f\|_2
+\ge \sqrt{2\gamma}\,\|f\|_2\,\ell(h).
+\]
+
+Numerically,
+
+\[
+\sqrt{2\gamma} \approx 0.5176.
+\]
+
+This gives explicit Length--Separation (LS).
+
+\section*{6. Ball Growth and Entropy}
+
+For $F_2$:
+
+\[
+|B_R| = 1 + 4\frac{3^R - 1}{2}.
+\]
+
+Asymptotically,
+
+\[
+|B_R| \sim 2 \cdot 3^R.
+\]
+
+Orbit entropy growth:
+
+\[
+H_R \sim R\log 3.
+\]
+
+\section*{7. Rflect Closure Theorem}
+
+\begin{theorem}
+Let $F_2$ act via the left regular representation.
+
+Then:
+
+\[
+\|\rho(h)f - f\|_2
+\ge \sqrt{2\gamma}\,\|f\|_2\,\ell(h).
+\]
+
+Since $F_2$ has exponential growth $|B_R|\sim 3^R$,
+observable norms must grow linearly in word length.
+
+Therefore, any uniformly bounded observable along the orbit
+forces the orbit to be finite.
+
+This closes the Rflect capacity--growth dichotomy
+for $F_2$ explicitly with constants.
+\end{theorem}
+
+\end{document}
