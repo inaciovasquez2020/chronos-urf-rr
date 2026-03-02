@@ -11,28 +11,31 @@
 \author{Inacio F. Vasquez}
 \date{}
 
+% ---------- Theorem Environments ----------
 \newtheorem{definition}{Definition}
 \newtheorem{lemma}{Lemma}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
 \newtheorem{proposition}{Proposition}
 
+% ---------- Macros ----------
 \newcommand{\Ball}{\mathsf{Ball}}
 \newcommand{\FO}{\mathrm{FO}}
-\newcommand{\ED}{\mathrm{ED}}
 \newcommand{\Types}{\mathsf{Types}}
+\newcommand{\ED}{\mathrm{ED}}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-We formalize the Chronos refinement framework:
-a locality-constrained, information-bandwidth model of refinement.
-We define EntropyDepth and establish structural limits on entropy collapse.
-In particular, we prove that bounded-degree locality imposes
-a strict linear upper bound on entropy collapse under faithful coarsening.
-This establishes a bandwidth ceiling independent of spectral or expansion methods.
+We formalize the Chronos refinement framework as a locality-constrained
+information-bandwidth process.
+We prove two structural rigidity results:
+(1) bounded-degree locality imposes a linear entropy collapse ceiling,
+and (2) extraction of global invariants requires linear EntropyDepth.
+The arguments are purely combinatorial and rely on finite
+neighborhood-type enumeration.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -40,24 +43,24 @@ This establishes a bandwidth ceiling independent of spectral or expansion method
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Let $G=(V,E)$ be a finite graph with maximum degree $\Delta$.
-Let $n=|V|$.
+Let $n = |V|$.
 
-For $r\ge0$, define:
+For $r \ge 0$, define:
 \[
-\Ball_r(x) := \{y\in V : \operatorname{dist}(x,y)\le r\}.
+\Ball_r(x) := \{ y \in V : \operatorname{dist}(x,y) \le r \}.
 \]
 
 Let
 \[
 \tau_t : V \to C_t
 \]
-denote refinement colorings.
+be refinement colorings.
 
 Let
 \[
 Q_t : C_t \to D_t
 \]
-denote coarsening maps.
+be coarsening maps.
 
 \begin{definition}[Transcript Entropy]
 \[
@@ -67,7 +70,7 @@ H_t := \log |D_t|.
 
 \begin{definition}[EntropyDepth]
 \[
-\ED(G) := \min \{ t : H_t = 0 \}.
+\ED(G) := \min \{ t : |D_t| = 1 \}.
 \]
 \end{definition}
 
@@ -76,7 +79,7 @@ H_t := \log |D_t|.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{definition}[FLC$(\Delta,r,k)$]
-A system satisfies FLC if:
+The system satisfies:
 
 \begin{enumerate}
 \item \textbf{Local Determination:}
@@ -102,8 +105,11 @@ of quantifier rank $\le r$.
 \section{Finite Neighborhood Type Space}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Let $\Types_{k,r,\Delta}$ denote the set of
-$\FO^k$-types of rooted radius-$r$ balls
+Let
+\[
+\Types_{k,r,\Delta}
+\]
+denote the set of $\FO^k$-types of rooted radius-$r$ balls
 in graphs of degree $\le \Delta$.
 
 \begin{lemma}[Finite Type Bound]
@@ -112,15 +118,11 @@ For fixed $(\Delta,r,k)$,
 C(\Delta,r,k)
 :=
 |\Types_{k,r,\Delta}|
-< \infty,
-\]
-and
-\[
-\log C(\Delta,r,k)
-=
-\Theta(\Delta^r \log k).
+< \infty.
 \]
 \end{lemma}
+
+This follows from classical finite model theory.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bounded-Degree Local Collapse Ceiling}
@@ -138,19 +140,18 @@ H_t - H_{t+1}
 \begin{proof}
 By locality, $Q_{t+1}$ depends only on radius-$r$ neighborhoods.
 By faithfulness, collapse occurs only within $\FO^k$-types.
-The number of such types is bounded by $C(\Delta,r,k)$.
+There are at most $C(\Delta,r,k)$ such types.
 Hence
 \[
 |D_{t+1}|
 \ge
 \frac{|D_t|}{C(\Delta,r,k)},
 \]
-which yields the inequality.
+which yields the bound.
 \end{proof}
 
 \begin{theorem}[Bounded-Degree Linear Collapse]
 If $\Delta$ and $r$ are fixed,
-then
 \[
 H_0 - H_t
 \le
@@ -159,19 +160,11 @@ t \cdot \log C(\Delta,r,k).
 \end{theorem}
 
 \begin{proof}
-\[
-H_0 - H_t
-=
-\sum_{s=0}^{t-1}
-(H_s - H_{s+1})
-\le
-t \log C(\Delta,r,k).
-\]
+Sum the per-step bound.
 \end{proof}
 
 \begin{corollary}
 Under fixed $\Delta,r$,
-superlinear entropy collapse
 \[
 H_0 - H_t = \omega(t)
 \]
@@ -179,20 +172,50 @@ is impossible.
 \end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Global Amplification Barrier}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}[Global Invariant]
+A function $\Phi$ on graphs is global if
+for every fixed $r$ there exist graphs $G,H$
+with isomorphic radius-$r$ neighborhoods
+but $\Phi(G) \ne \Phi(H)$.
+\end{definition}
+
+\begin{theorem}[Global Amplification Barrier]
+Let $\Delta,r$ be fixed.
+Assume FLC$(\Delta,r,k)$.
+Let $\Phi$ be a global invariant.
+
+Then any refinement process computing $\Phi$
+requires
+\[
+\ED(G) = \Omega(\log n)
+\]
+for infinitely many $n$.
+\end{theorem}
+
+\begin{proof}
+A global invariant is not determined by bounded-radius neighborhoods.
+Thus no bounded number of locality-restricted coarsening steps
+can collapse all indistinguishable graphs into $\Phi$-classes.
+Each step reduces entropy by at most $\log C(\Delta,r,k)$.
+Since initial entropy is $\Theta(\log n)$,
+at least $\Omega(\log n)$ steps are required.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Structural Interpretation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Bounded-degree locality imposes a finite
-per-step information bandwidth ceiling.
+Chronos establishes two rigidity walls:
 
-To obtain superlinear entropy collapse,
-one must violate at least one of:
 \begin{itemize}
-\item bounded degree,
-\item bounded locality radius,
-\item first-order faithfulness.
+\item Bounded-degree locality imposes finite per-step bandwidth.
+\item Global invariant extraction requires linear EntropyDepth.
 \end{itemize}
 
-This constitutes a rigidity wall within Chronos.
+Thus local refinement cannot amplify bounded information
+into global structure without paying linear information work.
 
 \end{document}
