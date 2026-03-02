@@ -6,6 +6,7 @@ certs/chronos-urf-rr/*.key
 *.pdf
 *.fls
 *.fdb_latexmk
+*.synctex.gz
 
 Chronos-EntropyDepth/
 Exchange-Force-Framework/
