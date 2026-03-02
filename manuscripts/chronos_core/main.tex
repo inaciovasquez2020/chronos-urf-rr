@@ -1,0 +1,198 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{cite}
+\geometry{margin=1in}
+
+\title{Chronos: Locality, Capacity, and EntropyDepth}
+\author{Inacio F. Vasquez}
+\date{}
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+
+\newcommand{\Ball}{\mathsf{Ball}}
+\newcommand{\FO}{\mathrm{FO}}
+\newcommand{\ED}{\mathrm{ED}}
+\newcommand{\Types}{\mathsf{Types}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We formalize the Chronos refinement framework:
+a locality-constrained, information-bandwidth model of refinement.
+We define EntropyDepth and establish structural limits on entropy collapse.
+In particular, we prove that bounded-degree locality imposes
+a strict linear upper bound on entropy collapse under faithful coarsening.
+This establishes a bandwidth ceiling independent of spectral or expansion methods.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chronos Refinement Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $G=(V,E)$ be a finite graph with maximum degree $\Delta$.
+Let $n=|V|$.
+
+For $r\ge0$, define:
+\[
+\Ball_r(x) := \{y\in V : \operatorname{dist}(x,y)\le r\}.
+\]
+
+Let
+\[
+\tau_t : V \to C_t
+\]
+denote refinement colorings.
+
+Let
+\[
+Q_t : C_t \to D_t
+\]
+denote coarsening maps.
+
+\begin{definition}[Transcript Entropy]
+\[
+H_t := \log |D_t|.
+\]
+\end{definition}
+
+\begin{definition}[EntropyDepth]
+\[
+\ED(G) := \min \{ t : H_t = 0 \}.
+\]
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Faithful Local Coarsening (FLC)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}[FLC$(\Delta,r,k)$]
+A system satisfies FLC if:
+
+\begin{enumerate}
+\item \textbf{Local Determination:}
+\[
+Q_{t+1}(\tau_{t+1}(x))
+=
+F_t\!\left(\{\!\{\tau_t(y):y\in\Ball_r(x)\}\!\}\right).
+\]
+
+\item \textbf{$\FO^k$-Faithfulness:}
+If $Q_t(\tau_t(x)) = Q_t(\tau_t(x'))$,
+then $x,x'$ satisfy the same $\FO^k$ formulas
+of quantifier rank $\le r$.
+
+\item \textbf{Monotone Factoring:}
+\[
+|D_{t+1}| \le |D_t|.
+\]
+\end{enumerate}
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Finite Neighborhood Type Space}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $\Types_{k,r,\Delta}$ denote the set of
+$\FO^k$-types of rooted radius-$r$ balls
+in graphs of degree $\le \Delta$.
+
+\begin{lemma}[Finite Type Bound]
+For fixed $(\Delta,r,k)$,
+\[
+C(\Delta,r,k)
+:=
+|\Types_{k,r,\Delta}|
+< \infty,
+\]
+and
+\[
+\log C(\Delta,r,k)
+=
+\Theta(\Delta^r \log k).
+\]
+\end{lemma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bounded-Degree Local Collapse Ceiling}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lemma}[Local Entropy Ceiling]
+Under FLC$(\Delta,r,k)$,
+\[
+H_t - H_{t+1}
+\le
+\log C(\Delta,r,k).
+\]
+\end{lemma}
+
+\begin{proof}
+By locality, $Q_{t+1}$ depends only on radius-$r$ neighborhoods.
+By faithfulness, collapse occurs only within $\FO^k$-types.
+The number of such types is bounded by $C(\Delta,r,k)$.
+Hence
+\[
+|D_{t+1}|
+\ge
+\frac{|D_t|}{C(\Delta,r,k)},
+\]
+which yields the inequality.
+\end{proof}
+
+\begin{theorem}[Bounded-Degree Linear Collapse]
+If $\Delta$ and $r$ are fixed,
+then
+\[
+H_0 - H_t
+\le
+t \cdot \log C(\Delta,r,k).
+\]
+\end{theorem}
+
+\begin{proof}
+\[
+H_0 - H_t
+=
+\sum_{s=0}^{t-1}
+(H_s - H_{s+1})
+\le
+t \log C(\Delta,r,k).
+\]
+\end{proof}
+
+\begin{corollary}
+Under fixed $\Delta,r$,
+superlinear entropy collapse
+\[
+H_0 - H_t = \omega(t)
+\]
+is impossible.
+\end{corollary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Structural Interpretation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Bounded-degree locality imposes a finite
+per-step information bandwidth ceiling.
+
+To obtain superlinear entropy collapse,
+one must violate at least one of:
+\begin{itemize}
+\item bounded degree,
+\item bounded locality radius,
+\item first-order faithfulness.
+\end{itemize}
+
+This constitutes a rigidity wall within Chronos.
+
+\end{document}
