@@ -1,5 +1,4 @@
 import itertools
-from math import comb
 def parity(x):
 return sum(x) & 1
 def mu_parity_probs(n, target_parity):
