@@ -1,0 +1,210 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bounded-Degree Local Collapse Ceiling}
+\label{sec:bounded_degree_collapse}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We formalize a structural bandwidth ceiling for locality-bounded
+refinement–coarsening systems on bounded-degree graphs.
+This result strengthens the EntropyDepth obstruction
+by isolating a purely combinatorial collapse bound.
+
+\subsection{Refinement–Coarsening Framework}
+
+Let $G=(V,E)$ be a finite graph with maximum degree $\Delta$.
+Let $n = |V|$.
+
+For $r \ge 0$ define the radius-$r$ ball:
+\[
+\Ball_r(x) := \{ y \in V : \operatorname{dist}(x,y) \le r \}.
+\]
+
+Let
+\[
+\tau_t : V \to C_t
+\]
+be the refinement coloring at step $t$.
+
+Let
+\[
+Q_t : C_t \to D_t
+\]
+be a coarsening operator.
+
+\begin{definition}[Transcript Entropy]
+\[
+H_t := \log |D_t|.
+\]
+The entropy collapse after $t$ steps is
+\[
+H_0 - H_t.
+\]
+\end{definition}
+
+\subsection{Faithful Local Coarsening (FLC)}
+
+\begin{definition}[FLC$(\Delta,r,k)$]
+The system satisfies FLC if:
+
+\begin{enumerate}
+\item \textbf{Local Determination:}
+There exists a function $F_t$ such that
+\[
+Q_{t+1}(\tau_{t+1}(x))
+=
+F_t\!\left(\{\!\{\tau_t(y) : y \in \Ball_r(x)\}\!\}\right).
+\]
+
+\item \textbf{$\FO^k$-Faithfulness:}
+If $Q_t(\tau_t(x)) = Q_t(\tau_t(x'))$,
+then $x$ and $x'$ satisfy the same $\FO^k$
+formulas of quantifier rank $\le r$.
+
+\item \textbf{Monotone Factoring:}
+\[
+|D_{t+1}| \le |D_t|.
+\]
+\end{enumerate}
+\end{definition}
+
+This axiomatizes the Chronos locality constraint:
+collapse may forget information,
+but only locally and without identifying logically distinguishable states.
+
+\subsection{Finite Neighborhood Type Space}
+
+By Gaifman locality,
+$\FO^k$ formulas of bounded quantifier rank
+are determined by bounded-radius neighborhoods.
+
+Let
+\[
+\Types_{k,r,\Delta}
+\]
+denote the set of $\FO^k$-types of rooted
+radius-$r$ balls in graphs of degree $\le \Delta$.
+
+\begin{lemma}[Finite Type Bound]
+For fixed $(\Delta,r,k)$,
+\[
+C(\Delta,r,k)
+:=
+|\Types_{k,r,\Delta}|
+< \infty,
+\]
+and
+\[
+\log C(\Delta,r,k)
+=
+\Theta(\Delta^r \log k).
+\]
+\end{lemma}
+
+This is classical finite-model theory.
+
+\subsection{Per-Step Collapse Ceiling}
+
+\begin{lemma}[Local Entropy Ceiling]
+Under FLC$(\Delta,r,k)$,
+\[
+H_t - H_{t+1}
+\le
+\log C(\Delta,r,k).
+\]
+\end{lemma}
+
+\begin{proof}
+By FLC-1, $Q_{t+1}$ depends only on
+radius-$r$ neighborhood multisets.
+
+By FLC-2, collapse can occur only within
+$\FO^k$-indistinguishable neighborhood classes.
+
+Hence $Q_{t+1}$ factors through
+\[
+\Ball_r(V) / {\equiv_{\FO^k}}.
+\]
+
+The number of such equivalence classes
+is bounded by $C(\Delta,r,k)$.
+
+Therefore
+\[
+|D_{t+1}|
+\ge
+\frac{|D_t|}{C(\Delta,r,k)},
+\]
+which implies
+\[
+H_t - H_{t+1}
+\le
+\log C(\Delta,r,k).
+\]
+\end{proof}
+
+\subsection{Bounded-Degree Linear Collapse Theorem}
+
+\begin{theorem}[Bounded-Degree Linear Collapse]
+\label{thm:bounded_degree_linear}
+Let $G$ have maximum degree $\Delta$.
+Suppose FLC$(\Delta,r,k)$ holds.
+Then for all $t$:
+\[
+H_0 - H_t
+\le
+t \cdot \log C(\Delta,r,k).
+\]
+\end{theorem}
+
+\begin{proof}
+\[
+H_0 - H_t
+=
+\sum_{s=0}^{t-1}
+(H_s - H_{s+1})
+\le
+t \log C(\Delta,r,k).
+\]
+\end{proof}
+
+\subsection{Chronos Consequence}
+
+Fix $\Delta,r$ independently of $n$.
+Allow $k = k(n)$ to grow.
+
+Then
+\[
+H_t - H_{t+1}
+=
+O(\log k(n)).
+\]
+
+In particular, if $k(n)=\Theta(\log n)$:
+\[
+H_t - H_{t+1}
+=
+O(\log\log n).
+\]
+
+\begin{corollary}[No Superlinear Collapse Under Fixed Degree]
+If $\Delta$ and $r$ are fixed,
+then
+\[
+H_0 - H_t = \omega(t)
+\]
+is impossible.
+\end{corollary}
+
+\subsection{Structural Interpretation}
+
+Under bounded degree and fixed locality radius,
+each refinement step has finite information bandwidth.
+
+Superlinear entropy collapse requires violating at least one of:
+\begin{itemize}
+\item bounded degree,
+\item bounded locality radius,
+\item first-order faithfulness.
+\end{itemize}
+
+Thus bounded-degree locality constitutes a rigidity wall
+inside the EntropyDepth framework.
