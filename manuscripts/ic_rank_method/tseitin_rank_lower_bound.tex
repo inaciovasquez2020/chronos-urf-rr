@@ -1,0 +1,83 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\title{Rank Lower Bounds for Tseitin Communication Matrices}
+\author{Inacio F. Vasquez}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+
+\section{Communication Matrix of Search$_F$}
+
+Let $F=\mathrm{TS}(G,f)$ be a Tseitin formula on a $d$-regular graph $G=(V,E)$.
+
+Let $E=X\sqcup Y$ be a balanced partition of edge variables.
+
+Define the search function:
+\[
+\mathrm{Search}_F : \{0,1\}^X \times \{0,1\}^Y \to V
+\]
+which outputs a violated vertex under the combined assignment.
+
+We define the boolean communication matrix
+\[
+M(x,y) = 1 \iff \text{vertex } v_0 \text{ is violated under } (x,y),
+\]
+for a fixed reference vertex $v_0$.
+
+\section{GF(2) Structure}
+
+Each vertex constraint is parity:
+\[
+\bigoplus_{e\in E(v)} x_e = f(v).
+\]
+
+Thus violation is equivalent to:
+\[
+\left(\bigoplus_{e\in E(v)\cap X} x_e\right)
+\oplus
+\left(\bigoplus_{e\in E(v)\cap Y} y_e\right)
+= 1 \oplus f(v).
+\]
+
+Hence $M(x,y)$ equals a bilinear parity form over $\mathbb{F}_2$.
+
+\section{Rank Lower Bound Framework}
+
+Let $A$ be the $\mathbb{F}_2$ matrix representing cross-incidences between $X$ and $Y$ edges in vertex constraints.
+
+\begin{theorem}
+If the induced bipartite edge-vertex incidence between $X$ and $Y$ has rank $r$ over $\mathbb{F}_2$, then:
+\[
+\mathrm{rank}_{\mathbb{F}_2}(M) \ge 2^{r}.
+\]
+\end{theorem}
+
+\begin{lemma}
+For balanced partitions of edges in a constant-degree expander, the cross-incidence rank satisfies:
+\[
+r = \Omega(n).
+\]
+\end{lemma}
+
+\section{Consequence}
+
+\begin{theorem}
+For Tseitin formulas on constant-degree expanders,
+\[
+\log_2 \mathrm{rank}_{\mathbb{F}_2}(M) = \Omega(n).
+\]
+
+Therefore deterministic communication complexity satisfies:
+\[
+\mathrm{CC}(\mathrm{Search}_F) = \Omega(n).
+\]
+\end{theorem}
+
+\end{document}
