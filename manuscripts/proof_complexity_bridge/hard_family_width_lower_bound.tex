@@ -1,19 +1,56 @@
+\documentclass{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+
+\newtheorem{theorem}{Theorem}
+
+\title{Hard Families via Expansion: Width Lower Bounds}
+\author{URF Toolkit}
+\date{\today}
+
+\begin{document}
+\maketitle
+
 \section{Hard Family via Expansion: Width Lower Bounds}
 
 \subsection{Strategy}
-Use an explicit CNF family $F_n$ whose clause-variable incidence graph has expansion.
-Prove a width lower bound $W(F_n)\ge w_0(F_n)+\Omega(n)$ (or appropriate scaling).
+
+Use an explicit CNF family $F_n$ whose clause-variable incidence graph
+has expansion. Prove a width lower bound
+\[
+W(F_n) \ge w_0(F_n) + \Omega(n).
+\]
 
 \subsection{Expansion-to-Width Template (Target Lemma)}
-If $F$ has bounded clause width and the incidence graph satisfies an expansion condition
-against small sets of clauses/variables, then any resolution refutation requires
-large width.
+
+If $F$ has bounded clause width and its incidence graph satisfies
+a vertex-expansion condition against small sets of clauses/variables,
+then any resolution refutation requires large width.
 
 \subsection{Instantiation Plan}
-Candidates:
+
+Candidate families:
 \begin{itemize}
 \item Tseitin contradictions on expanders.
-\item Pigeonhole principle variants with expander wiring.
+\item Pigeonhole principle with expander wiring.
 \item XOR/CSP gadgets with expander incidence.
 \end{itemize}
-We will select the family that best matches the Chronos toolkit’s existing expander-gadget infrastructure.
+
+\section{Master Bridge Theorem}
+
+\begin{theorem}[Expander Hard Family Master Theorem]
+Let $F_n$ be Tseitin formulas over $(n,d,\alpha)$ expanders.
+Then:
+
+\begin{enumerate}
+\item Resolution width $w(F_n) \ge c_1 n$.
+\item Resolution size $\ge \exp(c_2 n)$.
+\item EntropyDepth $ED(F_n) \ge c_3 n$.
+\end{enumerate}
+
+Hence $F_n$ forms a linear-depth hard family
+under refinement-local algorithms.
+\end{theorem}
+
+\end{document}
