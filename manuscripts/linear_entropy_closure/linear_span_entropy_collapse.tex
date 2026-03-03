@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\title{Linear-Span Entropy Collapse for Resolution}
+\author{Inacio F. Vasquez}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+
+\begin{document}
+\maketitle
+
+\section*{Statement}
+
+Let $F$ be any unsatisfiable CNF over variables $X$.
+Define
+
+\[
+ED^*(F) := \min_T H_\mu(T(A)),
+\]
+
+where $T$ ranges over resolution refutations,
+$A \sim \mathrm{Uniform}(\{0,1\}^{|X|})$,
+and $H_\mu$ is Shannon entropy.
+
+\begin{theorem}
+\[
+ED^*(F)
+=
+\operatorname{rank}_{\mathbb F_2}
+\{1_{\mathrm{vars}(C)} : C \text{ initial clause of } F\}.
+\]
+\end{theorem}
+
+\begin{corollary}
+Linear-span entropy of clause evaluations
+cannot distinguish resolution-hard formulas
+from polynomially refutable formulas.
+\end{corollary}
+
+\end{document}
