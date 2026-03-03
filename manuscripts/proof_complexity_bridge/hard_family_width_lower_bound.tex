@@ -1,0 +1,19 @@
+\section{Hard Family via Expansion: Width Lower Bounds}
+
+\subsection{Strategy}
+Use an explicit CNF family $F_n$ whose clause-variable incidence graph has expansion.
+Prove a width lower bound $W(F_n)\ge w_0(F_n)+\Omega(n)$ (or appropriate scaling).
+
+\subsection{Expansion-to-Width Template (Target Lemma)}
+If $F$ has bounded clause width and the incidence graph satisfies an expansion condition
+against small sets of clauses/variables, then any resolution refutation requires
+large width.
+
+\subsection{Instantiation Plan}
+Candidates:
+\begin{itemize}
+\item Tseitin contradictions on expanders.
+\item Pigeonhole principle variants with expander wiring.
+\item XOR/CSP gadgets with expander incidence.
+\end{itemize}
+We will select the family that best matches the Chronos toolkit’s existing expander-gadget infrastructure.

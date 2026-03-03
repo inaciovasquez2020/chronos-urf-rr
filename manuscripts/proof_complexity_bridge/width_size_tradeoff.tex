@@ -1,0 +1,27 @@
+\section{Width--Size Tradeoff as the Replacement Invariant}
+
+\subsection{Resolution}
+Fix a CNF $F$ over variables $x_1,\dots,x_n$.
+A \emph{resolution refutation} of $F$ is a derivation of the empty clause
+from clauses of $F$ using the resolution rule.
+
+\subsection{Width}
+The \emph{width} of a clause is its number of literals.
+Define $W(F)$ as the minimum width of any resolution refutation of $F$.
+Define $w_0(F)$ as the maximum width of an initial clause of $F$.
+
+\subsection{Ben-Sasson--Wigderson Tradeoff (Toolkit Anchor)}
+There exists an absolute constant $c>0$ such that any resolution refutation
+of $F$ has size at least
+\[
+\exp\!\left( c \cdot \frac{(W(F)-w_0(F))^2}{n} \right).
+\]
+(We will use this as the size lower-bound engine once $W(F)$ is lower-bounded.)
+
+\subsection{Replacement Invariant}
+Define the invariant to be the \emph{required width gap}
+\[
+\Delta W(F) := W(F)-w_0(F).
+\]
+The toolkit aim is to produce explicit hard families with $\Delta W(F)=\Omega(n)$
+(or $\Omega(\sqrt{n}\,)$ depending on the family), yielding exponential size lower bounds.
