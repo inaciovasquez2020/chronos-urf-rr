@@ -21,3 +21,4 @@ yang-mills-hs-gap-cert/
 pycache/
 pycache/
 *.pyc
+main.out
