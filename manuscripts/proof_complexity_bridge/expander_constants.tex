@@ -1,0 +1,30 @@
+\documentclass{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\section{Explicit Expansion Parameters}
+
+\begin{definition}[Vertex Expansion]
+A graph $G=(V,E)$ is an $(n,d,\alpha)$-vertex expander if
+for all $S \subseteq V$ with $|S|\le n/2$,
+\[
+|\partial S| \ge \alpha |S|.
+\]
+\end{definition}
+
+\begin{theorem}[Tseitin Width with Explicit Constant]
+Let $G$ be an $(n,d,\alpha)$-vertex expander.
+Then any resolution refutation of the Tseitin formula
+on $G$ requires width at least
+\[
+w \ge \frac{\alpha}{2d} n.
+\]
+\end{theorem}
+
+\end{document}
