@@ -1,0 +1,47 @@
+\documentclass{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\section{FO$^k_r$ Locality and Clause Support Bounds}
+
+\begin{definition}[Local Support]
+Let $F$ be a CNF over variable set $V$.
+The support of a clause $C$ is the set of variables appearing in $C$.
+The width of $C$ is $| \mathrm{supp}(C) |$.
+\end{definition}
+
+\begin{definition}[FO$^k_r$-Definable Derivation]
+A derivation is FO$^k_r$-local if each derived clause is definable
+by a first-order formula using at most $k$ variables
+and quantifier rank at most $r$ over the incidence graph of $F$.
+\end{definition}
+
+\begin{lemma}[Locality Implies Bounded Support]
+Let $F$ have bounded-degree incidence graph.
+If a clause $C$ is FO$^k_r$-definable,
+then its support lies inside a radius-$r$ neighborhood
+of at most $k$ anchor vertices.
+
+Hence
+\[
+|\mathrm{supp}(C)| \le k \cdot \Delta^r,
+\]
+where $\Delta$ is the maximum degree.
+\end{lemma}
+
+\begin{theorem}[FO$^k_r$–Width Bound]
+Under bounded degree $\Delta$,
+any FO$^k_r$-local derivation induces resolution width at most
+\[
+O(k \Delta^r).
+\]
+\end{theorem}
+
+\end{document}
