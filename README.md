@@ -1,5 +1,7 @@
 # chronos-urf-rr
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18842937.svg)](https://doi.org/10.5281/zenodo.18842937)
+
 This repository is a **frozen reference realization** of the Chronos / EntropyDepth framework within the Unified Rigidity Framework (URF).
 
 ## Purpose
