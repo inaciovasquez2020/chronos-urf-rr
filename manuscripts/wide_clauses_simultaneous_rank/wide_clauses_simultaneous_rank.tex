@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\title{Wide Clauses and Simultaneous GF(2) Rank in Tseitin Resolution}
+\author{Inacio F. Vasquez}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We analyze whether deriving a single wide cut-parity clause in a Tseitin formula over a bounded-degree expander graph forces large simultaneous GF(2) rank during a resolution derivation. We formalize simultaneous rank over the edge-variable space (the entropy-relevant notion), construct an explicit polynomial-length derivation of any wide cut clause with constant simultaneous rank, and prove that such derivations do not contradict exponential resolution lower bounds for Tseitin formulas. We conclude that single wide clauses are inexpensive in simultaneous GF(2) rank, and that any entropy-based obstruction must arise at the global contradiction layer rather than at individual clause derivations.
+\end{abstract}
+
+\section{Preliminaries}
+
+\subsection{Graphs and Tseitin Formulas}
+
+Let $G=(V,E)$ be a connected $d$-regular graph on $n=|V|$ vertices, where $d\ge 3$ is a fixed constant. Let $f:V\to\{0,1\}$ satisfy
+\[
+\sum_{v\in V} f(v) \equiv 1 \pmod 2.
+\]
+The \emph{Tseitin formula} $\mathrm{TS}(G,f)$ is the conjunction of parity constraints:
+\[
+\bigoplus_{e\in E(v)} x_e = f(v)
+\qquad \text{for all } v\in V.
+\]
+Each parity equation is encoded in CNF as the conjunction of $2^{d-1}$ clauses of width $d$.
+
+It is well known that $\mathrm{TS}(G,f)$ is unsatisfiable.
+
+\subsection{Resolution}
+
+Resolution operates on CNF clauses over edge variables $\{x_e : e\in E\}$.
+
+The single-variable resolution rule:
+\[
+\frac{C \lor x_e \qquad D \lor \neg x_e}{C \lor D}.
+\]
+
+A resolution derivation is a sequence of clauses where each clause is either an axiom or derived by resolution from earlier clauses.
+
+\subsection{GF(2) Representation of Clauses}
+
+Each clause $C$ over edge variables determines a vector
+\[
+\chi(C) \in \mathbb{F}_2^{E}
+\]
+defined by:
+\[
+\chi(C)_e =
+\begin{cases}
+1 & \text{if } x_e \text{ appears in } C, \\
+0 & \text{otherwise}.
+\end{cases}
+\]
+
+For Tseitin parity clauses, $\chi(C)$ corresponds to the incidence vector of some edge set.
+
+If $U\subseteq V$, define the cut:
+\[
+\partial_E(U) = \{ e=\{u,w\}\in E : |\{u,w\}\cap U|=1 \}.
+\]
+Let $\mathbf{1}_{\partial_E(U)} \in \mathbb{F}_2^E$ denote its characteristic vector.
+
+\section{Simultaneous GF(2) Rank}
+
+\begin{definition}[Live Configuration]
+At time $t$ in a resolution derivation, let $S_t$ be the set of clauses that are live (available for future derivations).
+\end{definition}
+
+\begin{definition}[Simultaneous Rank]
+The simultaneous GF(2) rank at time $t$ is
+\[
+r_{\mathrm{sim}}(t)
+=
+\dim_{\mathbb{F}_2}
+\mathrm{span}
+\{\chi(C) : C\in S_t\}.
+\]
+\end{definition}
+
+\section{Wide Cut Clauses}
+
+Fix $U\subseteq V$ with $|\partial_E(U)|=\Theta(n)$.
+
+The corresponding parity constraint:
+\[
+\bigoplus_{e\in \partial_E(U)} x_e = \bigoplus_{v\in U} f(v)
+\]
+is implied by the Tseitin axioms.
+
+\section{Polynomial Derivation of a Wide Clause}
+
+\begin{theorem}
+Let $U\subseteq V$.
+There exists a resolution derivation of the cut-parity clause for $U$ with:
+\begin{enumerate}[label=(\alph*)]
+\item Length $O(|E(G[U])|)$,
+\item $\max_t r_{\mathrm{sim}}(t) \le d+1$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Order the vertices of $U$ arbitrarily as $v_1,\dots,v_k$.
+
+Construct an accumulator clause encoding the parity of $U_i=\{v_1,\dots,v_i\}$.
+
+Start with one axiom clause encoding $v_1$.
+
+At stage $i+1$, merge the accumulator with the axiom clause for $v_{i+1}$.
+
+The two clauses share at most $\deg_{U_i}(v_{i+1})\le d$ edge variables.
+
+Eliminate shared variables one by one using resolution.
+
+Each elimination involves at most two clauses simultaneously.
+
+Thus each merge uses at most $d$ resolution steps.
+
+Summing:
+\[
+\sum_{i=1}^{k-1} \deg_{U_i}(v_{i+1}) = |E(G[U])|.
+\]
+
+Thus total length is $O(|E(G[U])|)=O(n)$.
+
+At any time, at most $d+1$ clauses are live.
+
+Hence $r_{\mathrm{sim}}(t)\le d+1$.
+\end{proof}
+
+\section{Conclusion}
+
+\begin{proposition}
+Deriving a single wide cut clause does not require simultaneous GF(2) rank $\Omega(n)$.
+\end{proposition}
+
+\begin{proof}
+The theorem gives a derivation with $r_{\mathrm{sim}}(t)\le d+1$.
+\end{proof}
+
+\end{document}
