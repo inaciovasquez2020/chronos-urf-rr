@@ -1,0 +1,26 @@
+\documentclass{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\section{FO$^k$ Locality and Resolution Width}
+
+\begin{theorem}[FO$^k$–Width Simulation Barrier]
+Let $F_n$ be a Tseitin family on constant-degree expanders.
+
+Any algorithm whose reasoning is FO$^k$-local
+induces resolution derivations of width at most
+\[
+O(f(k))
+\]
+for some function $f$ depending only on $k$.
+
+Since Tseitin formulas require width $\Omega(n)$,
+no fixed-$k$ FO$^k$-local algorithm can refute $F_n$.
+\end{theorem}
+
+\end{document}
