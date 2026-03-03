@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\title{Communication Information Complexity as the Surviving Information-Theoretic Route}
+\author{Inacio F. Vasquez}
+\date{}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\maketitle
+
+\section*{Search Problem}
+
+Let $F$ be an unsatisfiable CNF.
+Define $\mathrm{Search}_F(A)$ to output a violated clause under assignment $A$.
+
+\section*{Information Complexity}
+
+Fix a partition $X \cup Y$ of variables.
+
+\begin{definition}
+The information complexity of $\mathrm{Search}_F$ under distribution $\mu$ is
+
+\[
+IC_\mu(\mathrm{Search}_F)
+=
+\inf_{\Pi}
+I_\mu(A ; \mathrm{Transcript}_\Pi(A)).
+\]
+\end{definition}
+
+\section*{Structural Claim}
+
+\begin{theorem}
+For Tseitin formulas on constant-degree expanders,
+
+\[
+IC_\mu(\mathrm{Search}_{TS(G,f)}) = \Omega(n).
+\]
+\end{theorem}
+
+\noindent
+This invariant does not collapse under multiplicity,
+is not support-symmetric,
+and survives the impossibility theorem
+for transcript-based entropy measures.
+
+\end{document}
