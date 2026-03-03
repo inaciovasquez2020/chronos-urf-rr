@@ -1,7 +1,9 @@
+import sys
 import numpy as np
 
-Δ = 6
-λ = 0.2
+# Read parameters from CLI
+Δ = int(sys.argv[1]) if len(sys.argv) > 1 else 6
+λ = float(sys.argv[2]) if len(sys.argv) > 2 else 0.2
 η = 0.0
 
 states = [(0,0),(0,1),(1,0),(1,1)]
@@ -18,45 +20,48 @@ def allowed(x,y):
     return (a*c == 0) and (b*d == 0)
 
 def normalize(v):
-    s = sum(v)
-    return np.array(v)/s
+    v = np.array(v, dtype=float)
+    return v / np.sum(v)
 
 def cavity_update(m):
     new = []
     for x in states:
-        s = 0
-        for y in states:
+        s = 0.0
+        for j,y in enumerate(states):
             if allowed(x,y):
-                s += m[states.index(y)]
-        val = weight(x) * (s**(Δ-1))
+                s += m[j]
+        val = weight(x) * (s ** (Δ - 1))
         new.append(val)
     return normalize(new)
 
-def fixed_point(iterations=200):
+def fixed_point(iters=500):
     m = normalize(np.ones(4))
-    for _ in range(iterations):
+    for _ in range(iters):
         m = cavity_update(m)
     return m
 
 def overlap(m):
     return m[3]
 
-def compute_q(η_val):
+def compute_q(eta_val):
     global η
-    η = η_val
+    η = eta_val
     m = fixed_point()
     return overlap(m)
 
 def curvature(step=1e-3):
-    q1 = compute_q(η-step)
+    q1 = compute_q(η - step)
     q2 = compute_q(η)
-    q3 = compute_q(η+step)
-    return (q1 - 2*q2 + q3)/(step**2)
+    q3 = compute_q(η + step)
+    return (q1 - 2*q2 + q3) / (step**2)
 
 if __name__ == "__main__":
     m = fixed_point()
     q = overlap(m)
     curv = curvature()
-    print("fixed point:",m)
-    print("overlap q:",q)
-    print("curvature:",curv)
+
+    print("Δ =", Δ)
+    print("λ =", λ)
+    print("fixed point:", m)
+    print("overlap q:", q)
+    print("curvature:", curv)
