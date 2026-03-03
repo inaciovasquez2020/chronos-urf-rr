@@ -49,7 +49,7 @@ def cc_lb_bits(G):
 
 def main():
     print("n\tcycle_bits\texpander_bits")
-    for n in [6,8,10,12,14,16,18]:
+    for n in [6,8,10,12,14]:
         cycle_bits = cc_lb_bits(cycle_graph(n))
         exp_bits   = cc_lb_bits(circulant_3_regular(n))
         print(f"{n}\t{cycle_bits}\t{exp_bits}")
