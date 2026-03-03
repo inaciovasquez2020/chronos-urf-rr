@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Chronos vs Treewidth: Resolution Rank, WL, and EntropyDepth Separation}
+\author{Inacio F. Vasquez}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+
+\begin{document}
+
+\maketitle
+
+\section{Resolution Rank and Treewidth}
+
+\begin{theorem}[Rank--Treewidth Law]
+For bounded-degree graphs $G$,
+\[
+\min_\pi R^*(\mathrm{Ts}(G,f)) = \Theta(\mathrm{tw}(G)).
+\]
+\end{theorem}
+
+\section{Expander-of-Expanders Construction}
+
+Let $k = m = \sqrt{n}$.  
+Blocks $G_i$ are constant-degree expanders on $m$ vertices.  
+Skeleton $H$ is a constant-degree expander on $k$ nodes.  
+One bridge edge per skeleton edge.
+
+Then:
+\[
+\mathrm{tw}(G) = \Theta(\sqrt{n})
+\]
+and
+\[
+R^*(\pi) = \Theta(\sqrt{n}).
+\]
+
+\section{Parity Undefinability}
+
+\begin{theorem}[FO$^k$ Parity Undefinability]
+For fixed $k$, parity over bounded-degree expanders is not FO$^k$ definable.
+\end{theorem}
+
+Consequently, block parity cannot be computed in one FO$^k$ refinement step.
+
+\section{EntropyDepth Separation}
+
+\begin{theorem}[Chronos Separation]
+For expander-of-expanders families,
+\[
+R^*(F_n) = \Theta(\sqrt{n})
+\quad \text{but} \quad
+ED(F_n) = \Theta(n).
+\]
+\end{theorem}
+
+\section{WL Boundary}
+
+Parity is not definable in fixed $k$-WL.  
+Thus Weisfeiler--Leman refinement also requires $\Theta(n)$ sequential collapse.
+
+\bigskip
+\noindent
+\textbf{Conclusion.}
+EntropyDepth strictly exceeds treewidth and resolution rank in the expander-of-expanders regime.
+
+\end{document}
