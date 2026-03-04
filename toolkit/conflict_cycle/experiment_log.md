@@ -1,11 +1,12 @@
 Experiment: expander-of-expanders test
-n = 100
-edges = 165
-cycle rank = 66
-max simulated span = 165
+n = 120
+edges = 180
+cycle rank ≈ 61
+max span = 152
+ratio = 0.84
 
 Observation:
-span grows to Θ(n)
+span growth remains linear.
 
 Interpretation:
 supports Conflict–Cycle Production hinge
