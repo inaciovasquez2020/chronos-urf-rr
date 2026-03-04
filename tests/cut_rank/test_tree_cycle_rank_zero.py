@@ -4,5 +4,5 @@ def cycle_rank(G):
     return G.number_of_edges() - G.number_of_nodes() + nx.number_connected_components(G)
 
 def test_tree_cycle_rank_zero():
-    G = nx.random_tree(25)
+    G = nx.random_labeled_tree(25)
     assert cycle_rank(G) == 0
