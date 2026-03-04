@@ -1,107 +1,161 @@
-import itertools
 import random
 import networkx as nx
 import numpy as np
 
-def gf2_rank(vectors):
-    if len(vectors) == 0:
-        return 0
-    M = np.array(vectors, dtype=int) % 2
-    r = 0
-    rows, cols = M.shape
-    for c in range(cols):
-        pivot = None
-        for i in range(r, rows):
-            if M[i, c] == 1:
-                pivot = i
-                break
-        if pivot is None:
-            continue
-        M[[r, pivot]] = M[[pivot, r]]
-        for i in range(rows):
-            if i != r and M[i, c] == 1:
-                M[i] ^= M[r]
-        r += 1
-        if r == rows:
-            break
-    return r
 
-def random_regular_connected(n, d):
+class GF2Basis:
+    """
+    Incremental GF(2) row-space basis for fixed dimension dim.
+    Stores pivoted basis vectors by their leftmost 1-bit position.
+    Complexity per add: O(dim^2) worst-case (dense), but avoids O(t * dim^3) full recomputes.
+    """
+    def __init__(self, dim: int):
+        self.dim = dim
+        self.basis = [None] * dim  # basis[i] has pivot at i
+        self.rank = 0
+
+    def add(self, v: np.ndarray) -> bool:
+        v = (v.copy() & 1).astype(np.uint8)
+        for i in range(self.dim):
+            if v[i] == 0:
+                continue
+            b = self.basis[i]
+            if b is None:
+                self.basis[i] = v
+                self.rank += 1
+                return True
+            v ^= b
+        return False
+
+
+def random_regular_connected(n: int, d: int, seed: int | None = None) -> nx.Graph:
+    rng = random.Random(seed)
     while True:
-        G = nx.random_regular_graph(d, n)
+        G = nx.random_regular_graph(d, n, seed=rng.randrange(1 << 30))
         if nx.is_connected(G):
             return G
 
-def edge_index(G):
+
+def edge_list_and_index(G: nx.Graph):
     edges = list(G.edges())
     idx = {}
-    for i,(u,v) in enumerate(edges):
-        if u>v:
-            u,v=v,u
-        idx[(u,v)] = i
+    for i, (u, v) in enumerate(edges):
+        if u > v:
+            u, v = v, u
+        idx[(u, v)] = i
     return edges, idx
 
-def random_clause(m):
-    size = random.randint(1,6)
-    vars = random.sample(range(m), size)
+
+def random_clause(m_vars: int, max_width: int = 6):
+    size = random.randint(1, max_width)
+    vars_ = random.sample(range(m_vars), size)
     clause = []
-    for v in vars:
-        lit = v+1
+    for v in vars_:
+        lit = v + 1
         if random.random() < 0.5:
             lit = -lit
         clause.append(lit)
-    return tuple(sorted(set(clause), key=lambda x:(abs(x),x)))
+    # dedup + stable order
+    clause = tuple(sorted(set(clause), key=lambda x: (abs(x), x)))
+    return clause
 
-def clause_vector(clause, m):
-    v = np.zeros(m,dtype=int)
+
+def clause_vector(clause: tuple[int, ...], m_vars: int) -> np.ndarray:
+    v = np.zeros(m_vars, dtype=np.uint8)
     for lit in clause:
-        v[abs(lit)-1] ^= 1
+        v[abs(lit) - 1] ^= 1
     return v
 
-def simulate(n=80,d=3,steps=20000):
-    G = random_regular_connected(n,d)
-    edges,idx = edge_index(G)
-    m=len(edges)
 
-    clauses=set()
-    vectors=[]
+def resolve(c1: tuple[int, ...], c2: tuple[int, ...], pivot_var: int):
+    # pivot_var is 1..m
+    s1 = set(c1)
+    s2 = set(c2)
+    if pivot_var in s1 and -pivot_var in s2:
+        out = (s1 | s2) - {pivot_var, -pivot_var}
+    elif -pivot_var in s1 and pivot_var in s2:
+        out = (s1 | s2) - {pivot_var, -pivot_var}
+    else:
+        return None
+    # tautology check
+    if any(-lit in out for lit in out):
+        return None
+    return tuple(sorted(out, key=lambda x: (abs(x), x)))
 
-    for _ in range(50):
-        c=random_clause(m)
+
+def simulate(
+    n: int = 80,
+    d: int = 3,
+    steps: int = 20000,
+    seed: int = 0,
+    init_clauses: int = 80,
+    partner_samples: int = 1,
+    max_width: int = 6,
+    report_every: int = 2000,
+):
+    random.seed(seed)
+
+    G = random_regular_connected(n, d, seed=seed)
+    edges, _ = edge_list_and_index(G)
+    m = len(edges)
+
+    clauses: set[tuple[int, ...]] = set()
+    basis = GF2Basis(m)
+
+    for _ in range(init_clauses):
+        c = random_clause(m, max_width=max_width)
         clauses.add(c)
-        vectors.append(clause_vector(c,m))
+        basis.add(clause_vector(c, m))
 
-    max_rank=gf2_rank(vectors)
+    max_rank = basis.rank
 
-    for t in range(steps):
+    clause_list = list(clauses)
 
-        c1,c2=random.sample(list(clauses),2)
+    for t in range(1, steps + 1):
 
-        common=set(abs(x) for x in c1).intersection(set(abs(x) for x in c2))
+        if len(clause_list) < 2:
+            break
+
+        c1, c2 = random.sample(clause_list, 2)
+
+        vars1 = {abs(x) for x in c1}
+        vars2 = {abs(x) for x in c2}
+        common = list(vars1 & vars2)
         if not common:
             continue
 
-        pivot=random.choice(list(common))
+        for _ in range(partner_samples):
+            pivot = random.choice(common)
+            r = resolve(c1, c2, pivot)
+            if r is None:
+                continue
+            if r in clauses:
+                continue
 
-        r=set(c1).union(set(c2))
-        r.discard(pivot)
-        r.discard(-pivot)
-
-        if any(-x in r for x in r):
-            continue
-
-        r=tuple(sorted(r,key=lambda x:(abs(x),x)))
-
-        if r not in clauses:
             clauses.add(r)
-            v=clause_vector(r,m)
-            vectors.append(v)
-            rank=gf2_rank(vectors)
-            max_rank=max(max_rank,rank)
+            clause_list.append(r)
 
-    print("nodes",n)
-    print("edges",m)
-    print("max_parity_rank",max_rank)
+            basis.add(clause_vector(r, m))
+            if basis.rank > max_rank:
+                max_rank = basis.rank
 
-if __name__=="__main__":
+        if report_every and (t % report_every == 0):
+            print("t", t, "clauses", len(clauses), "rank", basis.rank, "max_rank", max_rank)
+
+            if max_rank >= m:
+                break
+
+    print("nodes", n)
+    print("edges", m)
+    print("clauses_final", len(clauses))
+    print("max_parity_rank", max_rank)
+    return {
+        "n": n,
+        "m": m,
+        "clauses": len(clauses),
+        "max_rank": max_rank,
+    }
+
+
+if __name__ == "__main__":
     simulate()
