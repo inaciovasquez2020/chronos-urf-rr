@@ -29,7 +29,8 @@ def random_lift(base, k):
 
 
 def run():
-    R = 2
+    R = 3
+    R = 4
     base = base_graph()
 
     print("\n=== RANDOM LIFT TEST ===")
