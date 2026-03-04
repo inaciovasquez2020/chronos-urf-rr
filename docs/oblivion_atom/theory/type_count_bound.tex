@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\title{Bound on the Number of FO$^k$ Rooted Types}
+\date{}
+\maketitle
+
+\section*{Definitions}
+
+Let $G=(V,E)$ be a graph with maximum degree $\Delta$.
+
+Let
+\[
+\operatorname{tp}^k_r(v)
+\]
+denote the FO$^k$ $r$-type of the rooted ball $(B_r(v),v)$.
+
+\section*{Lemma}
+
+\begin{lemma}
+For fixed parameters $(k,\Delta,r)$ there exists a constant
+\[
+M=M(k,\Delta,r)
+\]
+such that every graph $G$ with maximum degree $\Delta$ satisfies
+\[
+T_r(G) \le M
+\]
+where
+\[
+T_r(G)=
+\left|
+\{
+\operatorname{tp}^k_r(v):v\in V(G)
+\}
+\right|.
+\]
+\end{lemma}
+
+\begin{proof}
+
+The rooted ball $B_r(v)$ contains at most
+
+\[
+1+\Delta+\Delta^2+\dots+\Delta^r
+\]
+
+vertices.
+
+Thus the number of vertices is bounded by
+
+\[
+O(\Delta^r).
+\]
+
+The number of labeled graphs on at most $N=O(\Delta^r)$ vertices is finite.
+
+Since FO$^k$ $r$-types depend only on the structure of the rooted
+ball $(B_r(v),v)$, the number of possible rooted structures is finite.
+
+Therefore the number of possible FO$^k$ $r$-types is bounded by a
+constant
+
+\[
+M(k,\Delta,r).
+\]
+
+\end{proof}
+
+\end{document}
