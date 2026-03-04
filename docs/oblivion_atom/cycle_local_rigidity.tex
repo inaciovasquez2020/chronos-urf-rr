@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\title{Cycle--Local Rigidity}
+\date{}
+\maketitle
+
+\section*{Definitions}
+
+Let $G=(V,E)$ be a graph with maximum degree $\Delta$.
+
+\[
+C_R(G)=
+\dim_{\mathbb F_2}
+\left(
+\sum_{v\in V}
+\iota_{v*} Z_1(B_R(v))
+\right)
+\]
+
+\[
+T_r(G)=
+\left|
+\{
+\operatorname{tp}^{k}_r(v): v\in V
+\}
+\right|
+\]
+
+\section*{Finite Type Space}
+
+\begin{lemma}
+For fixed $k,\Delta,r$, the number of FO$^k$ $r$-types is bounded:
+\[
+T_r(G) \le M(k,\Delta,r).
+\]
+\end{lemma}
+
+\section*{Cycle Witness Extraction}
+
+\begin{lemma}
+If
+\[
+C_R(G) \ge \alpha |V|,
+\]
+then there exist vertices $v_1,\dots,v_m$ with $m\ge\alpha|V|$ whose
+local cycle vectors are linearly independent in $\mathbb F_2^E$.
+\end{lemma}
+
+\section*{Local Cycle Invariance}
+
+\begin{lemma}
+If two vertices $u,v$ satisfy
+\[
+\operatorname{tp}^{k}_r(u)=\operatorname{tp}^{k}_r(v),
+\]
+then the cycle spaces of their $R$-balls are isomorphic:
+\[
+Z_1(B_R(u)) \cong Z_1(B_R(v)).
+\]
+\end{lemma}
+
+\section*{Cycle Packing Bound}
+
+\begin{lemma}
+If $T_r(G)=1$ then
+\[
+C_R(G)\le c(k,\Delta,R)
+\]
+for a constant depending only on $(k,\Delta,R)$.
+\end{lemma}
+
+\section*{Cycle--Local Rigidity}
+
+\begin{theorem}
+If
+\[
+C_R(G) \ge \alpha |V|
+\]
+for some constant $\alpha>0$, then
+\[
+T_r(G) \ge 2.
+\]
+\end{theorem}
+
+\begin{proof}
+Assume $T_r(G)=1$.
+Then every vertex has identical FO$^k$ $r$-type.
+
+Hence every $R$-ball has isomorphic cycle space.
+Thus the number of independent cycle vectors contributed locally is
+bounded by a constant $c(k,\Delta,R)$.
+
+Therefore
+\[
+C_R(G) \le c(k,\Delta,R),
+\]
+contradicting $C_R(G)\ge\alpha|V|$.
+
+Hence $T_r(G)\ge2$.
+\end{proof}
+
+\end{document}
