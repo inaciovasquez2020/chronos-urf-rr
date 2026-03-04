@@ -1,97 +1,80 @@
+# toolkit/conflict_cycle/parity_extraction_sim.py
+
 import random
-import itertools
+import numpy as np
 
-def random_regular_connected(n, d):
-    while True:
-        stubs = []
-        for v in range(n):
-            stubs += [v]*d
-        random.shuffle(stubs)
 
-        edges = set()
-        ok = True
+def random_clause_vector(n):
+    """
+    Generate a random GF(2) vector representing a clause.
+    """
+    v = np.zeros(n, dtype=np.uint8)
+    size = random.randint(1, min(5, n))
+    idxs = random.sample(range(n), size)
+    for i in idxs:
+        v[i] ^= 1
+    return v
 
-        for i in range(0, len(stubs), 2):
-            u = stubs[i]
-            v = stubs[i+1]
-            if u == v:
-                ok = False
+
+def rank_mod2(matrix):
+    """
+    Compute rank of a binary matrix over GF(2) using Gaussian elimination.
+    """
+    if len(matrix) == 0:
+        return 0
+
+    M = np.array(matrix, dtype=np.uint8)
+    rows, cols = M.shape
+    r = 0
+
+    for c in range(cols):
+        pivot = None
+        for i in range(r, rows):
+            if M[i, c]:
+                pivot = i
                 break
-            e = tuple(sorted((u, v)))
-            if e in edges:
-                ok = False
-                break
-            edges.add(e)
-
-        if not ok:
+        if pivot is None:
             continue
 
-        adj = {i: set() for i in range(n)}
-        for u, v in edges:
-            adj[u].add(v)
-            adj[v].add(u)
+        M[[r, pivot]] = M[[pivot, r]]
 
-        seen = set()
-        stack = [0]
-        while stack:
-            x = stack.pop()
-            if x in seen:
-                continue
-            seen.add(x)
-            stack.extend(adj[x] - seen)
+        for i in range(rows):
+            if i != r and M[i, c]:
+                M[i] ^= M[r]
 
-        if len(seen) == n:
-            return list(edges)
+        r += 1
+        if r == rows:
+            break
 
-def gf2_rank(vectors):
-    basis = []
-    for v in vectors:
-        x = v
-        for b in basis:
-            if x == 0:
-                break
-            x = min(x, x ^ b)
-        if x:
-            basis.append(x)
-    return len(basis)
+    return r
 
-def cut_vector(U, edge_index):
-    vec = 0
-    for (u, v), idx in edge_index.items():
-        if (u in U) ^ (v in U):
-            vec ^= (1 << idx)
-    return vec
 
-def simulate(n=160, d=3, steps=100000):
-    edges = random_regular_connected(n, d)
-    m = len(edges)
-
-    edge_index = {e:i for i,e in enumerate(edges)}
-
+def run_simulation():
+    n = 159
     clauses = []
-    max_rank = 0
+    rank = 0
+    max_rank = n
 
-    for t in range(1, steps+1):
-        size = random.randint(1, n//2)
-        U = set(random.sample(range(n), size))
+    t = 0
 
-        vec = cut_vector(U, edge_index)
-        clauses.append(vec)
+    while True:
+        t += 1
 
-        rank = gf2_rank(clauses)
+        clause = random_clause_vector(n)
+        clauses.append(clause)
 
-        if rank > max_rank:
-            max_rank = rank
+        new_rank = rank_mod2(clauses)
+
+        if new_rank > rank:
+            rank = new_rank
 
         if t % 15000 == 0:
             print("t", t, "clauses", len(clauses), "rank", rank, "max_rank", max_rank)
 
-    print()
-    print("FINAL RESULT")
-    print("nodes", n)
-    print("edges", m)
-    print("clauses_final", len(clauses))
-    print("max_parity_rank", max_rank)
+        if rank == max_rank:
+            print("rank saturation reached — stopping simulation at t =", t)
+            break
+
 
 if __name__ == "__main__":
-    simulate(n=160, d=4, steps=100000)
+    run_simulation()
