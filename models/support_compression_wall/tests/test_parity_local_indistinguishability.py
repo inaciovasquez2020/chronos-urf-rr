@@ -8,17 +8,10 @@ def parity(x):
 
 
 def local_view(x, idx):
-    """
-    Remove coordinate idx to simulate k-local observation.
-    """
     return tuple(v for i, v in enumerate(x) if i != idx)
 
 
 def test_parity_local_indistinguishability():
-    """
-    Any single-coordinate-local observer cannot distinguish parity.
-    """
-
     n = 6
 
     even = []
@@ -31,8 +24,7 @@ def test_parity_local_indistinguishability():
             odd.append(x)
 
     for idx in range(n):
-
         even_views = {local_view(x, idx) for x in even}
         odd_views = {local_view(x, idx) for x in odd}
 
-        assert even_views == odd_views\
+        assert even_views == odd_views
