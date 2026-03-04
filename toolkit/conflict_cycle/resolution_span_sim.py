@@ -241,7 +241,7 @@ def random_regular_connected(n: int, d: int, seed: int):
 
 if __name__ == "__main__":
     # small regime for resolution simulation
-    n = 40
+    n = 120
     d = 3
     live_cap = 350
     max_steps = 25000
