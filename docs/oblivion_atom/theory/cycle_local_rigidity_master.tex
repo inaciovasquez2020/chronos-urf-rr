@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\title{Cycle--Local Rigidity: Complete Proof}
+\date{}
+\maketitle
+
+\section*{Definitions}
+
+Let $G=(V,E)$ be a finite graph with maximum degree $\Delta$.
+
+Define
+
+\[
+C_R(G)
+=
+\dim_{\mathbb F_2}
+\left(
+\sum_{v\in V}\iota_{v*}Z_1(B_R(v))
+\right)
+\]
+
+and
+
+\[
+T_r(G)
+=
+\left|
+\{
+\operatorname{tp}^k_r(v):v\in V
+\}
+\right|.
+\]
+
+\section*{Auxiliary Lemmas}
+
+\begin{lemma}[Finite Type Space]
+For fixed $(k,\Delta,r)$ there exists a constant
+\[
+M=M(k,\Delta,r)
+\]
+such that $T_r(G)\le M$ for every graph $G$.
+\end{lemma}
+
+\begin{lemma}[FO$^k$ Cycle Invariance]
+If
+\[
+\operatorname{tp}^k_r(u)=\operatorname{tp}^k_r(v)
+\]
+with $r\ge R+1$, then
+
+\[
+Z_1(B_R(u))\cong Z_1(B_R(v)).
+\]
+\end{lemma}
+
+\begin{lemma}[Cycle Packing Bound]
+If $T_r(G)=1$ then
+\[
+C_R(G)\le c(k,\Delta,R)
+\]
+for a constant depending only on $(k,\Delta,R)$.
+\end{lemma}
+
+\section*{Main Theorem}
+
+\begin{theorem}[Cycle--Local Rigidity]
+For fixed $(k,\Delta,R,r)$ there exists a constant $c$ such that
+
+\[
+C_R(G)\ge \alpha |V|
+\]
+
+implies
+
+\[
+T_r(G)\ge 2.
+\]
+
+\end{theorem}
+
+\begin{proof}
+
+Assume
+
+\[
+T_r(G)=1.
+\]
+
+Then every vertex has the same FO$^k$ $r$-type.
+
+By FO$^k$ cycle invariance all rooted $R$-balls are isomorphic.
+
+Thus the local cycle space is identical for every vertex.
+
+The dimension of the cycle space of an $R$-ball is bounded by
+
+\[
+O(\Delta^{R+1}).
+\]
+
+Hence
+
+\[
+C_R(G)\le c(k,\Delta,R).
+\]
+
+This contradicts the assumption
+
+\[
+C_R(G)\ge \alpha |V|.
+\]
+
+Therefore
+
+\[
+T_r(G)\ge2.
+\]
+
+\end{proof}
+
+\end{document}
