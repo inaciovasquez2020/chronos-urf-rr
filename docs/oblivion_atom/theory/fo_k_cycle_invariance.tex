@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\title{FO$^k$ Cycle-Space Invariance}
+\date{}
+\maketitle
+
+\section*{Definitions}
+
+Let $G=(V,E)$ be a graph with maximum degree $\Delta$.
+
+Let
+
+\[
+\operatorname{tp}^k_r(v)
+\]
+
+denote the FO$^k$ $r$-type of the rooted ball $(B_r(v),v)$.
+
+Let
+
+\[
+Z_1(B_R(v))
+\]
+
+denote the cycle space of the $R$-ball around $v$.
+
+\section*{Lemma}
+
+\begin{lemma}
+If two vertices $u,v$ satisfy
+\[
+\operatorname{tp}^k_r(u)=\operatorname{tp}^k_r(v)
+\]
+for $r\ge R$, then
+
+\[
+Z_1(B_R(u)) \cong Z_1(B_R(v)).
+\]
+\end{lemma}
+
+\begin{proof}
+
+Equality of FO$^k$ $r$-types implies the rooted graphs
+\[
+(B_r(u),u) \cong (B_r(v),v)
+\]
+are indistinguishable in $k$-variable logic.
+
+Since $R\le r$, the induced subgraphs
+
+\[
+B_R(u),\quad B_R(v)
+\]
+
+are isomorphic as rooted graphs.
+
+Cycle spaces are invariants of graph isomorphism.
+
+Therefore
+
+\[
+Z_1(B_R(u)) \cong Z_1(B_R(v)).
+\]
+
+\end{proof}
+
+\end{document}
