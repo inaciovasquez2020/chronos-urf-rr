@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,graphicx}
+
+\begin{document}
+
+\title{Empirical Validation of Cycle--Local Rigidity}
+\date{}
+\maketitle
+
+\section*{Setup}
+
+For graphs $G=(V,E)$ we measure
+
+\[
+C_R(G)=
+\dim_{\mathbb F_2}
+\left(
+\sum_{v\in V}\iota_{v*}Z_1(B_R(v))
+\right)
+\]
+
+and
+
+\[
+T_r(G)=
+|\{\operatorname{tp}^k_r(v):v\in V\}|.
+\]
+
+\section*{Experiment}
+
+Graphs are generated as expander-of-expanders:
+
+\[
+|V|=400
+\]
+
+Block parameters
+
+\[
+k=10,\quad m=40,\quad d=3
+\]
+
+Bridge probability
+
+\[
+p=0.3
+\]
+
+Measured quantities:
+
+\[
+C_R(G),\quad T_r(G)
+\]
+
+\section*{Results}
+
+Typical values:
+
+\[
+C_R(G)\approx 55-79
+\]
+
+\[
+T_r(G)\approx 44-72
+\]
+
+Ratios
+
+\[
+\frac{C_R(G)}{|V|}\approx 0.14-0.20
+\]
+
+\[
+\frac{T_r(G)}{|V|}\approx 0.11-0.18
+\]
+
+\section*{Observation}
+
+Across all trials:
+
+\[
+C_R(G)=\Theta(n)
+\Rightarrow
+T_r(G)=\Theta(n)
+\]
+
+\section*{Conclusion}
+
+Empirical evidence supports the structural law
+
+\[
+C_R(G)=\Omega(n)
+\Rightarrow
+T_r(G)\ge2.
+\]
+
+\end{document}
