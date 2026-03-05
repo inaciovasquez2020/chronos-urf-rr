@@ -1,0 +1,6 @@
+R = 1 LIR = 5
+R = 2 LIR = 24
+R = 3 LIR = 54
+R = 4 LIR = 96
+R = 5 LIR = 150
+R = 6 LIR = 216
