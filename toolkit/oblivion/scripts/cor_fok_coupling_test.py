@@ -1,59 +1,115 @@
+# toolkit/oblivion/scripts/cor_fok_coupling_test.py
+# ADDITIONS: collision detector + collision histogram + top-colliding signatures
+
 #!/usr/bin/env python3
-import json, argparse, hashlib, collections
+from __future__ import annotations
+import argparse, json, collections, hashlib
 
-def load_graph(path):
-  with open(path) as f: G=json.load(f)
-  n=G.get("n",len(G["adj"])); adj=G["adj"]; return n,adj
+def load_graph(path: str):
+    with open(path, "r") as f:
+        obj = json.load(f)
+    n = obj.get("n")
+    adj = obj.get("adj")
+    if adj is None:
+        edges = obj["edges"]
+        if n is None:
+            n = max(max(u,v) for u,v in edges) + 1
+        adj = {str(i): [] for i in range(n)}
+        for u,v in edges:
+            adj[str(u)].append(v)
+            adj[str(v)].append(u)
+    return int(n), {int(k): list(map(int,v)) for k,v in adj.items()}
 
-def bfs_ball(adj, s, R):
-  seen={s}; q=[(s,0)]
-  for v,d in q:
-    if d==R: continue
-    for u in adj[v]:
-      if u not in seen:
-        seen.add(u); q.append((u,d+1))
-  return seen
+def ball_signature(adj, v: int, R: int):
+    # deterministic BFS ball signature: multiset degrees at each layer + edge counts per layer pair
+    from collections import deque, Counter
+    dist = {v: 0}
+    q = deque([v])
+    layers = {0: [v]}
+    while q:
+        x = q.popleft()
+        if dist[x] == R:
+            continue
+        for y in adj[x]:
+            if y not in dist:
+                dist[y] = dist[x] + 1
+                layers.setdefault(dist[y], []).append(y)
+                q.append(y)
 
-def sig_ball(adj, S):
-  E=[]
-  for v in S:
-    for u in adj[v]:
-      if u in S and v<u: E.append((v,u))
-  E.sort()
-  h=hashlib.blake2s(digest_size=16)
-  h.update(str(len(S)).encode()); h.update(str(len(E)).encode())
-  for a,b in E: h.update(f"{a},{b};".encode())
-  return h.hexdigest()
+    # layer degree multiset
+    deg_layer = {r: dict(sorted(Counter(len(adj[u]) for u in layers.get(r, [])).items())) for r in range(R+1)}
+
+    # inter-layer edge counts (r,r) and (r,r+1)
+    layer_of = dist
+    e_rr = {r: 0 for r in range(R+1)}
+    e_rp = {r: 0 for r in range(R)}
+    seen_edges = set()
+    for x, nbrs in adj.items():
+        if x not in layer_of:
+            continue
+        for y in nbrs:
+            if y not in layer_of:
+                continue
+            a, b = (x,y) if x < y else (y,x)
+            if (a,b) in seen_edges:
+                continue
+            seen_edges.add((a,b))
+            rx, ry = layer_of[x], layer_of[y]
+            if rx == ry:
+                e_rr[rx] += 1
+            elif abs(rx - ry) == 1:
+                rmin = min(rx, ry)
+                e_rp[rmin] += 1
+
+    sig_obj = {"deg_layer": deg_layer, "e_rr": e_rr, "e_rp": e_rp}
+    s = json.dumps(sig_obj, sort_keys=True, separators=(",",":")).encode("utf-8")
+    h = hashlib.sha256(s).hexdigest()
+    return h
 
 def main():
-  ap=argparse.ArgumentParser()
-  ap.add_argument("--graph_json", required=True)
-  ap.add_argument("--R", type=int, default=6)
-  ap.add_argument("--limit", type=int, default=2000)
-  ap.add_argument("--out", required=True)
-  args=ap.parse_args()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--graph_json", required=True)
+    ap.add_argument("--R", type=int, required=True)
+    ap.add_argument("--limit", type=int, default=6000)
+    ap.add_argument("--out", required=True)
+    args = ap.parse_args()
 
-  n,adj=load_graph(args.graph_json)
-  lim=min(args.limit,n)
+    n, adj = load_graph(args.graph_json)
+    limit = min(args.limit, n)
 
-  ball_sig=[]  # proxy FO^k_R type signature = hashed induced ball
-  for v in range(lim):
-    S=bfs_ball(adj,v,args.R)
-    ball_sig.append(sig_ball(adj,S))
+    sigs = []
+    for v in range(limit):
+        sigs.append(ball_signature(adj, v, args.R))
 
-  mult=collections.Counter(ball_sig)
-  max_mult=max(mult.values()) if mult else 0
+    ctr = collections.Counter(sigs)
+    distinct = len(ctr)
+    max_mult = max(ctr.values()) if ctr else 0
+    collisions = limit - distinct
+    hist = dict(sorted(collections.Counter(ctr.values()).items()))
 
-  # COR-proxy: count unique ball signatures among radius-R patches
-  # (if COR large, we expect many distinct signatures; if FO^k homogeneous, few)
-  distinct=len(mult)
+    # top-colliding signatures (up to 10)
+    top = ctr.most_common(10)
+    top = [{"sig": s, "mult": m} for (s,m) in top if m >= 2]
 
-  out={
-    "meta":{"graph_json":args.graph_json,"n":n,"R":args.R,"limit":lim},
-    "fok_proxy":{"distinct":distinct,"max_multiplicity":max_mult},
-    "histogram":dict(sorted(collections.Counter(mult.values()).items()))
-  }
-  with open(args.out,"w") as f: json.dump(out,f,indent=2)
-  print(json.dumps(out,indent=2))
+    out = {
+        "meta": {
+            "graph_json": args.graph_json,
+            "n": n,
+            "R": args.R,
+            "limit": limit
+        },
+        "fok_proxy": {
+            "distinct": distinct,
+            "max_multiplicity": max_mult,
+            "collisions": collisions,
+            "multiplicity_histogram": hist,
+            "top_collisions": top
+        }
+    }
 
-if __name__=="__main__": main()
+    with open(args.out, "w") as f:
+        json.dump(out, f, indent=2)
+    print(json.dumps(out, indent=2))
+
+if __name__ == "__main__":
+    main()
