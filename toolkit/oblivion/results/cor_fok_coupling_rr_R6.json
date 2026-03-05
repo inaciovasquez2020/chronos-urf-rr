@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/rr_n12000_d4_seed9.json",
+    "n": 12000,
+    "R": 6,
+    "limit": 6000
+  },
+  "fok_proxy": {
+    "distinct": 6000,
+    "max_multiplicity": 1
+  },
+  "histogram": {
+    "1": 6000
+  }
+}
