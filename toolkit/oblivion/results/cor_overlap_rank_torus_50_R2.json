@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/torus_50.json",
+    "R": 2,
+    "n": 2500,
+    "m": 5000
+  },
+  "overlap_rank": 0,
+  "cycles_examined": 10000,
+  "kept_cycles": 0,
+  "source_meta": {
+    "graph": "torus",
+    "n_side": 50,
+    "N": 2500
+  }
+}
