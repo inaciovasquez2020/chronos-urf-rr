@@ -6,14 +6,25 @@ from collections import deque, defaultdict
 def load_graph(path):
     with open(path) as f:
         data = json.load(f)
+
+    if isinstance(data, dict) and "adj" in data:
+        adj = {int(k): set(v) for k, v in data["adj"].items()}
+        return adj
+
     if isinstance(data, dict) and "edges" in data:
         edges = data["edges"]
     else:
         edges = data
+
     adj = defaultdict(set)
-    for u, v in edges:
-        adj[u].add(v)
-        adj[v].add(u)
+
+    for e in edges:
+        if isinstance(e, list) or isinstance(e, tuple):
+            if len(e) >= 2:
+                u, v = e[0], e[1]
+                adj[u].add(v)
+                adj[v].add(u)
+
     return adj
 
 def ball(adj, start, R):
