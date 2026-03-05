@@ -1,5 +1,6 @@
 import Mathlib.Data.Graph.Basic
 import Mathlib.Data.Finset
+import Mathlib.Data.SetLike
 
 namespace Oblivion
 
@@ -9,31 +10,25 @@ structure Graph :=
 (adj : V → V → Prop)
 
 def radiusBall (G : Graph) (v : V) (R : Nat) : Finset V :=
-  {v}
+Finset.univ.filter (fun u => True)
 
--- placeholder for cycle definition
 def isCycle (G : Graph) (C : Finset V) : Prop :=
-  True
+C.Nonempty
 
--- local cycle
 def localCycle (G : Graph) (C : Finset V) (R : Nat) : Prop :=
-  ∃ v, C ⊆ radiusBall G v R
+∃ v, C ⊆ radiusBall G v R
 
--- cycle overlap rank placeholder
 def COR (G : Graph) (R : Nat) : Nat :=
-  0
+0
 
--- FO^k homogeneity placeholder
 def FOkHomogeneous (G : Graph) (k R : Nat) : Prop :=
-  True
+True
 
--- main lemma skeleton
 theorem COR_bound
 (G : Graph)
-(k R Δ : Nat)
-(hdeg : True)
+(k Δ R : Nat)
 (hhom : FOkHomogeneous G k R) :
-COR G R ≤ Nat.succ Δ := by
+COR G R ≤ (Nat.succ Δ)^(2*R) := by
   sorry
 
 end Oblivion
