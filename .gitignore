@@ -25,3 +25,6 @@ main.out
 *.out
 *.tsv
 .venv/
+.venv/
+__pycache__/
+*.pyc
