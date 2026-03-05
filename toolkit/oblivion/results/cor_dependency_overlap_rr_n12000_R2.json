@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/rr_n12000_d4_seed9.json",
+    "R": 2,
+    "n": 12000,
+    "m": 24000,
+    "limit_vertices": 12000
+  },
+  "sum_local_cycle_rank": 171,
+  "global_ball_cycle_span_rank": 30,
+  "dependency_overlap": 141,
+  "cycle_vectors_total": 171,
+  "basis_insertions": 30,
+  "source_meta": {}
+}
