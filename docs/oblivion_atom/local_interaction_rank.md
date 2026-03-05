@@ -109,3 +109,105 @@ Cycles overlap in a planar lattice structure.
 
 Example scan:
 
+R = 1 LIR = 5
+R = 2 LIR = 24
+R = 3 LIR = 54
+R = 4 LIR = 96
+R = 5 LIR = 150
+R = 6 LIR = 216
+
+
+Empirically:
+
+\[
+\mathrm{LIR}_R(G) \approx 6R^2
+\]
+
+---
+
+## Structural Dichotomy (Empirical)
+
+Graphs appear to fall into two regimes.
+
+### Tree-like regime
+
+\[
+\mathrm{LIR}_R(G) = O(1)
+\]
+
+Examples:
+
+- cycles
+- ladders
+- random regular graphs
+
+---
+
+### Dense cycle regime
+
+\[
+\mathrm{LIR}_R(G) = \Theta(R^2)
+\]
+
+Examples:
+
+- torus grids
+- triangular lattices
+
+---
+
+## Relation to the Oblivion Atom Program
+
+The Oblivion Atom conjecture seeks a structural invariant that forces **FO\(^k\) type diversity** in bounded-degree graphs.
+
+The working hypothesis emerging from experiments is:
+
+> Large Local Interaction Rank may force FO\(^k\) configuration divergence.
+
+Informally:
+
+high LIR → overlapping cycle constraints → local type asymmetry
+
+
+This suggests that **cycle interaction density** may be the missing structural obstruction.
+
+---
+
+## Status
+
+Current status: **empirical invariant under investigation**.
+
+Further work required:
+
+- connect LIR to cycle-overlap rank
+- relate LIR growth to EF-game configuration divergence
+- test on expanders and random lifts
+- determine whether bounded LIR implies FO\(^k\)-homogeneity
+
+---
+
+## Implementation
+
+Reference implementation:
+
+toolkit/oblivion/scripts/lir_test.py
+
+
+The script computes:
+
+LIR_R(G)
+
+
+for several graph families and supports radius scanning experiments.
+
+---
+
+## Next Research Questions
+
+1. Does bounded \(\mathrm{LIR}_R(G)\) imply bounded cycle-overlap rank?
+2. Can large \(\mathrm{LIR}_R(G)\) force EF-configuration pumping?
+3. Is \(\mathrm{LIR}_R(G)\) equivalent to the obstruction in the Oblivion Atom conjecture?
+
+These questions remain open.
+
+
