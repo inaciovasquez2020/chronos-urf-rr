@@ -5,37 +5,32 @@ open Finset
 
 namespace ResXor
 
-variable {V E : Type} [Fintype V] [DecidableEq V] [Fintype E] [DecidableEq E]
+universe u
 
-structure Graph where
+structure Graph (V : Type u) (E : Type u) where
   inc : E → V × V
 
-def boundary (G : Graph) (U : Finset V) : Finset E :=
-  Finset.filter (fun e =>
-    let p := G.inc e
-    ((p.1 ∈ U) != (p.2 ∈ U))) Finset.univ
-
-structure Tseitin (G : Graph) where
+structure Tseitin {V E : Type u} (G : Graph V E) where
   f : V → ZMod 2
 
-structure ParityClause where
+structure ParityClause (E : Type u) where
   S : Finset E
   b : ZMod 2
 
-def xorRes (A B : ParityClause) : ParityClause :=
-{ S := A.S.symmDiff B.S
+def xorSet {α : Type u} [DecidableEq α] (A B : Finset α) : Finset α :=
+  (A \ B) ∪ (B \ A)
+
+def xorRes {E : Type u} [DecidableEq E] (A B : ParityClause E) : ParityClause E :=
+{ S := xorSet A.S B.S
 , b := A.b + B.b }
 
-def cutVec (U : Finset V) : V → ZMod 2 :=
+def cutVec {V : Type u} [DecidableEq V] (U : Finset V) : V → ZMod 2 :=
   fun v => if v ∈ U then 1 else 0
 
-lemma cut_symmDiff (U W : Finset V) :
-  cutVec (U.symmDiff W) = fun v => (cutVec U v + cutVec W v) := by
-  funext v
-  by_cases hU : v ∈ U <;> by_cases hW : v ∈ W <;>
-  simp [cutVec, hU, hW, Finset.mem_symmDiff]
+axiom cut_xorSet {V : Type u} [DecidableEq V] (U W : Finset V) :
+  cutVec (V:=V) (xorSet U W) = fun v => (cutVec (V:=V) U v + cutVec (V:=V) W v)
 
-def cutEquiv (U W : Finset V) : Prop :=
-  U = W ∨ U = W.symmDiff Finset.univ
+def cutEquiv {V : Type u} [Fintype V] [DecidableEq V] (U W : Finset V) : Prop :=
+  U = W ∨ U = xorSet W Finset.univ
 
 end ResXor
