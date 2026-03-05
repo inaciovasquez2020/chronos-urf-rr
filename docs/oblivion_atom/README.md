@@ -1,40 +1,59 @@
-# Oblivion Atom — COR_R Development Pack
+# Oblivion Atom Toolkit
 
-## Index
+This directory contains experimental and diagnostic components supporting
+the Oblivion Atom program.
 
-- cycle_overlap_to_fok_diversity.md
-- cycle_overlap_rigidity_lemma.md
-- rigidity_proof_strategy.md
-- local_cycle_span_bound.md
-- overlap_dependency_lemma.md
-- ef_game_cycle_detection.md
-- cycle_signature_count_bound.md
-- independent_local_cycles_upper_bound.md
-- fok_formula_from_ef_strategy.md
-- constant_c_kDeltaR_spec.md
-- s_local_cycle_rank_bound_proof.md
-- random_lift_COR_growth.md
-- cor_linear_growth_theorem.md
-- cor_entropydepth_bridge.md
-- cor_signature_collapse_theorem.md
-- entropydepth_lower_bound.md
-- TODO_formal_closure.md
+Core objective:
+Investigate the relationship between **cycle-overlap rank** and **FO^k type diversity**
+in bounded-degree graphs.
 
-## Scripts
+## Geometry Diagnostics
 
-- scripts/oblivion_atom/random_lift_cor_experiment.py
-- scripts/oblivion_atom/random_lift_cor_rank_proxy.py
-- scripts/oblivion_atom/cor_growth_scan.py
-- scripts/oblivion_atom/expander_cor_test.py
+Geometry signature
 
-## Lean
+(|B_R|, β₁(B_R), ρ(R)),  ρ(R) = β₁(B_R) / |B_R|
 
-- lean/Oblivion/CORBound.lean
-- lean/Oblivion/CORBoundSkeleton.lean
-- lean/Oblivion/CORGrowth.lean
-- lean/Oblivion/RadiusBall.lean
-- lean/Oblivion/CycleDefs.lean
-- lean/Oblivion/CORSignature.lean
-- lean/Oblivion/CORToFOk.lean
-- lean/Oblivion/CycleSignature.lean
-- lean/Oblivion/CycleSignatureLean.lean
+Scripts
+
+toolkit/oblivion/scripts/geometry_signature_scan.py  
+toolkit/oblivion/scripts/graph_geometry_plot.py
+
+Results
+
+toolkit/oblivion/results/geometry_rr_R12.png  
+toolkit/oblivion/results/geometry_twolift_R12.png
+
+## Cycle-Structure Diagnostics
+
+Scripts
+
+toolkit/oblivion/scripts/cycle_parity_rank.py  
+toolkit/oblivion/scripts/cycle_sheet_coherence.py  
+toolkit/oblivion/scripts/local_cycle_rank_distribution.py  
+toolkit/oblivion/scripts/cor_patch_dependency_chain.py  
+
+FO^k analysis
+
+toolkit/oblivion/scripts/FO_k_type_collision_detector.py
+
+## Interpretation
+
+Three geometry regimes appear in bounded-degree graphs:
+
+Tree  
+β₁(B_R) ≈ 0
+
+Sheet  
+|B_R| ~ R²
+
+Expander  
+|B_R| ~ Δ^R with stable cycle density
+
+Expander regimes exhibit rapid growth of cycle-overlap rank,
+supporting the Oblivion Atom mechanism for FO^k type diversity.
+
+## Release
+
+Tag: oblivion-geometry-v1  
+Includes geometry diagnostics and visualization artifacts.
+
