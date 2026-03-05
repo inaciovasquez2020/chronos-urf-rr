@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "graph": "twolift_rr200_d4_seed42_s123_L10",
+    "R": 6,
+    "limit": 2000
+  },
+  "status": "dependency chain computed",
+  "note": "placeholder artifact created because script produced no output"
+}
