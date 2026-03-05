@@ -1,0 +1,13 @@
+{
+  "graph": "torus",
+  "n_param": 10,
+  "vertices": 100,
+  "degree": 4,
+  "R": 2,
+  "L_max": 6,
+  "num_simple_cycles_upto_L": 300,
+  "num_simple_cycles_by_length": {
+    "4": 100,
+    "6": 200
+  }
+}
