@@ -3,6 +3,9 @@ open Lake DSL
 
 package chronos_urf_rr
 
+lean_lib Oblivion where
+  srcDir := "lean"
+
 require urf_core from git
   "https://github.com/inaciovasquez2020/urf-core.git" @
   "urf-core-v1"
