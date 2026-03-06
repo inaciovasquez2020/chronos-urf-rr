@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "base_json": "toolkit/oblivion/results/rr_base_d4.json",
+    "lift_n": 10000,
+    "seed": 7,
+    "R": 6,
+    "L": 12,
+    "target_cycles": 600,
+    "vertex_sample": 3000,
+    "rank_trials": 2,
+    "rank_block": 8,
+    "rank_steps": 32
+  },
+  "timing_sec": {
+    "lift": 7.699791,
+    "cycle_packing": 2838.175705,
+    "rank_lb": 0.006248
+  },
+  "cycle_packing": {
+    "packed_cycles": 0,
+    "cor_lb_from_packing": 0,
+    "rank_lb_incidence": 1
+  }
+}
