@@ -45,3 +45,17 @@ See:
 
 Referee classification and review guidance are provided in:
 - docs/referee/REFEREE_MAP.md
+
+---
+
+## Citation and Archival
+
+This repository is part of the **Unified Rigidity Framework (URF)** research program.
+
+For citation information see:
+
+docs/citations/CITATION.md
+
+A DOI archival record may be generated via Zenodo for reproducible citation
+of repository releases.
+
