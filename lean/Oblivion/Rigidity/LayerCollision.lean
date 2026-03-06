@@ -7,92 +7,82 @@ namespace OblivionRigidity
 variable {V : Type*} [DecidableEq V] [Fintype V]
 
 /-
-Radius ball
+Placeholder ball definition (no distance dependency)
 -/
-
 def ball (G : SimpleGraph V) (v : V) (R : ℕ) : Finset V :=
-  Finset.univ.filter (fun u => G.dist v u ≤ R)
+  Finset.univ
 
 /-
-Cycle rank placeholder
+Placeholder cycle rank
 -/
-
 def beta1 (G : SimpleGraph V) : ℕ :=
-0
+  0
 
 /-
-Expander predicate (simplified placeholder)
+Placeholder number of non-tree edges
 -/
+def nonTreeEdges (G : SimpleGraph V) (v : V) (R : ℕ) : ℕ :=
+  0
 
+/-
+Expander predicate placeholder
+-/
 def IsEdgeExpander (G : SimpleGraph V) (d : ℕ) (ε : ℝ) : Prop :=
-True
+  True
 
 /-
-Number of non-tree edges in a ball (placeholder)
+Layer collision lower bound predicate
 -/
-
-def nonTreeEdges
-    (G : SimpleGraph V)
-    (v : V)
-    (R : ℕ) : ℕ :=
-0
-
-/-
-Layer collision property
--/
-
 def LayerCollisionBound
-    (G : SimpleGraph V)
-    (d : ℕ)
-    (α : ℝ)
-    (v : V)
-    (R : ℕ) : Prop :=
-((α * ((d - 1 : ℕ) ^ R : ℕ)) ≤ nonTreeEdges G v R)
+  (G : SimpleGraph V)
+  (d : ℕ)
+  (α : ℝ)
+  (v : V)
+  (R : ℕ) : Prop :=
+  (α * ((d - 1 : ℕ) ^ R : ℕ)) ≤ nonTreeEdges G v R
 
 /-
 Layer Collision Lemma (axiomatic skeleton)
 -/
-
 axiom layer_collision_lemma
-    (G : SimpleGraph V)
-    (d : ℕ)
-    (ε : ℝ) :
-    IsEdgeExpander G d ε →
-    ∃ α : ℝ, 0 < α ∧
-    ∃ R0 : ℕ,
-      ∀ v : V,
-      ∀ R : ℕ,
-        1 ≤ R →
-        R ≤ R0 →
-        LayerCollisionBound G d α v R
+  (G : SimpleGraph V)
+  (d : ℕ)
+  (ε : ℝ) :
+  IsEdgeExpander G d ε →
+  ∃ α : ℝ, 0 < α ∧
+  ∃ R0 : ℕ,
+    ∀ v : V,
+    ∀ R : ℕ,
+      1 ≤ R →
+      R ≤ R0 →
+      LayerCollisionBound G d α v R
 
 /-
 Cycle rank consequence
 -/
-
 axiom beta1_from_collisions
-    (G : SimpleGraph V)
-    (v : V)
-    (R : ℕ) :
-    nonTreeEdges G v R ≤ beta1 G
+  (G : SimpleGraph V)
+  (v : V)
+  (R : ℕ) :
+  nonTreeEdges G v R ≤ beta1 G
 
 /-
-Deterministic rigidity corollary
+Deterministic cycle growth corollary
 -/
-
 theorem deterministic_cycle_growth
-    (G : SimpleGraph V)
-    (d : ℕ)
-    (ε : ℝ)
-    (hG : IsEdgeExpander G d ε) :
-    ∃ α : ℝ, 0 < α ∧
-    ∃ R0 : ℕ,
-      ∀ v : V,
-      ∀ R : ℕ,
-        1 ≤ R →
-        R ≤ R0 →
-        (α * ((d - 1 : ℕ) ^ R : ℕ)) ≤ beta1 G := by
-  obtain ⟨α, hα, R0, h⟩ := layer_collision_lemma (G := G) (d := d) (ε := ε) hG
+  (G : SimpleGraph V)
+  (d : ℕ)
+  (ε : ℝ)
+  (hG : IsEdgeExpander G d ε) :
+  ∃ α : ℝ, 0 < α ∧
+  ∃ R0 : ℕ,
+    ∀ v : V,
+    ∀ R : ℕ,
+      1 ≤ R →
+      R ≤ R0 →
+      (α * ((d - 1 : ℕ) ^ R : ℕ)) ≤ beta1 G := by
+  obtain ⟨α, hα, R0, h⟩ :=
+    layer_collision_lemma (G := G) (d := d) (ε := ε) hG
   refine ⟨α, hα, R0, ?_⟩
   intro v R h1 h2
   have hcol := h v R h1 h2

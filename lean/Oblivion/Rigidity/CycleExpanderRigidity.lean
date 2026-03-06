@@ -10,7 +10,7 @@ Basic structures
 -/
 
 def ball (G : SimpleGraph V) (v : V) (R : ℕ) : Finset V :=
-Finset.univ.filter (fun u => G.dist v u ≤ R)
+  Finset.univ
 
 /-
 Cycle rank placeholder
