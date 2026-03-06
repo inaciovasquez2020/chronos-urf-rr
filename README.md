@@ -59,3 +59,22 @@ docs/citations/CITATION.md
 A DOI archival record may be generated via Zenodo for reproducible citation
 of repository releases.
 
+
+---
+
+## Documentation
+
+A complete documentation map is available here:
+
+docs/index/DOCUMENTATION_INDEX.md
+
+This includes:
+
+- framework overview
+- invariants and structural lemmas
+- open problems
+- reproducibility artifacts
+- bibliography and related work
+- worked examples
+- referee guide
+
