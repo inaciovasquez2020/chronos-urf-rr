@@ -1,0 +1,70 @@
+\section{Constant-Width Rank Barrier for Per-Constraint Communication Arguments}
+
+\subsection{Setup}
+
+Let $R \subseteq \{0,1\}^w$ be a Boolean relation of arity $w$.
+Fix a partition of its variables into disjoint sets $X$ and $Y$
+with $|X|=a$, $|Y|=b$, and $a+b=w$.
+
+Define the violated-constraint predicate:
+\[
+f_R(x,y) = \mathbf{1}[(x,y)\notin R].
+\]
+
+Let $M_{f_R} \in \mathbb{F}_2^{2^a \times 2^b}$
+denote the communication matrix over $\mathbb{F}_2$.
+
+\subsection{Main Theorem}
+
+\begin{theorem}[Constant-Width Rank Barrier]
+For every Boolean relation $R$ of arity $w$ and every partition $(X,Y)$,
+\[
+\rank_{\mathbb{F}_2}(M_{f_R}) \le 2^{\min(a,b)} \le 2^{w/2}.
+\]
+In particular, if $w=O(1)$ then
+\[
+\rank_{\mathbb{F}_2}(M_{f_R}) = O(1).
+\]
+\end{theorem}
+
+\begin{proof}
+The matrix $M_{f_R}$ has at most $2^a$ rows and $2^b$ columns.
+Hence
+\[
+\rank(M_{f_R}) \le \min(2^a,2^b)=2^{\min(a,b)}.
+\]
+Since $\min(a,b)\le w/2$, the result follows.
+\end{proof}
+
+\subsection{Tightness}
+
+The bound is tight: the inner product relation
+\[
+\mathrm{IP}_{w/2}(x,y)=\bigoplus_{i=1}^{w/2} x_i y_i
+\]
+achieves rank $2^{w/2}$.
+
+Thus non-separable constant-width relations exist,
+but their rank remains $O(1)$.
+
+\subsection{Corollary (Per-Constraint Rank Limitation)}
+
+For any constraint system consisting of $m=O(n)$
+constant-width constraints:
+
+\[
+\max_{C} \rank_{\mathbb{F}_2}(M_{f_C}) = O(1).
+\]
+
+Therefore no per-constraint rank argument
+can yield $\Omega(n)$ communication lower bounds.
+
+Exponential lower bounds must arise from
+\emph{global structure} (e.g., expansion and resolution width),
+not clause-local rank amplification.
+
+\subsection{Conclusion}
+
+The per-constraint bilinear amplification program
+is structurally impossible for constant-width systems.
+The rank barrier is absolute.

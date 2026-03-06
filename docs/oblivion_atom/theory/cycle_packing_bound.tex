@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\title{Cycle Packing Bound under FO$^k$ Homogeneity}
+\date{}
+\maketitle
+
+\section*{Definitions}
+
+Let $G=(V,E)$ be a graph with maximum degree $\Delta$.
+
+Let
+
+\[
+C_R(G)
+=
+\dim_{\mathbb F_2}
+\left(
+\sum_{v\in V}
+\iota_{v*} Z_1(B_R(v))
+\right)
+\]
+
+Let
+
+\[
+T_r(G)
+=
+\left|
+\{
+\operatorname{tp}^k_r(v): v\in V
+\}
+\right|.
+\]
+
+\section*{Lemma}
+
+\begin{lemma}
+If $T_r(G)=1$, then
+\[
+C_R(G)\le c(k,\Delta,R)
+\]
+for a constant depending only on $(k,\Delta,R)$.
+\end{lemma}
+
+\begin{proof}
+
+If $T_r(G)=1$, all vertices share the same FO$^k$ $r$-type.
+
+Hence every rooted $R$-ball $B_R(v)$ is isomorphic.
+
+Therefore all local cycle spaces
+
+\[
+Z_1(B_R(v))
+\]
+
+are identical.
+
+Thus the vectors contributed to
+
+\[
+\sum_v \iota_{v*} Z_1(B_R(v))
+\]
+
+belong to a fixed finite-dimensional family determined by the
+single rooted graph type.
+
+Since $B_R(v)$ contains at most
+
+\[
+O(\Delta^R)
+\]
+
+edges, its cycle space dimension is bounded.
+
+Hence the total span dimension
+
+\[
+C_R(G)
+\]
+
+is bounded by a constant
+
+\[
+c(k,\Delta,R).
+\]
+
+\end{proof}
+
+\end{document}

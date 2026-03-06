@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/twolift_rr200_d4_seed42_s123_L10.json",
+    "n": 204800,
+    "m": 409600,
+    "R": 2,
+    "limit_vertices": 0
+  },
+  "cor_span_rank_proxy": 52,
+  "insertions": 52,
+  "source_meta": {
+    "two_lift_level": 10,
+    "seed": 123,
+    "source": "toolkit/oblivion/results/base_rr_n200_d4_seed42.json",
+    "N": 204800,
+    "base_meta": {}
+  }
+}

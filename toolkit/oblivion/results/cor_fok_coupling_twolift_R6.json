@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/twolift_rr200_d4_seed42_s123_L10.json",
+    "n": 204800,
+    "R": 6,
+    "limit": 6000
+  },
+  "fok_proxy": {
+    "distinct": 6000,
+    "max_multiplicity": 1
+  },
+  "histogram": {
+    "1": 6000
+  }
+}

@@ -1,0 +1,19 @@
+\section{CDCL/Clause-Learning to Resolution Bridge}
+
+\subsection{Learning Trace Model}
+A CDCL-style solver with clause learning produces a sequence of learned clauses
+$C_1,C_2,\dots,C_T$ such that each $C_t$ is implied by $F$.
+
+\subsection{Resolution Simulation}
+A learned clause derived by conflict analysis with standard schemes
+(1UIP and related) is derivable by resolution from $F$ together with prior learned clauses.
+
+\subsection{Bridge Statement (Target)}
+For any CDCL run producing learned clauses $C_1,\dots,C_T$ and refuting $F$,
+there exists a resolution refutation whose derived clauses include
+a subset simulating the learned clauses, with width bounded by
+\[
+\max\{ \max_t \mathrm{width}(C_t),\ w_0(F)\}.
+\]
+Thus any lower bound on $W(F)$ implies that any CDCL refutation must learn
+some clause of width at least $W(F)$, and hence must incur corresponding resource cost.

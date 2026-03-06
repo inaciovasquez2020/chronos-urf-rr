@@ -1,0 +1,38 @@
+\section{Linear-Ideal Collapse and Characteristic Matching}
+
+\subsection{Linear-Ideal Collapse Theorem}
+
+Let $F = \{p_1,\dots,p_m\} \subset \mathbb F[z_1,\dots,z_n]$ with Boolean axioms
+$\{z_i^2 - z_i : i \in [n]\}$.
+Let $I = \langle F \cup \{z_i^2 - z_i\}\rangle$.
+
+\paragraph{Theorem.}
+\[
+\deg_{\mathbb F}(F \vdash \bot) = 1
+\]
+if and only if
+\[
+1 \in I \cap \mathbb F[z]_{\le 1}.
+\]
+
+Equivalently, the contradiction appears in the first graded component
+of the ideal.
+
+\subsection{Characteristic-Matching Principle}
+
+If all constraints reduce to linear forms over $\mathbb F$ modulo
+$z_i^2 - z_i$ and the induced linear system is inconsistent over $\mathbb F$,
+then there exists a degree-1 Polynomial Calculus refutation.
+
+Hardness arises only when $1$ first appears in higher graded
+components of the ideal; expansion can then force
+\[
+\deg_{\mathbb F}(F \vdash \bot) = \Omega(n).
+\]
+
+\subsection{Canonical Example: Tseitin}
+
+Over $\mathbb F_2$: constraints are linear, and $1$ lies in the degree-1 span.
+
+Over $\operatorname{char}(\mathbb F)\neq 2$: constraints have degree $d$,
+no linear witness exists, and expansion yields $\Omega(n)$ degree.

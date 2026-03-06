@@ -1,0 +1,22 @@
+\section*{Local Information Barrier (LIB) Principle}
+
+Let $(\mathcal S,\pi,P)$ be a reversible Markov chain.
+For measurable $A \subset \mathcal S$, define conductance:
+
+\[
+\Phi(A) = \frac{Q(A,A^c)}{\pi(A)}.
+\]
+
+Barrier functional:
+
+\[
+\mathcal B(A) = -\log \Phi(A).
+\]
+
+Universal lower bound:
+
+\[
+\mathrm{MixingTime} \ge \frac12 e^{\mathcal B(A)}.
+\]
+
+This applies to RG, OGP, expander gadgets, and impurity truncation models.

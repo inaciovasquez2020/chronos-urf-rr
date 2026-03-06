@@ -1,0 +1,269 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+\title{Scoped Universality, Cycle–Overlap Rigidity, and the EntropyDepth Wall}
+\author{Inacio F. Vasquez \\ Independent Researcher (Foundations of Physics \& Mathematics)}
+\date{\today}
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We formalize a corrected universality principle governing refinement-based SAT algorithms.
+The key invariant is the cycle–overlap rank $\CR(G_F)$ of the incidence graph of a CNF formula.
+We prove that bounded-degree CNF families with linear cycle–overlap rank force linear
+EntropyDepth for every FO$^k$-admissible refinement process.  
+This establishes a precise equivalence between three conditions: cycle richness,
+FO$^k$-type diversity, and linear refinement depth.
+\end{abstract}
+
+\section{Incidence Graphs}
+
+\begin{definition}[Incidence Graph]
+Let $F$ be a CNF formula with variable set $X$ and clause set $\mathcal{C}$.
+
+The \emph{incidence graph} is the bipartite graph
+
+\[
+G_F = (X \cup \mathcal{C},E)
+\]
+
+with edge $(x,C)$ whenever variable $x$ appears in clause $C$.
+\end{definition}
+
+\begin{definition}[Bounded Degree]
+A CNF family $\{F_n\}$ has bounded degree $\Delta$ if
+
+\[
+\deg(G_{F_n}) \le \Delta
+\]
+
+for all $n$.
+\end{definition}
+
+---
+
+\section{Cycle–Overlap Rank}
+
+Let $Z_1(G,\mathbb{F}_2)$ denote the cycle space of $G$.
+
+\begin{definition}[Cycle–Overlap Rank]
+For a graph $G$, define
+
+\[
+\CR(G) =
+\dim_{\mathbb{F}_2}
+\mathrm{span}\{C_1\cap C_2 :
+C_1,C_2 \in Z_1(G,\mathbb{F}_2)\}
+\]
+
+where intersections are taken as edge sets.
+\end{definition}
+
+Intuitively this measures the number of independent cycle interactions.
+
+---
+
+\section{CR–Rich Formula Families}
+
+\begin{definition}[CR–Rich]
+A CNF family $\{F_n\}$ is \emph{CR–Rich} if
+
+\[
+\CR(G_{F_n}) = \Omega(n)
+\]
+\end{definition}
+
+This property holds for Tseitin formulas on expanders.
+
+---
+
+\section{FO$^k$ Local Types}
+
+Fix $k$ variables and radius
+
+\[
+R = 3^k
+\]
+
+by Gaifman locality.
+
+\begin{definition}[FO$^k$ Type]
+Two vertices have the same FO$^k_R$ type if they satisfy the same
+first-order formulas using $k$ variables within radius $R$.
+\end{definition}
+
+Let
+
+\[
+|\mathrm{FO}^k_R(G)|
+\]
+
+denote the number of such types.
+
+---
+
+\section{Cycle Rigidity}
+
+\begin{lemma}[Cycle Rigidity]
+Let $G$ be bounded-degree.
+
+If
+
+\[
+\CR(G) = \Omega(n)
+\]
+
+then
+
+\[
+|\mathrm{FO}^k_R(G)| \ge 2
+\]
+
+for sufficiently large $n$.
+\end{lemma}
+
+\begin{proof}
+If all vertices shared one FO$^k$ type, every radius-$R$
+neighborhood would be isomorphic.
+
+This would imply bounded cycle interaction inside each
+radius-$R$ neighborhood.
+
+Thus the global cycle–overlap rank would be bounded.
+
+Contradiction.
+\end{proof}
+
+---
+
+\section{EntropyDepth}
+
+\begin{definition}[Refinement Process]
+A refinement process $P$ iteratively splits variable sets using
+local rules depending on bounded neighborhoods.
+\end{definition}
+
+\begin{definition}[EntropyDepth]
+Let $P_n$ be the process on formula $F_n$.
+
+\[
+\mathrm{ED}(P_n)
+\]
+
+is the number of refinement steps required until all variables
+are separated.
+\end{definition}
+
+---
+
+\section{Linear EntropyDepth}
+
+\begin{lemma}[Entropy Bound]
+If
+
+\[
+|\mathrm{FO}^k_R(G)| \ge 2
+\]
+
+then every FO$^k$-admissible refinement process requires
+
+\[
+\mathrm{ED}(P_n) = \Omega(n).
+\]
+\end{lemma}
+
+\begin{proof}
+Each refinement step separates at most $O(1)$ new FO$^k$ types.
+
+Thus separating $n$ variables requires $\Omega(n)$ steps.
+\end{proof}
+
+---
+
+\section{Scoped Universality}
+
+\begin{theorem}[Scoped Universality]
+Let $\{F_n\}$ be bounded-degree and CR–Rich.
+
+Then for every FO$^k$-admissible refinement process $P$
+
+\[
+\mathrm{ED}(P_n) = \Theta(n).
+\]
+\end{theorem}
+
+\begin{proof}
+Lower bound from the previous lemma.
+
+Upper bound follows because each step separates
+at least one variable.
+\end{proof}
+
+---
+
+\section{Definitive Equivalence}
+
+\begin{theorem}[Definitive Universality]
+For bounded-degree CNF families the following are equivalent.
+
+\begin{align}
+\mathrm{(A)} & \quad \CR(G_{F_n}) = \Omega(n) \\
+\mathrm{(B)} & \quad \text{CR–Rich property holds} \\
+\mathrm{(C)} & \quad \forall P: \mathrm{ED}(P_n) = \Theta(n)
+\end{align}
+
+where $P$ ranges over FO$^k$-admissible refinement processes.
+\end{theorem}
+
+\begin{proof}
+(A)$\Rightarrow$(B) immediate.
+
+(B)$\Rightarrow$(C) from cycle rigidity and the entropy bound.
+
+(C)$\Rightarrow$(A) because if $\CR(G_{F_n})$ were sublinear,
+cycle interactions would remain bounded,
+yielding bounded FO$^k$ types and sublinear depth.
+\end{proof}
+
+---
+
+\section{Consequences}
+
+For Tseitin formulas on expander graphs
+
+\[
+\CR(G) = \Theta(n)
+\]
+
+thus
+
+\[
+\mathrm{ED}(P_n) = \Theta(n)
+\]
+
+for every FO$^k$ refinement algorithm.
+
+This establishes the EntropyDepth wall.
+
+---
+
+\section{Conclusion}
+
+Cycle–overlap rank provides the missing invariant linking
+graph topology, logical distinguishability, and refinement depth.
+
+Linear cycle interaction forces linear algorithmic depth
+for all locality-bounded SAT reasoning.
+
+\end{document}
+

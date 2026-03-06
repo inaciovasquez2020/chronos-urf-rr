@@ -1,0 +1,101 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\title{The Global Rank Hinge for Tseitin Resolution}
+\author{Inacio F. Vasquez}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{question}{Question}
+
+\begin{document}
+\maketitle
+
+\section{Context}
+
+Let $G=(V,E)$ be a connected $d$-regular expander and
+$\mathrm{TS}(G,f)$ an unsatisfiable Tseitin formula.
+
+Resolution operates over edge variables $\{x_e : e\in E\}$.
+
+For a clause $C$, define its GF(2) incidence vector
+$\chi(C)\in\mathbb{F}_2^{E}$ by edge support.
+
+For a live configuration $S_t$ in a resolution derivation define
+\[
+r_{\mathrm{sim}}(t)
+=
+\dim_{\mathbb{F}_2}
+\mathrm{span}\{\chi(C) : C\in S_t\}.
+\]
+
+\section{Closed Direction: Wide Clauses Are Cheap}
+
+\begin{theorem}[Wide Clause Rank Bound]
+For any cut $U\subseteq V$,
+there exists a polynomial-length resolution derivation of the
+cut-parity clause for $U$ such that
+\[
+\max_t r_{\mathrm{sim}}(t) \le d+1.
+\]
+\end{theorem}
+
+Therefore, deriving a single clause of width $\Theta(n)$
+does not force large simultaneous GF(2) rank.
+
+This direction is closed.
+
+\section{The Global Rank Hinge}
+
+The exponential lower bound for Tseitin resolution
+arises only at the level of refuting $\bot$.
+
+The remaining structural question is:
+
+\begin{question}[Global Rank Hinge]
+In every resolution refutation of $\mathrm{TS}(G,f)$,
+does there exist a time $t$ such that
+\[
+r_{\mathrm{sim}}(t) = \Omega(n)?
+\]
+\end{question}
+
+\section{Equivalence to ED* Survival}
+
+Let ED* denote the entropy-depth obstruction
+based on simultaneous GF(2) rank.
+
+\begin{proposition}
+The ED* program survives for Tseitin formulas
+if and only if the Global Rank Hinge question
+has an affirmative answer.
+\end{proposition}
+
+\begin{proof}
+If no such $t$ exists,
+then every refutation maintains
+$r_{\mathrm{sim}}(t)=O(1)$,
+so entropy accumulation fails,
+collapsing ED*.
+
+If such a $t$ must exist,
+then entropy must reach $\Omega(n)$
+during every refutation,
+preserving ED*.
+\end{proof}
+
+\section{Program Position}
+
+The single-clause direction is resolved.
+
+All remaining obstruction content
+is concentrated in the Global Rank Hinge.
+
+No further claims are made.
+
+\end{document}

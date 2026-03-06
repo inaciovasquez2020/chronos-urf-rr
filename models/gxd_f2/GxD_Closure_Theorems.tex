@@ -1,0 +1,136 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{GxD (Global $\times$ Detectability) --- Closure Lemmas}
+\author{}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+\begin{document}
+\maketitle
+
+\section*{0. Setup}
+
+Let $H$ be finitely generated with symmetric generating set $S$ and word length $\ell$.
+Let $H\curvearrowright \mathcal S$ be an action.
+Fix an observer $O:\mathcal S\to \mathcal Y$.
+
+Define the ball $B_R:=\{h\in H:\ell(h)\le R\}$ and codebook
+\[
+\mathrm{Code}_O(s;R):=\{O(h\cdot s):h\in B_R\}.
+\]
+Define
+\[
+\mathrm{GxD}_O(s):=\limsup_{R\to\infty}\frac1R\log|\mathrm{Code}_O(s;R)|.
+\]
+Define group growth exponent
+\[
+\kappa(H,S):=\limsup_{R\to\infty}\frac1R\log|B_R|.
+\]
+Define collision multiplicity
+\[
+\mathrm{Col}_O(s;R):=\max_{y\in\mathcal Y}\bigl|\{h\in B_R:O(h\cdot s)=y\}\bigr|.
+\]
+
+\section*{1. Bounds and Refinement}
+
+\begin{theorem}[Trivial bounds]
+For all $s$,
+\[
+0\le \mathrm{GxD}_O(s)\le \kappa(H,S).
+\]
+\end{theorem}
+
+\begin{proof}
+$|\mathrm{Code}_O(s;R)|\le |B_R|$ gives the upper bound. Nonnegativity is immediate.
+\end{proof}
+
+\begin{theorem}[Monotonicity under refinement]
+If $O'$ refines $O$ (i.e.\ there exists $\pi$ with $O=\pi\circ O'$), then
+\[
+\mathrm{GxD}_{O}(s)\le \mathrm{GxD}_{O'}(s).
+\]
+\end{theorem}
+
+\begin{proof}
+$\mathrm{Code}_{O}(s;R)=\pi(\mathrm{Code}_{O'}(s;R))$ hence
+$|\mathrm{Code}_{O}(s;R)|\le|\mathrm{Code}_{O'}(s;R)|$.
+\end{proof}
+
+\section*{2. Collision-Control Lower Bounds}
+
+\begin{lemma}[Counting with collisions]
+For all $R$,
+\[
+|\mathrm{Code}_O(s;R)|\ \ge\ \frac{|B_R|}{\mathrm{Col}_O(s;R)}.
+\]
+\end{lemma}
+
+\begin{proof}
+Partition $B_R$ by fibers of $h\mapsto O(h\cdot s)$; each fiber has size at most $\mathrm{Col}_O(s;R)$.
+\end{proof}
+
+\begin{theorem}[Polynomial collisions imply full detectability]
+Assume there exist constants $A\ge 1$ and $d\ge 0$ such that for all $R$,
+\[
+\mathrm{Col}_O(s;R)\le A R^d.
+\]
+Then
+\[
+\mathrm{GxD}_O(s)=\kappa(H,S).
+\]
+\end{theorem}
+
+\begin{proof}
+By the collision lemma,
+\[
+\frac1R\log|\mathrm{Code}_O(s;R)|\ge \frac1R\log|B_R|-\frac1R\log(AR^d).
+\]
+Taking $\limsup$ yields $\mathrm{GxD}_O(s)\ge \kappa(H,S)$ since $\frac1R\log(AR^d)\to 0$.
+Combine with $\mathrm{GxD}_O(s)\le \kappa(H,S)$.
+\end{proof}
+
+\begin{theorem}[Exponential collisions: entropy correction]
+Assume
+\[
+\delta := \limsup_{R\to\infty}\frac1R\log \mathrm{Col}_O(s;R) < \infty.
+\]
+Then
+\[
+\mathrm{GxD}_O(s)\ \ge\ \kappa(H,S)-\delta.
+\]
+\end{theorem}
+
+\begin{proof}
+Apply the collision lemma and take $\limsup$.
+\end{proof}
+
+\section*{3. Orbit Invariance}
+
+\begin{theorem}[Orbit invariance]
+For any $g\in H$,
+\[
+\mathrm{GxD}_O(g\cdot s)=\mathrm{GxD}_O(s).
+\]
+\end{theorem}
+
+\begin{proof}
+$B_R g \subseteq B_{R+\ell(g)}$ and $B_R\subseteq B_{R+\ell(g)}g$ imply
+$|\mathrm{Code}_O(g\cdot s;R)|$ and $|\mathrm{Code}_O(s;R)|$ differ only by a radius shift of $O(1)$,
+which vanishes under $(1/R)\log(\cdot)$ and $\limsup$.
+\end{proof}
+
+\section*{4. Concrete Free Group Instance}
+
+For $H=F_2$ with $S=\{a,a^{-1},b,b^{-1}\}$,
+\[
+|B_R| = 1 + 4\frac{3^R-1}{2}\quad\Rightarrow\quad \kappa(H,S)=\log 3.
+\]
+Thus, any observer satisfying polynomial collision control has $\mathrm{GxD}_O(s)=\log 3$.
+
+\end{document}

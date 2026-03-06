@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\title{Cycle Witness Extraction}
+\date{}
+\maketitle
+
+\section*{Definitions}
+
+Let $G=(V,E)$ be a finite graph.
+
+Define
+
+\[
+C_R(G)
+=
+\dim_{\mathbb F_2}
+\left(
+\sum_{v\in V}\iota_{v*}Z_1(B_R(v))
+\right)
+\]
+
+where $\iota_{v*}$ embeds the cycle space of the ball $B_R(v)$
+into the global edge space $\mathbb F_2^{E}$.
+
+\section*{Lemma}
+
+\begin{lemma}
+If
+\[
+C_R(G) \ge \alpha |V|
+\]
+for some $\alpha>0$, then there exist vertices
+\[
+v_1,\dots,v_m
+\]
+with
+\[
+m \ge \alpha |V|
+\]
+such that the vectors
+
+\[
+z_i \in \iota_{v_i*}Z_1(B_R(v_i))
+\]
+
+are linearly independent in $\mathbb F_2^{E}$.
+\end{lemma}
+
+\begin{proof}
+
+By definition
+
+\[
+C_R(G)=\dim_{\mathbb F_2}(W)
+\]
+
+where
+
+\[
+W=\sum_{v\in V}\iota_{v*}Z_1(B_R(v)).
+\]
+
+Thus $W$ contains a basis of size $C_R(G)$.
+
+Each basis vector arises from some vertex ball
+$B_R(v)$.
+
+Select one vertex for each basis vector that generates it.
+Let the selected vertices be
+
+\[
+v_1,\dots,v_{C_R(G)}.
+\]
+
+Then the associated vectors
+
+\[
+z_i\in \iota_{v_i*}Z_1(B_R(v_i))
+\]
+
+are linearly independent.
+
+Since
+
+\[
+C_R(G)\ge\alpha|V|
+\]
+
+we obtain at least $\alpha|V|$ such vertices.
+
+\end{proof}
+
+\end{document}

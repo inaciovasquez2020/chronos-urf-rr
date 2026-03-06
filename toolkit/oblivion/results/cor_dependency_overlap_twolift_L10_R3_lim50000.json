@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/twolift_rr200_d4_seed42_s123_L10.json",
+    "R": 3,
+    "n": 204800,
+    "m": 409600,
+    "limit_vertices": 50000
+  },
+  "sum_local_cycle_rank": 585,
+  "global_ball_cycle_span_rank": 255,
+  "dependency_overlap": 330,
+  "cycle_vectors_total": 585,
+  "basis_insertions": 255,
+  "source_meta": {
+    "two_lift_level": 10,
+    "seed": 123,
+    "source": "toolkit/oblivion/results/base_rr_n200_d4_seed42.json",
+    "N": 204800,
+    "base_meta": {}
+  }
+}

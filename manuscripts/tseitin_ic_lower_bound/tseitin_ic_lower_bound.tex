@@ -1,0 +1,38 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\title{Information Complexity Lower Bound for Tseitin Formulas}
+\author{Inacio F. Vasquez}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\maketitle
+
+Let $G$ be a constant-degree expander on $n$ vertices.
+Let $TS(G,f)$ be the associated Tseitin formula.
+
+\begin{theorem}
+Under any balanced partition of edges and
+uniform product distribution $\mu$,
+
+\[
+IC_\mu(\mathrm{Search}_{TS(G,f)}) = \Omega(n).
+\]
+\end{theorem}
+
+\begin{proof}[Sketch]
+Expansion guarantees existence of
+a vertex set $S$ with
+$|\partial_E(S)| = \Theta(n)$.
+The search problem embeds the parity
+of $\partial_E(S)$,
+whose information complexity under product
+distribution is $\Omega(n)$.
+Hence the search problem
+inherits the same lower bound.
+\end{proof}
+
+\end{document}

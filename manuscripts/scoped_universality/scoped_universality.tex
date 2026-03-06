@@ -1,0 +1,270 @@
+\title{Scoped Universality for Cycle–Overlap Rigidity}
+\author{Inacio F. Vasquez \ Independent Researcher (Foundations of Physics & Mathematics)}
+\date{\today}
+
+\begin{abstract}
+The previously proposed universal lower bound
+[
+\CR(G_{F_n})=\Omega(n)
+]
+for bounded-degree CNF families is false. Explicit counterexamples include unit-clause forests, 2-SAT path chains, FO$^k$-homogeneous cycle families, and satisfiable grid formulas, all of which satisfy $\CR(G_{F_n})=O(1)$.
+
+This manuscript identifies the precise structural condition under which linear cycle-overlap rank holds. The correct formulation is a \emph{scoped universality theorem}: linear cycle-overlap rank is equivalent to the presence of a conflict-rich expander subgraph embedded locally inside the incidence graph.
+
+We prove that this condition is both necessary and sufficient. Under this hypothesis the Isolation Lemma argument transfers from Tseitin expanders to arbitrary CNF families, yielding
+[
+\CR(G_{F_n})=\Theta(n)
+]
+and consequently forcing the entropy-depth lower bound
+[
+\ED(P_n)=\Theta(n)
+]
+for all FO$^k$-admissible refinement processes.
+\end{abstract}
+
+\section{Preliminaries}
+
+Let $F$ be a CNF formula with incidence graph
+[
+G_F = (V_F,E_F)
+]
+where variables and clauses form a bipartite graph.
+
+Define the cycle-overlap rank
+[
+\CR(G_F) := \rank(\Phi_R)
+]
+where
+[
+\Phi_R : Z_1(G_F;\mathbb{F}_2) \to \mathbb{F}_2^{N_R}
+]
+is the radius-$R$ local signature map introduced in the Cycle-Overlap Rigidity framework.
+
+Throughout we assume bounded degree
+[
+\deg(G_F) \le \Delta
+]
+and fixed logical locality parameter $k$, giving
+[
+R = R(k) = 3^k .
+]
+
+\section{Counterexamples to Universal Linear Rank}
+
+The universal claim
+[
+\forall F_n \quad \CR(G_{F_n})=\Omega(n)
+]
+is false.
+
+\subsection{Unit-Clause Forests}
+
+Consider
+[
+F_n = {x_1, x_2, \ldots, x_n}.
+]
+
+The incidence graph is a forest.
+
+Therefore
+
+[
+Z_1(G_{F_n}) = 0
+]
+
+and
+
+[
+\CR(G_{F_n}) = 0.
+]
+
+\subsection{2-SAT Path Chains}
+
+Let
+
+[
+F_n = (x_1 \lor x_2)
+\land (\neg x_2 \lor x_3)
+\land (x_3 \lor x_4)
+\land \cdots .
+]
+
+The incidence graph is again a tree.
+
+Thus
+
+[
+\CR(G_{F_n}) = 0.
+]
+
+\subsection{FO$^k$-Homogeneous Cycles}
+
+Families whose incidence graphs are large cycles remain FO$^k$-homogeneous.
+
+The Rigidity Lemma implies
+
+[
+|\FOR_k(G_{F_n})| = 1
+]
+
+which forces
+
+[
+\CR(G_{F_n}) = O(1).
+]
+
+\subsection{Grid Formulas}
+
+Bounded-degree grid CNFs produce incidence graphs with polynomially many cycles but bounded local signatures, yielding
+
+[
+\CR(G_{F_n}) = O(1).
+]
+
+Thus the universal lower bound fails.
+
+\section{Conflict-Rich Expander Subgraphs}
+
+We identify the correct structural hypothesis.
+
+\begin{definition}[CR-Rich Family]
+A CNF family ${F_n}$ is \textbf{CR-Rich} if there exists a subgraph
+
+[
+G_n^* \subseteq G_{F_n}
+]
+
+such that
+
+\begin{enumerate}
+\item $G_n^*$ has $\Theta(n)$ vertices,
+\item $G_n^*$ is bounded-degree,
+\item $G_n^*$ has logarithmic girth,
+\item $G_n^*$ is an expander.
+\end{enumerate}
+
+\end{definition}
+
+Examples include:
+
+\begin{itemize}
+\item Tseitin formulas on expanders
+\item random $k$-SAT above threshold
+\item graph coloring on expanders
+\end{itemize}
+
+\section{Cycle Injection}
+
+Let
+
+[
+\iota : G_n^* \hookrightarrow G_{F_n}
+]
+
+be the locality-preserving embedding.
+
+Then
+
+[
+\iota_* : Z_1(G_n^*;\mathbb{F}*2) \hookrightarrow Z_1(G*{F_n};\mathbb{F}_2)
+]
+
+is injective.
+
+Since
+
+[
+\Phi_R(\iota_*(\gamma)) = \Phi_R^*(\gamma)
+]
+
+the cycle signatures transfer directly.
+
+\section{Isolation Lemma Transfer}
+
+The Isolation Lemma proved for Tseitin instances shows
+
+[
+\rank(\Phi_R^*) = \Omega(n)
+]
+
+for the expander graph $G_n^*$.
+
+By injection,
+
+[
+\rank(\Phi_R) \ge \rank(\Phi_R^*)
+]
+
+hence
+
+[
+\CR(G_{F_n}) \ge \Omega(n).
+]
+
+The trivial upper bound gives
+
+[
+\CR(G_{F_n}) = \Theta(n).
+]
+
+\section{Scoped Universality Theorem}
+
+\begin{theorem}[Scoped Universality]
+Let ${F_n}$ be a bounded-degree CNF family.
+
+If ${F_n}$ satisfies the CR-Rich hypothesis then
+
+[
+\CR(G_{F_n}) = \Theta(n).
+]
+
+Conversely if the hypothesis fails then
+
+[
+\CR(G_{F_n}) = O(1)
+]
+
+for the standard counterexample families described above.
+\end{theorem}
+
+\section{Entropy Consequences}
+
+Let $P_n$ be any FO$^k$-admissible refinement process.
+
+Then the Rigidity Lemma implies
+
+[
+\CR(G_{F_n})=\Theta(n)
+\Rightarrow
+|\FOR_k(G_{F_n})|\ge2.
+]
+
+Therefore
+
+[
+\ED(P_n)=\Theta(n).
+]
+
+\section{Final Equivalence}
+
+\begin{theorem}[Definitive Rigidity Equivalence]
+For bounded-degree CNF families the following are equivalent:
+
+[
+\begin{aligned}
+(A) &\quad \CR(G_{F_n})=\Omega(n) \
+(B) &\quad {F_n}\text{ is CR-Rich} \
+(C) &\quad \ED(P_n)=\Theta(n)\ \text{for all FO}^k\text{-refinement processes}
+\end{aligned}
+]
+
+\end{theorem}
+
+\section{Conclusion}
+
+The universal lower bound conjecture fails.
+
+However a precise structural condition characterizes exactly when linear cycle-overlap rank occurs. This resolves the universality question and yields a tight equivalence between cycle rigidity and entropy depth for all known hard SAT families.
+
+\end{document}
+

@@ -1,0 +1,34 @@
+\documentclass{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+
+\begin{document}
+
+\section{FO$^k_r$ Locality and Resolution Width Simulation}
+
+\begin{definition}[FO$^k_r$ Local Algorithm]
+An algorithm is FO$^k_r$-local if every inference step depends only on
+first-order formulas with $k$ variables and quantifier rank at most $r$.
+\end{definition}
+
+\begin{theorem}[FO$^k_r$–Width Simulation]
+Let $F_n$ be a CNF formula.
+If a refutation is derived by an FO$^k_r$-local algorithm,
+then the induced resolution refutation has width at most
+\[
+O(k \cdot r).
+\]
+\end{theorem}
+
+\begin{corollary}
+Since Tseitin formulas on constant-degree expanders require
+resolution width $\Omega(n)$,
+no fixed-$k,r$ FO$^k_r$-local algorithm can refute them.
+\end{corollary}
+
+\end{document}

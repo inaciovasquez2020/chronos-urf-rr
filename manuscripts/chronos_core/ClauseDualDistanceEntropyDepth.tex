@@ -1,0 +1,85 @@
+\section{Clause-Dual Distance Wall and Conditional EntropyDepth Lower Bound}
+
+\subsection{Linear-algebraic model}
+
+Let $A \in \mathbb{F}_2^{m \times n}$ be a fixed matrix and write $\langle u,v\rangle = u^\top v \in \mathbb{F}_2$.
+For $w \in \mathbb{F}_2^m$, write $\|w\|_0 := |\{i \in [m] : w_i = 1\}|$.
+
+\begin{definition}[Clause-dual code and minimum clause-dual distance]
+Define the \emph{clause-dual code} by
+\[
+\mathcal{C}^\perp_{\mathrm{cl}}(A) := \ker(A^\top) \subseteq \mathbb{F}_2^m.
+\]
+Define the \emph{minimum clause-dual distance} by
+\[
+d^\perp_{\mathrm{cl}}(A) := \min\{\|w\|_0 : w \in \mathcal{C}^\perp_{\mathrm{cl}}(A)\setminus\{0\}\}.
+\]
+\end{definition}
+
+\subsection{Parity-conditioned obstruction on clause-space}
+
+Fix a nonzero $w \in \mathcal{C}^\perp_{\mathrm{cl}}(A)$ and set $s := \|w\|_0$.
+Let $\mu_0,\mu_1$ be the uniform distributions on $\mathbb{F}_2^m$ conditioned on $\langle w,b\rangle = 0$ and $\langle w,b\rangle = 1$, respectively.
+
+\begin{proposition}[Local indistinguishability under a clause-parity cut]
+Let $T \subseteq [m]$ with $|T| \le s-1$.
+For any Boolean test $f:\mathbb{F}_2^T \to \{0,1\}$, viewing $f$ as a function on $\mathbb{F}_2^m$ via restriction to coordinates in $T$, one has
+\[
+\left|\mathbb{P}_{b\sim \mu_0}[f(b_T)=1] - \mathbb{P}_{b\sim \mu_1}[f(b_T)=1]\right|
+\le 2^{-(s-|T|)}.
+\]
+Moreover, $\|\mu_0-\mu_1\|_{\mathrm{TV}}=1$.
+\end{proposition}
+
+\begin{proof}
+Let $U := \mathrm{supp}(w)$ so $|U|=s$.
+Fix any $a \in \mathbb{F}_2^T$ and count completions $b \in \mathbb{F}_2^m$ with $b_T=a$.
+If $T \not\supseteq U$, then there exists at least one free coordinate in $U\setminus T$, so among completions with $b_T=a$, exactly half satisfy $\langle w,b\rangle=0$ and half satisfy $\langle w,b\rangle=1$ after fixing the remaining $U\cap T$ bits; the remaining coordinates outside $U$ are unconstrained.
+More explicitly, for fixed $a$, the number of completions with $\langle w,b\rangle=0$ equals the number with $\langle w,b\rangle=1$ and both equal $2^{m-|T|-1}$ if $U\not\subseteq T$; when $|T|\le s-1$ we have $U\not\subseteq T$.
+Thus for each $a$,
+\[
+\left|\mu_0[b_T=a]-\mu_1[b_T=a]\right| \le 2^{-(s-|T|)} \cdot 2^{-|T|}.
+\]
+Summing over the level sets of $f$ yields the displayed bias bound.
+Finally, $\mu_0$ and $\mu_1$ have disjoint supports since $\langle w,b\rangle$ is constant on each, hence $\|\mu_0-\mu_1\|_{\mathrm{TV}}=1$.
+\end{proof}
+
+\begin{corollary}[Clause-dual distance wall for bounded-support clause tests]
+Let $A\in \mathbb{F}_2^{m\times n}$ and let $d := d^\perp_{\mathrm{cl}}(A)$.
+For any $T\subseteq [m]$ with $|T|\le d-1$, and any Boolean test $f$ depending only on $b_T$, there exist parity-cut distributions $\mu_0,\mu_1$ on $\mathbb{F}_2^m$ with $\|\mu_0-\mu_1\|_{\mathrm{TV}}=1$ such that
+\[
+\left|\mathbb{P}_{\mu_0}[f=1]-\mathbb{P}_{\mu_1}[f=1]\right|\le 2^{-(d-|T|)}.
+\]
+\end{corollary}
+
+\subsection{Conditional EntropyDepth lower bound template}
+
+\begin{definition}[Clause-local transcript process]
+A transcript process $(S_t)_{t\ge 0}$ is \emph{$q$-clause-local} if at each step $t$, the update from $S_t$ to $S_{t+1}$ depends on the clause-side instance $b\in\mathbb{F}_2^m$ only through some adaptively chosen set $T_t\subseteq [m]$ with $|T_t|\le q$.
+\end{definition}
+
+\begin{theorem}[Conditional: linear depth from linear clause-dual distance]
+\textbf{Conditional.}
+Fix $q\in\mathbb{N}$.
+Assume a $q$-clause-local transcript process $(S_t)$ satisfies the following \emph{constant-bias correctness requirement}:
+
+\begin{quote}
+There exists $\varepsilon>0$ such that for all $t$ there is a Boolean decision rule $D_t$ measurable w.r.t.\ $S_t$ with
+\[
+\left|\mathbb{P}_{b\sim\mu_0}[D_t=1]-\mathbb{P}_{b\sim\mu_1}[D_t=1]\right|\ge \varepsilon
+\]
+whenever $\mu_0,\mu_1$ are any two distributions on $\mathbb{F}_2^m$ with $\|\mu_0-\mu_1\|_{\mathrm{TV}}=1$ supported on disjoint decision classes of the target predicate.
+\end{quote}
+
+Then for any $A$ with $d^\perp_{\mathrm{cl}}(A)=d$, if $q\le d-1$ the requirement fails; in particular, no constant-bias decision is possible from any $S_t$.
+Consequently, any process meeting the requirement must have $q\ge d$.
+\end{theorem}
+
+\begin{proof}
+Let $w\in \ker(A^\top)\setminus\{0\}$ with $\|w\|_0=d$ and take $\mu_0,\mu_1$ to be the parity-cut distributions from Proposition above.
+For any $t$, $q$-clause-locality implies $S_t$ is measurable w.r.t.\ $b_{T_{\le t}}$ where $T_{\le t}:=\bigcup_{j\le t} T_j$ and $|T_{\le t}|\le (t+1)q$.
+If $q\le d-1$ then at $t=0$ already $|T_{\le 0}|\le d-1$, hence by Proposition any decision rule measurable w.r.t.\ $S_0$ has bias at most $2^{-(d-|T_{\le 0}|)}<1$, and in particular cannot exceed a fixed $\varepsilon$ uniformly over instances.
+The same argument applies for any fixed $t$ whenever $|T_{\le t}|\le d-1$.
+Thus constant-bias correctness forces $q\ge d$ in the stated sense.
+\end{proof}
+

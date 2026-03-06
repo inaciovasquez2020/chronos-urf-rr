@@ -1,0 +1,167 @@
+## Precise Statement and Proof of the FO$^k$ Rank-Exposure Bound
+
+### What Needs to Be Proved
+
+A single FLC split of block $B$ on a tree patch can carve $B$ into two subtrees $B_1, B_2$. On a tree, $\text{rank}(A[B_1]) + \text{rank}(A[B_2]) = \text{rank}(A[B]) + \text{rank}(A[B_1] \cap \text{rowspan}(A[B_2]))$... no, more carefully:
+
+$$\delta(B) - \delta(B_1) - \delta(B_2) = \text{rank}(A[B_1]) + \text{rank}(A[B_2]) - \text{rank}(A[B])$$
+
+This is the **rank increase from splitting**, which equals the dimension of $\text{rowspan}(A[B_1]) \cap \text{rowspan}(A[B_2])$ by inclusion-exclusion. On a tree patch this intersection is spanned by variables appearing in *both* $B_1$ and $B_2$, i.e., variables whose clause-neighbors straddle the split boundary. Call these **boundary variables**.
+
+So rank exposure from one split = number of boundary variables at the $B_1/B_2$ cut.
+
+The question is: does FO$^k$-distinguishability at radius $r$ force large cuts?
+
+---
+
+### Setup and Definitions
+
+**Definition (Boundary variables).** For a split $B \to \{B_1, B_2\}$, define:
+
+$$\partial(B_1, B_2) = \{x_j \in V : \exists c \in B_1, c' \in B_2 \text{ s.t. } x_j \in c \cap c'\}$$
+
+the set of variables appearing in clauses on both sides. Then:
+
+$$\text{rank}(A[B_1]) + \text{rank}(A[B_2]) - \text{rank}(A[B]) = |\partial(B_1, B_2)|$$
+
+on a tree patch (where columns are linearly independent, so the intersection dimension equals the number of shared variables exactly).
+
+**Definition (FO$^k$-type at radius $r$).** The FO$^k$-type of clause $c$ at radius $r$ in $G_A$ is its isomorphism class of the $r$-ball around $c$ in $G_A$, with the full relational structure (variable degrees, clause widths, literal polarities) up to depth $r$, tracked with $k$ pebbles.
+
+**Definition (Type-homogeneous block).** Block $B$ is type-homogeneous at radius $r$ if all clauses in $B$ have the same FO$^k$-type at radius $r$. FLC splits a block only when it is *not* type-homogeneous.
+
+---
+
+### Lemma (FO$^k$ Rank-Exposure Bound)
+
+**Lemma.** Let $G_A$ have girth $g \geq 4R + 3$ and maximum degree $\Delta$, with clause width $k$. Let $B \subseteq P_R(i)$ be a block contained in a single tree patch. Suppose FLC at radius $r \leq R/2$ splits $B$ into $B_1, B_2$ because some FO$^k$-type distinction at radius $r$ separates them. Then:
+
+$$|\partial(B_1, B_2)| \leq k \cdot |\text{witnesses}(B_1, B_2)|$$
+
+where $|\text{witnesses}(B_1, B_2)|$ is the number of clause pairs $(c, c') \in B_1 \times B_2$ at graph distance $\leq 2r$ in $G_A$ (pairs that share a radius-$r$ neighborhood). Moreover:
+
+$$|\text{witnesses}(B_1, B_2)| \leq |\partial(B_1, B_2)| \cdot \Delta^{2r}$$
+
+and therefore:
+
+$$|\partial(B_1, B_2)| \geq \frac{|B_1| \cdot |B_2|}{|B| \cdot \Delta^{2r}}  \cdot \mathbb{1}[\text{split is non-trivial}]$$
+
+The rank exposure per split is:
+
+$$\text{rank}(A[B_1]) + \text{rank}(A[B_2]) - \text{rank}(A[B]) = |\partial(B_1, B_2)| \leq k \cdot |\partial(B_1, B_2)| \cdot \Delta^{2r} / \Delta^{2r} = |\partial(B_1, B_2)|$$
+
+**Wait** — this is circular. Let me restate what is actually provable and what is not.
+
+---
+
+### What is Actually Provable: Three Cases
+
+#### Case 1: Split induced by a radius-$r$ type difference with no shared variables across the cut
+
+If FLC splits $B$ by a type feature visible at radius $r$ but the distinguishing feature involves no variable shared between $B_1$ and $B_2$ — e.g., a difference in clause polarity pattern, or a difference in the degree sequence of variables inside each clause — then:
+
+$$|\partial(B_1, B_2)| = 0$$
+
+and the rank exposure is **zero**. This is the best case: the split is free.
+
+**When does this occur?** On a tree patch with $g \geq 4R+3$, if the FO$^k$-distinguishing feature at radius $r$ is determined entirely within the $r$-ball of each clause, and the $r$-balls of $c \in B_1$ and $c' \in B_2$ are vertex-disjoint (which holds when $d(c,c') > 2r$), then the split involves no shared variables and $|\partial| = 0$.
+
+**Condition for disjointness:** $d_{G_A}(c,c') > 2r$ for all $c \in B_1$, $c' \in B_2$. This holds when $B_1$ and $B_2$ are separated in $G_A$ by distance $> 2r$, i.e., the split is between *distant* clauses. On a tree patch with $|P_R(i)| \leq \Delta^R$ clauses, a random split of a random block will typically separate clauses that are far apart.
+
+#### Case 2: Split at a shared-variable boundary
+
+If FLC splits $B$ such that some variable $x_j$ has neighbors in both $B_1$ and $B_2$, then $x_j \in \partial(B_1, B_2)$ and it contributes 1 to rank exposure. The number of such boundary variables is at most the number of variables $x_j$ with $d_{G_A}(x_j, \text{cut}) = 1$ where the "cut" is the edge set between $B_1$ and $B_2$ in the clause–variable graph.
+
+**Key bound (provable on tree patches).** On a tree patch, the cut between $B_1$ and $B_2$ corresponds to a set of edges in the tree. A tree with $|B|$ leaves (clauses) and $q_R$ internal nodes (variables) has exactly $|B| + q_R - 1$ edges. Any partition $B = B_1 \cup B_2$ corresponds to removing a subtree, and the number of cut edges (boundary variables) satisfies:
+
+$$|\partial(B_1, B_2)| = |\text{cut edges}| \leq \min(|B_1|, |B_2|) \cdot k$$
+
+since each clause on the smaller side contributes at most $k$ variables to the boundary. This gives rank exposure $\leq k \cdot \min(|B_1|, |B_2|)$, which is $\Theta(|B|)$ for balanced splits. **Not $O(1)$.**
+
+#### Case 3: The $O(1)$ rank exposure case — when it actually holds
+
+Rank exposure is $O(1)$ per split if and only if $|\partial(B_1, B_2)| = O(1)$, which requires that the split cuts $O(1)$ edges in the clause–variable tree. This happens when:
+
+**(a) The split is induced by a single clause** being separated from the rest (one clause $c$ forms $B_1 = \{c\}$, $B_2 = B \setminus \{c\}$). Then $|\partial| \leq k$ (the $k$ variables of clause $c$ that also appear in $B_2$). Rank exposure $\leq k = O(1)$.
+
+**(b) The FO$^k$-distinguishing feature is a radius-0 property** (polarity, clause width, etc.) that affects a single clause at a time. Then FLC peels off one clause per step, each with rank exposure $\leq k$.
+
+**(c) The split separates a constant-size subtree from the rest.** If the FO$^k$-type boundary at radius $r$ isolates a subtree of $O(\Delta^r)$ clauses at the boundary of a patch, then $|\partial| \leq O(\Delta^r) \cdot k = O(1)$ for fixed $k, \Delta, r$.
+
+---
+
+### The Core Negative Result
+
+**Proposition.** There exist high-girth instances where a single FLC step at radius $r$ splits a block $B$ with $|\partial(B_1, B_2)| = \Theta(|B|)$.
+
+**Explicit construction.** Take $G_A$ to be a $(\Delta, k)$-biregular bipartite graph of girth $g = 2R+3$ (achievable by algebraic constructions, e.g., incidence graphs of projective planes for appropriate $\Delta = k = q+1$). Color half the clauses red and half blue such that:
+
+- The coloring is balanced: $|B_1| = |B_2| = |B|/2$.
+- The coloring alternates along every path of length 2 in $G_A$ (red–variable–blue pattern throughout).
+- The coloring is FO$^1$-visible (clauses carry a color label readable at radius 0).
+
+This is achievable by 2-coloring the clause nodes of a bipartite biregular tree: color by parity of depth.
+
+Under this construction:
+- Every variable $x_j$ has $\Delta/2$ red clause-neighbors and $\Delta/2$ blue clause-neighbors (by regularity and the alternating pattern).
+- Therefore every variable is in $\partial(B_1, B_2)$.
+- $|\partial(B_1, B_2)| = q_R = \Theta(|B| \cdot k/\Delta)$.
+
+For $k = \Delta - 1$ (near-regular), this is $\Theta(|B|)$. One FLC step (splitting by color) exposes rank $\Theta(|B|)$. **Girth $g = 2R+3 \geq 4R+3$ requires $R \leq 0$, so this construction lives at $R=0$, $r=0$.**
+
+For $R \geq 1$ requiring $g \geq 7$: modify so the coloring is FO$^k$-visible at radius $r=1$ rather than radius 0. Assign colors based on a length-2 path pattern (e.g., a clause is red iff its first variable has an even-index neighbor). This is a radius-1 feature. Constructing a $(\Delta,k)$-biregular graph of girth $\geq 7$ with such a balanced coloring is achievable (random biregular graphs of girth $\geq 7$ exist by probabilistic argument, and balanced colorings by FO$^1$ features exist by symmetry). The rank exposure argument is the same: $|\partial| = \Theta(|B|)$.
+
+**Therefore:** high girth does not prevent $\Theta(|B|)$ rank exposure in one FLC step.
+
+---
+
+### What the $O(1)$ Bound Actually Requires
+
+Combining Case 3 and the negative proposition, the $O(1)$ rank-exposure bound holds per step if and only if:
+
+> Each FLC step splits off at most $O(1)$ clauses from any block, i.e., each FO$^k$-type class that splits from a block has size $O(1)$.
+
+This is not a property of high girth. It is a property of the **FO$^k$-type distribution within blocks**. Specifically:
+
+**Definition (Type-isolated clause).** Clause $c \in B$ is type-isolated in $B$ at radius $r$ if its FO$^k$-type at radius $r$ is unique within $B$.
+
+**Lemma (O(1) exposure iff O(1) isolated clauses split).** If FLC at step $t$ splits block $B$ such that the departing subblock $B_1$ has $|B_1| = O(1)$, then $|\partial(B_1, B_2)| \leq k|B_1| = O(1)$.
+
+This holds trivially. The content is: **FLC can only produce $O(1)$ rank exposure per step per block if the FO$^k$-type classes within blocks have size $O(1)$ at the refinement boundary.**
+
+For random $k$-SAT this fails: FO$^k$ type classes within a random instance are large (a constant fraction of clauses share the same local type on tree-like neighborhoods), so the first split of any large block is a balanced split with $\Theta(|B|)$ rank exposure.
+
+---
+
+### What is Now Established and What Remains
+
+**Established:**
+
+| Statement | Status | Proof location |
+|---|---|---|
+| $\Phi$ collapses in one step on girth-4 instances | ✓ | Part I |
+| Tree patches have rank ratio $k/\Delta$ | ✓ | Rank-Exposure Lemma Step 2–3 |
+| $O(1)$ rank exposure iff $O(1)$ boundary variables at cut | ✓ | Case analysis above |
+| $O(1)$ boundary variables iff $O(1)$ clauses split off | ✓ | Case 3 |
+| High girth alone does not prevent $\Theta(|B|)$ rank exposure | ✓ | Negative proposition |
+
+**Not established and likely false without additional hypotheses:**
+
+| Statement | Obstruction |
+|---|---|
+| Per-step rank exposure is $O(1)$ under FLC on high-girth graphs | Balanced FO$^k$-visible splits expose $\Theta(|B|)$ rank |
+| Random $k$-SAT satisfies per-step $O(1)$ rank exposure | First FLC step on random instance splits by a balanced global feature |
+| $T \geq \Omega(n)$ for FLC on random $k$-SAT via $\Phi$ | Requires $O(1)$ exposure/step, which fails |
+
+### The Actual Missing Hypothesis
+
+The lower bound $T \geq \Omega(n)$ via $\Phi$ requires the following, which is **not implied by high girth, bounded degree, or FO$^k$ locality alone**:
+
+> **Hypothesis (Gradual Exposure).** For all $t$ and all blocks $B \in \Pi_t$, the FO$^k$-type class that splits from $B$ at step $t$ has size $O(1)$.
+
+This is equivalent to saying: at every step, the refinement algorithm can only peel off $O(1)$ clauses at a time from each block, because no large subgroup of clauses within a block shares a distinguishing FO$^k$ feature not shared by the rest.
+
+This holds for **Weisfeiler-Leman refinement on expander graphs** where the type distribution within blocks is highly non-uniform (one type class dominates all others), but it fails for symmetric or regular instances where large type classes exist inside blocks throughout the refinement. It is a **non-degeneracy condition on the FO$^k$-type distribution** of the instance family, not a consequence of graph-theoretic structural properties.
+
+Until this hypothesis is either proved for the target instance family or replaced by a different invariant that does not require it, the $T \geq \Omega(n)$ lower bound via $\Phi$ is not established for any natural SAT instance family.
+

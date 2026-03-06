@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "R": 3,
+    "limit": 2500
+  },
+  "intersection_rank": 5000,
+  "union_rank": 5000,
+  "kappa": 1.0
+}

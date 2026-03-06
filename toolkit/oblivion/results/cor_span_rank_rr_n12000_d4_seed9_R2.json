@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/rr_n12000_d4_seed9.json",
+    "n": 12000,
+    "m": 24000,
+    "R": 2,
+    "limit_vertices": 0
+  },
+  "cor_span_rank_proxy": 30,
+  "insertions": 30,
+  "source_meta": {}
+}

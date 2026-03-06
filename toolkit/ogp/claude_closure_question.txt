@@ -1,0 +1,22 @@
+Compute Bethe overlap-curvature for hard-core independent sets (Δ-regular)
+
+Setup:
+- Δ-regular graph G (locally tree-like / RS phase).
+- Independent sets Ω ⊂ {0,1}^n.
+- Fix σ* ∈ Ω and overlap q(σ,σ*) = (1/n) Σ_i σ_i σ_i*.
+- Define Ω(q) = {σ ∈ Ω : q(σ,σ*) = q} and ψ(q) = (1/n) log |Ω(q)|.
+
+Goal:
+Determine the explicit curvature constant κ_Bethe(ρ,Δ) := -ψ''(ν2) at the high-overlap endpoint ν2 (assuming differentiability),
+and express it in terms of RS cavity parameters / susceptibility.
+
+Tasks:
+1) Write the RS Bethe functional for the hard-core model on the Δ-regular tree at the cavity fixed point (messages).
+2) Formulate the overlap-restricted entropy density ψ(q) (or a two-replica Bethe functional) with constraint q≈ν2.
+3) Compute the Hessian in the overlap direction at q=ν2 and extract κ_Bethe(ρ,Δ).
+4) Decide whether κ_Bethe reduces to 1/χ_ov(ρ,Δ) for an explicit overlap-susceptibility χ_ov, and give the formula.
+5) State the precise regime where the quadratic expansion is valid (before OGP boundary / RSB non-analyticity).
+
+Non-goals:
+- No claim that κ_Bethe equals 1/(2Δ) or 1/Δ unless derived.
+- If the RS Bethe Hessian does not control ψ'' at ν2 (e.g., due to RSB), state the minimal missing lemma required.

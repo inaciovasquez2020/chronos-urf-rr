@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/rr_n12000_d4_seed9.json",
+    "n": 12000,
+    "R": 4,
+    "rounds": 10
+  },
+  "type_count": 12000,
+  "max_multiplicity": 1,
+  "histogram": {
+    "1": 12000
+  }
+}

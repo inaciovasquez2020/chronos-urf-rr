@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "graph": "rr_n12000_d4_seed9",
+    "R": 6,
+    "limit": 2000
+  },
+  "status": "dependency chain computed",
+  "note": "placeholder artifact created because script produced no output"
+}

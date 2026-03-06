@@ -1,0 +1,3 @@
+nodes: 14400
+edges: 28800
+LIR_R(G) = 24
