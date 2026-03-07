@@ -78,3 +78,18 @@ This includes:
 - worked examples
 - referee guide
 
+
+## Oblivion Atom: Cycle–Overlap Visibility
+
+Empirical and formal scaffolding for the Cycle–Overlap Visibility Lemma:
+
+- Documentation: `docs/oblivion_atom/`
+- Experiments: `toolkit/oblivion/experiments/run_visibility_experiment.sh`
+- Scripts: `toolkit/oblivion/scripts/`
+- Lean skeleton: `lean/Oblivion/CycleOverlapVisibility.lean`
+
+Key empirical result:
+
+COR_R(G) large ⇒ WL² vertex-color diversity ⇒ FO³ type diversity.
+
+Status: empirical + formal skeleton; proof open.
