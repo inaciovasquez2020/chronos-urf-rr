@@ -1,76 +1,20 @@
 # Oblivion Atom Rigidity Theorem
 
-## Theorem
+Let k, Δ be natural numbers.
 
-Let \(k,\Delta \in \mathbb N\).
+There exist constants R, r, T, β > 0 such that
+for every graph G with maxdeg(G) ≤ Δ:
 
-There exist constants
+COR_R(G) ≥ T  ⇒  |FO^k_r(G)| ≥ β · COR_R(G).
 
-\[
-R,r,T,\beta >0
-\]
+Proof outline:
 
-such that for any finite graph \(G\) with
-
-\[
-\maxdeg(G) \le \Delta
-\]
-
-the following holds:
-
-\[
-COR_R(G) \ge T
-\Rightarrow
-|FO^k_r(G)| \ge \beta \cdot COR_R(G).
-\]
-
----
-
-## Proof Outline
-
-### Step 1 — Cycle Rank Rigidity
-
-Normalized supports produce a sparse incidence matrix with
-
-\[
-rank(M) = COR_R(G).
-\]
-
-### Step 2 — Sparse Signature Diversity
-
-From sparsity:
-
-\[
-|\sigma(V)| \ge \beta \cdot COR_R(G).
-\]
-
-### Step 3 — Support Separation
-
-Each support is FO-definable using anchor formulas:
-
-\[
-\sigma(v)_j = \phi_j(v).
-\]
-
-### Step 4 — Type Separation
-
-Distinct signatures imply distinct FO-types:
-
-\[
-\sigma(u) \neq \sigma(v)
-\Rightarrow
-tp^k_r(u) \neq tp^k_r(v).
-\]
+1. Normalize cycle supports to obtain supports C₁,…,C_m.
+2. Build incidence matrix M.
+3. Apply sparse signature diversity lemma.
+4. Realize signatures using support separation formulas.
+5. Distinguish vertices via EF game.
 
 Thus
 
-\[
-|FO^k_r(G)| \ge |\sigma(V)|.
-\]
-
-Combining:
-
-\[
-|FO^k_r(G)| \ge \beta \cdot COR_R(G).
-\]
-
+|FO^k_r(G)| ≥ β m = β COR_R(G).

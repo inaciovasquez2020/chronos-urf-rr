@@ -4,65 +4,46 @@
 
 Let
 
-\[
-M \in \mathbb F_2^{V \times m}
-\]
+M ∈ F₂^{V × m}
 
-be the incidence matrix of normalized supports.
+be the vertex–support incidence matrix of normalized supports.
 
-Assume:
+Assume
 
-1. Column sparsity
+1. Support size bound
 
-\[
-|supp(C_j)| \le B
-\]
+|supp(C_j)| ≤ B
 
-2. Row sparsity
+2. Bounded vertex reuse
 
-\[
-|\{j : v \in supp(C_j)\}| \le B
-\]
+|{ j : v ∈ supp(C_j) }| ≤ L
+
+for every vertex v.
 
 3. Column independence
 
-\[
 rank(M) = m
-\]
 
 Then the number of distinct rows satisfies
 
-\[
-|\{\sigma(v)\}| \ge \beta m
-\]
-
-for constant
-
-\[
-\beta = \frac{1}{B^2}.
-\]
-
----
-
-## Proof Sketch
-
-Each column introduces at most \(B\) nonzero rows.
-
-Because rows also contain at most \(B\) ones, each row can support
-only \(B\) columns.
-
-Thus a column must introduce at least \(1/B\) new rows before
-linear dependence becomes possible.
-
-Counting argument:
-
-\[
-|rows| \ge \frac{m}{B^2}.
-\]
+|{σ(v)}| ≥ m / (B L).
 
 Thus
 
-\[
-|\sigma(V)| \ge \beta m.
-\]
+|σ(V)| ≥ β m
 
+with β = 1/(B L).
+
+## Proof Sketch
+
+Each column uses at most B vertices.
+
+Each vertex can appear in at most L columns.
+
+Therefore a single vertex can support at most L columns.
+
+To realize m independent columns we require at least m/(B L) vertices.
+
+Each vertex produces a row signature.
+
+Thus the number of distinct signatures is Ω(m).
