@@ -1,50 +1,27 @@
-# Oblivion Atom — Reproducibility
+# Reproducibility
 
-All diagnostics in this module are reproducible from the repository.
+All experiments supporting the Cycle–Overlap Visibility Lemma can be reproduced directly from this repository.
 
-## 1. Geometry Signature
+## One-command run
 
-Compute the signature:
+./toolkit/oblivion/experiments/run_visibility_experiment.sh
 
-python3 toolkit/oblivion/scripts/geometry_signature_scan.py \
---graph_json GRAPH.json \
---root 0 \
---Rmax 12 \
-> signature.json
+## Outputs verified
 
-## 2. Plot Geometry
+Cycle overlap structure  
+Cycle component rank decomposition  
+WL² color refinement
 
-python3 toolkit/oblivion/scripts/graph_geometry_plot.py \
---graph_json GRAPH.json \
---max_R 12 \
---out geometry.png
+## Expected conclusions
 
-## 3. Cycle Diagnostics
+Large cycle-overlap rank produces WL² vertex separation.
 
-Run cycle analysis scripts:
+Using the WL–FO correspondence:
 
-cycle_parity_rank.py  
-cycle_sheet_coherence.py  
-local_cycle_rank_distribution.py  
-cor_patch_dependency_chain.py
+WL² ≡ FO³
 
-## 4. Logical Diagnostics
+Therefore
 
-Detect FO^k neighborhood collisions:
+COR_R(G) large ⇒ FO³ type diversity.
 
-FO_k_type_collision_detector.py
-
-## 5. Repository State
-
-Release tag:
-
-oblivion-geometry-v1
-
-Artifacts:
-
-geometry_rr_R12.png  
-geometry_twolift_R12.png  
-
-All scripts and documentation are version-controlled
-under the chronos-urf-rr repository.
-
+Status: computational evidence + Lean proof skeleton.
