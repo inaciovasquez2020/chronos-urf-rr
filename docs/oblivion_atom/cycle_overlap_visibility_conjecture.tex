@@ -1,0 +1,60 @@
+\section{Cycle–Overlap Visibility Conjecture}
+
+\begin{conjecture}[Cycle–Overlap Visibility]
+Let $\Delta,R$ be fixed.  
+There exists a threshold $T=T(\Delta,R)$ such that for every graph $G$
+with $\maxdeg(G)\le \Delta$,
+
+\[
+COR_R(G) \ge T
+\]
+
+implies the existence of vertices $u,v\in V(G)$ with
+
+\[
+tp_3(u) \ne tp_3(v).
+\]
+
+Equivalently,
+
+\[
+\chi_{WL^2}(u) \ne \chi_{WL^2}(v).
+\]
+\end{conjecture}
+
+\paragraph{Interpretation.}
+
+Cycle–overlap rank is invisible to $FO^1$ and $FO^2$ locality but becomes
+detectable at $FO^3$.
+
+\paragraph{Empirical Evidence.}
+
+For the graph
+
+\[
+rr\_n12000\_d4\_seed9
+\]
+
+with radius $R=6$ we measured
+
+\[
+COR_R(G)=649
+\]
+
+while
+
+\[
+WL^1 \text{ homogeneous}
+\]
+
+but
+
+\[
+WL^2 \text{ produces } 7 \text{ distinct colors}.
+\]
+
+Thus
+
+\[
+\exists u,v:\chi_{WL^2}(u)\ne\chi_{WL^2}(v).
+\]
