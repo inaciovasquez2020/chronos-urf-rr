@@ -5,3 +5,4 @@ import Oblivion.Rigidity.CycleRankRigidity
 import Oblivion.Rigidity.DeterministicCycleRigidity
 import Oblivion.Rigidity.InternalEdgeDensity
 import Oblivion.Rigidity.LayerCollision
+import Oblivion.Rigidity.OblivionAtomCorrected
