@@ -67,3 +67,5 @@ Includes geometry diagnostics and visualization artifacts.
 - [Oblivion Atom Reduction Chain](oblivion_atom_chain.md)
 - [Cycle–Rank Rigidity Lemma](proofs/cycle_rank_rigidity.md)
 - [Cycle–Rank Rigidity Experiment](experiments/cycle_rank_experiment.md)
+
+- [Row Diversity Lemma](proofs/row_diversity_lemma.md)
