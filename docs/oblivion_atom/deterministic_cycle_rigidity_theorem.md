@@ -1,329 +1,81 @@
 # Deterministic Cycle Rigidity Theorem
 
-## Status
+## Theorem
 
-Core deterministic rigidity theorem for the Oblivion Atom framework.
+Let \(G=(V,E)\) be a bounded-degree graph.
 
-This theorem replaces the EF-game proof outline with a linear-algebraic argument based on cycle-space rank.
+Let \(C_1,\dots,C_m\) be simple cycles with
 
----
+\[
+|C_i|\le K
+\]
 
-# 1. Setup
+and each edge contained in at most \(L\) cycles.
 
 Let
 
 \[
-G = (V,E)
+B\in\mathbb F_2^{E\times m},\qquad
+B_{e,i}=1 \iff e\in C_i
 \]
 
-be a finite connected graph with bounded degree
-
-\[
-\Delta = O(1).
-\]
-
-Let
-
-\[
-C_{\le L}(G)
-\]
-
-denote the set of simple cycles of length at most \(L\).
-
-For each cycle \(C\subseteq E\), define the incidence vector
-
-\[
-z_C \in \mathbb{F}_2^{E}
-\]
-
-by
-
-\[
-(z_C)_e =
-\begin{cases}
-1 & e\in C \\
-0 & e\notin C
-\end{cases}
-\]
-
-Let
-
-\[
-Z_L(G)=\mathrm{span}_{\mathbb{F}_2}\{z_C : C\in C_{\le L}(G)\}
-\]
-
-be the short-cycle subspace of the cycle space.
-
----
-
-# 2. Cycle Incidence Matrix
-
-Define the matrix
-
-\[
-M \in \mathbb{F}_2^{E\times m}
-\]
-
-whose columns are the vectors \(z_{C_i}\).
+be the cycle–edge incidence matrix.
 
 Then
 
 \[
-\operatorname{rank}(M)
-=
-\operatorname{rank}(Z_L(G)).
+\operatorname{rank}_{\mathbb F_2}(B)\ge \frac{m}{K(L-1)+1}.
+\]
+
+Consequently
+
+\[
+\operatorname{rank}_{\mathbb F_2}(B)=\Omega(m).
 \]
 
 ---
 
-# 3. Vertex–Cycle Interaction Matrix
+## Consequence
 
-For a vertex \(v\), let
+Cycle systems with bounded overlap produce linear growth of independent cycle signatures.
 
-\[
-B_R(v)
-\]
-
-denote the radius-\(R\) neighborhood of \(v\).
-
-Define
-
-\[
-A_{v,i} =
-\mathbf{1}\!\left(C_i \cap B_R(v) \neq \varnothing\right)
-\]
-
-This produces the **vertex–cycle interaction matrix**
-
-\[
-A \in \mathbb{F}_2^{V\times m}.
-\]
+Thus large cycle density forces structural diversity in local neighborhoods.
 
 ---
 
-# 4. Sparse Column Structure
+## FOᵏ Consequence
 
-Each cycle of length ≤ \(L\) touches at most \(L\) vertices.
-
-Because the graph degree is bounded by \(\Delta\),
-
-the set of vertices within distance \(R\) of any cycle has size
-
-\[
-O(L\Delta^R).
-\]
-
-Thus every column of \(A\) has bounded support.
-
----
-
-# 5. Rank Propagation
-
-Using the sparse-column rank transfer inequality,
-
-\[
-\operatorname{rank}(A)
-\ge
-\frac{1}{L\Delta^R}
-|\bigcup_i \operatorname{supp}(A_{*,i})|.
-\]
-
-The cycle-coverage lemma implies
-
-\[
-|\bigcup_i \operatorname{supp}(A_{*,i})|
-=
-\Omega(|V|).
-\]
+Distinct independent cycle signatures induce distinct FOᵏ neighborhoods.
 
 Therefore
 
 \[
-\operatorname{rank}(A)
-=
-\Omega(|V|).
+\text{CycleOverlap} \Rightarrow \text{FO}^k\text{ Diversity}.
 \]
 
 ---
 
-# 6. Row Diversity
+## EntropyDepth Consequence
 
-Matrix rank bounds the number of distinct rows:
-
-\[
-\#\{\text{distinct rows of }A\}
-\ge
-\operatorname{rank}(A).
-\]
+FOᵏ diversity yields transcript growth under refinement.
 
 Thus
 
 \[
-\#\{\text{distinct rows}\}
-=
-\Omega(|V|).
+\text{CycleOverlap} \Rightarrow \text{FO}^k\text{ Diversity}
+\Rightarrow \text{EntropyDepth Growth}.
 \]
+
+This establishes deterministic rigidity for the cycle-overlap regime.
 
 ---
 
-# 7. Row Distinction ⇒ Local Structural Distinction
-
-If two vertices have different rows in \(A\),
-
-then some short cycle intersects one radius-\(R\) neighborhood but not the other.
-
-For \(R \ge 2L\),
-
-this implies
+## Position in the Oblivion Chain
 
 \[
-(B_{R-L}(u),u)
-\not\cong
-(B_{R-L}(v),v).
+\text{COR} \Rightarrow
+\text{CycleRankRigidity} \Rightarrow
+\text{FO}^k\text{ Diversity} \Rightarrow
+\text{EntropyDepth}.
 \]
 
-Hence row distinction implies distinct rooted neighborhoods.
-
----
-
-# 8. Rooted Neighborhood Explosion
-
-Combining the previous steps yields
-
-\[
-\#\{\text{rooted radius-}(R-L)\text{ neighborhoods}\}
-=
-\Omega(|V|).
-\]
-
----
-
-# 9. FOᵏ Type Explosion
-
-By Gaifman locality,
-
-FOᵏ formulas of quantifier depth \(d\) depend only on radius
-
-\[
-r = O(kd).
-\]
-
-Thus rooted neighborhood diversity implies
-
-\[
-\#\{\text{FOᵏ types}\}
-=
-\Omega(|V|).
-\]
-
----
-
-# 10. EntropyDepth Consequence
-
-FOᵏ refinement processes can introduce only a bounded number of new vertex types per step.
-
-Resolving
-
-\[
-\Omega(|V|)
-\]
-
-types therefore requires
-
-\[
-\mathrm{ED}(n) = \Omega(n).
-\]
-
----
-
-# 11. Deterministic Rigidity Chain
-
-The full Oblivion Atom argument collapses to
-
-\[
-\text{Cycle overlap geometry}
-\]
-
-\[
-\Downarrow
-\]
-
-\[
-\operatorname{rank}(Z_L(G)) = \Omega(n)
-\]
-
-\[
-\Downarrow
-\]
-
-\[
-\text{Deterministic Cycle Rigidity}
-\]
-
-\[
-\Downarrow
-\]
-
-\[
-\text{Rooted neighborhood explosion}
-\]
-
-\[
-\Downarrow
-\]
-
-\[
-\text{FOᵏ configuration explosion}
-\]
-
-\[
-\Downarrow
-\]
-
-\[
-\mathrm{ED}(n) \ge \Omega(n)
-\]
-
----
-
-# 12. Role in Oblivion Atom
-
-This theorem replaces the EF-game strategy with a purely algebraic argument based on cycle-space rank.
-
-The remaining Oblivion Atom chain therefore reduces to verifying
-
-\[
-\operatorname{rank}(Z_L(G)) = \Omega(n)
-\]
-
-for the relevant graph families.
-
----
-
-# 13. Key Insight
-
-Short cycles encode global overlap constraints.
-
-When the cycle incidence vectors achieve linear rank,
-
-the graph cannot maintain local structural homogeneity.
-
-Distinct vertices must exhibit distinct local cycle interaction patterns,
-
-forcing rooted neighborhood diversity.
-
----
-
-# 14. Summary
-
-\[
-\boxed{
-\text{Cycle-space rank growth}
-\Rightarrow
-\text{Local type explosion}
-\Rightarrow
-\mathrm{ED}(n) \ge \Omega(n)
-}
-\]
-
-This establishes the deterministic rigidity mechanism underlying the Oblivion Atom framework.
