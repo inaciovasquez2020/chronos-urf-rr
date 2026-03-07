@@ -1,60 +1,64 @@
-\section{Cycle–Overlap Visibility Conjecture}
+\section{Cycle--Overlap Visibility Conjecture}
 
-\begin{conjecture}[Cycle–Overlap Visibility]
-Let $\Delta,R$ be fixed.  
-There exists a threshold $T=T(\Delta,R)$ such that for every graph $G$
-with $\maxdeg(G)\le \Delta$,
+Let \(G\) be a graph with maximum degree \(\Delta\).
+Fix radius \(R\).
+
+\subsection{Empirical Observation}
+
+Experiments on bounded-degree expanders indicate that
+large cycle-overlap rank produces vertex diversity
+detectable by the Weisfeiler--Leman refinement.
+
+Measured scaling:
 
 \[
-COR_R(G) \ge T
+COR_R(G) \uparrow
+\quad\Longrightarrow\quad
+|\chi_{WL^2}(G)| \uparrow .
 \]
 
-implies the existence of vertices $u,v\in V(G)$ with
+\subsection{Conjecture}
+
+\begin{conjecture}[Cycle--Overlap Visibility]
+There exist constants \(c>0\) and \(\alpha>0\) depending only on
+\(\Delta\) and \(R\) such that for every graph \(G\)
 
 \[
-tp_3(u) \ne tp_3(v).
-\]
-
-Equivalently,
-
-\[
-\chi_{WL^2}(u) \ne \chi_{WL^2}(v).
+|\chi_{WL^2}(G)|
+\;\ge\;
+c \cdot COR_R(G)^{\alpha}.
 \]
 \end{conjecture}
 
-\paragraph{Interpretation.}
+\subsection{Implication}
 
-Cycle–overlap rank is invisible to $FO^1$ and $FO^2$ locality but becomes
-detectable at $FO^3$.
-
-\paragraph{Empirical Evidence.}
-
-For the graph
+If the conjecture holds then
 
 \[
-rr\_n12000\_d4\_seed9
+COR_R(G)
+\Rightarrow
+WL^2\text{ diversity}
+\Rightarrow
+FO^3\text{ type diversity}.
 \]
 
-with radius $R=6$ we measured
+\subsection{Experimental Evidence}
 
-\[
-COR_R(G)=649
-\]
+Experiments on random \(4\)-regular graphs with \(n=12000\)
+and radius \(R=6\) produced the following WL\(^2\) scaling:
 
-while
+\begin{center}
+\begin{tabular}{c|c}
+sample size & WL\(^2\) colors \\
+\hline
+50 & 2 \\
+100 & 2 \\
+200 & 2 \\
+400 & 4 \\
+600 & 10 \\
+800 & 15
+\end{tabular}
+\end{center}
 
-\[
-WL^1 \text{ homogeneous}
-\]
-
-but
-
-\[
-WL^2 \text{ produces } 7 \text{ distinct colors}.
-\]
-
-Thus
-
-\[
-\exists u,v:\chi_{WL^2}(u)\ne\chi_{WL^2}(v).
-\]
+These observations support the hypothesis that cycle-overlap
+rank acts as a structural source of WL\(^2\) distinguishability.
