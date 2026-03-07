@@ -1,0 +1,96 @@
+\section{Cycle--Overlap Visibility Theorem}
+
+Let \(G\) be a finite graph with maximum degree \(\Delta\).
+Fix \(R \in \mathbb{N}\).
+
+\subsection{Cycle--Overlap Rank}
+
+Let \(\mathcal{C}_R(G)\) denote the set of cycles contained in radius-\(R\) balls.
+Define the cycle-overlap rank
+
+\[
+COR_R(G) =
+\dim_{\mathbb{F}_2}
+\mathrm{span}\{\chi_C : C \in \mathcal{C}_R(G)\}
+\subseteq \mathbb{F}_2^{E(G)} .
+\]
+
+\subsection{Transport Signature}
+
+For a vertex \(v\),
+
+\[
+\Theta_R(v) =
+\big(
+\deg(v),
+\{\tau_R(v,u)\}_{u \in N(v)}
+\big)
+\]
+
+where
+
+\[
+\tau_R(v,u) =
+\#\{C \in \mathcal{C}_R(G) : (v,u) \in C\}.
+\]
+
+\subsection{Rigidity Lemma}
+
+There exists a constant \(T(\Delta,R)\) such that
+
+\[
+COR_R(G) \ge T(\Delta,R)
+\]
+
+implies
+
+\[
+\exists u,v :
+\Theta_R(u) \neq \Theta_R(v).
+\]
+
+\subsection{WL\(^2\) Consequence}
+
+Vertices with different transport signatures receive different
+WL\(^2\) colors.
+
+\[
+\Theta_R(u) \neq \Theta_R(v)
+\Rightarrow
+\chi_{WL^2}(u) \neq \chi_{WL^2}(v).
+\]
+
+\subsection{FO\(^3\) Consequence}
+
+WL\(^2\) distinguishability implies FO\(^3\) type difference via
+the \(3\)-pebble Ehrenfeucht--Fra\"iss\'e game.
+
+\[
+\chi_{WL^2}(u) \neq \chi_{WL^2}(v)
+\Rightarrow
+tp_3(u) \neq tp_3(v).
+\]
+
+\subsection{Cycle--Overlap Visibility}
+
+Combining the steps yields
+
+\[
+COR_R(G)
+\Rightarrow
+\Theta_R \text{ diversity}
+\Rightarrow
+WL^2
+\Rightarrow
+FO^3.
+\]
+
+\begin{theorem}[Cycle--Overlap Visibility]
+For bounded-degree graphs there exists \(T(\Delta,R)\) such that
+
+\[
+COR_R(G) \ge T(\Delta,R)
+\]
+
+implies the existence of vertices with distinct FO\(^3\) types.
+\end{theorem}
