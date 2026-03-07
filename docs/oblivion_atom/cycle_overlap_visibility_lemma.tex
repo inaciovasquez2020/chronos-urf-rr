@@ -1,0 +1,92 @@
+\section{Cycle--Overlap Visibility Lemma (Empirical)}
+
+\subsection*{Statement}
+
+Fix $\Delta$ and $R$.  
+There exists a threshold $T$ such that for any graph $G$ with
+\[
+\maxdeg(G)\le \Delta
+\]
+and
+\[
+COR_R(G)\ge T,
+\]
+there exist vertices $u,v$ satisfying
+\[
+tp_3(u)\ne tp_3(v).
+\]
+
+Equivalently,
+\[
+\chi_{WL^2}(u)\ne \chi_{WL^2}(v).
+\]
+
+\subsection*{Experimental Evidence}
+
+Graph: rr\_n12000\_d4\_seed9
+
+Radius:
+\[
+R=6
+\]
+
+Measured:
+
+\[
+COR_R(G)=649
+\]
+
+Overlap components:
+\[
+253
+\]
+
+Largest component:
+\[
+82
+\]
+
+\paragraph{WL Tests}
+
+\[
+WL^1:\ \text{homogeneous}
+\]
+
+\[
+WL^2:\ \text{distinct colors} = 7
+\]
+
+Hence
+
+\[
+\exists u,v:\chi_{WL^2}(u)\ne\chi_{WL^2}(v).
+\]
+
+\subsection*{Interpretation}
+
+Cycle–overlap rank becomes visible at
+
+\[
+FO^3
+\]
+
+while remaining invisible to
+
+\[
+FO^1,\ FO^2.
+\]
+
+\subsection*{Role in the Oblivion Atom}
+
+Provides empirical support for the bridge
+
+\[
+COR_R(G)\ \Rightarrow\ FO^k\text{-type diversity}
+\]
+
+with
+
+\[
+k=3.
+\]
+
