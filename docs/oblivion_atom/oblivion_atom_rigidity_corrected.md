@@ -28,7 +28,7 @@ COR_R(G) \ge T
 
 ## Proof Outline
 
-### Step 1 — Cycle Rank Rigidity
+### Step 1 — Normalized Supports
 
 Let
 
@@ -36,55 +36,64 @@ Let
 m = COR_R(G)
 \]
 
-and extract a normalized basis
+and extract normalized supports
 
 \[
 C_1,\dots,C_m
 \]
 
-with bounded support
+with bounded support size
 
 \[
-|supp(C_j)| \le B.
+|\operatorname{supp}(C_j)| \le B.
 \]
 
 ---
 
-### Step 2 — Incidence Matrix
+### Step 2 — Vertex–Support Incidence Matrix
 
-Construct the vertex–support matrix
+Define
 
 \[
-M \in \mathbb F_2^{V \times m}
+M \in \mathbb F_2^{V \times m},
+\qquad
+M_{v,j}=1 \iff v\in \operatorname{supp}(C_j).
 \]
 
-where
+Assume the normalized supports are linearly independent, so
 
 \[
-M_{v,j} = 1 \iff v \in supp(C_j).
-\]
-
-By cycle independence
-
-\[
-rank(M) = m.
+\operatorname{rank}(M)=m.
 \]
 
 ---
 
 ### Step 3 — Bounded Vertex Reuse
 
-Patch normalization ensures
+Assume there is a constant \(L\) such that
 
 \[
-|\{j : v \in supp(C_j)\}| \le L.
+|\{j : v\in \operatorname{supp}(C_j)\}| \le L
+\qquad (v\in V).
 \]
 
 ---
 
-### Step 4 — Signature Diversity
+### Step 4 — Row Diversity
 
-By the Corrected Signature Diversity Lemma,
+By the Row Diversity Lemma,
+
+\[
+|\{\operatorname{row}_v(M):v\in V\}| \ge \frac{m}{BL}.
+\]
+
+Equivalently, for the signature map
+
+\[
+\sigma(v)_j := M_{v,j},
+\]
+
+we have
 
 \[
 |\sigma(V)| \ge \frac{m}{BL}.
@@ -92,35 +101,47 @@ By the Corrected Signature Diversity Lemma,
 
 ---
 
-### Step 5 — Logical Realization
+### Step 5 — Support Separation
 
-Using Support–Separation Realization:
+Assume each normalized support is uniformly \(FO^k_r\)-definable by formulas
 
 \[
-|\sigma(V)| \le |FO^k_r(G)|.
+\varphi_j(x)
 \]
 
-Thus
+satisfying
 
 \[
-|FO^k_r(G)| \ge \beta m
+G \models \varphi_j(v)
+\iff
+v \in \operatorname{supp}(C_j).
 \]
 
-for
+Then distinct signatures imply distinct \(FO^k_r\)-types, so
 
 \[
-\beta = \frac{1}{BL}.
+|FO^k_r(G)| \ge |\sigma(V)|.
 \]
 
 ---
 
-## Conclusion
+### Step 6 — Conclusion
+
+Combining the previous steps,
 
 \[
-COR_R(G) \ge T
-\Rightarrow
-|FO^k_r(G)| \ge \beta \cdot COR_R(G).
+|FO^k_r(G)| \ge |\sigma(V)| \ge \frac{m}{BL}.
 \]
 
-This establishes the Oblivion Atom Rigidity Theorem.
+Since \(m = COR_R(G)\), this gives
+
+\[
+|FO^k_r(G)| \ge \frac{1}{BL}\, COR_R(G).
+\]
+
+Thus the theorem holds with
+
+\[
+\beta = \frac{1}{BL}.
+\]
 
