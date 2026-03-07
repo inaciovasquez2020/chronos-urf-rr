@@ -57,3 +57,13 @@ supporting the Oblivion Atom mechanism for FO^k type diversity.
 Tag: oblivion-geometry-v1  
 Includes geometry diagnostics and visualization artifacts.
 
+
+## Deterministic Cycle Rigidity Layer
+
+- [COR → Cycle Rank Rigidity](cor_to_cycle_rank.md)
+- [Cycle Rank → FOᵏ Type Diversity](cycle_rank_to_fok_diversity.md)
+- [FOᵏ Diversity → EntropyDepth Growth](fok_diversity_to_entropy_depth.md)
+- [Deterministic Cycle Rigidity Theorem](deterministic_cycle_rigidity_theorem.md)
+- [Oblivion Atom Reduction Chain](oblivion_atom_chain.md)
+- [Cycle–Rank Rigidity Lemma](proofs/cycle_rank_rigidity.md)
+- [Cycle–Rank Rigidity Experiment](experiments/cycle_rank_experiment.md)
