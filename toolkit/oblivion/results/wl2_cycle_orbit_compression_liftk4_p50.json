@@ -1,0 +1,19 @@
+{
+  "family": "random_lift_K4",
+  "p": 50,
+  "seed": 19,
+  "graph_n": 200,
+  "graph_m": 300,
+  "wl_rounds": 2,
+  "fundamental_cycles": 101,
+  "cycle_space_dimension_exact": 101,
+  "full_rank_F2": 101,
+  "vertex_wl2_orbit_count": 143,
+  "edge_wl2_orbit_count": 277,
+  "cycle_wl2_orbit_count": 101,
+  "compressed_rank_F2": 100,
+  "compressed_shape": [
+    101,
+    277
+  ]
+}

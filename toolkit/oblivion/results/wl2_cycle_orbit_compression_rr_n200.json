@@ -1,0 +1,20 @@
+{
+  "family": "random_regular",
+  "n": 200,
+  "d": 4,
+  "seed": 11,
+  "graph_n": 200,
+  "graph_m": 400,
+  "wl_rounds": 2,
+  "fundamental_cycles": 201,
+  "cycle_space_dimension_exact": 201,
+  "full_rank_F2": 201,
+  "vertex_wl2_orbit_count": 200,
+  "edge_wl2_orbit_count": 400,
+  "cycle_wl2_orbit_count": 201,
+  "compressed_rank_F2": 201,
+  "compressed_shape": [
+    201,
+    400
+  ]
+}
