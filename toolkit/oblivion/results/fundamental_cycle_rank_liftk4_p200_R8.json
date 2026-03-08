@@ -1,0 +1,16 @@
+{
+  "n": 800,
+  "m": 1200,
+  "R": 8,
+  "root": "(0, 0)",
+  "fundamental_cycles": 401,
+  "local_fundamental_cycles": 400,
+  "rank_F2_global_sample": 401,
+  "rank_F2_local_sample": 400,
+  "cycle_space_dimension_exact": 401,
+  "local_rank_over_n": 0.5,
+  "global_rank_over_n": 0.50125,
+  "family": "random_lift_K4",
+  "p": 200,
+  "seed": 19
+}
