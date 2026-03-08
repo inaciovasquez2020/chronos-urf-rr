@@ -1,0 +1,18 @@
+{
+  "family": "cfi_proxy_cycle_lift",
+  "m": 40,
+  "graph_n": 80,
+  "graph_m": 160,
+  "wl_rounds": 3,
+  "fundamental_cycles": 81,
+  "cycle_space_dimension_exact": 81,
+  "full_rank_F2": 81,
+  "vertex_wl1_orbit_count": 1,
+  "edge_wl1_orbit_count": 1,
+  "cycle_wl1_orbit_count": 2,
+  "compressed_rank_F2": 0,
+  "compressed_shape": [
+    2,
+    1
+  ]
+}
