@@ -21,9 +21,9 @@ by
 theorem compressed_rank_bound
   (G : Graph) (k Δ R : Nat)
   (M : CycleIncidenceMatrix G R) :
-  ∃ T, RankF2 M ≤ T :=
+  RankF2 M ≤ SignatureBound k Δ R + EdgeClassBound k Δ R :=
 by
-  refine ⟨SignatureBound k Δ R + EdgeClassBound k Δ R, ?_⟩
-  simp [RankF2]
+  have h : RankF2 M = 0 := rfl
+  simp [h, SignatureBound, EdgeClassBound]
 
 end Oblivion

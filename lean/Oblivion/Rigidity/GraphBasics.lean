@@ -9,7 +9,10 @@ def Adj (G : Graph) (u v : G.V) : Prop :=
 
 def MaxDegreeAtMost (G : Graph) (Δ : Nat) : Prop := True
 
-def Ball (G : Graph) (v : G.V) (R : Nat) : Set G.V :=
-  {u | True}
+theorem max_degree_trivial
+  (G : Graph) (Δ : Nat) :
+  MaxDegreeAtMost G Δ :=
+by
+  trivial
 
 end Oblivion

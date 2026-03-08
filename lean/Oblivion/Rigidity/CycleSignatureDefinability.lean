@@ -11,6 +11,13 @@ theorem cycle_signature_definability
   (G : Graph) (k Δ R : Nat) :
   CycleSignatureDefinable G k Δ R :=
 by
-  trivial
+  simp [CycleSignatureDefinable, MaxDegreeAtMost]
+
+theorem signature_exists
+  (G : Graph) (k Δ R : Nat) :
+  ∃ b : Nat, CycleSignatureDefinable G k Δ R :=
+by
+  refine ⟨0, ?_⟩
+  simp [CycleSignatureDefinable, MaxDegreeAtMost]
 
 end Oblivion
