@@ -1,3 +1,5 @@
 import Oblivion.CycleOverlapVisibility
 import Oblivion.Rigidity.All
 import Oblivion.Rigidity.CycleOverlapRankRigidity
+import Oblivion.Rigidity.CycleSignatureDefinability
+import Oblivion.Rigidity.RowNormalization
