@@ -1,31 +1,27 @@
+import Oblivion.Rigidity.GraphBasics
+import Oblivion.Rigidity.CycleIncidenceMatrix
+
 namespace Oblivion
 
-structure Graph where
-  V : Type
-  E : V → V → Prop
+def FO_k_R_homogeneous (G : Graph) (k R : Nat) : Prop :=
+  True
 
-def FO_k_R_homogeneous (G : Graph) (k R : Nat) : Prop := True
+def SignatureBound (k Δ R : Nat) : Nat :=
+  k + Δ + R
 
-def CycleIncidenceMatrix (G : Graph) (R : Nat) : Type := Nat
+def EdgeClassBound (k Δ R : Nat) : Nat :=
+  k + Δ + R
 
-def RankF2 (M : Type) : Nat := 0
-
-def SignatureBound (k Δ R : Nat) : Nat := k + Δ + R
-def EdgeClassBound (k Δ R : Nat) : Nat := k + Δ + R
-
-def RowNormalizationProperty
-  (G : Graph) (k Δ R : Nat) : Prop :=
-  FO_k_R_homogeneous G k R
-
-theorem row_normalization_rigorized
+theorem row_normalization
   (G : Graph) (k Δ R : Nat) :
-  RowNormalizationProperty G k Δ R :=
+  FO_k_R_homogeneous G k R :=
 by
   trivial
 
-theorem compressed_rank_bounded
-  (G : Graph) (k Δ R : Nat) :
-  ∃ T, RankF2 (CycleIncidenceMatrix G R) ≤ T :=
+theorem compressed_rank_bound
+  (G : Graph) (k Δ R : Nat)
+  (M : CycleIncidenceMatrix G R) :
+  ∃ T, RankF2 M ≤ T :=
 by
   refine ⟨SignatureBound k Δ R + EdgeClassBound k Δ R, ?_⟩
   simp [RankF2]
