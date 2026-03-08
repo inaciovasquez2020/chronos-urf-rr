@@ -1,0 +1,32 @@
+[
+  {
+    "n": 200,
+    "ball_size": 117,
+    "cycles_sampled": 34,
+    "distinct_cycle_signatures": 12
+  },
+  {
+    "n": 400,
+    "ball_size": 144,
+    "cycles_sampled": 20,
+    "distinct_cycle_signatures": 6
+  },
+  {
+    "n": 800,
+    "ball_size": 149,
+    "cycles_sampled": 12,
+    "distinct_cycle_signatures": 2
+  },
+  {
+    "n": 1200,
+    "ball_size": 153,
+    "cycles_sampled": 0,
+    "distinct_cycle_signatures": 0
+  },
+  {
+    "n": 1600,
+    "ball_size": 157,
+    "cycles_sampled": 0,
+    "distinct_cycle_signatures": 0
+  }
+]
