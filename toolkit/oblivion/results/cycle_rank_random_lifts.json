@@ -1,0 +1,54 @@
+[
+  {
+    "family": "random_lift_K4",
+    "p": 50,
+    "n": 200,
+    "m": 300,
+    "L": 8,
+    "max_cycles": 20000,
+    "seed": 17,
+    "cycles_sampled": 36,
+    "rank_F2": 34,
+    "rank_over_n": 0.17,
+    "rank_over_m": 0.11333333333333333
+  },
+  {
+    "family": "random_lift_K4",
+    "p": 100,
+    "n": 400,
+    "m": 600,
+    "L": 8,
+    "max_cycles": 20000,
+    "seed": 18,
+    "cycles_sampled": 40,
+    "rank_F2": 37,
+    "rank_over_n": 0.0925,
+    "rank_over_m": 0.06166666666666667
+  },
+  {
+    "family": "random_lift_K4",
+    "p": 200,
+    "n": 800,
+    "m": 1200,
+    "L": 8,
+    "max_cycles": 20000,
+    "seed": 19,
+    "cycles_sampled": 35,
+    "rank_F2": 34,
+    "rank_over_n": 0.0425,
+    "rank_over_m": 0.028333333333333332
+  },
+  {
+    "family": "random_lift_K4",
+    "p": 400,
+    "n": 1600,
+    "m": 2400,
+    "L": 8,
+    "max_cycles": 20000,
+    "seed": 20,
+    "cycles_sampled": 38,
+    "rank_F2": 38,
+    "rank_over_n": 0.02375,
+    "rank_over_m": 0.015833333333333335
+  }
+]
