@@ -1,0 +1,26 @@
+[
+  {
+    "n": 200,
+    "cycles_sampled": 658,
+    "rank_F2": 201,
+    "rank_over_n": 1.005
+  },
+  {
+    "n": 400,
+    "cycles_sampled": 657,
+    "rank_F2": 400,
+    "rank_over_n": 1.0
+  },
+  {
+    "n": 800,
+    "cycles_sampled": 632,
+    "rank_F2": 541,
+    "rank_over_n": 0.67625
+  },
+  {
+    "n": 1200,
+    "cycles_sampled": 665,
+    "rank_F2": 595,
+    "rank_over_n": 0.49583333333333335
+  }
+]
