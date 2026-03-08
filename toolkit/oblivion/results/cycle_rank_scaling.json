@@ -1,26 +1,38 @@
 [
   {
     "n": 200,
-    "cycles_sampled": 658,
+    "cycles_sampled": 637,
     "rank_F2": 201,
     "rank_over_n": 1.005
   },
   {
     "n": 400,
-    "cycles_sampled": 657,
+    "cycles_sampled": 659,
     "rank_F2": 400,
     "rank_over_n": 1.0
   },
   {
     "n": 800,
-    "cycles_sampled": 632,
-    "rank_F2": 541,
-    "rank_over_n": 0.67625
+    "cycles_sampled": 633,
+    "rank_F2": 553,
+    "rank_over_n": 0.69125
   },
   {
     "n": 1200,
-    "cycles_sampled": 665,
-    "rank_F2": 595,
-    "rank_over_n": 0.49583333333333335
+    "cycles_sampled": 652,
+    "rank_F2": 573,
+    "rank_over_n": 0.4775
+  },
+  {
+    "n": 1600,
+    "cycles_sampled": 703,
+    "rank_F2": 639,
+    "rank_over_n": 0.399375
+  },
+  {
+    "n": 2000,
+    "cycles_sampled": 683,
+    "rank_F2": 641,
+    "rank_over_n": 0.3205
   }
 ]

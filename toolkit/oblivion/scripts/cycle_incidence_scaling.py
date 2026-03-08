@@ -3,13 +3,11 @@ import networkx as nx
 import numpy as np
 import argparse
 import json
-import random
 from collections import deque
 
-def sample_cycles(G,L,max_cycles=5000):
+def sample_cycles(G,L,max_cycles=20000):
     cycles=set()
-    nodes=list(G.nodes())
-    for s in nodes:
+    for s in G.nodes():
         q=deque([(s,[s])])
         while q:
             v,path=q.popleft()
@@ -17,8 +15,8 @@ def sample_cycles(G,L,max_cycles=5000):
                 continue
             for w in G.neighbors(v):
                 if w==s and len(path)>=3:
-                    edges=[]
                     cyc=path+[s]
+                    edges=[]
                     for i in range(len(cyc)-1):
                         e=tuple(sorted((cyc[i],cyc[i+1])))
                         edges.append(e)
