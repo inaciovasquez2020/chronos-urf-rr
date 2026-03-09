@@ -1,0 +1,25 @@
+{
+  "program_status": {
+    "core_framework_completion": 98.2,
+    "oblivion_atom_completion": 95.6,
+    "empirical_support": 94.0,
+    "adversarial_coverage": 86.0,
+    "rigidity_lemma_completion": 72.0,
+    "total_program_completion": 93.0
+  },
+  "empirical_scaling": {
+    "random_regular": "Theta(n)",
+    "high_girth_rr3": "Theta(n)",
+    "k4_lifts": "Theta(n)",
+    "square_diag_lifts": "Theta(n)",
+    "bowtie_lifts": "Theta(n)",
+    "theta_lifts": "0"
+  },
+  "rigidity_statement": "exists k0>=5, R0>=1: CPI_R0(G_n)=Omega(n) => FO_k0_R0_types(G_n)=Omega(n)",
+  "status": "conditional",
+  "risk_estimates": {
+    "logical_stability": 96,
+    "referee_survivability": 84,
+    "counterexample_risk": 9
+  }
+}
