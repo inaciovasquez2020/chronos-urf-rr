@@ -7,19 +7,23 @@ class FiniteGraph (V : Type) where
 
 def CycleOverlapRank {V : Type} [Finite V] [FiniteGraph V] : Nat := 0
 
+def OverlapPatternData {V : Type} [Finite V] [FiniteGraph V] : Nat := 0
+
+def RefinedCycleOverlapRank {V : Type} [Finite V] [FiniteGraph V] : Nat × Nat :=
+  (CycleOverlapRank (V := V), OverlapPatternData (V := V))
+
 def FOkLocalTypeCount {V : Type} [Finite V] [FiniteGraph V] (k R : Nat) : Nat := 0
 
 def LinearIn (f : Nat -> Nat) : Prop :=
   ∃ c N : Nat, c > 0 ∧ ∀ n ≥ N, f n ≥ c * n
 
-theorem cycle_overlap_visibility_conjectural
+theorem cycle_overlap_visibility_refined_conjectural
   (GraphSeq : Nat -> Type)
   [∀ n, Finite (GraphSeq n)]
-  [∀ n, FiniteGraph (GraphSeq n)]
-  :
+  [∀ n, FiniteGraph (GraphSeq n)] :
   ∃ k0 R0 : Nat,
-    k0 ≥ 3 ∧
-    (LinearIn (fun n => CycleOverlapRank (V := GraphSeq n)) ->
+    k0 ≥ 4 ∧
+    (LinearIn (fun n => (RefinedCycleOverlapRank (V := GraphSeq n)).1) ->
      LinearIn (fun n => FOkLocalTypeCount (V := GraphSeq n) k0 R0)) := by
   sorry
 
