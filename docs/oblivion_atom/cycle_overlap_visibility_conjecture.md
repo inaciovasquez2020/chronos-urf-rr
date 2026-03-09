@@ -22,43 +22,50 @@ while the current rooted-radius FO\(^3\) proxy remains collapsed:
 \#\mathrm{ProxyTypes}_{\mathrm{FO}^3}(G_n)=O(1).
 \]
 
-Theta-random-lift data currently yields constant proxy diversity.
+## Empirical obstruction at current FO^4 pair-signature proxy
 
-## Corrected conjectural bridge
+For theta-random-lift families, the current FO\(^4\) pair-rooted proxy does not yet force linear vertex-visible diversity from raw cycle-overlap rank alone.
 
-The implication
+Accordingly, the relevant observable is not vertex-type diversity but pair-signature diversity.
+
+## Refined invariant
+
+Define
 \[
-\mathrm{COR}(G)=\Omega(n)\Rightarrow \#\mathrm{FO}^k\text{-types}=\Omega(n)
+\mathrm{COR}^{\ast}_{R}(G)
+:=
+\bigl(\mathrm{COR}_{R}(G),\,\Pi_{R}(G)\bigr),
 \]
-cannot be asserted for \(k=2\), and is not supported by the current FO\(^3\) proxy.
+where
+\[
+\Pi_{R}(G)
+\]
+is the pair-rooted overlap-pattern profile extracted from exhaustive pair-signature multiplicities.
 
 ## Refined conjecture
 
-For each bounded degree bound \(\Delta\), there exist integers \(k_0 \ge 4\) and \(R_0 \ge 1\), together with a refined invariant
-\[
-\mathrm{COR}^{\ast}_{R_0}(G),
-\]
-such that for every bounded-degree graph family \(G_n\) with degree at most \(\Delta\),
+For each bounded degree bound \(\Delta\), there exist integers \(R_0 \ge 1\) such that for every bounded-degree graph family \(G_n\) with degree at most \(\Delta\),
 \[
 \mathrm{COR}^{\ast}_{R_0}(G_n)=\Omega(|V(G_n)|)
 \Rightarrow
-\#\mathrm{FO}^{k_0}_{R_0}\text{-local types}(G_n)=\Omega(|V(G_n)|).
+\#\mathrm{PairSig}^{\mathrm{FO}^4}_{R_0}(G_n)=\Omega(|V(G_n)|).
 \]
 
-## Candidate refinement
-
-A minimal candidate is
+Here
 \[
-\mathrm{COR}^{\ast}_{R}(G)
-=
-\bigl(\mathrm{COR}_{R}(G),\ \mathrm{OP}_{R}(G)\bigr),
+\#\mathrm{PairSig}^{\mathrm{FO}^4}_{R}(G)
 \]
-where \(\mathrm{OP}_{R}(G)\) records cycle-overlap pattern data not visible in raw cycle-basis rank alone.
+denotes the number of distinct pair-rooted FO\(^4\)-proxy signatures at radius \(R\).
 
-## Immediate test target
+## Canonical adversarial family
 
-Determine whether the implication already holds for
+Theta-random-lift families are the canonical obstruction family for FO\(^2\), FO\(^3\), and current FO\(^4\)-proxy visibility tests.
+
+## Immediate normalization targets
+
+Record both
 \[
-k_0=4
+\frac{\#\mathrm{PairSig}^{\mathrm{FO}^4}_{R}(G)}{|V(G)|}
+\qquad\text{and}\qquad
+\frac{\#\mathrm{PairSig}^{\mathrm{FO}^4}_{R}(G)}{|V(G)|^2}.
 \]
-using pair-rooted radius signatures as an FO\(^4\)-proxy.
