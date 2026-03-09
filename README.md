@@ -93,3 +93,11 @@ Key empirical result:
 COR_R(G) large ⇒ WL² vertex-color diversity ⇒ FO³ type diversity.
 
 Status: empirical + formal skeleton; proof open.
+
+## Proof Layers
+
+- `docs/continuum/README.md` — continuum proof-layer overview
+- `docs/continuum/continuum_proof_layer.md` — deterministic support-to-coercivity bridge
+- `proofs/continuum/continuum_bridge.md` — proof skeleton and realization map
+- `lean/Continuum/` — formal continuum scaffold
+
