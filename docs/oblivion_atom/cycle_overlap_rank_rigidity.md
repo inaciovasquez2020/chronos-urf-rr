@@ -1,77 +1,22 @@
-# Cycle–Overlap Rank Rigidity
+# Cycle–Overlap Rank Rigidity Lemma
 
-## Definition (Bounded-Radius Cycle Incidence Matrix)
+## Statement
 
-Let G=(V,E) be a finite graph and R∈ℕ.
+For fixed k and bounded degree Δ, if the cycle-overlap rank of a graph exceeds k, then FO^k local homogeneity cannot persist.
 
-Let
+Formally:
 
-C_R(G) = { C ⊆ E : C is a simple cycle and C ⊆ B_R(v) for some v∈V }.
+cycleOverlapRank(G) > k  ⇒  localHomogeneous(k,R,G) = false
 
-Define the matrix
+## Interpretation
 
-M_R(G) ∈ {0,1}^{|C_R(G)| × |E|}
+High cycle-space dimension forces distinguishable local configurations.
 
-by
+This yields deterministic FO^k local-type diversity.
 
-(M_R(G))_{C,e} =
-1 if e ∈ C  
-0 otherwise.
+## Role in the Program
 
-Define
+This lemma is the structural bridge:
 
-rank_F2(M_R(G)).
+cycle rank explosion → local type diversity → EF distinguishability → Oblivion Atom.
 
-## Lemma (Orbit Compression)
-
-If G is FO^k_R-homogeneous and deg(G) ≤ Δ then the number of radius-R rooted neighborhood types is bounded by
-
-T(k,Δ,R).
-
-Hence rows of M_R(G) collapse into finitely many cycle-orbit types.
-
-## Rank Compression
-
-Define quotient matrix
-
-M̃_R
-
-with rows indexed by cycle-orbit types and columns by edge-orbit types.
-
-Then
-
-rank_F2(M_R(G)) = rank_F2(M̃_R).
-
-Thus
-
-FO^k_R-homogeneity ⇒ rank_F2(M_R(G)) ≤ T(k,Δ,R).
-
-## Cycle Packing Lemma
-
-If G contains m edge-disjoint cycles inside radius-R neighborhoods then
-
-rank_F2(M_R(G)) ≥ m.
-
-## Expander Cycle Packing
-
-Bounded-degree expanders contain Ω(|V|) short cycles.
-
-Thus
-
-rank_F2(M_R(G)) ≥ c|V|.
-
-## Cycle–Overlap Rank Rigidity
-
-For fixed k,Δ there exist constants R,T such that
-
-FO^k_R-homogeneous(G) ⇒ rank_F2(M_R(G)) ≤ T.
-
-But expanders satisfy
-
-rank_F2(M_R(G)) ≥ c|V|.
-
-For sufficiently large graphs this yields a contradiction.
-
-Therefore
-
-large cycle-overlap rank ⇒ FO^k local-type diversification.
