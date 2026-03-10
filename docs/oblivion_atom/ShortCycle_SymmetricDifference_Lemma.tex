@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\title{Short-Cycle Symmetric-Difference Lemma}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let $G$ be a bounded-degree graph with maximum degree $\Delta$.
+
+Let $C_1$ and $C_2$ be cycles whose vertex signatures agree under
+FO$^k$ local types.
+
+Define the symmetric difference
+
+\[
+D = C_1 \oplus C_2 .
+\]
+
+\begin{lemma}[Short-Cycle Symmetric-Difference]
+
+Every connected component of $D$ is a cycle of length bounded by a
+constant depending only on $k,\Delta,R$.
+
+\end{lemma}
+
+\section*{Proof Idea}
+
+1. Local EF agreement implies identical edge behavior on all
+   radius-$r$ neighborhoods.
+
+2. Any disagreement between $C_1$ and $C_2$ must occur outside
+   these local neighborhoods.
+
+3. Bounded-degree constraints prevent arbitrarily long
+   disagreement chains.
+
+4. Each disagreement component therefore forms a bounded-length cycle.
+
+\end{document}
