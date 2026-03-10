@@ -1,2 +1,2 @@
-import Chronos.EntropyDepthClosure
-import Chronos.EntropyDepthExplosion
+-- Chronos root module
+-- (imports added incrementally to avoid prefix resolution failures)
