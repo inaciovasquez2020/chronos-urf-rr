@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\title{Agreement Window Bound Lemma}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let \(G\) be a graph with maximum degree \(\Delta\).  
+Let \(C_1,C_2\) be simple cycles whose vertex signatures agree under
+\(\mathrm{FO}^k\) radius-\(R\) neighborhood types.
+
+Define
+
+\[
+D = C_1 \oplus C_2 .
+\]
+
+\begin{lemma}[Agreement Window Bound]
+
+There exists a constant \(a=a(k,\Delta,R)\) such that between any two
+maximal disagreement paths in a connected component of \(D\) there is
+an agreement segment of length at most \(a\).
+
+\end{lemma}
+
+\section*{Idea}
+
+If agreement windows were arbitrarily long, the cycles would produce
+distinct FO\(^k\) neighborhood configurations along the window.
+
+Since the number of FO\(^k\) types is finite, such unbounded windows
+contradict signature equality.
+
+Thus agreement windows are uniformly bounded.
+
+\end{document}
