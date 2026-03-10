@@ -1,0 +1,52 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\title{FO Type Transition Bound Lemma}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let \(G\) be a graph of maximum degree \(\Delta\).
+
+Let \(C_1,C_2\) be cycles whose vertex signatures agree under
+FO\(^k\) radius-\(R\) neighborhood types.
+
+Let
+
+\[
+D = C_1 \oplus C_2 .
+\]
+
+\begin{lemma}[FO Type Transition Bound]
+
+There exists a constant \(t = t(k,\Delta,R)\) such that along any
+agreement segment of the cycles, the sequence of FO\(^k\) neighborhood
+types can change at most \(t\) times.
+
+\end{lemma}
+
+\section*{Idea}
+
+The number of FO\(^k\) neighborhood types is finite:
+
+\[
+T = T(k,\Delta,R).
+\]
+
+Along a cycle, if the number of type transitions exceeded \(T\),
+two vertices would repeat the same FO\(^k\) type within a bounded
+distance window.
+
+This would force local structural repetition contradicting the
+assumed maximality of disagreement segments.
+
+Thus the number of FO\(^k\) type transitions is uniformly bounded.
+
+\end{document}
