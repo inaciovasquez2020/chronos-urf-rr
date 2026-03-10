@@ -1,0 +1,49 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\title{Type Repeat Window Lemma}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let \(G\) be a graph of maximum degree \(\Delta\).
+
+Let \(C_1,C_2\) be cycles whose vertex signatures agree under
+FO\(^k\) radius-\(R\) neighborhood types.
+
+Let
+
+\[
+D = C_1 \oplus C_2 .
+\]
+
+\begin{lemma}[Type Repeat Window]
+
+There exists a constant \(u=u(k,\Delta,R)\) such that along any
+agreement segment of the cycles, two vertices with identical
+FO\(^k\) neighborhood type must occur within distance \(u\).
+
+\end{lemma}
+
+\section*{Idea}
+
+The number of FO\(^k\) neighborhood types is finite:
+
+\[
+T = T(k,\Delta,R).
+\]
+
+Along any sufficiently long segment, the pigeonhole principle forces
+two vertices to share the same FO\(^k\) type within a bounded window.
+
+This repeated type forces local structural repetition, bounding the
+length of agreement windows.
+
+\end{document}
