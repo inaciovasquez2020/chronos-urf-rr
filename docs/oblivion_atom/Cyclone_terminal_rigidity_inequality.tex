@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\title{Cyclone: Terminal Rigidity Inequality}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let $G$ be a bounded–degree graph with maximum degree $\Delta$.
+
+Let
+
+\[
+\mathrm{COR}(G)
+\]
+
+denote the cycle–overlap rank.
+
+Let
+
+\[
+\operatorname{tp}_{FO^k}(B_R(v))
+\]
+
+denote the $\mathrm{FO}^k$ type of the radius-$R$ neighborhood of $v$.
+
+\begin{theorem}[Cyclone]
+For fixed parameters $k,\Delta,R$ there exists a constant
+\[
+C(k,\Delta,R)
+\]
+such that any graph satisfying
+
+\[
+\forall u,v \in V(G):
+\operatorname{tp}_{FO^k}(B_R(u))=
+\operatorname{tp}_{FO^k}(B_R(v))
+\]
+
+must satisfy
+
+\[
+\mathrm{COR}(G)\le C(k,\Delta,R).
+\]
+
+\end{theorem}
+
+\section*{Interpretation}
+
+The inequality asserts that FO$^k$ local homogeneity prevents
+unbounded cycle–overlap complexity.
+
+This forms the final rigidity obstruction used in the
+Oblivion Atom and Chronos frameworks.
+
+\end{document}
