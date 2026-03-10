@@ -6,6 +6,8 @@ namespace Cyclone.CCL.Linear
 
 open Classical
 
+noncomputable section
+
 abbrev 𝔽₂ := ZMod 2
 
 variable {n m : ℕ}
