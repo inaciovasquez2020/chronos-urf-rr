@@ -5,3 +5,6 @@ package chronos
 
 lean_lib Chronos where
   srcDir := "lean"
+
+lean_lib Oblivion where
+  srcDir := "lean"
