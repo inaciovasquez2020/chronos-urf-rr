@@ -1,0 +1,101 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\title{Formal Statement of the Cycle--Local Rigidity Theorem}
+\author{}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\maketitle
+
+\section{Setting}
+
+Let $G$ be a finite graph with maximum degree at most $\Delta$.
+
+For a vertex $v$ define the radius-$R$ neighborhood
+
+\[
+B_R(v)=\{u\in V(G) : d_G(u,v)\le R\}.
+\]
+
+Two vertices are said to have the same $\mathrm{FO}^k$ type if
+
+\[
+\operatorname{tp}_{FO^k}(B_R(u))
+=
+\operatorname{tp}_{FO^k}(B_R(v)).
+\]
+
+\section{Cycle--Local Rigidity}
+
+\begin{theorem}[Cycle--Local Rigidity]
+
+Let $k,\Delta,R\in\mathbb N$.
+
+There exists a constant $C=C(k,\Delta,R)$ such that for every finite graph
+$G$ with maximum degree $\le \Delta$ satisfying
+
+\[
+\forall u,v\in V(G):
+\operatorname{tp}_{FO^k}(B_R(u))
+=
+\operatorname{tp}_{FO^k}(B_R(v)),
+\]
+
+the cycle--overlap rank of $G$ satisfies
+
+\[
+\mathrm{COR}(G) \le C(k,\Delta,R).
+\]
+
+\end{theorem}
+
+\section{Explicit Constant}
+
+Define
+
+\[
+T(k,\Delta,R)
+\]
+
+to be the number of $\mathrm{FO}^k$ types of rooted radius-$R$
+neighborhoods in degree-$\Delta$ graphs.
+
+Define
+
+\[
+S(k,\Delta,R)=T(k,\Delta,R)\cdot 2^{\Delta^{R+1}}.
+\]
+
+Define
+
+\[
+L(k,\Delta,R)=T(k,\Delta,R)(2R+1).
+\]
+
+Then a valid explicit bound is
+
+\[
+C(k,\Delta,R)
+=
+\left(
+T(k,\Delta,R)\cdot 2^{\Delta^{R+1}}
+\right)^{T(k,\Delta,R)(2R+1)}.
+\]
+
+\section{Interpretation}
+
+The theorem states that $\mathrm{FO}^k$ local homogeneity forces
+bounded cycle overlap complexity in bounded-degree graphs.
+
+This property forms the combinatorial rigidity component used in the
+Oblivion Atom and Chronos frameworks.
+
+\end{document}
+
