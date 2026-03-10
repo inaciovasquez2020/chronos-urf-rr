@@ -1,0 +1,50 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\title{FO Type Finiteness Lemma}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let \(G\) be a graph with maximum degree \(\Delta\).
+
+For fixed parameters \(k,\Delta,R\), the number of possible
+FO\(^k\) neighborhood types of radius \(R\) is finite.
+
+\begin{lemma}[FO Type Finiteness]
+
+There exists a constant
+
+\[
+T = T(k,\Delta,R)
+\]
+
+such that every vertex \(v \in V(G)\) has one of at most \(T\)
+possible FO\(^k\) radius-\(R\) neighborhood types.
+
+\end{lemma}
+
+\section*{Proof}
+
+A radius-\(R\) neighborhood contains at most
+
+\[
+1 + \Delta + \Delta^2 + \cdots + \Delta^R
+\]
+
+vertices.
+
+There are finitely many graphs on this bounded number of vertices,
+and FO\(^k\) equivalence partitions these graphs into finitely
+many equivalence classes.
+
+Thus the number of FO\(^k\) neighborhood types is finite.
+
+\end{document}
