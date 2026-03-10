@@ -1,1 +1,2 @@
-import Oblivion
+-- Chronos root module
+-- (imports added incrementally to avoid prefix resolution failures)
