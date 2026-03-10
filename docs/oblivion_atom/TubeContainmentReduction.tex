@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+\title{Tube Containment Reduction for Cyclone}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Setup}
+
+Let \(G\) be a graph of maximum degree \(\Delta\).  
+Let \(C_1,C_2\) be simple cycles with identical local signatures under
+\(\mathrm{FO}^k\) radius-\(R\) neighborhood types.  
+Let
+\[
+D = C_1 \oplus C_2 .
+\]
+Set
+\[
+r=\min(R/2,3^k).
+\]
+
+\begin{lemma}[Tube Containment Reduction]
+Assume every connected component of \(D\) is contained in a union of at most
+\(m=m(k,\Delta,R)\) radius-\(r\) balls centered on vertices of \(C_1\cup C_2\).
+Then every connected component of \(D\) has size bounded by
+\[
+L=L(k,\Delta,R):=m \cdot \max_{v\in V(G)} |B_r(v)|.
+\]
+\end{lemma}
+
+\begin{proof}
+Each radius-\(r\) ball contains at most
+\[
+1+\Delta+\Delta^2+\cdots+\Delta^r
+\]
+vertices. Hence any component contained in a union of at most \(m\) such balls
+has at most
+\[
+m(1+\Delta+\Delta^2+\cdots+\Delta^r)
+\]
+vertices. Since every connected component of \(D\) is 2-regular, each component
+is a cycle, so its length is bounded by the same quantity.
+\end{proof}
+
+\begin{theorem}[Reduction to Tube Number Bound]
+If there exists \(m=m(k,\Delta,R)\) such that every connected component of
+\(C_1\oplus C_2\) is contained in a union of at most \(m\) radius-\(r\) balls,
+then the Short-Cycle Symmetric-Difference Lemma holds.
+\end{theorem}
+
+\begin{proof}
+Apply the Tube Containment Reduction lemma.
+\end{proof}
+
+\end{document}
