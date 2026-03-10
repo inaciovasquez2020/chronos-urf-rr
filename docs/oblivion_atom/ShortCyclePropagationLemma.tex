@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\title{Short-Cycle Propagation Lemma}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let \(G\) be a graph with maximum degree \(\Delta\).
+
+Let \(C_1,C_2\) be cycles whose vertex signatures agree under
+\(\mathrm{FO}^k\) radius-\(R\) neighborhood types.
+
+Let
+
+\[
+D = C_1 \oplus C_2 .
+\]
+
+\begin{lemma}[Propagation Bound]
+
+If edges agree on every segment of length \(k\) along the cycles,
+then every connected component of \(D\) lies inside a tube of
+radius \(r=\min(R/2,3^k)\) around some vertex of the cycles.
+
+\end{lemma}
+
+\section*{Purpose}
+
+This lemma reduces the Short-Cycle Symmetric-Difference Lemma to a
+local tube containment statement.
+
+\end{document}
