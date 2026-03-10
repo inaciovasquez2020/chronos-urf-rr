@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\title{Local Window Cover Lemma}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let \(G\) be a graph of maximum degree \(\Delta\).  
+Let \(C_1,C_2\) be simple cycles with identical local signatures under
+\(\mathrm{FO}^k\) radius-\(R\) neighborhood types.  
+Let
+\[
+D=C_1\oplus C_2 .
+\]
+Set
+\[
+r=\min(R/2,3^k).
+\]
+
+\begin{lemma}[Local Window Cover]
+Assume there exists \(w=w(k,\Delta,R)\) such that every maximal disagreement path
+in a connected component of \(D\) is covered by at most \(w\) consecutive
+radius-\(r\) neighborhoods centered on vertices of \(C_1\cup C_2\).
+Then there exists
+\[
+m=m(k,\Delta,R)
+\]
+such that every connected component of \(D\) is covered by at most \(m\)
+radius-\(r\) neighborhoods.
+\end{lemma}
+
+\begin{proof}
+Each connected component of \(D\) is a finite union of maximal disagreement
+paths with endpoints paired by agreement windows. If each maximal disagreement
+path is covered by at most \(w\) radius-\(r\) neighborhoods, and if the number
+of such paths per component is bounded by a constant \(q=q(k,\Delta,R)\), then
+the whole component is covered by at most
+\[
+m=qw
+\]
+radius-\(r\) neighborhoods.
+\end{proof}
+
+\section*{Reduction Target}
+
+To prove the Tube Number Bound Lemma, it is therefore enough to prove:
+
+\begin{enumerate}
+\item a uniform bound \(q=q(k,\Delta,R)\) on the number of maximal disagreement
+paths per connected component of \(D\), and
+\item a uniform bound \(w=w(k,\Delta,R)\) on the radius-\(r\) window cover of
+each maximal disagreement path.
+\end{enumerate}
+
+\end{document}
