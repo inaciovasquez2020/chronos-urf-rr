@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\title{Tube Number Bound Lemma}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let \(G\) be a graph with maximum degree \(\Delta\).
+
+Let \(C_1,C_2\) be cycles whose vertex signatures agree under
+FO\(^{k}\) radius-\(R\) neighborhood types.
+
+Define
+
+\[
+D = C_1 \oplus C_2 .
+\]
+
+Let \(r = \min(R/2,3^{k})\).
+
+\begin{lemma}[Tube Number Bound]
+
+There exists a constant \(m = m(k,\Delta,R)\) such that every connected
+component of \(D\) intersects at most \(m\) radius-\(r\) neighborhoods
+centered on vertices of \(C_1 \cup C_2\).
+
+\end{lemma}
+
+\section*{Purpose}
+
+This lemma bounds the number of local neighborhoods required to cover
+each disagreement component. Together with the tube-containment reduction,
+it yields the bounded-length symmetric-difference cycles required for
+Cyclone.
+
+\end{document}
