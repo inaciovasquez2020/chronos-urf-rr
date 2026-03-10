@@ -36,4 +36,6 @@ theorem overlapRank_le_incidenceRank
   unfold overlapRank incidenceRank overlapMatrix
   exact Matrix.rank_mul_le_left _ _
 
+end
+
 end Cyclone.CCL.Linear
