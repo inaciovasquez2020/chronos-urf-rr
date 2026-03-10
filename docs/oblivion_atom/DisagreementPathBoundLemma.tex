@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\title{Disagreement Path Bound Lemma}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let \(G\) be a graph with maximum degree \(\Delta\).  
+Let \(C_1,C_2\) be simple cycles whose vertex signatures agree under
+\(\mathrm{FO}^k\) radius-\(R\) neighborhood types.  
+Let
+\[
+D=C_1\oplus C_2 .
+\]
+
+\begin{lemma}[Bound on Maximal Disagreement Paths]
+
+There exists a constant \(q=q(k,\Delta,R)\) such that every connected
+component of \(D\) contains at most \(q\) maximal disagreement paths.
+
+\end{lemma}
+
+\section*{Idea}
+
+If there were arbitrarily many maximal disagreement paths in a single
+component, then between successive agreement windows one could extract
+distinct FO\(^k\) neighborhood configurations along the cycles.
+Since the number of such configurations is finite, this would contradict
+local signature equality.
+
+Thus the number of maximal disagreement paths per component must be
+uniformly bounded.
+
+\end{document}
