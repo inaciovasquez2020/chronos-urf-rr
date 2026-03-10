@@ -1,9 +1,2 @@
-import Oblivion.Rigidity.FiniteGraphModel
-import Oblivion.Rigidity.CycleRowSpace
-import Oblivion.Rigidity.CompressionArchitecture
-import Oblivion.Rigidity.NeighborhoodBalls
-import Oblivion.Rigidity.BoundedRadiusCycleRows
-import Oblivion.Rigidity.FokNeighborhoodType
-import Oblivion.Rigidity.SignatureCompressionBound
-import Oblivion.Rigidity.FullCycleOverlapRankRigidity
-import «Continuum»
+import Oblivion.Rigidity.CycleLinearAlgebra
+import Oblivion.Rigidity.IncidenceRankBound

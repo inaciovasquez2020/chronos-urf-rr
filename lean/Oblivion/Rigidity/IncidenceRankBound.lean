@@ -11,7 +11,7 @@ open Classical
 
 variable {n m : ℕ}
 
-/-- Simple bound: rank of an incidence matrix cannot exceed number of rows. -/
+/-- Rank of an incidence matrix cannot exceed number of rows. -/
 theorem incidenceRank_le_rows
     (A : IncidenceMatrix (n := n) (m := m)) :
     incidenceRank A ≤ n := by
@@ -19,8 +19,7 @@ theorem incidenceRank_le_rows
   unfold incidenceRank
   simpa using Matrix.rank_le_card_height A
 
-/-- Graph version: if the number of rows is bounded by kΔ,
-    then the incidence rank is bounded by kΔ. -/
+/-- Graph bound used in the Cyclone reduction. -/
 theorem incidenceRank_le_kDelta
     (A : IncidenceMatrix (n := n) (m := m))
     (k Δ : ℕ)
