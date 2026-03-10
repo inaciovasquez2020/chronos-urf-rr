@@ -20,7 +20,7 @@ namespace BoundedGraph
 variable (BG : BoundedGraph)
 
 def ball (v : V) (r : ℕ) : Finset V :=
-Finset.univ.filter (fun u => True)
+Finset.univ.filter (fun _ => True)
 
 def FOType (k R : ℕ) :=
 Finset V

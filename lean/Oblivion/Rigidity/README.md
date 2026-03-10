@@ -7,7 +7,7 @@ Contents
 
 CycleLocalRigidity.lean
 
-Formalizes:
+Formalizes
 
 • bounded-degree graph structure  
 • FO^k neighborhood types  
@@ -15,7 +15,6 @@ Formalizes:
 • cycle signatures  
 • cycle overlap rank (COR)
 
-This module provides the Lean layer corresponding to the
-Cycle–Local Rigidity theorem proved in:
+The formal statement corresponds to
 
 docs/oblivion_atom/cycle_local_rigidity_theorem.tex
