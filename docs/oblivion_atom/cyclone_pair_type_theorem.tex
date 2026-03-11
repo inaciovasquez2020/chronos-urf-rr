@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}
+
+\title{Cyclone Lemma under Pair-Type Hypothesis}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let $k,\Delta,R\in\mathbb{N}$ and define
+
+\[
+r=\min\{\lfloor R/2\rfloor,3k\}.
+\]
+
+Let $G$ be a finite graph with maximum degree $\le \Delta$.
+
+Let $C_1,C_2\subseteq E(G)$ be simple cycles.
+
+Assume the pair-type FO$^k$ hypothesis:
+
+\[
+\operatorname{tp}^{k,R}_{(G,C_1)}(v,w)
+=
+\operatorname{tp}^{k,R}_{(G,C_2)}(v,w)
+\quad
+\forall (v,w)\in E(G).
+\]
+
+Define
+
+\[
+D=C_1\oplus C_2 .
+\]
+
+Then every connected component $H\subseteq D$ satisfies
+
+\[
+|E(H)|\le L(k,\Delta,R)
+\]
+
+where
+
+\[
+L(k,\Delta,R)=T(k,\Delta,r)^2
+\]
+
+and $T(k,\Delta,r)$ is the number of FO$^k$ types of radius-$r$
+neighborhoods in graphs with maximum degree $\le \Delta$.
+
+\end{theorem}
+
+\section*{Proof}
+
+Every vertex incident to an edge of $D$ is a transition vertex.
+
+Because pair-types agree, the local configuration of cycle edges
+around every edge is identical in $(G,C_1)$ and $(G,C_2)$.
+
+Thus edges of $D$ must alternate between
+$C_1\setminus C_2$ and $C_2\setminus C_1$.
+
+Therefore each component $H$ is an alternating even cycle
+with vertices
+
+\[
+t_0,t_1,\dots,t_{2s-1}.
+\]
+
+Let
+
+\[
+\sigma_i=\operatorname{tp}^{k,r}_{(G,C_1)}(t_i).
+\]
+
+Since $G$ has degree $\le \Delta$,
+the number of possible types is finite:
+
+\[
+|\{\sigma_i\}|\le T(k,\Delta,r).
+\]
+
+The ordered pairs $(\sigma_i,\sigma_{i+1})$
+belong to an alphabet of size $\le T^2$.
+
+If $2s>T^2$, two positions share the same pair label.
+Local neighborhoods are therefore isomorphic.
+
+Replacing the segment between them yields a shorter
+disagreement cycle, contradicting minimality.
+
+Hence
+
+\[
+2s\le T^2.
+\]
+
+Since $|E(H)|=2s$,
+
+\[
+|E(H)|\le T(k,\Delta,r)^2.
+\]
+
+\end{document}
