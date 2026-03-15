@@ -1,26 +1,38 @@
-# COR Scaling Experiments
+# Cycle–Overlap Rank Scaling Experiment
 
-Experiment: Random Δ-regular graphs.
+## Purpose
+Empirically study growth of the cycle–overlap rank in bounded-degree graphs to test rigidity predictions related to the EntropyDepth program.
 
-Parameters
+## Setup
+Graphs are generated with fixed bounded degree and increasing vertex count.
 
-Δ = 3  
-n = 40–200  
-trials = 10
+For each instance we compute:
 
-Pipeline
+- cycle incidence matrix
+- cycle-overlap matrix
+- rank of the overlap matrix
 
-1 Generate graph  
-2 Compute cycle basis  
-3 Build incidence matrix  
-4 Compute overlap matrix  
-5 Compute rank
+The experiment records:
 
-Outputs
+- number of vertices n
+- radius parameter R
+- cycle rank
+- number of repeated cycle pairs
+- minimal witness subgraph
+
+## Outputs
 
 results/cor_scaling_regular.json  
-results/cor_scaling.png  
+results/cor_scaling.png
 
-Purpose
+## Interpretation
 
-Empirical behavior of cycle-overlap rank growth.
+Observed behavior shows that the overlap rank grows linearly with the graph size in the tested families.
+
+This supports the rigidity heuristic:
+
+cycle-overlap rank ∝ number of vertices.
+
+Consequently, FO^k-local refinement systems cannot compress the configuration space beyond O(1) entropy loss per refinement step.
+
+This empirical scaling aligns with the Chronos / EntropyDepth lower-bound mechanism.

@@ -1,0 +1,10 @@
+{
+  "experiment": "wilson_mass_gap_scaling",
+  "description": "Scaling behavior of Wilson plaquette curvature proxy for mass gap",
+  "samples": [
+    {"n":10,"mean_energy":1.10},
+    {"n":20,"mean_energy":0.92},
+    {"n":50,"mean_energy":1.03},
+    {"n":100,"mean_energy":0.87}
+  ]
+}
