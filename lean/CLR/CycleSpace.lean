@@ -1,52 +1,33 @@
-import Lean.CLR.LocalCycle
-import Mathlib.LinearAlgebra.FiniteDimensional
+import CLR.FiniteGraph
+import Mathlib.Data.Matrix.Basic
 import Mathlib.Data.ZMod.Basic
-import Mathlib.Data.Fintype.Basic
+import Mathlib.LinearAlgebra.Matrix.ToLin
+import Mathlib.LinearAlgebra.FiniteDimensional
 
 universe u
 
-open Classical
+open Matrix FiniteGraph
 
-def cycleVec (X : LocalCycleData) := X.V → ZMod 2
+namespace CLR
 
-def boundary (X : LocalCycleData) (v : X.V) : cycleVec X :=
-  fun w => if X.edge v w then 1 else 0
+def orientedPairs (G : FiniteGraph) : Finset (G.V × G.V) := G.edgeSet
 
-def boundarySpan (X : LocalCycleData) : Submodule (ZMod 2) (cycleVec X) :=
-  Submodule.span (ZMod 2) (Set.range (boundary X))
+def edgeVec (G : FiniteGraph) := (G.V × G.V) → ZMod 2
+def vertexVec (G : FiniteGraph) := G.V → ZMod 2
 
-def local_cycle_equiv (X : LocalCycleData) (x y : cycleVec X) : Prop :=
-  x - y ∈ boundarySpan X
+def incidence (G : FiniteGraph) : edgeVec G →ₗ[ZMod 2] vertexVec G where
+  toFun x v := ∑ e in orientedPairs G, if e.1 = v ∨ e.2 = v then x e else 0
+  map_add' x y := by
+    ext v
+    simp [Finset.sum_add_distrib, add_comm, add_left_comm, add_assoc]
+  map_smul' a x := by
+    ext v
+    simp
 
-instance localCycleSetoid (X : LocalCycleData) : Setoid (cycleVec X) where
-  r := local_cycle_equiv X
-  iseqv :=
-  ⟨
-    by
-      intro x
-      have : x - x = 0 := by simp
-      simpa [local_cycle_equiv, this] using
-        Submodule.zero_mem (boundarySpan X),
-    by
-      intro x y h
-      have : y - x = -(x - y) := by simp
-      have h' := Submodule.neg_mem (boundarySpan X) h
-      simpa [local_cycle_equiv, this] using h',
-    by
-      intro x y z hxy hyz
-      have : x - z = (x - y) + (y - z) := by
-        ext v; simp [sub_eq_add_neg, add_comm, add_left_comm, add_assoc]
-      have hsum :=
-        Submodule.add_mem (boundarySpan X) hxy hyz
-      simpa [local_cycle_equiv, this] using hsum
-  ⟩
+def cycleSpace (G : FiniteGraph) : Submodule (ZMod 2) (edgeVec G) :=
+  LinearMap.ker (incidence G)
 
-def LocalCycleQuot (X : LocalCycleData) :=
-  Quotient (localCycleSetoid X)
+noncomputable def cycleRank (G : FiniteGraph) : Nat :=
+  FiniteDimensional.finrank (ZMod 2) (cycleSpace G)
 
-def cycleSpace (X : LocalCycleData) :=
-  (cycleVec X) ⧸ (boundarySpan X)
-
-noncomputable def cycleRank (X : LocalCycleData) : Nat :=
-  FiniteDimensional.finrank (ZMod 2) (cycleSpace X)
-
+end CLR
