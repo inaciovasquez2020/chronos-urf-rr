@@ -1,20 +1,29 @@
 import Oblivion.overRUN
 
--- Codewords from local cycles (placeholder)
-def localCode (G : Graph) (R : Nat) : Type := Unit
+-- Boolean vector as F₂ model
+def F2Vec (E : Type) := E → Bool
 
--- Global code (cycle space image)
-def globalCode (G : Graph) : Type := Unit
+-- Local codewords (cycle indicators, placeholder)
+def localCode (G : Graph) (R : Nat) : Type :=
+  Σ v : G.V, F2Vec G.E
 
--- Generator map
+-- Global code
+def globalCode (G : Graph) : Type :=
+  F2Vec G.E
+
+-- Generator map (projection)
 def encode (G : Graph) (R : Nat) :
-  (Σ v : G.V, localCode G R) → globalCode G :=
-  fun _ => ()
+  localCode G R → globalCode G :=
+  fun x => x.2
 
--- Code dimension (placeholder)
-def codeDim {α : Type} (C : α) : Nat := 0
+-- Linear span dimension (placeholder)
+def codeDim {E : Type} (C : Set (F2Vec E)) : Nat := 0
 
--- Target: bounded dimension of generated code
+-- Image of generators
+def codeImage (G : Graph) (R : Nat) : Set (F2Vec G.E) :=
+  {w | ∃ x : localCode G R, encode G R x = w}
+
+-- Target bound
 axiom code_bound :
   ∀ (k R : Nat) (G : Graph),
-    codeDim (encode G R) ≤ k + R + 1
+    codeDim (codeImage G R) ≤ k + R + 1
