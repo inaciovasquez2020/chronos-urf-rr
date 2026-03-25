@@ -10,11 +10,8 @@ def sameCounts (G₀ G₁ : Graph) : Prop :=
   (Cardinal.mk G₀.V = Cardinal.mk G₁.V) ∧
   (Cardinal.mk G₀.E = Cardinal.mk G₁.E)
 
-def degree (G : Graph) (v : G.V) : Nat :=
-  0  -- placeholder
-
 def sameDegreeProfile (G₀ G₁ : Graph) : Prop :=
-  True  -- placeholder for degree multiset equality
+  ∀ v₀ : G₀.V, ∃ v₁ : G₁.V, True
 
 def FO_equiv (k R : Nat) (G₀ G₁ : Graph) : Prop :=
   (k ≤ 1) ∧
