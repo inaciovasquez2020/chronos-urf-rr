@@ -8,14 +8,14 @@ universe u
 inductive SyntaxTree where
   | atom : Nat → SyntaxTree
   | node : Nat → List SyntaxTree → SyntaxTree
-deriving DecidableEq, Repr
+deriving Repr
 
 structure RootedTupleCode where
   radius : Nat
   tupleArity : Nat
   labels : List Nat
   tree : SyntaxTree
-deriving DecidableEq, Repr
+deriving Repr
 
 structure Graph where
   V : Type u
@@ -24,16 +24,16 @@ structure FOType (k R Δ : Nat) where
   rooted : RootedTupleCode
   arity_ok : rooted.tupleArity = k
   radius_ok : rooted.radius = R
-deriving DecidableEq, Repr
+deriving Repr
 
 structure SupportState where
   rt : Nat
   support : List Nat
-deriving DecidableEq, Repr
+deriving Repr
 
 structure EFStep where
   newVertex : Nat
-deriving DecidableEq, Repr
+deriving Repr
 
 def nextSupportState (s : SupportState) (m : EFStep) : SupportState :=
   { rt := s.rt + 1
@@ -85,3 +85,4 @@ theorem repetition_to_oblivion_chain
 abbrev FrontLemma := @repetition_to_oblivion_chain
 
 end Oblivion
+deriving instance Repr for SyntaxTree

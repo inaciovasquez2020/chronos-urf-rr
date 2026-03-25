@@ -1,13 +1,14 @@
 import Lake
 open Lake DSL
 
-package chronos_urf_rr
+package «chronos_urf_rr» where
 
-require urf_core from git
-  "https://github.com/inaciovasquez2020/urf-core.git" @
-  "urf-core-v1"
+@[default_target]
+lean_lib ChronosUrfRr where
+  srcDir := "lean"
 
 require mathlib from git
-  "https://github.com/leanprover-community/mathlib4.git" @
-  "a3a10db0e9d66acbebf76c5e6a135066525ac900"
+  "https://github.com/leanprover-community/mathlib4"
 
+require urf_core from git
+  "https://github.com/inaciovasquez2020/urf-core.git"
