@@ -1,0 +1,73 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}{Axiom}
+\begin{document}
+
+\begin{axiom}[HILO--Mixing]
+Let $A\in\mathbb F_2^{V\times E}$ be a bounded-radius local code matrix with overlap graph $\mathcal O$
+and transport graph $\mathcal T$.
+Assume:
+\[
+[\omega]=0,\qquad \delta(\mathcal O)\ge 2,
+\]
+and for every $S\subseteq E$ with $|S|\le s$,
+\[
+|N_{\mathcal T}(S)|\ge 2|S|.
+\]
+\end{axiom}
+
+\begin{theorem}[Conditional HILO Core]
+Under HILO--Mixing, the cycle-lift map
+\[
+\Phi: Z_1(\mathcal O;\mathbb F_2)\to \ker(A),\qquad
+\Phi(C)=\sum_{v\in C}\gamma_v
+\]
+is injective. Consequently,
+\[
+\dim \ker(A)\ge \dim Z_1(\mathcal O;\mathbb F_2).
+\]
+Hence if
+\[
+|E(\mathcal O)|\ge (1+\varepsilon)|V|
+\]
+for some $\varepsilon>0$, then
+\[
+\dim\ker(A)\ge \varepsilon |V|.
+\]
+\end{theorem}
+
+\begin{proof}
+Assume HILO--Mixing. Let $C\in Z_1(\mathcal O;\mathbb F_2)$ satisfy $\Phi(C)=0$.
+Equivalently, for every edge $e\in E$,
+\[
+I_e(C):=\sum_{v\in C}A_{v,e}=0 \pmod 2.
+\]
+If some $e$ had $I_e(C)=1$, transport triviality $[\omega]=0$ would propagate odd incidence
+through the transport graph orbit of $e$. By the doubling hypothesis, iterated neighborhoods satisfy
+\[
+|N_{\mathcal T}^{(t)}(\{e\})|\ge 2^t.
+\]
+Choosing $t>\log_2 s$ gives an orbit larger than the support bound $s$, contradiction.
+Thus no such $e$ exists, so $C=0$ and $\Phi$ is injective.
+
+Therefore
+\[
+\dim\ker(A)\ge \dim\operatorname{im}(\Phi)=\dim Z_1(\mathcal O;\mathbb F_2).
+\]
+Finally,
+\[
+\dim Z_1(\mathcal O;\mathbb F_2)=|E(\mathcal O)|-|V|+\#\mathrm{comp}(\mathcal O),
+\]
+so if $|E(\mathcal O)|\ge (1+\varepsilon)|V|$, then
+\[
+\dim Z_1(\mathcal O;\mathbb F_2)\ge \varepsilon |V|,
+\]
+hence
+\[
+\dim\ker(A)\ge \varepsilon |V|.
+\qedhere
+\]
+\end{proof}
+
+\end{document}
