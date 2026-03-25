@@ -10,4 +10,6 @@ by
   rcases cyclone_concrete H with ⟨G₀,G₁,hneq,hω⟩
   have hv : sameVertices G₀ G₁ := by simp [sameVertices]
   have he : sameEdges G₀ G₁ := by simp [sameEdges]
-  exact ⟨G₀,G₁,And.intro (by decide) (And.intro hv he),hω⟩
+  have hc : sameCounts G₀ G₁ := by
+    simp [sameCounts]
+  exact ⟨G₀,G₁,And.intro (by decide) (And.intro hv (And.intro he hc)),hω⟩
