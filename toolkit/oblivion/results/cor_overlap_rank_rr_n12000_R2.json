@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/rr_n12000_d4_seed9.json",
+    "R": 2,
+    "n": 12000,
+    "m": 24000
+  },
+  "overlap_rank": 0,
+  "cycles_examined": 171,
+  "kept_cycles": 0,
+  "source_meta": {}
+}

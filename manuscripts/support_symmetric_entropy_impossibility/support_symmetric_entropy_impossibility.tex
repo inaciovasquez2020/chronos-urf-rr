@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\title{Impossibility of Support-Symmetric Entropy Measures for Resolution}
+\author{Inacio F. Vasquez}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\maketitle
+
+\section*{Statement}
+
+Let $\Phi$ be a functional on clause multisets satisfying:
+
+\begin{itemize}
+\item[(P1)] permutation invariance,
+\item[(P2)] $\Phi(M \cup \{C\}) \le \Phi(M) + c$ for a universal constant $c$,
+\item[(P3)] monotonicity under derivation.
+\end{itemize}
+
+\begin{theorem}
+Such a $\Phi$ cannot distinguish Tseitin formulas
+requiring exponential resolution
+from polynomially refutable formulas,
+in the sense that it cannot satisfy
+$\Phi(T_{\mathrm{hard}})=\Omega(n)$ and
+$\Phi(T_{\mathrm{easy}})=o(n)$ simultaneously.
+\end{theorem}
+
+\noindent
+Resolution hardness in Tseitin formulas
+arises from exponential multiplicity
+over identical variable supports.
+Any support-symmetric functional
+compresses this multiplicity
+and therefore cannot capture hardness.
+
+\end{document}

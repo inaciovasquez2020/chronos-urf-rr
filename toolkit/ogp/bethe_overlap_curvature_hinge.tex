@@ -1,0 +1,64 @@
+\section*{OGP Curvature Hinge (Bethe--Hessian Target)}
+
+\subsection*{Objects}
+
+Let $G$ be a $\Delta$-regular graph on $n$ vertices. Let $\Omega\subset\{0,1\}^n$ denote independent sets. Fix a reference configuration $\sigma^\*\in\Omega$ and define overlap
+\[
+q(\sigma,\sigma^\*) := \frac1n\sum_{i=1}^n \sigma_i\sigma_i^\*.
+\]
+Define the overlap slice and its entropy density
+\[
+\Omega(q):=\{\sigma\in\Omega:\ q(\sigma,\sigma^\*)=q\},\qquad
+\psi(q):=\frac1n\log|\Omega(q)|.
+\]
+Assume an $(\nu_1,\nu_2)$-OGP for overlaps with $0<\nu_1<\nu_2<1$.
+
+\subsection*{Hinge Quantity}
+
+Define the curvature at the high-overlap endpoint
+\[
+\kappa_{\mathrm{Bethe}}(\rho,\Delta) := -\psi''(\nu_2),
+\]
+whenever $\psi$ is twice differentiable at $\nu_2$.
+
+\subsection*{Target Expansion}
+
+The quantitative OGP barrier requires a local quadratic upper bound
+\[
+\psi(q)\ \le\ \psi(\nu_2)\ -\ \frac12\,\kappa_{\mathrm{Bethe}}(\rho,\Delta)\,(q-\nu_2)^2\ +\ o(1),
+\qquad q\to\nu_2,
+\]
+uniformly in $n$, with $\kappa_{\mathrm{Bethe}}(\rho,\Delta)>0$.
+
+\subsection*{Bethe Ansatz to Differentiate}
+
+Let $\lambda>0$ be the hard-core activity and let $\rho$ denote the Bethe occupancy at the RS cavity fixed point.
+Let $\Phi_{\mathrm{Bethe}}(\rho)$ denote the RS Bethe free-energy density of the hard-core model.
+The hinge task is to compute the overlap-restricted curvature from the Bethe functional under an overlap constraint, yielding an explicit
+\[
+\kappa_{\mathrm{Bethe}}(\rho,\Delta)
+=
+\frac{1}{\chi_{\mathrm{ov}}(\rho,\Delta)}
+\]
+for an overlap-susceptibility $\chi_{\mathrm{ov}}$, or to show that such a reduction is invalid.
+
+\subsection*{What is \emph{not} claimed}
+
+No universality claim (e.g.\ $\kappa=1/\Delta$ or $1/(2\Delta)$) is made here.
+The coefficient is model-dependent and must be derived from the Bethe Hessian at the RS fixed point.
+
+\subsection*{LIB Interface}
+
+For any reversible Markov chain on $\Omega$ whose transitions have uniformly bounded support size, any conductance bottleneck defined by an overlap cut $A$ yields barrier
+\[
+\mathcal B(A):=-\log\Phi(A),
+\]
+and the quantitative OGP program reduces to proving $\mathcal B(A)\ge \Theta(n)$ with leading constant determined by $\kappa_{\mathrm{Bethe}}(\rho,\Delta)(\nu_2-\nu_1)^2$.
+
+\subsection*{Regularization Convention (optional)}
+
+If needed for phase-boundary bookkeeping, define
+\[
+\mathcal B_\epsilon(A):=-\log(\Phi(A)+\epsilon),\qquad \epsilon\in(0,1),
+\]
+and take $\epsilon\downarrow 0$ only after bounds are established.

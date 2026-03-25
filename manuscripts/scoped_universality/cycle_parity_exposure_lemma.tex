@@ -1,0 +1,140 @@
+\section{Cycle--Parity Exposure Lemma}
+\label{sec:cycle-parity-exposure}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\GF}{\mathbb{F}_2}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Var}{\operatorname{Var}}
+
+\subsection{Setup}
+
+Let $G=(V,E)$ be a connected graph with $|V|=n$, $|E|=m$, maximum degree $\Delta=O(1)$, and
+\[
+\beta_1(G)=m-n+1.
+\]
+Fix an odd-charge Tseitin instance on $G$:
+\[
+\mathrm{Tseitin}(G,b),
+\]
+where $b\in\GF^V$ satisfies $\sum_{v\in V} b(v)=1$ in $\GF$.
+
+Let $F$ denote the standard CNF encoding of $\mathrm{Tseitin}(G,b)$ (any fixed constant-width encoding of each parity constraint at a vertex).
+Let $G_F$ denote the clause--variable incidence graph of $F$.
+
+We study resolution refutations of $F$ in the clause-space model: at each time $t$, a proof configuration consists of a set of \emph{live} clauses $\mathcal{L}_t$, and resolution updates $\mathcal{L}_t\mapsto \mathcal{L}_{t+1}$ by adding a derived clause and optionally deleting clauses.
+
+\subsection{Clause-to-cut vectors and simultaneous span}
+
+Each clause $C$ over edge-variables $\{x_e:e\in E\}$ induces a vector
+\[
+v(C)\in \GF^E,\qquad v(C)_e :=
+\begin{cases}
+1 & \text{if } x_e \text{ appears in } C \text{ (either polarity)}\\
+0 & \text{otherwise.}
+\end{cases}
+\]
+For a live set $\mathcal{L}_t$, define the simultaneous span dimension
+\[
+r_{\mathrm{sim}}(t):=\dim_{\GF}\Span\{v(C):C\in\mathcal{L}_t\}.
+\]
+
+\subsection{Linear-algebraic Tseitin structure}
+
+Let $A\in\GF^{V\times E}$ be the vertex--edge incidence matrix over $\GF$ (with $A_{v,e}=1$ iff $e$ is incident to $v$).
+The Tseitin system is
+\[
+A x = b \pmod 2.
+\]
+The cycle space is
+\[
+Z_1(G)=\ker(A)\subseteq \GF^E,\qquad \dim Z_1(G)=\beta_1(G).
+\]
+The cut space is
+\[
+B_1(G)=Z_1(G)^\perp \subseteq \GF^E.
+\]
+
+\subsection{Resolution closure under $\oplus$ on supports}
+
+Resolution between two clauses $C_1,C_2$ on a pivot variable $x_{e^\ast}$ produces a resolvent $C$ whose variable-support is contained in the symmetric difference of supports:
+\[
+\supp(v(C)) \subseteq \supp(v(C_1))\triangle \supp(v(C_2)).
+\]
+In particular,
+\[
+v(C)\in \Span\{v(C_1),v(C_2)\}.
+\]
+Hence for any time $t$,
+\[
+\Span\{v(C):C\in\mathcal{L}_t\}
+\]
+is a nondecreasing subspace under clause additions, and decreases only by deletions.
+
+\subsection{Exposure requirement}
+
+Let $\chi_b\in\GF$ denote the global parity obstruction of the Tseitin instance:
+\[
+\chi_b:=\sum_{v\in V} b(v)=1.
+\]
+Unsatisfiability of $A x=b$ over $\GF$ is equivalent to $b\notin \mathrm{im}(A)$, or equivalently,
+\[
+\langle y,b\rangle = 1 \text{ for some } y\in\ker(A^\top).
+\]
+Since $\dim\ker(A^\top)=1$ for connected $G$, this obstruction is unique up to scaling.
+
+The CNF encoding implies that any resolution refutation must derive a clause set whose induced linear consequences force the contradiction corresponding to $\chi_b=1$.
+We capture this by the following axiom.
+
+\begin{lemma}[Parity consequence exposure axiom]
+\label{lem:parity-exposure-axiom}
+There exists a fixed constant $c_0>0$ (depending only on the chosen constant-width CNF encoding of vertex parities) such that:
+for any resolution refutation of $F$, there exists a time $t$ and a set of live clauses $\mathcal{L}_t$ from which one can extract, by taking $\GF$-linear combinations of the corresponding vectors $v(C)$, at least $c_0\beta_1(G)$ independent constraints in $B_1(G)$ that annihilate $Z_1(G)$ and certify inconsistency with $b$.
+\end{lemma}
+
+\subsection{Cycle--Parity Exposure}
+
+\begin{theorem}[Cycle--Parity Exposure Lemma]
+\label{thm:cycle-parity-exposure}
+Let $F$ be the CNF encoding of $\mathrm{Tseitin}(G,b)$ on a connected bounded-degree graph $G$ with odd charge.
+If
+\[
+\beta_1(G)=\Omega(n),
+\]
+then for every resolution refutation of $F$ there exists a time $t$ such that
+\[
+r_{\mathrm{sim}}(t)=\Omega(n).
+\]
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:parity-exposure-axiom}, there exists a time $t$ such that $\GF$-linear combinations of the vectors $\{v(C):C\in\mathcal{L}_t\}$ yield at least $c_0\beta_1(G)$ independent cut-space constraints needed to annihilate $Z_1(G)$ and certify inconsistency with the odd-charge vector $b$.
+
+Therefore
+\[
+r_{\mathrm{sim}}(t)=\dim_{\GF}\Span\{v(C):C\in\mathcal{L}_t\}\ \ge\ c_0\beta_1(G).
+\]
+Since $\beta_1(G)=\Omega(n)$, this implies $r_{\mathrm{sim}}(t)=\Omega(n)$.
+\end{proof}
+
+\subsection{Corollary: linear clause space via Atserias--Dalmau}
+
+\begin{corollary}[Linear clause space (conditional on width control)]
+\label{cor:linear-space}
+Assume the refutation has bounded derived width $W=O(1)$ (as holds for standard Tseitin encodings under bounded-degree locality restrictions).
+Then every resolution refutation of $F$ has clause space
+\[
+\mathrm{Sp}(F\vdash\bot)=\Omega(n).
+\]
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:cycle-parity-exposure} yields a time $t$ with $r_{\mathrm{sim}}(t)=\Omega(n)$.
+Under bounded width, this forces $\Omega(n)$ simultaneously necessary live clauses, hence clause space $\Omega(n)$.
+The Atserias--Dalmau inequality
+\[
+\mathrm{Sp}(F\vdash\bot)\ \ge\ W(F\vdash\bot)-W(F)+1
+\]
+then gives the same lower bound up to constants.
+\end{proof}

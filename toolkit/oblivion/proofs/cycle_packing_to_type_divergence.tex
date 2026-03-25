@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\section*{Cycle Packing $\Rightarrow$ Local Type Divergence (Target)}
+
+\begin{definition}[Cycle packing number]
+Let $G$ be a graph. Let $\nu_{\circ}(G)$ be the maximum number of vertex-disjoint simple cycles in $G$.
+\end{definition}
+
+\begin{definition}[R-local cycle packing]
+For $R\in\mathbb N$, define
+\[
+\nu_{\circ}^{(R)}(G):=\max\Bigl\{ t:\ \exists v_1,\dots,v_t\ \text{such that each }B_R(v_i)\text{ contains a cycle and }
+B_R(v_i)\cap B_R(v_j)=\emptyset\ (i\ne j)\Bigr\}.
+\]
+\end{definition}
+
+\begin{conjecture}[Local packing forces type divergence]\label{conj:pack2type}
+Fix $k,\Delta\in\mathbb N$. There exist $R=R(k,\Delta)$ and $t_0=t_0(k,\Delta)$ such that for every graph $G$
+with $\maxdeg(G)\le \Delta$,
+\[
+\nu_{\circ}^{(R)}(G)\ge t_0 \ \Longrightarrow\ \mathrm{TypeDiv}_{k,R}(G)\ge 2.
+\]
+\end{conjecture}
+
+\begin{lemma}[Sufficient condition via definable separators]
+If there exists an FO$^k$ formula $\varphi(x)$ (with parameters allowed inside $B_R(x)$) that distinguishes
+``cycle-witnessed'' patches from ``cycle-free'' patches, then Conjecture~\ref{conj:pack2type} holds.
+\end{lemma}
+
+\end{document}

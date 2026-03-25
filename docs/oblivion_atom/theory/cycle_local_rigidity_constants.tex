@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\title{Explicit Constant Bounds for Cycle--Local Rigidity}
+\date{}
+\maketitle
+
+\section*{Definitions}
+
+Let $G=(V,E)$ be a graph with maximum degree $\Delta$.
+
+Let
+
+\[
+C_R(G)=
+\dim_{\mathbb F_2}
+\left(
+\sum_{v\in V}\iota_{v*}Z_1(B_R(v))
+\right)
+\]
+
+Let
+
+\[
+T_r(G)=
+\left|
+\{
+\operatorname{tp}^k_r(v):v\in V
+\}
+\right|
+\]
+
+\section*{Lemma}
+
+\begin{lemma}
+Let $B_R$ denote any rooted graph with maximum degree $\Delta$.
+
+Then the cycle space dimension satisfies
+
+\[
+\dim Z_1(B_R) \le |E(B_R)| - |V(B_R)| + 1.
+\]
+
+\end{lemma}
+
+\begin{proof}
+
+For any connected graph $H$ the cycle rank equals
+
+\[
+|E(H)|-|V(H)|+1.
+\]
+
+Since $B_R$ contains at most
+
+\[
+1+\Delta+\Delta^2+\dots+\Delta^R
+\]
+
+vertices, the number of edges is bounded by
+
+\[
+O(\Delta^{R+1}).
+\]
+
+Thus
+
+\[
+\dim Z_1(B_R) = O(\Delta^{R+1}).
+\]
+
+\end{proof}
+
+\section*{Constant Bound}
+
+If $T_r(G)=1$ then all $R$-balls are isomorphic to a single rooted
+graph $B_R$.
+
+Therefore
+
+\[
+C_R(G)\le \dim Z_1(B_R)
+\]
+
+and hence
+
+\[
+C_R(G) \le O(\Delta^{R+1}).
+\]
+
+\end{document}

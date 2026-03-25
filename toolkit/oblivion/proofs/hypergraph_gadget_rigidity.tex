@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\section*{Hypergraph-Gadget Rigidity (Formal Target)}
+
+\begin{definition}[Bounded-degree gadget tiling]
+Fix $\Delta\in\mathbb N$. A graph $G$ is a \emph{$(\mathcal H,\Delta)$-tiling} if there exists a finite hypergraph
+$\mathcal H=(V(\mathcal H),E(\mathcal H))$ and a cover of $V(G)$ by patches $\{P_i\}_{i\in I}$ such that:
+(i) each induced subgraph $G[P_i]$ is isomorphic to a fixed bounded graph template determined by $\mathcal H$;
+(ii) patch overlaps correspond to hyperedge intersections in $\mathcal H$;
+(iii) $\deg_G(v)\le \Delta$ for all $v\in V(G)$.
+\end{definition}
+
+\begin{definition}[Local FO$^k$ type diversity]
+Fix $k,R\in\mathbb N$. For a graph $G$, let $\tau_{k,R}(v)$ denote the FO$^k$ type of the rooted radius-$R$
+neighborhood $(B_R(v),v)$. Define
+\[
+\mathrm{TypeDiv}_{k,R}(G):=\bigl|\{\tau_{k,R}(v): v\in V(G)\}\bigr|.
+\]
+\end{definition}
+
+\begin{definition}[Cycle-overlap rank proxy]
+Fix $R\in\mathbb N$. Let $C_R(G)$ denote the $\mathbb F_2$-dimension of the span of all cycles contained in some
+radius-$R$ ball, viewed in the global cycle space $Z_1(G;\mathbb F_2)$.
+\end{definition}
+
+\begin{conjecture}[Hypergraph-Gadget Rigidity]\label{conj:HGR}
+For every $k,\Delta$ there exist constants $R=R(k,\Delta)$ and $T=T(k,\Delta)$ such that for every graph $G$
+with $\maxdeg(G)\le \Delta$,
+\[
+C_R(G)\ge T \ \Longrightarrow\ \mathrm{TypeDiv}_{k,R}(G)\ge 2.
+\]
+\end{conjecture}
+
+\begin{lemma}[Reduction: HGR $\Rightarrow$ Oblivion Atom]
+Conjecture~\ref{conj:HGR} implies the Oblivion Atom statement:
+if $C_R(G)\ge T$ then $G$ is not FO$^k_R$-homogeneous.
+\end{lemma}
+
+\end{document}

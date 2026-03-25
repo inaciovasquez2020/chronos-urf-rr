@@ -1,0 +1,23 @@
+{
+  "graph": "random_regular",
+  "n_param": 80,
+  "vertices": 80,
+  "degree": 3,
+  "R": 2,
+  "L_max": 15,
+  "num_simple_cycles_upto_L": 2131,
+  "num_simple_cycles_by_length": {
+    "3": 1,
+    "5": 2,
+    "6": 6,
+    "7": 9,
+    "8": 12,
+    "9": 33,
+    "10": 41,
+    "11": 91,
+    "12": 167,
+    "13": 311,
+    "14": 517,
+    "15": 941
+  }
+}

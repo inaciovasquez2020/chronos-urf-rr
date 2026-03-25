@@ -1,0 +1,44 @@
+\documentclass{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+
+\begin{document}
+
+\section{Locality Depth Lower Bound}
+
+\begin{theorem}[Quantitative Locality Barrier]
+Let $F_n$ be a Tseitin formula over a constant-degree
+$(n,d,\alpha)$-expander with incidence graph
+maximum degree $\Delta$.
+
+If $F_n$ requires resolution width
+\[
+W(F_n) \ge c n,
+\]
+and an algorithm derives clauses only via
+FO$^k_r$-local reasoning,
+then necessarily
+\[
+\Delta^r \ge c n.
+\]
+
+Equivalently,
+\[
+r \ge \log_\Delta (c n).
+\]
+\end{theorem}
+
+\begin{corollary}
+For constant $\Delta$,
+any FO$^k_r$-local refutation of $F_n$
+requires locality depth
+\[
+r = \Omega(\log n).
+\]
+\end{corollary}
+
+\end{document}

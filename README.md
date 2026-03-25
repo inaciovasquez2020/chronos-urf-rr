@@ -1,66 +1,47 @@
 # chronos-urf-rr
 
-[Referee Map](REFEREE.md) · [Claims Policy](CLAIMS.md) · Explicit Claims Classification
-[Status](STATUS.md) · Stable · Referee bundle frozen (referee-v1.0)
-This repository contains the research implementation and analysis for Chronos Universal Reference Frame (URF) Relative Rigidity. It is an indexed component of the Vasquez research ecosystem.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18842937.svg)](https://doi.org/10.5281/zenodo.18842937)
 
-## Overview
-The `chronos-urf-rr` module provides the computational logic and mathematical modeling for relative rigidity within the Chronos framework, serving as a key analytical layer of the URF environment.
+This repository is a **frozen reference realization** of the Chronos / EntropyDepth framework within the Unified Rigidity Framework (URF).
 
-## Canonical Registry
-This repository is a registered module of the Vasquez Index. Stable references, archival DOIs, and reproducibility links are maintained at:
-* [Vasquez Index Dashboard](https://inaciovasquez2020.github.io/vasquez-index/dashboard.html)
+## Purpose
+- Provide a stable, executable reference implementation for Chronos relative rigidity.
+- Support verification, reproducibility, and citation of Chronos artifacts.
+- Serve as a non-normative reference module indexed by the Vasquez Index.
 
-## Repository Status
-* **Repository Handle:** inaciovasquez2020/chronos-urf-rr
-* **DOI Reference:** [10.5281/zenodo.18403707](https://doi.org/10.5281/zenodo.18403707)
-* **Infrastructure:** [scientific-infrastructure](https://github.com/inaciovasquez2020/scientific-infrastructure)
+## Scope
+- Deterministic verification scaffolds (tests, scripts, proof-check hooks).
+- Reproducible execution under declared constraints.
+- Verifier-checkable certification artifacts (schemas and signed examples).
 
----
-## Live Documentation
-- Chronos overview: https://inaciovasquez2020.github.io
-- Project dashboard: https://inaciovasquez2020.github.io/vasquez-index/dashboard.html
+## Non-scope
+- No new axioms, theorems, or proof claims.
+- No claim that passing tests implies truth beyond stated invariants.
+- No resolution of open complexity problems.
 
+## Frozen status
+The following are frozen:
+- Mathematical scope and claims.
+- Interfaces and artifact formats.
+- Released certification artifacts (immutable once published).
 
-## Technical Notes
-* **Integration:** This module is designed to interface with `urf-core` and `support-drift` to maintain theoretical consistency across the ecosystem.
-* **Reproducibility:** To ensure consistent computational results, utilize the environment configurations defined in the `scientific-infrastructure` module.
-* **Scope:** This repository focuses on the formal verification of relative rigidity parameters and temporal stability.
+## Reference status
+This repository is a **reference implementation**:
+executable, audit-ready, and non-normative.
 
-## Citation
-If you use this research or implementation in your work, please cite it as follows:
+Canonical specifications:
+- https://github.com/inaciovasquez2020/Chronos-EntropyDepth
+- https://github.com/inaciovasquez2020/urf-core
 
-```bibtex
-@manual{Vasquez_Chronos_URF_RR_2026,
-  author = {Vasquez, Inacio F.},
-  title  = {chronos-urf-rr: Research Implementation and Analysis},
-  year   = {2026},
-  url    = {[https://github.com/inaciovasquez2020/chronos-urf-rr](https://github.com/inaciovasquez2020/chronos-urf-rr)}
-}
-Status: executable Lean project. Chronos / EntropyDepth reduction core referenced by active submissions including Foundations of Science: "Thermodynamic Limits on Empirical Discovery in Finite Information System.
- (Update README status with Chronos / EntropyDepth submission reference)
+## GxD (Global × Detectability)
 
---------------------------------------------------
-Referee and Review Guidance
---------------------------------------------------
+Quantitative key-to-keyhole invariant measuring exponential detectability
+of global expansion through bounded observers.
 
-An explicit classification of unconditional results, conditional results, framework reductions, and non-claims is provided for reviewers and editors:
+See:
+- toolkit/gxd/GxD_Canonical_Module.md
+- toolkit/gxd/GxD_Chronos_Bridge.md
+- models/gxd_f2/
 
-docs/referee/REFEREE_MAP.md
-
-
-## Chronos–URF–RR Certification (Released)
-
-This repository includes a released certification layer for the Chronos–URF–RR reference implementation and reproducibility checks.
-
-Scope:
-- Deterministic verification scaffolds (tests, scripts, proof-check hooks)
-- Reproducible execution under declared constraints
-- Verifier-checkable certification artifacts (schema + signed examples)
-
-Non-scope:
-- No new axioms, theorems, or proof claims
-- No claim that passing tests implies truth beyond stated invariants
-- No resolution of open complexity problems
-
-Certification artifacts are immutable once released.
+Referee classification and review guidance are provided in:
+- docs/referee/REFEREE_MAP.md

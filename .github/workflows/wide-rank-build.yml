@@ -1,0 +1,27 @@
+name: wide-rank-build
+
+on:
+  push:
+    paths:
+      - 'manuscripts/wide_clauses_simultaneous_rank/**'
+  pull_request:
+    paths:
+      - 'manuscripts/wide_clauses_simultaneous_rank/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install TeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-full latexmk
+
+      - name: Build PDF
+        working-directory: manuscripts/wide_clauses_simultaneous_rank
+        run: latexmk -pdf -interaction=nonstopmode wide_clauses_simultaneous_rank.tex

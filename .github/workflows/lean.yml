@@ -12,21 +12,15 @@ jobs:
 
       - name: Install elan
         run: |
-          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
 
-      - name: Verify toolchain file
+      - name: Install toolchain
         run: |
-          test -f lean-toolchain
-          cat lean-toolchain
-
-      - name: Verify Lean
-        run: |
-          lean --version
-          lake --version
+          elan toolchain install $(cat lean-toolchain)
+          elan default $(cat lean-toolchain)
 
       - name: Build
         run: |
-- name: Lake update
-  run: lake update
+          lake update
           lake build

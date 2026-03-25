@@ -1,0 +1,60 @@
+\documentclass{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Tseitin Formulas on Expanders: Width Lower Bounds}
+\author{URF Toolkit}
+\date{\today}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+\begin{document}
+\maketitle
+
+\section{Tseitin Contradictions on Expanders}
+
+\begin{definition}
+Let $G=(V,E)$ be a graph and $\chi:V\to\{0,1\}$ a charge function with
+\[
+\sum_{v\in V}\chi(v)\equiv 1 \pmod 2.
+\]
+The Tseitin formula $T(G,\chi)$ encodes parity constraints at each vertex.
+\end{definition}
+
+\section{Width Lower Bound Strategy}
+
+\begin{theorem}[Target]
+If $G$ is a constant-degree expander on $n$ vertices,
+then any resolution refutation of $T(G,\chi)$
+requires width
+\[
+W(T(G,\chi)) \ge \Omega(n).
+\]
+\end{theorem}
+
+\section{Proof Skeleton}
+
+\begin{lemma}[Expansion Implies Boundary Growth]
+For any set of vertices $S\subseteq V$ with $|S|\le n/2$,
+the edge boundary satisfies
+\[
+|\partial S| \ge \varepsilon |S|
+\]
+for some constant $\varepsilon>0$.
+\end{lemma}
+
+\begin{lemma}[Parity Preservation]
+Any clause of width $w$ can constrain at most $w$ edge variables.
+\end{lemma}
+
+\begin{lemma}[Width Growth Mechanism]
+To derive contradiction, a clause must encode a parity constraint
+over a set of vertices whose induced boundary is empty.
+Expansion forces such sets to be of size $\Omega(n)$.
+\end{lemma}
+
+\end{document}
