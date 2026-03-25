@@ -66,6 +66,7 @@ class FOTypeFinite (k R Δ : Nat) where
   enum : Fintype (FOType k R Δ)
 
 attribute [instance] FOTypeFinite.enum
+attribute [implicit_reducible] FOTypeFinite.enum
 
 abbrev ConfSeq (k R Δ T : Nat) := Fin (T + 1) → FOType k R Δ
 

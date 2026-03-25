@@ -11,4 +11,4 @@ require mathlib from git
   "https://github.com/leanprover-community/mathlib4"
 
 require urf_core from git
-  "https://github.com/inaciovasquez2020/urf-core.git"
+  "https://github.com/inaciovasquez2020/urf-core.git" @ "main"
