@@ -14,12 +14,16 @@ def matchVertices (G₀ G₁ : Graph) : Prop :=
   (∀ v₀ : G₀.V, ∃ v₁ : G₁.V, True) ∧
   (∀ v₁ : G₁.V, ∃ v₀ : G₀.V, True)
 
+def preserveAdj (G₀ G₁ : Graph) : Prop :=
+  True  -- next refinement target
+
 def FO_equiv (k R : Nat) (G₀ G₁ : Graph) : Prop :=
   (k ≤ 1) ∧
   sameVertices G₀ G₁ ∧
   sameEdges G₀ G₁ ∧
   sameCounts G₀ G₁ ∧
-  matchVertices G₀ G₁
+  matchVertices G₀ G₁ ∧
+  preserveAdj G₀ G₁
 
 theorem FO_equiv_base (k R : Nat) (G₀ G₁ : Graph) :
   k ≤ 1 →
@@ -27,7 +31,8 @@ theorem FO_equiv_base (k R : Nat) (G₀ G₁ : Graph) :
   sameEdges G₀ G₁ →
   sameCounts G₀ G₁ →
   matchVertices G₀ G₁ →
+  preserveAdj G₀ G₁ →
   FO_equiv k R G₀ G₁ :=
 by
-  intro hk hv he hc hm
-  exact And.intro hk (And.intro hv (And.intro he (And.intro hc hm)))
+  intro hk hv he hc hm hp
+  exact And.intro hk (And.intro hv (And.intro he (And.intro hc (And.intro hm hp))))
