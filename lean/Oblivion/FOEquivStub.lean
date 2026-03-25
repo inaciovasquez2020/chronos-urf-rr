@@ -19,7 +19,8 @@ def preserveAdj (G₀ G₁ : Graph) : Prop :=
   (∀ e₁ : G₁.E, ∃ e₀ : G₀.E, True)
 
 def preserveIncidence (G₀ G₁ : Graph) : Prop :=
-  ∀ e₀ : G₀.E, ∃ e₁ : G₁.E, True
+  (∀ e₀ : G₀.E, ∃ e₁ : G₁.E, True) ∧
+  (∀ e₁ : G₁.E, ∃ e₀ : G₀.E, True)
 
 def FO_equiv (k R : Nat) (G₀ G₁ : Graph) : Prop :=
   (k ≤ 1) ∧
