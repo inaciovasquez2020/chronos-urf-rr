@@ -15,7 +15,7 @@ def matchVertices (G₀ G₁ : Graph) : Prop :=
   (∀ v₁ : G₁.V, ∃ v₀ : G₀.V, True)
 
 def preserveAdj (G₀ G₁ : Graph) : Prop :=
-  True  -- next refinement target
+  ∀ e₀ : G₀.E, ∃ e₁ : G₁.E, True
 
 def FO_equiv (k R : Nat) (G₀ G₁ : Graph) : Prop :=
   (k ≤ 1) ∧
