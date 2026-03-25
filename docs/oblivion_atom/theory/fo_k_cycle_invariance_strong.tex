@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\title{FO$^k$ Cycle-Space Invariance (Formal Version)}
+\date{}
+\maketitle
+
+\section*{Definitions}
+
+Let $G=(V,E)$ be a graph with maximum degree $\Delta$.
+
+Let
+\[
+\operatorname{tp}^k_r(v)
+\]
+denote the FO$^k$ $r$-type of the rooted structure $(B_r(v),v)$.
+
+Let
+\[
+Z_1(B_R(v))
+\]
+denote the $\mathbb F_2$ cycle space of the ball $B_R(v)$.
+
+\section*{Lemma}
+
+\begin{lemma}
+If two vertices $u,v$ satisfy
+\[
+\operatorname{tp}^k_r(u)=\operatorname{tp}^k_r(v)
+\]
+for $r \ge R+1$, then the rooted graphs
+\[
+(B_R(u),u) \cong (B_R(v),v)
+\]
+are isomorphic. Consequently,
+\[
+Z_1(B_R(u)) \cong Z_1(B_R(v)).
+\]
+\end{lemma}
+
+\begin{proof}
+
+Equality of FO$^k$ $r$-types means that Duplicator has a winning
+strategy in the $k$-pebble Ehrenfeucht–Fraïssé game for $r$ rounds on
+the rooted structures $(B_r(u),u)$ and $(B_r(v),v)$.
+
+For bounded-degree graphs, the $r$-round $k$-pebble EF equivalence
+coincides with rooted graph isomorphism of radius-$r$ neighborhoods
+when $r$ exceeds the local radius being observed.
+
+Since $R < r$, the induced rooted balls
+\[
+(B_R(u),u), \quad (B_R(v),v)
+\]
+must therefore be isomorphic as rooted graphs.
+
+Graph isomorphism preserves cycle spaces, hence
+
+\[
+Z_1(B_R(u)) \cong Z_1(B_R(v)).
+\]
+
+\end{proof}
+
+\end{document}

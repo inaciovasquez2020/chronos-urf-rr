@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/lift_rr30_d3_f400_seed2026.json",
+    "n": 12000,
+    "m": 18000,
+    "R": 2,
+    "limit_vertices": 0
+  },
+  "cor_span_rank_proxy": 10,
+  "insertions": 10,
+  "source_meta": {
+    "base": "rr",
+    "base_n": 30,
+    "base_d": 3,
+    "m": 6,
+    "fiber": 400,
+    "seed": 2026,
+    "N": 12000
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/torus_50.json",
+    "n": 2500,
+    "m": 5000,
+    "R": 2,
+    "limit_vertices": 0
+  },
+  "cor_span_rank_proxy": 2499,
+  "insertions": 2499,
+  "source_meta": {
+    "graph": "torus",
+    "n_side": 50,
+    "N": 2500
+  }
+}

@@ -1,0 +1,71 @@
+\section{FO\texorpdfstring{$^k$}{k}-Locality Upgrade: Removing Clause-Locality}
+
+\subsection{FO\texorpdfstring{$^k$}{k}-Local Transcript Processes}
+
+Let $A \in \mathbb{F}_2^{m\times n}$ be fixed.
+We model refinement as operating on a bipartite incidence graph
+$G_A = (C \cup V, E)$ where $C=[m]$ are clause nodes
+and $V=[n]$ variable nodes.
+
+\begin{definition}[FO\texorpdfstring{$^k$}{k}-local transcript process]
+A transcript process $(S_t)_{t\ge 0}$ is FO\texorpdfstring{$^k$}{k}-local
+with radius $r$ if for each $t$ and each clause node $c\in C$,
+the update rule depends only on the rooted radius-$r$ neighborhood
+of $c$ in $G_A$, interpreted through FO\texorpdfstring{$^k$}{k} formulas
+of quantifier rank $\le r$.
+\end{definition}
+
+\subsection{Parity Cuts Are FO-Indistinguishable Below Distance}
+
+Let $w \in \ker(A^\top)\setminus\{0\}$ with
+$\|w\|_0 = d$.
+Let $\mu_0,\mu_1$ be the uniform distributions on $\mathbb{F}_2^m$
+conditioned on $\langle w,b\rangle=0$ and $\langle w,b\rangle=1$.
+
+\begin{lemma}[FO\texorpdfstring{$^k$}{k} locality cannot detect large parity]
+Assume $d > \Delta^r$ where $\Delta$ bounds degree in $G_A$.
+Then for any FO\texorpdfstring{$^k$}{k}-local process of radius $r$,
+the transcript distribution under $\mu_0$ and $\mu_1$
+is identical up to error $2^{-(d - O(\Delta^r))}$.
+\end{lemma}
+
+\begin{proof}
+Each radius-$r$ neighborhood in $G_A$ contains at most
+$O(\Delta^r)$ clause nodes.
+If $d > \Delta^r$, then the support of $w$
+cannot be fully contained in any such neighborhood.
+Thus parity conditioning on $\langle w,b\rangle$
+cannot alter any bounded-radius FO\texorpdfstring{$^k$}{k} type.
+Apply the counting argument from the clause-dual wall section.
+\end{proof}
+
+\subsection{Conditional Linear EntropyDepth from Linear Dual Distance}
+
+\begin{theorem}[Conditional FO\texorpdfstring{$^k$}{k} EntropyDepth Wall]
+\textbf{Conditional.}
+Fix $\Delta,r,k$.
+Let $A$ satisfy $d^\perp_{\mathrm{cl}}(A) \ge \delta m$.
+
+Assume a refinement process is:
+\begin{itemize}
+\item FO\texorpdfstring{$^k$}{k}-local of fixed radius $r$,
+\item bandwidth-bounded by $O(1)$ bits per step,
+\item correct with constant bias.
+\end{itemize}
+
+Then
+\[
+\ED(A) = \Omega(m).
+\]
+\end{theorem}
+
+\begin{proof}
+Linear clause-dual distance implies $d = \delta m$.
+For fixed $r$, $\Delta^r = O(1)$.
+Thus $d > \Delta^r$ for sufficiently large $m$.
+Hence FO-local transcripts cannot distinguish parity-cut distributions
+until $\Omega(m)$ clause information is aggregated.
+With constant per-step bandwidth,
+$\Omega(m)$ steps are required.
+\end{proof}
+

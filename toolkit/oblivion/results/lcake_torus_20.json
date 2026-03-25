@@ -1,0 +1,8 @@
+{
+  "graph": "torus",
+  "n_side": 20,
+  "vertices": 400,
+  "degree": 4,
+  "R": 2,
+  "lcake": 399
+}

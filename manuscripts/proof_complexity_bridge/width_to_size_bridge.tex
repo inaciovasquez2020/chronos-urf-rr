@@ -1,0 +1,30 @@
+\documentclass{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+
+\begin{document}
+
+\section{Width to Size Amplification}
+
+\begin{theorem}[Ben-Sasson–Wigderson]
+Let $F$ be an unsatisfiable CNF on $n$ variables.
+If minimal refutation width is $w$ and initial clause width is $w_0$,
+then any resolution refutation requires size at least
+\[
+\exp\!\left( \Omega\!\left(\frac{(w-w_0)^2}{n}\right) \right).
+\]
+\end{theorem}
+
+\begin{corollary}
+For Tseitin formulas on constant-degree expanders,
+resolution size is at least
+\[
+\exp(\Omega(n)).
+\]
+\end{corollary}
+
+\end{document}

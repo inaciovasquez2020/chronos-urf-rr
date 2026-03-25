@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/twolift_rr200_d4_seed42_s123_L10.json",
+    "n": 204800,
+    "R": 4,
+    "rounds": 10
+  },
+  "type_count": 204800,
+  "max_multiplicity": 1,
+  "histogram": {
+    "1": 204800
+  }
+}

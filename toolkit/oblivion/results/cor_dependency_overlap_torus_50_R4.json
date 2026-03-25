@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/torus_50.json",
+    "R": 4,
+    "n": 2500,
+    "m": 5000,
+    "limit_vertices": 0
+  },
+  "sum_local_cycle_rank": 60000,
+  "global_ball_cycle_span_rank": 2499,
+  "dependency_overlap": 57501,
+  "cycle_vectors_total": 60000,
+  "basis_insertions": 2499,
+  "source_meta": {
+    "graph": "torus",
+    "n_side": 50,
+    "N": 2500
+  }
+}

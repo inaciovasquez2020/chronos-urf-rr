@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{conjecture}{Conjecture}
+\begin{document}
+\title{Support Compression Wall: Verified Obstruction and Corrected Conditional Targets}
+\author{}
+\date{}
+\maketitle
+\section*{Setup}
+Let $n\in \mathbb{N}$. Let $\Omega_n={0,1}^n$.
+For $x\in \Omega_n$, define the parity
+π
+(
+x
+)
+=
+∑
+i
+=
+1
+n
+x
+i
+(
+m
+o
+d
+2
+)
+.
+π(x)= 
+i=1
+∑
+n
+​	
+ x 
+i
+​	
+ (mod2).
+A \emph{witness of support size} $\le s$ is any function $f:\Omega_n\to{0,1}$ that depends on at most $s$ coordinates.
+\section*{Verified Obstruction}
+\begin{proposition}[Local indistinguishability under global parity conditioning]
+Fix $n\ge 1$. Let $\mu_0$ be the uniform distribution on ${x\in\Omega_n:\pi(x)=0}$ and
+$\mu_1$ the uniform distribution on ${x\in\Omega_n:\pi(x)=1}$.
+Then for any witness $f$ of support size $\le s<n$,
+∣
+Pr
+⁡
+μ
+0
+[
+f
+=
+1
+]
+−
+Pr
+⁡
+μ
+1
+[
+f
+=
+1
+]
+∣
+≤
+2
+−
+(
+n
+−
+s
+)
+.
+​	
+  
+μ 
+0
+​	
+ 
+Pr
+​	
+ [f=1]− 
+μ 
+1
+​	
+ 
+Pr
+​	
+ [f=1] 
+​	
+ ≤2 
+−(n−s)
+ .
+Moreover $|\mu_0-\mu_1|_{\mathrm{TV}}=1$.
+\end{proposition}
+\begin{proof}
+Let $S\subseteq [n]$ be the support of $f$ with $|S|\le s$.
+For any fixed assignment $a\in{0,1}^S$, the number of completions $b\in{0,1}^{[n]\setminus S}$
+yielding total parity $0$ differs from the number yielding total parity $1$ by at most $1$,
+and both are equal to $2^{n-|S|-1}$ unless $n-|S|=0$.
+Thus the conditional distribution on $x_S$ under $\mu_0$ and under $\mu_1$ differs pointwise by at most
+$2^{-(n-|S|)}$, hence the claimed bound.
+The TV claim is immediate since $\mu_0,\mu_1$ have disjoint supports.
+\end{proof}
+\section*{Corrected Conditional Target}
+\begin{definition}[Rigidity hypothesis schema]
+A rigidity hypothesis is any explicit assumption on an instance family guaranteeing that global distinguishability cannot be confined to a single global parity-type constraint while all bounded-support tests remain nearly unbiased.
+\end{definition}
+\begin{conjecture}[Rigidity-conditional bounded-support witness extraction]
+Fix $k,\Delta$. Assume an explicit rigidity hypothesis $\mathsf{Rig}(k,\Delta)$ for a bounded-degree instance family.
+Then there exist constants $R,B,C$ depending only on $k,\Delta$ such that whenever two refinement histories are FO$^k$-distinguishable at some time $t$,
+there exists a witness supported on a union of at most $B$ radius-$R$ patches with bias at least $2^{-C}$.
+\end{conjecture}
+\end{document}

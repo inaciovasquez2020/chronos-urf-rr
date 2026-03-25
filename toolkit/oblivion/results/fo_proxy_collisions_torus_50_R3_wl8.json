@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "graph_json": "toolkit/oblivion/results/torus_50.json",
+    "n": 2500,
+    "R": 3,
+    "rounds": 8
+  },
+  "type_count": 49,
+  "max_multiplicity": 1936,
+  "histogram": {
+    "1": 36,
+    "44": 12,
+    "1936": 1
+  }
+}

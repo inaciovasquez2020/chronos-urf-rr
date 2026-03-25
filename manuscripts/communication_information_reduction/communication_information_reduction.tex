@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\title{Information Complexity Implies Resolution Length Lower Bounds}
+\author{Inacio F. Vasquez}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\maketitle
+
+\section*{Reduction}
+
+Let $F$ be an unsatisfiable CNF and
+$\mathrm{Search}_F$ its associated search problem.
+
+\begin{theorem}
+For any product distribution $\mu$,
+\[
+IC_\mu(\mathrm{Search}_F)
+\le O(\log L(F)).
+\]
+\end{theorem}
+
+\begin{proof}[Sketch]
+A resolution refutation of length $L$
+induces a deterministic protocol
+that walks the refutation DAG.
+Each resolution pivot requires
+one bit of communication.
+Balancing the DAG gives depth $O(\log L)$.
+Hence communication complexity
+$CC(F) \le O(\log L)$.
+Since information complexity
+is bounded by communication complexity,
+the result follows.
+\end{proof}
+
+\begin{corollary}
+\[
+L(F) \ge 2^{\Omega(IC_\mu(\mathrm{Search}_F))}.
+\]
+\end{corollary}
+
+\end{document}

@@ -1,0 +1,3 @@
+nodes: 800
+edges: 999
+LIR_R(G) = 2

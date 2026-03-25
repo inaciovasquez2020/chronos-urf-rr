@@ -1,0 +1,17 @@
+\section{Span-Hinge Conjecture (SHC) for Tseitin on Expanders}
+
+\paragraph{Statement (SHC).}
+Let $G$ be a bounded-degree $\delta$-expander on $n$ vertices and let $TS(G,f)$ be the Tseitin contradiction.
+For any resolution derivation that derives a clause encoding a cut $U\subseteq V(G)$ with
+$|\partial(U)|=\Theta(n)$, there exists a timestep $t$ such that
+\[
+\dim_{\mathbb F_2}\operatorname{span}\{\mathbf 1_{U_{C'}}: C' \text{ live at time } t\}=\Omega(n).
+\]
+
+\paragraph{Status / gap.}
+Known width and space lower bounds for Tseitin on expanders do not directly imply a single-time
+$\mathbb F_2$-span explosion; SHC requires a synchrony/rank-amplification mechanism beyond width.
+
+\paragraph{Closure target ingredient.}
+A boundary-rank (or rank-amplification) lemma connecting $|\partial(U)|$ and the
+$\mathbb F_2$-rank of cut-indicator vectors associated to simultaneously live clauses.

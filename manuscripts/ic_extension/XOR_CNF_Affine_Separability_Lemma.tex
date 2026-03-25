@@ -1,0 +1,86 @@
+\section{XOR-CNF Clause Predicates are Affine-Separable Under Any Partition}
+
+\begin{definition}[XOR clause / parity constraint]
+An XOR-clause (parity constraint) on Boolean variables $z_1,\dots,z_n \in \{0,1\}$ is specified by a support set $S \subseteq [n]$ and a bit $b \in \{0,1\}$ and asserts
+\[
+\bigoplus_{i\in S} z_i = b,
+\]
+where $\oplus$ denotes addition in $\mathbb{F}_2$.
+\end{definition}
+
+\begin{definition}[Violated-clause predicate under a variable partition]
+Fix a partition $[n] = X \sqcup Y$, and write $z=(x,y)$ with $x=(z_i)_{i\in X}$ and $y=(z_j)_{j\in Y}$.
+For an XOR-clause $(S,b)$ define the violated-clause predicate
+\[
+f_{S,b}(x,y)
+\;:=\;
+\left(\bigoplus_{i\in S} z_i\right)\oplus b
+\;=\;
+\left(\bigoplus_{i\in S\cap X} x_i\right)\oplus
+\left(\bigoplus_{j\in S\cap Y} y_j\right)\oplus b.
+\]
+Thus $f_{S,b}(x,y)=1$ iff the parity constraint is violated.
+\end{definition}
+
+\begin{definition}[Affine-separable Boolean functions]
+A Boolean function $f:\{0,1\}^{|X|}\times\{0,1\}^{|Y|}\to\{0,1\}$ is \emph{affine-separable} if there exist
+$g:\{0,1\}^{|X|}\to\{0,1\}$ and $h:\{0,1\}^{|Y|}\to\{0,1\}$ such that
+\[
+f(x,y)=g(x)\oplus h(y).
+\]
+\end{definition}
+
+\begin{lemma}[Affine separability of XOR-CNF violated predicates]\label{lem:xor_affine_separable}
+For every XOR-clause $(S,b)$ and every variable partition $[n]=X\sqcup Y$, the violated-clause predicate $f_{S,b}(x,y)$ is affine-separable:
+\[
+f_{S,b}(x,y)=g_{S,b}(x)\oplus h_S(y),
+\quad
+g_{S,b}(x):=\left(\bigoplus_{i\in S\cap X} x_i\right)\oplus b,
+\quad
+h_S(y):=\left(\bigoplus_{j\in S\cap Y} y_j\right).
+\]
+\end{lemma}
+
+\begin{proof}
+Immediate from the definition:
+\[
+f_{S,b}(x,y)=\left(\bigoplus_{i\in S\cap X} x_i\right)\oplus
+\left(\bigoplus_{j\in S\cap Y} y_j\right)\oplus b
+=\left(\left(\bigoplus_{i\in S\cap X} x_i\right)\oplus b\right)\oplus
+\left(\bigoplus_{j\in S\cap Y} y_j\right).
+\]
+\end{proof}
+
+\begin{lemma}[Rank bound for affine-separable predicates over $\mathbb{F}_2$]\label{lem:affine_sep_rank_le2}
+Let $f(x,y)=g(x)\oplus h(y)$ be affine-separable. Let $M_f$ be the $(2^{|X|}\times 2^{|Y|})$ matrix over $\mathbb{F}_2$ with entries
+$M_f[x,y]=f(x,y)$.
+Then
+\[
+\rank_{\mathbb{F}_2}(M_f)\le 2.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $u\in\mathbb{F}_2^{2^{|X|}}$ and $v\in\mathbb{F}_2^{2^{|Y|}}$ be defined by $u_x:=g(x)$ and $v_y:=h(y)$.
+Then for all $(x,y)$,
+\[
+M_f[x,y]=u_x\oplus v_y = u_x + v_y \;\;(\text{in }\mathbb{F}_2).
+\]
+Hence $M_f = u\mathbf{1}^\top + \mathbf{1}v^\top$ where $\mathbf{1}$ denotes the all-ones vector of appropriate dimension.
+Therefore $\rank(M_f)\le \rank(u\mathbf{1}^\top)+\rank(\mathbf{1}v^\top)\le 1+1=2$.
+\end{proof}
+
+\begin{corollary}[XOR-CNF per-constraint communication rank is constant]\label{cor:xor_clause_rank_constant}
+For every XOR-clause $(S,b)$ and every partition $[n]=X\sqcup Y$, the communication matrix of the violated-clause predicate satisfies
+\[
+\rank_{\mathbb{F}_2}(M_{f_{S,b}})\le 2.
+\]
+In particular, no argument that lower-bounds per-clause communication rank can yield an $\Omega(n)$ communication lower bound for XOR-CNF from clause-level predicates alone.
+\end{corollary}
+
+\begin{proof}
+Combine Lemma~\ref{lem:xor_affine_separable} with Lemma~\ref{lem:affine_sep_rank_le2}.
+\end{proof}
+
+\paragraph{Boundary of applicability.}
+The above is specific to degree-$1$ polynomials over $\mathbb{F}_2$ (linear XOR constraints). Any attempt to obtain genuine bilinear interaction terms $x_i y_j$ in a violated-constraint predicate requires leaving the XOR-CNF (linear) framework.
