@@ -4,12 +4,17 @@ structure BaseGraph where
   V : Type
   E : Type
 
--- minimal nontrivial graph (2 vertices, 1 edge)
-def trivialGraph : Graph :=
+def graph₀ : Graph :=
 { V := Bool,
   E := Unit,
   src := fun _ => false,
   dst := fun _ => true }
 
+def graph₁ : Graph :=
+{ V := Bool,
+  E := Unit,
+  src := fun _ => true,
+  dst := fun _ => false }
+
 def CFI (H : BaseGraph) (ε : Bool) : Graph :=
-  trivialGraph
+  if ε then graph₁ else graph₀
