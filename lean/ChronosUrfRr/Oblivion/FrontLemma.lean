@@ -64,7 +64,7 @@ theorem Locality_of_continuation
 
 class FOTypeFinite (k R Δ : Nat) where
   enum : Fintype (FOType k R Δ)
-@[instance, implicit_reducible] def FOTypeFinite_inst (k R Δ : Nat) [h : FOTypeFinite k R Δ] := h.enum
+@[instance, reducible] def FOTypeFinite_inst (k R Δ : Nat) [h : FOTypeFinite k R Δ] := h.enum
 
 
 
