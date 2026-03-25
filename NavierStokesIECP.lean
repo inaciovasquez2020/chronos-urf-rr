@@ -1,4 +1,5 @@
 import ChronosImports
+<<<<<<< HEAD
 import Mathlib.MeasureTheory.Integral.IntervalIntegral
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Data.Real.Basic
@@ -30,3 +31,11 @@ theorem IECP_conditional
     linarith
   have hpos₁ : 0 < 1 + α*T := by linarith
   exact Real.log_le_log hpos₁ h₁
+=======
+import Mathlib.Data.Real.Basic
+
+open Real
+
+def lyapunovEstimate (T : ℝ) : ℝ :=
+Real.log (1 + T)
+>>>>>>> 9586cd6 (Add URF Lean scaffolding modules)
