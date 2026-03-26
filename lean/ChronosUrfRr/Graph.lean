@@ -6,10 +6,10 @@ structure Graph where
   src : E → V
   dst : E → V
 
-def Connected (_ : Graph) : Prop := True
-def girth (_ : Graph) : Nat := 0
-def beta1 (_ : Graph) : Nat := 0
-def ball (_ : Graph) (_ : G.V) (_ : Nat) : Type := Unit
-def IsTree (_ : Type) : Prop := True
-def FO_equiv_R (_ _ : Nat) (_ _ : Graph) : Prop := True
-def BallIso (_ _ : Graph) (_ : G₀.V) (_ : G₁.V) (_ : Nat) : Prop := True
+def Connected (G : Graph) : Prop := True
+def girth (G : Graph) : Nat := 0
+def beta1 (G : Graph) : Nat := 0
+def ball (G : Graph) (v : G.V) (R : Nat) : Type := Unit
+def IsTree (T : Type) : Prop := True
+def FO_equiv_R (k R : Nat) (G₀ G₁ : Graph) : Prop := True
+def BallIso (G₀ G₁ : Graph) (v₀ : G₀.V) (v₁ : G₁.V) (R : Nat) : Prop := True
