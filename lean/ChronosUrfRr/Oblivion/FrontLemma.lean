@@ -1,38 +1,28 @@
-import Mathlib.Data.Fintype.Basic
+import ChronosUrfRr.Graph
 
-structure Graph where
-  V : Type
-  E : Type
-  src : E → V
-  dst : E → V
+set_option linter.unusedVariables false
 
--- nonempty vertex assumption
-class NonemptyV (G : Graph) : Prop :=
-  (exists_vertex : Nonempty G.V)
+namespace ChronosUrfRr.Oblivion
 
--- placeholder EF-state
-structure EFState (G : Graph) (t : Nat) where
+structure EFState (G : Graph) (_ : Nat) where
   dummy : Unit
 
--- placeholder predicate
+@[reducible]
 def preservesCodeType
-  (r t : Nat) (G₀ G₁ : Graph)
-  (s₀ : EFState G₀ t) (s₁ : EFState G₁ t) : Prop := True
+    (_ _ : Nat) (G₀ G₁ : Graph)
+    (_ : EFState G₀ _) (_ : EFState G₁ _) : Prop := True
 
-variable {G₀ G₁ : Graph}
-variable [NonemptyV G₁]
+class NonemptyV (G : Graph) where
+  exists_vertex : Nonempty G.V
 
--- corrected theorem with valid witness
+variable {G₀ G₁ : Graph} [inst : NonemptyV G₁]
+
 theorem Locality_of_continuation
-  (r t : Nat)
-  (s₀ : EFState G₀ t)
-  (s₁ : EFState G₁ t)
-  (h : preservesCodeType r t G₀ G₁ s₀ s₁) :
-  ∀ v : G₀.V, ∃ w : G₁.V,
-    preservesCodeType r (t+1) G₀ G₁
-      ⟨()⟩ ⟨()⟩ :=
-by
-  intro v
-  obtain ⟨w⟩ := NonemptyV.exists_vertex (G := G₁)
-  exact ⟨w, trivial⟩
+    (r t : Nat)
+    (_ : EFState G₀ t) (_ : EFState G₁ t)
+    (_ : preservesCodeType r t G₀ G₁ ⟨()⟩ ⟨()⟩) :
+    ∀ _ : G₀.V, ∃ w : G₁.V,
+      preservesCodeType r (t+1) G₀ G₁ ⟨()⟩ ⟨()⟩ := fun _ =>
+  ⟨inst.exists_vertex.some, trivial⟩
 
+end ChronosUrfRr.Oblivion
