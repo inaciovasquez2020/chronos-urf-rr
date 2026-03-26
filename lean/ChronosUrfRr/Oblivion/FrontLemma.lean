@@ -57,7 +57,7 @@ theorem Locality_of_continuation
     (k R Δ : Nat)
     (τi τj : FOType k R Δ)
     (Si : List Nat)
-    (hτ : τi = τj) :
+    _ : _ :
     ∃ H : InducedWitness G, H.radius = R + k := by
   subst hτ
   refine ⟨inducedWitness G R k Si, rfl⟩
