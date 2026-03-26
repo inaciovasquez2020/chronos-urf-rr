@@ -6,6 +6,10 @@ structure Graph where
   src : E → V
   dst : E → V
 
+-- nonempty vertex assumption
+class NonemptyV (G : Graph) : Prop :=
+  (exists_vertex : Nonempty G.V)
+
 -- placeholder EF-state
 structure EFState (G : Graph) (t : Nat) where
   dummy : Unit
@@ -15,10 +19,12 @@ def preservesCodeType
   (r t : Nat) (G₀ G₁ : Graph)
   (s₀ : EFState G₀ t) (s₁ : EFState G₁ t) : Prop := True
 
--- corrected theorem header (all binders typed)
+variable {G₀ G₁ : Graph}
+variable [NonemptyV G₁]
+
+-- corrected theorem with valid witness
 theorem Locality_of_continuation
   (r t : Nat)
-  (G₀ G₁ : Graph)
   (s₀ : EFState G₀ t)
   (s₁ : EFState G₁ t)
   (h : preservesCodeType r t G₀ G₁ s₀ s₁) :
@@ -27,5 +33,6 @@ theorem Locality_of_continuation
       ⟨()⟩ ⟨()⟩ :=
 by
   intro v
-  exact ⟨Classical.choice (Classical.propDecidable True), trivial⟩
+  obtain ⟨w⟩ := NonemptyV.exists_vertex (G := G₁)
+  exact ⟨w, trivial⟩
 
