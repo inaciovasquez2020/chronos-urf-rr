@@ -1,28 +1,32 @@
 import ChronosUrfRr.Graph
 
 set_option linter.unusedVariables false
+set_option linter.deprecated false
 
 namespace ChronosUrfRr.Oblivion
 
-structure EFState (G : Graph) (_ : Nat) where
+structure EFState (G : Graph) (t : Nat) where
   dummy : Unit
 
-@[reducible]
+/-- Placeholder bisimulation predicate. -/
 def preservesCodeType
-    (_ _ : Nat) (G₀ G₁ : Graph)
-    (_ : EFState G₀ _) (_ : EFState G₁ _) : Prop := True
+    (r t : Nat) (G₀ G₁ : Graph)
+    (s₀ : EFState G₀ t) (s₁ : EFState G₁ t) : Prop := True
 
-class NonemptyV (G : Graph) where
-  exists_vertex : Nonempty G.V
+/-- Typeclass asserting G has at least one vertex. -/
+class NonemptyV (G : Graph) : Prop where
+  nonempty : Nonempty G.V
 
 variable {G₀ G₁ : Graph} [inst : NonemptyV G₁]
 
+/-- Every spoiler move from G₀ can be answered in G₁. -/
 theorem Locality_of_continuation
     (r t : Nat)
-    (_ : EFState G₀ t) (_ : EFState G₁ t)
-    (_ : preservesCodeType r t G₀ G₁ ⟨()⟩ ⟨()⟩) :
+    (s₀ : EFState G₀ t)
+    (s₁ : EFState G₁ t)
+    (h : preservesCodeType r t G₀ G₁ s₀ s₁) :
     ∀ _ : G₀.V, ∃ w : G₁.V,
-      preservesCodeType r (t+1) G₀ G₁ ⟨()⟩ ⟨()⟩ := fun _ =>
-  ⟨inst.exists_vertex.some, trivial⟩
+      preservesCodeType r (t + 1) G₀ G₁ ⟨()⟩ ⟨()⟩ := fun _ =>
+  ⟨Classical.choice inst.nonempty, trivial⟩
 
 end ChronosUrfRr.Oblivion
