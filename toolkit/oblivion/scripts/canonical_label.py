@@ -13,20 +13,25 @@ def canonical_ball_code_iso(G, root, R):
                 ball.add(y)
                 q.append((y,d+1))
 
+    dist = {root:0}
+    q = deque([root])
+    while q:
+        x = q.popleft()
+        for y in G[x]:
+            if y in ball and y not in dist:
+                dist[y] = dist[x]+1
+                q.append(y)
+
     nodes = sorted(ball)
     best = None
 
-    for start in nodes:
-        dist = {start:0}
-        q = deque([start])
-        while q:
-            x = q.popleft()
-            for y in G[x]:
-                if y in ball and y not in dist:
-                    dist[y] = dist[x]+1
-                    q.append(y)
+    # enforce root mapped to index 0
+    for perm_root in [root]:
+        order = sorted(nodes, key=lambda v:(dist[v], len(G[v]), v))
+        if order[0] != root:
+            order.remove(root)
+            order = [root] + order
 
-        order = sorted(ball, key=lambda v:(dist.get(v,999), len(G[v]), v))
         idx = {v:i for i,v in enumerate(order)}
 
         edges = []
@@ -35,7 +40,7 @@ def canonical_ball_code_iso(G, root, R):
                 if v in ball and idx[u] < idx[v]:
                     edges.append((idx[u], idx[v]))
 
-        rep = (tuple(sorted(edges)), tuple(sorted(dist.values())))
+        rep = (tuple(sorted(edges)), tuple(dist[v] for v in order))
         if best is None or rep < best:
             best = rep
 
