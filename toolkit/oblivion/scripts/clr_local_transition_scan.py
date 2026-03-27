@@ -72,3 +72,30 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+def random_n_lift(base, n, seed=0):
+    import random
+    random.seed(seed)
+    G = {}
+    for u in base:
+        for i in range(n):
+            G[(u,i)] = set()
+
+    used = set()
+    for u in base:
+        for v in base[u]:
+            if (v,u) in used:
+                continue
+            used.add((u,v))
+
+            perm = list(range(n))
+            random.shuffle(perm)
+
+            for i in range(n):
+                a = (u,i)
+                b = (v,perm[i])
+                G[a].add(b)
+                G[b].add(a)
+
+    return G
+
