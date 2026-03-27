@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections import deque, defaultdict
 from typing import Dict, Set, Tuple
-from canonical_label import canonical_ball_code_iso
+from .canonical_label import canonical_ball_code_iso
 
 Vertex = int
 Graph = Dict[Vertex, Set[Vertex]]

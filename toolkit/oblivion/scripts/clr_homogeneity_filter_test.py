@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from clr_local_transition_scan import random_n_lift, connected_regular_base, cycle_rank
-from rooted_wl import count_types_wl
+from .clr_local_transition_scan import random_n_lift, connected_regular_base, cycle_rank
+from .rooted_wl import count_types_wl
 
 def run_test():
     R = 2

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from rooted_wl import wl_refinement
-from clr_local_transition_scan import cycle_rank
+from .rooted_wl import wl_refinement
+from .clr_local_transition_scan import cycle_rank
 
 def local_cycle_rank(G, v, R):
     ball = {v}

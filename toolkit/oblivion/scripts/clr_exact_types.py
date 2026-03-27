@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from rooted_iso import rooted_iso
-from clr_cayley_homogeneous_test import cayley_cycle, cayley_grid
+from .clr_cayley_homogeneous_test import cayley_cycle, cayley_grid
 
 def count_types(G, R):
     reps = []

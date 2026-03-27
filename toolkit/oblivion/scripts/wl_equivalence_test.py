@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from rooted_wl import wl_refinement
+from .rooted_wl import wl_refinement
 
 def wl_signature(G, R):
     return sorted(wl_refinement(G, v, R) for v in G)

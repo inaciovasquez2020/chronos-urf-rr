@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from cfi_pair_generator import cfi_pair_on_cycle
+from .cfi_pair_generator import cfi_pair_on_cycle
 
 def edge_parity_signature(G):
     sig = 0

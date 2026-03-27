@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from rooted_wl import count_types_wl
-from clr_cayley_homogeneous_test import cayley_cycle, cayley_grid
+from .rooted_wl import count_types_wl
+from .clr_cayley_homogeneous_test import cayley_cycle, cayley_grid
 
 def run():
     R = 2

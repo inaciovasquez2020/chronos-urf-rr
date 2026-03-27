@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from collections import defaultdict
-from clr_local_transition_scan import type_set, cycle_rank
+from .clr_local_transition_scan import type_set, cycle_rank
 
 def cayley_cycle(n: int):
     G = defaultdict(set)
