@@ -25,12 +25,18 @@ def canonical_ball_code_iso(G, root, R):
     nodes = sorted(ball)
     best = None
 
-    # enforce root mapped to index 0
-    for perm_root in [root]:
-        order = sorted(nodes, key=lambda v:(dist[v], len(G[v]), v))
-        if order[0] != root:
-            order.remove(root)
-            order = [root] + order
+    # normalize by all root-preserving BFS labelings
+    for start in [root]:
+        order = [root]
+        layers = {}
+        for v in nodes:
+            layers.setdefault(dist[v], []).append(v)
+
+        for d in sorted(layers.keys()):
+            if d == 0:
+                continue
+            layer = sorted(layers[d])
+            order.extend(layer)
 
         idx = {v:i for i,v in enumerate(order)}
 
