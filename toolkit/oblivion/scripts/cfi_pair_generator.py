@@ -124,3 +124,26 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+def cfi_labeled_pair_on_cycle(base_n: int, twist: set):
+    G0, G1 = {}, {}
+    for v in range(base_n):
+        for g in [G0, G1]:
+            for bit in range(2):
+                g[(v, bit)] = {}
+    used = set()
+    for v in range(base_n):
+        u = (v + 1) % base_n
+        key = (min(v, u), max(v, u))
+        if key in used:
+            continue
+        used.add(key)
+        for bit in range(2):
+            G0[(v, bit)][(u, bit)] = 0
+            G0[(u, bit)][(v, bit)] = 0
+            is_twisted = (v, u) in twist or (u, v) in twist
+            flip = 1 if is_twisted else 0
+            G1[(v, bit)][(u, bit ^ flip)] = flip
+            G1[(u, bit ^ flip)][(v, bit)] = flip
+    return G0, G1
