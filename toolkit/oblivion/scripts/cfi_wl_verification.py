@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
 
-from cfi_pair_generator import cfi_pair_on_cycle
-from rooted_wl import wl_refinement
+from .cfi_pair_generator import cfi_pair_on_cycle
+from .rooted_wl import wl_refinement
 
 def wl_signature(G, R):
     return sorted(wl_refinement(G, v, R) for v in G)
 
 def run():
     R = 2
-
-    # generate CFI pair
     G0, G1 = cfi_pair_on_cycle(6, {(0,1)})
-
     sig0 = wl_signature(G0, R)
     sig1 = wl_signature(G1, R)
 
