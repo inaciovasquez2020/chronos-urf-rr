@@ -1,0 +1,1 @@
+-- Finite-state EF configuration repetition model

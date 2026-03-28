@@ -1,0 +1,1 @@
+-- EF configuration → linear witness encoding
