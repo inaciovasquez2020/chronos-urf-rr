@@ -1,62 +1,43 @@
 import Mathlib.Data.Matrix.Basic
 import Mathlib.Data.Finset.Basic
-import Mathlib.Algebra.BigOperators.Basic
 
 abbrev F2 := ZMod 2
 
-open BigOperators
-
 variable {m n : ℕ}
-
-def rowHitsColumn
-  (A : Matrix (Fin m) (Fin n) F2)
-  (i : Fin m) (j : Fin n) : Prop :=
-  A i j ≠ 0
-
-def columnIncidence
-  (A : Matrix (Fin m) (Fin n) F2)
-  (γ : Finset (Fin m))
-  (j : Fin n) : ℕ :=
-  ∑ i in γ, if A i j = 0 then 0 else 1
-
-def incidenceDegree
-  (A : Matrix (Fin m) (Fin n) F2)
-  (γ : Finset (Fin m))
-  (j : Fin n) : ℕ :=
-  columnIncidence A γ j
-
-def evenIncidence
-  (A : Matrix (Fin m) (Fin n) F2)
-  (γ : Finset (Fin m)) : Prop :=
-  ∀ j, Even (incidenceDegree A γ j)
 
 def OverlapCycleCondition
   (A : Matrix (Fin m) (Fin n) F2)
   (γ : Finset (Fin m)) : Prop :=
-  ∀ j, ∑ i in γ, A i j = 0
+  ∀ j : Fin n, ∑ i in γ, A i j = 0
 
-def bipartiteColumnCycle
+def IsOverlapCycle
   (A : Matrix (Fin m) (Fin n) F2)
   (γ : Finset (Fin m)) : Prop :=
-  ∀ j : Fin n, Even (∑ i in γ, if rowHitsColumn A i j then 1 else 0)
+  ∀ j : Fin n,
+    Even ((γ.filter fun i => A i j ≠ 0).card)
 
-lemma bipartiteColumnCycle_implies_evenIncidence
+theorem overlap_cycle_implies_zero_column_sum
   (A : Matrix (Fin m) (Fin n) F2)
   (γ : Finset (Fin m))
-  (hγ : bipartiteColumnCycle A γ) :
-  evenIncidence A γ := by
-  intro j
-  simpa [evenIncidence, incidenceDegree, columnIncidence, rowHitsColumn] using hγ j
-
-axiom even_incidence_implies_zero
-  (A : Matrix (Fin m) (Fin n) F2)
-  (γ : Finset (Fin m))
-  (h : evenIncidence A γ) :
-  OverlapCycleCondition A γ
-
-theorem bipartiteColumnCycle_implies_zero_column_sum
-  (A : Matrix (Fin m) (Fin n) F2)
-  (γ : Finset (Fin m))
-  (hγ : bipartiteColumnCycle A γ) :
+  (hγ : IsOverlapCycle A γ) :
   OverlapCycleCondition A γ :=
-  even_incidence_implies_zero A γ (bipartiteColumnCycle_implies_evenIncidence A γ hγ)
+by
+  classical
+  intro j
+  have hEven := hγ j
+  have hmod :
+    ((γ.filter fun i => A i j ≠ 0).card : F2) = 0 := by
+    exact_mod_cast hEven.mod_two_eq_zero
+  have :
+    ∑ i in γ, A i j =
+      ((γ.filter fun i => A i j ≠ 0).card : F2) := by
+    classical
+    refine Finset.sum_congr rfl ?_
+    intro i hi
+    by_cases h : A i j = 0
+    · simp [h]
+    · have : A i j = 1 := by
+        have : A i j ≠ 0 := h
+        exact one_of_ne_zero this
+      simp [h, this]
+  simpa [this, hmod]
