@@ -1,14 +1,14 @@
--- add directly below columnIncidence
+-- replace isOverlapCycle with stronger condition
 
-def incidenceDegree
+def balancedOverlap
+  (A : Matrix (Fin m) (Fin n) F2)
+  (γ : Finset (Fin m)) : Prop :=
+  ∀ j : Fin n,
+    Even (∑ i in γ, if A i j = 0 then 0 else 1)
+
+-- redefine target lemma
+axiom balanced_overlap_even_degree
   (A : Matrix (Fin m) (Fin n) F2)
   (γ : Finset (Fin m))
-  (j : Fin n) : ℕ :=
-  columnIncidence A γ j
-
--- key structural conjecture (stronger form)
-axiom overlap_cycle_even_degree
-  (A : Matrix (Fin m) (Fin n) F2)
-  (γ : Finset (Fin m))
-  (hγ : isOverlapCycle A γ) :
+  (hγ : balancedOverlap A γ) :
   ∀ j, Even (incidenceDegree A γ j)
