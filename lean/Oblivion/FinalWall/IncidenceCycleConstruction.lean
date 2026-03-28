@@ -30,3 +30,48 @@ by
     Finset.card_eq_two_mul_card_quotient
       (visits C j) σ hInv hNoFix hPres
 
+
+lemma sigma_explicit
+  {A : Matrix (Fin m) (Fin n) F2}
+  (C : IncidenceCycle A) :
+  Function.Involutive (sigma C) :=
+by
+  intro k
+  ext
+  simp [sigma, Nat.add_mod, Nat.mod_mod]
+
+lemma sigma_preserves_visits_explicit
+  {A : Matrix (Fin m) (Fin n) F2}
+  (C : IncidenceCycle A)
+  (j : Fin n) :
+  ∀ k, k ∈ visits C j → sigma C k ∈ visits C j :=
+by
+  intro k hk
+  classical
+  simp [visits] at *
+  rcases Finset.mem_filter.mp hk with ⟨_, hk⟩
+  have h₁ := C.step₁ k.1 k.2
+  have h₂ := C.step₂ k.1 k.2
+  simp [sigma]
+  exact Finset.mem_filter.mpr ⟨by simp, by simpa using hk⟩
+
+lemma sigma_no_fixed_explicit
+  {A : Matrix (Fin m) (Fin n) F2}
+  (C : IncidenceCycle A)
+  (j : Fin n) :
+  ∀ k, k ∈ visits C j → sigma C k ≠ k :=
+by
+  intro k hk h
+  have := congrArg Fin.val h
+  simp [sigma] at this
+  exact Nat.succ_ne_self _ this
+
+lemma column_index_row_hit_bijection_explicit
+  {A : Matrix (Fin m) (Fin n) F2}
+  (C : IncidenceCycle A)
+  (j : Fin n) :
+  (visits C j).card = (rowHitsAt C j).card :=
+by
+  classical
+  simp [visits, rowHitsAt, List.countP_eq_length_filter]
+
