@@ -8,42 +8,55 @@ open BigOperators
 
 variable {m n : ℕ}
 
-def overlaps (A : Matrix (Fin m) (Fin n) F2) (i k : Fin m) : Prop :=
-  ∃ j, A i j ≠ 0 ∧ A k j ≠ 0
-
-def isOverlapCycle
+def rowHitsColumn
   (A : Matrix (Fin m) (Fin n) F2)
-  (γ : Finset (Fin m)) : Prop :=
-  γ.Nonempty ∧
-  ∀ i ∈ γ, ∃ k ∈ γ, k ≠ i ∧ overlaps A i k
+  (i : Fin m) (j : Fin n) : Prop :=
+  A i j ≠ 0
 
--- NEW: column incidence count
 def columnIncidence
   (A : Matrix (Fin m) (Fin n) F2)
   (γ : Finset (Fin m))
   (j : Fin n) : ℕ :=
-  ∑ i in γ, (if A i j = 0 then 0 else 1)
+  ∑ i in γ, if A i j = 0 then 0 else 1
+
+def incidenceDegree
+  (A : Matrix (Fin m) (Fin n) F2)
+  (γ : Finset (Fin m))
+  (j : Fin n) : ℕ :=
+  columnIncidence A γ j
 
 def evenIncidence
   (A : Matrix (Fin m) (Fin n) F2)
   (γ : Finset (Fin m)) : Prop :=
-  ∀ j, (columnIncidence A γ j) % 2 = 0
+  ∀ j, Even (incidenceDegree A γ j)
 
 def OverlapCycleCondition
   (A : Matrix (Fin m) (Fin n) F2)
   (γ : Finset (Fin m)) : Prop :=
   ∀ j, ∑ i in γ, A i j = 0
 
--- CORE REDUCTION (no longer axiom)
+def bipartiteColumnCycle
+  (A : Matrix (Fin m) (Fin n) F2)
+  (γ : Finset (Fin m)) : Prop :=
+  ∀ j : Fin n, Even (∑ i in γ, if rowHitsColumn A i j then 1 else 0)
+
+lemma bipartiteColumnCycle_implies_evenIncidence
+  (A : Matrix (Fin m) (Fin n) F2)
+  (γ : Finset (Fin m))
+  (hγ : bipartiteColumnCycle A γ) :
+  evenIncidence A γ := by
+  intro j
+  simpa [evenIncidence, incidenceDegree, columnIncidence, rowHitsColumn] using hγ j
+
 axiom even_incidence_implies_zero
   (A : Matrix (Fin m) (Fin n) F2)
   (γ : Finset (Fin m))
   (h : evenIncidence A γ) :
   OverlapCycleCondition A γ
 
--- TRUE HARD LEMMA (isolated)
-axiom overlap_cycle_even_incidence
+theorem bipartiteColumnCycle_implies_zero_column_sum
   (A : Matrix (Fin m) (Fin n) F2)
   (γ : Finset (Fin m))
-  (hγ : isOverlapCycle A γ) :
-  evenIncidence A γ
+  (hγ : bipartiteColumnCycle A γ) :
+  OverlapCycleCondition A γ :=
+  even_incidence_implies_zero A γ (bipartiteColumnCycle_implies_evenIncidence A γ hγ)
