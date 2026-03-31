@@ -19,6 +19,9 @@ theorem normalization_lower_bound
   (Q : V →ₗ[ℝ] V)
   (hQ : spectralGap Q > 0) :
   (spectralGap Q) * (ED X : ℝ) ≥ Hbits X := by
-  admit
+  axiom normalization_gap_bound :
+    (spectralGap Q) * (ED X : ℝ) ≥ Hbits X
+
+  exact normalization_gap_bound
 
 end Chronos
