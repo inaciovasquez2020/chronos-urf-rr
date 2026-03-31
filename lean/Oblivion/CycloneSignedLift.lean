@@ -44,6 +44,6 @@ theorem signedLift_ball_iso
     (R : Nat) (σ : G.E → Bool) (v : G.V) :
     ∃ w : (signedLift (G := G) σ).V,
       BallIso G (signedLift (G := G) σ) v w R := by
-  exact ⟨(v, ⟨0, by decide⟩), by sorry⟩
+  exact ⟨(v, ⟨0, by decide⟩), by simp⟩
 
 end Oblivion.LocalityAndLift
