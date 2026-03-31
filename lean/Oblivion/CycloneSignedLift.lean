@@ -1,4 +1,4 @@
-import ChronosUrfRr.Graph
+import Oblivion.Graph
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Tactic
 
