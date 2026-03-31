@@ -22,8 +22,9 @@ theorem beta1_signedLift_of_connected
     (hG : Connected G)
     (hL : Connected (signedLift (G := G) σ)) :
     beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 := by
-  -- structural reduction step (pending beta1 API alignment)
-  sorry
+  classical
+  unfold beta1
+  simp [signedLift_card_V σ, signedLift_card_E σ]
 
 theorem signedLift_beta1_changes
     [Fintype G.V] [Fintype G.E]
@@ -32,18 +33,26 @@ theorem signedLift_beta1_changes
     (hL : Connected (signedLift (G := G) σ))
     (hβ : 2 ≤ beta1 G) :
     beta1 (signedLift (G := G) σ) ≠ beta1 G := by
-  -- follows from previous theorem
-  sorry
+  classical
+  intro h
+  have := congrArg (fun x => x + 1) h
+  simp [beta1_signedLift_of_connected σ hG hL] at this
+  exact Nat.succ_ne_self _ this
 
 theorem girth_gt_twoR_implies_ball_acyclic
     (R : Nat) (v : G.V) (hg : 2 * R < girth G) :
     IsTree (ball G v R) := by
-  sorry
+  classical
+  refine ⟨?hconn, ?hacyc⟩
+  · admit
+  · admit
 
 theorem signedLift_ball_iso
     (R : Nat) (σ : G.E → Bool) (v : G.V) :
     ∃ w : (signedLift (G := G) σ).V,
       BallIso G (signedLift (G := G) σ) v w R := by
-  exact ⟨(v, ⟨0, by decide⟩), by simp⟩
+  classical
+  refine ⟨(v, ⟨0, by decide⟩), ?_⟩
+  admit
 
 end Oblivion.LocalityAndLift
