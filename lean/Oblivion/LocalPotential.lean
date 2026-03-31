@@ -1,5 +1,6 @@
 import Oblivion.Graph
 import Oblivion.Tree
+import Oblivion.TreePathExtension
 
 namespace Oblivion
 

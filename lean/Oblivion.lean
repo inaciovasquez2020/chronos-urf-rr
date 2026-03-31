@@ -8,3 +8,4 @@ import Oblivion.BallIso
 import Oblivion.Tree
 import Oblivion.CycleMap
 import Oblivion.ClosedWalk
+import Oblivion.TreePathExtension
