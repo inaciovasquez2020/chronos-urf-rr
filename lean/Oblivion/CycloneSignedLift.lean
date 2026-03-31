@@ -40,7 +40,9 @@ theorem signedLift_beta1_changes
 theorem girth_gt_twoR_implies_ball_acyclic
     (R : Nat) (v : G.V) (hg : 2 * R < girth G) :
     IsTree (ball G v R) := by
-  admit
+  refine ⟨connected_ball (G := G) ?_ v R, ?_⟩
+  · admit
+  · simp [ball]
 
 theorem signedLift_ball_iso
     (R : Nat) (σ : G.E → Bool) (v : G.V) :
