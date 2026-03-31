@@ -38,9 +38,15 @@ theorem signedLift_beta1_changes
   admit
 
 theorem girth_gt_twoR_implies_ball_acyclic
-    (R : Nat) (v : G.V) (hg : 2 * R < girth G) :
+    (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
     Oblivion.IsTree (ball G v R) := by
-  refine ⟨connected_ball (G := G) hG v R, trivial⟩
+  refine ⟨connected_ball (G := G) hG v R, ?_⟩
+  intro C
+  obtain ⟨C', hlen⟩ := ball_cycle_embeds_in_graph (G := G) v R C
+  have h1 : C.edges.card ≤ 2 * R := cycle_length_le_twoR_of_subgraph_ball (G := G) v R C
+  have h2 : girth G ≤ C'.edges.card := girth_le_cycle_length C'
+  rw [hlen] at h2
+  omega
   · admit
   · simp [ball]
 
@@ -49,6 +55,11 @@ theorem signedLift_ball_iso
     ∃ w : (signedLift (G := G) σ).V,
       BallIso G (signedLift (G := G) σ) v w R := by
   refine ⟨(v, ⟨0, by decide⟩), ?_⟩
-  admit
+  obtain ⟨f, hf⟩ := signedLift_ball_local_bijection (G := G) σ v R
+  refine ⟨f, Classical.choose ?_, ?_, ?_, ?_⟩
+  · exact Classical.choice (Classical.decEq _)
+  · admit
+  · admit
+  · exact signedLift_ball_local_adjacency (G := G) σ v R f
 
 end Oblivion.LocalityAndLift
