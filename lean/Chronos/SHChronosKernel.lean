@@ -18,9 +18,6 @@ constant refine : Graph → Graph
 constant DCV : Nat → Nat
 def ED (X : Type) : Nat := Nat.find (fun t => DCV t = 0)
 
-axiom I_lower : ∀ G, I G ≥ 1
-axiom I_decay : ∀ G, I (refine G) ≥ I G - 1
-axiom I_local_zero : ∀ G, I G = 0
 
 theorem chronos_lower_bound (X : Type) :
   ED X ≥ 1 := by
