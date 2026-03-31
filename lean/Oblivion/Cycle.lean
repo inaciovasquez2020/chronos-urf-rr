@@ -26,3 +26,18 @@ axiom ball_cycle_embeds_in_graph
   ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card
 
 end Oblivion
+
+namespace Oblivion
+
+axiom cycle_nonempty_edges
+  {G : Graph} (C : Cycle G) : 0 < C.edges.card
+
+axiom ball_cycle_length_bound
+  {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
+  C.edges.card ≤ 2 * R
+
+axiom ball_cycle_lifts
+  {G : Graph} (v : G.V) (R : Nat) :
+  ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card
+
+end Oblivion
