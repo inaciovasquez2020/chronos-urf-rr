@@ -1,7 +1,8 @@
 import Oblivion.Graph
 import Oblivion.Beta1
 import Oblivion.Ball
-import Oblivion.Cycle
+import Oblivion.ClosedWalk
+import Oblivion.CycleMap
 import Oblivion.BallIso
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Tactic
@@ -57,10 +58,6 @@ theorem signedLift_ball_iso
     ∃ w : (signedLift (G := G) σ).V,
       BallIso G (signedLift (G := G) σ) v w R := by
   refine ⟨(v, ⟨0, by decide⟩), ?_⟩
-  obtain ⟨f, hfbij, hfadj⟩ := signedLift_ball_iso_data (G := G) σ v R
-  refine ⟨f, Classical.invFun f, ?_, ?_, ?_⟩
-  · exact Function.leftInverse_invFun hfbij
-  · exact Function.rightInverse_invFun hfbij
-  · exact hfadj
+  simpa using (signedLift_ball_iso_data (G := G) σ v R)
 
 end Oblivion.LocalityAndLift
