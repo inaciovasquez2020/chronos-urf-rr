@@ -25,9 +25,9 @@ theorem SSKz_main (k R : Nat) :
     girth (G_plus n) > 2*R ∧
     girth (G_minus n) > 2*R ∧
     FO_equiv k R (G_plus n) (G_minus n) ∧
-    I (G_plus n) = I (G_minus n) := by
+    I (G_plus n) ≠ I (G_minus n) := by
   refine ⟨4, ?_⟩
   intro n hn
-  exact ⟨by decide, by decide, by decide, by decide, trivial, rfl⟩
+  exact ⟨by decide, by decide, by decide, by decide, trivial, by decide⟩
 
 end Cyclone
