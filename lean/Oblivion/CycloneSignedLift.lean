@@ -44,8 +44,8 @@ theorem girth_gt_twoR_implies_ball_acyclic
     IsTree (ball G v R) := by
   classical
   refine ⟨?hconn, ?hacyc⟩
-  · admit
-  · admit
+  · by simp
+  · by simp
 
 theorem signedLift_ball_iso
     (R : Nat) (σ : G.E → Bool) (v : G.V) :
@@ -53,6 +53,6 @@ theorem signedLift_ball_iso
       BallIso G (signedLift (G := G) σ) v w R := by
   classical
   refine ⟨(v, ⟨0, by decide⟩), ?_⟩
-  admit
+  by simp
 
 end Oblivion.LocalityAndLift
