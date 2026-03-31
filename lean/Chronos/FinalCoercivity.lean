@@ -8,16 +8,24 @@ variable {V : Type} [InnerProductSpace ℝ V]
 noncomputable def Q (L Pi : V →ₗ[ℝ] V) : V →ₗ[ℝ] V :=
 (L.adjoint.comp L) + Pi
 
-theorem coercivity_Q_id :
-  ∃ c > 0, ∀ x : V, ⟪(Q LinearMap.id LinearMap.id) x, x⟫ ≥ c * ‖x‖^2 := by
-  refine ⟨1, by decide, ?_⟩
+theorem coercivity_Q_general
+  (L Pi : V →ₗ[ℝ] V)
+  (hPi : ∃ c₀ > 0, ∀ x, ⟪Pi x, x⟫ ≥ c₀ * ‖x‖^2) :
+  ∃ c > 0, ∀ x : V, ⟪(Q L Pi) x, x⟫ ≥ c * ‖x‖^2 := by
+  obtain ⟨c₀, hc₀pos, hPi_lb⟩ := hPi
+  refine ⟨c₀, hc₀pos, ?_⟩
   intro x
-  have h1 : ⟪(LinearMap.id : V →ₗ[ℝ] V) x, x⟫ = ‖x‖^2 := by
-    simpa using inner_self_eq_norm_sq x
-  have h2 : ⟪((LinearMap.id.adjoint.comp LinearMap.id) x), x⟫ = ‖x‖^2 := by
-    simpa using inner_self_eq_norm_sq x
-  have : ⟪(Q LinearMap.id LinearMap.id) x, x⟫ = 2 * ‖x‖^2 := by
-    simp [Q, h1, h2]
-  simpa [this]
+  have hL : 0 ≤ ⟪(L.adjoint.comp L) x, x⟫ := by
+    have : ⟪L x, L x⟫ = ⟪(L.adjoint.comp L) x, x⟫ := by
+      simp
+    simpa [this] using inner_self_nonneg (L x)
+  have hPi' := hPi_lb x
+  have : ⟪(Q L Pi) x, x⟫ =
+      ⟪(L.adjoint.comp L) x, x⟫ + ⟪Pi x, x⟫ := by
+    simp [Q]
+  have hsum : ⟪(Q L Pi) x, x⟫ ≥ 0 + c₀ * ‖x‖^2 := by
+    have := add_le_add hL hPi'
+    simpa [this]
+  simpa using hsum
 
 end Chronos
