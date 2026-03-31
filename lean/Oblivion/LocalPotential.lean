@@ -41,9 +41,19 @@ lemma tree_potential_edge
   obtain ⟨p₁, hp₁⟩ := hT.connected.path_exists v₀ e.1.1
   obtain ⟨p₂, hp₂⟩ := hT.connected.path_exists v₀ e.1.2
   have hunique := hT.acyclic
-  have : p₂ = p₁.appendEdge e := by
-    admit
-  simp [tree_potential, this]
+  have h_dist :
+      dist v₀ e.1.2 = dist v₀ e.1.1 + 1 ∨
+      dist v₀ e.1.1 = dist v₀ e.1.2 + 1 :=
+    hT.dist_adj_property e
+  cases h_dist with
+  | inl h_forward =>
+      have h_path : p₂ = p₁.appendEdge e :=
+        hT.unique_path_extension p₁ e h_forward
+      simp [tree_potential, h_path, xor_assoc]
+  | inr h_backward =>
+      have h_path : p₁ = p₂.appendEdge e :=
+        hT.unique_path_extension p₂ e h_backward
+      simp [tree_potential, h_path, xor_comm, xor_assoc]
 
 /-- Constructive replacement of local_potential axiom. -/
 lemma local_potential_of_tree
