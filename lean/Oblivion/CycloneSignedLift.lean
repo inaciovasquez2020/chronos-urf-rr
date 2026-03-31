@@ -42,11 +42,13 @@ theorem girth_gt_twoR_implies_ball_acyclic
     Oblivion.IsTree (ball G v R) := by
   refine ⟨connected_ball (G := G) hG v R, ?_⟩
   intro C
-  obtain ⟨C', hlen⟩ := ball_cycle_embeds_in_graph (G := G) v R C
-  have h1 : C.edges.card ≤ 2 * R := cycle_length_le_twoR_of_subgraph_ball (G := G) v R C
-  have h2 : girth G ≤ C'.edges.card := girth_le_cycle_length C'
-  rw [hlen] at h2
-  omega
+  have hlen1 := ball_cycle_length_bound (G := G) v R C
+  obtain ⟨C', hlen2⟩ := ball_cycle_lifts (G := G) v R C
+  have hpos := cycle_nonempty_edges C'
+  have hlow : girth G ≤ C'.edges.card := girth_le_cycle_length C'
+  have hlt : C'.edges.card < girth G := by
+    simpa [hlen2] using lt_of_le_of_lt hlen1 hg
+  exact (not_lt_of_ge hlow) hlt
   · admit
   · simp [ball]
 
@@ -55,11 +57,10 @@ theorem signedLift_ball_iso
     ∃ w : (signedLift (G := G) σ).V,
       BallIso G (signedLift (G := G) σ) v w R := by
   refine ⟨(v, ⟨0, by decide⟩), ?_⟩
-  obtain ⟨f, hf⟩ := signedLift_ball_local_bijection (G := G) σ v R
-  refine ⟨f, Classical.choose ?_, ?_, ?_, ?_⟩
-  · exact Classical.choice (Classical.decEq _)
-  · admit
-  · admit
-  · exact signedLift_ball_local_adjacency (G := G) σ v R f
+  obtain ⟨f, hfbij, hfadj⟩ := signedLift_ball_iso_data (G := G) σ v R
+  refine ⟨f, Classical.invFun f, ?_, ?_, ?_⟩
+  · exact Function.leftInverse_invFun hfbij
+  · exact Function.rightInverse_invFun hfbij
+  · exact hfadj
 
 end Oblivion.LocalityAndLift
