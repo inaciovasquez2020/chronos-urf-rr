@@ -1,2 +1,5 @@
 import Chronos.EntropyModelGeneral
 import Chronos.EDOmegaN
+import Chronos.GraphDistance
+import Chronos.RootedBallEncoding
+import Chronos.EFDuplicator
