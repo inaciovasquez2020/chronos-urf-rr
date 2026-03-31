@@ -11,7 +11,8 @@ structure BallIso (G H : Graph) (v : G.V) (w : H.V) (R : Nat) : Prop where
   right_inv : Function.RightInverse invFun toFun
   adj_iff : ∀ a b, (ball G v R).Adj a b ↔ (ball H w R).Adj (toFun a) (toFun b)
 
-axiom local_potential
+-- replaced by constructive LocalPotential
+#check Oblivion.local_potential_of_tree
   {G : Graph} (σ : G.E → Bool) (v : G.V) (R : Nat) :
   G.V → Bool
 
@@ -28,15 +29,15 @@ def lift_inv
   (ball (signedLift (G := G) σ) (v, false) R).V → (ball G v R).V
 | u => u.1
 
-axiom lift_map_left_inv
+-- pending: derive from XOR involution
   {G : Graph} (σ : G.E → Bool) (v : G.V) (R : Nat) :
   Function.LeftInverse (lift_inv σ v R) (lift_map σ v R)
 
-axiom lift_map_right_inv
+-- pending: derive from XOR involution
   {G : Graph} (σ : G.E → Bool) (v : G.V) (R : Nat) :
   Function.RightInverse (lift_inv σ v R) (lift_map σ v R)
 
-axiom lift_map_adj_iff
+-- pending: derive from tree_potential parity consistency
   {G : Graph} (σ : G.E → Bool) (v : G.V) (R : Nat) :
   ∀ a b,
     (ball G v R).Adj a b ↔
