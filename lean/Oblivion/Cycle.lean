@@ -41,3 +41,11 @@ axiom ball_cycle_lifts
   ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card
 
 end Oblivion
+
+namespace Oblivion
+
+axiom girth_radius_tree
+  {G : Graph} (v : G.V) (R : Nat) :
+  2 * R + 1 < girth G → Acyclic (ball G v R)
+
+end Oblivion
