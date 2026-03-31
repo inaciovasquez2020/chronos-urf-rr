@@ -40,7 +40,7 @@ theorem signedLift_beta1_changes
 theorem girth_gt_twoR_implies_ball_acyclic
     (R : Nat) (v : G.V) (hg : 2 * R < girth G) :
     Oblivion.IsTree (ball G v R) := by
-  refine ⟨connected_ball (G := G) hG v R, ?_⟩
+  refine ⟨connected_ball (G := G) hG v R, trivial⟩
   · admit
   · simp [ball]
 
