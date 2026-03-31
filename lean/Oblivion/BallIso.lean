@@ -52,3 +52,75 @@ theorem signedLift_ball_iso_data
   · exact lift_map_adj_iff σ v R
 
 end Oblivion
+
+
+namespace Oblivion
+
+variable {G : Graph}
+
+def zeroSigning (G : Graph) : G.E → Bool := fun _ => false
+
+lemma xor_four_cancel (a b c d : Bool) (h : c ^^^ d = a ^^^ b) :
+    (a ^^^ c) ^^^ (b ^^^ d) = false := by
+  cases a <;> cases b <;> cases c <;> cases d <;> simp at h ⊢
+  all_goals cases h
+
+lemma xor_involutive (a b : Bool) : (a ^^^ b) ^^^ b = a := by
+  cases a <;> cases b <;> decide
+
+def lift_map
+    (σ : G.E → Bool)
+    (v : G.V)
+    (R : Nat)
+    (φ : G.V → Bool) :
+    (signedLift (G := G) σ).V → (signedLift (G := G) (zeroSigning G)).V :=
+  fun x => (x.1, x.2 ^^^ φ x.1)
+
+def lift_map_inv
+    (σ : G.E → Bool)
+    (v : G.V)
+    (R : Nat)
+    (φ : G.V → Bool) :
+    (signedLift (G := G) (zeroSigning G)).V → (signedLift (G := G) σ).V :=
+  fun x => (x.1, x.2 ^^^ φ x.1)
+
+lemma lift_map_left_inv
+    (σ : G.E → Bool)
+    (v : G.V)
+    (R : Nat)
+    (φ : G.V → Bool) :
+    Function.LeftInverse
+      (lift_map_inv (G := G) σ v R φ)
+      (lift_map (G := G) σ v R φ) := by
+  intro x
+  cases x with
+  | mk u b =>
+    simp [lift_map, lift_map_inv, xor_involutive]
+
+lemma lift_map_right_inv
+    (σ : G.E → Bool)
+    (v : G.V)
+    (R : Nat)
+    (φ : G.V → Bool) :
+    Function.RightInverse
+      (lift_map_inv (G := G) σ v R φ)
+      (lift_map (G := G) σ v R φ) := by
+  intro x
+  cases x with
+  | mk u b =>
+    simp [lift_map, lift_map_inv, xor_involutive]
+
+lemma lift_map_adj_iff_to_trivial
+    (σ : G.E → Bool)
+    (v : G.V)
+    (R : Nat)
+    (φ : G.V → Bool)
+    (hφ : ∀ e : G.E, φ e.1.1 ^^^ φ e.1.2 = σ e)
+    (x y : (signedLift (G := G) σ).V) :
+    (signedLift (G := G) σ).Adj x y ↔
+    (signedLift (G := G) (zeroSigning G)).Adj
+      (lift_map (G := G) σ v R φ x)
+      (lift_map (G := G) σ v R φ y) := by
+  sorry
+
+end Oblivion
