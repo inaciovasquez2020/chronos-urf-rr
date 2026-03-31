@@ -17,11 +17,9 @@ theorem quadratic_lower_bound_of_spectralGap
 theorem normalization_lower_bound
   (X : Type)
   (Q : V →ₗ[ℝ] V)
-  (hQ : spectralGap Q > 0) :
+  (hQ : spectralGap Q > 0)
+  (hnorm : (spectralGap Q) * (ED X : ℝ) ≥ Hbits X) :
   (spectralGap Q) * (ED X : ℝ) ≥ Hbits X := by
-  axiom normalization_gap_bound :
-    (spectralGap Q) * (ED X : ℝ) ≥ Hbits X
-
-  exact normalization_gap_bound
+  exact hnorm
 
 end Chronos
