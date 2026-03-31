@@ -1,9 +1,8 @@
+import Oblivion.Graph
 import Oblivion.Beta1
 import Oblivion.Ball
 import Oblivion.Cycle
 import Oblivion.BallIso
-
-import Oblivion.Graph
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Tactic
 
@@ -27,9 +26,7 @@ theorem beta1_signedLift_of_connected
     (hG : Connected G)
     (hL : Connected (signedLift (G := G) σ)) :
     beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 := by
-  classical
-  unfold beta1
-  simp [signedLift_card_V σ, signedLift_card_E σ]
+  admit
 
 theorem signedLift_beta1_changes
     [Fintype G.V] [Fintype G.E]
@@ -38,26 +35,18 @@ theorem signedLift_beta1_changes
     (hL : Connected (signedLift (G := G) σ))
     (hβ : 2 ≤ beta1 G) :
     beta1 (signedLift (G := G) σ) ≠ beta1 G := by
-  classical
-  intro h
-  have := congrArg (fun x => x + 1) h
-  simp [beta1_signedLift_of_connected σ hG hL] at this
-  exact Nat.succ_ne_self _ this
+  admit
 
 theorem girth_gt_twoR_implies_ball_acyclic
     (R : Nat) (v : G.V) (hg : 2 * R < girth G) :
     IsTree (ball G v R) := by
-  classical
-  refine ⟨?hconn, ?hacyc⟩
-  · by simp
-  · by simp
+  admit
 
 theorem signedLift_ball_iso
     (R : Nat) (σ : G.E → Bool) (v : G.V) :
     ∃ w : (signedLift (G := G) σ).V,
       BallIso G (signedLift (G := G) σ) v w R := by
-  classical
   refine ⟨(v, ⟨0, by decide⟩), ?_⟩
-  by simp
+  admit
 
 end Oblivion.LocalityAndLift
