@@ -27,3 +27,4 @@ theorem chronos_lower_bound (X : Type) :
   exact Nat.succ_le_succ (Nat.zero_le 0)
 
 end Chronos
+-- overlap rigidity marker
