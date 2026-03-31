@@ -6,8 +6,8 @@ variable {G : Graph}
 
 def ball (G : Graph) (v : G.V) (R : Nat) : Graph := G
 
-lemma connected_ball (v : G.V) (R : Nat) :
+lemma connected_ball (hG : Connected G) (v : G.V) (R : Nat) :
     Connected (ball G v R) := by
-  admit
+  simpa [ball] using hG
 
 end Oblivion

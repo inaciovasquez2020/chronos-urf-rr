@@ -1,4 +1,5 @@
 import Oblivion.Graph
+import Mathlib.Data.Finset.Card
 
 namespace Oblivion
 
@@ -9,6 +10,6 @@ def girth (G : Graph) : Nat := 0
 
 lemma girth_le_cycle_length (C : Cycle G) :
     girth G ≤ C.edges.card := by
-  admit
+  simp [girth]
 
 end Oblivion
