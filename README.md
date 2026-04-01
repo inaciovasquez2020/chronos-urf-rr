@@ -16,6 +16,7 @@ This repository is a **frozen reference realization** of the Chronos / EntropyDe
 
 ## Non-scope
 - No new axioms, theorems, or proof claims.
+  - Status: conditional
 - No claim that passing tests implies truth beyond stated invariants.
 - No resolution of open complexity problems.
 

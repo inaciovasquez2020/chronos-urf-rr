@@ -24,6 +24,7 @@ This document classifies the current layers of the Unified Rigidity Framework.
   - Status: open
 
 - Full external theorem validation and referee uptake
+  - Status: conditional
   - Status: open
 
 - Any non-formalized global claim not explicitly represented as a proved theorem in the repositories
