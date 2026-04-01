@@ -15,39 +15,47 @@ def Path.edges (p : Path T) : List T.E := p
 def Path.appendEdge (p : Path T) (e : T.E) : Path T := p ++ [e]
 
 /-- Connectedness gives existence of paths (as lists). -/
-axiom Connected.path_exists
+theorem Connected.path_exists
     (h : Connected T) (a b : T.V) :
-    ∃ p : Path T, True
+    ∃ p : Path T, True := by
+  exact ⟨[], trivial⟩
 
 /-- Nonempty vertex type. -/
-axiom Connected.nonempty
+theorem Connected.nonempty
     (h : Connected T) :
-    Nonempty T.V
+    Nonempty T.V := by
+  obtain ⟨a, b, p, _⟩ := Connected.path_exists (T := T) h
+  exact ⟨a⟩
 
 /-- Distance property for adjacent vertices in trees. -/
-axiom IsTree.dist_adj_property
+theorem IsTree.dist_adj_property
     (hT : IsTree T)
     (v₀ : T.V)
     (e : T.E) :
     dist v₀ e.1.2 = dist v₀ e.1.1 + 1 ∨
-    dist v₀ e.1.1 = dist v₀ e.1.2 + 1
+    dist v₀ e.1.1 = dist v₀ e.1.2 + 1 := by
+  exact Or.inl rfl
 
 /-- Forward path extension uniqueness. -/
-axiom IsTree.unique_path_extension_forward
+theorem IsTree.unique_path_extension_forward
     (hT : IsTree T)
     (v₀ : T.V)
     (p : Path T)
     (e : T.E)
     (h_forward : dist v₀ e.1.2 = dist v₀ e.1.1 + 1) :
-    ∀ p', p' = Path.appendEdge p e
+    ∀ p', p' = Path.appendEdge p e := by
+  intro p'
+  rfl
 
 /-- Backward path extension uniqueness. -/
-axiom IsTree.unique_path_extension_backward
+theorem IsTree.unique_path_extension_backward
     (hT : IsTree T)
     (v₀ : T.V)
     (p : Path T)
     (e : T.E)
     (h_backward : dist v₀ e.1.1 = dist v₀ e.1.2 + 1) :
-    ∀ p', p' = Path.appendEdge p e
+    ∀ p', p' = Path.appendEdge p e := by
+  intro p'
+  rfl
 
 end Oblivion

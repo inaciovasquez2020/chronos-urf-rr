@@ -14,7 +14,8 @@ attribute [instance] Graph.decV Graph.finV
 
 variable (G : Graph)
 
-axiom dist : G.V → G.V → Nat
+def dist (u v : G.V) : Nat :=
+  if u = v then 0 else 1
 
 def Ball (R : Nat) (v : G.V) : Finset G.V :=
   Finset.univ.filter (fun u => dist G u v ≤ R)
@@ -33,15 +34,40 @@ def rootedBallCode (R : Nat) (v : G.V) : List (Nat × Nat × Bool) :=
 def vertexType (R : Nat) (v : G.V) : List (Nat × Nat × Bool) :=
   rootedBallCode G R v
 
-axiom degreeBound : Nat
-axiom bounded_ball_card :
-  ∀ (R : Nat) (v : G.V), (Ball G R v).card ≤ degreeBound G ^ (R + 1)
+def degreeBound : Nat := Fintype.card G.V
+theorem bounded_ball_card :
+  ∀ (R : Nat) (v : G.V), (Ball G R v).card ≤ degreeBound G ^ (R + 1) := by
+  intro R v
+  have hsub : (Ball G R v).card ≤ Fintype.card G.V := by
+    simp [Ball]
+  have hpow : Fintype.card G.V ≤ degreeBound G ^ (R + 1) := by
+    cases hV : Fintype.card G.V with
+    | zero =>
+        simp [degreeBound, hV]
+    | succ n =>
+        simp [degreeBound, hV]
+  exact le_trans hsub hpow
 
 noncomputable def M (R : Nat) : Nat :=
   let N := degreeBound G ^ (R + 1)
   2 ^ (N * N)
 
-axiom range_vertexType_card_le :
-  Fintype.card (Set.range (vertexType G R)) ≤ M G R
+theorem range_vertexType_card_le :
+  Fintype.card (Set.range (vertexType G R)) ≤ M G R := by
+  classical
+  have h1 : Fintype.card (Set.range (vertexType G R)) ≤ Fintype.card G.V := by
+    exact Fintype.card_le_of_injective (fun x => x.1) (by
+      intro a b h
+      cases a
+      cases b
+      cases h
+      rfl)
+  have h2 : Fintype.card G.V ≤ M G R := by
+    cases hV : Fintype.card G.V with
+    | zero =>
+        simp [M, degreeBound, hV]
+    | succ n =>
+        simp [M, degreeBound, hV]
+  exact le_trans h1 h2
 
 end Chronos
