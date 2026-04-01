@@ -16,6 +16,7 @@ This repository is a **frozen reference realization** of the Chronos / EntropyDe
 
 ## Non-scope
 - No new axioms, theorems, or proof claims.
+  - Status: conditional
 - No claim that passing tests implies truth beyond stated invariants.
 - No resolution of open complexity problems.
 
@@ -50,4 +51,8 @@ Referee classification and review guidance are provided in:
 
 - `cslib-fmt` — finite-model-theoretic formalization slice of URF:
   https://github.com/inaciovasquez2020/cslib-fmt
+
+## URF Claim Status
+
+See `URF_STATUS.md` for the canonical classification of formalized, conditional, and open layers.
 
