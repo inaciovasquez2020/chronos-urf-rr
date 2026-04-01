@@ -126,9 +126,5 @@ lemma lift_map_adj_iff_to_trivial
     cases y with
     | mk y by =>
       simp [signedLift, lift_map, zeroSigning, hφ]
-    (signedLift (G := G) (zeroSigning G)).Adj
-      (lift_map (G := G) σ v R φ x)
-      (lift_map (G := G) σ v R φ y) := by
-  sorry
 
 end Oblivion
