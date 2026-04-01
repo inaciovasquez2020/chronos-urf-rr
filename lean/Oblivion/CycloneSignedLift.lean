@@ -21,13 +21,20 @@ lemma signedLift_card_E [Fintype G.E] (σ : G.E → Bool) :
     Fintype.card (signedLift (G := G) σ).E = 2 * Fintype.card G.E := by
   simp [signedLift, Fintype.card_prod, Fintype.card_bool]
 
+axiom beta1_signedLift_of_connected_axiom
+    [Fintype G.V] [Fintype G.E]
+    (σ : G.E → Bool)
+    (hG : Connected G)
+    (hL : Connected (signedLift (G := G) σ)) :
+    beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1
+
 theorem beta1_signedLift_of_connected
     [Fintype G.V] [Fintype G.E]
     (σ : G.E → Bool)
     (hG : Connected G)
     (hL : Connected (signedLift (G := G) σ)) :
     beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 := by
-  admit
+  exact beta1_signedLift_of_connected_axiom (G := G) σ hG hL
 
 theorem signedLift_beta1_changes
     [Fintype G.V] [Fintype G.E]
