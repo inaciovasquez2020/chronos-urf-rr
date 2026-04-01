@@ -51,3 +51,7 @@ Referee classification and review guidance are provided in:
 - `cslib-fmt` — finite-model-theoretic formalization slice of URF:
   https://github.com/inaciovasquez2020/cslib-fmt
 
+## URF Claim Status
+
+See `URF_STATUS.md` for the canonical classification of formalized, conditional, and open layers.
+
