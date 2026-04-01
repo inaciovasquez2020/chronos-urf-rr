@@ -11,7 +11,7 @@ class BoundedDegreeGraph (G : Type) : Prop := (dummy : True)
 
 def COR (G : Type) : Nat := 0
 
-def FO_k_R_homogeneous (G : Type) : Prop := True
+def FO_k_R_homogeneous (G : Type) : Prop := False
 
 theorem OblivionAtom (G : Type) [BoundedDegreeGraph (k:=k) (Δ:=Δ) G] :
   (∃ R T : Nat, COR (k:=k) (Δ:=Δ) G ≥ T → ¬ FO_k_R_homogeneous (k:=k) (Δ:=Δ) G) := by

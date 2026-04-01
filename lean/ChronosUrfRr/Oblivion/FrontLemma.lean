@@ -11,7 +11,8 @@ structure EFState (G : Graph) (t : Nat) where
 /-- Placeholder bisimulation predicate. -/
 def preservesCodeType
     (r t : Nat) (G₀ G₁ : Graph)
-    (s₀ : EFState G₀ t) (s₁ : EFState G₁ t) : Prop := True
+    (s₀ : EFState G₀ t) (s₁ : EFState G₁ t) : Prop :=
+  Nonempty G₀.V ↔ Nonempty G₁.V
 
 /-- Typeclass asserting G has at least one vertex. -/
 class NonemptyV (G : Graph) : Prop where

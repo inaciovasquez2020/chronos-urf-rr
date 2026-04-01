@@ -8,7 +8,7 @@ structure Graph where
 
 def deg (G : Graph) : Nat := 0
 def girth (G : Graph) : Nat := 0
-def FO_equiv (k R : Nat) (G H : Graph) : Prop := True
+def FO_equiv (k R : Nat) (G H : Graph) : Prop := Nonempty G.V ↔ Nonempty H.V
 def I (G : Graph) : Nat := 0
 
 def LPS (p q : Nat) : Graph := ⟨Unit, Unit⟩
