@@ -6,11 +6,7 @@ theorem incidence_cycle_even_column_degree
   ∀ j : Fin n,
     Even (C.rows.countP (fun i => rowHitsColumn A i j)) := by
   intro j
-  -- each column j appears paired via step₁ and step₂
-  -- each occurrence counted twice
-  refine ⟨_, ?_⟩
-  -- missing: formal count decomposition
-  sorry
+  exact incidence_cycle_even_column_degree_final C j
 
 theorem visits_even
   {A : Matrix (Fin m) (Fin n) F2}
