@@ -45,3 +45,9 @@ See:
 
 Referee classification and review guidance are provided in:
 - docs/referee/REFEREE_MAP.md
+
+## Subcomponents
+
+- `cslib-fmt` — finite-model-theoretic formalization slice of URF:
+  https://github.com/inaciovasquez2020/cslib-fmt
+
