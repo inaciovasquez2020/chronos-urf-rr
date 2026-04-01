@@ -50,7 +50,7 @@ axiom phi_bijective
   (hCode : CodeR G R v = CodeR H R w) :
   Function.Bijective (phi (G:=G) (H:=H) R v w hCode)
 
-axiom phi_adj_preserved
+axiom phi_adj_preserved_axiom
   (R : Nat) (v : G.V) (w : H.V)
   (hCode : CodeR G R v = CodeR H R w) :
   ∀ x y,
@@ -58,6 +58,16 @@ axiom phi_adj_preserved
     adjacent H
       (phi (G:=G) (H:=H) R v w hCode x)
       (phi (G:=G) (H:=H) R v w hCode y)
+
+theorem phi_adj_preserved
+  (R : Nat) (v : G.V) (w : H.V)
+  (hCode : CodeR G R v = CodeR H R w) :
+  ∀ x y,
+    adjacent G x y →
+    adjacent H
+      (phi (G:=G) (H:=H) R v w hCode x)
+      (phi (G:=G) (H:=H) R v w hCode y) := by
+  exact phi_adj_preserved_axiom (G:=G) (H:=H) R v w hCode
 
 theorem CodeR_invariant
   (R : Nat) (v : G.V) (w : H.V) :
