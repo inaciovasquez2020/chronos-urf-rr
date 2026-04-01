@@ -20,7 +20,7 @@ def Block
   let L := (CodeR G R v).get! i
   (L.2.toFinset)
 
-axiom block_injective
+axiom block_injective_axiom
   (G : Graph)
   [Fintype G.V] [Fintype G.E]
   [DecidableEq G.V] [DecidableEq G.E]
@@ -29,6 +29,17 @@ axiom block_injective
     (parentChoice G v i x, edgeLabel G (Option.getD (parentChoice G v i x) x) x) =
     (parentChoice G v i y, edgeLabel G (Option.getD (parentChoice G v i y) y) y)
     → x = y
+
+theorem block_injective
+  (G : Graph)
+  [Fintype G.V] [Fintype G.E]
+  [DecidableEq G.V] [DecidableEq G.E]
+  (R i : Nat) (v : G.V) :
+  ∀ x y ∈ (Layer G v i),
+    (parentChoice G v i x, edgeLabel G (Option.getD (parentChoice G v i x) x) x) =
+    (parentChoice G v i y, edgeLabel G (Option.getD (parentChoice G v i y) y) y)
+    → x = y := by
+  exact block_injective_axiom G R i v
 
 noncomputable def phi_i
   (R i : Nat) (v : G.V) (w : H.V)
