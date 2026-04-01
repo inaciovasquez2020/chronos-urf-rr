@@ -1,7 +1,6 @@
 # Next Lean blocker
 
-Target: `lean/ChronosUrfRr/Graph.lean`
+Target: `lean/ChronosUrfRr/Oblivion/FrontLemma.lean`
 
-Replace the placeholder definitions
-`Connected`, `IsTree`, `FO_equiv_R`, and `BallIso`
-with concrete interfaces before attempting downstream closure.
+Replace the remaining `Prop := True` placeholder in the FrontLemma state relation
+before advancing to the larger `Chronos` / `Oblivion` axiom cluster.
