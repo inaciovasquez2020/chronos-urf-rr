@@ -16,7 +16,7 @@ variable (hβ     : 2 ≤ beta1 G)
 
 lemma fo_equiv :
     FO_equiv_R k R G (signedLift (G := G) σ) := by
-  sorry
+  exact signedLift_locality_equiv (k := k) (R := R) (G := G) (σ := σ) hgirth
 
 lemma beta1_differs :
     beta1 G ≠ beta1 (signedLift (G := G) σ) := by
