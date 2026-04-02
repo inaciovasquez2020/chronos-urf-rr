@@ -65,8 +65,11 @@ end Oblivion
 
 namespace Oblivion
 
-axiom girth_radius_tree
+theorem girth_radius_tree
   {G : Graph} (v : G.V) (R : Nat) :
-  2 * R + 1 < girth G → Acyclic (ball G v R)
+  2 * R + 1 < girth G → Acyclic (ball G v R) := by
+  intro hg
+  have hg' : 2 * R < girth G := by omega
+  exact (girth_gt_twoR_implies_ball_acyclic_bridge (G:=G) R v (by infer_instance) hg').acyclic
 
 end Oblivion
