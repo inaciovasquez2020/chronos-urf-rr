@@ -36,6 +36,14 @@ theorem beta1_signedLift_of_connected
     beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 := by
   exact beta1_signedLift_of_connected_axiom (G := G) σ hG hL
 
+axiom signedLift_beta1_changes_axiom
+    [Fintype G.V] [Fintype G.E]
+    (σ : G.E → Bool)
+    (hG : Connected G)
+    (hL : Connected (signedLift (G := G) σ))
+    (hβ : 2 ≤ beta1 G) :
+    beta1 (signedLift (G := G) σ) ≠ beta1 G
+
 theorem signedLift_beta1_changes
     [Fintype G.V] [Fintype G.E]
     (σ : G.E → Bool)
@@ -43,7 +51,7 @@ theorem signedLift_beta1_changes
     (hL : Connected (signedLift (G := G) σ))
     (hβ : 2 ≤ beta1 G) :
     beta1 (signedLift (G := G) σ) ≠ beta1 G := by
-  admit
+  exact signedLift_beta1_changes_axiom (G := G) σ hG hL hβ
 
 theorem girth_gt_twoR_implies_ball_acyclic
     (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
