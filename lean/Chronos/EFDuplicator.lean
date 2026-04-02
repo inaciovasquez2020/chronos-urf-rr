@@ -21,12 +21,20 @@ def extendOnBall
   (hiso : RootedBallIso G H R v w)
   (p : PartialIso) : PartialIso := p
 
-axiom duplicator_extension_bridge
-  {G H : Graph} (R : Nat) (v : G.V) (w : H.V)
+theorem duplicator_extension_bridge
+  {G H : Graph} [DecidableEq G.V] [DecidableEq H.V]
+  (R : Nat) (v : G.V) (w : H.V)
   (hiso : RootedBallIso G H R v w) :
-  ∀ p : PartialIso, ∃ q : PartialIso, q.dom ⊇ p.dom
+  ∀ p : PartialIso, ∃ q : PartialIso, q.dom ⊇ p.dom := by
+  intro p
+  refine ⟨extendOnBall R v w hiso p, ?_⟩
+  simp [extendOnBall]
 
-theorem duplicator_extension := duplicator_extension_bridge
+theorem duplicator_extension
+  {G H : Graph} [DecidableEq G.V] [DecidableEq H.V]
+  (R : Nat) (v : G.V) (w : H.V)
+  (hiso : RootedBallIso G H R v w) :
+  ∀ p : PartialIso, ∃ q : PartialIso, q.dom ⊇ p.dom := duplicator_extension_bridge R v w hiso
 
 axiom ef_duplicator_wins_on_ball_bridge
   {G H : Graph} (k R : Nat) (v : G.V) (w : H.V)
