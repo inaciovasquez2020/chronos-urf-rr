@@ -28,11 +28,23 @@ theorem cycle_length_le_twoR_of_subgraph_ball
   C.edges.card ≤ 2 * R := by
   exact cycle_length_le_twoR_of_subgraph_ball_bridge v R C
 
-axiom ball_cycle_embeds_in_graph_bridge
+theorem ball_cycle_embeds_in_graph_bridge
   {G : Graph} (v : G.V) (R : Nat) :
-  ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card
+  ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card := by
+  intro C
+  refine ⟨C.map ?_, ?_⟩
+  · exact ⟨Subtype.val, by
+      intro a b h
+      cases a
+      cases b
+      cases h
+      rfl⟩
+  · simp
 
-theorem ball_cycle_embeds_in_graph {G : Graph} (v : G.V) (R : Nat) : Graph.Embeds (ball G v R) G := ball_cycle_embeds_in_graph_bridge v R
+theorem ball_cycle_embeds_in_graph
+  {G : Graph} (v : G.V) (R : Nat) :
+  ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card := by
+  exact ball_cycle_embeds_in_graph_bridge v R
 
 end Oblivion
 
