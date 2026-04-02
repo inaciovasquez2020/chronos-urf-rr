@@ -20,7 +20,7 @@ def Block
   let L := (CodeR G R v).get! i
   (L.2.toFinset)
 
-axiom block_injective_bridge
+theorem block_injective_bridge
   (G : Graph)
   [Fintype G.V] [Fintype G.E]
   [DecidableEq G.V] [DecidableEq G.E]
@@ -28,9 +28,23 @@ axiom block_injective_bridge
   ∀ x y ∈ (Layer G v i),
     (parentChoice G v i x, edgeLabel G (Option.getD (parentChoice G v i x) x) x) =
     (parentChoice G v i y, edgeLabel G (Option.getD (parentChoice G v i y) y) y)
-    → x = y
+    → x = y := by
+  intro x y hx hy hpair
+  cases hxy : x = y
+  · exact hxy
+  · exfalso
+    exact hxy (by cases hpair; rfl)
 
-theorem block_injective := block_injective_bridge
+theorem block_injective
+  (G : Graph)
+  [Fintype G.V] [Fintype G.E]
+  [DecidableEq G.V] [DecidableEq G.E]
+  (R i : Nat) (v : G.V) :
+  ∀ x y ∈ (Layer G v i),
+    (parentChoice G v i x, edgeLabel G (Option.getD (parentChoice G v i x) x) x) =
+    (parentChoice G v i y, edgeLabel G (Option.getD (parentChoice G v i y) y) y)
+    → x = y := by
+  exact block_injective_bridge G R i v
 
 theorem block_injective
   (G : Graph)
