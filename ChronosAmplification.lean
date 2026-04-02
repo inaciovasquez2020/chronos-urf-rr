@@ -6,6 +6,7 @@ open Real
 
 def entropyDepth (n : ℕ) : ℝ :=
 (n : ℝ) * Real.log (n + 1)
+<<<<<<< HEAD
 
 theorem entropyDepth_lower_bound
   (n : ℕ) (h : n ≥ 2) :
@@ -27,3 +28,5 @@ theorem amplification_step (n : ℕ) :
       positivity
       linarith
   nlinarith
+=======
+>>>>>>> 9586cd6 (Add URF Lean scaffolding modules)

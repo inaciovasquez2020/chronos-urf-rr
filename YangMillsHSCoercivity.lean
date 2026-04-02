@@ -5,6 +5,7 @@ import Mathlib.Data.Real.Basic
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
 
 def kinetic (ψ : H) : ℝ := ‖ψ‖^2
+<<<<<<< HEAD
 def potential (ψ : H) : ℝ := ‖ψ‖
 def YM_H (ψ : H) : ℝ := kinetic ψ + potential ψ
 
@@ -13,3 +14,5 @@ theorem coercivity_bound (ψ : H) :
   unfold YM_H kinetic potential
   have : ‖ψ‖ ≥ 0 := norm_nonneg ψ
   nlinarith
+=======
+>>>>>>> 9586cd6 (Add URF Lean scaffolding modules)

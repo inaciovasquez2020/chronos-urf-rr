@@ -29,6 +29,6 @@ theorem COR_bound
 (k Δ R : Nat)
 (hhom : FOkHomogeneous G k R) :
 COR G R ≤ (Nat.succ Δ)^(2*R) := by
-  sorry
+  simp [COR]
 
 end Oblivion

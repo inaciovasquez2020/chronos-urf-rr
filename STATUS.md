@@ -12,6 +12,7 @@ It exists to provide an executable, audit-ready reference for verification, repr
 
 ## Non-scope (explicit non-claims)
 - No new axioms or theorems are introduced here.
+  - Status: conditional
 - No claim that verification implies mathematical truth beyond stated invariants.
 - No resolution of open complexity or foundational problems.
 

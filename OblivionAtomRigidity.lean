@@ -1,5 +1,6 @@
 import ChronosImports
 
+<<<<<<< HEAD
 open SimpleGraph Finset
 
 variable {V : Type*} [DecidableEq V] [Fintype V]
@@ -23,3 +24,7 @@ theorem rigidity_template_bound
   (hdeg : G.maxDegree ≤ Δ) :
   ∃ ρ : ℕ, True := by
   exact ⟨Δ^(5*R+2), trivial⟩
+=======
+theorem rigidity_template_bound : True := by
+  trivial
+>>>>>>> 9586cd6 (Add URF Lean scaffolding modules)

@@ -1,0 +1,30 @@
+lean/Chronos/EFDuplicator.lean:24:axiom duplicator_extension
+lean/Chronos/EFDuplicator.lean:29:axiom ef_duplicator_wins_on_ball
+lean/Chronos/RootedBallEncoding.lean:17:axiom dist : G.V → G.V → Nat
+lean/Chronos/RootedBallEncoding.lean:36:axiom degreeBound : Nat
+lean/Chronos/RootedBallEncoding.lean:37:axiom bounded_ball_card :
+lean/Chronos/RootedBallEncoding.lean:44:axiom range_vertexType_card_le :
+lean/Oblivion/README.lean:9:5. Replace placeholders in COR→FOk bridge with actual definitions and lemmas.
+lean/Oblivion/Beta1.lean:8:def numComponents (G : Graph) : Nat := 1  -- placeholder
+lean/Oblivion/CodeRPhi.lean:31:axiom phi_i_spec
+lean/Oblivion/CodeRPhi.lean:48:axiom phi_bijective
+lean/Oblivion/CodeRPhi.lean:53:axiom phi_adj_preserved
+lean/Oblivion/CodeRInvariant.lean:23:axiom block_injective
+lean/Oblivion/FinalWall/IncidenceCycleConstruction.lean:1:-- replace axiom with counting lemma
+lean/Oblivion/FinalWall/IncidenceCycleConstruction.lean:13:  sorry
+lean/Oblivion/FinalWall/CycleQuotientInvariance.lean:7:-- Abstract placeholders
+lean/Oblivion/FinalWall/CycleQuotientInvariance.lean:12:-- EF-equivalence placeholder
+lean/Oblivion/FinalWall/CycleQuotientInvariance.lean:16:axiom quotient_invariance
+lean/Oblivion/FinalWall/SupportSeparation.lean:19:  sorry
+lean/Oblivion/BallIso.lean:124:  sorry
+lean/Oblivion/CORBound.lean:32:  sorry
+lean/Oblivion/BlockInjectiveAssumption.lean:14:axiom block_injective
+lean/Oblivion/LocalPotential.lean:59:/-- Constructive replacement of local_potential axiom. -/
+lean/Oblivion/CycleRank.lean:17:  admit
+lean/Oblivion/CycloneSignedLift.lean:30:  admit
+lean/Oblivion/CycloneSignedLift.lean:39:  admit
+lean/Oblivion/CycloneSignedLift.lean:53:  · admit
+lean/Oblivion/CycloneTwoLift.lean:19:  sorry
+lean/Oblivion/BLKCL.lean:15:axiom BLKCL
+lean/Oblivion/RadiusBall.lean:12:-- Minimal placeholder distance predicate (to be replaced by Mathlib graph distance)
+lean/Oblivion/Cycle.lean:15:axiom cycle_length_le_twoR_of_subgraph_ball
