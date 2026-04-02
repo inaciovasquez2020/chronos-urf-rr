@@ -28,7 +28,7 @@ noncomputable def phi_i
         simp [Layer]
       exact this)
 
-axiom phi_i_spec_bridge
+axiom phi_i_spec_bridge_bridge
   (R i : Nat) (v : G.V) (w : H.V)
   (hCode : CodeR G R v = CodeR H R w)
   (x : G.V) (hx : x ∈ Layer G v i) :
@@ -51,7 +51,7 @@ theorem phi_i_spec
   =
   (parentH (H:=H) w i y,
    edgeLabel H (parentH (H:=H) w i y) y) := by
-  exact phi_i_spec_axiom (G:=G) (H:=H) R i v w hCode x hx
+  exact phi_i_spec_bridge_axiom (G:=G) (H:=H) R i v w hCode x hx
 
 noncomputable def phi
   (R : Nat) (v : G.V) (w : H.V)
@@ -59,7 +59,7 @@ noncomputable def phi
   G.V → H.V :=
   fun x => phi_i (G:=G) (H:=H) R 0 v w hCode x (by simp [Layer])
 
-axiom phi_bijective_bridge
+axiom phi_bijective_bridge_bridge
   (R : Nat) (v : G.V) (w : H.V)
   (hCode : CodeR G R v = CodeR H R w) :
   Function.Bijective (phi (G:=G) (H:=H) R v w hCode)
@@ -70,7 +70,7 @@ theorem phi_bijective
   (R : Nat) (v : G.V) (w : H.V)
   (hCode : CodeR G R v = CodeR H R w) :
   Function.Bijective (phi (G:=G) (H:=H) R v w hCode) := by
-  exact phi_bijective_axiom (G:=G) (H:=H) R v w hCode
+  exact phi_bijective_bridge_axiom (G:=G) (H:=H) R v w hCode
 
 axiom phi_adj_preserved_bridge
   (R : Nat) (v : G.V) (w : H.V)
@@ -91,7 +91,7 @@ theorem phi_adj_preserved
     adjacent H
       (phi (G:=G) (H:=H) R v w hCode x)
       (phi (G:=G) (H:=H) R v w hCode y) := by
-  exact phi_adj_preserved_axiom (G:=G) (H:=H) R v w hCode
+  exact phi_adj_preserved_bridge (G:=G) (H:=H) R v w hCode
 
 theorem CodeR_invariant
   (R : Nat) (v : G.V) (w : H.V) :

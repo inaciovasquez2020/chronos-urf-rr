@@ -24,4 +24,4 @@ theorem quotient_invariance
   (k R : ℕ) (G₀ G₁ : Type*) :
   EF_equiv k R G₀ G₁ →
   quotientDim G₀ = quotientDim G₁ := by
-  exact quotient_invariance_axiom k R G₀ G₁
+  exact quotient_invariance_bridge k R G₀ G₁
