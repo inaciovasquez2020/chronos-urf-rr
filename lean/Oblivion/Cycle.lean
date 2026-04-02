@@ -33,10 +33,12 @@ end Oblivion
 
 namespace Oblivion
 
-axiom cycle_nonempty_edges_bridge
-  {G : Graph} (C : Cycle G) : 0 < C.edges.card
+theorem cycle_nonempty_edges_bridge
+  {G : Graph} (C : Cycle G) : 0 < C.edges.card := by
+  simpa using C.nonempty_edges
 
-theorem cycle_nonempty_edges {G : Graph} (C : Cycle G) : 0 < C.edges.card := cycle_nonempty_edges_bridge C
+theorem cycle_nonempty_edges
+  {G : Graph} (C : Cycle G) : 0 < C.edges.card := cycle_nonempty_edges_bridge C
 
 axiom ball_cycle_length_bound_bridge
   {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
