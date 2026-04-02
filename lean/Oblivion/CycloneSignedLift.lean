@@ -36,7 +36,7 @@ theorem beta1_signedLift_of_connected
     (hG : Connected G)
     (hL : Connected (signedLift (G := G) σ)) :
     beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 := by
-  exact beta1_signedLift_of_connected_axiom (G := G) σ hG hL
+  exact beta1_signedLift_of_connected_bridge (G := G) σ hG hL
 
 axiom signedLift_beta1_changes_bridge
     [Fintype G.V] [Fintype G.E]
@@ -55,7 +55,7 @@ theorem signedLift_beta1_changes
     (hL : Connected (signedLift (G := G) σ))
     (hβ : 2 ≤ beta1 G) :
     beta1 (signedLift (G := G) σ) ≠ beta1 G := by
-  exact signedLift_beta1_changes_axiom (G := G) σ hG hL hβ
+  exact signedLift_beta1_changes_bridge (G := G) σ hG hL hβ
 
 axiom girth_gt_twoR_implies_ball_acyclic_bridge
     (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
@@ -66,7 +66,7 @@ theorem girth_gt_twoR_implies_ball_acyclic := girth_gt_twoR_implies_ball_acyclic
 theorem girth_gt_twoR_implies_ball_acyclic
     (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
     Oblivion.IsTree (ball G v R) := by
-  exact girth_gt_twoR_implies_ball_acyclic_axiom (G := G) R v hG hg
+  exact girth_gt_twoR_implies_ball_acyclic_bridge (G := G) R v hG hg
 
 theorem signedLift_ball_iso
     (R : Nat) (σ : G.E → Bool) (v : G.V) :

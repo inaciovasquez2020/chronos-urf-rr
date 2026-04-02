@@ -19,4 +19,4 @@ theorem support_separation_indep
   (ws : List (Fin m →₀ F2))
   (h : hasPrivateIndex ws) :
   LinearIndependent F2 (fun i : Fin ws.length => ws.get ⟨i, by simp⟩) := by
-  exact support_separation_indep_axiom ws h
+  exact support_separation_indep_bridge ws h

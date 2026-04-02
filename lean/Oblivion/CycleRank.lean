@@ -19,7 +19,7 @@ theorem z1_card_formula := z1_card_formula_bridge
 theorem z1_card_formula
   (G : Graph) [Fintype G.V] [Fintype G.E] :
   Fintype.card (Z1 G) = Fintype.card G.E - Fintype.card G.V + numComponents G := by
-  exact z1_card_formula_axiom G
+  exact z1_card_formula_bridge G
 
 theorem dim_Z1_formula
   (G : Graph) [Fintype G.V] [Fintype G.E] :

@@ -12,7 +12,7 @@ variable [DecidableEq G.V] [DecidableEq G.E]
 def parent (G : Graph) (v : G.V) (i : Nat) (x : G.V) : G.V :=
   Option.getD (parentChoice G v i x) x
 
-axiom BLKCL_bridge
+axiom BLKCL_bridge_bridge
   (G : Graph)
   [Fintype G.V] [Fintype G.E]
   [DecidableEq G.V] [DecidableEq G.E]
@@ -51,4 +51,4 @@ by
     (parentChoice G v i y,
      edgeLabel G (parent G v i y) y) := by
     cases parentChoice G v i x <;> cases parentChoice G v i y <;> simp [parent] at h ⊢
-  exact BLKCL G R i v hx hy h'
+  exact BLKCL_bridge G R i v hx hy h'

@@ -41,7 +41,7 @@ theorem block_injective
     (parentChoice G v i x, edgeLabel G (Option.getD (parentChoice G v i x) x) x) =
     (parentChoice G v i y, edgeLabel G (Option.getD (parentChoice G v i y) y) y)
     → x = y := by
-  exact block_injective_axiom G R i v
+  exact block_injective_bridge G R i v
 
 noncomputable def phi_i
   (R i : Nat) (v : G.V) (w : H.V)
