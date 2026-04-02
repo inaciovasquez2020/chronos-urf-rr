@@ -40,11 +40,15 @@ theorem cycle_nonempty_edges_bridge
 theorem cycle_nonempty_edges
   {G : Graph} (C : Cycle G) : 0 < C.edges.card := cycle_nonempty_edges_bridge C
 
-axiom ball_cycle_length_bound_bridge
+theorem ball_cycle_length_bound_bridge
   {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
-  C.edges.card ≤ 2 * R
+  C.edges.card ≤ 2 * R := by
+  exact cycle_length_le_twoR_of_subgraph_ball_bridge v R C
 
-theorem ball_cycle_length_bound {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) : C.edges.card ≤ 2 * R := ball_cycle_length_bound_bridge v R C
+theorem ball_cycle_length_bound
+  {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
+  C.edges.card ≤ 2 * R := by
+  exact ball_cycle_length_bound_bridge v R C
 
 axiom ball_cycle_lifts
   {G : Graph} (v : G.V) (R : Nat) :
