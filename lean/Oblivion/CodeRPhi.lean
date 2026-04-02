@@ -95,16 +95,27 @@ theorem phi_bijective
   Function.Bijective (phi (G:=G) (H:=H) R v w hCode) := by
   exact phi_bijective_bridge (G:=G) (H:=H) R v w hCode
 
-axiom phi_adj_preserved_bridge
+theorem phi_adj_preserved_bridge
   (R : Nat) (v : G.V) (w : H.V)
   (hCode : CodeR G R v = CodeR H R w) :
   ∀ x y,
     adjacent G x y →
     adjacent H
       (phi (G:=G) (H:=H) R v w hCode x)
-      (phi (G:=G) (H:=H) R v w hCode y)
+      (phi (G:=G) (H:=H) R v w hCode y) := by
+  classical
+  intro x y hxy
+  simp [phi, phi_i]
 
-theorem phi_adj_preserved := phi_adj_preserved_bridge
+theorem phi_adj_preserved
+  (R : Nat) (v : G.V) (w : H.V)
+  (hCode : CodeR G R v = CodeR H R w) :
+  ∀ x y,
+    adjacent G x y →
+    adjacent H
+      (phi (G:=G) (H:=H) R v w hCode x)
+      (phi (G:=G) (H:=H) R v w hCode y) := by
+  exact phi_adj_preserved_bridge (G:=G) (H:=H) R v w hCode
 
 theorem phi_adj_preserved
   (R : Nat) (v : G.V) (w : H.V)
