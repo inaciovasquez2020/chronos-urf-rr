@@ -17,13 +17,13 @@ end Oblivion
 
 namespace Oblivion
 
-axiom cycle_length_le_twoR_of_subgraph_ball_bridge_bridge
+axiom cycle_length_le_twoR_of_subgraph_ball_bridge
   {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
   C.edges.card ≤ 2 * R
 
 theorem cycle_length_le_twoR_of_subgraph_ball := cycle_length_le_twoR_of_subgraph_ball_bridge
 
-axiom ball_cycle_embeds_in_graph_bridge_bridge
+axiom ball_cycle_embeds_in_graph_bridge
   {G : Graph} (v : G.V) (R : Nat) :
   ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card
 
@@ -33,7 +33,7 @@ end Oblivion
 
 namespace Oblivion
 
-axiom cycle_nonempty_edges_bridge_bridge
+axiom cycle_nonempty_edges_bridge
   {G : Graph} (C : Cycle G) : 0 < C.edges.card
 
 theorem cycle_nonempty_edges {G : Graph} (C : Cycle G) : 0 < C.edges.card := cycle_nonempty_edges_bridge C
@@ -42,7 +42,7 @@ axiom ball_cycle_length_bound_bridge
   {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
   C.edges.card ≤ 2 * R
 
-theorem ball_cycle_length_bound := ball_cycle_length_bound_bridge
+theorem ball_cycle_length_bound {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) : C.edges.card ≤ 2 * R := ball_cycle_length_bound_bridge v R C
 
 axiom ball_cycle_lifts
   {G : Graph} (v : G.V) (R : Nat) :
