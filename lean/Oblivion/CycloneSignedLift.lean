@@ -45,15 +45,27 @@ theorem beta1_signedLift_of_connected
     beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 := by
   exact beta1_signedLift_of_connected_bridge (G := G) σ hG hL
 
-axiom signedLift_beta1_changes_bridge
+theorem signedLift_beta1_changes_bridge
     [Fintype G.V] [Fintype G.E]
     (σ : G.E → Bool)
     (hG : Connected G)
     (hL : Connected (signedLift (G := G) σ))
     (hβ : 2 ≤ beta1 G) :
-    beta1 (signedLift (G := G) σ) ≠ beta1 G
+    beta1 (signedLift (G := G) σ) ≠ beta1 G := by
+  intro hEq
+  have hLift : beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 :=
+    beta1_signedLift_of_connected_bridge (G := G) σ hG hL
+  rw [hEq] at hLift
+  omega
 
-theorem signedLift_beta1_changes := signedLift_beta1_changes_bridge
+theorem signedLift_beta1_changes
+    [Fintype G.V] [Fintype G.E]
+    (σ : G.E → Bool)
+    (hG : Connected G)
+    (hL : Connected (signedLift (G := G) σ))
+    (hβ : 2 ≤ beta1 G) :
+    beta1 (signedLift (G := G) σ) ≠ beta1 G := by
+  exact signedLift_beta1_changes_bridge (G := G) σ hG hL hβ
 
 theorem signedLift_beta1_changes
     [Fintype G.V] [Fintype G.E]
