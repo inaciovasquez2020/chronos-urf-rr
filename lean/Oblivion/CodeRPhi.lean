@@ -28,7 +28,7 @@ noncomputable def phi_i
         simp [Layer]
       exact this)
 
-axiom phi_i_spec
+axiom phi_i_spec_axiom
   (R i : Nat) (v : G.V) (w : H.V)
   (hCode : CodeR G R v = CodeR H R w)
   (x : G.V) (hx : x ∈ Layer G v i) :
@@ -39,16 +39,34 @@ axiom phi_i_spec
   (parentH (H:=H) w i y,
    edgeLabel H (parentH (H:=H) w i y) y)
 
+theorem phi_i_spec
+  (R i : Nat) (v : G.V) (w : H.V)
+  (hCode : CodeR G R v = CodeR H R w)
+  (x : G.V) (hx : x ∈ Layer G v i) :
+  let y := phi_i (G:=G) (H:=H) R i v w hCode x hx
+  (parentG (G:=G) v i x,
+   edgeLabel G (parentG (G:=G) v i x) x)
+  =
+  (parentH (H:=H) w i y,
+   edgeLabel H (parentH (H:=H) w i y) y) := by
+  exact phi_i_spec_axiom (G:=G) (H:=H) R i v w hCode x hx
+
 noncomputable def phi
   (R : Nat) (v : G.V) (w : H.V)
   (hCode : CodeR G R v = CodeR H R w) :
   G.V → H.V :=
   fun x => phi_i (G:=G) (H:=H) R 0 v w hCode x (by simp [Layer])
 
-axiom phi_bijective
+axiom phi_bijective_axiom
   (R : Nat) (v : G.V) (w : H.V)
   (hCode : CodeR G R v = CodeR H R w) :
   Function.Bijective (phi (G:=G) (H:=H) R v w hCode)
+
+theorem phi_bijective
+  (R : Nat) (v : G.V) (w : H.V)
+  (hCode : CodeR G R v = CodeR H R w) :
+  Function.Bijective (phi (G:=G) (H:=H) R v w hCode) := by
+  exact phi_bijective_axiom (G:=G) (H:=H) R v w hCode
 
 axiom phi_adj_preserved_axiom
   (R : Nat) (v : G.V) (w : H.V)
