@@ -28,7 +28,7 @@ noncomputable def phi_i
         simp [Layer]
       exact this)
 
-axiom phi_i_spec_bridge
+theorem phi_i_spec_bridge
   (R i : Nat) (v : G.V) (w : H.V)
   (hCode : CodeR G R v = CodeR H R w)
   (x : G.V) (hx : x ∈ Layer G v i) :
@@ -37,9 +37,21 @@ axiom phi_i_spec_bridge
    edgeLabel G (parentG (G:=G) v i x) x)
   =
   (parentH (H:=H) w i y,
-   edgeLabel H (parentH (H:=H) w i y) y)
+   edgeLabel H (parentH (H:=H) w i y) y) := by
+  classical
+  simp [phi_i]
 
-theorem phi_i_spec := phi_i_spec_bridge
+theorem phi_i_spec
+  (R i : Nat) (v : G.V) (w : H.V)
+  (hCode : CodeR G R v = CodeR H R w)
+  (x : G.V) (hx : x ∈ Layer G v i) :
+  let y := phi_i (G:=G) (H:=H) R i v w hCode x hx
+  (parentG (G:=G) v i x,
+   edgeLabel G (parentG (G:=G) v i x) x)
+  =
+  (parentH (H:=H) w i y,
+   edgeLabel H (parentH (H:=H) w i y) y) := by
+  exact phi_i_spec_bridge (G:=G) (H:=H) R i v w hCode x hx
 
 theorem phi_i_spec
   (R i : Nat) (v : G.V) (w : H.V)
