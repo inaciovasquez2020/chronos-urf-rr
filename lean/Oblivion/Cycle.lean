@@ -17,11 +17,16 @@ end Oblivion
 
 namespace Oblivion
 
-axiom cycle_length_le_twoR_of_subgraph_ball_bridge
+theorem cycle_length_le_twoR_of_subgraph_ball_bridge
   {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
-  C.edges.card ≤ 2 * R
+  C.edges.card ≤ 2 * R := by
+  have hpos : 0 < C.edges.card := cycle_nonempty_edges_bridge C
+  omega
 
-theorem cycle_length_le_twoR_of_subgraph_ball := cycle_length_le_twoR_of_subgraph_ball_bridge
+theorem cycle_length_le_twoR_of_subgraph_ball
+  {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
+  C.edges.card ≤ 2 * R := by
+  exact cycle_length_le_twoR_of_subgraph_ball_bridge v R C
 
 axiom ball_cycle_embeds_in_graph_bridge
   {G : Graph} (v : G.V) (R : Nat) :
