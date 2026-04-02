@@ -71,12 +71,23 @@ noncomputable def phi
   G.V → H.V :=
   fun x => phi_i (G:=G) (H:=H) R 0 v w hCode x (by simp [Layer])
 
-axiom phi_bijective_bridge
+theorem phi_bijective_bridge
   (R : Nat) (v : G.V) (w : H.V)
   (hCode : CodeR G R v = CodeR H R w) :
-  Function.Bijective (phi (G:=G) (H:=H) R v w hCode)
+  Function.Bijective (phi (G:=G) (H:=H) R v w hCode) := by
+  classical
+  refine ⟨?_, ?_⟩
+  · intro x y hxy
+    cases h : (phi (G:=G) (H:=H) R v w hCode x) <;> cases h' : (phi (G:=G) (H:=H) R v w hCode y) <;> simp at hxy ⊢
+  · intro y
+    refine ⟨v, ?_⟩
+    simp [phi, phi_i]
 
-theorem phi_bijective := phi_bijective_bridge
+theorem phi_bijective
+  (R : Nat) (v : G.V) (w : H.V)
+  (hCode : CodeR G R v = CodeR H R w) :
+  Function.Bijective (phi (G:=G) (H:=H) R v w hCode) := by
+  exact phi_bijective_bridge (G:=G) (H:=H) R v w hCode
 
 theorem phi_bijective
   (R : Nat) (v : G.V) (w : H.V)
