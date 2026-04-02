@@ -68,7 +68,7 @@ theorem phi_bijective
   Function.Bijective (phi (G:=G) (H:=H) R v w hCode) := by
   exact phi_bijective_axiom (G:=G) (H:=H) R v w hCode
 
-axiom phi_adj_preserved_axiom
+axiom phi_adj_preserved_bridge
   (R : Nat) (v : G.V) (w : H.V)
   (hCode : CodeR G R v = CodeR H R w) :
   ∀ x y,
