@@ -76,11 +76,22 @@ theorem signedLift_beta1_changes
     beta1 (signedLift (G := G) σ) ≠ beta1 G := by
   exact signedLift_beta1_changes_bridge (G := G) σ hG hL hβ
 
-axiom girth_gt_twoR_implies_ball_acyclic_bridge
+theorem girth_gt_twoR_implies_ball_acyclic_bridge
     (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
-    Oblivion.IsTree (ball G v R)
+    Oblivion.IsTree (ball G v R) := by
+  refine ⟨?_, hG.ball_connected R, ?_⟩
+  · exact girth_radius_tree (G := G) v R (by omega)
+  · intro C
+    have hlen : C.edges.card ≤ 2 * R :=
+      cycle_length_le_twoR_of_subgraph_ball_bridge v R C
+    have hgirth : girth G ≤ C.edges.card :=
+      cycle_ge_girth (G := ball G v R) C
+    omega
 
-theorem girth_gt_twoR_implies_ball_acyclic := girth_gt_twoR_implies_ball_acyclic_bridge
+theorem girth_gt_twoR_implies_ball_acyclic
+    (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
+    Oblivion.IsTree (ball G v R) := by
+  exact girth_gt_twoR_implies_ball_acyclic_bridge (G := G) R v hG hg
 
 theorem girth_gt_twoR_implies_ball_acyclic
     (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
