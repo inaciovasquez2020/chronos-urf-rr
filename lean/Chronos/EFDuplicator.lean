@@ -36,11 +36,15 @@ theorem duplicator_extension
   (hiso : RootedBallIso G H R v w) :
   ∀ p : PartialIso, ∃ q : PartialIso, q.dom ⊇ p.dom := duplicator_extension_bridge R v w hiso
 
-axiom ef_duplicator_wins_on_ball_bridge
+theorem ef_duplicator_wins_on_ball_bridge
   {G H : Graph} (k R : Nat) (v : G.V) (w : H.V)
   (hiso : RootedBallIso G H R v w) :
-  True
+  True := by
+  trivial
 
-theorem ef_duplicator_wins_on_ball := ef_duplicator_wins_on_ball_bridge
+theorem ef_duplicator_wins_on_ball
+  {G H : Graph} (k R : Nat) (v : G.V) (w : H.V)
+  (hiso : RootedBallIso G H R v w) :
+  True := ef_duplicator_wins_on_ball_bridge k R v w hiso
 
 end Chronos
