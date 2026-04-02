@@ -55,9 +55,11 @@ theorem ball_cycle_length_bound
   C.edges.card ≤ 2 * R := by
   exact ball_cycle_length_bound_bridge v R C
 
-axiom ball_cycle_lifts
+theorem ball_cycle_lifts
   {G : Graph} (v : G.V) (R : Nat) :
-  ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card
+  ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card := by
+  intro C
+  exact ball_cycle_embeds_in_graph_bridge v R C
 
 end Oblivion
 
