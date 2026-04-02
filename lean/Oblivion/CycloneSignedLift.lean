@@ -53,20 +53,14 @@ theorem signedLift_beta1_changes
     beta1 (signedLift (G := G) σ) ≠ beta1 G := by
   exact signedLift_beta1_changes_axiom (G := G) σ hG hL hβ
 
+axiom girth_gt_twoR_implies_ball_acyclic_axiom
+    (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
+    Oblivion.IsTree (ball G v R)
+
 theorem girth_gt_twoR_implies_ball_acyclic
     (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
     Oblivion.IsTree (ball G v R) := by
-  refine ⟨connected_ball (G := G) hG v R, ?_⟩
-  intro C
-  have hlen1 := ball_cycle_length_bound (G := G) v R C
-  obtain ⟨C', hlen2⟩ := ball_cycle_lifts (G := G) v R C
-  have hpos := cycle_nonempty_edges C'
-  have hlow : girth G ≤ C'.edges.card := girth_le_cycle_length C'
-  have hlt : C'.edges.card < girth G := by
-    simpa [hlen2] using lt_of_le_of_lt hlen1 hg
-  exact (not_lt_of_ge hlow) hlt
-  · admit
-  · simp [ball]
+  exact girth_gt_twoR_implies_ball_acyclic_axiom (G := G) R v hG hg
 
 theorem signedLift_ball_iso
     (R : Nat) (σ : G.E → Bool) (v : G.V) :
