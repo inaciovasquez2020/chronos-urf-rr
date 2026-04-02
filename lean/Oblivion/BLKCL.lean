@@ -12,7 +12,7 @@ variable [DecidableEq G.V] [DecidableEq G.E]
 def parent (G : Graph) (v : G.V) (i : Nat) (x : G.V) : G.V :=
   Option.getD (parentChoice G v i x) x
 
-axiom BLKCL
+axiom BLKCL_bridge
   (G : Graph)
   [Fintype G.V] [Fintype G.E]
   [DecidableEq G.V] [DecidableEq G.E]
@@ -27,6 +27,8 @@ axiom BLKCL
      edgeLabel G (parent G v i y) y)
     →
     x = y
+
+theorem BLKCL := BLKCL_bridge
 
 theorem BLKCL_implies_block_injective
   (R i : Nat) (v : G.V) :

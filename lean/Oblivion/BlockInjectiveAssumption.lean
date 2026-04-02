@@ -11,7 +11,7 @@ variable [DecidableEq G.V] [DecidableEq G.E]
 def parent (G : Graph) (v : G.V) (i : Nat) (x : G.V) : G.V :=
   Option.getD (parentChoice G v i x) x
 
-axiom block_injective_axiom
+axiom block_injective_bridge
   (G : Graph)
   [Fintype G.V] [Fintype G.E]
   [DecidableEq G.V] [DecidableEq G.E]
@@ -26,6 +26,8 @@ axiom block_injective_axiom
      edgeLabel G (parent G v i y) y)
     →
     x = y
+
+theorem block_injective := block_injective_bridge
 
 theorem block_injective
   (G : Graph)

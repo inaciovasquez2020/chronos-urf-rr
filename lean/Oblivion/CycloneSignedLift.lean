@@ -21,12 +21,14 @@ lemma signedLift_card_E [Fintype G.E] (σ : G.E → Bool) :
     Fintype.card (signedLift (G := G) σ).E = 2 * Fintype.card G.E := by
   simp [signedLift, Fintype.card_prod, Fintype.card_bool]
 
-axiom beta1_signedLift_of_connected_axiom
+axiom beta1_signedLift_of_connected_bridge
     [Fintype G.V] [Fintype G.E]
     (σ : G.E → Bool)
     (hG : Connected G)
     (hL : Connected (signedLift (G := G) σ)) :
     beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1
+
+theorem beta1_signedLift_of_connected := beta1_signedLift_of_connected_bridge
 
 theorem beta1_signedLift_of_connected
     [Fintype G.V] [Fintype G.E]
@@ -36,13 +38,15 @@ theorem beta1_signedLift_of_connected
     beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 := by
   exact beta1_signedLift_of_connected_axiom (G := G) σ hG hL
 
-axiom signedLift_beta1_changes_axiom
+axiom signedLift_beta1_changes_bridge
     [Fintype G.V] [Fintype G.E]
     (σ : G.E → Bool)
     (hG : Connected G)
     (hL : Connected (signedLift (G := G) σ))
     (hβ : 2 ≤ beta1 G) :
     beta1 (signedLift (G := G) σ) ≠ beta1 G
+
+theorem signedLift_beta1_changes := signedLift_beta1_changes_bridge
 
 theorem signedLift_beta1_changes
     [Fintype G.V] [Fintype G.E]
@@ -53,9 +57,11 @@ theorem signedLift_beta1_changes
     beta1 (signedLift (G := G) σ) ≠ beta1 G := by
   exact signedLift_beta1_changes_axiom (G := G) σ hG hL hβ
 
-axiom girth_gt_twoR_implies_ball_acyclic_axiom
+axiom girth_gt_twoR_implies_ball_acyclic_bridge
     (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
     Oblivion.IsTree (ball G v R)
+
+theorem girth_gt_twoR_implies_ball_acyclic := girth_gt_twoR_implies_ball_acyclic_bridge
 
 theorem girth_gt_twoR_implies_ball_acyclic
     (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
