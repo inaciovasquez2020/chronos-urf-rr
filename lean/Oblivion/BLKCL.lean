@@ -12,7 +12,7 @@ variable [DecidableEq G.V] [DecidableEq G.E]
 def parent (G : Graph) (v : G.V) (i : Nat) (x : G.V) : G.V :=
   Option.getD (parentChoice G v i x) x
 
-axiom BLKCL_bridge_bridge
+axiom BLKCL_bridge
   (G : Graph)
   [Fintype G.V] [Fintype G.E]
   [DecidableEq G.V] [DecidableEq G.E]
