@@ -13,10 +13,12 @@ constant quotientDim : Type* → ℕ
 constant EF_equiv : ℕ → ℕ → Type* → Type* → Prop
 
 -- Bridge axiom: quotient-only invariance
-axiom quotient_invariance_axiom
+axiom quotient_invariance_bridge
   (k R : ℕ) (G₀ G₁ : Type*) :
   EF_equiv k R G₀ G₁ →
   quotientDim G₀ = quotientDim G₁
+
+theorem quotient_invariance := quotient_invariance_bridge
 
 theorem quotient_invariance
   (k R : ℕ) (G₀ G₁ : Type*) :

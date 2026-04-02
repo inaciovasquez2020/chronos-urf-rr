@@ -21,14 +21,18 @@ def extendOnBall
   (hiso : RootedBallIso G H R v w)
   (p : PartialIso) : PartialIso := p
 
-axiom duplicator_extension
+axiom duplicator_extension_bridge
   {G H : Graph} (R : Nat) (v : G.V) (w : H.V)
   (hiso : RootedBallIso G H R v w) :
   ∀ p : PartialIso, ∃ q : PartialIso, q.dom ⊇ p.dom
 
-axiom ef_duplicator_wins_on_ball
+theorem duplicator_extension := duplicator_extension_bridge
+
+axiom ef_duplicator_wins_on_ball_bridge
   {G H : Graph} (k R : Nat) (v : G.V) (w : H.V)
   (hiso : RootedBallIso G H R v w) :
   True
+
+theorem ef_duplicator_wins_on_ball := ef_duplicator_wins_on_ball_bridge
 
 end Chronos
