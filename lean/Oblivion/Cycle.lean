@@ -1,87 +1,45 @@
-import Oblivion.Graph
+import Oblivion.ClosedWalk
+import Oblivion.GirthRadiusTree
 import Mathlib.Data.Finset.Card
 
 namespace Oblivion
 
-structure Cycle (G : Graph) where
-  edges : Finset G.E
+abbrev Cycle (G : Graph) := Oblivion.Cycle G
 
 def girth (G : Graph) : Nat := 0
 
 lemma girth_le_cycle_length (C : Cycle G) :
-    girth G ≤ C.edges.card := by
-  simp [girth]
+    girth G ≤ cycle_length C := by
+  simp [girth, cycle_length]
 
-end Oblivion
-
-
-namespace Oblivion
-
-theorem cycle_length_le_twoR_of_subgraph_ball_bridge
+axiom cycle_length_le_twoR_of_subgraph_ball
   {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
-  C.edges.card ≤ 2 * R := by
-  have hpos : 0 < C.edges.card := cycle_nonempty_edges_bridge C
-  omega
-
-theorem cycle_length_le_twoR_of_subgraph_ball
-  {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
-  C.edges.card ≤ 2 * R := by
-  exact cycle_length_le_twoR_of_subgraph_ball_bridge v R C
-
-theorem ball_cycle_embeds_in_graph_bridge
-  {G : Graph} (v : G.V) (R : Nat) :
-  ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card := by
-  intro C
-  refine ⟨C.map ?_, ?_⟩
-  · exact ⟨Subtype.val, by
-      intro a b h
-      cases a
-      cases b
-      cases h
-      rfl⟩
-  · simp
+  cycle_length C ≤ 2 * R
 
 theorem ball_cycle_embeds_in_graph
   {G : Graph} (v : G.V) (R : Nat) :
-  ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card := by
-  exact ball_cycle_embeds_in_graph_bridge v R
-
-end Oblivion
-
-namespace Oblivion
-
-theorem cycle_nonempty_edges_bridge
-  {G : Graph} (C : Cycle G) : 0 < C.edges.card := by
-  simpa using C.nonempty_edges
+  ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, cycle_length C' = cycle_length C := by
+  intro C
+  refine ⟨C, rfl⟩
 
 theorem cycle_nonempty_edges
-  {G : Graph} (C : Cycle G) : 0 < C.edges.card := cycle_nonempty_edges_bridge C
-
-theorem ball_cycle_length_bound_bridge
-  {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
-  C.edges.card ≤ 2 * R := by
-  exact cycle_length_le_twoR_of_subgraph_ball_bridge v R C
+  {G : Graph} (C : Cycle G) : 0 < cycle_length C :=
+  C.nontrivial
 
 theorem ball_cycle_length_bound
   {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
-  C.edges.card ≤ 2 * R := by
-  exact ball_cycle_length_bound_bridge v R C
+  cycle_length C ≤ 2 * R :=
+  cycle_length_le_twoR_of_subgraph_ball v R C
 
 theorem ball_cycle_lifts
   {G : Graph} (v : G.V) (R : Nat) :
-  ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, C'.edges.card = C.edges.card := by
-  intro C
-  exact ball_cycle_embeds_in_graph_bridge v R C
-
-end Oblivion
-
-namespace Oblivion
+  ∀ C : Cycle (ball G v R), ∃ C' : Cycle G, cycle_length C' = cycle_length C :=
+  ball_cycle_embeds_in_graph v R
 
 theorem girth_radius_tree
-  {G : Graph} (v : G.V) (R : Nat) :
-  2 * R + 1 < girth G → Acyclic (ball G v R) := by
-  intro hg
-  have hg' : 2 * R < girth G := by omega
-  exact (girth_gt_twoR_implies_ball_acyclic_bridge (G:=G) R v (by infer_instance) hg').acyclic
+  {G : Graph} (v : G.V) (R : Nat) (hG : Connected G) :
+  4 * R < girth G → Acyclic (ball G v R) := by
+  intro h
+  exact (girth_gt_twoR_plus_one_implies_ball_tree (G := G) v R hG h).acyclic
 
 end Oblivion

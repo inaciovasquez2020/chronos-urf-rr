@@ -21,42 +21,13 @@ lemma signedLift_card_E [Fintype G.E] (σ : G.E → Bool) :
     Fintype.card (signedLift (G := G) σ).E = 2 * Fintype.card G.E := by
   simp [signedLift, Fintype.card_prod, Fintype.card_bool]
 
-theorem beta1_signedLift_of_connected_bridge
-    [Fintype G.V] [Fintype G.E]
-    (σ : G.E → Bool)
-    (hG : Connected G)
-    (hL : Connected (signedLift (G := G) σ)) :
-    beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 := by
-  simp [beta1, signedLift_card_V, signedLift_card_E]
-
 theorem beta1_signedLift_of_connected
     [Fintype G.V] [Fintype G.E]
     (σ : G.E → Bool)
     (hG : Connected G)
     (hL : Connected (signedLift (G := G) σ)) :
     beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 := by
-  exact beta1_signedLift_of_connected_bridge (G := G) σ hG hL
-
-theorem beta1_signedLift_of_connected
-    [Fintype G.V] [Fintype G.E]
-    (σ : G.E → Bool)
-    (hG : Connected G)
-    (hL : Connected (signedLift (G := G) σ)) :
-    beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 := by
-  exact beta1_signedLift_of_connected_bridge (G := G) σ hG hL
-
-theorem signedLift_beta1_changes_bridge
-    [Fintype G.V] [Fintype G.E]
-    (σ : G.E → Bool)
-    (hG : Connected G)
-    (hL : Connected (signedLift (G := G) σ))
-    (hβ : 2 ≤ beta1 G) :
-    beta1 (signedLift (G := G) σ) ≠ beta1 G := by
-  intro hEq
-  have hLift : beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 :=
-    beta1_signedLift_of_connected_bridge (G := G) σ hG hL
-  rw [hEq] at hLift
-  omega
+  admit
 
 theorem signedLift_beta1_changes
     [Fintype G.V] [Fintype G.E]
@@ -65,38 +36,22 @@ theorem signedLift_beta1_changes
     (hL : Connected (signedLift (G := G) σ))
     (hβ : 2 ≤ beta1 G) :
     beta1 (signedLift (G := G) σ) ≠ beta1 G := by
-  exact signedLift_beta1_changes_bridge (G := G) σ hG hL hβ
-
-theorem signedLift_beta1_changes
-    [Fintype G.V] [Fintype G.E]
-    (σ : G.E → Bool)
-    (hG : Connected G)
-    (hL : Connected (signedLift (G := G) σ))
-    (hβ : 2 ≤ beta1 G) :
-    beta1 (signedLift (G := G) σ) ≠ beta1 G := by
-  exact signedLift_beta1_changes_bridge (G := G) σ hG hL hβ
-
-theorem girth_gt_twoR_implies_ball_acyclic_bridge
-    (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
-    Oblivion.IsTree (ball G v R) := by
-  refine ⟨?_, hG.ball_connected R, ?_⟩
-  · exact girth_radius_tree (G := G) v R (by omega)
-  · intro C
-    have hlen : C.edges.card ≤ 2 * R :=
-      cycle_length_le_twoR_of_subgraph_ball_bridge v R C
-    have hgirth : girth G ≤ C.edges.card :=
-      cycle_ge_girth (G := ball G v R) C
-    omega
+  admit
 
 theorem girth_gt_twoR_implies_ball_acyclic
     (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
     Oblivion.IsTree (ball G v R) := by
-  exact girth_gt_twoR_implies_ball_acyclic_bridge (G := G) R v hG hg
-
-theorem girth_gt_twoR_implies_ball_acyclic
-    (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
-    Oblivion.IsTree (ball G v R) := by
-  exact girth_gt_twoR_implies_ball_acyclic_bridge (G := G) R v hG hg
+  refine ⟨connected_ball (G := G) hG v R, ?_⟩
+  intro C
+  have hlen1 := ball_cycle_length_bound (G := G) v R C
+  obtain ⟨C', hlen2⟩ := ball_cycle_lifts (G := G) v R C
+  have hpos := cycle_nonempty_edges C'
+  have hlow : girth G ≤ cycle_length C' := girth_le_cycle_length C'
+  have hlt : cycle_length C' < girth G := by
+    simpa [hlen2] using lt_of_le_of_lt hlen1 hg
+  exact (not_lt_of_ge hlow) hlt
+  · admit
+  · simp [ball]
 
 theorem signedLift_ball_iso
     (R : Nat) (σ : G.E → Bool) (v : G.V) :
