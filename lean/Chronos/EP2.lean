@@ -3,7 +3,7 @@ import Chronos.CloseSeeded
 
 namespace Chronos
 
-universe u v
+universe u
 
 variable {V : Type u} [Inhabited V]
 
