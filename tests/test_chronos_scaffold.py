@@ -20,7 +20,7 @@ def test_full_repo_builds():
 def test_single_remaining_axiom_in_chronos():
     proc = run(["grep", "-RIn", r"^[[:space:]]*axiom\b", "lean/Chronos"])
     lines = [line.strip() for line in proc.stdout.splitlines() if line.strip()]
-    assert len(lines) == 1, f"Unexpected axiom count: {lines}"
+    assert len(lines) == 0, f"Unexpected axiom count: {lines}"
 
 def test_xornorm_file_compiles():
     if not lake_available(): return
