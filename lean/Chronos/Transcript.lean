@@ -2,13 +2,13 @@ import Mathlib
 
 namespace Chronos
 
-universe u v
+universe u
 
-structure EFTranscript (V : Type u) :=
-  (moves : List V)
+structure EFTranscript (V : Type u) where
+  moves : List V
 
-def buildTranscript {V : Type u} {R : Nat}
-  (h1 h2 : V → Bool) : EFTranscript V :=
+def buildTranscript {V : Type u} {_R : Nat}
+  (_h1 _h2 : V → Bool) : EFTranscript V :=
   { moves := [] }
 
 end Chronos
