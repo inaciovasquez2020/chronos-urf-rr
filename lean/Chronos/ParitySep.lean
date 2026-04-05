@@ -1,12 +1,10 @@
 import Mathlib
+import Chronos.Transcript
 import Chronos.ParityPair
 
 namespace Chronos
 
 universe u v
-
-structure EFTranscript (V : Type u) where
-  moves : List V
 
 def parity_sep {V : Type u} {E : Type v}
     (_T : EFTranscript V)
