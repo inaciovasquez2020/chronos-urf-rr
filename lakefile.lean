@@ -12,5 +12,6 @@ require mathlib from git
 
 
 
-lean_lib Chronos where
-  srcDir := "lean/Chronos"
+
+lean_lib ChronosUrf where
+  srcDir := "lean"
