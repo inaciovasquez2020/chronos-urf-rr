@@ -32,7 +32,7 @@ lemma map_ne_eq_true_iff_unique
   (h_nodup : edges.Nodup)
   (he : e ∈ edges ∧ h1 e ≠ h2 e)
   (huniq : ∀ x, x ∈ edges ∧ h1 x ≠ h2 x → x = e) :
-  (edges.map (fun x => h1 x ≠ h2 x)).filter (fun b => b) = [true] := by
+  (edges.map (fun x => decide (h1 x ≠ h2 x))).filter (fun b => b) = [true] := by
   classical
   induction edges with
   | nil => cases he.1
@@ -77,7 +77,7 @@ theorem parityPair_ne_of_single_diff
   classical
   rcases h with ⟨e, he, huniq⟩
   have hcount :
-    (edges.map (fun x => h1 x ≠ h2 x)).filter (fun b => b) = [true] :=
+    (edges.map (fun x => decide (h1 x ≠ h2 x))).filter (fun b => b) = [true] :=
     map_ne_eq_true_iff_unique edges h1 h2 e h_nodup he huniq
   have hx :
     xorFold (edges.map h1) ≠ xorFold (edges.map h2) := by
