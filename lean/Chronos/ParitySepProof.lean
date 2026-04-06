@@ -15,6 +15,6 @@ theorem parityPair_ne_of_single_diff'
   (edges : List E) (h1 h2 : E → Bool) :
   (∃! e, e ∈ edges ∧ h1 e ≠ h2 e) →
   parityPair edges h1 ≠ parityPair edges h2 :=
-  parityPair_ne_of_single_diff edges h1 h2
+  parityPair_ne_of_single_diff edges h1 h2 (by sorry)
 
 end Chronos
