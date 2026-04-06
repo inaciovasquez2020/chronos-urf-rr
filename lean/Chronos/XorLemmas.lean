@@ -29,3 +29,8 @@ theorem parityPair_ne_of_single_diff
   simp [xorFold_cons, h_tail_eq, he_diff]
 
 end Chronos
+
+lemma bool_ne_cancel_right (a b c : Bool) :
+  (a ≠ c) = (b ≠ c) → a = b := by
+  cases a <;> cases b <;> cases c <;> decide
+
