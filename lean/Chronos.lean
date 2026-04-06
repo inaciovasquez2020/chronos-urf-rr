@@ -1,5 +1,5 @@
-import Chronos.EntropyModelGeneral
-import Chronos.EDOmegaN
-import Chronos.GraphDistance
-import Chronos.RootedBallEncoding
-import Chronos.EFDuplicator
+import Chronos.XorLemmas
+import Chronos.ParityPair
+import Chronos.ParitySepProof
+import Chronos.XorReduce
+import Chronos.EP2Bundle
