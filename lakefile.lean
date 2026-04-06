@@ -11,5 +11,6 @@ require mathlib from git
 
 
 
+
 lean_lib Chronos where
-  srcDir := "lean"
+  srcDir := "lean/Chronos"
