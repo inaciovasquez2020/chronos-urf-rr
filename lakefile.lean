@@ -15,5 +15,5 @@ require mathlib from git
 
 lean_lib ChronosUrf where
   srcDir := "lean"
-  roots := #[`All]
+  roots := #[`Chronos.XorReduce, `Chronos.EP2Bundle]
 
