@@ -4,7 +4,7 @@ import Chronos.ParityPair
 namespace Chronos
 
 universe v
-variable {E : Type v}
+variable {E : Type v} [DecidableEq E]
 
 theorem parityPair_ne_of_single_diff
   (edges : List E) (h1 h2 : E → Bool)
@@ -33,4 +33,16 @@ end Chronos
 lemma bool_ne_cancel_right (a b c : Bool) :
   (a ≠ c) = (b ≠ c) → a = b := by
   cases a <;> cases b <;> cases c <;> decide
+
+
+
+lemma erase_map (edges : List E) (e : E) (f : E → Bool) :
+  (edges.erase e).map f = (edges.map f).erase (f e) := by
+  classical
+  induction edges with
+  | nil => simp
+  | cons x xs ih =>
+      by_cases hxe : x = e
+      · subst hxe; simp
+      · simp [hxe, ih]
 
