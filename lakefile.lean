@@ -15,6 +15,5 @@ require mathlib from git
 
 lean_lib ChronosUrf where
   srcDir := "lean"
+  roots := #[`All]
 
-lean_exe main where
-  root := `Main
