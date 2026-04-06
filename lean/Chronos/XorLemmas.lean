@@ -24,9 +24,11 @@ theorem parityPair_ne_of_single_diff
     by_contra h_diff'
     exact hx_ne (huniq x ⟨hx_mem, h_diff'⟩)
 
-  simp [parityPair, parityPair_map]
-  have := List.perm_cons_erase he_mem
-  simp [xorFold_cons, h_tail_eq, he_diff]
+  intro h_eq
+  have : h1 e = h2 e := by
+    apply bool_ne_cancel_right (h1 e) (h2 e)
+    exact rfl
+  exact he_diff this
 
 end Chronos
 
