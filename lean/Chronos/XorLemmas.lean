@@ -81,9 +81,11 @@ theorem parityPair_ne_of_single_diff
     map_ne_eq_true_iff_unique edges h1 h2 e h_nodup he huniq
   have hx :
     xorFold (edges.map h1) ≠ xorFold (edges.map h2) := by
-    have := congrArg xorFold hcount
-    simp at this
-    exact this
+    have : xorFold (edges.map h1) ≠ xorFold (edges.map h2) := by
+      intro h_eq
+      have := congrArg xorFold hcount
+      simp at this
+      exact False.elim (by cases this)
   simpa [parityPair_map] using hx
 
 end Chronos
