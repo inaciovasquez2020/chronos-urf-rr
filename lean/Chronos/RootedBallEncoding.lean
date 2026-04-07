@@ -38,17 +38,17 @@ noncomputable def vertexType (R : Nat) (v : G.V) : List (Nat × Nat × Bool) :=
 
 def degreeBound (G : Graph) [Fintype G.V] : Nat := Fintype.card G.V
 
-theorem bounded_ball_card (R : Nat) (v : G.V) :
-    (Ball G R v).card ≤ Fintype.card G.V := by
-  exact Finset.card_le_univ (s := Ball G R v)
+theorem bounded_ball_card (_R : Nat) (v : G.V) :
+    (Ball G _R v).card ≤ Fintype.card G.V := by
+  exact Finset.card_le_univ (s := Ball G _R v)
 
-noncomputable def M (R : Nat) : Nat :=
-  let N := degreeBound G ^ (R + 1)
+noncomputable def M (_R : Nat) : Nat :=
+  let N := degreeBound G ^ (_R + 1)
   2 ^ (N * N)
 
-theorem range_vertexType_card_le (R : Nat) :
-    (Finset.univ.image (vertexType G R)).card ≤ Fintype.card G.V := by
+theorem range_vertexType_card_le (_R : Nat) :
+    (Finset.univ.image (vertexType G _R)).card ≤ Fintype.card G.V := by
   simpa using
-    (Finset.card_image_le (s := (Finset.univ : Finset G.V)) (f := vertexType G R))
+    (Finset.card_image_le (s := (Finset.univ : Finset G.V)) (f := vertexType G _R))
 
 end Chronos
