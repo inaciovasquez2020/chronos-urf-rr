@@ -38,6 +38,9 @@ noncomputable def vertexType (R : Nat) (v : G.V) : List (Nat × Nat × Bool) :=
 
 def degreeBound (G : Graph) [Fintype G.V] : Nat := Fintype.card G.V
 
+theorem degreeBound_eq_card : degreeBound G = Fintype.card G.V := by
+  rfl
+
 theorem bounded_ball_card (_R : Nat) (v : G.V) :
     (Ball G _R v).card ≤ Fintype.card G.V := by
   exact Finset.card_le_univ (s := Ball G _R v)
