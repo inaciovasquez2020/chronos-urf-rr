@@ -46,8 +46,9 @@ noncomputable def M (R : Nat) : Nat :=
   let N := degreeBound G ^ (R + 1)
   2 ^ (N * N)
 
-theorem range_vertexType_card_le (_R : Nat) :
-    True := by
-  trivial
+theorem range_vertexType_card_le (R : Nat) :
+    (Finset.univ.image (vertexType G R)).card ≤ Fintype.card G.V := by
+  simpa using
+    (Finset.card_image_le (s := (Finset.univ : Finset G.V)) (f := vertexType G R))
 
 end Chronos
