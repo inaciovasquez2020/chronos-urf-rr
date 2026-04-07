@@ -17,6 +17,13 @@ structure RootedBallIso (G H : Graph) (R : Nat) (v : G.V) (w : H.V) where
 
 abbrev PI (G H : Graph) : Type := @PartialIso G.V H.V G.decV H.decV
 
+structure EFWinData (G H : Graph) where
+  R : Nat
+  v : G.V
+  w : H.V
+  extend :
+    ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom
+
 def extendOnBall
   {G H : Graph}
   (R : Nat) (v : G.V) (w : H.V)
@@ -39,16 +46,17 @@ theorem duplicator_extension
   (_hiso : RootedBallIso G H R v w) :
   ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom := duplicator_extension_bridge R v w _hiso
 
-theorem ef_duplicator_wins_on_ball_bridge
+def ef_duplicator_wins_on_ball_bridge
   {G H : Graph} (_k R : Nat) (v : G.V) (w : H.V)
   (_hiso : RootedBallIso G H R v w) :
-  ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom :=
-  duplicator_extension_bridge R v w _hiso
+  EFWinData G H := by
+  refine ⟨R, v, w, ?_⟩
+  exact duplicator_extension_bridge R v w _hiso
 
-theorem ef_duplicator_wins_on_ball
+def ef_duplicator_wins_on_ball
   {G H : Graph} (_k R : Nat) (v : G.V) (w : H.V)
   (_hiso : RootedBallIso G H R v w) :
-  ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom :=
-  duplicator_extension R v w _hiso
+  EFWinData G H :=
+  ef_duplicator_wins_on_ball_bridge _k R v w _hiso
 
 end Chronos
