@@ -46,6 +46,11 @@ noncomputable def M (_R : Nat) : Nat :=
   let N := degreeBound G ^ (_R + 1)
   2 ^ (N * N)
 
+theorem M_pos (_R : Nat) : 0 < M G _R := by
+  unfold M
+  exact Nat.pow_pos (by decide : 0 < 2)
+
+
 theorem range_vertexType_card_le (_R : Nat) :
     (Finset.univ.image (vertexType G _R)).card ≤ Fintype.card G.V := by
   simpa using
