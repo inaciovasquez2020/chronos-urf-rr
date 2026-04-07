@@ -26,29 +26,30 @@ def extendOnBall
 theorem duplicator_extension_bridge
   {G H : Graph}
   (R : Nat) (v : G.V) (w : H.V)
-  (hiso : RootedBallIso G H R v w) :
+  (_hiso : RootedBallIso G H R v w) :
   ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom := by
   intro p
-  refine ⟨extendOnBall R v w hiso p, ?_⟩
-  simp [extendOnBall]
+  refine ⟨extendOnBall R v w _hiso p, ?_⟩
+  intro x hx
+  exact hx
 
 theorem duplicator_extension
   {G H : Graph}
   (R : Nat) (v : G.V) (w : H.V)
-  (hiso : RootedBallIso G H R v w) :
-  ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom := duplicator_extension_bridge R v w hiso
+  (_hiso : RootedBallIso G H R v w) :
+  ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom := duplicator_extension_bridge R v w _hiso
 
 theorem ef_duplicator_wins_on_ball_bridge
   {G H : Graph} (_k R : Nat) (v : G.V) (w : H.V)
-  (hiso : RootedBallIso G H R v w) :
+  (_hiso : RootedBallIso G H R v w) :
   ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom := by
   intro p
-  exact duplicator_extension_bridge R v w hiso p
+  exact duplicator_extension_bridge R v w _hiso p
 
 theorem ef_duplicator_wins_on_ball
   {G H : Graph} (_k R : Nat) (v : G.V) (w : H.V)
-  (hiso : RootedBallIso G H R v w) :
+  (_hiso : RootedBallIso G H R v w) :
   ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom :=
-  ef_duplicator_wins_on_ball_bridge _k R v w hiso
+  ef_duplicator_wins_on_ball_bridge _k R v w _hiso
 
 end Chronos
