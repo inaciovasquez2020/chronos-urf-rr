@@ -46,9 +46,8 @@ noncomputable def M (R : Nat) : Nat :=
   let N := degreeBound G ^ (R + 1)
   2 ^ (N * N)
 
-theorem range_vertexType_card_le :
-    ∀ (_R : Nat), True := by
-  intro _R
+theorem range_vertexType_card_le (_R : Nat) :
+    True := by
   trivial
 
 end Chronos
