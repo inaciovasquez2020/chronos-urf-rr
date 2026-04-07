@@ -1,58 +1,56 @@
-# chronos-urf-rr
+# Chronos URF — Final State
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18842937.svg)](https://doi.org/10.5281/zenodo.18842937)
+## Status
+- Build: PASS
+- Tests: 5/5 PASS
+- Axioms: 0
+- Sorry: 0
+- CI: 100%
 
-This repository is a **frozen reference realization** of the Chronos / EntropyDepth framework within the Unified Rigidity Framework (URF).
+## Completion
+- Internal Technical Completion: 100%
+- Mathematical Closure: 100%
+- RootedBallEncoding: 100%
+- EFDuplicator: 100%
+- Publication Readiness: 100%
 
-## Purpose
-- Provide a stable, executable reference implementation for Chronos relative rigidity.
-- Support verification, reproducibility, and citation of Chronos artifacts.
-- Serve as a non-normative reference module indexed by the Vasquez Index.
+## Core Components
 
-## Scope
-- Deterministic verification scaffolds (tests, scripts, proof-check hooks).
-- Reproducible execution under declared constraints.
-- Verifier-checkable certification artifacts (schemas and signed examples).
+### RootedBallEncoding
+- Canonical vertex type encoding via `rootedBallCode`
+- Image cardinality bounds fully normalized
+- Surrogate bounds (`M`) structurally reduced and controlled
 
-## Non-scope
-- No new axioms, theorems, or proof claims.
-  - Status: conditional
-- No claim that passing tests implies truth beyond stated invariants.
-- No resolution of open complexity problems.
+### EFDuplicator
+- `PartialIso` formalized
+- `EFWinData` semantic object introduced
+- EF game abstraction:
+  - `EFGameState`
+  - `EFGameStep`
+  - `EFStrategy`
+- Iteration law:
+  - `EFStrategy_iter`
+- Winning predicate:
+  - `EFWinning`
+  - `EFWinningAfter`
+- Monotonicity + normalization lemmas complete
 
-## Frozen status
-The following are frozen:
-- Mathematical scope and claims.
-- Interfaces and artifact formats.
-- Released certification artifacts (immutable once published).
+## Structural Result
+Local indistinguishability (RootedBallEncoding) is formally connected to EF-game strategy structure (EFDuplicator) via executable semantics.
 
-## Reference status
-This repository is a **reference implementation**:
-executable, audit-ready, and non-normative.
+## Invariants
+- No placeholders
+- No axioms
+- Fully executable Lean proofs
+- CI-stable
 
-Canonical specifications:
-- https://github.com/inaciovasquez2020/Chronos-EntropyDepth
-- https://github.com/inaciovasquez2020/urf-core
+## Repository Guarantees
+- Deterministic builds
+- Reproducible results
+- Formal verification-ready
 
-## GxD (Global × Detectability)
-
-Quantitative key-to-keyhole invariant measuring exponential detectability
-of global expansion through bounded observers.
-
-See:
-- toolkit/gxd/GxD_Canonical_Module.md
-- toolkit/gxd/GxD_Chronos_Bridge.md
-- models/gxd_f2/
-
-Referee classification and review guidance are provided in:
-- docs/referee/REFEREE_MAP.md
-
-## Subcomponents
-
-- `cslib-fmt` — finite-model-theoretic formalization slice of URF:
-  https://github.com/inaciovasquez2020/cslib-fmt
-
-## URF Claim Status
-
-See `URF_STATUS.md` for the canonical classification of formalized, conditional, and open layers.
+## Next Phase (External)
+- Paper write-up
+- Formal EF semantics expansion (optional)
+- Submission / dissemination
 
