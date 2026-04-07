@@ -42,14 +42,13 @@ theorem duplicator_extension
 theorem ef_duplicator_wins_on_ball_bridge
   {G H : Graph} (_k R : Nat) (v : G.V) (w : H.V)
   (_hiso : RootedBallIso G H R v w) :
-  ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom := by
-  intro p
-  exact duplicator_extension_bridge R v w _hiso p
+  ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom :=
+  duplicator_extension_bridge R v w _hiso
 
 theorem ef_duplicator_wins_on_ball
   {G H : Graph} (_k R : Nat) (v : G.V) (w : H.V)
   (_hiso : RootedBallIso G H R v w) :
   ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom :=
-  ef_duplicator_wins_on_ball_bridge _k R v w _hiso
+  duplicator_extension R v w _hiso
 
 end Chronos
