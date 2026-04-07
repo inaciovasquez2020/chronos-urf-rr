@@ -53,6 +53,10 @@ theorem M_pos (_R : Nat) : 0 < M G _R := by
 theorem one_le_M (_R : Nat) : 1 ≤ M G _R := by
   exact Nat.succ_le_of_lt (M_pos G _R)
 
+theorem vertexType_image_card_pos (_R : Nat) :
+    0 < (Finset.univ.image (vertexType G _R)).card + 1 := by
+  exact Nat.succ_pos _
+
 
 theorem range_vertexType_card_le (_R : Nat) :
     (Finset.univ.image (vertexType G _R)).card ≤ Fintype.card G.V := by
