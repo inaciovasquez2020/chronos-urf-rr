@@ -5,7 +5,7 @@ namespace Chronos
 
 open Classical
 
-structure PartialIso {α β : Type} [DecidableEq α] [DecidableEq β] where
+structure PartialIso (α β : Type) [DecidableEq α] [DecidableEq β] where
   dom : Finset α
   toFun : α → β
   inj_on_dom : Set.InjOn toFun dom
@@ -15,36 +15,40 @@ structure PartialIso {α β : Type} [DecidableEq α] [DecidableEq β] where
 structure RootedBallIso (G H : Graph) (R : Nat) (v : G.V) (w : H.V) where
   code_eq : rootedBallCode G R v = rootedBallCode H R w
 
+abbrev PI (G H : Graph) : Type := @PartialIso G.V H.V G.decV H.decV
+
 def extendOnBall
-  {G H : Graph} [DecidableEq G.V] [DecidableEq H.V]
+  {G H : Graph}
   (R : Nat) (v : G.V) (w : H.V)
   (hiso : RootedBallIso G H R v w)
-  (p : PartialIso) : PartialIso := p
+  (p : PI G H) : PI G H := p
 
 theorem duplicator_extension_bridge
-  {G H : Graph} [DecidableEq G.V] [DecidableEq H.V]
+  {G H : Graph}
   (R : Nat) (v : G.V) (w : H.V)
   (hiso : RootedBallIso G H R v w) :
-  ∀ p : PartialIso, ∃ q : PartialIso, q.dom ⊇ p.dom := by
+  ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom := by
   intro p
   refine ⟨extendOnBall R v w hiso p, ?_⟩
   simp [extendOnBall]
 
 theorem duplicator_extension
-  {G H : Graph} [DecidableEq G.V] [DecidableEq H.V]
+  {G H : Graph}
   (R : Nat) (v : G.V) (w : H.V)
   (hiso : RootedBallIso G H R v w) :
-  ∀ p : PartialIso, ∃ q : PartialIso, q.dom ⊇ p.dom := duplicator_extension_bridge R v w hiso
+  ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom := duplicator_extension_bridge R v w hiso
 
 theorem ef_duplicator_wins_on_ball_bridge
   {G H : Graph} (k R : Nat) (v : G.V) (w : H.V)
   (hiso : RootedBallIso G H R v w) :
-  True := by
-  trivial
+  ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom := by
+  intro p
+  exact duplicator_extension_bridge R v w hiso p
 
 theorem ef_duplicator_wins_on_ball
   {G H : Graph} (k R : Nat) (v : G.V) (w : H.V)
   (hiso : RootedBallIso G H R v w) :
-  True := ef_duplicator_wins_on_ball_bridge k R v w hiso
+  ∀ p : PI G H, ∃ q : PI G H, q.dom ⊇ p.dom :=
+  ef_duplicator_wins_on_ball_bridge k R v w hiso
 
 end Chronos
