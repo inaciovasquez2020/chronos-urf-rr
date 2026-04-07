@@ -57,6 +57,10 @@ theorem vertexType_image_card_pos (_R : Nat) :
     0 < (Finset.univ.image (vertexType G _R)).card + 1 := by
   exact Nat.succ_pos _
 
+theorem vertexType_image_card_nonempty (_R : Nat) :
+    1 ≤ (Finset.univ.image (vertexType G _R)).card + 1 := by
+  exact Nat.succ_le_of_lt (vertexType_image_card_pos G _R)
+
 
 theorem range_vertexType_card_le (_R : Nat) :
     (Finset.univ.image (vertexType G _R)).card ≤ Fintype.card G.V := by
