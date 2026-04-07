@@ -72,19 +72,17 @@ theorem vertexType_image_card_nonempty (_R : Nat) :
 theorem M_nonzero (_R : Nat) : M G _R ≠ 0 := by
   exact Nat.ne_of_gt (M_pos G _R)
 
+theorem vertexType_image_card_le_card_plus_M (_R : Nat) :
+    (Finset.univ.image (vertexType G _R)).card ≤ Fintype.card G.V + M G _R := by
+  exact Nat.le_add_right_of_le (vertexType_image_card_le_card G _R)
+
 theorem vertexType_image_card_succ_nonzero (_R : Nat) :
     (Finset.univ.image (vertexType G _R)).card + 1 ≠ 0 := by
   exact Nat.succ_ne_zero _
 
 theorem vertexType_image_card_le_degreeBound (_R : Nat) :
     (Finset.univ.image (vertexType G _R)).card ≤ degreeBound G := by
-  simpa [degreeBound] using
-    (Finset.card_image_le (s := (Finset.univ : Finset G.V)) (f := vertexType G _R))
+  simpa [degreeBound_eq_card G] using vertexType_image_card_le_card G _R
 
-
-theorem range_vertexType_card_le (_R : Nat) :
-    (Finset.univ.image (vertexType G _R)).card ≤ Fintype.card G.V := by
-  simpa using
-    (Finset.card_image_le (s := (Finset.univ : Finset G.V)) (f := vertexType G _R))
 
 end Chronos
