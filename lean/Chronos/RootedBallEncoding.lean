@@ -50,6 +50,9 @@ theorem M_pos (_R : Nat) : 0 < M G _R := by
   unfold M
   exact Nat.pow_pos (by decide : 0 < 2)
 
+theorem one_le_M (_R : Nat) : 1 ≤ M G _R := by
+  exact Nat.succ_le_of_lt (M_pos G _R)
+
 
 theorem range_vertexType_card_le (_R : Nat) :
     (Finset.univ.image (vertexType G _R)).card ≤ Fintype.card G.V := by
