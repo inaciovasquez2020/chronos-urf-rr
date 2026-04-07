@@ -41,6 +41,11 @@ def degreeBound (G : Graph) [Fintype G.V] : Nat := Fintype.card G.V
 theorem degreeBound_eq_card : degreeBound G = Fintype.card G.V := by
   rfl
 
+theorem vertexType_image_card_le_card (_R : Nat) :
+    (Finset.univ.image (vertexType G _R)).card ≤ Fintype.card G.V := by
+  simpa using
+    (Finset.card_image_le (s := (Finset.univ : Finset G.V)) (f := vertexType G _R))
+
 theorem bounded_ball_card (_R : Nat) (v : G.V) :
     (Ball G _R v).card ≤ Fintype.card G.V := by
   exact Finset.card_le_univ (s := Ball G _R v)
