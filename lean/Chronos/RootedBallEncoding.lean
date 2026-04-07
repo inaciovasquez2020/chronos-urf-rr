@@ -38,9 +38,10 @@ noncomputable def vertexType (R : Nat) (v : G.V) : List (Nat × Nat × Bool) :=
 
 def degreeBound (G : Graph) [Fintype G.V] : Nat := Fintype.card G.V
 
+omit [Fintype G.V] in
 theorem bounded_ball_card :
-    ∀ (R : Nat) (v : G.V), True := by
-  intro R v
+    ∀ (_R : Nat) (_v : G.V), True := by
+  intro _R _v
   trivial
 
 noncomputable def M (R : Nat) : Nat :=
@@ -48,8 +49,8 @@ noncomputable def M (R : Nat) : Nat :=
   2 ^ (N * N)
 
 theorem range_vertexType_card_le :
-    ∀ (R : Nat), True := by
-  intro R
+    ∀ (_R : Nat), True := by
+  intro _R
   trivial
 
 end Chronos
