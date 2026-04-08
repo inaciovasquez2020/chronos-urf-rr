@@ -54,3 +54,7 @@ Local indistinguishability (RootedBallEncoding) is formally connected to EF-game
 - Formal EF semantics expansion (optional)
 - Submission / dissemination
 
+
+## Open Problems
+
+- H4.1 finite-patch conditional chain indexed at `proofs/Chronos/conditional/H41_FINITE_PATCH_INDEX_2026_04.md`.
