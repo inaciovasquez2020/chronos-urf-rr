@@ -1,0 +1,7 @@
+status: scaffold
+object: computable_urf_invariant
+graph_encoding_fixed: false
+cycle_space_defined: false
+local_cycle_span_defined: false
+quotient_rank_defined: false
+certificate_format_fixed: false
