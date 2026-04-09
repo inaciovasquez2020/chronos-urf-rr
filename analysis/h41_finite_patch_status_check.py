@@ -12,6 +12,8 @@ REQUIRED = [
     "proofs/Chronos/conditional/H41_FINITE_PATCH_INDEX_2026_04.md",
     "proofs/Chronos/conditional/H41_FINITE_PATCH_EXEC_SUMMARY_2026_04.md",
     "proofs/Chronos/conditional/H41_FINITE_PATCH_STATUS_2026_04.yaml",
+    "proofs/Chronos/conditional/FGL_TERMINAL_ASSUMPTION_2026_04.md",
+    "proofs/Chronos/conditional/FGL_TO_H41_IMPLICATION_2026_04.md",
 ]
 
 missing = [p for p in REQUIRED if not Path(p).exists()]
