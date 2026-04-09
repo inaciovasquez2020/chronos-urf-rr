@@ -1,0 +1,7 @@
+status: scaffold
+object: invariant_separation_growth_certificate
+witness_input_fixed: false
+invariant_evaluator_fixed: false
+lower_bound_format_fixed: false
+growth_registry_fixed: false
+certificate_format_fixed: false
