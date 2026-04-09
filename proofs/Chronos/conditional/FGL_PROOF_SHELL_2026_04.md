@@ -27,3 +27,18 @@ V_{k,R,B}\subseteq W_{k,R,B}\oplus \langle 1\rangle.
 \[
 \mathrm{FGL}(k,R,B)\Longrightarrow \text{finite-patch H4.1}.
 \]
+
+
+## Proof obligations
+1. Fix an explicit canonical basis \(\mathcal B_{k,R,B}\) of \(V_{k,R,B}\).
+2. Fix an explicit generating family \(\Xi_{k,R,B}\) of \(W_{k,R,B}\).
+3. Form the correlation matrix
+\[
+M_{k,R,B}:=\bigl(\langle b,\chi\rangle\bigr)_{b\in\mathcal B_{k,R,B},\ \chi\in\Xi_{k,R,B}\cup\{1\}}.
+\]
+4. Prove every row indexed by
+\[
+b\notin W_{k,R,B}\oplus \langle 1\rangle
+\]
+is nonzero.
+5. Conclude \(\mathrm{FGL}(k,R,B)\).
