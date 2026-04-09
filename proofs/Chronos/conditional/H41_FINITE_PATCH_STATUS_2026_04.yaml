@@ -17,3 +17,6 @@ remaining_statement: >
 closure_criterion: >
   Proof of the remaining statement implies V_{k,R,B} ⊆ W_{k,R,B} ⊕ <1>,
   hence the finite-patch form of H4.1.
+terminal_assumption: FGL(k,R,B)
+terminal_assumption_file: proofs/Chronos/conditional/FGL_TERMINAL_ASSUMPTION_2026_04.md
+promotion_file: proofs/Chronos/conditional/FGL_TO_H41_IMPLICATION_2026_04.md
