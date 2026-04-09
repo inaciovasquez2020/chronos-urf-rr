@@ -12,7 +12,7 @@ Conditional.
 6. `H41_FINITE_PATCH_FINAL_WALL_2026_04.md`
 
 ## Minimal remaining statement
-Prove finite-patch Fourier completeness:
+Prove FGL:
 \[
 \forall b\in \mathcal B_{k,R,B}\setminus \bigl(W_{k,R,B}\oplus \langle 1\rangle\bigr),\quad
 \exists \chi\in W_{k,R,B}\ \text{such that}\ \langle b,\chi\rangle\neq 0
@@ -21,7 +21,7 @@ Prove finite-patch Fourier completeness:
 \]
 
 ## Unconditional closure criterion
-This single statement implies
+FGL implies
 \[
 V_{k,R,B}\subseteq W_{k,R,B}\oplus \langle 1\rangle,
 \]

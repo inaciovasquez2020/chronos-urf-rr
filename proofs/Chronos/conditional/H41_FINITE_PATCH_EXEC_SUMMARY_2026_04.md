@@ -17,6 +17,7 @@ Conditional.
 - Conditional chain index
 
 ## Sole remaining mathematical statement
+FGL:
 \[
 \forall b\in \mathcal B_{k,R,B}\setminus \bigl(W_{k,R,B}\oplus \langle 1\rangle\bigr),\quad
 \exists \chi\in W_{k,R,B}\ \text{such that}\ \langle b,\chi\rangle\neq 0
