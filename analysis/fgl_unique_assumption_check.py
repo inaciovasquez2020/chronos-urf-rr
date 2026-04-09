@@ -11,6 +11,10 @@ if "terminal_assumption: FGL(k,R,B)" not in status:
     print("MISSING: terminal_assumption FGL(k,R,B)")
     ok = False
 
+if "proof_shell_file: proofs/Chronos/conditional/FGL_PROOF_SHELL_2026_04.md" not in status:
+    print("MISSING: proof_shell_file FGL_PROOF_SHELL_2026_04.md")
+    ok = False
+
 if "finite-patch H4.1 is conditional only on `proofs/Chronos/conditional/FGL_PROOF_SHELL_2026_04.md`." not in readme:
     print("MISSING: README FGL-only statement")
     ok = False
