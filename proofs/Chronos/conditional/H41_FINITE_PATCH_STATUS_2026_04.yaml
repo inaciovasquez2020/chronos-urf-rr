@@ -20,3 +20,4 @@ closure_criterion: >
 terminal_assumption: FGL(k,R,B)
 terminal_assumption_file: proofs/Chronos/conditional/FGL_TERMINAL_ASSUMPTION_2026_04.md
 promotion_file: proofs/Chronos/conditional/FGL_TO_H41_IMPLICATION_2026_04.md
+proof_shell_file: proofs/Chronos/conditional/FGL_PROOF_SHELL_2026_04.md
