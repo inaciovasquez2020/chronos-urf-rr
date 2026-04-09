@@ -1,0 +1,7 @@
+status: scaffold
+object: explicit_witness_family
+constructor_defined: false
+base_family_fixed: false
+lift_encoding_fixed: false
+local_certificate_fixed: false
+invariant_growth_fixed: false
