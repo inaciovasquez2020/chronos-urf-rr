@@ -1,0 +1,7 @@
+status: scaffold
+object: explicit_witness_instance
+base_graph_fixed: true
+lift_defined: false
+local_property_checked: false
+invariant_computed: false
+separation_verified: false
