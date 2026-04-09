@@ -1,0 +1,7 @@
+status: scaffold
+object: local_indistinguishability_certificate
+rooted_ball_encoding_fixed: false
+local_type_encoding_fixed: false
+witness_pair_interface_fixed: false
+certificate_format_fixed: false
+parameter_registry_fixed: false
