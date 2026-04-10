@@ -56,7 +56,8 @@ theorem fundamental_cycles_independent
   trivial
 
 /-- Structural target: component indicators span the transpose kernel. -/
-theorem component_indicators_span_cokernel :
+theorem component_indicators_span_cokernel
+    {α : Type u} (_x : α) :
     True := by
   trivial
 
