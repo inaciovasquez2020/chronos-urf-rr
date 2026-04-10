@@ -10,7 +10,7 @@ structure CFILiftWitnessSpec where
   pebbleK : Nat
   localAgreement : True
   globalSeparation : True
-  treewidthGrowth : ∀ n : Nat, True
+  treewidthGrowth : True
 
 end Witnesses
 end URF
