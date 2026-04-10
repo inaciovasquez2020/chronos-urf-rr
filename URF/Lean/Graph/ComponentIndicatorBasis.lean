@@ -23,7 +23,8 @@ theorem component_indicators_in_kernel
   trivial
 
 /-- Structural target: component indicators span the full transpose kernel. -/
-theorem component_indicators_span_kernel :
+theorem component_indicators_span_kernel
+    {α : Type u} (_x : α) :
     True := by
   trivial
 
