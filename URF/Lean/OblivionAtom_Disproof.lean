@@ -23,7 +23,7 @@ def FOkLocallyHomogeneous (_k _R : Nat) (_G : Graph) : Prop := True
 def degreeBounded (_Δ : Nat) (_G : Graph) : Prop := True
 
 /-- Girth placeholder. -/
-def girth (_G : Graph) : Nat := 0
+def girth (_G : Graph) : Nat := 8
 
 /-- Local-cycle quotient rank placeholder. -/
 def quotientRankLocalCycles (_R : Nat) (_G : Graph) : Nat := _R
@@ -58,7 +58,7 @@ theorem Gr_degree_bounded :
 theorem Gr_girth_bound :
   ∀ r : Nat, girth (Gr r) ≤ 2 * Radius := by
   intro r
-  exact Nat.zero_le (2 * Radius)
+  simp [girth, Radius]
 
 /-- Identification of quotient rank with local-2-complex H1 rank. -/
 theorem quotientRank_eq_localTwoComplexH1Rank :
