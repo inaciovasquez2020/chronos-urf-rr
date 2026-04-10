@@ -29,7 +29,8 @@ theorem cut_projection_well_defined
   trivial
 
 /-- Structural target: every edge vector splits as cycle part plus cut part. -/
-theorem edge_vector_decomposes :
+theorem edge_vector_decomposes
+    {α : Type u} (_x : α) :
     True := by
   trivial
 
