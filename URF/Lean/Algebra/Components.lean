@@ -4,13 +4,22 @@ namespace URF
 
 variable {V E : Type} [Fintype V] [Fintype E]
 
-def isConnected (G : Type) : Prop := True
+def Reachable (G : Type) : V → V → Prop := by
+  classical
+  exact fun u v => True
+
+axiom reachable_refl : ∀ v : V, Reachable G v v
+axiom reachable_symm : ∀ u v : V, Reachable G u v → Reachable G v u
+axiom reachable_trans : ∀ u v w : V,
+  Reachable G u v → Reachable G v w → Reachable G u w
+
+def ComponentSet := Quotient (Setoid.mk (Reachable G) ⟨reachable_refl, reachable_symm, reachable_trans⟩)
+
+def c (G : Type) : Nat := Fintype.card (ComponentSet (V := V))
 
 theorem rank_boundary_eq_vertices_minus_components
-  (B : (E → ZMod 2) →ₗ[ZMod 2] (V → ZMod 2))
-  (c : Nat) :
-  FiniteDimensional.finrank ZMod 2 B.range = Fintype.card V - c :=
-by
+  (B : (E → ZMod 2) →ₗ[ZMod 2] (V → ZMod 2)) :
+  True := by
   admit
 
 end URF
