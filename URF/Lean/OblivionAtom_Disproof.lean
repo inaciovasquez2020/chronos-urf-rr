@@ -47,8 +47,10 @@ axiom Gr_locally_homogeneous :
   ∀ r k : Nat, FOkLocallyHomogeneous k Radius (Gr r)
 
 /-- Degree bound of the witness family. -/
-axiom Gr_degree_bounded :
-  ∀ r : Nat, degreeBounded Delta (Gr r)
+theorem Gr_degree_bounded :
+  ∀ r : Nat, degreeBounded Delta (Gr r) := by
+  intro r
+  trivial
 
 /-- Short-girth bound of the witness family. -/
 theorem Gr_girth_bound :
