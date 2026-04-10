@@ -132,3 +132,11 @@ theorem liftEdgeTwist_ne_trivial_on_twisted_false :
     liftEdgeTwist ⟨0, by decide⟩ false ≠ liftEdgeTrivial ⟨0, by decide⟩ false := by
   decide
 
+
+theorem edgeSignTwist_iff_zero (e : E936) :
+    edgeSignTwist e = true ↔ e.1 = 0 := by
+  unfold edgeSignTwist
+  by_cases h : e.1 = 0
+  · simp [h]
+  · simp [h]
+
