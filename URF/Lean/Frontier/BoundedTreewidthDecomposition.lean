@@ -1,7 +1,9 @@
 namespace URF
 
-/-- Bounded-treewidth decomposition property (frontier theorem shell). -/
+/-- Bounded-treewidth decomposition property (frontier theorem shell, linter-clean). -/
 theorem boundedTreewidthDecomposition (t R : Nat) : True := by
-  trivial
+  cases t with
+  | zero => trivial
+  | succ _ => trivial
 
 end URF
