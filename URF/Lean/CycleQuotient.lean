@@ -127,3 +127,8 @@ theorem liftEdgeTwist_eq_trivial_of_untwisted (e : E936) (b : Sign)
   unfold liftEdgeTwist liftEdgeTrivial
   simp [h]
 
+
+theorem liftEdgeTwist_ne_trivial_on_twisted_false :
+    liftEdgeTwist ⟨0, by decide⟩ false ≠ liftEdgeTrivial ⟨0, by decide⟩ false := by
+  decide
+
