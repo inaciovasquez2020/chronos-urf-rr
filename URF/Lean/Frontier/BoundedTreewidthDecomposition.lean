@@ -1,7 +1,7 @@
 namespace URF
 
-/-- Frontier shell: bounded-treewidth graphs satisfy the decomposition property. -/
-theorem boundedTreewidthDecomposition : True := by
+/-- Bounded-treewidth decomposition property (frontier theorem shell). -/
+theorem boundedTreewidthDecomposition (t R : Nat) : True := by
   trivial
 
 end URF
