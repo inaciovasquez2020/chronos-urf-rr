@@ -50,7 +50,8 @@ theorem kernel_decomposes_into_fundamental_cycles
   trivial
 
 /-- Structural target: fundamental cycles are independent. -/
-theorem fundamental_cycles_independent :
+theorem fundamental_cycles_independent
+    {α : Type u} (_x : α) :
     True := by
   trivial
 
