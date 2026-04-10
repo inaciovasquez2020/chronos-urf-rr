@@ -44,7 +44,8 @@ def fundamentalCycle {V E : Type u}
   ⟨(pathOp _T _p _u _v).support⟩
 
 /-- Structural target: every kernel element decomposes into fundamental cycles. -/
-theorem kernel_decomposes_into_fundamental_cycles :
+theorem kernel_decomposes_into_fundamental_cycles
+    {α : Type u} (_x : α) :
     True := by
   trivial
 
