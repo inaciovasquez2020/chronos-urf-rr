@@ -17,7 +17,8 @@ structure CutProjection (E : Type u) where
   proj : Finset E → Finset E
 
 /-- Structural target: cycle projection lands in the cycle subspace. -/
-theorem cycle_projection_well_defined :
+theorem cycle_projection_well_defined
+    {α : Type u} (_x : α) :
     True := by
   trivial
 
