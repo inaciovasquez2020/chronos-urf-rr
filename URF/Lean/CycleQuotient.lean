@@ -1,11 +1,9 @@
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Data.ZMod.Basic
 
-universe u
-
 structure Graph where
-  V : Type u
-  E : Type u
+  V : Type
+  E : Type
   src : E → V
   dst : E → V
 
