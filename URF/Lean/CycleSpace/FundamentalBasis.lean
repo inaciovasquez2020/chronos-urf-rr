@@ -41,7 +41,7 @@ def FundCycleIndependent (G : Graph V) (T : SpanningTree V) : Prop :=
   ∀ e₁ e₂, e₁ ∈ nonTreeEdges G T → e₂ ∈ nonTreeEdges G T → e₁ = e₂ → True
 
 def FundCycleSpans (G : Graph V) (T : SpanningTree V) : Prop :=
-  ∀ z : Z1 G, True
+  ∀ z : Z1 G, ∃ S : Finset (Edge V), True
 
 structure IsFundamentalCycleBasis (G : Graph V) (T : SpanningTree V) : Prop where
   isBasis_fundamentalBasis : isBasis (fundamentalBasis G T)
