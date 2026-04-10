@@ -4,3 +4,5 @@ import URF.Decidability.MetricProperties
 import URF.Factorization.Factorization
 import URF.Decidability.MetricProperties
 import URF.Factorization.Factorization
+import URF.CrossLayer.CrossLayer
+import URF.Decidability.DecidableCore
