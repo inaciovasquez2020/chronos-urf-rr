@@ -35,7 +35,8 @@ theorem edge_vector_decomposes
   trivial
 
 /-- Structural target: the split is direct. -/
-theorem cycle_cut_split_direct :
+theorem cycle_cut_split_direct
+    {α : Type u} (_x : α) :
     True := by
   trivial
 
