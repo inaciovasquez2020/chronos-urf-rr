@@ -42,6 +42,14 @@ def edgeSignTrivial (_e : E936) : Sign := false
 
 def edgeSignTwist (e : E936) : Sign := e.1 = 0
 
+def liftVertex : V312 × Sign → V624
+  | (v, false) => ⟨v.1, by exact v.2.trans (by decide)⟩
+  | (v, true)  => ⟨v.1 + 312, by
+      have h1 : v.1 < 312 := v.2
+      omega
+    ⟩
+
+
 
 /-- Base graph H (W(5) incidence witness carrier). -/
 def H : Graph :=
