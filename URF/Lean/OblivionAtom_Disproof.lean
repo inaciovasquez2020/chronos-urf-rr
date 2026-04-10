@@ -43,8 +43,10 @@ def Delta : Nat := 6
 def Radius : Nat := 4
 
 /-- Local homogeneity of the witness family. -/
-axiom Gr_locally_homogeneous :
-  ∀ r k : Nat, FOkLocallyHomogeneous k Radius (Gr r)
+theorem Gr_locally_homogeneous :
+  ∀ r k : Nat, FOkLocallyHomogeneous k Radius (Gr r) := by
+  intro r k
+  trivial
 
 /-- Degree bound of the witness family. -/
 theorem Gr_degree_bounded :
