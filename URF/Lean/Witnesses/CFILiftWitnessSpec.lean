@@ -2,15 +2,15 @@ namespace URF
 namespace Witnesses
 
 structure CFILiftWitnessSpec where
-  BaseFamily : ℕ → Type
-  Gplus : ℕ → Type
-  Gminus : ℕ → Type
-  degBound : ℕ
-  radius : ℕ
-  pebbleK : ℕ
-  localAgreement : ∀ n, True
-  globalSeparation : ∀ n, True
-  treewidthGrowth : ∀ n, True
+  BaseFamily : Nat → Type _
+  Gplus : Nat → Type _
+  Gminus : Nat → Type _
+  degBound : Nat
+  radius : Nat
+  pebbleK : Nat
+  localAgreement : ∀ n : Nat, True
+  globalSeparation : ∀ n : Nat, True
+  treewidthGrowth : ∀ n : Nat, True
 
 end Witnesses
 end URF
