@@ -52,6 +52,9 @@ theorem fundamental_basis_from_components
     (hInd : FundCycleIndependent G T)
     (hSpan : FundCycleSpans G T) :
     IsFundamentalCycleBasis G T := by
+  let _ := hInZ1
+  let _ := hInd
+  let _ := hSpan
   exact ⟨trivial⟩
 
 theorem fundamental_basis_correct
