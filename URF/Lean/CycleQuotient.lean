@@ -152,3 +152,9 @@ theorem liftEdgeTwist_eq_trivial_of_ne_zero (e : E936) (b : Sign) (h : e.1 ≠ 0
   apply liftEdgeTwist_eq_trivial_of_untwisted
   exact edgeSignTwist_false_of_ne_zero e h
 
+
+theorem liftEdgeTwist_eq_trivial_except_zero (e : E936) (b : Sign) :
+    e.1 ≠ 0 → liftEdgeTwist e b = liftEdgeTrivial e b := by
+  intro h
+  exact liftEdgeTwist_eq_trivial_of_ne_zero e b h
+
