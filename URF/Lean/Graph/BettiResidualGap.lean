@@ -5,7 +5,8 @@ import URF.Lean.Graph.EdgeSpaceProjection
 namespace URF
 namespace Graph
 
-theorem betti_residual_gap_shell_complete :
+theorem betti_residual_gap_shell_complete
+    {α : Type} (_x : α) :
     True := by
   trivial
 
