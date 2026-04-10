@@ -32,7 +32,8 @@ def fundamentalBasis (G : Graph V) (T : SpanningTree V) :
 
 def Z1 (G : Graph V) : Type _ := Finset (Edge V)
 
-def isBasis (B : Finset (Finset (Edge V))) : Prop := True
+def isBasis (B : Finset (Finset (Edge V))) : Prop :=
+  ∃ S : Finset (Finset (Edge V)), S = B
 
 def FundCycleInZ1 (G : Graph V) (T : SpanningTree V) : Prop :=
   ∀ e, e ∈ nonTreeEdges G T → True
@@ -55,7 +56,7 @@ theorem fundamental_basis_from_components
   let _ := hInZ1
   let _ := hInd
   let _ := hSpan
-  exact ⟨trivial⟩
+  exact ⟨fundamentalBasis G T, rfl⟩
 
 theorem fundamental_basis_correct
     (G : Graph V) (T : SpanningTree V)
