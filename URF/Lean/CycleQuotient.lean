@@ -172,3 +172,15 @@ theorem liftEdgeTwist_ne_trivial_on_twistedEdge_false :
     liftEdgeTwist twistedEdge false ≠ liftEdgeTrivial twistedEdge false := by
   decide
 
+
+theorem liftEdgeTwist_eq_trivial_of_ne_twistedEdge (e : E936) (b : Sign)
+    (h : e ≠ twistedEdge) :
+    liftEdgeTwist e b = liftEdgeTrivial e b := by
+  apply liftEdgeTwist_eq_trivial_of_ne_zero
+  intro hz
+  apply h
+  cases e with
+  | mk val isLt =>
+      simp [twistedEdge] at hz ⊢
+      exact hz
+
