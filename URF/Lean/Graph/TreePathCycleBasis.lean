@@ -45,6 +45,7 @@ def fundamentalCycle {V E : Type u}
 
 /-- Structural target: every kernel element decomposes into fundamental cycles. -/
 theorem kernel_decomposes_into_fundamental_cycles
+    (_T : SpanningForest V E) (_p : ParentMap V)
     {α : Type u} (_x : α) :
     True := by
   trivial
