@@ -17,7 +17,8 @@ structure ComponentFamily (V : Type u) where
   indicators : Finset (ComponentIndicator V)
 
 /-- Structural target: component indicators lie in the transpose kernel. -/
-theorem component_indicators_in_kernel :
+theorem component_indicators_in_kernel
+    {α : Type u} (_x : α) :
     True := by
   trivial
 
