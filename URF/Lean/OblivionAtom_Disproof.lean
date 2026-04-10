@@ -20,7 +20,7 @@ open Classical
 def FOkLocallyHomogeneous (_k _R : Nat) (_G : Graph) : Prop := True
 
 /-- Degree bound predicate. -/
-def degreeBounded (_Δ : Nat) (G : Graph) : Prop := True
+def degreeBounded (_Δ : Nat) (_G : Graph) : Prop := True
 
 /-- Girth placeholder. -/
 def girth (_G : Graph) : Nat := 0
