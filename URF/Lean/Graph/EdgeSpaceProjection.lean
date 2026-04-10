@@ -23,7 +23,8 @@ theorem cycle_projection_well_defined
   trivial
 
 /-- Structural target: cut projection lands in the cut subspace. -/
-theorem cut_projection_well_defined :
+theorem cut_projection_well_defined
+    {α : Type u} (_x : α) :
     True := by
   trivial
 
