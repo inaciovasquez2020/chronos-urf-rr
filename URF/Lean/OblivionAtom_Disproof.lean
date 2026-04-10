@@ -119,8 +119,11 @@ def W5Base : Graph := Gr 0
 def W5LiftPlus : Graph := Gr 1
 def W5LiftMinus : Graph := Gr 2
 
-axiom W5_parameters :
-  degreeBounded Delta W5Base ∧ girth W5Base = 8
+theorem W5_parameters :
+  degreeBounded Delta W5Base ∧ girth W5Base = 8 := by
+  constructor
+  · trivial
+  · simp [W5Base, Gr, girth]
 
 theorem W5_local_homogeneity :
   ∀ k : Nat, FOkLocallyHomogeneous k Radius W5LiftPlus ∧
