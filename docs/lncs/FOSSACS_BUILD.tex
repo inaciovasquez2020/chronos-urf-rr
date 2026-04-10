@@ -1,0 +1,17 @@
+\section*{FoSSaCS Build: Locality Barrier}
+
+\textbf{Core Claim.}
+FO^k-local indistinguishability does not force factorization of a global invariant.
+
+\textbf{Executable Statement.}
+\[
+\exists (G^+,G^-): \mathrm{EF}^k_R(G^+,G^-) \wedge I(G^+) \neq I(G^-)
+\]
+
+\textbf{Invariant.}
+\[
+I(G) = \dim_{\mathbf{F}_2}(Z_1(G)/Z_1^{\le 2R+1}(G))
+\]
+
+\textbf{Verification.}
+Certified via Lean + JSON witness.
