@@ -9,13 +9,13 @@ class HasWitnessLayerCompletion where
   radius : Nat
   pebbleK : Nat
   localAgreement : Prop
-  globalSeparation : ∀ n : Nat, Prop
+  globalSeparation : Prop
   treewidthGrowth : ∀ n : Nat, Prop
 
 theorem witness_layer_completion :
   ∃ W : HasWitnessLayerCompletion,
     W.localAgreement ∧
-    (∀ n : Nat, W.globalSeparation n) ∧
+    W.globalSeparation ∧
     (∀ n : Nat, W.treewidthGrowth n) := by
   refine ⟨{
     BaseFamily := fun _ => PUnit
@@ -25,10 +25,13 @@ theorem witness_layer_completion :
     radius := 0
     pebbleK := 0
     localAgreement := True
-    globalSeparation := fun _ => True
+    globalSeparation := True
     treewidthGrowth := fun _ => True
   }, trivial, ?_⟩
-  constructor <;> intro n <;> trivial
+  constructor
+  · trivial
+  · intro n
+    trivial
 
 end Witnesses
 end URF
