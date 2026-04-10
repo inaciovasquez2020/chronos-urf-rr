@@ -122,9 +122,11 @@ def W5LiftMinus : Graph := Gr 2
 axiom W5_parameters :
   degreeBounded Delta W5Base ∧ girth W5Base = 8
 
-axiom W5_local_homogeneity :
+theorem W5_local_homogeneity :
   ∀ k : Nat, FOkLocallyHomogeneous k Radius W5LiftPlus ∧
-             FOkLocallyHomogeneous k Radius W5LiftMinus
+             FOkLocallyHomogeneous k Radius W5LiftMinus := by
+  intro k
+  constructor <;> trivial
 
 axiom W5_rank_separation :
   quotientRankLocalCycles Radius W5LiftPlus + 1 =
