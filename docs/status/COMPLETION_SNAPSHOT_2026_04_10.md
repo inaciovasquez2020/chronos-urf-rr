@@ -14,6 +14,7 @@ Pinned clean commit: 6e9d727
 
 ## Interpretation
 68\% \text{ complete for the unconditional graph-side package}
+45\% \text{ overall}
 
 Repository infrastructure is submission-ready as an executable artifact wrapper.
 Mathematical frontier claims remain governed by the explicit scope notes already present in `docs/status`.
