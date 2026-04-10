@@ -140,7 +140,7 @@ theorem W5_global_separation :
     rw [W5_rank_separation, hEq]
   have hSucc : Nat.succ (quotientRankLocalCycles Radius W5LiftPlus) =
                quotientRankLocalCycles Radius W5LiftPlus := by
-    simpa [Nat.succ_eq_add_one] using hStep
+    simpa using hStep
   exact Nat.succ_ne_self _ hSucc
 
 /-- Axiom inventory for one-step replacement workflow. -/
