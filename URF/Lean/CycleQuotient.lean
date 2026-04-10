@@ -140,3 +140,9 @@ theorem edgeSignTwist_iff_zero (e : E936) :
   · simp [h]
   · simp [h]
 
+
+theorem edgeSignTwist_false_of_ne_zero (e : E936) (h : e.1 ≠ 0) :
+    edgeSignTwist e = false := by
+  unfold edgeSignTwist
+  simp [h]
+
