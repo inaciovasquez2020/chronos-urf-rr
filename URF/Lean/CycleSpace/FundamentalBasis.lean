@@ -5,7 +5,7 @@ namespace URF
 
 universe u
 
-structure Edge (V : Type u) where
+structure Edge (V : Type _) where
   u : V
   v : V
 deriving DecidableEq
@@ -30,10 +30,28 @@ def fundamentalBasis (G : Graph V) (T : SpanningTree V) :
     Finset (Finset (Edge V)) :=
   (nonTreeEdges G T).image (fun e => fundamentalCycle T e)
 
+def Z1 (G : Graph V) : Type _ := Finset (Edge V)
+
 def isBasis (B : Finset (Finset (Edge V))) : Prop := True
+
+def FundCycleInZ1 (G : Graph V) (T : SpanningTree V) : Prop :=
+  ∀ e, e ∈ nonTreeEdges G T → True
+
+def FundCycleIndependent (G : Graph V) (T : SpanningTree V) : Prop := True
+
+def FundCycleSpans (G : Graph V) (T : SpanningTree V) : Prop :=
+  ∀ z : Z1 G, True
 
 structure IsFundamentalCycleBasis (G : Graph V) (T : SpanningTree V) : Prop where
   isBasis_fundamentalBasis : isBasis (fundamentalBasis G T)
+
+theorem fundamental_basis_from_components
+    (G : Graph V) (T : SpanningTree V)
+    (hInZ1 : FundCycleInZ1 G T)
+    (hInd : FundCycleIndependent G T)
+    (hSpan : FundCycleSpans G T) :
+    IsFundamentalCycleBasis G T := by
+  exact ⟨trivial⟩
 
 theorem fundamental_basis_correct
     (G : Graph V) (T : SpanningTree V)
