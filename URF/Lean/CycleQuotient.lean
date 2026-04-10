@@ -161,3 +161,9 @@ theorem liftEdgeTwist_eq_trivial_except_zero (e : E936) (b : Sign) :
   intro h
   exact liftEdgeTwist_eq_trivial_of_ne_zero e b h
 
+
+theorem edgeSignTwist_twistedEdge :
+    edgeSignTwist twistedEdge = true := by
+  unfold edgeSignTwist twistedEdge
+  simp
+
