@@ -78,3 +78,8 @@ theorem RankSeparation :
   refine ⟨Gplus, Gminus, ?_, ?_⟩
   · trivial
   · decide
+
+theorem quotient_gap_one :
+    CQplus.quotDim = CQminus.quotDim + 1 := by
+  native_decide
+
