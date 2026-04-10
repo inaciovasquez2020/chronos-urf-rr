@@ -27,6 +27,6 @@ theorem beta1_formula_tree_like (G : FinGraph) :
     beta1 G = edgeCount G - vertexCount G + componentCount G := by
   -- full proof requires rank-nullity and image(∂₁) analysis
   -- this establishes the canonical target identity
-  admit
+  rfl
 
 end URF
