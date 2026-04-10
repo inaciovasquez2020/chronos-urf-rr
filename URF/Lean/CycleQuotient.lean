@@ -146,3 +146,9 @@ theorem edgeSignTwist_false_of_ne_zero (e : E936) (h : e.1 ≠ 0) :
   unfold edgeSignTwist
   simp [h]
 
+
+theorem liftEdgeTwist_eq_trivial_of_ne_zero (e : E936) (b : Sign) (h : e.1 ≠ 0) :
+    liftEdgeTwist e b = liftEdgeTrivial e b := by
+  apply liftEdgeTwist_eq_trivial_of_untwisted
+  exact edgeSignTwist_false_of_ne_zero e h
+
