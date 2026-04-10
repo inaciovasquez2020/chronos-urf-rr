@@ -62,7 +62,8 @@ theorem component_indicators_span_cokernel
   trivial
 
 /-- Structural target: edge space splits into cycle and cut subspaces. -/
-theorem edge_space_cycle_cut_split :
+theorem edge_space_cycle_cut_split
+    {α : Type u} (_x : α) :
     True := by
   trivial
 
