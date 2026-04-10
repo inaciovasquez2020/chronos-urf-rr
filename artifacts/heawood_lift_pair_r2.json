@@ -1,0 +1,833 @@
+{
+  "G_minus": {
+    "local_cycle_length_bound": 5,
+    "local_cycle_span_dimension": 0,
+    "num_cycles_local": 0,
+    "num_cycles_total": 11034,
+    "num_edges": 42,
+    "num_vertices": 28,
+    "urf_invariant": 15,
+    "z1_dimension": 15
+  },
+  "G_plus": {
+    "local_cycle_length_bound": 5,
+    "local_cycle_span_dimension": 0,
+    "num_cycles_local": 0,
+    "num_cycles_total": 426,
+    "num_edges": 42,
+    "num_vertices": 28,
+    "urf_invariant": 16,
+    "z1_dimension": 16
+  },
+  "base_girth": 6,
+  "base_name": "HeawoodGraph",
+  "lift_minus_adj": {
+    "0_0": [
+      "1_1",
+      "5_0",
+      "13_0"
+    ],
+    "0_1": [
+      "1_0",
+      "5_1",
+      "13_1"
+    ],
+    "10_0": [
+      "1_0",
+      "9_0",
+      "11_0"
+    ],
+    "10_1": [
+      "1_1",
+      "9_1",
+      "11_1"
+    ],
+    "11_0": [
+      "6_0",
+      "10_0",
+      "12_0"
+    ],
+    "11_1": [
+      "6_1",
+      "10_1",
+      "12_1"
+    ],
+    "12_0": [
+      "3_0",
+      "11_0",
+      "13_0"
+    ],
+    "12_1": [
+      "3_1",
+      "11_1",
+      "13_1"
+    ],
+    "13_0": [
+      "0_0",
+      "8_0",
+      "12_0"
+    ],
+    "13_1": [
+      "0_1",
+      "8_1",
+      "12_1"
+    ],
+    "1_0": [
+      "0_1",
+      "2_0",
+      "10_0"
+    ],
+    "1_1": [
+      "0_0",
+      "2_1",
+      "10_1"
+    ],
+    "2_0": [
+      "1_0",
+      "3_0",
+      "7_0"
+    ],
+    "2_1": [
+      "1_1",
+      "3_1",
+      "7_1"
+    ],
+    "3_0": [
+      "2_0",
+      "4_0",
+      "12_0"
+    ],
+    "3_1": [
+      "2_1",
+      "4_1",
+      "12_1"
+    ],
+    "4_0": [
+      "3_0",
+      "5_0",
+      "9_0"
+    ],
+    "4_1": [
+      "3_1",
+      "5_1",
+      "9_1"
+    ],
+    "5_0": [
+      "0_0",
+      "4_0",
+      "6_0"
+    ],
+    "5_1": [
+      "0_1",
+      "4_1",
+      "6_1"
+    ],
+    "6_0": [
+      "5_0",
+      "7_0",
+      "11_0"
+    ],
+    "6_1": [
+      "5_1",
+      "7_1",
+      "11_1"
+    ],
+    "7_0": [
+      "2_0",
+      "6_0",
+      "8_0"
+    ],
+    "7_1": [
+      "2_1",
+      "6_1",
+      "8_1"
+    ],
+    "8_0": [
+      "7_0",
+      "9_0",
+      "13_0"
+    ],
+    "8_1": [
+      "7_1",
+      "9_1",
+      "13_1"
+    ],
+    "9_0": [
+      "4_0",
+      "8_0",
+      "10_0"
+    ],
+    "9_1": [
+      "4_1",
+      "8_1",
+      "10_1"
+    ]
+  },
+  "lift_plus_adj": {
+    "0_0": [
+      "1_0",
+      "5_0",
+      "13_0"
+    ],
+    "0_1": [
+      "1_1",
+      "5_1",
+      "13_1"
+    ],
+    "10_0": [
+      "1_0",
+      "9_0",
+      "11_0"
+    ],
+    "10_1": [
+      "1_1",
+      "9_1",
+      "11_1"
+    ],
+    "11_0": [
+      "6_0",
+      "10_0",
+      "12_0"
+    ],
+    "11_1": [
+      "6_1",
+      "10_1",
+      "12_1"
+    ],
+    "12_0": [
+      "3_0",
+      "11_0",
+      "13_0"
+    ],
+    "12_1": [
+      "3_1",
+      "11_1",
+      "13_1"
+    ],
+    "13_0": [
+      "0_0",
+      "8_0",
+      "12_0"
+    ],
+    "13_1": [
+      "0_1",
+      "8_1",
+      "12_1"
+    ],
+    "1_0": [
+      "0_0",
+      "2_0",
+      "10_0"
+    ],
+    "1_1": [
+      "0_1",
+      "2_1",
+      "10_1"
+    ],
+    "2_0": [
+      "1_0",
+      "3_0",
+      "7_0"
+    ],
+    "2_1": [
+      "1_1",
+      "3_1",
+      "7_1"
+    ],
+    "3_0": [
+      "2_0",
+      "4_0",
+      "12_0"
+    ],
+    "3_1": [
+      "2_1",
+      "4_1",
+      "12_1"
+    ],
+    "4_0": [
+      "3_0",
+      "5_0",
+      "9_0"
+    ],
+    "4_1": [
+      "3_1",
+      "5_1",
+      "9_1"
+    ],
+    "5_0": [
+      "0_0",
+      "4_0",
+      "6_0"
+    ],
+    "5_1": [
+      "0_1",
+      "4_1",
+      "6_1"
+    ],
+    "6_0": [
+      "5_0",
+      "7_0",
+      "11_0"
+    ],
+    "6_1": [
+      "5_1",
+      "7_1",
+      "11_1"
+    ],
+    "7_0": [
+      "2_0",
+      "6_0",
+      "8_0"
+    ],
+    "7_1": [
+      "2_1",
+      "6_1",
+      "8_1"
+    ],
+    "8_0": [
+      "7_0",
+      "9_0",
+      "13_0"
+    ],
+    "8_1": [
+      "7_1",
+      "9_1",
+      "13_1"
+    ],
+    "9_0": [
+      "4_0",
+      "8_0",
+      "10_0"
+    ],
+    "9_1": [
+      "4_1",
+      "8_1",
+      "10_1"
+    ]
+  },
+  "local_certificate": {
+    "all_roots_isomorphic": true,
+    "certificates": [
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          0,
+          0
+        ],
+        "root_plus": [
+          0,
+          0
+        ],
+        "tau_support": [
+          1,
+          2,
+          10
+        ]
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          0,
+          1
+        ],
+        "root_plus": [
+          0,
+          1
+        ],
+        "tau_support": [
+          1,
+          2,
+          10
+        ]
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          1,
+          0
+        ],
+        "root_plus": [
+          1,
+          0
+        ],
+        "tau_support": [
+          0,
+          5,
+          13
+        ]
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          1,
+          1
+        ],
+        "root_plus": [
+          1,
+          1
+        ],
+        "tau_support": [
+          0,
+          5,
+          13
+        ]
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          2,
+          0
+        ],
+        "root_plus": [
+          2,
+          0
+        ],
+        "tau_support": [
+          0
+        ]
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          2,
+          1
+        ],
+        "root_plus": [
+          2,
+          1
+        ],
+        "tau_support": [
+          0
+        ]
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          3,
+          0
+        ],
+        "root_plus": [
+          3,
+          0
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          3,
+          1
+        ],
+        "root_plus": [
+          3,
+          1
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          4,
+          0
+        ],
+        "root_plus": [
+          4,
+          0
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          4,
+          1
+        ],
+        "root_plus": [
+          4,
+          1
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          5,
+          0
+        ],
+        "root_plus": [
+          5,
+          0
+        ],
+        "tau_support": [
+          1
+        ]
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          5,
+          1
+        ],
+        "root_plus": [
+          5,
+          1
+        ],
+        "tau_support": [
+          1
+        ]
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          6,
+          0
+        ],
+        "root_plus": [
+          6,
+          0
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          6,
+          1
+        ],
+        "root_plus": [
+          6,
+          1
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          7,
+          0
+        ],
+        "root_plus": [
+          7,
+          0
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          7,
+          1
+        ],
+        "root_plus": [
+          7,
+          1
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          8,
+          0
+        ],
+        "root_plus": [
+          8,
+          0
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          8,
+          1
+        ],
+        "root_plus": [
+          8,
+          1
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          9,
+          0
+        ],
+        "root_plus": [
+          9,
+          0
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          9,
+          1
+        ],
+        "root_plus": [
+          9,
+          1
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          10,
+          0
+        ],
+        "root_plus": [
+          10,
+          0
+        ],
+        "tau_support": [
+          0
+        ]
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          10,
+          1
+        ],
+        "root_plus": [
+          10,
+          1
+        ],
+        "tau_support": [
+          0
+        ]
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          11,
+          0
+        ],
+        "root_plus": [
+          11,
+          0
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          11,
+          1
+        ],
+        "root_plus": [
+          11,
+          1
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          12,
+          0
+        ],
+        "root_plus": [
+          12,
+          0
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          12,
+          1
+        ],
+        "root_plus": [
+          12,
+          1
+        ],
+        "tau_support": []
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          13,
+          0
+        ],
+        "root_plus": [
+          13,
+          0
+        ],
+        "tau_support": [
+          1
+        ]
+      },
+      {
+        "isomorphic": true,
+        "ok_distance": true,
+        "ok_edges": true,
+        "ok_root": true,
+        "ok_vertices": true,
+        "root_minus": [
+          13,
+          1
+        ],
+        "root_plus": [
+          13,
+          1
+        ],
+        "tau_support": [
+          1
+        ]
+      }
+    ],
+    "radius": 2,
+    "twisted_edge": [
+      0,
+      1
+    ]
+  },
+  "pairing": {
+    "0_0": "0_0",
+    "0_1": "0_1",
+    "10_0": "10_0",
+    "10_1": "10_1",
+    "11_0": "11_0",
+    "11_1": "11_1",
+    "12_0": "12_0",
+    "12_1": "12_1",
+    "13_0": "13_0",
+    "13_1": "13_1",
+    "1_0": "1_0",
+    "1_1": "1_1",
+    "2_0": "2_0",
+    "2_1": "2_1",
+    "3_0": "3_0",
+    "3_1": "3_1",
+    "4_0": "4_0",
+    "4_1": "4_1",
+    "5_0": "5_0",
+    "5_1": "5_1",
+    "6_0": "6_0",
+    "6_1": "6_1",
+    "7_0": "7_0",
+    "7_1": "7_1",
+    "8_0": "8_0",
+    "8_1": "8_1",
+    "9_0": "9_0",
+    "9_1": "9_1"
+  },
+  "radius": 2,
+  "twisted_edge": [
+    0,
+    1
+  ]
+}
