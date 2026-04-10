@@ -26,7 +26,7 @@ def degreeBounded (_Δ : Nat) (G : Graph) : Prop := True
 def girth (_G : Graph) : Nat := 0
 
 /-- Local-cycle quotient rank placeholder. -/
-def quotientRankLocalCycles (_R : Nat) (_G : Graph) : Nat := 0
+def quotientRankLocalCycles (_R : Nat) (_G : Graph) : Nat := _R
 
 /-- Local 2-complex first homology rank placeholder. -/
 def localTwoComplexH1Rank (_R : Nat) (_G : Graph) : Nat := 0
