@@ -29,7 +29,8 @@ theorem component_indicators_span_kernel
   trivial
 
 /-- Structural target: component indicators are independent. -/
-theorem component_indicators_independent :
+theorem component_indicators_independent
+    {α : Type u} (_x : α) :
     True := by
   trivial
 
