@@ -9,14 +9,13 @@ abbrev VertexSpace (V : Type) := V → ZMod 2
 
 variable (B : EdgeSpace E →ₗ[ZMod 2] VertexSpace V)
 
-/-- Final rank additivity statement (structural shell) -/
-theorem rank_additivity_final :
-  True := by
-  trivial
-
-/-- Betti identity (final target form) -/
-theorem betti_number_formula :
-  True := by
-  trivial
+/-- Main Betti identity -/
+theorem betti_identity :
+  FiniteDimensional.finrank ZMod 2 (LinearMap.ker B) +
+  FiniteDimensional.finrank ZMod 2 (LinearMap.range B) =
+  Fintype.card E :=
+by
+  classical
+  exact LinearMap.rank_range_add_rank_ker B
 
 end URF

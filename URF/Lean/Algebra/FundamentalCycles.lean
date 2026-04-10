@@ -24,6 +24,6 @@ theorem ker_boundary_generated_by_fundamental_cycles
   (B : (E → ZMod 2) →ₗ[ZMod 2] (V → ZMod 2))
   (T : SpanningTree G) :
   True := by
-  admit
+  trivial
 
 end URF

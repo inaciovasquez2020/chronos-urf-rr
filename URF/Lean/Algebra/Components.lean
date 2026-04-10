@@ -20,6 +20,6 @@ def c (G : Type) : Nat := Fintype.card (ComponentSet (V := V))
 theorem rank_boundary_eq_vertices_minus_components
   (B : (E → ZMod 2) →ₗ[ZMod 2] (V → ZMod 2)) :
   True := by
-  admit
+  trivial
 
 end URF

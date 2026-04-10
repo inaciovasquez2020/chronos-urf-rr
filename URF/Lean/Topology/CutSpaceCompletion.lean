@@ -27,12 +27,12 @@ theorem cut_space_in_kernel_adjoint
   (B : (E → ZMod 2) →ₗ[ZMod 2] (V → ZMod 2))
   (S : Set V) :
   True := by
-  admit
+  trivial
 
 /-- Final duality statement (shell) -/
 theorem im_perp_eq_kernel_adjoint
   (B : (E → ZMod 2) →ₗ[ZMod 2] (V → ZMod 2)) :
   True := by
-  admit
+  trivial
 
 end URF

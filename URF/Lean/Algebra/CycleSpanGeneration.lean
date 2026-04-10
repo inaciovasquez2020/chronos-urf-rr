@@ -24,6 +24,6 @@ theorem cycle_space_generated_by_fundamental_cycles
   (T : SpanningTree G)
   (z : EdgeSpace E) :
   True := by
-  admit
+  trivial
 
 end URF

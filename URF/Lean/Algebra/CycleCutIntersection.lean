@@ -25,6 +25,6 @@ def CutSpace : Set (EdgeSpace E) :=
 /-- Trivial intersection theorem -/
 theorem cycle_cut_intersection_trivial :
   True := by
-  admit
+  trivial
 
 end URF

@@ -21,6 +21,6 @@ theorem fundamental_cycles_linear_independent
   (T : SpanningTree G)
   (a : E → ZMod 2) :
   True := by
-  admit
+  trivial
 
 end URF

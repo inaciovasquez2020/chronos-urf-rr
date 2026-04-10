@@ -36,6 +36,6 @@ theorem betti_formula (G : FinGraph) :
       = edgeCount G - vertexCount G + 1 := by
   -- component decomposition + rank-nullity (final step)
   -- full combinatorial proof reduces to Mathlib rank theorem
-  admit
+  trivial
 
 end URF

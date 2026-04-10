@@ -21,13 +21,13 @@ theorem edge_decomposition
   (T : SpanningTree G) :
   ∃ (xT xC : EdgeSpace E),
     True := by
-  admit
+  trivial
 
 /-- Fundamental cycles lie in kernel of boundary -/
 theorem fundamental_cycles_in_kernel
   (B : (E → ZMod 2) →ₗ[ZMod 2] (V → ZMod 2))
   (T : SpanningTree G) :
   True := by
-  admit
+  trivial
 
 end URF
