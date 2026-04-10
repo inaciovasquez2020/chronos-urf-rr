@@ -17,6 +17,7 @@ Pinned clean commit: 6e9d727
 45\% \text{ overall}
 localTwoComplexH1Rank_growth
 W5_rank_separation
+formal definition of `ED(P_n)`
 
 Repository infrastructure is submission-ready as an executable artifact wrapper.
 Mathematical frontier claims remain governed by the explicit scope notes already present in `docs/status`.
