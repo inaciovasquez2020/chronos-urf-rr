@@ -42,6 +42,9 @@ def edgeSignTrivial (_e : E936) : Sign := false
 
 def edgeSignTwist (e : E936) : Sign := e.1 = 0
 
+def twistedEdge : E936 := ⟨0, by decide⟩
+
+
 def liftVertex : V312 × Sign → V624
   | (v, false) => ⟨v.1, by exact v.2.trans (by decide)⟩
   | (v, true)  => ⟨v.1 + 312, by
