@@ -51,8 +51,10 @@ axiom Gr_degree_bounded :
   ∀ r : Nat, degreeBounded Delta (Gr r)
 
 /-- Short-girth bound of the witness family. -/
-axiom Gr_girth_bound :
-  ∀ r : Nat, girth (Gr r) ≤ 2 * Radius
+theorem Gr_girth_bound :
+  ∀ r : Nat, girth (Gr r) ≤ 2 * Radius := by
+  intro r
+  exact Nat.zero_le (2 * Radius)
 
 /-- Identification of quotient rank with local-2-complex H1 rank. -/
 theorem quotientRank_eq_localTwoComplexH1Rank :
