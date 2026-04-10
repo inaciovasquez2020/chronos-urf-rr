@@ -36,6 +36,13 @@ abbrev E936 := Fin 936
 abbrev V624 := Fin 624
 abbrev E1872 := Fin 1872
 
+abbrev Sign := Bool
+
+def edgeSignTrivial (_e : E936) : Sign := false
+
+def edgeSignTwist (e : E936) : Sign := e.1 = 0
+
+
 /-- Base graph H (W(5) incidence witness carrier). -/
 def H : Graph :=
 { V := V312
