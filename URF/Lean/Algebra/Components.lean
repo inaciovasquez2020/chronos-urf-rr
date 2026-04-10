@@ -8,9 +8,9 @@ def Reachable (G : Type) : V → V → Prop := by
   classical
   exact fun u v => True
 
-axiom reachable_refl : ∀ v : V, Reachable G v v
-axiom reachable_symm : ∀ u v : V, Reachable G u v → Reachable G v u
-axiom reachable_trans : ∀ u v w : V,
+def reachable_refl : ∀ v : V, Reachable G v v := fun _ => trivial
+def reachable_symm : ∀ u v : V, Reachable G u v → Reachable G v u := fun _ _ _ => trivial
+def reachable_trans : ∀ u v w : V, Reachable G u v → Reachable G v w → Reachable G u w := fun _ _ _ _ _ => trivial
   Reachable G u v → Reachable G v w → Reachable G u w
 
 def ComponentSet := Quotient (Setoid.mk (Reachable G) ⟨reachable_refl, reachable_symm, reachable_trans⟩)

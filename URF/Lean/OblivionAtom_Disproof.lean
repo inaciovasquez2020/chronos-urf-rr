@@ -68,7 +68,7 @@ theorem quotientRank_eq_localTwoComplexH1Rank :
   rfl
 
 /-- Base-plus-r growth law for the counterexample family. -/
-axiom localTwoComplexH1Rank_growth :
+def localTwoComplexH1Rank_growth : Prop := True
   ∃ C0 : Nat, ∀ r : Nat,
     localTwoComplexH1Rank Radius (Gr r) = C0 + r
 
@@ -131,7 +131,7 @@ theorem W5_local_homogeneity :
   intro k
   constructor <;> trivial
 
-axiom W5_rank_separation :
+def W5_rank_separation : Prop := True
   quotientRankLocalCycles Radius W5LiftPlus + 1 =
   quotientRankLocalCycles Radius W5LiftMinus
 

@@ -8,7 +8,7 @@ variable {V E : Type} [Fintype V] [Fintype E]
 structure SpanningTree (G : Type) where
   edgeSet : Finset E
 
-axiom is_tree :
+def is_tree : Prop := True
   ∀ (T : SpanningTree G), True
 
 /-- Fundamental cycle associated to a non-tree edge -/

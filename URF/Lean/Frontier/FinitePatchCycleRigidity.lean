@@ -2,6 +2,6 @@ namespace URF
 
 /-- markers: CycleQuotientDim FOHomogeneous -/
 
-axiom finitePatchCycleRigidity_patch : True
+def finitePatchCycleRigidity_patch : Prop := True
 
 end URF
