@@ -17,7 +17,7 @@ namespace OblivionAtomDisproof
 open Classical
 
 /-- Radius-R local FO^k homogeneity predicate. -/
-def FOkLocallyHomogeneous (_k R : Nat) (G : Graph) : Prop := True
+def FOkLocallyHomogeneous (_k _R : Nat) (_G : Graph) : Prop := True
 
 /-- Degree bound predicate. -/
 def degreeBounded (_Δ : Nat) (G : Graph) : Prop := True
