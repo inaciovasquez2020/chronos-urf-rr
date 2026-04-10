@@ -1,0 +1,17 @@
+{
+  "name": "W(5)_2_lift_rank_separation",
+  "R": 3,
+  "degree": 6,
+  "girth": 8,
+  "vertices_base": 312,
+  "edges_base": 936,
+  "vertices_lift": 624,
+  "edges_lift": 1872,
+  "Z1dim_G_plus": 1250,
+  "Z1dim_G_minus": 1249,
+  "quotient_difference": 1,
+  "local_cycle_bound": 7,
+  "local_trivial": true,
+  "FOkR_equivalent": true,
+  "status": "CERTIFIED"
+}
