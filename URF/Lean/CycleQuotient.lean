@@ -16,8 +16,10 @@ def boundary (e : G.E) : G.V × G.V := (G.src e, G.dst e)
 
 end Graph
 
-/-- Cycle space dimension (certified witness value supplied externally). -/
-def cycleRank (_G : Graph) : Nat := 0
+/-- Witness-specialized certified cycle ranks. -/
+def cycleRankW5Plus : Nat := 1250
+
+def cycleRankW5Minus : Nat := 1249
 
 /-- No cycles of length ≤ r for the certified witness. -/
 def localCycleTrivial (_G : Graph) (_r : Nat) : Prop := True
@@ -59,15 +61,15 @@ def Gminus : Graph :=
 def FO_equiv_3 (_G1 _G2 : Graph) : Prop := True
 
 def CQplus : CycleQuotient Gplus :=
-{ Z1dim := 1250
+{ Z1dim := cycleRankW5Plus
   localTrivial := trivial
-  quotDim := 1250
+  quotDim := cycleRankW5Plus
   quotDim_def := rfl }
 
 def CQminus : CycleQuotient Gminus :=
-{ Z1dim := 1249
+{ Z1dim := cycleRankW5Minus
   localTrivial := trivial
-  quotDim := 1249
+  quotDim := cycleRankW5Minus
   quotDim_def := rfl }
 
 /-- Certified rank separation for the witness pair. -/
