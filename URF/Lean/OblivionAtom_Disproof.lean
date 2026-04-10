@@ -123,7 +123,7 @@ theorem W5_parameters :
   degreeBounded Delta W5Base ∧ girth W5Base = 8 := by
   constructor
   · trivial
-  · simp [W5Base, Gr, girth]
+  · simp [girth]
 
 theorem W5_local_homogeneity :
   ∀ k : Nat, FOkLocallyHomogeneous k Radius W5LiftPlus ∧
