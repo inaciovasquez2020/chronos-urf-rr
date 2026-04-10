@@ -167,3 +167,8 @@ theorem edgeSignTwist_twistedEdge :
   unfold edgeSignTwist twistedEdge
   simp
 
+
+theorem liftEdgeTwist_ne_trivial_on_twistedEdge_false :
+    liftEdgeTwist twistedEdge false ≠ liftEdgeTrivial twistedEdge false := by
+  decide
+
