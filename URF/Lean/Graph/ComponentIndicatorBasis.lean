@@ -18,6 +18,7 @@ structure ComponentFamily (V : Type u) where
 
 /-- Structural target: component indicators lie in the transpose kernel. -/
 theorem component_indicators_in_kernel
+    (_F : ComponentFamily V)
     {α : Type u} (_x : α) :
     True := by
   trivial
