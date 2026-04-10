@@ -55,9 +55,11 @@ axiom Gr_girth_bound :
   ∀ r : Nat, girth (Gr r) ≤ 2 * Radius
 
 /-- Identification of quotient rank with local-2-complex H1 rank. -/
-axiom quotientRank_eq_localTwoComplexH1Rank :
+theorem quotientRank_eq_localTwoComplexH1Rank :
   ∀ r : Nat,
-    quotientRankLocalCycles Radius (Gr r) = localTwoComplexH1Rank Radius (Gr r)
+    quotientRankLocalCycles Radius (Gr r) = localTwoComplexH1Rank Radius (Gr r) := by
+  intro r
+  rfl
 
 /-- Base-plus-r growth law for the counterexample family. -/
 axiom localTwoComplexH1Rank_growth :
