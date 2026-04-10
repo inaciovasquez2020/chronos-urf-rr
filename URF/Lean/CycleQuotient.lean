@@ -51,6 +51,17 @@ def liftVertex : V312 × Sign → V624
 
 
 
+def liftEdgeTrivial (e : E936) (b : Sign) : E1872 :=
+  ⟨e.1 + if b then 936 else 0, by
+    have he : e.1 < 936 := e.2
+    by_cases hb : b
+    · simp [hb]
+      omega
+    · simp [hb]
+      omega
+  ⟩
+
+
 /-- Base graph H (W(5) incidence witness carrier). -/
 def H : Graph :=
 { V := V312
