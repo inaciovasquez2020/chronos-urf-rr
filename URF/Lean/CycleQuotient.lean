@@ -125,5 +125,5 @@ theorem liftEdgeTwist_eq_trivial_of_untwisted (e : E936) (b : Sign)
     (h : edgeSignTwist e = false) :
     liftEdgeTwist e b = liftEdgeTrivial e b := by
   unfold liftEdgeTwist liftEdgeTrivial
-  simp [h, xor_false]
+  simp [h]
 
