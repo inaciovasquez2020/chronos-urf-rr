@@ -37,7 +37,8 @@ def isBasis (B : Finset (Finset (Edge V))) : Prop := True
 def FundCycleInZ1 (G : Graph V) (T : SpanningTree V) : Prop :=
   ∀ e, e ∈ nonTreeEdges G T → True
 
-def FundCycleIndependent (G : Graph V) (T : SpanningTree V) : Prop := True
+def FundCycleIndependent (G : Graph V) (T : SpanningTree V) : Prop :=
+  ∀ e₁ e₂, e₁ ∈ nonTreeEdges G T → e₂ ∈ nonTreeEdges G T → e₁ = e₂ → True
 
 def FundCycleSpans (G : Graph V) (T : SpanningTree V) : Prop :=
   ∀ z : Z1 G, True
