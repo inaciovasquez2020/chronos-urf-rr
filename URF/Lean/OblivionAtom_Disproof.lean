@@ -7,8 +7,8 @@ Full formalization skeleton for the negative result.
 
 Policy:
 - Buildable now.
-- Every nontrivial mathematical ingredient is isolated as a named axiom.
-- Future work may replace exactly one axiom at a time with a theorem.
+- Every nontrivial mathematical ingredient is isolated as a named assumption.
+- Future work may replace exactly one assumption at a time with a theorem.
 -/
 
 namespace URF
