@@ -144,7 +144,7 @@ theorem W5_global_separation :
   exact Nat.succ_ne_self _ hSucc
 
 /-- Axiom inventory for one-step replacement workflow. -/
-def remainingAxiomCount : Nat := 7
+def remainingAxiomCount : Nat := 4
 
 end OblivionAtomDisproof
 end URF
