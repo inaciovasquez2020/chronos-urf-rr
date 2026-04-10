@@ -1,0 +1,1 @@
+python3 verify_certificate.py artifacts/high_girth_lift.json
