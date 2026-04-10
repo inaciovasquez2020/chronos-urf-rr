@@ -32,6 +32,7 @@ theorem component_indicators_span_kernel
 
 /-- Structural target: component indicators are independent. -/
 theorem component_indicators_independent
+    (_F : ComponentFamily V)
     {α : Type u} (_x : α) :
     True := by
   trivial
