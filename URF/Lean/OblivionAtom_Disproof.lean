@@ -32,11 +32,11 @@ def quotientRankLocalCycles (_R : Nat) (_G : Graph) : Nat := _R
 def localTwoComplexH1Rank (_R : Nat) (_G : Graph) : Nat := quotientRankLocalCycles _R _G
 
 /-- Explicit witness family placeholder. -/
-def Gr (_r : Nat) : Graph :=
-  { V := Unit
+def Gr (r : Nat) : Graph :=
+  { V := Fin (r + 1)
     E := Unit
-    src := fun _ => ()
-    dst := fun _ => () }
+    src := fun _ => ⟨0, Nat.succ_pos r⟩
+    dst := fun _ => ⟨0, Nat.succ_pos r⟩ }
 
 /-- Fixed parameters for the certified negative-result layer. -/
 def Delta : Nat := 6
