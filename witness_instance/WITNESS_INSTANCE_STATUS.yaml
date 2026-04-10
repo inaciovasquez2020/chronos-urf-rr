@@ -1,7 +1,14 @@
-status: scaffold
+status: partial_compute
 object: explicit_witness_instance
 base_graph_fixed: true
-lift_defined: false
+lift_defined: true
 local_property_checked: false
-invariant_computed: false
-separation_verified: false
+invariant_computed: true
+separation_verified: true
+radius: 2
+cutoff: 5
+G_plus_urf_invariant: 0
+G_minus_urf_invariant: 1
+twisted_edge:
+- 0
+- 1

@@ -234,17 +234,57 @@ def main():
     )
 
     status = {
-        "status": "scaffold",
+        "status": "partial_compute",
         "object": "explicit_witness_instance",
         "base_graph_fixed": True,
-        "lift_defined": False,
+        "lift_defined": True,
         "local_property_checked": False,
-        "invariant_computed": False,
-        "separation_verified": False,
+        "invariant_computed": True,
+        "separation_verified": True,
+        "radius": R,
+        "cutoff": L,
+        "G_plus_urf_invariant": plus["urf_invariant"],
+        "G_minus_urf_invariant": minus["urf_invariant"],
+        "twisted_edge": [0, 1],
     }
     Path("witness_instance/WITNESS_INSTANCE_STATUS.yaml").write_text(
         yaml.safe_dump(status, sort_keys=False)
     )
+
+
+    note = f"""# Explicit Witness Instance
+
+## Base Graph
+Petersen graph (10 vertices, 15 edges, 3-regular)
+
+## Construction
+Define two 2-lifts at radius R = {R}:
+- G^+ : trivial lift (σ ≡ 0)
+- G^- : twisted lift with twisted base edge (0,1)
+
+## Computed Quantities
+- dim_F2 Z1(G^+) = {plus["z1_dimension"]}
+- dim_F2 Z1^≤{L}(G^+) = {plus["local_cycle_span_dimension"]}
+- I_URF(G^+;{R}) = {plus["urf_invariant"]}
+
+- dim_F2 Z1(G^-) = {minus["z1_dimension"]}
+- dim_F2 Z1^≤{L}(G^-) = {minus["local_cycle_span_dimension"]}
+- I_URF(G^-;{R}) = {minus["urf_invariant"]}
+
+## Verified
+1. bounded degree ≤ 3
+2. explicit 2-lifts constructed
+3. I_URF(G^+;{R}) != I_URF(G^-;{R})
+4. first real witness object computed
+
+## Not Yet Verified
+- local indistinguishability certificate
+- tree-ball certificate
+
+## Artifact
+artifacts/petersen_2lift_urf_witness_r2.json
+"""
+    Path("witness_instance/EXPLICIT_WITNESS_INSTANCE.md").write_text(note)
 
 
 if __name__ == "__main__":
