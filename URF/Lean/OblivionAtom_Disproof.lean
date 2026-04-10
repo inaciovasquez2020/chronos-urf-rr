@@ -29,7 +29,7 @@ def girth (_G : Graph) : Nat := 0
 def quotientRankLocalCycles (_R : Nat) (_G : Graph) : Nat := _R
 
 /-- Local 2-complex first homology rank placeholder. -/
-def localTwoComplexH1Rank (_R : Nat) (_G : Graph) : Nat := 0
+def localTwoComplexH1Rank (_R : Nat) (_G : Graph) : Nat := quotientRankLocalCycles _R _G
 
 /-- Explicit witness family placeholder. -/
 def Gr (_r : Nat) : Graph :=
