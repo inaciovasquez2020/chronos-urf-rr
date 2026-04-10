@@ -1,0 +1,1667 @@
+{
+  "G_minus": {
+    "ball_profiles": [
+      {
+        "edge_count": 11,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 11,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 11,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 11,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 13,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 13,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 14,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 14,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 13,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 13,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 13,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 13,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 13,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 13,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 14,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 14,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 14,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 14,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 14,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 14,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      }
+    ],
+    "component_count": 1,
+    "cycles_up_to_cutoff_count": 16,
+    "edge_count": 30,
+    "local_cycle_basis_supports": [
+      [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        [
+          [
+            4,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        [
+          [
+            5,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            6,
+            0
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        [
+          [
+            7,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        [
+          [
+            3,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        [
+          [
+            7,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        [
+          [
+            3,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            4,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            5,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        [
+          [
+            5,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        [
+          [
+            7,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            5,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      ]
+    ],
+    "local_cycle_cutoff": 5,
+    "local_cycle_span_dimension": 10,
+    "max_degree": 3,
+    "name": "G_minus",
+    "radius": 2,
+    "urf_invariant": 1,
+    "vertex_count": 20,
+    "z1_dimension": 11
+  },
+  "G_plus": {
+    "ball_profiles": [
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      },
+      {
+        "edge_count": 15,
+        "is_tree_ball": false,
+        "layer_sizes": [
+          1,
+          3,
+          6
+        ],
+        "vertex_count": 10
+      }
+    ],
+    "component_count": 2,
+    "cycles_up_to_cutoff_count": 24,
+    "edge_count": 30,
+    "local_cycle_basis_supports": [
+      [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            6,
+            0
+          ]
+        ],
+        [
+          [
+            5,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        [
+          [
+            4,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        [
+          [
+            5,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            6,
+            0
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        [
+          [
+            7,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        [
+          [
+            3,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        [
+          [
+            7,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        [
+          [
+            3,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            4,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            5,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        [
+          [
+            5,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        [
+          [
+            7,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            5,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ],
+        [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      ]
+    ],
+    "local_cycle_cutoff": 5,
+    "local_cycle_span_dimension": 12,
+    "max_degree": 3,
+    "name": "G_plus",
+    "radius": 2,
+    "urf_invariant": 0,
+    "vertex_count": 20,
+    "z1_dimension": 12
+  },
+  "base_graph": "Petersen",
+  "cutoff": 5,
+  "radius": 2,
+  "twisted_edge": [
+    0,
+    1
+  ]
+}

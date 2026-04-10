@@ -4,21 +4,28 @@
 Petersen graph (10 vertices, 15 edges, 3-regular)
 
 ## Construction
-Define two 2-lifts:
+Define two 2-lifts at radius R = 2:
 - G^+ : trivial lift (σ ≡ 0)
-- G^- : twisted lift (single nontrivial parity class)
+- G^- : twisted lift with twisted base edge (0,1)
 
-## Properties
+## Computed Quantities
+- dim_F2 Z1(G^+) = 12
+- dim_F2 Z1^≤5(G^+) = 12
+- I_URF(G^+;2) = 0
+
+- dim_F2 Z1(G^-) = 11
+- dim_F2 Z1^≤5(G^-) = 10
+- I_URF(G^-;2) = 1
+
+## Verified
 1. bounded degree ≤ 3
-2. local indistinguishability for small R
-3. cycle-space dimension Θ(n)
-4. invariant separation
+2. explicit 2-lifts constructed
+3. I_URF(G^+;2) != I_URF(G^-;2)
+4. first real witness object computed
 
-## URF Invariant
-I_URF(G;R) = dim_F2(Z1(G) / Z1^{≤ 2R+1}(G))
+## Not Yet Verified
+- local indistinguishability certificate
+- tree-ball certificate
 
-## Goal
-Provide first finite executable witness pair.
-
-## Blocking Gap
-Need explicit edge labeling and invariant computation.
+## Artifact
+artifacts/petersen_2lift_urf_witness_r2.json
