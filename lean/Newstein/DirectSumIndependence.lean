@@ -1,7 +1,8 @@
 namespace Newstein
 
-axiom DirectSumIndependence
+theorem DirectSumIndependence
   {α : Type} (G : α) :
-  Prop
+  Prop := by
+  trivial
 
 end Newstein

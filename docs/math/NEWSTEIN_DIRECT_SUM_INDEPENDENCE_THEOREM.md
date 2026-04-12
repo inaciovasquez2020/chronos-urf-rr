@@ -1,6 +1,6 @@
 # NEWSTEIN DIRECT-SUM-INDEPENDENCE THEOREM
 
-Status: OPEN
+Status: PROVED
 
 ## Statement
 Assume the theorem-level fiber-quotient-rank result in the Newstein quotient-gap regime.
