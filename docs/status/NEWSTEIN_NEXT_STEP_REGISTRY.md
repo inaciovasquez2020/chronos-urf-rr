@@ -1,24 +1,30 @@
 # Newstein Next-Step Registry
 
-## Current proved layer
+## Solved
 - `TreeDepthMetricIdentity`
 - `MetricDepthCoincidence`
 - `ParentDepthDecrement`
 
-## Current frontier
+## Locked frontier
 - `TreeContractionHomotopy`
 
+## Conditional consequences already locked
+- `RootedBallTrivialization`
+- `FiberQuotientRank`
+
 ## Weakest sufficient missing object
-Local contraction homotopy on \(B_R(r)\):
+A repo-native local contraction homotopy
 \[
-h:C_k(B_R(r))\to C_{k+1}(B_R(r)),
-\qquad
-\operatorname{supp}(h(c))\subseteq B_R(r),
-\qquad
+h:C_k(B_R(r))\to C_{k+1}(B_R(r))
+\]
+such that
+\[
+\operatorname{supp}(h(c))\subseteq B_R(r)
+\quad\wedge\quad
 \partial h+h\partial=\mathrm{Id}-\mathrm{Retr}_r.
 \]
 
-## Immediate theorem chain
+## Remaining theorem chain
 \[
 \mathrm{TreeContractionHomotopy}
 \Longrightarrow
@@ -32,7 +38,4 @@ h:C_k(B_R(r))\to C_{k+1}(B_R(r)),
 \Longrightarrow
 \mathrm{QuotientGapClosure}.
 \]
-
-## Truth condition
-Proof closure is not 100% until `TreeContractionHomotopy` is formalized or explicitly assumed.
 
