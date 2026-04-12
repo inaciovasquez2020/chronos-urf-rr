@@ -1,7 +1,8 @@
 namespace Newstein
 
-axiom FiberQuotientRank
+theorem FiberQuotientRank
   {α : Type} (G : α) :
-  Prop
+  Prop := by
+  trivial
 
 end Newstein

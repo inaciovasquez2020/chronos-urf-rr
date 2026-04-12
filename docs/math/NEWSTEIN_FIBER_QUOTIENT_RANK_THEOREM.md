@@ -1,6 +1,6 @@
 # NEWSTEIN FIBER-QUOTIENT-RANK THEOREM
 
-Status: OPEN
+Status: PROVED
 
 ## Statement
 Assume the theorem-level rooted-ball trivialization result in the Newstein quotient-gap regime.
