@@ -3,7 +3,7 @@ from pathlib import Path
 DOC = Path("docs/math/NEWSTEIN_ROOTED_BALL_TRIVIALIZATION_THEOREM.md").read_text()
 
 def test_title_present():
-    assert "NEWSTEIN ROOTED-BALL TRIVIALIZATION THEOREM" in DOC
+    assert "# Newstein Rooted-Ball Trivialization Theorem" in DOC
 
 def test_status_proved_present():
     assert "Status: PROVED" in DOC
