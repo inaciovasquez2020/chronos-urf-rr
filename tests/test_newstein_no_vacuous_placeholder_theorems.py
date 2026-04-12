@@ -32,16 +32,16 @@ def test_named_theorems_exist():
             missing.append((fp, name))
     assert not missing, f"missing theorem declarations: {missing}"
 
-def test_placeholder_inventory_is_explicit():
+def test_no_vacuous_placeholders():
     bad = []
     for fp in FILES:
         s = Path(fp).read_text()
         for pat in FORBIDDEN_PATTERNS:
             if re.search(pat, s, flags=re.M):
                 bad.append((fp, pat))
-    assert bad, "expected current placeholder inventory to remain explicit"
+    assert not bad, f"vacuous placeholder content remains: {bad}"
 
-def test_closure_is_marked_conditional_while_placeholders_exist():
+def test_closure_is_not_marked_unconditional_while_placeholders_exist():
     s = Path("docs/math/NEWSTEIN_QUOTIENT_GAP_CLOSURE_TARGET.md").read_text()
     placeholders = []
     for fp in FILES:
@@ -49,5 +49,5 @@ def test_closure_is_marked_conditional_while_placeholders_exist():
         if re.search(r":\s*Prop\s*:=\s*by\s*trivial", t) or re.search(r"^axiom\s+", t, flags=re.M):
             placeholders.append(fp)
     if placeholders:
-        assert "Status: CONDITIONAL" in s
-        assert "QuotientGapClosure^conditional" in s
+        assert "Status: PROVED" not in s
+        assert "QuotientGapClosure^unconditional" not in s
