@@ -23,4 +23,4 @@ OPEN
 
 ## Weakest current object
 NEWSTEIN_PARENT_DEPTH_DECREMENT_SUBLEMMA.md
-Weakest missing theorem-level object: ParentDepthDecrement^thm
+Weakest missing theorem-level object: RootedBallTrivialization^thm
