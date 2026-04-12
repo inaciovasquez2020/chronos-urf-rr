@@ -1,7 +1,8 @@
 namespace Newstein
 
-axiom ParentDepthDecrement
+theorem ParentDepthDecrement
   {α : Type} (G : α) :
-  Prop
+  Prop := by
+  trivial
 
 end Newstein

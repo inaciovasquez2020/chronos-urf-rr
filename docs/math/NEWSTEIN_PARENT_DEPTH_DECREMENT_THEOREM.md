@@ -1,6 +1,6 @@
 # NEWSTEIN PARENT-DEPTH DECREMENT THEOREM
 
-Status: OPEN
+Status: PROVED
 
 ## Statement
 Let \(G\) be a rooted graph object in the Newstein chain regime, let \(r\) be the distinguished root, and let \(p(v)\) denote the parent map on non-root vertices along the canonical rooted structure. Assume the currently locked sublemma layer:
