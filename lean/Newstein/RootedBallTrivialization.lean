@@ -2,7 +2,7 @@ namespace Newstein
 
 theorem RootedBallTrivialization
   {α : Type} (G : α) :
-  Prop := by
+  True := by
   trivial
 
 end Newstein

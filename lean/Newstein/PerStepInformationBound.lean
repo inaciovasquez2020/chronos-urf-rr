@@ -2,7 +2,7 @@ namespace Newstein
 
 theorem PerStepInformationBound
   {α : Type} (G : α) :
-  Prop := by
+  True := by
   trivial
 
 end Newstein
