@@ -1,10 +1,19 @@
 from pathlib import Path
 
-def test_newstein_quotient_gap_assembly_theorem_doc():
-    s = Path("docs/math/NEWSTEIN_QUOTIENT_GAP_ASSEMBLY_THEOREM.md").read_text()
-    assert "Conditional target." in s
-    assert "\\operatorname{Type}_{k,r}(G_n)=\\operatorname{Type}_{k,r}(H_n)" in s
-    assert "\\dim_{\\mathbb F_2} Q(G_n)-\\dim_{\\mathbb F_2} Q(H_n)\\ge 2|V(X_n)|." in s
-    assert "\\dim_{\\mathbb F_2} Q(G_n)-\\dim_{\\mathbb F_2} Q(H_n)=\\Omega(n)." in s
-    assert "T_n \\ge \\frac{2|V(X_n)|}{C}." in s
-    assert "No proof of the theorem is claimed here." in s
+def test_newstein_quotient_gap_assembly_theorem_locked():
+    p = Path("docs/math/NEWSTEIN_QUOTIENT_GAP_ASSEMBLY_THEOREM.md")
+    s = p.read_text()
+    assert "# Newstein Quotient-Gap Assembly Theorem" in s
+    assert "## Status\nCONDITIONAL" in s
+    assert "Consequently, the quotient-gap assembly closes conditionally from the locked dependency chain." in s
+    assert "## Dependency chain" in s
+    assert "\\mathrm{QuotientGapAssemblyTheorem}" in s
+    assert "## Frontier status" in s
+    assert "This closes the assembly layer only." in s
+    assert "The theorem-level closure remains conditional until the locked assembly inputs are replaced by verified theorem proofs." in s
+    assert "## Canonical remaining theorem-level obligations" in s
+    assert "Verify the parent-depth decrement theorem." in s
+    assert "Verify the rooted-ball trivialization theorem." in s
+    assert "Verify the fiber quotient-rank computation." in s
+    assert "Verify direct-sum independence at theorem level." in s
+    assert "Verify the per-step information bound at theorem level." in s
