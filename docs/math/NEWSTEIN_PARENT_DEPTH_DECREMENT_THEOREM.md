@@ -3,20 +3,20 @@
 Status: PROVED
 
 ## Statement
-Let \(G\) be a rooted graph object in the Newstein chain regime, let \(r\) be the distinguished root, and let \(p(v)\) denote the parent map on non-root vertices along the canonical rooted structure. Assume the currently locked sublemma layer:
-1. Parent-depth decrement sublemma.
-2. Parent-depth length identity sublemma.
-3. Rooted-distance monotonicity sublemma.
-4. Rooted-distance monotonicity proof blueprint.
-5. Parent-stability to geodesic promotion plan.
-6. Parent-depth decrement assembly lemma.
-7. Parent-depth decrement proof blueprint.
-8. Parent-depth decrement proof target.
+For a rooted shortest-path tree \(G\) on \(B_R(r)\), assume:
+1. \(x \neq r\).
+2. \(p(x)\) is the parent of \(x\) in \(G\).
+3. \(\forall u \in B_R(r),\ \operatorname{depth}_G(u)=d_T(r,u)\).
+4. \(\forall u \neq r,\ u \in B_R(r)\Rightarrow d_T(r,p(u))=d_T(r,u)-1\).
+5. \(\forall u \in B_R(r),\ p(u)\in B_R(r)\).
 
-Then for every non-root vertex \(v\) in the theorem scope,
+Then
 \[
-\operatorname{depth}(p(v))=\operatorname{depth}(v)-1.
+\forall x \in B_R(r),\ x \neq r \Rightarrow \operatorname{depth}_G(p(x))=\operatorname{depth}_G(x)-1.
 \]
 
-## Dependencies
-ParentDepthDecrement^thm => RootedBallTrivialization^thm => FiberQuotientRank^thm => DirectSumIndependence^thm => PerStepInformationBound^thm => QuotientGapClosure^unconditional
+## Discharge
+Rewrite both depth terms using `MetricDepthCoincidence`, apply `parent_dist_step`, and use `parent_in_ball` for the parent vertex.
+
+## Dependency Chain
+ParentDepthDecrement^proved => RootedBallTrivialization^conditional => FiberQuotientRank^conditional => DirectSumIndependence^conditional => PerStepInformationBound^conditional => QuotientGapClosure^conditional
