@@ -1,27 +1,38 @@
 # Newstein Next-Step Registry
 
-## Status
-OPEN
+## Current proved layer
+- `TreeDepthMetricIdentity`
+- `MetricDepthCoincidence`
+- `ParentDepthDecrement`
 
-## Canonical next objects
-1. NEWSTEIN_PARENT_DEPTH_DECREMENT_SUBLEMMA.md
-2. NEWSTEIN_ROOTED_DISTANCE_MONOTONICITY_SUBLEMMA.md
-3. NEWSTEIN_ONE_STEP_PARENT_STABILITY_PREDICATE.md
-4. NEWSTEIN_PARENT_ITERATION_CLOSURE_SUBLEMMA.md
-5. NEWSTEIN_ANCESTOR_DESCENT_CLOSURE_SUBLEMMA.md
-6. NEWSTEIN_LCA_INTERPOLATION_CLOSURE_SUBLEMMA.md
-7. NEWSTEIN_GEODESIC_INTERPOLATION_CLOSURE_SUBLEMMA.md
-8. NEWSTEIN_TREE_PATH_ROOTED_LOCALITY_SUBLEMMA.md
-9. NEWSTEIN_FUNDAMENTAL_CYCLE_GENERATION_SUBLEMMA.md
-10. NEWSTEIN_LOCAL_COBOUNDARY_CRITERION.md
-11. NEWSTEIN_ROOTED_BALL_TRIVIALIZATION_LEMMA.md
-12. NEWSTEIN_FIBER_QUOTIENT_RANK_LEMMA.md
-13. NEWSTEIN_DIRECT_SUM_INDEPENDENCE_LEMMA.md
-14. NEWSTEIN_FIBER_TO_GLOBAL_INJECTION_LEMMA.md
-15. NEWSTEIN_PER_STEP_INFORMATION_BOUND.md
-16. NEWSTEIN_ASSEMBLY_THEOREM.md
+## Current frontier
+- `TreeContractionHomotopy`
 
-## Weakest current object
-NEWSTEIN_PARENT_DEPTH_DECREMENT_SUBLEMMA.md
-Weakest missing theorem-level object: typed proof of RootedBallTrivialization from ParentDepthDecrement and local coboundary inputs
+## Weakest sufficient missing object
+Local contraction homotopy on \(B_R(r)\):
+\[
+h:C_k(B_R(r))\to C_{k+1}(B_R(r)),
+\qquad
+\operatorname{supp}(h(c))\subseteq B_R(r),
+\qquad
+\partial h+h\partial=\mathrm{Id}-\mathrm{Retr}_r.
+\]
+
+## Immediate theorem chain
+\[
+\mathrm{TreeContractionHomotopy}
+\Longrightarrow
+\mathrm{RootedBallTrivialization}
+\Longrightarrow
+\mathrm{FiberQuotientRank}
+\Longrightarrow
+\mathrm{DirectSumIndependence}
+\Longrightarrow
+\mathrm{PerStepInformationBound}
+\Longrightarrow
+\mathrm{QuotientGapClosure}.
+\]
+
+## Truth condition
+Proof closure is not 100% until `TreeContractionHomotopy` is formalized or explicitly assumed.
 
