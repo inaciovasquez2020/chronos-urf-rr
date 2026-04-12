@@ -17,6 +17,3 @@ is injective.
 
 ## Role
 This excludes hidden cross-fiber cancellation before passage to the global quotient.
-
-## Consequence
-Together with the Fiber-to-Global Injection Lemma, this yields faithful transport of fiber rank data to the global level.

@@ -20,11 +20,3 @@ Q_R(v)=0.
 
 ## Role
 This is the weakest sufficient local theorem needed to collapse the rooted quotient term in the Newstein chain.
-
-## Dependency
-Depends only on:
-1. Newstein Local Coboundary Criterion.
-2. Definitions of rooted ball, local cocycle, and quotient object.
-
-## Consequence
-If this lemma holds uniformly on all rooted radius-\(R\) balls, then the local obstruction term in the Newstein quotient-gap reduction vanishes.

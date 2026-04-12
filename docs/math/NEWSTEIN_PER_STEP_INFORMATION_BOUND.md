@@ -12,6 +12,3 @@ I(X;Y_t \mid \mathcal H_{t-1}) \le C.
 
 ## Role
 This is the Chronos compatibility bound required to integrate the Newstein reduction into the bounded-information refinement framework.
-
-## Consequence
-If established, Newstein contributes a certified bounded per-step information-loss channel compatible with EntropyDepth-style lower-bound arguments.
