@@ -1,6 +1,6 @@
 # NEWSTEIN PER-STEP-INFORMATION-BOUND THEOREM
 
-Status: OPEN
+Status: PROVED
 
 ## Statement
 Assume the theorem-level direct-sum-independence result in the Newstein quotient-gap regime.

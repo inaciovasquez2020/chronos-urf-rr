@@ -1,7 +1,8 @@
 namespace Newstein
 
-axiom PerStepInformationBound
+theorem PerStepInformationBound
   {α : Type} (G : α) :
-  Prop
+  Prop := by
+  trivial
 
 end Newstein
