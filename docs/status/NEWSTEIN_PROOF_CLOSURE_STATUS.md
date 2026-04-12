@@ -1,16 +1,16 @@
 # Newstein Proof Closure Status
 
-## Status
-OPEN
+## Solved
+- `TreeDepthMetricIdentity`
+- `MetricDepthCoincidence`
+- `ParentDepthDecrement`
 
-## Registry closure
-COMPLETE
+## Locked frontier
+- `TreeContractionHomotopy`
 
-## Proof closure
-OPEN
+## Immediate conditional consequence
+- `RootedBallTrivialization`
 
-## Canonical next proof target
-Newstein Local Coboundary Criterion.
+## Truth condition
+`RootedBallTrivialization` is conditional on the formal existence of the local contraction homotopy on `B_R(r)`.
 
-## Finish condition
-Proof closure reaches 100% exactly when every OPEN theorem in the replacement queue is discharged.
