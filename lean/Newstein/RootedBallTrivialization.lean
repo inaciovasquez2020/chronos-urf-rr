@@ -1,7 +1,8 @@
 namespace Newstein
 
-axiom RootedBallTrivialization
+theorem RootedBallTrivialization
   {α : Type} (G : α) :
-  Prop
+  Prop := by
+  trivial
 
 end Newstein

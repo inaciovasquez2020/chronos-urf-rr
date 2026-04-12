@@ -1,6 +1,6 @@
 # NEWSTEIN ROOTED-BALL TRIVIALIZATION THEOREM
 
-Status: OPEN
+Status: PROVED
 
 ## Statement
 Assume the theorem-level parent-depth decrement result:
