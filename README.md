@@ -71,3 +71,11 @@ Local indistinguishability (RootedBallEncoding) is formally connected to EF-game
 
 ## Acknowledgments
 See docs/ACKNOWLEDGMENTS.md
+
+## URF routing
+
+This repository is a technical implementation and formalization surface within the broader URF program.
+
+Canonical URF definitions, theorem statements, dependency ledgers, and closure claims remain in `urf-core`.
+
+Community-additive examples, tests, implementations, and non-canonical extensions belong in `urf-core-community`.
