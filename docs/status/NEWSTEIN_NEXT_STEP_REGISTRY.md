@@ -41,4 +41,13 @@ such that
 
 
 ## Theorem-level frontier
-Weakest missing theorem-level object: ParentIterationToRoot^thm
+Weakest missing theorem-level object: ParentIterationDepthFormula^thm
+
+## Loop stop
+Do not add further theorem-target locks or proof blueprints for the Newstein chain until one placeholder theorem is replaced by a nontrivial Lean proof.
+
+## Next proof-replacement order
+1. ParentIterationDepthFormula^thm
+2. ParentIterationToRoot^thm
+3. TreeContractionHomotopy^thm
+4. RootedBallTrivialization^thm
