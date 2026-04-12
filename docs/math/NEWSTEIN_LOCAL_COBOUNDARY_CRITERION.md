@@ -1,38 +1,25 @@
 # Newstein Local Coboundary Criterion
 
 ## Status
-Conditional target.
+OPEN
 
-## Lemma
-Let \(U\subseteq B_n\) be a connected radius-\(r\) ball, and let \(\phi_H:E(U)\to \mathbb F_2\) be the restriction of the twisted \(2\)-lift cocycle.
+## Statement
+Let \(B_R(v)\) be a rooted radius-\(R\) ball in a bounded-degree graph.
+Let \(\omega\) be a \(1\)-cocycle on \(B_R(v)\) supported on the rooted-local cycle sector.
 
-Assume
-\[
-\phi_H(C)=0
-\quad\text{for every cycle } C \subseteq U.
-\]
+Assume:
+1. \(\omega\) has zero evaluation on every rooted-local cycle generator of \(H_1(B_R(v);\mathbb F_2)\).
+2. \(\omega\) vanishes on every rooted boundary class entering the Newstein quotient.
 
-Then there exists a function \(f:V(U)\to \mathbb F_2\) such that
-\[
-\phi_H(uv)=f(u)+f(v)
-\quad\text{for every edge }uv\in E(U).
-\]
+Then \(\omega\) is a coboundary on \(B_R(v)\).
 
 Equivalently,
 \[
-\phi_H|_U=\delta f.
+[\omega]=0 \in H^1(B_R(v);\mathbb F_2).
 \]
 
-Therefore the twisted and trivial \(2\)-lifts are isomorphic over \(U\).
+## Role
+This is the local criterion required to prove rooted-ball trivialization.
 
 ## Consequence
-The local coboundary criterion implies rooted-ball trivialization.
-
-## Remaining proof obligations
-1. choose a root vertex in \(U\);
-2. define \(f(x)\) by path integration of \(\phi_H\) from the root to \(x\);
-3. prove path-independence from the cycle-vanishing hypothesis;
-4. verify \(\phi_H=\delta f\) on every edge.
-
-## Overclaim guard
-No proof of the lemma is claimed here.
+This implies the Newstein Rooted-Ball Trivialization Lemma once the quotient definitions are unfolded.
