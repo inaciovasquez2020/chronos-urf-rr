@@ -1,31 +1,18 @@
 # Newstein Fiber Quotient-Rank Lemma
 
-## Status
-OPEN
+Status: OPEN
 
-## Statement
-Let \(F\) be a fiber in the Newstein decomposition after rooted-ball trivialization.
-Let \(Q(F)\) denote the residual fiber quotient.
+## Weakest sufficient remaining lemma
+Let T be a Newstein triangulation in the rooted-ball trivialization regime. Let the quotient by locally trivialized rooted-ball cycles be denoted by q_R. Then the surviving Newstein fiber contribution has quotient-rank 4 over F_2.
 
-Then
-\[
-\operatorname{rank}_{\mathbb F_2} Q(F) = r_\ast
-\]
-for a canonically determined constant \(r_\ast\).
+Formal target:
+rank_F2(im(q_R restricted to fiber)) = 4.
 
-## Frontier
-Resolve the exact value
-\[
-r_\ast \in \{2,4\}.
-\]
+## Role in closure
+This is the exact quotient-side rank computation needed before the fiber-to-global injection step can convert the local Newstein reduction into the global quotient-gap lower bound.
 
-## Required output
-A proof selecting exactly one of:
-\[
-\operatorname{rank}_{\mathbb F_2} Q(F)=2
-\quad\text{or}\quad
-\operatorname{rank}_{\mathbb F_2} Q(F)=4.
-\]
-
-## Role
-This fixes the numerical size of the residual fiber obstruction and is required for global assembly.
+## Dependencies
+- RootedBallTrivialization
+- explicit fiber basis
+- linear independence mod rooted-ball boundaries
+- no hidden extra quotient identifications
