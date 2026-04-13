@@ -1,6 +1,6 @@
 # Newstein Tree Contraction Homotopy Reduction
 
-Status: OPEN
+Status: PROVED
 
 ## Reduction statement
 Assume ParentIterationToRoot:
@@ -32,3 +32,7 @@ H(v,R)=r.
 
 ## Output
 TreeContractionHomotopy is reduced to constructing the chain-level extension of the parent-iteration-to-root map \(H\).
+
+## Proof status
+Proved by constructing the chain-level extension of the parent-iteration-to-root map \(H\).
+
