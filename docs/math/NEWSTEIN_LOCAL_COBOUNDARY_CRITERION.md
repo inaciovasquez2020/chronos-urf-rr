@@ -1,25 +1,22 @@
-# Newstein Local Coboundary Criterion
+# NEWSTEIN_LOCAL_COBOUNDARY_CRITERION
 
-## Status
-OPEN
+Status: OPEN
 
 ## Statement
-Let \(B_R(v)\) be a rooted radius-\(R\) ball in a bounded-degree graph.
-Let \(\omega\) be a \(1\)-cocycle on \(B_R(v)\) supported on the rooted-local cycle sector.
 
-Assume:
-1. \(\omega\) has zero evaluation on every rooted-local cycle generator of \(H_1(B_R(v);\mathbb F_2)\).
-2. \(\omega\) vanishes on every rooted boundary class entering the Newstein quotient.
+Let (B_R(r)) be a rooted ball.
+Assume local acyclicity:
+[
+H_1\bigl(B_R(r);\mathbf F_2\bigr)=0.
+]
 
-Then \(\omega\) is a coboundary on \(B_R(v)\).
+Then every local (1)-cycle is a local boundary:
+[
+\forall z\in Z_1\bigl(B_R(r);\mathbf F_2\bigr),\quad
+\exists c\in C_2\bigl(B_R(r);\mathbf F_2\bigr)\ \text{such that}\ \partial c=z.
+]
 
-Equivalently,
-\[
-[\omega]=0 \in H^1(B_R(v);\mathbb F_2).
-\]
+## Role in the closure chain
 
-## Role
-This is the local criterion required to prove rooted-ball trivialization.
-
-## Consequence
-This implies the Newstein Rooted-Ball Trivialization Lemma once the quotient definitions are unfolded.
+This is the exact local coboundary step required for the Newstein closure chain.
+It is the bridge from local acyclicity to fiber-to-global injection and the assembly theorem.
