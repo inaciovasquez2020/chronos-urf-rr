@@ -1,33 +1,23 @@
-
-# Newstein Fiber-to-Global Injection Lemma
+# NEWSTEIN_FIBER_TO_GLOBAL_INJECTION_LEMMA
 
 Status: OPEN
 
-## Weakest sufficient remaining lemma
+## Statement
 
-Let T be a Newstein triangulation in the rooted-ball trivialization regime, and let q_R denote the quotient by locally trivialized rooted-ball cycles. The canonical map from the surviving fiber quotient classes into the global quotient is injective.
+Let (Q_{\mathrm{fiber}}) denote the local fiber quotient and let (Q_{\mathrm{global}}) denote the global quotient.
+Assume the local coboundary criterion holds.
 
-Formal target:
-If a surviving fiber class maps to 0 in the global quotient, then that fiber class is already 0 in the fiber quotient.
+Then the canonical comparison map
+[
+\iota : Q_{\mathrm{fiber}} \to Q_{\mathrm{global}}
+]
+is injective:
+[
+\forall [z]\in Q_{\mathrm{fiber}},\quad
+[z]\neq 0 \Longrightarrow \iota([z])\neq 0.
+]
 
-## Role in closure
+## Role in the closure chain
 
-This is the exact transport step needed to lift the local Newstein quotient-rank lower bound into the global quotient-gap statement.
-
-## Dependencies
-
-* RootedBallTrivialization
-* FiberQuotientRankLemma
-* support separation between surviving fiber representatives and rooted-ball boundaries
-* no extra global cancellation outside the fiber quotient
-  EOF
-  cat > tests/test_newstein_fiber_to_global_injection_lemma_lock.py <<'EOF'
-  from pathlib import Path
-
-def test_newstein_fiber_to_global_injection_lemma_lock():
-text = Path("docs/math/NEWSTEIN_FIBER_TO_GLOBAL_INJECTION_LEMMA.md").read_text()
-assert "Status: OPEN" in text
-assert "canonical map from the surviving fiber quotient classes into the global quotient is injective" in text
-assert "maps to 0 in the global quotient" in text
-assert "already 0 in the fiber quotient" in text
-assert "Fiber-to-Global Injection Lemma" in text
+This is the exact bridge from the local coboundary step to the global quotient-gap closure.
+It is the immediate predecessor to the Newstein assembly theorem.
