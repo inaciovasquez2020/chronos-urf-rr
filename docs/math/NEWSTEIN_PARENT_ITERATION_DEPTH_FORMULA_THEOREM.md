@@ -1,26 +1,30 @@
-# Newstein Parent-Iteration Depth Formula Theorem
+# Newstein Parent Iteration Depth Formula Theorem
 
 Status: OPEN
 
 ## Statement
-For every vertex \(v \in B_R(r)\) and every \(j \in \mathbb{N}\),
+Let \(r\) be the distinguished root and let \(\eta\) denote the parent map on the rooted ball \(B_R(r)\).
+For every vertex \(v \in B_R(r)\) and every integer \(n\) with \(0 \le n \le d(v,r)\),
 \[
-d(\eta^j(v))=\max(d(v)-j,0).
+d\!\left(\eta^{\,n}(v), r\right)=d(v,r)-n.
 \]
 
-## Inputs
-- `MetricDepthCoincidence^thm`
-- `ParentDepthDecrement^thm`
-
-## Role
-This is the minimal induction lemma needed to derive
+## Immediate consequence
+Taking \(n=d(v,r)\) yields
 \[
-\eta^R(v)=r
-\]
-and hence
-\[
-\eta_\#^R=\mathrm{Retr}_r.
+\eta^{\,d(v,r)}(v)=r.
 \]
 
-## Dependency Chain
-ParentIterationDepthFormula^thm => ParentIterationToRoot^thm => TreeContractionHomotopy^thm => RootedBallTrivialization^thm
+## Role in the Newstein closure chain
+\[
+\mathrm{ParentIterationDepthFormula}^{\mathrm{thm}}
+\Longrightarrow
+\mathrm{ParentIterationToRoot}^{\mathrm{thm}}
+\Longrightarrow
+\mathrm{TreeContractionHomotopy}^{\mathrm{thm}}
+\Longrightarrow
+\mathrm{RootedBallTrivialization}^{\mathrm{thm}}.
+\]
+
+## Weakest sufficient next proof object
+This theorem is the current weakest sufficient theorem-level replacement target in the Newstein proof-closure queue.
