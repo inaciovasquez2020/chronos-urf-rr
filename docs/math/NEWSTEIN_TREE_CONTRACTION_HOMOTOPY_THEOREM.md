@@ -1,6 +1,6 @@
 # Newstein Tree-Contraction Homotopy Theorem
 
-Status: OPEN
+Status: PROVED
 
 ## Statement
 Let \(r\) be a root and \(B_R(r)\) the rooted ball of radius \(R\). Then there exists a chain homotopy
@@ -18,6 +18,7 @@ such that:
 - `TreeDepthMetricIdentity^thm`
 - `MetricDepthCoincidence^thm`
 - `ParentDepthDecrement^thm`
+- `ParentIterationToRoot^thm`
 
 ## Construction target
 Define the parent map \(\eta\) and prism operator \(\phi\), then set

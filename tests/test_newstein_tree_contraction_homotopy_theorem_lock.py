@@ -7,12 +7,13 @@ def test_title_present():
     assert "# Newstein Tree-Contraction Homotopy Theorem" in DOC
 
 def test_status_open_present():
-    assert "Status: OPEN" in DOC
+    assert "Status: PROVED" in DOC
 
 def test_inputs_present():
     assert "TreeDepthMetricIdentity^thm" in DOC
     assert "MetricDepthCoincidence^thm" in DOC
     assert "ParentDepthDecrement^thm" in DOC
+    assert "ParentIterationToRoot^thm" in DOC
 
 def test_obligations_present():
     assert "tree_homotopy" in DOC
