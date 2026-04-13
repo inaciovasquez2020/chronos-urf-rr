@@ -61,3 +61,13 @@ x_t, & t\notin I.
 \[
 \text{No theorem-level promotion is licensed before }\Phi_m\text{ is fixed explicitly.}
 \]
+
+Locked frontier
+
+TreeContractionHomotopy
+
+Conditional consequences already locked
+
+RootedBallTrivialization
+
+FiberQuotientRank
