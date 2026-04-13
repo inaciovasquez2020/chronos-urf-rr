@@ -1,6 +1,6 @@
 # Newstein Parent Iteration To Root Reduction
 
-Status: OPEN
+Status: PROVED
 
 ## Reduction statement
 Assume ParentIterationDepthFormula:
@@ -26,3 +26,7 @@ A vertex has distance \(0\) from \(r\) if and only if it is \(r\). Therefore
 
 ## Output
 ParentIterationToRoot is reduced to ParentIterationDepthFormula plus the identity-of-indiscernibles for graph distance.
+
+## Proof status
+Proved by specializing ParentIterationDepthFormula to \(n=d(v,r)\).
+
