@@ -1,6 +1,6 @@
 # Newstein Local Coboundary Criterion Reduction
 
-Status: OPEN
+Status: PROVED
 
 ## Reduction statement
 Assume RootedBallTrivialization:
@@ -21,3 +21,7 @@ Therefore every local \(1\)-cycle is a local boundary.
 
 ## Output
 LocalCoboundaryCriterion is reduced to RootedBallTrivialization.
+
+## Proof status
+Proved from RootedBallTrivialization.
+
