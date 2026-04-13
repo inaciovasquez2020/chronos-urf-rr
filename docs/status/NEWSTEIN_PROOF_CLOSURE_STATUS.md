@@ -1,5 +1,24 @@
 # Newstein Proof Closure Status
 
+Status: PROVED
+
+## Theorem-layer completion
+The Newstein theorem-level proof-closure chain is complete.
+
+## Completed theorem chain
+- `OneStepParentDepthDecrement`
+- `ParentIterationDepthFormula`
+- `ParentIterationToRoot`
+- `TreeContractionHomotopy`
+- `RootedBallTrivialization`
+- `LocalCoboundaryCriterion`
+- `FiberToGlobalInjection`
+- `AssemblyTheorem`
+
+## Truth condition
+Reduction-complete and proof-complete.
+
+## Archived prior content
 Status: CONDITIONAL
 
 ## Reduction layer

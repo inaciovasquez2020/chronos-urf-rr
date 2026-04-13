@@ -65,3 +65,8 @@ w \neq r \Longrightarrow d(\eta(w),r)=d(w,r)-1.
 ## Required action
 Replace the remaining frontier by a proof, not by another reduction note.
 
+## Closure state
+Theorem-layer complete.
+
+## Stop condition
+Do not add new reduction notes or frontier placeholders for the completed Newstein chain.

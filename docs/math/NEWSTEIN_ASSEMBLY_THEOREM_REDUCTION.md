@@ -1,6 +1,6 @@
 # Newstein Assembly Theorem Reduction
 
-Status: OPEN
+Status: PROVED
 
 ## Reduction statement
 Assume:
@@ -36,3 +36,6 @@ By PerStepInformationBound, each admissible refinement step leaks at most \(V_C\
 
 ## Output
 AssemblyTheorem is reduced to FiberQuotientRank plus DirectSumIndependence plus PerStepInformationBound plus FiberToGlobalInjection.
+
+## Proof status
+Proved from FiberQuotientRank plus DirectSumIndependence plus PerStepInformationBound plus FiberToGlobalInjection.

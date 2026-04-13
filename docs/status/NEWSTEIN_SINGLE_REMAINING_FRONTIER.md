@@ -1,17 +1,11 @@
 # Newstein Single Remaining Frontier
 
-Status: CONDITIONAL
+Status: RESOLVED
 
-## Unique remaining mathematical input
-\[
-\forall w \in B_R(r),\qquad
-w \neq r \Longrightarrow d(\eta(w),r)=d(w,r)-1.
-\]
+## Resolution
+The previously recorded single remaining frontier `OneStepParentDepthDecrement` has been proved.
 
-## Name
-OneStepParentDepthDecrement
-
-## Consequence chain
+## Completed theorem chain
 \[
 \mathrm{OneStepParentDepthDecrement}
 \Longrightarrow
@@ -31,4 +25,4 @@ OneStepParentDepthDecrement
 \]
 
 ## Truth condition
-This is the unique remaining frontier after reduction completion.
+There is no remaining Newstein theorem-level frontier in this chain.
