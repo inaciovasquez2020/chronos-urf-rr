@@ -1,0 +1,10 @@
+{
+"project": "chronos-urf-rr",
+"metric": "InformationLeakage",
+"bounds": {
+"theoretical_max": "V_C",
+"measured_step_average": 0.00012,
+"leakage_tolerance": 1e-06
+},
+"status": "awaiting_verification"
+}
