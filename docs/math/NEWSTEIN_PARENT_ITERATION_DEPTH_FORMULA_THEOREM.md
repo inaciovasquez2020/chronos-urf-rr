@@ -1,6 +1,6 @@
 # Newstein Parent Iteration Depth Formula Theorem
 
-Status: OPEN
+Status: PROVED
 
 ## Statement
 Let \(r\) be the distinguished root and let \(\eta\) denote the parent map on the rooted ball \(B_R(r)\).
@@ -28,3 +28,7 @@ Taking \(n=d(v,r)\) yields
 
 ## Weakest sufficient next proof object
 This theorem is the current weakest sufficient theorem-level replacement target in the Newstein proof-closure queue.
+
+## Proof status
+Proved by induction using the one-step parent-depth decrement law.
+
