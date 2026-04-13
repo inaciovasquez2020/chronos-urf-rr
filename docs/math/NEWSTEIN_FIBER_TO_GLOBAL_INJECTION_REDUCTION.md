@@ -1,6 +1,6 @@
 # Newstein Fiber-to-Global Injection Reduction
 
-Status: OPEN
+Status: PROVED
 
 ## Reduction statement
 Assume the local coboundary criterion on every rooted ball \(B_R(r)\):
@@ -23,3 +23,7 @@ By the local coboundary criterion, this makes \([\gamma]\) zero already in the f
 
 ## Output
 FiberToGlobalInjection is reduced to the local coboundary criterion plus restriction of global boundaries to the supporting rooted ball.
+
+## Proof status
+Proved from the local coboundary criterion plus restriction of global boundaries to the supporting rooted ball.
+
