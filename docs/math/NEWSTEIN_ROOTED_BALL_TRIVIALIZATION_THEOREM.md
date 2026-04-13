@@ -1,48 +1,136 @@
 # Newstein Rooted-Ball Trivialization Theorem
 
-## Target statement
 \[
-\widetilde B_r^{\mathrm{tw}}(x)\cong \widetilde B_r^{\mathrm{triv}}(x).
+\boxed{
+\text{Assumptions}
+}
+\]
+
+Assume (A1)--(A4) and the simplicial admissibility package (S0)--(S2).
+
+\[
+\boxed{
+\text{Prism operators}
+}
+\]
+
+For every oriented simplex
+\[
+\sigma=[v_0,\dots,v_k],
+\]
+define
+\[
+\Delta_i(\sigma):=[v_0,\dots,v_i,p(v_i),p(v_{i+1}),\dots,p(v_k)],
+\qquad 0\le i\le k,
+\]
+and
+\[
+K_k(\sigma):=\sum_{i=0}^{k}(-1)^i\Delta_i(\sigma).
 \]
 
 \[
-\operatorname{Type}_{k,r}(G_n)=\operatorname{Type}_{k,r}(H_n).
+\boxed{
+\text{Chain-homotopy identity}
+}
 \]
-
-## Inputs
-### 1. Local cycle-vanishing theorem
-Assume the local cycle-vanishing theorem in the Newstein quotient-gap regime.
-
-### 2. Local coboundary theorem
-Assume the local coboundary theorem in the Newstein quotient-gap regime.
-
-## Deduction
-Assume the theorem-level parent-depth decrement result in the Newstein quotient-gap regime.
-
-Use \(f_x\) as the gauge change trivializing the twisted cocycle on \(U\).
-
-Therefore the twisted rooted ball and trivial rooted ball are isomorphic:
 
 \[
-\widetilde B_r^{\mathrm{tw}}(x)\cong \widetilde B_r^{\mathrm{triv}}(x).
+\partial K_k+K_{k-1}\partial=\operatorname{id}-p_{\#}
+\qquad\text{on }C_k(B_R(r)),
 \]
 
-Since rooted radius-\(r\) balls agree for every center,
+where
+\[
+p_{\#}([v_0,\dots,v_k]):=[p(v_0),\dots,p(v_k)].
+\]
 
 \[
-\operatorname{Type}_{k,r}(G_n)=\operatorname{Type}_{k,r}(H_n).
+\boxed{
+\text{Telescoping operator}
+}
 \]
 
-## Assembly theorem
-This closes the rooted-ball branch of the Newstein chain at the theorem-ledger level.
+\[
+L_k^{(R)}:=\sum_{t=0}^{R-1}p_{\#}^{\,t}K_k.
+\]
 
-## Status
-Status: PROVED
+Then
+\[
+\partial L_k^{(R)}+L_{k-1}^{(R)}\partial
+=
+\operatorname{id}-p_{\#}^{\,R}.
+\]
 
-## Dependencies discharged by this theorem
-1. Local rooted-ball equivalence between twisted and trivial lifts.
-2. Equality of rooted radius-\(r\) type data.
-3. The local side of the non-factorization setup.
+\[
+\boxed{
+\text{Collapse to the root}
+}
+\]
 
-## Dependency Chain
-ParentDepthDecrement^thm => RootedBallTrivialization^thm => FiberQuotientRank^thm => DirectSumIndependence^thm => PerStepInformationBound^thm => QuotientGapClosure^unconditional
+Let
+\[
+\rho(v):=r.
+\]
+
+By (A4),
+\[
+p_{\#}^{\,R}=\rho_{\#}.
+\]
+
+In normalized chains,
+\[
+\rho_{\#}=0
+\qquad\text{on }C_k(B_R(r)),\quad k\ge 1.
+\]
+
+\[
+\boxed{
+\text{Theorem}
+}
+\]
+
+\[
+\forall c\in Z_k(B_R(r)),\ k\ge 1,\ \exists b=L_k^{(R)}(c)\in C_{k+1}(B_R(r))
+\text{ such that }\partial b=c.
+\]
+
+\[
+\boxed{
+\text{Proof}
+}
+\]
+
+For
+\[
+c\in Z_k(B_R(r)),\qquad k\ge 1,
+\]
+set
+\[
+b:=L_k^{(R)}(c).
+\]
+Then
+\[
+\partial b
+=
+(\partial L_k^{(R)}+L_{k-1}^{(R)}\partial)(c)
+=
+(\operatorname{id}-p_{\#}^{\,R})(c)
+=
+(\operatorname{id}-\rho_{\#})(c)
+=
+c.
+\]
+
+\[
+\boxed{
+\text{Terminal frontier}
+}
+\]
+
+\[
+\text{The sole active obstruction is unconditional discharge of the simplicial admissibility package (S0)--(S2).}
+\]
+
+\[
+\text{Status: CONDITIONAL on (S0)--(S2).}
+\]
