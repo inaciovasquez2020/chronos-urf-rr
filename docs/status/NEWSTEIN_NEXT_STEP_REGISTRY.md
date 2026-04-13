@@ -1,72 +1,63 @@
 # Newstein Next-Step Registry
 
-## Solved
-- `TreeDepthMetricIdentity`
-- `MetricDepthCoincidence`
-- `ParentDepthDecrement`
-
-## Locked frontier
-- `TreeContractionHomotopy`
-
-## Conditional consequences already locked
-- `RootedBallTrivialization`
-- `FiberQuotientRank`
-
-## Weakest sufficient missing object
-A repo-native local contraction homotopy
 \[
-h:C_k(B_R(r))\to C_{k+1}(B_R(r))
-\]
-such that
-\[
-\operatorname{supp}(h(c))\subseteq B_R(r)
-\quad\wedge\quad
-\partial h+h\partial=\mathrm{Id}-\mathrm{Retr}_r.
+\boxed{
+\text{Current frontier}
+}
 \]
 
-## Remaining theorem chain
 \[
-\mathrm{TreeContractionHomotopy}
-\Longrightarrow
-\mathrm{RootedBallTrivialization}
-\Longrightarrow
-\mathrm{FiberQuotientRank}
-\Longrightarrow
-\mathrm{DirectSumIndependence}
-\Longrightarrow
-\mathrm{PerStepInformationBound}
-\Longrightarrow
-\mathrm{QuotientGapClosure}.
+\texttt{docs/math/NEWSTEIN_EXACT_MISSING_OBJECT.md}
 \]
 
-
-## Theorem-level frontier
-Weakest missing theorem-level object: ParentIterationDepthFormula^thm
-
-## Loop stop
-Do not add further theorem-target locks or proof blueprints for the Newstein chain until one placeholder theorem is replaced by a nontrivial Lean proof.
-
-## Next proof-replacement order
-1. ParentIterationDepthFormula^thm
-2. ParentIterationToRoot^thm
-3. TreeContractionHomotopy^thm
-4. RootedBallTrivialization^thm
-
-## Current stop condition
-Reduction-complete. Do not add new reduction locks.
-
-## Single remaining frontier
-OneStepParentDepthDecrement:
 \[
-\forall w \in B_R(r),\qquad
-w \neq r \Longrightarrow d(\eta(w),r)=d(w,r)-1.
+\boxed{
+\text{Only admissible next step}
+}
 \]
 
-## Required action
-Replace the remaining frontier by a proof, not by another reduction note.
+\[
+\text{Fix an explicit formula }\Phi_m(x_0,\dots,x_m)
+\text{ such that }
+[x_0,\dots,x_m]\in C_m(B_R(r))\iff \Phi_m(x_0,\dots,x_m).
+\]
 
-## Closure state
-Theorem-layer complete.
+\[
+\boxed{
+\text{Required preservation target}
+}
+\]
 
-## Stop condition
-Do not add new reduction notes or frontier placeholders for the completed Newstein chain.
+\[
+\forall m\ge 0,\ \forall x_0,\dots,x_m,\ \forall I\subseteq\{0,\dots,m\},
+\quad
+\Phi_m(x_0,\dots,x_m)\Longrightarrow \Phi_m(y_0,\dots,y_m),
+\]
+
+\[
+y_t=
+\begin{cases}
+p(x_t), & t\in I,\\
+x_t, & t\notin I.
+\end{cases}
+\]
+
+\[
+\boxed{
+\text{Registry status}
+}
+\]
+
+\[
+\text{OPEN}.
+\]
+
+\[
+\boxed{
+\text{Truth condition}
+}
+\]
+
+\[
+\text{No theorem-level promotion is licensed before }\Phi_m\text{ is fixed explicitly.}
+\]
