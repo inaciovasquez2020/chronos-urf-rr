@@ -1,6 +1,6 @@
 # Newstein Rooted-Ball Trivialization Reduction
 
-Status: OPEN
+Status: PROVED
 
 ## Reduction statement
 Assume TreeContractionHomotopy:
@@ -31,3 +31,7 @@ Therefore \(z\) is a boundary.
 
 ## Output
 RootedBallTrivialization is reduced to TreeContractionHomotopy plus the vanishing of \(1\)-chains on the root retract.
+
+## Proof status
+Proved from TreeContractionHomotopy and vanishing of \(1\)-chains on the root retract.
+
