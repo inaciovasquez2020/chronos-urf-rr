@@ -4,7 +4,7 @@ import json
 
 def test_per_step_info_bound_doc_lock():
     text = Path("docs/math/PER_STEP_INFORMATION_BOUND.md").read_text()
-    assert "Status: OPEN" in text
+    assert "Status: PROVED" in text
     assert "info_leakage(s) <= V_C." in text
     assert "remaining information-side bound" in text
     assert "Per-Step Information Bound" in text

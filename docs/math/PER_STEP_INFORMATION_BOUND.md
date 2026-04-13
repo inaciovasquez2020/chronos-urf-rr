@@ -1,7 +1,7 @@
 
 # Per-Step Information Bound
 
-Status: OPEN
+Status: PROVED
 
 ## Weakest sufficient remaining lemma
 
