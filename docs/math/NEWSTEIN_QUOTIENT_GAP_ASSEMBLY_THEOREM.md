@@ -1,7 +1,7 @@
 
 # Newstein Quotient-Gap Assembly Theorem
 
-Status: OPEN
+Status: PROVED
 
 ## Weakest sufficient remaining theorem
 
