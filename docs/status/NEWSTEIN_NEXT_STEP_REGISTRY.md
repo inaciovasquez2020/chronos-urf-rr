@@ -51,3 +51,17 @@ Do not add further theorem-target locks or proof blueprints for the Newstein cha
 2. ParentIterationToRoot^thm
 3. TreeContractionHomotopy^thm
 4. RootedBallTrivialization^thm
+
+## Current stop condition
+Reduction-complete. Do not add new reduction locks.
+
+## Single remaining frontier
+OneStepParentDepthDecrement:
+\[
+\forall w \in B_R(r),\qquad
+w \neq r \Longrightarrow d(\eta(w),r)=d(w,r)-1.
+\]
+
+## Required action
+Replace the remaining frontier by a proof, not by another reduction note.
+
