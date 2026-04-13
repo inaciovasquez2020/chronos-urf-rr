@@ -1,5 +1,20 @@
 # Newstein Proof Closure Status
 
+Status: CONDITIONAL
+
+## Reduction layer
+Reduction-complete.
+
+## Unique remaining frontier
+OneStepParentDepthDecrement:
+\[
+\forall w \in B_R(r),\qquad
+w \neq r \Longrightarrow d(\eta(w),r)=d(w,r)-1.
+\]
+
+## Truth condition
+Reduction-complete does not mean proof-complete.
+
 ## Solved
 - `TreeDepthMetricIdentity`
 - `MetricDepthCoincidence`
