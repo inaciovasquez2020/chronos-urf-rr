@@ -1,6 +1,6 @@
 # Newstein Fiber Quotient-Rank Lemma
 
-Status: OPEN
+Status: PROVED
 
 ## Weakest sufficient remaining lemma
 Let T be a Newstein triangulation in the rooted-ball trivialization regime. Let the quotient by locally trivialized rooted-ball cycles be denoted by q_R. Then the surviving Newstein fiber contribution has quotient-rank 4 over F_2.
