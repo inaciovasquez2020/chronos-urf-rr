@@ -6,7 +6,7 @@
 }
 \]
 
-Assume (A1)--(A4) and the simplicial admissibility package (S0)--(S2).
+Assume (A1)--(A4), assume \(B_R(r)\) is a full simplicial subcomplex, and assume the simplicial multi-parent replacement lemma.
 
 \[
 \boxed{
@@ -128,9 +128,9 @@ c.
 \]
 
 \[
-\text{The sole active obstruction is unconditional discharge of the simplicial admissibility package (S0)--(S2).}
+\text{The sole active obstruction is unconditional discharge of the simplicial multi-parent replacement lemma.}
 \]
 
 \[
-\text{Status: CONDITIONAL on (S0)--(S2).}
+\text{Status: OPEN-FRONTIER at the multi-parent replacement lemma.}
 \]

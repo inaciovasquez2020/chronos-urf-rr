@@ -1,4 +1,4 @@
-# Newstein Simplicial Admissibility Package
+# Newstein Simplicial Multi-Parent Replacement Lemma
 
 \[
 \boxed{
@@ -26,23 +26,11 @@ p:T^{(0)}\to T^{(0)}.
 
 \[
 \boxed{
-\text{Fullness}
+\text{Lemma}
 }
 \]
 
 \[
-\text{(S0)}\quad
-B_R(r)\ \text{is a full simplicial subcomplex of }T.
-\]
-
-\[
-\boxed{
-\text{Single active admissibility lemma}
-}
-\]
-
-\[
-\text{(SMPR)}\quad
 \forall m\ge 0,\ \forall [x_0,\dots,x_m]\in C_m(B_R(r)),\ \forall I\subseteq\{0,\dots,m\},
 \quad
 [y_0,\dots,y_m]\in C_m(B_R(r)),
@@ -58,42 +46,38 @@ x_t, & t\notin I.
 
 \[
 \boxed{
-\text{Derived one-step parent replacement}
+\text{Specializations}
 }
 \]
 
 \[
-\forall m\ge 0,\ \forall [x_0,\dots,x_m]\in C_m(B_R(r)),\ \forall j\le m,\ 
+I=\{j\}
+\Longrightarrow
 [x_0,\dots,x_{j-1},p(x_j),x_{j+1},\dots,x_m]\in C_m(B_R(r)).
 \]
 
 \[
-\boxed{
-\text{Derived full vertexwise parent image}
-}
-\]
-
-\[
-\forall m\ge 0,\ \forall [x_0,\dots,x_m]\in C_m(B_R(r)),\ 
+I=\{0,\dots,m\}
+\Longrightarrow
 [p(x_0),\dots,p(x_m)]\in C_m(B_R(r)).
 \]
 
 \[
 \boxed{
-\text{Core unconditional package}
+\text{Frontier status}
 }
 \]
 
 \[
-\text{(S0) and (SMPR).}
+\text{OPEN}.
 \]
 
 \[
 \boxed{
-\text{Status}
+\text{Terminal frontier}
 }
 \]
 
 \[
-\text{OPEN at }(SMPR).
+\text{Unconditional proof of the multi-parent replacement lemma.}
 \]
