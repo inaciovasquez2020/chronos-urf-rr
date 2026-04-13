@@ -32,14 +32,23 @@
 
 \[
 \boxed{
+\text{Reduction object}
+}
+\]
+
+\[
+\texttt{docs/math/NEWSTEIN_SIMPLEX_ADMISSIBILITY_PREDICATE.md}
+\]
+
+\[
+\boxed{
 \text{Exact blocker}
 }
 \]
 
 \[
-\forall m\ge 0,\ \forall [x_0,\dots,x_m]\in C_m(B_R(r)),\ \forall I\subseteq\{0,\dots,m\},
-\quad
-[y_0,\dots,y_m]\in C_m(B_R(r)).
+\text{Fix an explicit defining predicate }\mathrm{Simp}_m
+\text{ and prove its preservation under arbitrary subset parent replacement.}
 \]
 
 \[
@@ -59,5 +68,5 @@
 \]
 
 \[
-\text{All downstream steps reduce to the multi-parent replacement lemma plus }(A1)\text{--}(A4)\text{ and fullness.}
+\text{All downstream steps reduce to the multi-parent replacement lemma, which reduces to explicit }\mathrm{Simp}_m\text{ preservation.}
 \]
