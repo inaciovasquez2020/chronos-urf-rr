@@ -6,8 +6,8 @@ LEAN = Path("lean/Newstein/ParentIterationToRoot.lean").read_text()
 def test_title_present():
     assert "# Newstein Parent-Iteration-to-Root Theorem" in DOC
 
-def test_status_open_present():
-    assert "Status: OPEN" in DOC
+def test_status_proved_present():
+    assert "Status: PROVED" in DOC
 
 def test_statement_present():
     assert "\\eta^R(v)=r." in DOC
