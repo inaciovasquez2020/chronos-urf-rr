@@ -1,66 +1,44 @@
-# Newstein Parent-Iteration Depth Formula Proof Blueprint
+# Newstein Parent Iteration Depth Formula Proof Blueprint
 
 Status: OPEN
 
-## Objective
-For every vertex \(v \in B_R(r)\) and every \(j \in \mathbb{N}\),
+## Target
+Prove
 \[
-d(\eta^j(v))=\max(d(v)-j,0).
+\forall v \in B_R(r),\ \forall n \le d(v,r),\qquad
+d\!\left(\eta^{\,n}(v), r\right)=d(v,r)-n.
 \]
-
-## Inputs
-- `MetricDepthCoincidence^thm`
-- `ParentDepthDecrement^thm`
 
 ## Base case
-At \(j=0\),
+For \(n=0\),
 \[
-d(\eta^0(v))=d(v)=\max(d(v)-0,0).
+d\!\left(\eta^{\,0}(v), r\right)=d(v,r).
 \]
 
-## Inductive step
+## Step input
 Assume
 \[
-d(\eta^j(v))=\max(d(v)-j,0).
+d\!\left(\eta^{\,n}(v), r\right)=d(v,r)-n.
 \]
 
-### Case 1
-If \(d(v)\le j\), then
+## Step promotion
+If \(n+1 \le d(v,r)\), then
 \[
-d(\eta^j(v))=0,
-\]
-so \(\eta^j(v)=r\), hence
-\[
-d(\eta^{j+1}(v))=0=\max(d(v)-(j+1),0).
+d\!\left(\eta(\eta^{\,n}(v)), r\right)=d\!\left(\eta^{\,n}(v), r\right)-1.
 \]
 
-### Case 2
-If \(d(v)>j\), then
+## Inductive conclusion
+Therefore
 \[
-d(\eta^j(v))=d(v)-j>0.
-\]
-Apply `ParentDepthDecrement^thm`:
-\[
-d(\eta^{j+1}(v))=d(\eta^j(v))-1=d(v)-(j+1).
-\]
-Thus
-\[
-d(\eta^{j+1}(v))=\max(d(v)-(j+1),0).
+d\!\left(\eta^{\,n+1}(v), r\right)=d(v,r)-(n+1).
 \]
 
-## Conclusion
-By induction on \(j\),
+## Dependency
+The only nontrivial input is the one-step decrement law
 \[
-d(\eta^j(v))=\max(d(v)-j,0).
+d(\eta(w),r)=d(w,r)-1
 \]
+for non-root vertices \(w\).
 
-## Role
-This yields
-\[
-d(\eta^R(v))=0,
-\]
-hence
-\[
-\eta^R(v)=r,
-\]
-which is the core step in `ParentIterationToRoot^thm`.
+## Output
+This reduces ParentIterationDepthFormula to induction plus the one-step parent-depth decrement law.
