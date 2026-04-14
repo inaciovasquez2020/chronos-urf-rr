@@ -1,6 +1,7 @@
 name: Lean Build
 
 on:
+  workflow_dispatch:
   push:
   pull_request:
 
@@ -8,13 +9,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+      - name: Install elan
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
-      - name: Set up Lean
-        uses: leanprover/lean-action@v1
+      - name: Show toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          elan show || true
+          lean --version
+          lake --version
 
       - name: Cache Lake
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             .lake
