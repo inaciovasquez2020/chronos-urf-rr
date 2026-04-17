@@ -1,0 +1,25 @@
+name: urf-frontier-generated-pointer-parity
+
+on:
+  push:
+    paths:
+      - 'docs/status/URF_FRONTIER_POINTER_REGISTRY_V1.json'
+      - 'scripts/check_generated_pointer_parity.py'
+      - 'tests/test_generated_pointer_parity.py'
+      - '.github/workflows/urf-frontier-generated-pointer-parity.yml'
+  pull_request:
+    paths:
+      - 'docs/status/URF_FRONTIER_POINTER_REGISTRY_V1.json'
+      - 'scripts/check_generated_pointer_parity.py'
+      - 'tests/test_generated_pointer_parity.py'
+      - '.github/workflows/urf-frontier-generated-pointer-parity.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pytest -q tests/test_generated_pointer_parity.py
