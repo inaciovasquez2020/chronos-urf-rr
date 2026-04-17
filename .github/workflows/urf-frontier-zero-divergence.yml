@@ -1,0 +1,25 @@
+name: urf-frontier-zero-divergence
+
+on:
+  push:
+    paths:
+      - 'docs/status/**'
+      - 'scripts/check_urf_frontier_zero_divergence.py'
+      - 'tests/test_urf_frontier_zero_divergence.py'
+      - '.github/workflows/urf-frontier-zero-divergence.yml'
+  pull_request:
+    paths:
+      - 'docs/status/**'
+      - 'scripts/check_urf_frontier_zero_divergence.py'
+      - 'tests/test_urf_frontier_zero_divergence.py'
+      - '.github/workflows/urf-frontier-zero-divergence.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pytest -q tests/test_urf_frontier_zero_divergence.py
