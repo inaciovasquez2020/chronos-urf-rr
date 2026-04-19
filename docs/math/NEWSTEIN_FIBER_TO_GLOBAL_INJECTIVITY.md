@@ -1,76 +1,75 @@
 # Newstein Fiber-to-Global Injectivity
 
+Status: OPEN
+
 ## Target statement
 
-For each fiber \(v\), the inclusion-induced maps
+For each fiber \(v\), prove the inclusion-induced map
 \[
 \iota_v^{\mathrm{triv}}:
 Z_1(\widetilde T_v^{\mathrm{triv}})/W_v^{\mathrm{triv}}
 \to
 Q(G_n)
 \]
-and
+is injective, and likewise
 \[
 \iota_v^{\mathrm{tw}}:
 Z_1(\widetilde T_v^{\mathrm{tw}})/W_v^{\mathrm{tw}}
 \to
 Q(H_n)
 \]
-are injective, where
+is injective, where
 \[
 Q(G):=
 Z_1(G)\Big/\Big\langle Z_1(B_r^G(x)):x\in V(G)\Big\rangle.
+\]
+
+For distinct fibers \(u\neq v\), prove
+\[
+\operatorname{im}(\iota_u)\cap \operatorname{im}(\iota_v)=0.
+\]
+
+\[
+\bigoplus_v Z_1(\widetilde T_v^{\mathrm{triv}})/W_v^{\mathrm{triv}}
+\hookrightarrow Q(G_n),
+\qquad
+\bigoplus_v Z_1(\widetilde T_v^{\mathrm{tw}})/W_v^{\mathrm{tw}}
+\hookrightarrow Q(H_n).
 \]
 
 ## Required subclaims
 
 ### 1. Fiber support survives local-ball quotienting
 
-Prove no nonzero fiber quotient class is killed by a sum of local-ball cycle classes.
+No local-ball relation kills a nonzero fiber quotient class.
 
 ### 2. Local-ball relations remain locally generated
 
-Prove every generator of
-\[
-\Big\langle Z_1(B_r^G(x)):x\in V(G)\Big\rangle
-\]
-is supported inside a rooted radius-\(r\) ball.
+Local-ball relations remain locally generated.
+
+Connector edges do not create quotient identifications between different fibers.
+
+Direct-sum embedding follows from fiberwise injectivity and cross-fiber independence.
 
 ### 3. Fiber quotient classes are globally nonlocal
 
-Prove every nonzero class in
-\[
-Z_1(\widetilde T_v)/W_v
-\]
-has nontrivial image modulo the local-ball span.
+Fiber quotient classes are globally nonlocal.
 
 ### 4. Inclusion descends to quotient
 
-Prove the fiber inclusion map sends \(W_v\) into the local-ball quotient kernel, so the induced map on
-\[
-Z_1(\widetilde T_v)/W_v
-\]
-is well-defined.
+Inclusion descends to quotient.
 
 ## Deduction
 
-Let \([\alpha]\in Z_1(\widetilde T_v)/W_v\) map to zero in the global quotient.
-
-Then \(\alpha\) lies in the span of local-ball cycle classes.
-
-By 1 and 3, this implies \([\alpha]=0\) already in the fiber quotient.
-
 Hence the induced map is injective.
-
-The same argument applies in both the trivial and twisted cover cases.
 
 ## Assembly theorem
 
-For every fiber \(v\), the fiber quotient injects into the corresponding global quotient.
+This is the first theorem-level target in the fiber-to-global branch.
 
 ## Status
 
-This is the first theorem-level target in the fiber-to-global branch.
+OPEN
 
 ## Dependencies discharged by this theorem
 

@@ -1,70 +1,46 @@
 # Newstein Non-Factorization Consequence
 
+Status: OPEN
+
 ## Target statement
 
-If
+From
 \[
 \operatorname{Type}_{k,r}(G_n)=\operatorname{Type}_{k,r}(H_n)
-\]
-but
-\[
+\quad\text{and}\quad
 Q(G_n)\neq Q(H_n),
 \]
-then the quotient invariant \(Q\) does not factor through rooted radius-\(r\) type or \(FO^k_r\)-type.
+deduce that \(Q\) does not factor through rooted radius-\(r\) type or \(FO^k_r\)-type.
 
 ## Inputs
 
 ### 1. Rooted-ball trivialization
 
-Assume
-\[
-\operatorname{Type}_{k,r}(G_n)=\operatorname{Type}_{k,r}(H_n).
-\]
+Rooted-ball trivialization theorem.
 
 ### 2. Global quotient-gap theorem
 
-Assume
-\[
-\dim_{\mathbb F_2}Q(G_n)-\dim_{\mathbb F_2}Q(H_n)\ge 2|V(X_n)|.
-\]
-
-In particular,
-\[
-Q(G_n)\neq Q(H_n).
-\]
+Quotient-gap theorem.
 
 ## Required subclaims
 
 ### 1. Factorization implication
 
-If \(Q\) factors through rooted radius-\(r\) type, then equal rooted type implies equal \(Q\)-value.
+If \(Q\) factored through rooted radius-\(r\) type, equal rooted types would force equal \(Q\)-values.
 
 ### 2. \(FO^k_r\)-type implication
 
-If \(Q\) factors through \(FO^k_r\)-type, then equal \(FO^k_r\)-type implies equal \(Q\)-value.
+If \(Q\) factored through \(FO^k_r\)-type, equal \(FO^k_r\)-types would force equal \(Q\)-values.
 
 ### 3. Contradiction step
 
-Equal local type together with unequal \(Q\)-value contradicts either factorization hypothesis.
+Compare the factorization implication with \(Q(G_n)\neq Q(H_n)\).
+
+Definition of the quotient invariant \(Q\).
+
+Factorization contradiction argument.
 
 ## Deduction
-
-Assume \(Q\) factors through rooted radius-\(r\) type or \(FO^k_r\)-type.
-
-By rooted-ball trivialization,
-\[
-\operatorname{Type}_{k,r}(G_n)=\operatorname{Type}_{k,r}(H_n).
-\]
-
-Hence the factorization hypothesis forces
-\[
-Q(G_n)=Q(H_n).
-\]
-
-But by the global quotient-gap theorem,
-\[
-Q(G_n)\neq Q(H_n).
-\]
 
 Contradiction.
 
@@ -72,11 +48,11 @@ Therefore \(Q\) does not factor through rooted radius-\(r\) type or \(FO^k_r\)-t
 
 ## Assembly theorem
 
-Local indistinguishability together with global quotient separation yields non-factorization.
+This closes the non-factorization branch of the Newstein chain at the theorem-ledger level.
 
 ## Status
 
-This closes the non-factorization branch of the Newstein chain at the theorem-ledger level.
+OPEN
 
 ## Dependencies discharged by this theorem
 

@@ -3,8 +3,8 @@ name: independent-audit
 on:
   workflow_dispatch:
   push:
-  tags:
-    - 'audit-ready-*'
+    tags:
+      - 'audit-ready-*'
 
 jobs:
   replay:

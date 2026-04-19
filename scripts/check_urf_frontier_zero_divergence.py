@@ -11,6 +11,7 @@ allowed = {
     "tests/test_urf_frontier_pointer_registry_schema_lock.py",
     "scripts/check_urf_frontier_projection.py",
     "scripts/check_urf_frontier_pointer_registry_schema_lock.py",
+    "scripts/check_generated_pointer_parity.py",
 }
 
 needles = [

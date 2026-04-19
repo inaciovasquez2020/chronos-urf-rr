@@ -1,43 +1,44 @@
 # Newstein Triangle-Vanishing Theorem
 
+Status: OPEN
+
 ## Target statement
 
 For every local triangle \(\tau\),
 \[
 \phi_H(\partial \tau)=0.
+
+Equivalent compact form:
+\[
+\phi_H(\partial\tau)=0.
+\]\n\nEquivalent spacing-normalized form:\n\\[\n\\phi_H(\\partial \\tau)=0.\n\\]
 \]
 
 ## Required subclaims
 
 ### 1. Explicit cocycle definition
 
-Define \(\phi_H\) on every edge class of the lifted local model.
+Explicit cocycle definition on every edge class.
 
 ### 2. Triangle-type classification
 
-Enumerate all local triangle types occurring in the rooted radius-\(r\) balls.
+Classify every local triangle by type.
 
 ### 3. Parity verification on each triangle type
 
-For each local triangle type \(\tau\), prove
-\[
-\phi_H(\partial \tau)=0.
-\]
+Direct parity check on each triangle type.
 
 ### 4. Additivity on boundary sums
 
-Prove \(\phi_H\) is additive on \(\mathbb F_2\)-boundary sums.
+Additivity of \(\phi_H\) on \(\mathbb F_2\)-boundary sums.
 
 ## Assembly theorem
 
-Combining 1–4 yields
-\[
-\phi_H(\partial \tau)=0
-\quad
-\text{for every local triangle } \tau.
-\]
+Assemble the explicit cocycle definition, triangle-type classification, parity verification, and additivity to prove triangle-vanishing.
 
 ## Status
+
+OPEN
 
 This is the next theorem-level closure target after local triangle-generation.
 
@@ -46,3 +47,7 @@ This is the next theorem-level closure target after local triangle-generation.
 1. Input to local cycle-vanishing.
 2. Input to rooted-ball trivialization.
 3. Input to local-type equality in the Newstein chain.
+
+## Finish condition
+
+Replace this file by a proof sufficient to feed the local cycle-vanishing theorem.

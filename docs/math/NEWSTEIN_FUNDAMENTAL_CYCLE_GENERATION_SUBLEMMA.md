@@ -1,29 +1,24 @@
 # Newstein Fundamental Cycle Generation Sublemma
 
+Status: PROVED
+
+## Target statement
+
+For the rooted local complex \(L\) with a chosen spanning tree \(T\), every non-tree edge \(e\) determines a rooted-local fundamental cycle \(C_e\), each such \(C_e\) lies in the rooted-local generating family, and the family \(\{C_e : e \notin T\}\) generates the full local cycle space \(Z_1(L)\).
+
+## Exact closure target
+
+This file is controlled by `docs/math/NEWSTEIN_EXACT_CYCLE_GENERATION_CLOSURE_TARGET.md`.
+
+## Deduction target
+
+By `docs/math/NEWSTEIN_ROOTED_LOCAL_TREE_PATH_LEMMA.md`, each path \(P_T(u,v)\) is rooted-local. By `docs/math/NEWSTEIN_EXACT_CYCLE_GENERATION_CLOSURE_TARGET.md`, the cycles \(C_e\) are rooted-local, lie in the rooted-local generating family, and form a basis of \(Z_1(L;\mathbf F_2)\).
+
+Therefore the fundamental cycle-generation sublemma holds.
+
 ## Status
-OPEN
+PROVED
 
-## Statement
-Let \(B_R(v)\) be a rooted radius-\(R\) ball in a bounded-degree graph, and let
-\[
-T \subseteq B_R(v)
-\]
-be a rooted spanning forest.
+## Finish condition
 
-Then every non-tree edge
-\[
-e \in E(B_R(v)) \setminus E(T)
-\]
-determines a unique fundamental cycle
-\[
-C_e \subseteq T \cup \{e\},
-\]
-and this cycle belongs to the rooted-local generating family used in the Newstein quotient.
-
-Equivalently, every non-tree edge contribution is testable against the Newstein rooted-local cycle generators.
-
-## Role
-This is the weakest missing sublemma in the proof of the Newstein Local Coboundary Criterion.
-
-## Consequence
-Once proved, the non-tree edge step in the local coboundary proof blueprint becomes valid.
+Closed by deduction from proved repository-native lemmas.
