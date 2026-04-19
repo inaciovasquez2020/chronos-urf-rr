@@ -1,79 +1,49 @@
-# Newstein Fiber-to-Global Injectivity
+# Newstein Fiber-to-Global Injectivity and Direct-Sum Independence
 
-## Target statement
+Status: OPEN
 
-For each fiber \(v\), the inclusion-induced maps
+## Statement
+For each fiber \(v\), prove the inclusion-induced map
 \[
 \iota_v^{\mathrm{triv}}:
 Z_1(\widetilde T_v^{\mathrm{triv}})/W_v^{\mathrm{triv}}
 \to
 Q(G_n)
 \]
-and
+is injective, and likewise
 \[
 \iota_v^{\mathrm{tw}}:
 Z_1(\widetilde T_v^{\mathrm{tw}})/W_v^{\mathrm{tw}}
 \to
 Q(H_n)
 \]
-are injective, where
+is injective, where
 \[
 Q(G):=
 Z_1(G)\Big/\Big\langle Z_1(B_r^G(x)):x\in V(G)\Big\rangle.
 \]
 
-## Required subclaims
-
-### 1. Fiber support survives local-ball quotienting
-
-Prove no nonzero fiber quotient class is killed by a sum of local-ball cycle classes.
-
-### 2. Local-ball relations remain locally generated
-
-Prove every generator of
+For distinct fibers \(u\neq v\), prove
 \[
-\Big\langle Z_1(B_r^G(x)):x\in V(G)\Big\rangle
+\operatorname{im}(\iota_u)\cap \operatorname{im}(\iota_v)=0.
 \]
-is supported inside a rooted radius-\(r\) ball.
 
-### 3. Fiber quotient classes are globally nonlocal
-
-Prove every nonzero class in
+Deduce
 \[
-Z_1(\widetilde T_v)/W_v
+\bigoplus_v Z_1(\widetilde T_v^{\mathrm{triv}})/W_v^{\mathrm{triv}}
+\hookrightarrow Q(G_n),
+\qquad
+\bigoplus_v Z_1(\widetilde T_v^{\mathrm{tw}})/W_v^{\mathrm{tw}}
+\hookrightarrow Q(H_n).
 \]
-has nontrivial image modulo the local-ball span.
 
-### 4. Inclusion descends to quotient
+## Required inputs
+1. No local-ball relation kills a nonzero fiber quotient class.
+2. Connector edges do not create quotient identifications between different fibers.
+3. Direct-sum embedding follows from fiberwise injectivity and cross-fiber independence.
 
-Prove the fiber inclusion map sends \(W_v\) into the local-ball quotient kernel, so the induced map on
-\[
-Z_1(\widetilde T_v)/W_v
-\]
-is well-defined.
+## Role
+This locks items III.1, III.2, and III.3 in `docs/math/NEWSTEIN_REMAINING_THEOREM_LEVEL_OBLIGATIONS.md`.
 
-## Deduction
-
-Let \([\alpha]\in Z_1(\widetilde T_v)/W_v\) map to zero in the global quotient.
-
-Then \(\alpha\) lies in the span of local-ball cycle classes.
-
-By 1 and 3, this implies \([\alpha]=0\) already in the fiber quotient.
-
-Hence the induced map is injective.
-
-The same argument applies in both the trivial and twisted cover cases.
-
-## Assembly theorem
-
-For every fiber \(v\), the fiber quotient injects into the corresponding global quotient.
-
-## Status
-
-This is the first theorem-level target in the fiber-to-global branch.
-
-## Dependencies discharged by this theorem
-
-1. Input to cross-fiber independence.
-2. Input to the direct-sum embedding theorem.
-3. Input to global quotient-gap assembly.
+## Finish condition
+Replace this file by a proof sufficient to feed the quotient-gap theorem.
