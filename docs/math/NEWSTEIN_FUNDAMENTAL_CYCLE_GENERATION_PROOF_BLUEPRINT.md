@@ -1,6 +1,6 @@
 # Newstein Fundamental Cycle Generation Proof Blueprint
 
-Status: OPEN
+Status: CONDITIONAL
 
 ## Goal
 
@@ -11,37 +11,33 @@ Refine `docs/math/NEWSTEIN_FUNDAMENTAL_CYCLE_GENERATION_SUBLEMMA.md` into a proo
 This blueprint is controlled by `docs/math/NEWSTEIN_EXACT_CYCLE_GENERATION_CLOSURE_TARGET.md`.
 
 ## Status
-OPEN
+CONDITIONAL
 
 ### 1. Local spanning-tree reduction
 
-Choose a spanning tree in the rooted local complex.
+Choose a spanning tree \(T\subseteq L\).
 
 ### 2. Non-tree-edge cycle generation
 
-For every non-tree edge, form the corresponding fundamental cycle.
-
-Define the fundamental cycle of each non-tree edge with respect to the chosen spanning tree.
+For every non-tree edge \(e=uv\), define
+\[
+C_e := e + P_T(u,v).
+\]
 
 ### 3. Triangle reduction step
 
-Reduce each fundamental cycle to the local triangle scheme.
+Under the controller hypothesis, each rooted-local fundamental cycle lies in the rooted-local generating family.
 
 ### 4. Rooted-local generating family
 
 This produces a rooted-local generating family for the local cycle space.
 
-Weakest missing sublemma: the fundamental cycle attached to each non-tree edge lies in the rooted-local generating family.
+Weakest missing sublemma: the rooted-local path hypothesis implies that the fundamental cycle attached to each non-tree edge lies in the rooted-local generating family.
 
 ### 5. Export step
 
-Export the rooted-local generating family to the full local cycle-space generation statement.
-
-## Dependency notes
-
-- `NEWSTEIN_LOCAL_COBOUNDARY_CRITERION.md`
-- `NEWSTEIN_ASSEMBLY_THEOREM.md`
+Under the controller hypothesis, the family \(\{C_e : e\in E(L)\setminus E(T)\}\) spans \(Z_1(L;\mathbf F_2)\).
 
 ## Finish condition
 
-Replace this blueprint by a proof or a proof-complete theorem decomposition for the fundamental cycle-generation sublemma.
+Replace this conditional blueprint by a proof or a proof-complete theorem decomposition for the fundamental cycle-generation sublemma.
