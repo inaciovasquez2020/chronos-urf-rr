@@ -42,3 +42,6 @@ This file isolates the weakest missing sublemma for the cycle-generation chain.
 ## Finish condition
 
 Replace this file by a proof sufficient to feed the full cycle-generation deduction chain.
+
+
+Dependency lock: `docs/math/NEWSTEIN_ROOTED_LOCAL_TREE_PATH_LEMMA.md`.

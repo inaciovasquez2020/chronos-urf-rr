@@ -24,6 +24,10 @@ the family \(\{C_e : e\in E(L)\setminus E(T)\}\) is linearly independent, spans 
 Z_1(L;\mathbf F_2)=\operatorname{span}_{\mathbf F_2}\{C_e : e\in E(L)\setminus E(T)\}.
 \]
 
+## Dependency
+
+This controller is conditional exactly on `docs/math/NEWSTEIN_ROOTED_LOCAL_TREE_PATH_LEMMA.md`.
+
 ## Conditional closure hypothesis
 
 The rooted-local path hypothesis above is the remaining conditional input.

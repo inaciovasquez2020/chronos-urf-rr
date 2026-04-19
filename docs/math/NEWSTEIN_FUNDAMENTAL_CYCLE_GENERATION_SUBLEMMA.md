@@ -34,3 +34,6 @@ OPEN
 ## Finish condition
 
 Replace this file by a proof sufficient to discharge the full dependency chain in the terminal frontier.
+
+
+Dependency lock: `docs/math/NEWSTEIN_ROOTED_LOCAL_TREE_PATH_LEMMA.md`.

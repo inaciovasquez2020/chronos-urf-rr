@@ -45,3 +45,6 @@ Export the rooted-local generating family to the full local cycle-space generati
 ## Finish condition
 
 Replace this blueprint by a proof or a proof-complete theorem decomposition for the fundamental cycle-generation sublemma.
+
+
+Dependency lock: `docs/math/NEWSTEIN_ROOTED_LOCAL_TREE_PATH_LEMMA.md`.
