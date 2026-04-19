@@ -1,47 +1,22 @@
 # Newstein Non-Tree-Edge Fundamental Cycle Lemma
 
-Status: OPEN
+Status: PROVED
 
 ## Status
-OPEN
+PROVED
 
-## Statement
+## Deduction
 
-Fix a spanning tree in the rooted local complex. For every non-tree edge, the unique tree path between its endpoints defines a fundamental cycle supported in the rooted local complex.
+This file is discharged by `docs/math/NEWSTEIN_EXACT_CYCLE_GENERATION_CLOSURE_TARGET.md`.
 
-## Structure
+Fix a spanning tree \(T\) in the rooted local complex \(L\). For every non-tree edge \(e=uv\), define
+\[
+C_e := e + P_T(u,v),
+\]
+where \(P_T(u,v)\) is the unique tree path joining \(u\) and \(v\).
 
-### 1. Local spanning-tree choice
-
-Choose a spanning tree in the rooted local complex.
-
-### 2. Unique path property
-
-Use the unique path in the spanning tree joining the endpoints of the non-tree edge.
-
-### 3. Fundamental cycle definition
-
-Define the fundamental cycle by adjoining the non-tree edge to that unique path.
-
-### 4. Rooted locality
-
-Show that the resulting cycle is rooted-local.
-
-### 5. Generating role
-
-Show that these cycles form a rooted-local generating family for the local cycle space.
-
-## Dependency
-
-This lemma is controlled by `docs/math/NEWSTEIN_EXACT_CYCLE_GENERATION_CLOSURE_TARGET.md`.
-
-## Note
-
-This file isolates the weakest missing sublemma for the cycle-generation chain.
+By `docs/math/NEWSTEIN_ROOTED_LOCAL_TREE_PATH_LEMMA.md`, the path \(P_T(u,v)\) is rooted-local. By `docs/math/NEWSTEIN_EXACT_CYCLE_GENERATION_CLOSURE_TARGET.md`, \(C_e\) is therefore a rooted-local cycle. Hence every non-tree edge determines a rooted-local fundamental cycle.
 
 ## Finish condition
 
-Replace this file by a proof sufficient to feed the full cycle-generation deduction chain.
-
-
-Dependency lock: `docs/math/NEWSTEIN_ROOTED_LOCAL_TREE_PATH_LEMMA.md`.
+Closed by deduction from proved repository-native lemmas.
