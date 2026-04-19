@@ -23,6 +23,10 @@ Then every rooted radius-\(r\) ball \(B_r(x)\) in the witness-layer \(2\)-comple
 
 docs/math/SIMSLV_BALL_SIMPLE_CONNECTEDNESS.md
 
+## Dependency
+
+docs/math/SIMSLV_ROOTED_LOCAL_EXACTNESS_CLOSURE.md
+
 ## Finish condition
 
 Replace this OPEN theorem file by a proof of the rooted-ball simple connectedness step.

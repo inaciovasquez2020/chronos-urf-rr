@@ -30,6 +30,10 @@ docs/math/SIMSLV_LOCAL_COBOUNDARY_COROLLARY.md
 docs/math/NEWSTEIN_FUNDAMENTAL_CYCLE_GENERATION_SUBLEMMA.md
 docs/math/SIMSLV_TRIANGLE_VANISHING_THEOREM.md
 
+## Dependency
+
+docs/math/SIMSLV_ROOTED_LOCAL_EXACTNESS_CLOSURE.md
+
 ## Finish condition
 
 Replace this OPEN theorem file by a full derivation of local coboundary trivialization.

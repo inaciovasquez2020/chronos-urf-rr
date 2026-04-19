@@ -29,6 +29,10 @@ Z_1(B_r(x);\mathbb F_2)
 
 docs/math/SIMSLV_LOCAL_TRIANGLE_PREDICATE.md
 
+## Dependency
+
+docs/math/SIMSLV_ROOTED_LOCAL_EXACTNESS_CLOSURE.md
+
 ## Finish condition
 
 Replace this OPEN theorem file by an exact theorem-level predicate with explicit substitution-stability proof.

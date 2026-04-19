@@ -24,6 +24,10 @@ one has
 docs/math/SIMSLV_TRIANGLE_VANISHING.md
 docs/math/SIMSLV_LOCAL_TRIANGLE_PREDICATE_THEOREM.md
 
+## Dependency
+
+docs/math/SIMSLV_ROOTED_LOCAL_EXACTNESS_CLOSURE.md
+
 ## Finish condition
 
 Replace this OPEN theorem file by a complete triangle-type case split proving vanishing.
