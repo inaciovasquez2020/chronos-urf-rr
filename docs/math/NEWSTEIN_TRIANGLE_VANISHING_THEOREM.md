@@ -11,7 +11,6 @@ For every local triangle \(\tau\),
 
 \[
 \phi_H(\partial \tau)=0.
-\phi_H(\partial \tau)=0.
 \]
 
 ## Required subclaims
