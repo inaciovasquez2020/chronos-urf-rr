@@ -5,19 +5,20 @@ Status: OPEN
 ## Status
 OPEN
 
-## Target statement
+## Statement
 
-In the intended admissible refinement model, prove
+In the intended admissible refinement model,
 \[
-\Delta I_t \le C.
-\]
+\Delta I_t \le C
 
 Equivalently,
 \[
 I(X;Y_t \mid \mathcal H_{t-1}) \le C.
 \]
+\quad\text{for every admissible step }t.
+\]
 
-## Inputs
+## Required subclaims
 
 1. Explicit admissible refinement model.
 2. Definition of one-step transcript/information increment.
@@ -27,15 +28,16 @@ I(X;Y_t \mid \mathcal H_{t-1}) \le C.
 
 ## Consequence
 
-Combined with the quotient-gap theorem,
 \[
-T_n \ge \frac{2|V(X_n)|}{C}.
+T_n \ge \frac{2|V(X_n)|}{C}
 \]
-
-If \(|V(X_n)|=\Theta(n)\), then
+and
 \[
 T_n=\Omega(n).
 \]
+
+## Status
+OPEN
 
 ## Finish condition
 
