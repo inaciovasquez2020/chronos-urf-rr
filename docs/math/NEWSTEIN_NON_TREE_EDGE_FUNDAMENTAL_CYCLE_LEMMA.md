@@ -5,44 +5,40 @@ Status: OPEN
 ## Status
 OPEN
 
-## Target statement
+## Statement
 
-Fix a spanning tree in the rooted local complex.
+Fix a spanning tree in the rooted local complex. For every non-tree edge, the unique tree path between its endpoints defines a fundamental cycle supported in the rooted local complex.
 
-For every non-tree edge, define the fundamental cycle determined by that edge and the unique tree path connecting its endpoints.
-
-## Required subclaims
+## Structure
 
 ### 1. Local spanning-tree choice
 
-Choose a spanning tree inside the rooted local complex.
+Choose a spanning tree in the rooted local complex.
 
 ### 2. Unique path property
 
-For each non-tree edge, there is a unique tree path between its endpoints.
+Use the unique path in the spanning tree joining the endpoints of the non-tree edge.
 
 ### 3. Fundamental cycle definition
 
-Define the fundamental cycle as the non-tree edge plus the unique tree path.
+Define the fundamental cycle by adjoining the non-tree edge to that unique path.
 
 ### 4. Rooted locality
 
-Show the fundamental cycle remains inside the rooted local complex.
+Show that the resulting cycle is rooted-local.
 
 ### 5. Generating role
 
-Show these fundamental cycles form a rooted-local generating family for the local cycle space.
+Show that these cycles form a rooted-local generating family for the local cycle space.
 
-## Assembly theorem
+## Dependency
 
-This is the weakest missing sublemma inside `docs/math/NEWSTEIN_FUNDAMENTAL_CYCLE_GENERATION_PROOF_BLUEPRINT.md`.
+This lemma is controlled by `docs/math/NEWSTEIN_EXACT_CYCLE_GENERATION_CLOSURE_TARGET.md`.
 
-## Dependencies discharged by this theorem
+## Note
 
-1. Input to the Newstein fundamental cycle-generation sublemma.
-2. Input to local triangle reduction.
-3. Input to rooted-local generating family construction.
+This file isolates the weakest missing sublemma for the cycle-generation chain.
 
 ## Finish condition
 
-Replace this file by a proof sufficient to feed the Newstein fundamental cycle-generation sublemma.
+Replace this file by a proof sufficient to feed the full cycle-generation deduction chain.
