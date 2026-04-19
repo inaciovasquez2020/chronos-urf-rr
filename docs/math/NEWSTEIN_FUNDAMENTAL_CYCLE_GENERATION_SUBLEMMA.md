@@ -2,24 +2,13 @@
 
 Status: OPEN
 
-## Status
-OPEN
-
 ## Target statement
 
-Prove the theorem-level missing object that closes the Newstein terminal frontier.
+Prove that for the rooted local complex \(L\) with a chosen spanning tree \(T\), every non-tree edge \(e\) determines a rooted-local fundamental cycle \(C_e\), each such \(C_e\) lies in the rooted-local generating family, and the family \(\{C_e : e \notin T\}\) generates the full local cycle space \(Z_1(L)\).
 
 ## Exact closure target
 
-Establish a bounded-radius cycle-generation mechanism sufficient to discharge:
-
-1. Newstein local coboundary criterion.
-2. Newstein rooted-ball trivialization lemma.
-3. Newstein fiber quotient-rank lemma.
-4. Newstein direct-sum independence lemma.
-5. Newstein fiber-to-global injection lemma.
-6. Newstein per-step information bound.
-7. Newstein assembly theorem.
+This file is controlled by `docs/math/NEWSTEIN_EXACT_CYCLE_GENERATION_CLOSURE_TARGET.md`.
 
 ## Core generation mechanism
 
@@ -27,38 +16,20 @@ Fix a spanning tree in the relevant local complex and prove that every non-tree 
 
 ## Required theorem inputs
 
-### 1. Local triangle-generation theorem
-
-Use:
-- docs/math/NEWSTEIN_LOCAL_TRIANGLE_GENERATION_THEOREM.md
-
-### 2. Triangle-vanishing theorem
-
-Use:
-- docs/math/NEWSTEIN_TRIANGLE_VANISHING_THEOREM.md
-
-### 3. Fiber quotient-rank computation
-
-Use:
-- docs/math/NEWSTEIN_FIBER_QUOTIENT_RANK_COMPUTATION.md
-
-### 4. Fiber-to-global injectivity
-
-Use:
-- docs/math/NEWSTEIN_FIBER_TO_GLOBAL_INJECTIVITY.md
-
-### 5. Per-step information bound
-
-Use:
-- docs/math/NEWSTEIN_PER_STEP_INFORMATION_BOUND.md
+- `docs/math/NEWSTEIN_LOCAL_TRIANGLE_GENERATION_THEOREM.md`
+- `docs/math/NEWSTEIN_TRIANGLE_VANISHING_THEOREM.md`
+- `docs/math/NEWSTEIN_FIBER_QUOTIENT_RANK_COMPUTATION.md`
+- `docs/math/NEWSTEIN_FIBER_TO_GLOBAL_INJECTIVITY.md`
+- `docs/math/NEWSTEIN_PER_STEP_INFORMATION_BOUND.md`
 
 ## Deduction target
 
-Combine the inputs above to force the fundamental cycle-generation step needed by the Newstein dependency chain.
+After the exact closure target is accepted repository-wide, this file may be replaced by a deduction from `docs/math/NEWSTEIN_EXACT_CYCLE_GENERATION_CLOSURE_TARGET.md`.
+
+This file remains the weakest missing object in the cycle-generation chain.
 
 ## Status
-
-This is the weakest missing object recorded in docs/status/NEWSTEIN_TERMINAL_FRONTIER.md.
+OPEN
 
 ## Finish condition
 
