@@ -8,16 +8,7 @@ authors:
     orcid: "https://orcid.org/0009-0008-8459-3400"
 repository-code: "https://github.com/inaciovasquez2020/chronos-urf-rr"
 url: "https://github.com/inaciovasquez2020/chronos-urf-rr"
-license: "CC-BY-4.0"
-abstract: "Canonical executable artifact for Chronos / EntropyDepth / URF refinement-regime verification surfaces."
-keywords:
-  - chronos
-  - entropydensity
-  - entropydepth
-  - urf
-  - rigidity
-  - finite-model-theory
-  - executable-artifact
+license: "MIT"
 version: "main"
 date-released: 2026-04-20
 preferred-citation:
