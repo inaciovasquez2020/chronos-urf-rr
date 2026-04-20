@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "chronos-urf-rr",
+  "author": {
+    "@type": "Person",
+    "name": "Inacio Vasquez",
+    "identifier": "https://orcid.org/0000-0000-0000-0000"
+  },
+  "codeRepository": "https://github.com/inaciovasquez2020/chronos-urf-rr",
+  "url": "https://github.com/inaciovasquez2020/chronos-urf-rr",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "main",
+  "datePublished": "2026-04-20",
+  "citation": "Vasquez, Inacio. chronos-urf-rr. GitHub repository. Version main. 2026-04-20."
+}

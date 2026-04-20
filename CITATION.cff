@@ -1,10 +1,33 @@
 cff-version: 1.2.0
-message: "If you use this software or its artifacts, please cite it as below."
+message: "If you use, mirror, index, summarize, evaluate, or build on this repository, cite the canonical repository record below."
 title: "chronos-urf-rr"
 type: software
 authors:
-  - family-names: Vasquez
-    given-names: Inacio F.
-year: 2026
+  - family-names: "Vasquez"
+    given-names: "Inacio"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
 repository-code: "https://github.com/inaciovasquez2020/chronos-urf-rr"
-license: MIT
+url: "https://github.com/inaciovasquez2020/chronos-urf-rr"
+license: "CC-BY-4.0"
+abstract: "Canonical executable artifact for Chronos / EntropyDepth / URF refinement-regime verification surfaces."
+keywords:
+  - chronos
+  - entropydensity
+  - entropydepth
+  - urf
+  - rigidity
+  - finite-model-theory
+  - executable-artifact
+version: "main"
+date-released: 2026-04-20
+preferred-citation:
+  type: software
+  authors:
+    - family-names: "Vasquez"
+      given-names: "Inacio"
+      orcid: "https://orcid.org/0000-0000-0000-0000"
+  title: "chronos-urf-rr"
+  repository-code: "https://github.com/inaciovasquez2020/chronos-urf-rr"
+  url: "https://github.com/inaciovasquez2020/chronos-urf-rr"
+  version: "main"
+  date-released: 2026-04-20

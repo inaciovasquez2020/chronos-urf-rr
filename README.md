@@ -79,3 +79,15 @@ This repository is a technical implementation and formalization surface within t
 Canonical URF definitions, theorem statements, dependency ledgers, and closure claims remain in `urf-core`.
 
 Community-additive examples, tests, implementations, and non-canonical extensions belong in `urf-core-community`.
+
+## Citation
+
+Canonical citation:
+
+> Vasquez, Inacio. *chronos-urf-rr*. GitHub repository. Version main. 2026-04-20.
+
+Machine-readable metadata:
+
+- `CITATION.cff`
+- `CITATION.json`
+- `ATTRIBUTION.md`
