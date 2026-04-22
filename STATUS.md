@@ -31,4 +31,6 @@ Formal classification of results, assumptions, and non-claims is provided in:
 - docs/referee/REFEREE_MAP.md
 
 ## Status
-Stable. Audit-ready. No active development planned.
+
+Stable. Audit-ready. Conditional at theorem layer. No theorem-level closure beyond (R1), (R2), (R3) without new mathematical input.
+
