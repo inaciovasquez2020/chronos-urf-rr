@@ -22,6 +22,8 @@ CONDITIONAL
 
 INCOMPLETE
 
+finite-patch H4.1 is conditional only on `proofs/Chronos/conditional/FGL_PROOF_SHELL_2026_04.md`.
+
 Terminal open theorem-level inputs remain exactly:
 
 * (R1) Long-Chord Exclusion Lemma
