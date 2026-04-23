@@ -18,6 +18,9 @@ CONDITIONAL
 * Reproducible executable artifact surface
 * Formal Lean proof surface for the assembly layer
 
+External position:
+- `docs/status/EXTERNAL_POSITION_2026_04_23.md`
+
 ## Theorem Layer
 
 INCOMPLETE
