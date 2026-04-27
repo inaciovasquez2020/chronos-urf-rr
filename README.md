@@ -50,3 +50,22 @@ Terminal open theorem-level inputs remain exactly:
 * Canonical URF definitions and dependency ledgers remain in `urf-core`.
 * This repository remains the executable reference surface.
 
+## Formal Status
+
+Status: Conditional / Frontier Formalization
+
+Build status:
+- A successful build means the checked root target compiles.
+- It does not imply that axiom-dependent, admit-dependent, or sorry-dependent results prove their headline targets.
+
+Theorem status:
+- This repository currently contains project-defined `axiom` declarations, `admit` proof holes, and `sorry` proof holes.
+- `axiom` is a trusted assumption, not a proof.
+- `admit` is a proof hole.
+- `sorry` is a proof hole.
+- Any result depending on project axioms, admits, or sorries is Conditional.
+
+Current status:
+- Strongest verified theorem: none asserted at repository level
+- Weakest missing theorem: split the verified root from conditional/frontier modules, then discharge or quarantine every load-bearing axiom/admit/sorry
+- Conditional inventory: `docs/status/CONDITIONAL_FRONTIER_STATUS_2026_04_27.md`
