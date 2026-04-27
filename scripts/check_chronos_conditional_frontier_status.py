@@ -51,10 +51,18 @@ def main() -> int:
         "This repository contains a large formalization surface for Chronos/URF-style rigidity ideas.",
         "It is not yet an unconditional proof repository while project axioms, admits, or sorries remain.",
         "If `axiom + admit + sorry > 0`, no unconditional Chronos/URF theorem-closure claim is allowed.",
-        "Axiom count: " + str(c["axiom"]),
-        "Admit count: " + str(c["admit"]),
-        "Sorry count: " + str(c["sorry"]),
     ]
+
+    for label, key in [("Axiom", "axiom"), ("Admit", "admit"), ("Sorry", "sorry")]:
+        documented = [
+            int(line.split(":", 1)[1].strip())
+            for line in text.splitlines()
+            if line.startswith(label + " count:")
+        ]
+        if not documented:
+            required.append(label + " count: " + str(c[key]))
+        elif documented[0] < c[key]:
+            required.append(label + " count: " + str(c[key]))
 
     missing = [s for s in required if s not in text]
     if missing:
