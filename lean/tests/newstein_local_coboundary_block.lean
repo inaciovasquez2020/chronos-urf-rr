@@ -7,16 +7,13 @@ constant TreePathRootedLocality : Prop
 constant FundamentalCycleGeneration : Prop
 constant LocalCoboundaryCriterion : Prop
 
-axiom geodesic_to_tree_path :
-  GeodesicInterpolationClosure -> TreePathRootedLocality
-
-axiom tree_path_to_fundamental_cycle :
-  TreePathRootedLocality -> FundamentalCycleGeneration
-
-axiom fundamental_cycle_to_local_coboundary :
-  FundamentalCycleGeneration -> LocalCoboundaryCriterion
-
-theorem geodesic_to_local_coboundary :
+theorem geodesic_to_local_coboundary
+    (geodesic_to_tree_path :
+      GeodesicInterpolationClosure -> TreePathRootedLocality)
+    (tree_path_to_fundamental_cycle :
+      TreePathRootedLocality -> FundamentalCycleGeneration)
+    (fundamental_cycle_to_local_coboundary :
+      FundamentalCycleGeneration -> LocalCoboundaryCriterion) :
     GeodesicInterpolationClosure -> LocalCoboundaryCriterion :=
 by
   intro hgeo
