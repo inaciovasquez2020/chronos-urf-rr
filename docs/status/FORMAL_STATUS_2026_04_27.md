@@ -26,3 +26,24 @@ This repository currently contains project-defined axioms, admitted obligations,
 ## Boundary rule
 
 If `axiom + admit + sorry > 0`, no unconditional Chronos/URF theorem-closure claim is allowed.
+
+
+## Source-level proof-hole closure update — 2026-04-27
+
+Status: Proved for source-level axiom/admit/sorry elimination.
+
+Verified:
+- `rg -n '^\s*(axiom|admit|sorry)\b' lean URF urf-core` returns no source-level proof holes.
+- `PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q` passes with 384 tests.
+- `lake build` passes.
+
+Scope:
+This closes the source-hole inventory only.
+
+It does not prove general H4.1, general FGL row-separation, R1/R2/R3, or unconditional Chronos/URF theorem-level closure.
+
+Current theorem-level status:
+- Petersen 2-lift finite-instance FGL certificate: Proved.
+- General H4.1: Conditional.
+- General FGL row-separation: Conditional.
+
