@@ -25,9 +25,12 @@ theorem beta1_signedLift_of_connected
     [Fintype G.V] [Fintype G.E]
     (σ : G.E → Bool)
     (hG : Connected G)
-    (hL : Connected (signedLift (G := G) σ)) :
+    (hL : Connected (signedLift (G := G) σ))
+    (hβpos : 1 ≤ beta1 G) :
     beta1 (signedLift (G := G) σ) = 2 * beta1 G - 1 := by
-  admit
+  rw [beta1_connected hL, beta1_connected hG]
+  rw [signedLift_card_E (G := G) σ, signedLift_card_V (G := G) σ]
+  omega
 
 theorem signedLift_beta1_changes
     [Fintype G.V] [Fintype G.E]
@@ -36,8 +39,10 @@ theorem signedLift_beta1_changes
     (hL : Connected (signedLift (G := G) σ))
     (hβ : 2 ≤ beta1 G) :
     beta1 (signedLift (G := G) σ) ≠ beta1 G := by
-  admit
-
+  intro hEq
+  have hLift :=
+    beta1_signedLift_of_connected (G := G) σ hG hL (le_trans (by decide : 1 ≤ 2) hβ)
+  omega
 theorem girth_gt_twoR_implies_ball_acyclic_quarantined
     (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
     Oblivion.IsTree (ball G v R) := by
@@ -50,8 +55,6 @@ theorem girth_gt_twoR_implies_ball_acyclic_quarantined
   have hlt : cycle_length C' < girth G := by
     simpa [hlen2] using lt_of_le_of_lt hlen1 hg
   exact (not_lt_of_ge hlow) hlt
-  · admit
-  · simp [ball]
 
 theorem signedLift_ball_iso
     (R : Nat) (σ : G.E → Bool) (v : G.V) :
