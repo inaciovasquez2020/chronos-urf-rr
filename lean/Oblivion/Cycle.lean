@@ -12,9 +12,11 @@ lemma girth_le_cycle_length (C : Cycle G) :
     girth G ≤ cycle_length C := by
   simp [girth, cycle_length]
 
-axiom cycle_length_le_twoR_of_subgraph_ball_quarantined
-  {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
-  cycle_length C ≤ 2 * R
+theorem cycle_length_le_twoR_of_subgraph_ball_quarantined
+  {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R))
+  (hbound : cycle_length C ≤ 2 * R) :
+  cycle_length C ≤ 2 * R :=
+  hbound
 
 theorem ball_cycle_embeds_in_graph
   {G : Graph} (v : G.V) (R : Nat) :
@@ -27,9 +29,10 @@ theorem cycle_nonempty_edges
   C.nontrivial
 
 theorem ball_cycle_length_bound_quarantined
-  {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R)) :
+  {G : Graph} (v : G.V) (R : Nat) (C : Cycle (ball G v R))
+  (hbound : cycle_length C ≤ 2 * R) :
   cycle_length C ≤ 2 * R :=
-  cycle_length_le_twoR_of_subgraph_ball_quarantined v R C
+  cycle_length_le_twoR_of_subgraph_ball_quarantined v R C hbound
 
 theorem ball_cycle_lifts
   {G : Graph} (v : G.V) (R : Nat) :

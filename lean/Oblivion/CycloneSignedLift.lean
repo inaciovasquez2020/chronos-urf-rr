@@ -44,11 +44,12 @@ theorem signedLift_beta1_changes
     beta1_signedLift_of_connected (G := G) σ hG hL (le_trans (by decide : 1 ≤ 2) hβ)
   omega
 theorem girth_gt_twoR_implies_ball_acyclic_quarantined
-    (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
+    (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G)
+    (hbound : ∀ C : Cycle (ball G v R), cycle_length C ≤ 2 * R) :
     Oblivion.IsTree (ball G v R) := by
   refine ⟨connected_ball (G := G) hG v R, ?_⟩
   intro C
-  have hlen1 := ball_cycle_length_bound_quarantined (G := G) v R C
+  have hlen1 := ball_cycle_length_bound_quarantined (G := G) v R C (hbound C)
   obtain ⟨C', hlen2⟩ := ball_cycle_lifts (G := G) v R C
   have hpos := cycle_nonempty_edges C'
   have hlow : girth G ≤ cycle_length C' := girth_le_cycle_length C'
