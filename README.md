@@ -69,3 +69,7 @@ Current status:
 - Strongest verified theorem: none asserted at repository level
 - Weakest missing theorem: split the verified root from conditional/frontier modules, then discharge or quarantine every load-bearing axiom/admit/sorry
 - Conditional inventory: `docs/status/CONDITIONAL_FRONTIER_STATUS_2026_04_27.md`
+
+## External status
+
+This repository is governed by [`docs/status/EXTERNAL_STATUS_LOCK.md`](docs/status/EXTERNAL_STATUS_LOCK.md). Build success, CI success, dashboards, ledgers, axioms, admits, `sorry`, or placeholder witnesses do not constitute theorem-level closure.
