@@ -15,16 +15,12 @@ Sorry count: 4
 - `lean/tests/newstein_local_coboundary_block.lean:10` — `axiom geodesic_to_tree_path :`
 - `lean/tests/newstein_local_coboundary_block.lean:13` — `axiom tree_path_to_fundamental_cycle :`
 - `lean/tests/newstein_local_coboundary_block.lean:16` — `axiom fundamental_cycle_to_local_coboundary :`
-- `lean/Oblivion/Cycle.lean:15` — `axiom cycle_length_le_twoR_of_subgraph_ball_quarantined`
 - `urf-core/urf_law3.lean:15` — `axiom capacity :`
 - `urf-core/urf_law3.lean:19` — `axiom chain_rule :`
 - `urf-core/urf_law3.lean:25` — `axiom cmi_nonneg :`
 
 ## Admit locations
 
-- `lean/Oblivion/CycloneSignedLift.lean:30` — `admit`
-- `lean/Oblivion/CycloneSignedLift.lean:39` — `admit`
-- `lean/Oblivion/CycloneSignedLift.lean:53` — `· admit`
 - `urf-core/urf_law3.lean:37` — `admit`
 
 ## Sorry locations
@@ -37,3 +33,15 @@ Sorry count: 4
 ## Boundary rule
 
 If `axiom + admit + sorry > 0`, no unconditional Chronos/URF theorem-closure claim is allowed.
+
+## Updated discharge record — 2026-04-27
+
+Discharged:
+- `lean/Oblivion/CycloneSignedLift.lean` has no remaining `admit`.
+- `lean/Oblivion/Cycle.lean` no longer contains a trusted `2R` axiom; the old route is explicit-hypothesis/quarantined only.
+
+Remaining live Lean test-block axioms:
+- `lean/tests/newstein_local_coboundary_block.lean:10` — `axiom geodesic_to_tree_path`
+- `lean/tests/newstein_local_coboundary_block.lean:13` — `axiom tree_path_to_fundamental_cycle`
+- `lean/tests/newstein_local_coboundary_block.lean:16` — `axiom fundamental_cycle_to_local_coboundary`
+
