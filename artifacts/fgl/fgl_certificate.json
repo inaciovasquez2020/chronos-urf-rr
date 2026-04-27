@@ -1,0 +1,14 @@
+{
+  "field": "GF(2)",
+  "basis_size": 11,
+  "test_count": 1,
+  "witness_count": 10,
+  "rank_T": 1,
+  "rank_N": 10,
+  "rank_NK": 10,
+  "kernel_dim_T": 10,
+  "kernel_contained_in_witness": true,
+  "annihilates_witness": true,
+  "quotient_rank_valid": true,
+  "status": "Proved"
+}

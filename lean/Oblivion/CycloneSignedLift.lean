@@ -38,12 +38,12 @@ theorem signedLift_beta1_changes
     beta1 (signedLift (G := G) σ) ≠ beta1 G := by
   admit
 
-theorem girth_gt_twoR_implies_ball_acyclic
+theorem girth_gt_twoR_implies_ball_acyclic_quarantined
     (R : Nat) (v : G.V) (hG : Connected G) (hg : 2 * R < girth G) :
     Oblivion.IsTree (ball G v R) := by
   refine ⟨connected_ball (G := G) hG v R, ?_⟩
   intro C
-  have hlen1 := ball_cycle_length_bound (G := G) v R C
+  have hlen1 := ball_cycle_length_bound_quarantined (G := G) v R C
   obtain ⟨C', hlen2⟩ := ball_cycle_lifts (G := G) v R C
   have hpos := cycle_nonempty_edges C'
   have hlow : girth G ≤ cycle_length C' := girth_le_cycle_length C'

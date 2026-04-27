@@ -15,7 +15,7 @@ Sorry count: 4
 - `lean/tests/newstein_local_coboundary_block.lean:10` — `axiom geodesic_to_tree_path :`
 - `lean/tests/newstein_local_coboundary_block.lean:13` — `axiom tree_path_to_fundamental_cycle :`
 - `lean/tests/newstein_local_coboundary_block.lean:16` — `axiom fundamental_cycle_to_local_coboundary :`
-- `lean/Oblivion/Cycle.lean:15` — `axiom cycle_length_le_twoR_of_subgraph_ball`
+- `lean/Oblivion/Cycle.lean:15` — `axiom cycle_length_le_twoR_of_subgraph_ball_quarantined`
 - `urf-core/urf_law3.lean:15` — `axiom capacity :`
 - `urf-core/urf_law3.lean:19` — `axiom chain_rule :`
 - `urf-core/urf_law3.lean:25` — `axiom cmi_nonneg :`
