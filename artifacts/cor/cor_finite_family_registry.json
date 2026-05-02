@@ -1,0 +1,19 @@
+{
+  "registry_type": "chronos_cor_finite_family_registry",
+  "version": 1,
+  "field": "F2",
+  "shared_radius": 0,
+  "alpha_num": 1,
+  "alpha_den": 6,
+  "certificates": [
+    "artifacts/cor/cor_incidence_basis_certificate_two_triangles_bridge.json"
+  ],
+  "boundary": [
+    "This registry verifies a finite family of incidence-basis certificates only.",
+    "It verifies shared radius and finite COR_R(G_i) >= alpha |V_i| inequalities.",
+    "It does not prove an infinite graph-family theorem.",
+    "It does not prove the finite-to-general lift.",
+    "It does not prove the locality-to-depth bridge.",
+    "It does not prove theorem-level Chronos closure."
+  ]
+}
