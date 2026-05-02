@@ -1,0 +1,38 @@
+{
+  "certificate_type": "chronos_cor_incidence_basis_certificate",
+  "version": 1,
+  "graph_id": "two-triangles-with-bridge",
+  "field": "F2",
+  "radius": 0,
+  "vertex_count": 6,
+  "edges": [
+    [0, 1],
+    [1, 2],
+    [2, 0],
+    [3, 4],
+    [4, 5],
+    [5, 3],
+    [2, 3]
+  ],
+  "cycle_basis": [
+    [1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 1, 1, 1, 0]
+  ],
+  "local_cycle_basis": [],
+  "cycle_space_dimension": 2,
+  "local_cycle_subspace_rank": 0,
+  "certified_obstruction_rank": 2,
+  "linear_growth_claim": {
+    "enabled": true,
+    "alpha_num": 1,
+    "alpha_den": 6
+  },
+  "boundary": [
+    "This finite incidence-basis certificate verifies raw GF(2) boundary annihilation.",
+    "It verifies the finite cycle-space dimension from the incidence matrix.",
+    "It verifies the finite local-cycle rank from radius-R graph balls.",
+    "It does not prove the finite-to-general lift.",
+    "It does not prove the locality-to-depth bridge.",
+    "It does not prove theorem-level Chronos closure."
+  ]
+}
