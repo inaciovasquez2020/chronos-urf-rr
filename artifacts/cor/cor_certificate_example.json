@@ -1,0 +1,23 @@
+{
+  "certificate_type": "chronos_certified_obstruction_rank",
+  "version": 1,
+  "graph_id": "example-cycle-obstruction-surface",
+  "field": "F2",
+  "radius": 2,
+  "vertex_count": 10,
+  "edge_count": 15,
+  "cycle_space_dimension": 6,
+  "local_cycle_subspace_rank": 2,
+  "certified_obstruction_rank": 4,
+  "linear_growth_claim": {
+    "enabled": true,
+    "alpha_num": 1,
+    "alpha_den": 5
+  },
+  "boundary": [
+    "This finite certificate records arithmetic consistency for COR_R(G).",
+    "It does not prove the finite-to-general lift.",
+    "It does not prove the locality-to-depth bridge.",
+    "It does not prove theorem-level Chronos closure."
+  ]
+}
