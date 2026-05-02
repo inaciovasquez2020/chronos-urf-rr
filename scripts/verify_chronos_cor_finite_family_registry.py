@@ -44,8 +44,8 @@ def load_incidence_verifier():
     return module
 
 
-def main() -> None:
-    raw = REGISTRY.read_text()
+def verify_registry(registry_path: Path = REGISTRY) -> None:
+    raw = registry_path.read_text()
     registry = json.loads(raw)
 
     if registry.get("registry_type") != "chronos_cor_finite_family_registry":
@@ -73,12 +73,12 @@ def main() -> None:
             raise SystemExit(f"duplicate certificate path: {entry}")
         seen.add(entry)
 
-        path = Path(entry)
-        if not path.exists():
+        cert_path = Path(entry)
+        if not cert_path.exists():
             raise SystemExit(f"missing certificate: {entry}")
 
-        verifier.verify_certificate(path)
-        cert = json.loads(path.read_text())
+        verifier.verify_certificate(cert_path)
+        cert = json.loads(cert_path.read_text())
 
         if cert.get("field") != "F2":
             raise SystemExit(f"{entry}: field must be F2")
@@ -102,7 +102,11 @@ def main() -> None:
     if forbidden:
         raise SystemExit(f"forbidden overclaim tokens: {forbidden}")
 
-    print(f"Chronos COR finite family registry verification OK: {REGISTRY}")
+    print(f"Chronos COR finite family registry verification OK: {registry_path}")
+
+
+def main() -> None:
+    verify_registry(REGISTRY)
 
 
 if __name__ == "__main__":
