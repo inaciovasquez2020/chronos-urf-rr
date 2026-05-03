@@ -1,0 +1,25 @@
+{
+  "artifact_class": "CHRONOS_PREFIX_CONDITIONING_EMBEDDING",
+  "status": "CONDITIONAL_PREFIX_EMBEDDING_REDUCTION",
+  "date": "2026-05-03",
+  "replaces_false_lemma": "leave_one_out_coordinate_reveal_bound",
+  "replacement": "prefix_conditioning_chain_rule_bound",
+  "public_randomness": ["sigma_uniform_Sn", "I_uniform_[n]"],
+  "coordinate_contributions": {
+    "alpha_i_sigma": "I(X_{sigma(i)}; T | Y, X_{sigma(<i)})",
+    "beta_i_sigma": "I(Y_{sigma(i)}; T | X, Y_{sigma(<i)})"
+  },
+  "chain_rule_identity": "IC_mu(Pi)=sum_i E_sigma[alpha_i_sigma+beta_i_sigma]",
+  "averaged_identity": "E_{sigma,I}[alpha_I_sigma+beta_I_sigma]=(1/n)IC_mu(Pi)",
+  "conditional_embedding_bound": "IC_zeta(PrefixEmb_n(Pi)) <= (1/n)IC_mu(Pi)",
+  "and_lower_bound": "IC_zeta^epsilon(AND) >= ((1-2epsilon)^2)/12",
+  "repository_constant": "C_{k,5,k+1}=2^{8k}k^{2k}5^{3k}",
+  "conditional_time_bound": "T_n >= ((1-2epsilon)^2)/(12*2^{8k}*k^{2k}*5^{3k}) n",
+  "minimal_remaining_object": "PrefixEmb_{n#} zeta = mu_n on the exact repository search distribution",
+  "boundary": {
+    "unconditional_theorem_closure": false,
+    "p_not_np_claim": false,
+    "terminal_chronos_lower_bound_claimed": false,
+    "frontier_preserved": true
+  }
+}
