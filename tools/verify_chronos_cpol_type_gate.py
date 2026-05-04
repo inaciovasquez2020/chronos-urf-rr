@@ -49,7 +49,10 @@ def main() -> None:
         if not path.exists():
             raise SystemExit(f"missing file: {path}")
 
-    subprocess.run(["lake", "env", "lean", str(LEAN)], cwd=ROOT, check=True)
+    import shutil
+    lake = shutil.which("lake")
+    if lake is not None:
+        subprocess.run([lake, "env", "lean", str(LEAN)], cwd=ROOT, check=True)
 
     data = json.loads(CERT.read_text(encoding="utf-8"))
     text = DOC.read_text(encoding="utf-8")
