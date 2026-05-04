@@ -1,0 +1,21 @@
+{
+"artifact": "CHRONOS_CPDL_CCSL_CONDITIONAL_GATE",
+"status": "CONDITIONAL_GATE_ONLY",
+"cpdl_gate": "DEFINED",
+"ccsl_gate": "DEFINED",
+"validity_predicate": "PChr : (n : Nat) -> TChr n -> Prop",
+"valid_carrier": "ValidChr G n = { t : TChr n // G.PChr n t }",
+"ccsl_embedding": "(Fin n -> Bool) -> ValidChr G n",
+"ccsl_injectivity": "Function.Injective",
+"closed_claims": [
+"CPDL validity predicate interface",
+"CCSL injection interface",
+"validity of embedded bitstrings",
+"injectivity theorem conditional on CCSLGate"
+],
+"missing_object": "MissingCPDLCCSLWitness G",
+"theorem_closure": false,
+"chronos_certificate_embedding": false,
+"h41_fgl_closure": false,
+"p_vs_np_closure": false
+}
