@@ -1,0 +1,38 @@
+{
+  "artifact": "chronos_certificate_embedding_interface_2026_05_04",
+  "status": "CERTIFIED_INTERFACE_ONLY",
+  "theorem_closure": false,
+  "chronos_closure": false,
+  "h4_1_fgl_closure": false,
+  "source_contract": "explicit_ic_bridge_contract_2026_05_04",
+  "target_surface": "H4.1/FGL finite-patch certificate surface",
+  "named_missing_object": "ChronosCertificateEmbedding",
+  "interface": {
+    "embedding_symbol": "E_n",
+    "domain": "repository_certificate_instances_C_n",
+    "codomain": "{0,1}^n",
+    "required_pushforward": "(E_n)_* nu_n = uniform_distribution_on_{0,1}^n",
+    "required_search_compatibility": "Search_F_n(E_n(C)) = E_n(C)",
+    "required_admissibility_preservation": "E_n preserves Chronos locality/admissibility constraints",
+    "required_constant_binding": "c_repo > 0 derived from repository certificate constants"
+  },
+  "obligations": [
+    "Define repository certificate instance space C_n explicitly.",
+    "Define certificate distribution nu_n explicitly.",
+    "Construct E_n explicitly.",
+    "Prove pushforward uniformity or replace uniformity with a certified nonuniform IC lower bound.",
+    "Prove Search_F_n compatibility.",
+    "Prove Chronos admissibility preservation.",
+    "Derive c_repo > 0 from repository certificate constants."
+  ],
+  "boundary": [
+    "This artifact defines the missing embedding interface only.",
+    "This does not construct E_n.",
+    "This does not prove pushforward uniformity.",
+    "This does not prove admissibility preservation.",
+    "This does not bind c to repository certificate constants.",
+    "This does not prove theorem-level Chronos closure.",
+    "This does not prove H4.1/FGL closure.",
+    "This does not prove P vs NP."
+  ]
+}
