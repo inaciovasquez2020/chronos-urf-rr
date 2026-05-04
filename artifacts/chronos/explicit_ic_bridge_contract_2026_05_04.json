@@ -1,0 +1,32 @@
+{
+  "artifact": "explicit_ic_bridge_contract_2026_05_04",
+  "status": "CONDITIONAL_BRIDGE_CONTRACT",
+  "theorem_closure": false,
+  "chronos_closure": false,
+  "h4_1_fgl_closure": false,
+  "objects": {
+    "F_n": "{0,1}^n",
+    "mu_n": "uniform_distribution_on_{0,1}^n",
+    "Search_F_n": "identity_search_functional_Search_F_n(x)=x"
+  },
+  "ic_lower_bound": {
+    "model": "deterministic_identity_search_under_uniform_input",
+    "entropy_H_mu_n_X": "n",
+    "information_cost_IC_mu_n_Search_F_n": "n",
+    "lower_bound": "IC_mu_n(Search_F_n) >= c n",
+    "constant_c": 1
+  },
+  "repository_binding": {
+    "bound_to_certificate_constants": false,
+    "missing_binding_object": "ChronosCertificateEmbedding",
+    "missing_binding_statement": "Embed the explicit identity-search IC lower bound into the repository H4.1/FGL certificate surface without changing admissibility or locality constraints."
+  },
+  "boundary": [
+    "This proves only the explicit toy IC lower-bound contract.",
+    "This does not prove theorem-level Chronos closure.",
+    "This does not prove H4.1/FGL closure.",
+    "This does not prove P vs NP.",
+    "This does not bind c to repository certificate constants.",
+    "The remaining missing object is ChronosCertificateEmbedding."
+  ]
+}
