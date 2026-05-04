@@ -1,0 +1,56 @@
+{
+  "artifact": "ChronosCertificatePrimitiveAxiom",
+  "date": "2026-05-04",
+  "status": "AXIOMATIC_DECLARATION_ONLY",
+  "theorem_closure": false,
+  "chronos_closure": false,
+  "h4_1_fgl_closure": false,
+  "p_vs_np_closure": false,
+  "terminal_missing_primitive": "CCPA",
+  "primitive_type_family": "T_Chr : Nat -> Type",
+  "required_instances": [
+    "Fintype(T_Chr n)",
+    "Nonempty(T_Chr n)",
+    "DecidableEq(T_Chr n)"
+  ],
+  "independence_requirements": [
+    "T_Chr n is not defined from F_n={0,1}^n",
+    "T_Chr n is not defined from mu_n",
+    "T_Chr n is repository-native to Chronos finite-patch / H4.1 / FGL certificate objects"
+  ],
+  "dependency_chain": [
+    "CCPA",
+    "CPOL",
+    "CPDL",
+    "CCSL",
+    "ChronosNativeFullRankAdmissibleTrace",
+    "ChronosCertificateEmbedding"
+  ],
+  "boundary": [
+    "This artifact declares the terminal primitive gate only.",
+    "This does not construct C_n^Chr.",
+    "This does not define nu_n.",
+    "This does not define admissible observables.",
+    "This does not prove CCSL.",
+    "This does not prove the entropy bridge.",
+    "This does not prove ChronosCertificateEmbedding.",
+    "This does not prove theorem-level Chronos closure.",
+    "This does not prove H4.1/FGL closure.",
+    "This does not prove P vs NP."
+  ],
+  "machine_tokens": [
+    "CHRONOS_CERTIFICATE_PRIMITIVE_AXIOM",
+    "AXIOMATIC_DECLARATION_ONLY",
+    "CCPA_TERMINAL_PRIMITIVE",
+    "T_CHR_TYPE_FAMILY_REQUIRED",
+    "FINTYPE_REQUIRED",
+    "NONEMPTY_REQUIRED",
+    "DECIDABLE_EQ_REQUIRED",
+    "TARGET_SIDE_INDEPENDENT",
+    "THEOREM_CLOSURE_FALSE",
+    "CHRONOS_CLOSURE_FALSE",
+    "H4_1_FGL_CLOSURE_FALSE",
+    "P_VS_NP_CLAIM_FALSE",
+    "NO_CERTIFICATE_EMBEDDING_CLAIM"
+  ]
+}
