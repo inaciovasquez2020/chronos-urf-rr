@@ -1,0 +1,51 @@
+{
+  "artifact": "ChronosCPOLTypeGate",
+  "date": "2026-05-04",
+  "status": "CPOL_TYPE_GATE_CLOSED_ONLY",
+  "theorem_closure": false,
+  "chronos_closure": false,
+  "h4_1_fgl_closure": false,
+  "p_vs_np_closure": false,
+  "closed_gate": "CPOL primitive carrier typeclass gate",
+  "lean_file": "Chronos/Certificate/CPOLTypeGate.lean",
+  "type_family": "TChr : Nat -> Type",
+  "definition": "inductive TChr (n : Nat) : Type | base : TChr n",
+  "proved_instances": [
+    "Nonempty(TChr n)",
+    "DecidableEq(TChr n)",
+    "canonical witness tChrCanonicalWitness n : TChr n"
+  ],
+  "boundary": [
+    "This closes only the typed primitive carrier gate.",
+    "This does not construct C_n^Chr.",
+    "This does not define P_Chr.",
+    "This does not prove CPDL.",
+    "This does not prove CCSL.",
+    "This does not define nu_n.",
+    "This does not define admissible observables.",
+    "This does not prove ChronosNativeFullRankAdmissibleTrace.",
+    "This does not prove ChronosCertificateEmbedding.",
+    "This does not prove theorem-level Chronos closure.",
+    "This does not prove H4.1/FGL closure.",
+    "This does not prove P vs NP."
+  ],
+  "next_missing_gate": "CPDL validity predicate P_Chr on singleton primitive carrier TChr n",
+  "machine_tokens": [
+    "CHRONOS_CPOL_TYPE_GATE",
+    "CPOL_TYPE_GATE_CLOSED_ONLY",
+    "T_CHR_DEFINED",
+    "T_CHR_SINGLETON_CARRIER",
+    "NONEMPTY_PROVED",
+    "DECIDABLE_EQ_PROVED",
+    "CANONICAL_WITNESS_PROVED",
+    "DECIDABLE_EQ_NONEMPTY_PROVED",
+    "THEOREM_CLOSURE_FALSE",
+    "CHRONOS_CLOSURE_FALSE",
+    "H4_1_FGL_CLOSURE_FALSE",
+    "P_VS_NP_CLAIM_FALSE",
+    "NO_C_N_CHR_CONSTRUCTION",
+    "NO_CPDL_CLAIM",
+    "NO_CCSL_CLAIM",
+    "NO_CERTIFICATE_EMBEDDING_CLAIM"
+  ]
+}
