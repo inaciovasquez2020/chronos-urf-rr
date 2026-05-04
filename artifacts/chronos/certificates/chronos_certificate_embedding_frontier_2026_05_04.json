@@ -1,0 +1,41 @@
+{
+  "artifact": "ChronosCertificateEmbeddingFrontier",
+  "date": "2026-05-04",
+  "status": "FRONTIER_OPEN",
+  "theorem_closure": false,
+  "explicit_ic_contract": {
+    "F_n": "{0,1}^n",
+    "mu_n": "Uniform({0,1}^n)",
+    "Search_F_n": "identity",
+    "IC_lower_bound": "n",
+    "c": 1
+  },
+  "missing_object": "ChronosCertificateEmbedding",
+  "required_completion": {
+    "certificate_space": "C_n",
+    "certificate_distribution": "nu_n",
+    "embedding": "E_n : C_n -> {0,1}^n",
+    "pushforward_condition": "(E_n)_* nu_n = Uniform({0,1}^n), or certified nonuniform IC lower bound",
+    "locality_preservation": true,
+    "admissibility_preservation": true,
+    "finite_patch_preservation": true,
+    "repo_constant_binding": "c_repo > 0"
+  },
+  "boundary": [
+    "Does not prove theorem-level Chronos closure.",
+    "Does not prove H4.1/FGL closure.",
+    "Does not bind c to repository certificate constants.",
+    "Does not discharge R1 Long-Chord Exclusion.",
+    "Does not discharge R2 Diameter-Separation Filling Obstruction.",
+    "Does not discharge R3 Uniform Local-Type Capacity."
+  ],
+  "machine_tokens": [
+    "CHRONOS_CERTIFICATE_EMBEDDING_FRONTIER",
+    "FRONTIER_OPEN",
+    "THEOREM_CLOSURE_FALSE",
+    "H4_1_FGL_CLOSURE_FALSE",
+    "IC_CONTRACT_EXPLICIT",
+    "CERTIFICATE_EMBEDDING_MISSING",
+    "REPO_CONSTANT_BINDING_MISSING"
+  ]
+}
