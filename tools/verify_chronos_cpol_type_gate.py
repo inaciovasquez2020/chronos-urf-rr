@@ -5,6 +5,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "Chronos/Certificate/CPOLTypeGate.lean"
+if not LEAN.exists():
+    alt = ROOT / "chronos/Certificate/CPOLTypeGate.lean"
+    if alt.exists():
+        LEAN = alt
 CERT = ROOT / "artifacts/chronos/certificates/chronos_cpol_type_gate_2026_05_04.json"
 DOC = ROOT / "docs/status/CHRONOS_CPOL_TYPE_GATE_2026_05_04.md"
 
