@@ -1,0 +1,17 @@
+{
+  "artifact": "CHRONOS_NATIVE_TRACE_CARRIER_INSTANCE",
+  "status": "MODEL_NATIVE_CARRIER_INSTANCE_ONLY",
+  "carrier": "NativeTraceCarrier n",
+  "predicate": "nativeTracePredicate n t = True",
+  "encode": "nativeTraceEncode",
+  "decode": "nativeTraceDecode",
+  "decode_encode_closed": true,
+  "missing_cpdl_ccsl_witness_closed_for_model": true,
+  "repository_native_carrier_identified": false,
+  "c_n_chr_defined": false,
+  "nu_n_defined": false,
+  "entropy_bridge": false,
+  "chronos_certificate_embedding": false,
+  "h41_fgl_closure": false,
+  "p_vs_np_closure": false
+}
