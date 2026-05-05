@@ -1,0 +1,15 @@
+{
+  "artifact": "CHRONOS_CPDL_CCSL_BITTRACE_WITNESS",
+  "status": "MODEL_WITNESS_ONLY",
+  "carrier": "BitTraceTChr n = Fin n -> Bool",
+  "predicate": "bitTraceCPDL.PChr n t = True",
+  "embedding": "bitTraceEmbed n : (Fin n -> Bool) -> ValidChr bitTraceCPDL n",
+  "missing_witness_closed": true,
+  "ccsl_size_lower_bound_closed": false,
+  "native_chronos_certificate_carrier": false,
+  "nu_n_defined": false,
+  "entropy_bridge": false,
+  "chronos_certificate_embedding": false,
+  "h41_fgl_closure": false,
+  "p_vs_np_closure": false
+}
