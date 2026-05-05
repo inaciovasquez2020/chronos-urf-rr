@@ -1,0 +1,16 @@
+{
+"artifact": "CHRONOS_NATIVE_CARRIER_BINDING",
+"status": "CONDITIONAL_NATIVE_BINDING_INTERFACE",
+"binding_object": "NativeCarrierBinding",
+"requires_encode": true,
+"requires_decode": true,
+"requires_decode_encode": true,
+"native_missing_cpdl_ccsl_witness_conditional": true,
+"native_carrier_constructed": false,
+"c_n_chr_defined": false,
+"nu_n_defined": false,
+"entropy_bridge": false,
+"chronos_certificate_embedding": false,
+"h41_fgl_closure": false,
+"p_vs_np_closure": false
+}
