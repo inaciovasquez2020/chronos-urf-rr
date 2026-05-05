@@ -1,0 +1,17 @@
+{
+"artifact": "CHRONOS_REPOSITORY_NATIVE_CARRIER_ISO",
+"status": "CONDITIONAL_REPOSITORY_NATIVE_ISO_INTERFACE",
+"iso_object": "RepositoryNativeCarrierIso",
+"requires_to_repo": true,
+"requires_from_repo": true,
+"requires_from_to": true,
+"repo_missing_cpdl_ccsl_witness_conditional": true,
+"actual_repository_carrier_constructed": false,
+"repository_carrier_identified_with_model": false,
+"c_n_chr_defined": false,
+"nu_n_defined": false,
+"entropy_bridge": false,
+"chronos_certificate_embedding": false,
+"h41_fgl_closure": false,
+"p_vs_np_closure": false
+}
