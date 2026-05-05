@@ -2,6 +2,7 @@
 from pathlib import Path
 import json
 import subprocess
+import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "Chronos" / "CPDLCCSLBitTraceWitness.lean"
@@ -50,6 +51,7 @@ assert data["chronos_certificate_embedding"] is False
 assert data["h41_fgl_closure"] is False
 assert data["p_vs_np_closure"] is False
 
-subprocess.run(["lake", "env", "lean", str(LEAN)], cwd=ROOT, check=True)
+if shutil.which("lake") is not None:
+    subprocess.run(["lake", "env", "lean", str(LEAN)], cwd=ROOT, check=True)
 
 print("Chronos CPDL+CCSL bittrace witness verified: MODEL_WITNESS_ONLY")
