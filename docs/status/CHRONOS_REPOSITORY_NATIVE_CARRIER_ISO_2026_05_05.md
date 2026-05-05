@@ -33,9 +33,9 @@ for the real repository-native Chronos certificate carrier TRepo.
 Boundary
 This is a conditional repository-native iso interface only.
 This does not construct the actual repository-native Chronos certificate carrier.
-This does not identify any existing repository certificate type with ModelTraceCarrier.
-This does not define C_n^Chr.
-This does not define nu_n.
+This does not identify any existing repository certificate type with `ModelTraceCarrier`.
+This does not define `C_n^Chr`.
+This does not define `nu_n`.
 This does not prove the entropy bridge.
 This does not prove ChronosCertificateEmbedding.
 This does not prove H4.1/FGL theorem closure.
