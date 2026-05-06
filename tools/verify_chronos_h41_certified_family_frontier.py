@@ -2,7 +2,7 @@ from pathlib import Path
 import json
 
 ROOT = Path(__file__).resolve().parents[1]
-LEAN = ROOT / "Chronos" / "Frontier" / "H41CertifiedFamily.lean"
+LEAN = ROOT / "chronos" / "Frontier" / "H41CertifiedFamily.lean"
 DOC = ROOT / "docs" / "status" / "CHRONOS_H41_CERTIFIED_FAMILY_FRONTIER_2026_05_05.md"
 ART = ROOT / "artifacts" / "chronos" / "h41_certified_family_frontier_2026_05_05.json"
 
