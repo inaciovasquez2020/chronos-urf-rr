@@ -1,0 +1,25 @@
+{
+  "artifact": "ChronosTraceRegimeClassifier",
+  "date": "2026-05-05",
+  "status": "TRACE_REGIME_CLASSIFIER_SOLVED_FRONTIER_PRESERVED",
+  "statuses": [
+    "ZAP2_REGIME_CLOSED",
+    "AFFINE_LINEAR_ADMISSIBLE",
+    "AFFINE_SUBLINEAR_FORBIDDEN",
+    "AFFINE_INTERMEDIATE_FRONTIER_OPEN",
+    "UNKNOWN_FRONTIER_OPEN"
+  ],
+  "closed_surface": [
+    "total finite classifier",
+    "manifest audit",
+    "forbidden-claim guard",
+    "classifier completeness"
+  ],
+  "boundary": {
+    "canonical_chronos_closure": false,
+    "h4_1_closure": false,
+    "fgl_closure": false,
+    "p_vs_np_closure": false,
+    "frontier_open_preserved": true
+  }
+}
