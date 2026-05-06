@@ -124,11 +124,9 @@ theorem EmbedSearchFamilyPreservesObstructions
     (x : ExplicitSearchFamily n)
     (hk : k = n ∨ k ≤ n)
     (hrn : n ≤ r) :
-    let cert := EmbedSearchFamilyRepositoryNative I k Δ r C n x hk hrn
     (k = n ∨ k ≤ n) ∧
       2 * C.linearConstant ≤ Δ ∧
       n ≤ r := by
-  dsimp
   exact ObstructionConstantsPreserved I k Δ r C n
     (EmbedSearchFamilyRepositoryNative I k Δ r C n x hk hrn)
 
