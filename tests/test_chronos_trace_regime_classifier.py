@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-LEAN = ROOT / "chronos" / "Core" / "TraceRegimeClassifier.lean"
+LEAN = ROOT / "Chronos" / "Core" / "TraceRegimeClassifier.lean"
 VERIFY = ROOT / "tools" / "verify_chronos_trace_regime_classifier.py"
 
 def test_trace_regime_classifier_tokens():

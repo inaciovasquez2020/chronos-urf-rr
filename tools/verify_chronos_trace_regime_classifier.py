@@ -3,7 +3,7 @@ from pathlib import Path
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-LEAN = ROOT / "chronos" / "Core" / "TraceRegimeClassifier.lean"
+LEAN = ROOT / "Chronos" / "Core" / "TraceRegimeClassifier.lean"
 
 required_tokens = [
     "inductive RegimeStatus",
