@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 
@@ -59,6 +60,9 @@ if missing_status:
         print(f"  - {item}")
     sys.exit(1)
 
-subprocess.run(["lake", "env", "lean", str(LEAN)], cwd=ROOT, check=True)
+if shutil.which("lake") is not None:
+    subprocess.run(["lake", "env", "lean", str(LEAN)], cwd=ROOT, check=True)
+else:
+    print("lake not found; skipping Lean compile inside Python-only CI job")
 
 print("Chronos repository-native certified depth verified: REPOSITORY_NATIVE_DEPTH_BRIDGE_FORMALIZED")
