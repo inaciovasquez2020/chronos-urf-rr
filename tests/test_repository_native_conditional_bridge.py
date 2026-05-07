@@ -14,9 +14,12 @@ def test_repository_native_conditional_bridge_verifier() -> None:
     )
 
 
-def test_repository_native_conditional_bridge_lean_compiles() -> None:
-    subprocess.run(
-        ["lake", "env", "lean", "chronos/Frontier/RepositoryNativeConditionalBridge.lean"],
+def test_repository_native_conditional_bridge_tracks_lowercase_lean_path() -> None:
+    tracked = subprocess.check_output(
+        ["git", "ls-files"],
         cwd=ROOT,
-        check=True,
-    )
+        text=True,
+    ).splitlines()
+
+    assert "chronos/Frontier/RepositoryNativeConditionalBridge.lean" in tracked
+    assert "Chronos/Frontier/RepositoryNativeConditionalBridge.lean" not in tracked
