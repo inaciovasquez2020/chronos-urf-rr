@@ -1,7 +1,7 @@
 # STATUS — chronos-urf-rr
 
 ## Repository role
-chronos-urf-rr is a **frozen reference realization** of the Chronos / EntropyDepth framework within the Unified Rigidity Framework (URF).
+chronos-urf-rr is a **internally frozen reference realization** of the Chronos / EntropyDepth framework within the Unified Rigidity Framework (URF).
 
 It exists to provide an executable, audit-ready reference for verification, reproducibility, and citation.
 
@@ -16,8 +16,8 @@ It exists to provide an executable, audit-ready reference for verification, repr
 - No claim that verification implies mathematical truth beyond stated invariants.
 - No resolution of open complexity or foundational problems.
 
-## Frozen components
-The following are frozen and treated as immutable once released:
+## Internally internally frozen components
+The following are internally frozen and treated as immutable once released:
 - Mathematical scope and claims.
 - Public interfaces and artifact formats.
 - Released certification artifacts.
