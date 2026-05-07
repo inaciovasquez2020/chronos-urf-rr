@@ -1,0 +1,34 @@
+{
+  "artifact": "repository_native_conditional_bridge",
+  "date": "2026-05-07",
+  "frontier": "ChronosCertificateEmbeddingExplicitICBridge",
+  "status": "FRONTIER_OPEN",
+  "contract": "CONDITIONAL_BRIDGE_CONTRACT",
+  "phase": "repository_native_conditional_bridge_instantiation",
+  "lean_file": "chronos/Frontier/RepositoryNativeConditionalBridge.lean",
+  "solved_structural_objects": [
+    "BridgeCarrier",
+    "SearchRecover",
+    "RecoveryLocalized",
+    "SearchSolver",
+    "RecoverySolver",
+    "InducedRecoverySolver",
+    "ConditionalBridgeContract",
+    "RecoveryLowerBound",
+    "SearchLowerBound",
+    "ConditionalBridgeClaritySolved",
+    "C_Chronos",
+    "chronos_recovery_localized",
+    "chronos_conditional_bridge_instantiated"
+  ],
+  "remaining_frontier_object": "chronos_recovery_localized_native",
+  "remaining_frontier_statement": "forall w y, Search_Fn (Enc_n w) y -> Extract_n y = w",
+  "theorem_closure": false,
+  "forbidden_closures": [
+    "H4.1 closure",
+    "FGL closure",
+    "Chronos theorem-level closure",
+    "P vs NP closure"
+  ],
+  "boundary": "Self-contained Lean module solves structural localization and conditional bridge clarity only; it does not instantiate the repository-native Chronos witness encoding theorem."
+}
