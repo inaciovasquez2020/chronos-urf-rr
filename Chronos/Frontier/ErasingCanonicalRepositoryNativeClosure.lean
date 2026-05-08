@@ -1,0 +1,12 @@
+import Chronos.Frontier.OperationalTraceConstructorPreservation
+
+namespace Chronos.Frontier.ErasingCanonicalRepositoryNativeClosure
+
+def RepositoryNativeBranchErasingCanonicalOnly : Prop :=
+  Chronos.Frontier.OperationalTraceConstructorPreservation.OperationalTraceConstructorPreservation
+
+theorem repository_native_branch_erasing_canonical_only :
+    RepositoryNativeBranchErasingCanonicalOnly := by
+  exact Chronos.Frontier.OperationalTraceConstructorPreservation.operational_trace_constructor_preservation
+
+end Chronos.Frontier.ErasingCanonicalRepositoryNativeClosure
