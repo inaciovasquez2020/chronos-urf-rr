@@ -1,0 +1,10 @@
+{
+  "status": "FRONTIER_OPEN",
+  "theorem_closure": false,
+  "lemma": "Simulator-to-Universal-Carrier Lemma",
+  "statement": "Every mathematically admissible carrier is capacity-dominated by a registered simulator carrier.",
+  "formal_shape": "forall C admissible, exists r in registry, forall b lambda, |T_C(b,lambda)| <= |T_r(b,lambda)|",
+  "required_for": "Uniform Carrier Subdominance",
+  "proves_chronos_rr_closure": false,
+  "boundary": "Formal frontier statement only; not a proof."
+}
