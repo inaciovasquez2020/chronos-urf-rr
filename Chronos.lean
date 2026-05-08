@@ -16,3 +16,5 @@ import chronos.Frontier.RegisteredNFDomination
 import chronos.Frontier.CarrierRegistryExhaustivenessBridge
 
 import Chronos.Frontier.IntendedChronosCarrierNormalForm
+
+import Chronos.Frontier.EmptyIntendedChronosNormalFormExists
