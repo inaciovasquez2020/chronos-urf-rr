@@ -12,3 +12,5 @@ import chronos.Frontier.FiberEntropyGapCertificate
 import chronos.Frontier.RegisteredRegSNFCore
 
 import chronos.Frontier.RegisteredNFDomination
+
+import chronos.Frontier.CarrierRegistryExhaustivenessBridge
