@@ -21,3 +21,5 @@ import chronos.Frontier.CarrierRegistryExhaustivenessBridge
 import Chronos.Frontier.RealChronosAdmissible
 
 import Chronos.Frontier.IntendedChronosAdmissibility
+
+import Chronos.Frontier.RepositoryNativeChronosCarrierBridge
