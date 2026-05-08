@@ -47,3 +47,5 @@ import Chronos.Frontier.CanonicalRepositoryNativeCarrierSelectionBridge
 import Chronos.Frontier.ConcreteRepositoryNativeCarrierSelectionBridge
 
 import Chronos.Frontier.ConcreteExportSemanticPreservation
+
+import Chronos.Frontier.OperationalTraceConstructorPreservation
