@@ -1,0 +1,20 @@
+{
+  "name": "FiberMassBalance",
+  "status": "FRONTIER_OPEN",
+  "weakest_sufficient_for": "UniversalFiberEntropyGap",
+  "statement": "There exist constants a > b > 0 such that SourceEntropyLowerBound(n,a) and FiberImageEntropyUpperBound(n,b) hold uniformly for all n.",
+  "derives": [
+    "UniversalFiberEntropyGap"
+  ],
+  "uses": [
+    "EntropyChainRule",
+    "MutualInformationImageBound"
+  ],
+  "does_not_assert": [
+    "UniversalFiberEntropyGap proof",
+    "Depth Bridge proof",
+    "Chronos-RR closure",
+    "H4.1/FGL closure",
+    "P vs NP closure"
+  ]
+}
