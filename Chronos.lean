@@ -16,3 +16,5 @@ import chronos.Frontier.RegisteredNFDomination
 import chronos.Frontier.CarrierRegistryExhaustivenessBridge
 
 import Chronos.Frontier.RealChronosAdmissible
+
+import Chronos.Frontier.IntendedRealChronosCarrierCertificate
