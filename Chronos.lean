@@ -10,3 +10,5 @@ import Chronos.Frontier.DepthBridgeFiberGap
 import chronos.Frontier.FiberEntropyGapCertificate
 
 import chronos.Frontier.RegisteredRegSNFCore
+
+import chronos.Frontier.RegisteredNFDomination
