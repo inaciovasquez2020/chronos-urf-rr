@@ -1,0 +1,23 @@
+{
+"status": "FRONTIER_OPEN",
+"theorem_closure": false,
+"lemma": "Carrier Registry Exhaustiveness Normal Form",
+"target": "Every admissible carrier is transcript-capacity dominated by a registered subdominant simulator class.",
+"formal_shape": "forall C admissible, exists r in registered_subdominant_classes, forall b lambda, |T_C(b,lambda)| <= |T_r(b,lambda)|",
+"registered_subdominant_classes": [
+"constant_capacity",
+"log_capacity",
+"linear_capacity",
+"affine_high_capacity",
+"n_log_n_capacity",
+"quadratic_deficient_capacity"
+],
+"forbidden_boundary_classes": [
+"obstruction_oracle_capacity",
+"obstruction_plus_one_capacity"
+],
+"missing_theorem": "Carrier Registry Exhaustiveness Theorem",
+"uniform_carrier_subdominance_proved": false,
+"proves_chronos_rr_closure": false,
+"boundary": "Normal-form target only; not a proof of exhaustiveness or theorem-level closure."
+}
