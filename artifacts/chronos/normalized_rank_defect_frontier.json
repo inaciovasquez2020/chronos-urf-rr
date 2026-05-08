@@ -1,0 +1,27 @@
+{
+  "name": "NormalizedRankDefect",
+  "status": "FRONTIER_OPEN",
+  "weakest_sufficient_for": "RankRateGap",
+  "statement": "There exists epsilon > 0 such that rank(C_n) = n and rank(F_n) <= (1 - epsilon)n uniformly for all n.",
+  "derives": [
+    "RankRateGap",
+    "CountingFiberSeparation",
+    "FiberMassBalance",
+    "UniversalFiberEntropyGap"
+  ],
+  "constants": {
+    "r": "1",
+    "s": "1 - epsilon"
+  },
+  "does_not_assert": [
+    "NormalizedRankDefect proof",
+    "RankRateGap proof",
+    "CountingFiberSeparation proof",
+    "FiberMassBalance proof",
+    "UniversalFiberEntropyGap proof",
+    "Depth Bridge proof",
+    "Chronos-RR closure",
+    "H4.1/FGL closure",
+    "P vs NP closure"
+  ]
+}
