@@ -1,0 +1,16 @@
+{
+  "name": "UniversalFiberEntropyGap",
+  "status": "FRONTIER_OPEN",
+  "weakest_sufficient_object": true,
+  "statement": "There exists delta > 0, independent of n, such that every admissible Chronos fiber has entropy at least delta*n.",
+  "implies": [
+    "DepthBridgeProof",
+    "Chronos-RR conditional closure"
+  ],
+  "does_not_assert": [
+    "Depth Bridge proof",
+    "Chronos-RR closure",
+    "H4.1/FGL closure",
+    "P vs NP closure"
+  ]
+}
