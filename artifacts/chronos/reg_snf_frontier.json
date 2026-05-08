@@ -1,0 +1,19 @@
+{
+"status": "FRONTIER_OPEN",
+"theorem_closure": false,
+"lemma": "Reg-SNF",
+"statement": "Carrier Admissibility implies Registered Subdominant Normal Form.",
+"formal_shape": "forall C admissible, exists r in R, forall b lambda, exists injective phi_{b,lambda}: T_C(b,lambda) -> T_r(b,lambda)",
+"capacity_shape": "forall C admissible, exists r in R, forall b lambda, |T_C(b,lambda)| <= |T_r(b,lambda)|",
+"weakest_missing_lemma": true,
+"downstream_requires": [
+"Reg-Sub-Uniform",
+"Rank-Image-Bound",
+"Depth Bridge"
+],
+"proves_registry_exhaustiveness": false,
+"proves_uniform_carrier_subdominance": false,
+"proves_non_factorization": false,
+"proves_chronos_rr_closure": false,
+"boundary": "Weakest missing lemma statement only; not a proof."
+}
