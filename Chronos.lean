@@ -37,3 +37,5 @@ import Chronos.Frontier.OperationalTraceSyntax
 import Chronos.Frontier.OperationalTraceNormalizationLaws
 
 import Chronos.Frontier.OperationalTraceSemanticInterpretation
+
+import Chronos.Frontier.ErasingSemanticsIntended
