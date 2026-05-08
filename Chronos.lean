@@ -31,3 +31,5 @@ import Chronos.Frontier.TraceEquivalentEquiv
 import Chronos.Frontier.RepositoryNativeSemanticTrace
 
 import Chronos.Frontier.RepositoryNativeTraceSyntax
+
+import Chronos.Frontier.OperationalTraceSyntax
