@@ -1,0 +1,27 @@
+{
+  "artifact": "depth_bridge_fiber_gap_frontier",
+  "date": "2026-05-08",
+  "status": "FRONTIER_OPEN",
+  "theorem_closure": false,
+  "chronos_rr_closure": false,
+  "h41_fgl_closure": false,
+  "p_vs_np_closure": false,
+  "depends_on": [
+    "Reg-SNF",
+    "Rank-Image-Bound",
+    "Non-factorization"
+  ],
+  "weakest_missing_lemma": "Depth Bridge Fiber Entropy Gap",
+  "statement": "For every admissible carrier C there exists alpha > 0 such that for all sufficiently large lambda, H(O_lambda | T_C(lambda)) >= alpha * dim(O_lambda).",
+  "rank_form": "rank(Im(C_lambda -> O_lambda)) <= (1 - alpha) * dim(O_lambda) for all sufficiently large lambda.",
+  "scaling_limit_condition": "liminf_{lambda -> infinity} H(O_lambda | T_C(lambda)) / dim(O_lambda) > 0.",
+  "fiber_constraints": [
+    "uniform_positive_conditional_entropy_gap",
+    "subexponential_fiber_multiplicity_distortion",
+    "registry_uniform_obstruction_gap",
+    "rank_image_defect_survives_scaling",
+    "no_factorization_through_vanishing_fibers"
+  ],
+  "proved_here": false,
+  "boundary": "Statement and verifier only; does not prove the Depth Bridge, Chronos-RR closure, H4.1/FGL closure, or P vs NP."
+}
