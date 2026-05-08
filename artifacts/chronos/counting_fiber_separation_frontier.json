@@ -1,0 +1,23 @@
+{
+  "name": "CountingFiberSeparation",
+  "status": "FRONTIER_OPEN",
+  "weakest_sufficient_for": "FiberMassBalance",
+  "statement": "There exist constants alpha > beta > 0 such that |C_n| >= 2^(alpha*n) and |F_n| <= 2^(beta*n) uniformly for all n.",
+  "derives": [
+    "FiberMassBalance",
+    "UniversalFiberEntropyGap"
+  ],
+  "uses": [
+    "EntropyLowerBoundFromSupportSize",
+    "EntropyUpperBoundFromSupportSize"
+  ],
+  "does_not_assert": [
+    "CountingFiberSeparation proof",
+    "FiberMassBalance proof",
+    "UniversalFiberEntropyGap proof",
+    "Depth Bridge proof",
+    "Chronos-RR closure",
+    "H4.1/FGL closure",
+    "P vs NP closure"
+  ]
+}
