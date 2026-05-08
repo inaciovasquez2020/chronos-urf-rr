@@ -1,0 +1,15 @@
+{
+  "artifact": "fiber_entropy_gap_certificate",
+  "date": "2026-05-08",
+  "status": "CERTIFICATE_INTERFACE_ONLY",
+  "theorem_closure": false,
+  "chronos_rr_closure": false,
+  "h41_fgl_closure": false,
+  "p_vs_np_closure": false,
+  "lean_file": "Chronos/Frontier/FiberEntropyGapCertificate.lean",
+  "proved_conditional": [
+    "CertificateFiberEntropyGap implies CertificateRankImageBound"
+  ],
+  "missing_universal_object": "UniversalFiberEntropyGap",
+  "boundary": "Certificate interface only; does not prove universal FiberEntropyGap, Depth Bridge, Chronos-RR closure, H4.1/FGL closure, or P vs NP."
+}
