@@ -1,0 +1,26 @@
+{
+  "name": "RankRateGap",
+  "status": "FRONTIER_OPEN",
+  "weakest_sufficient_for": "CountingFiberSeparation",
+  "statement": "There exist constants r > s > 0 such that rank(C_n) >= r*n and rank(F_n) <= s*n uniformly for all n.",
+  "derives": [
+    "CountingFiberSeparation",
+    "FiberMassBalance",
+    "UniversalFiberEntropyGap"
+  ],
+  "uses": [
+    "FiniteVectorSpaceCardinality",
+    "RankSupportLowerBound",
+    "RankImageUpperBound"
+  ],
+  "does_not_assert": [
+    "RankRateGap proof",
+    "CountingFiberSeparation proof",
+    "FiberMassBalance proof",
+    "UniversalFiberEntropyGap proof",
+    "Depth Bridge proof",
+    "Chronos-RR closure",
+    "H4.1/FGL closure",
+    "P vs NP closure"
+  ]
+}
