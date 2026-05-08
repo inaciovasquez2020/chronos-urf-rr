@@ -19,3 +19,5 @@ import chronos.Frontier.CarrierRegistryExhaustivenessBridge
 
 
 import Chronos.Frontier.RealChronosAdmissible
+
+import Chronos.Frontier.IntendedChronosAdmissibility
