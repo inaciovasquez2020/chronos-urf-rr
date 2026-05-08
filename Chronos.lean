@@ -39,3 +39,5 @@ import Chronos.Frontier.OperationalTraceNormalizationLaws
 import Chronos.Frontier.OperationalTraceSemanticInterpretation
 
 import Chronos.Frontier.ErasingSemanticsIntended
+
+import Chronos.Frontier.CanonicalRepositoryNativeSemantics
