@@ -25,3 +25,5 @@ import Chronos.Frontier.IntendedChronosAdmissibility
 import Chronos.Frontier.RepositoryNativeChronosCarrierBridge
 
 import Chronos.Frontier.TraceEquivalentCardinality
+
+import Chronos.Frontier.TraceEquivalentEquiv
