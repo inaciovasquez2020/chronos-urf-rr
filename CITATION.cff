@@ -1,24 +1,10 @@
 cff-version: 1.2.0
-message: "If you use, mirror, index, summarize, evaluate, or build on this repository, cite the canonical repository record below."
+message: "If you use this repository, please cite it using the metadata below."
 title: "chronos-urf-rr"
-type: software
 authors:
   - family-names: "Vasquez"
-    given-names: "Inacio"
+    given-names: "Inácio F."
     orcid: "https://orcid.org/0009-0008-8459-3400"
 repository-code: "https://github.com/inaciovasquez2020/chronos-urf-rr"
 url: "https://github.com/inaciovasquez2020/chronos-urf-rr"
 license: "MIT"
-version: "main"
-date-released: 2026-04-20
-preferred-citation:
-  type: software
-  authors:
-    - family-names: "Vasquez"
-      given-names: "Inacio"
-      orcid: "https://orcid.org/0009-0008-8459-3400"
-  title: "chronos-urf-rr"
-  repository-code: "https://github.com/inaciovasquez2020/chronos-urf-rr"
-  url: "https://github.com/inaciovasquez2020/chronos-urf-rr"
-  version: "main"
-  date-released: 2026-04-20

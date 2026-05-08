@@ -47,7 +47,7 @@ Terminal open theorem-level inputs remain exactly:
 
 ## Routing
 
-* Canonical URF definitions and dependency ledgers remain in `urf-core`.
+* Current reference URF definitions and dependency ledgers remain in `urf-core`.
 * This repository remains the executable reference surface.
 
 ## Formal Status
