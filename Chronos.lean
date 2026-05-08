@@ -27,3 +27,5 @@ import Chronos.Frontier.RepositoryNativeChronosCarrierBridge
 import Chronos.Frontier.TraceEquivalentCardinality
 
 import Chronos.Frontier.TraceEquivalentEquiv
+
+import Chronos.Frontier.RepositoryNativeSemanticTrace
