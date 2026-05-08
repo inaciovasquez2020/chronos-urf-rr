@@ -1,0 +1,13 @@
+{
+  "artifact": "depth_bridge_gap_interface",
+  "date": "2026-05-08",
+  "status": "CONDITIONAL_INTERFACE_ONLY",
+  "theorem_closure": false,
+  "chronos_rr_closure": false,
+  "h41_fgl_closure": false,
+  "p_vs_np_closure": false,
+  "lean_file": "Chronos/Frontier/DepthBridgeFiberGap.lean",
+  "proved_conditional": "FiberEntropyGap implies RankImageBound",
+  "missing_object": "FiberEntropyGap",
+  "boundary": "Lean interface only; does not prove FiberEntropyGap, Depth Bridge, Chronos-RR closure, H4.1/FGL closure, or P vs NP."
+}
