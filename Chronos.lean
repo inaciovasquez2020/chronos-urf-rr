@@ -43,3 +43,5 @@ import Chronos.Frontier.ErasingSemanticsIntended
 import Chronos.Frontier.CanonicalRepositoryNativeSemantics
 
 import Chronos.Frontier.CanonicalRepositoryNativeCarrierSelectionBridge
+
+import Chronos.Frontier.ConcreteRepositoryNativeCarrierSelectionBridge
