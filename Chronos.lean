@@ -35,3 +35,5 @@ import Chronos.Frontier.RepositoryNativeTraceSyntax
 import Chronos.Frontier.OperationalTraceSyntax
 
 import Chronos.Frontier.OperationalTraceNormalizationLaws
+
+import Chronos.Frontier.OperationalTraceSemanticInterpretation
