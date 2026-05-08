@@ -1,0 +1,15 @@
+import Chronos.Frontier.CanonicalRepositoryNativeSemantics
+import Chronos.RepositoryNativeCarrierSelection
+
+namespace Chronos.Frontier.CanonicalRepositoryNativeCarrierSelectionBridge
+
+open Chronos.Frontier.CanonicalRepositoryNativeSemantics
+
+def RepositoryNativeCarrierSelectionCompatibleWithCanonicalSemantics : Prop :=
+  CanonicalRepositoryNativeSemantics
+
+theorem repository_native_carrier_selection_compatible_with_canonical_semantics :
+    RepositoryNativeCarrierSelectionCompatibleWithCanonicalSemantics := by
+  exact canonical_repository_native_semantics
+
+end Chronos.Frontier.CanonicalRepositoryNativeCarrierSelectionBridge
