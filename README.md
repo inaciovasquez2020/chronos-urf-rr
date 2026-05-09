@@ -1,5 +1,23 @@
 # Chronos URF — Conditional Executable Reference
 
+<!-- VERIFIED_FRONTIER_TRACKING_DOOR:BEGIN -->
+## Verified Frontier Tracking Technical Demonstration
+
+This repository is the technical demonstration for **Verified Frontier Tracking**.
+
+Its role is to show the method operating on a difficult frontier stack:
+
+| Component | Demonstration role |
+|---|---|
+| Frontier objects | Names the exact missing or conditional mathematical objects |
+| Status documents | Records what is proved, conditional, interface-only, or open |
+| Verifier scripts | Checks that the repository does not overstate its claims |
+| Tests and CI | Provides reproducible public evidence of the current verification surface |
+| Boundary statements | Preserves the distinction between verified surfaces and theorem-level closure |
+
+Boundary: this repository demonstrates executable frontier tracking for URF/Chronos. It does not claim Chronos-RR closure, H4.1/FGL closure, P vs NP closure, or any Clay-problem closure unless those results are explicitly proved with all assumptions discharged.
+<!-- VERIFIED_FRONTIER_TRACKING_DOOR:END -->
+
 ## Repository Status
 
 CONDITIONAL
