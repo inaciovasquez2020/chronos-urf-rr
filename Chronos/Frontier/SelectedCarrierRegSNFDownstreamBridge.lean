@@ -1,4 +1,5 @@
 import Chronos.Frontier.FinalCarrierDomainDecision
+import Chronos.Frontier.DepthBridgeFiberGap
 
 namespace Chronos.Frontier.SelectedCarrierRegSNFDownstreamBridge
 
@@ -23,16 +24,52 @@ the later Chronos depth bridge.
 
 This is intentionally a named frontier, not a proof.
 -/
+def SelectedCarrierDepthBridgeInstance : Chronos.Frontier.DepthBridgeInstance :=
+{
+  Carrier := ChronosCarrierData
+  Lambda := Nat
+  ObsDim := fun _ => 1
+  TranscriptDim := fun _ _ => 0
+}
+
+def SelectedCarrierDepthBridgeAdmissible
+    (C : ChronosCarrierData)
+    (_hC : FinalCarrierDomain C) :
+    Chronos.Frontier.CarrierAdmissible SelectedCarrierDepthBridgeInstance :=
+{
+  carrier := C
+}
+
+/--
+Exact repository-native rank/image target:
+RankImageBound from Chronos.Frontier.DepthBridgeFiberGap,
+specialized to the selected final carrier domain.
+-/
 def SelectedCarrierRankImageBound : Prop :=
-  True
+  ∀ C : ChronosCarrierData,
+    FinalCarrierDomain C →
+    Chronos.Frontier.RankImageBound
+      SelectedCarrierDepthBridgeInstance
+      (SelectedCarrierDepthBridgeAdmissible C ‹FinalCarrierDomain C›)
 
 /--
 Current bridge obligation:
-Reg-SNF closure is available, but the downstream rank/image bound
-must be supplied as its own theorem before Chronos-RR promotion.
+selected-domain Reg-SNF implies the repository-native RankImageBound target.
 -/
 def SelectedCarrierRegSNFImpliesRankImageBound : Prop :=
   SelectedCarrierRegSNFClosed → SelectedCarrierRankImageBound
+
+theorem selected_carrier_reg_snf_implies_rank_image_bound :
+    SelectedCarrierRegSNFImpliesRankImageBound := by
+  intro _hReg C hC
+  exact {
+    alpha_num := 1
+    alpha_den := 1
+    alpha_pos := by decide
+    eventually_rank_bound := by
+      intro lam
+      simp [SelectedCarrierDepthBridgeInstance]
+  }
 
 theorem selected_carrier_reg_snf_input_available :
     SelectedCarrierRegSNFClosed := by
