@@ -87,3 +87,5 @@ import Chronos.Frontier.SemanticEntropyBridge
 import Chronos.Frontier.RealValuedShannonEntropyInequality
 
 import Chronos.Frontier.AnalyticEntropyFrontier
+
+import Chronos.Frontier.FiniteEntropySumFromLogKernel
