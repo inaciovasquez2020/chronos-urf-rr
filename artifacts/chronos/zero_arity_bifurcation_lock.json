@@ -1,0 +1,23 @@
+{
+  "id": "CHRONOS_ZERO_ARITY_BIFURCATION_LOCK_2026_05_09",
+  "status": "BIFURCATION_LOCKED",
+  "decision_lock_dependency": "CHRONOS_ADMISSIBILITY_POSITIVITY_DECISION_LOCK_2026_05_09",
+  "accepted_paths": [
+    "ZeroArityExclusion",
+    "ZeroArityRepresentation"
+  ],
+  "weakest_sufficient_completion": "ZeroArityExclusion OR ZeroArityRepresentation",
+  "forbidden_claims": [
+    "ZeroArityExclusion proved",
+    "ZeroArityRepresentation proved",
+    "ZeroArityCarrierObstruction resolved",
+    "CarrierRegistryExhaustiveness proved",
+    "Reg-SNF proved",
+    "UniversalFiberEntropyGap proved",
+    "DepthBridge proved",
+    "Chronos-RR closed",
+    "H4.1/FGL closed",
+    "P vs NP solved",
+    "Clay problem solved"
+  ]
+}
