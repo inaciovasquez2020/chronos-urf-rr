@@ -1,0 +1,10 @@
+{
+  "name": "SelectedCarrierNontrivialCountingModelMissing",
+  "status": "FRONTIER_OPEN",
+  "frontier": "SELECTED_CARRIER_NONTRIVIAL_COUNTING_MODEL_MISSING",
+  "lean_file": "Chronos/Frontier/SelectedCarrierNontrivialCountingFrontier.lean",
+  "recorded_theorem": "selected_carrier_nontrivial_counting_model_missing_recorded",
+  "missing_object": "SelectedCarrierNontrivialDimensionExtraction",
+  "reason": "Current selected-carrier entropy surface closes because TranscriptDim is definitionally zero in the selected DepthBridge instance.",
+  "boundary": "Frontier record only; no unrestricted Chronos-RR, H4.1/FGL, P-vs-NP, Clay-problem closure, unrestricted admissible-predicate coverage, or universal FiberEntropyGap."
+}
