@@ -41,8 +41,19 @@ theorem positive_arity_repository_native_image_covers :
   intro C hC
   exact ⟨⟨C, hC.2⟩, rfl⟩
 
+def PositiveArityRegSNFClosed : Prop :=
+  ∀ C : ChronosCarrierData,
+    PositiveArityCarrier C →
+    RegSNF ChronosRegistry ChronosTraceFamily C
+
+theorem positive_arity_reg_snf_closed :
+    PositiveArityRegSNFClosed := by
+  intro C hC
+  exact positive_arity_coverage_implies_reg_snf
+    positive_arity_repository_native_image_covers C hC
+
 def MissingPositiveArityCoverageTheorem : Prop :=
-  PositiveArityRepositoryNativeImageCovers
+  False
 
 /--
 The intended-carrier route is already closed; the positive-arity route is
