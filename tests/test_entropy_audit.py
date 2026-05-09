@@ -4,7 +4,7 @@ import os
 # Force local path inclusion for CI environment
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from Chronos.entropy_audit import AuditParams, lower_bound_steps
+from chronos.entropy_audit import AuditParams, lower_bound_steps
 
 
 def test_chronos_non_amplification():
