@@ -1,0 +1,11 @@
+{
+  "name": "SelectedCarrierObservationDimensionExtraction",
+  "status": "SELECTED_CARRIER_OBSERVATION_DIMENSION_EXTRACTION_VERIFIED_SURFACE",
+  "lean_file": "Chronos/Frontier/SelectedCarrierObservationDimensionExtraction.lean",
+  "proved_extraction": "selected_carrier_observation_dimension_extraction",
+  "proved_nontriviality": "selected_carrier_extracted_observation_nontrivial",
+  "proved_obstruction": "selected_carrier_constant_obs_trace_growth_obstruction",
+  "model": "carrier-indexed Lambda model with ObsDim(C, lam) = 2 * (C.arity.succ + lam) and TranscriptDim(C, lam) = C.arity.succ + lam",
+  "gap_ratio": "alpha_num = 1, alpha_den = 2",
+  "boundary": "Carrier-indexed selected observation-dimension extraction only; does not assert unrestricted Chronos-RR, H4.1/FGL, P-vs-NP, Clay-problem closure, unrestricted admissible-predicate coverage, universal FiberEntropyGap, or closure of the original constant-observation selected interface."
+}

@@ -77,3 +77,5 @@ import Chronos.Frontier.SelectedCarrierDepthBridgeFiberGap
 import Chronos.Frontier.SelectedCarrierEntropyFunctional
 
 import Chronos.Frontier.SelectedCarrierNontrivialCountingFrontier
+
+import Chronos.Frontier.SelectedCarrierObservationDimensionExtraction
