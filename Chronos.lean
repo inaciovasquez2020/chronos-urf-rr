@@ -59,3 +59,5 @@ import Chronos.Frontier.NonErasingCanonicalRepositoryNativeClosure
 import Chronos.Frontier.NonErasingRegSNFImageBridge
 
 import Chronos.Frontier.RepositoryNativeImageCoverageFrontier
+
+import Chronos.Frontier.RepositoryNativeImageCoverageCounterexample
