@@ -15,11 +15,6 @@ import chronos.Frontier.RegisteredNFDomination
 
 import chronos.Frontier.CarrierRegistryExhaustivenessBridge
 
-<<<<<<< HEAD
-
-
-
-=======
 
 
 
@@ -78,4 +73,5 @@ import Chronos.Frontier.FinalCarrierDomainDecision
 import Chronos.Frontier.SelectedCarrierRegSNFDownstreamBridge
 
 import Chronos.Frontier.SelectedCarrierDepthBridgeFiberGap
->>>>>>> origin/main
+
+import chronos.Frontier.SelectedCarrierEntropyFunctional

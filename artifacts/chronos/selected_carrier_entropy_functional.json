@@ -1,0 +1,10 @@
+{
+  "name": "SelectedCarrierEntropyFunctional",
+  "status": "SELECTED_CARRIER_ONLY_VERIFIED_SURFACE",
+  "lean_file": "chronos/Frontier/SelectedCarrierEntropyFunctional.lean",
+  "theorem": "selected_carrier_entropy_functional_verified_surface",
+  "domain": "selected repository-native positive-arity carrier domain only",
+  "alpha_num": 1,
+  "alpha_den": 1,
+  "boundary": "Selected-carrier verified surface only; no unrestricted Chronos-RR, H4.1/FGL, P-vs-NP, or Clay-problem closure."
+}
