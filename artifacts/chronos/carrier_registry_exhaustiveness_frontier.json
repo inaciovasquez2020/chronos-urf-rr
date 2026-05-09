@@ -1,0 +1,16 @@
+{
+  "id": "carrier_registry_exhaustiveness_frontier_2026_05_09",
+  "status": "FRONTIER_OPEN",
+  "minimal_missing_lemma": "CarrierRegistryExhaustiveness",
+  "statement": "Every RealChronosAdmissiblePredicate is represented by at least one RegisteredChronosCarrier.",
+  "weakest_sufficient_role": [
+    "upgrades selected-carrier coverage to unrestricted carrier coverage",
+    "removes the main domain gap before full Reg-SNF closure",
+    "does not prove Reg-SNF, UniversalFiberEntropyGap, DepthBridge, Chronos-RR, H4.1/FGL, P vs NP, or Clay closure"
+  ],
+  "blocked_by": [
+    "zero-arity admissible predicate counterexample",
+    "absence of an unrestricted representation theorem"
+  ],
+  "boundary": "Frontier statement only; no theorem-level closure asserted."
+}
