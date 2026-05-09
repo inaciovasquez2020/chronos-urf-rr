@@ -1,0 +1,15 @@
+{
+  "id": "zero_arity_representation_interface_2026_05_09",
+  "status": "FRONTIER_OPEN",
+  "interface": "ZeroArityRepresentationInterface",
+  "minimal_theorem_target": "ZeroArityPredicate P and RealChronosAdmissiblePredicate P -> exists C in RegisteredChronosCarriers such that Represents C P",
+  "role": "This is the representation-side route for resolving ZeroArityCarrierObstruction by adding or identifying registered carrier coverage for zero-arity admissible predicates.",
+  "weakest_sufficient_chain": [
+    "ZeroArityRepresentation",
+    "ZeroArityCarrierObstruction resolved by representation",
+    "CarrierRegistryExhaustiveness no longer blocked by zero-arity predicates",
+    "Full Reg-SNF eligibility"
+  ],
+  "alternative_route": "ZeroArityExclusion remains an admissible alternative: prove zero-arity predicates are not RealChronosAdmissiblePredicate objects.",
+  "boundary": "Interface and theorem-target statement only; no ZeroArityRepresentation proof or downstream theorem-level closure asserted."
+}
