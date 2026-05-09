@@ -36,6 +36,11 @@ theorem positive_arity_coverage_implies_reg_snf
 Current exact missing object after the counterexample:
 prove positive-arity coverage, or replace this target by intended-carrier coverage.
 -/
+theorem positive_arity_repository_native_image_covers :
+    PositiveArityRepositoryNativeImageCovers := by
+  intro C hC
+  exact ⟨⟨C, hC.2⟩, rfl⟩
+
 def MissingPositiveArityCoverageTheorem : Prop :=
   PositiveArityRepositoryNativeImageCovers
 
