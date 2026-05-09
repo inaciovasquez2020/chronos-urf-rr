@@ -1,0 +1,17 @@
+{
+  "id": "zero_arity_carrier_obstruction_boundary_2026_05_09",
+  "status": "FRONTIER_OPEN",
+  "minimal_blocker": "ZeroArityCarrierObstruction",
+  "statement": "Unrestricted CarrierRegistryExhaustiveness is blocked unless zero-arity admissible predicates are either represented by a registered carrier or formally excluded from RealChronosAdmissiblePredicate.",
+  "weakest_sufficient_resolution": [
+    "prove zero-arity admissible predicates are represented",
+    "or refine RealChronosAdmissiblePredicate so zero-arity predicates are outside the unrestricted Chronos domain"
+  ],
+  "downstream_unlocks": [
+    "CarrierRegistryExhaustiveness domain closure",
+    "Full Reg-SNF eligibility",
+    "UniversalFiberEntropyGap eligibility",
+    "DepthBridge eligibility"
+  ],
+  "boundary": "Obstruction-boundary statement only; no zero-arity resolution or theorem-level closure asserted."
+}
