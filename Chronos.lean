@@ -71,3 +71,5 @@ import Chronos.Frontier.PositiveArityCoverageDecisionLock
 import Chronos.Frontier.FinalCarrierDomainDecision
 
 import Chronos.Frontier.SelectedCarrierRegSNFDownstreamBridge
+
+import Chronos.Frontier.SelectedCarrierDepthBridgeFiberGap
