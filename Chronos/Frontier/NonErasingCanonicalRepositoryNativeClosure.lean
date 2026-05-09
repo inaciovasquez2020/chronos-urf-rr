@@ -1,0 +1,12 @@
+import Chronos.Frontier.NonErasingOperationalTraceSemantics
+
+namespace Chronos.Frontier.NonErasingCanonicalRepositoryNativeClosure
+
+def RepositoryNativeBranchNonErasingCanonical : Prop :=
+  Chronos.Frontier.NonErasingOperationalTraceSemantics.NonErasingConstructorPreservation
+
+theorem repository_native_branch_non_erasing_canonical :
+    RepositoryNativeBranchNonErasingCanonical := by
+  exact Chronos.Frontier.NonErasingOperationalTraceSemantics.non_erasing_constructor_preservation
+
+end Chronos.Frontier.NonErasingCanonicalRepositoryNativeClosure

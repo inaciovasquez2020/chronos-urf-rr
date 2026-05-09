@@ -53,3 +53,5 @@ import Chronos.Frontier.OperationalTraceConstructorPreservation
 import Chronos.Frontier.ErasingCanonicalRepositoryNativeClosure
 
 import Chronos.Frontier.NonErasingOperationalTraceSemantics
+
+import Chronos.Frontier.NonErasingCanonicalRepositoryNativeClosure
