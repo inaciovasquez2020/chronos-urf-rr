@@ -67,3 +67,5 @@ import Chronos.Frontier.IntendedRepositoryNativeImageCoverage
 import Chronos.Frontier.PositiveArityRepositoryNativeCoverage
 
 import Chronos.Frontier.PositiveArityCoverageDecisionLock
+
+import Chronos.Frontier.FinalCarrierDomainDecision
