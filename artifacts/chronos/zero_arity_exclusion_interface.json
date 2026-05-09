@@ -1,0 +1,15 @@
+{
+  "id": "zero_arity_exclusion_interface_2026_05_09",
+  "status": "FRONTIER_OPEN",
+  "interface": "ZeroArityExclusionInterface",
+  "minimal_theorem_target": "ZeroArityPredicate P -> not RealChronosAdmissiblePredicate P",
+  "role": "This is the exclusion-side route for resolving ZeroArityCarrierObstruction without adding a registered zero-arity carrier.",
+  "weakest_sufficient_chain": [
+    "ZeroArityExclusion",
+    "ZeroArityCarrierObstruction resolved by exclusion",
+    "CarrierRegistryExhaustiveness no longer blocked by zero-arity predicates",
+    "Full Reg-SNF eligibility"
+  ],
+  "alternative_route": "ZeroArityRepresentation remains an admissible alternative: prove every zero-arity admissible predicate has a registered carrier.",
+  "boundary": "Interface and theorem-target statement only; no ZeroArityExclusion proof or downstream theorem-level closure asserted."
+}
