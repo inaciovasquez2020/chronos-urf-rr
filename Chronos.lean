@@ -83,3 +83,5 @@ import Chronos.Frontier.SelectedCarrierObservationDimensionExtraction
 import Chronos.Frontier.FiberEntropyGap
 
 import Chronos.Frontier.SemanticEntropyBridge
+
+import Chronos.Frontier.RealValuedShannonEntropyInequality
