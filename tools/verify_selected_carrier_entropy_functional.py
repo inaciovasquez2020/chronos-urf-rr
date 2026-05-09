@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-LEAN = ROOT / "chronos/Frontier/SelectedCarrierEntropyFunctional.lean"
+LEAN = ROOT / "Chronos/Frontier/SelectedCarrierEntropyFunctional.lean"
 ROOT_LEAN = ROOT / "Chronos.lean"
 JSON_PATH = ROOT / "artifacts/chronos/selected_carrier_entropy_functional.json"
 DOC = ROOT / "docs/status/CHRONOS_SELECTED_CARRIER_ENTROPY_FUNCTIONAL_2026_05_09.md"
@@ -20,7 +20,7 @@ json_text = JSON_PATH.read_text()
 data = json.loads(json_text)
 
 assert data["status"] == "SELECTED_CARRIER_ONLY_VERIFIED_SURFACE"
-assert data["lean_file"] == "chronos/Frontier/SelectedCarrierEntropyFunctional.lean"
+assert data["lean_file"] == "Chronos/Frontier/SelectedCarrierEntropyFunctional.lean"
 assert data["theorem"] == "selected_carrier_entropy_functional_verified_surface"
 
 required_lean = [
@@ -40,7 +40,7 @@ for token in required_lean:
 for token in ["<<<<<<<", "=======", ">>>>>>>"]:
     assert token not in root_lean, f"merge conflict marker remains in Chronos.lean: {token}"
 
-assert "import chronos.Frontier.SelectedCarrierEntropyFunctional" in root_lean
+assert "import Chronos.Frontier.SelectedCarrierEntropyFunctional" in root_lean
 
 for bad in ["axiom", "constant", "sorry", "admit"]:
     assert not re.search(rf"\b{bad}\b", lean), f"forbidden Lean token in new file: {bad}"

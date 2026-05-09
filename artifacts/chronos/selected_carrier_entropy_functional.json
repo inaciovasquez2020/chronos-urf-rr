@@ -1,7 +1,7 @@
 {
   "name": "SelectedCarrierEntropyFunctional",
   "status": "SELECTED_CARRIER_ONLY_VERIFIED_SURFACE",
-  "lean_file": "chronos/Frontier/SelectedCarrierEntropyFunctional.lean",
+  "lean_file": "Chronos/Frontier/SelectedCarrierEntropyFunctional.lean",
   "theorem": "selected_carrier_entropy_functional_verified_surface",
   "domain": "selected repository-native positive-arity carrier domain only",
   "alpha_num": 1,
