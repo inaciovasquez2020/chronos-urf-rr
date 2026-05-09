@@ -1,0 +1,15 @@
+{
+  "id": "admissibility_positivity_decision_lock_2026_05_09",
+  "status": "DECISION_LOCKED",
+  "decision": "Current RealChronosAdmissiblePredicate semantics permit zero-arity; therefore ZeroArityExclusion is not currently theorem-level provable without strengthening admissibility.",
+  "current_semantics": [
+    "RealChronosAdmissiblePredicate contains arity : Nat but does not enforce arity_pos",
+    "Repository-native bridge requires positive arity",
+    "RepositoryNativeImageCoverageCounterexample records a zero-arity admissible object outside repository-native image"
+  ],
+  "blocked_theorem": "ZeroArityExclusion",
+  "minimal_missing_assumption_for_exclusion": "PositiveArityAdmissibility: forall P, RealChronosAdmissiblePredicate P -> 0 < arity(P)",
+  "viable_route_without_semantic_change": "ZeroArityRepresentation",
+  "semantic_change_required_for_exclusion": "Strengthen RealChronosAdmissiblePredicate with positive arity and invalidate the existing zero-arity admissible counterexample.",
+  "boundary": "Decision lock only; does not prove ZeroArityExclusion, ZeroArityRepresentation, CarrierRegistryExhaustiveness, Reg-SNF, UniversalFiberEntropyGap, DepthBridge, Chronos-RR, H4.1/FGL, P vs NP, or any Clay problem."
+}
