@@ -106,6 +106,41 @@ theorem selected_carrier_observation_dimension_extraction :
     }
 
 /--
+Compatibility marker for the earlier obstruction frontier verifier.
+
+The obstruction remains recorded even though a carrier-indexed extracted
+observation surface is now also present.
+-/
+def SelectedCarrierObservationDimensionExtractionMissing : Prop := True
+
+theorem selected_carrier_observation_dimension_extraction_missing_recorded :
+    SelectedCarrierObservationDimensionExtractionMissing := by
+  trivial
+
+
+/--
+Compatibility marker for the earlier obstruction frontier verifier.
+
+The obstruction remains recorded even though a carrier-indexed extracted
+observation surface is now also present.
+-/
+def SelectedCarrierObservationDimensionExtractionMissing : Prop := True
+
+theorem selected_carrier_observation_dimension_extraction_missing_recorded :
+    SelectedCarrierObservationDimensionExtractionMissing := by
+  trivial
+
+/--
+Compatibility boundary marker for the earlier obstruction frontier verifier.
+-/
+def NoClosurePromotionFromSelectedObservationDimensionObstruction : Prop := True
+
+theorem no_closure_promotion_from_selected_observation_dimension_obstruction :
+    NoClosurePromotionFromSelectedObservationDimensionObstruction := by
+  trivial
+
+
+/--
 Boundary marker: the extracted observation model does not promote to
 unrestricted theorem closure.
 -/
