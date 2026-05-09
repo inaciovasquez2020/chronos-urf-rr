@@ -1,3 +1,4 @@
+import Chronos.Frontier.ZeroArityRepresentation
 import Chronos.XorLemmas
 import Chronos.ParityPair
 import Chronos.ParitySepProof
