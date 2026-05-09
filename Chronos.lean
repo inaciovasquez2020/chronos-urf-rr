@@ -65,3 +65,5 @@ import Chronos.Frontier.RepositoryNativeImageCoverageCounterexample
 import Chronos.Frontier.IntendedRepositoryNativeImageCoverage
 
 import Chronos.Frontier.PositiveArityRepositoryNativeCoverage
+
+import Chronos.Frontier.PositiveArityCoverageDecisionLock
