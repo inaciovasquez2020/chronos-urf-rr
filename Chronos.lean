@@ -55,3 +55,5 @@ import Chronos.Frontier.ErasingCanonicalRepositoryNativeClosure
 import Chronos.Frontier.NonErasingOperationalTraceSemantics
 
 import Chronos.Frontier.NonErasingCanonicalRepositoryNativeClosure
+
+import Chronos.Frontier.NonErasingRegSNFImageBridge
