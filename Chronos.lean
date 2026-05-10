@@ -1,3 +1,4 @@
+import Chronos.Frontier.CarrierSupportSignatureInvariant
 import Chronos.Frontier.RepositoryRegisteredRegSNFClosure
 import Chronos.Frontier.CarrierRegistryExhaustiveness
 import Chronos.Frontier.SemanticTwoPointUniversalFiberGapWitness
