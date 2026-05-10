@@ -1,0 +1,11 @@
+import Chronos.Frontier.SemanticTwoPointUniversalFiberGapWitness
+
+namespace Chronos.Frontier.AnalyticShannonEntropyBridgeFrontierLock
+
+def AnalyticShannonEntropyBridgeFrontierLock : Prop :=
+  Chronos.Frontier.SemanticEntropyBridge.AnalyticShannonEntropyBridge_FRONTIER_OPEN
+
+def AnalyticShannonEntropyBridgeStillFrontier : Prop :=
+  AnalyticShannonEntropyBridgeFrontierLock
+
+end Chronos.Frontier.AnalyticShannonEntropyBridgeFrontierLock
