@@ -1,7 +1,7 @@
 {
   "artifact": "rank_rate_gap_axiomatic_bridge_2026_05_10",
   "date": "2026-05-10",
-  "status": "RANK_RATE_GAP_AXIOMATIC_BRIDGE_ONLY",
+  "status": "FRONTIER_OPEN_AXIOMATIC_BRIDGE_ONLY",
   "lean_module": "Chronos.Frontier.RankRateGapAxiomaticBridge",
   "axioms": [
     "rank_rate_to_fiber_entropy_native"

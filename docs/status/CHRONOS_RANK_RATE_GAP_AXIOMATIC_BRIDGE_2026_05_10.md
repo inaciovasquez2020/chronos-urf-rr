@@ -2,7 +2,7 @@
 
 ## Status
 
-`RANK_RATE_GAP_AXIOMATIC_BRIDGE_ONLY`
+`FRONTIER_OPEN_AXIOMATIC_BRIDGE_ONLY`
 
 ## Added surface
 
@@ -12,7 +12,7 @@
 
 ## Meaning
 
-The encoded native RankRateGap route is available only under the explicit axiom:
+The encoded native rank-rate route is available only under the explicit axiom:
 
 `rank_rate_to_fiber_entropy_native`
 
@@ -22,8 +22,8 @@ This is an axiom-dependent bridge only.
 
 It does not assert:
 
-- theorem-level RankRateGap proof
-- unconditional UniversalFiberEntropyGap theorem closure
+- theorem-level rank-rate proof
+- unconditional universal fiber-entropy gap theorem closure
 - DepthBridge beyond selected final carrier domain
 - Chronos-RR theorem closure
 - P vs NP closure

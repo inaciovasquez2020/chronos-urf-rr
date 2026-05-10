@@ -6,7 +6,7 @@ This repository contains a large formalization surface for Chronos/URF-style rig
 It is not yet an unconditional proof repository while project axioms, admits, or sorries remain.
 Files containing `sorry`, `admit`, or project axioms are frontier or conditional files and must not be cited as verified root theorems until discharged.
 
-Axiom count: 16
+Axiom count: 17
 Admit count: 4
 Sorry count: 4
 

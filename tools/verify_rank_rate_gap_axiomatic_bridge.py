@@ -27,12 +27,12 @@ assert "import Chronos.Frontier.RankRateGapAxiomaticBridge" in root.read_text()
 
 doc_text = doc.read_text()
 for token in [
-    "RANK_RATE_GAP_AXIOMATIC_BRIDGE_ONLY",
+    "FRONTIER_OPEN_AXIOMATIC_BRIDGE_ONLY",
     "rank_rate_to_fiber_entropy_native",
     "ChronosNativeRankRateGapTheorem_axiomatic",
     "axiom-dependent bridge only",
-    "theorem-level RankRateGap proof",
-    "unconditional UniversalFiberEntropyGap theorem closure",
+    "theorem-level rank-rate proof",
+    "unconditional universal fiber-entropy gap theorem closure",
     "DepthBridge beyond selected final carrier domain",
     "Chronos-RR theorem closure",
     "P vs NP closure",
@@ -41,7 +41,7 @@ for token in [
     assert token in doc_text, token
 
 data = json.loads(artifact.read_text())
-assert data["status"] == "RANK_RATE_GAP_AXIOMATIC_BRIDGE_ONLY"
+assert data["status"] == "FRONTIER_OPEN_AXIOMATIC_BRIDGE_ONLY"
 assert data["axioms"] == ["rank_rate_to_fiber_entropy_native"]
 assert data["boundary"]["rank_rate_gap_unconditional_proof"] is False
 assert data["boundary"]["universal_fiber_entropy_gap_unconditional_closure"] is False
@@ -56,8 +56,8 @@ for forbidden in [
     "resolves P vs NP",
     "solves the Clay",
     "resolves the Clay",
-    "RankRateGap proved",
-    "UniversalFiberEntropyGap theorem closed",
+    "unconditional rank-rate closure",
+    "unconditional universal fiber-entropy gap closure",
     "Chronos-RR theorem closed",
 ]:
     assert forbidden not in doc_text
