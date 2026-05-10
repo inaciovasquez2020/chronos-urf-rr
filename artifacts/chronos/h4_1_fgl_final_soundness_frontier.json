@@ -1,0 +1,19 @@
+{
+  "artifact": "H4_1_FGL_FinalSoundnessFrontier",
+  "status": "FRONTIER_OPEN",
+  "date": "2026-05-10",
+  "frontier": "H4_1_FGL_FinalCarrierSelectedGapSoundness",
+  "weakest_missing_ingredient": "H4_1_FGL_FinalCarrierObservationExtraction",
+  "reason": [
+    "SelectedCarrierFiberEntropyGap is a selected DepthBridge interface.",
+    "UniversalFiberEntropyGap is a semantic/probabilistic interface over ProbabilisticUnitObservation.",
+    "The repository contains a separation lock preventing automatic promotion from selected DepthBridge closure to semantic universal gap closure."
+  ],
+  "boundary": [
+    "No unrestricted H4.1/FGL closure",
+    "No FinalCarrierSelectedGapSoundness proof",
+    "No UniversalFiberEntropyGap theorem",
+    "No Chronos-RR closure",
+    "No P vs NP or Clay-problem closure"
+  ]
+}

@@ -107,3 +107,4 @@ import Chronos.Frontier.AnalyticEntropyFrontier
 import Chronos.Frontier.FiniteEntropySumFromLogKernel
 import Chronos.Frontier.H4_1_FGL_Bridge1Refutation
 import Chronos.Frontier.H4_1_FGL_RestrictedDomainReduction
+import Chronos.Frontier.H4_1_FGL_FinalSoundnessFrontier
