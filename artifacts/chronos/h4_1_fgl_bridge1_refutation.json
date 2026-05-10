@@ -1,0 +1,23 @@
+{
+  "artifact": "H4_1_FGL_Bridge1Refutation",
+  "status": "BRIDGE_1_REFUTED",
+  "date": "2026-05-10",
+  "claim": "RealChronosAdmissiblePredicate does not imply FinalCarrierDomain under current repository definitions.",
+  "witness": {
+    "arity": 0,
+    "stratum": 0,
+    "index": 0
+  },
+  "reason": [
+    "ChronosRegistry.registered is true for all ChronosCarrierData.",
+    "registered_carrier_is_real_chronos_admissible makes the zero-arity witness real-admissible.",
+    "FinalCarrierDomain is PositiveArityCarrier.",
+    "PositiveArityCarrier requires C.arity != 0."
+  ],
+  "boundary": [
+    "No unrestricted H4.1/FGL closure",
+    "No UniversalFiberEntropyGap theorem",
+    "No Chronos-RR closure",
+    "No P vs NP or Clay-problem closure"
+  ]
+}
