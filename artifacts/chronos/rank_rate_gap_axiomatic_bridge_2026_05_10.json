@@ -1,0 +1,21 @@
+{
+  "artifact": "rank_rate_gap_axiomatic_bridge_2026_05_10",
+  "date": "2026-05-10",
+  "status": "FRONTIER_OPEN_AXIOMATIC_BRIDGE_ONLY",
+  "lean_module": "Chronos.Frontier.RankRateGapAxiomaticBridge",
+  "axioms": [
+    "rank_rate_to_fiber_entropy_native"
+  ],
+  "axiom_dependent_theorems": [
+    "ChronosNativeRankRateGapTheorem_axiomatic",
+    "conditional_universal_fiber_entropy_gap_from_axiomatic_rank_rate_gap"
+  ],
+  "boundary": {
+    "rank_rate_gap_unconditional_proof": false,
+    "universal_fiber_entropy_gap_unconditional_closure": false,
+    "depth_bridge_beyond_selected_final_carrier_domain_closed": false,
+    "chronos_rr_theorem_closed": false,
+    "p_vs_np": false,
+    "clay_problem": false
+  }
+}
