@@ -1,0 +1,33 @@
+{
+  "artifact": "universal_fiber_entropy_gap_native_obligations_2026_05_10",
+  "date": "2026-05-10",
+  "status": "UNIVERSAL_FIBER_ENTROPY_GAP_CONDITIONAL_COMPOSITION_ONLY",
+  "lean_module": "Chronos.Frontier.UniversalFiberEntropyGapNativeObligations",
+  "native_statement_surfaces": [
+    "CertifiedRankRateLowerBound",
+    "CertifiedFiberEntropyLowerBound",
+    "RankRateGapNativeTheorem",
+    "ChronosNativeRankRateGapTheorem",
+    "CountingFiberSeparationTheorem",
+    "FiberMassBalanceTheorem",
+    "UniversalFiberEntropyGapTheorem"
+  ],
+  "conditional_chain": [
+    "ChronosNativeRankRateGapTheorem",
+    "RankRateGapToCountingFiberSeparation",
+    "CountingFiberSeparationToFiberMassBalance",
+    "FiberMassBalanceToUniversalFiberEntropyGap",
+    "UniversalFiberEntropyGapTheorem"
+  ],
+  "terminal_missing_object": "ChronosNativeRankRateGapTheorem",
+  "boundary": {
+    "rank_rate_gap_proved": false,
+    "counting_fiber_separation_proved": false,
+    "fiber_mass_balance_proved": false,
+    "universal_fiber_entropy_gap_closed": false,
+    "depth_bridge_beyond_selected_final_carrier_domain_closed": false,
+    "chronos_rr_theorem_closed": false,
+    "p_vs_np": false,
+    "clay_problem": false
+  }
+}
