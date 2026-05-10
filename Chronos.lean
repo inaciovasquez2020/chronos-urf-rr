@@ -1,3 +1,4 @@
+import Chronos.Frontier.CarrierRegistryExhaustiveness
 import Chronos.Frontier.SemanticTwoPointUniversalFiberGapWitness
 import Chronos.Frontier.AnalyticShannonEntropyBridgeFrontierLock
 import Chronos.Frontier.SelectedDepthBridgeSemanticGapNonPromotion
