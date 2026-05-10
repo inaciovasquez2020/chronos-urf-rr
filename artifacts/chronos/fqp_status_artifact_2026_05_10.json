@@ -1,0 +1,23 @@
+{
+  "name": "FQP",
+  "date": "2026-05-10",
+  "status": "STATUS_ARTIFACT_ONLY",
+  "established": [
+    "named_toolkit_input_layer"
+  ],
+  "not_established": [
+    "frontier_lemma",
+    "bridge_interface",
+    "verifier_target",
+    "archived_or_discarded_input",
+    "theorem_role",
+    "dependency_link",
+    "closure_claim"
+  ],
+  "boundary": [
+    "status_artifact_only",
+    "no_theorem_role",
+    "no_dependency_link",
+    "no_closure_claim"
+  ]
+}
