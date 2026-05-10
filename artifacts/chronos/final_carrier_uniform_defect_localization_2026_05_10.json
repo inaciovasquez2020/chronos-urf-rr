@@ -1,0 +1,24 @@
+{
+  "name": "final_carrier_uniform_defect_localization",
+  "date": "2026-05-10",
+  "status": "FRONTIER_EXACTLY_LOCALIZED",
+  "conditional_closure": [
+    "FinalCarrierDomainNormalForm",
+    "FinalCarrierDomainUniformArityBound",
+    "UniformStratumDefect"
+  ],
+  "not_established": [
+    "FinalCarrierDomainNormalForm -> UniformStratumDefect"
+  ],
+  "weakest_missing_theorem_level_input": "FinalCarrierDomainUniformArityBound",
+  "equivalent_witness_form": "exists B : Nat, forall c : ChronosCarrierData, FinalCarrierDomain c -> c.arity <= B",
+  "boundary": [
+    "localization_only",
+    "does_not_prove_FinalCarrierDomainUniformArityBound",
+    "does_not_prove_FinalCarrierDomainNormalForm_to_UniformStratumDefect",
+    "does_not_prove_unrestricted_Chronos_RR",
+    "does_not_prove_H4_1_FGL",
+    "does_not_prove_UniversalFiberEntropyGap",
+    "does_not_prove_P_vs_NP_or_Clay"
+  ]
+}
