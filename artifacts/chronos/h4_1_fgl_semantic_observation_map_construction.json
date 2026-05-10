@@ -1,0 +1,31 @@
+{
+  "artifact": "H4_1_FGL_SemanticObservationMapConstruction",
+  "date": "2026-05-10",
+  "status": "CONDITIONAL_SEMANTIC_CONSTRUCTION",
+  "classification": "SEMANTIC_OBSERVATION_MAP_CONSTRUCTION",
+  "semantic_extraction": true,
+  "condition": "explicit separating observable plus one selected final-carrier point",
+  "constructs": [
+    "H4_1_FGL_SemanticObservationMap",
+    "H4_1_FGL_SemanticObservationConstructionPackage"
+  ],
+  "closed_conditional_targets": [
+    "H4_1_FGL_MissingObservationExtractionWitness"
+  ],
+  "theorems": [
+    "h4_1_fgl_construct_semantic_observation_map",
+    "h4_1_fgl_semantic_observation_package_implies_missing_witness",
+    "h4_1_fgl_semantic_separating_observable_implies_missing_witness",
+    "h4_1_fgl_semantic_observation_map_construction_boundary"
+  ],
+  "remaining_unconditional_frontier": "existence of an explicit separating observable for every selected final-carrier instance",
+  "does_not_claim": [
+    "unconditional separating observable existence",
+    "unconditional semantic extraction theorem",
+    "unrestricted H4.1/FGL closure",
+    "UniversalFiberEntropyGap theorem",
+    "Chronos-RR closure",
+    "P vs NP closure",
+    "Clay-problem closure"
+  ]
+}
