@@ -1,16 +1,16 @@
 {
-  "id": "carrier_registry_exhaustiveness_frontier_2026_05_09",
+  "artifact": "carrier_registry_exhaustiveness_frontier",
+  "date": "2026-05-10",
   "status": "FRONTIER_OPEN",
-  "minimal_missing_lemma": "CarrierRegistryExhaustiveness",
-  "statement": "Every RealChronosAdmissiblePredicate is represented by at least one RegisteredChronosCarrier.",
-  "weakest_sufficient_role": [
-    "upgrades selected-carrier coverage to unrestricted carrier coverage",
-    "removes the main domain gap before full Reg-SNF closure",
-    "does not prove Reg-SNF, UniversalFiberEntropyGap, DepthBridge, Chronos-RR, H4.1/FGL, P vs NP, or Clay closure"
-  ],
-  "blocked_by": [
-    "zero-arity admissible predicate counterexample",
-    "absence of an unrestricted representation theorem"
-  ],
-  "boundary": "Frontier statement only; no theorem-level closure asserted."
+  "theorem_name": "CarrierRegistryExhaustiveness",
+  "weakest_missing_lemma": "CarrierRegistryExhaustiveness",
+  "frontier_statement": "Every Chronos-admissible carrier relevant to unrestricted Reg-SNF is represented in the repository registry.",
+  "boundary": {
+    "chronos_rr": "NO_CHRONOS_RR_CLOSURE",
+    "h4_1_fgl": "NO_H4_1_FGL_CLOSURE",
+    "p_vs_np": "NO_P_VS_NP_CLOSURE",
+    "clay": "NO_CLAY_PROBLEM_CLOSURE",
+    "universal_fiber_entropy_gap": "NO_UNIVERSAL_FIBER_ENTROPY_GAP_PROOF",
+    "depth_bridge": "NO_DEPTH_BRIDGE_EXTENSION_BEYOND_SELECTED_FINAL_CARRIER_DOMAIN"
+  }
 }
