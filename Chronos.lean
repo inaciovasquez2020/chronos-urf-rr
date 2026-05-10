@@ -1,3 +1,4 @@
+import Chronos.Frontier.RepresentedZeroArityRegSNFClosure
 import Chronos.Frontier.RepresentedZeroArityRegSNFFrontier
 import Chronos.Frontier.ZeroPositiveRegSNFReduction
 import Chronos.Frontier.ZeroPositiveCarrierCaseSplit
