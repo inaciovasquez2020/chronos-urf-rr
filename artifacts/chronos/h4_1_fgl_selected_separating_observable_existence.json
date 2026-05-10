@@ -1,0 +1,33 @@
+{
+  "artifact": "H4_1_FGL_SelectedSeparatingObservableExistence",
+  "date": "2026-05-10",
+  "status": "SELECTED_INSTANCE_EXISTENCE_THEOREM",
+  "classification": "SEMANTIC_SELECTED_INSTANCE_THEOREM",
+  "proves": [
+    "H4_1_FGL_SelectedFinalCarrierSeparatingObservableExistence",
+    "H4_1_FGL_SelectedFinalCarrierInstanceWithPoint_implies_missing_witness"
+  ],
+  "selected_instance_requires": [
+    "left observation",
+    "right observation",
+    "default observation",
+    "left/right observation distinctness",
+    "observation soundness for all three observations",
+    "left/right final-gap disjointness",
+    "decidable left final-gap side",
+    "decidable right final-gap side"
+  ],
+  "constructs": [
+    "H4_1_FGL_SelectedFinalCarrierInstance.observe",
+    "H4_1_FGL_SelectedFinalCarrierInstance.toSeparatingObservable"
+  ],
+  "remaining_frontier": "prove arbitrary semantic final carriers satisfy selected-instance separation data, or restrict theorem domain to selected final-carrier instances",
+  "does_not_claim": [
+    "separating observable existence for arbitrary semantic final carriers",
+    "unrestricted H4.1/FGL closure",
+    "UniversalFiberEntropyGap theorem",
+    "Chronos-RR closure",
+    "P vs NP closure",
+    "Clay-problem closure"
+  ]
+}
