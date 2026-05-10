@@ -1,0 +1,42 @@
+{
+"artifact": "open_frontier_status_snapshot_2026_05_09",
+"date": "2026-05-09",
+"status": "FRONTIER_OPEN",
+"closed_verified_surfaces": [
+"ZeroArityRepresentation",
+"ZeroArityRegistryReduction",
+"ZeroPositiveCarrierCaseSplit",
+"ZeroPositiveRegSNFReduction",
+"RepresentedZeroArityRegSNFFrontier",
+"RepresentedZeroArityRegSNFClosure",
+"UnrestrictedRegSNFDepthBridgeInterface",
+"UniversalFiberEntropyGapSeparationLock",
+"SemanticTwoPointUniversalFiberGapWitness",
+"AnalyticShannonEntropyBridgeFrontierLock",
+"SelectedDepthBridgeSemanticGapNonPromotion",
+"UniversalFiberEntropyGapWitnessInterface",
+"ChronosRRPromotionFrontierLock"
+],
+"derived_closure": [
+"Unrestricted Reg-SNF for RealChronosAdmissiblePredicate ChronosRegistry ChronosTraceFamily",
+"Selected-carrier DepthBridge interface only"
+],
+"open_frontiers": [
+"AnalyticShannonEntropyBridge",
+"UniversalFiberEntropyGap from Reg-SNF",
+"DepthBridge extension beyond selected final carrier domain",
+"Chronos-RR promotion",
+"H4.1/FGL",
+"P vs NP",
+"Clay-problem closure"
+],
+"boundary": [
+"status artifact only",
+"does not prove UniversalFiberEntropyGap from Reg-SNF",
+"does not extend DepthBridge beyond selected final carrier domain",
+"does not prove Chronos-RR",
+"does not prove H4.1/FGL",
+"does not prove P vs NP",
+"does not prove Clay-problem closure"
+]
+}
