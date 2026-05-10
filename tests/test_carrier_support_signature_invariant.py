@@ -8,6 +8,7 @@ def test_carrier_support_signature_invariant_artifact():
     data = json.loads((ROOT / "artifacts/chronos/carrier_support_signature_invariant.json").read_text())
     assert data["status"] == "CONDITIONAL_CLASSIFICATION_INVARIANT"
     assert data["new_ingredient"] == "finite support signature classification"
+    assert data["axiom_policy"] == "NO_GLOBAL_AXIOM_INTRODUCED"
     assert "CarrierRegistryExhaustiveness follows" in data["conditional_result"]
     assert data["boundary"]["carrier_registry_exhaustiveness"] == "NO_CARRIER_REGISTRY_EXHAUSTIVENESS_PROOF"
     assert data["boundary"]["unrestricted_reg_snf"] == "NO_UNRESTRICTED_REG_SNF_CLOSURE"
@@ -19,6 +20,7 @@ def test_carrier_support_signature_invariant_doc_boundary():
     assert "Status: CONDITIONAL_CLASSIFICATION_INVARIANT" in text
     assert "CarrierRegistryExhaustiveness remains FRONTIER_OPEN" in text
     assert "No CarrierRegistryExhaustiveness proof." in text
+    assert "No global axiom is introduced by this artifact." in text
     assert "No unrestricted Reg-SNF closure." in text
     assert "No UniversalFiberEntropyGap proof." in text
     assert "No DepthBridge extension beyond selected final carrier domain." in text

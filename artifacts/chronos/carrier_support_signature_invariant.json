@@ -7,6 +7,7 @@
   "conditional_result": "If every Chronos-admissible carrier admits a repository-realized support signature, then CarrierRegistryExhaustiveness follows.",
   "preserved_frontier": "CarrierRegistryExhaustiveness remains FRONTIER_OPEN unless the support-signature classification hypothesis is proved.",
   "new_ingredient": "finite support signature classification",
+  "axiom_policy": "NO_GLOBAL_AXIOM_INTRODUCED",
   "boundary": {
     "carrier_registry_exhaustiveness": "NO_CARRIER_REGISTRY_EXHAUSTIVENESS_PROOF",
     "unrestricted_reg_snf": "NO_UNRESTRICTED_REG_SNF_CLOSURE",

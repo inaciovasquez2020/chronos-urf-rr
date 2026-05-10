@@ -25,6 +25,7 @@ Finite support signature classification.
 ## Boundary
 
 - No CarrierRegistryExhaustiveness proof.
+- No global axiom is introduced by this artifact.
 - No unrestricted Reg-SNF closure.
 - No UniversalFiberEntropyGap proof.
 - No DepthBridge extension beyond selected final carrier domain.

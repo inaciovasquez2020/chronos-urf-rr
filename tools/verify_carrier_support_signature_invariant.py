@@ -25,6 +25,7 @@ required_tokens = [
     "CarrierSupportSignatureInvariant",
     "conditional_carrier_registry_exhaustiveness_from_support_signature",
     "finite support signature classification",
+    "NO_GLOBAL_AXIOM_INTRODUCED",
     "NO_CARRIER_REGISTRY_EXHAUSTIVENESS_PROOF",
     "NO_UNRESTRICTED_REG_SNF_CLOSURE",
     "NO_UNIVERSAL_FIBER_ENTROPY_GAP_PROOF",
@@ -40,6 +41,8 @@ for token in required_tokens:
 
 assert data["status"] == "CONDITIONAL_CLASSIFICATION_INVARIANT"
 assert data["new_ingredient"] == "finite support signature classification"
+assert data["axiom_policy"] == "NO_GLOBAL_AXIOM_INTRODUCED"
+assert "axiom " not in lean_text
 assert data["boundary"]["carrier_registry_exhaustiveness"] == "NO_CARRIER_REGISTRY_EXHAUSTIVENESS_PROOF"
 assert "import Chronos.Frontier.CarrierSupportSignatureInvariant" in chronos_text
 
@@ -47,6 +50,7 @@ required_doc_phrases = [
     "Status: CONDITIONAL_CLASSIFICATION_INVARIANT",
     "CarrierRegistryExhaustiveness remains FRONTIER_OPEN",
     "No CarrierRegistryExhaustiveness proof.",
+    "No global axiom is introduced by this artifact.",
     "No unrestricted Reg-SNF closure.",
     "No UniversalFiberEntropyGap proof.",
     "No DepthBridge extension beyond selected final carrier domain.",

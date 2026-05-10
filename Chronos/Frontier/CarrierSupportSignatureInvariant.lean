@@ -48,13 +48,14 @@ def boundaryPvsNP : String :=
 def boundaryClay : String :=
   "NO_CLAY_PROBLEM_CLOSURE"
 
-axiom registry_realization_registers_carrier :
+def RegistryRealizationRegistersCarrier : Prop :=
   ∀ (C : Carrier) (S : SupportSignature),
     HasSupportSignature C S →
     RepositoryRealizesSignature S →
     RepositoryRegistersCarrier C
 
 theorem conditional_carrier_registry_exhaustiveness_from_support_signature :
+  RegistryRealizationRegistersCarrier →
   (∀ C : Carrier,
       ChronosAdmissible C →
         ∃ S : SupportSignature,
@@ -62,9 +63,9 @@ theorem conditional_carrier_registry_exhaustiveness_from_support_signature :
   (∀ C : Carrier,
       ChronosAdmissible C →
         RepositoryRegistersCarrier C) := by
-  intro h C hC
-  rcases h C hC with ⟨S, hSig, hReg⟩
-  exact registry_realization_registers_carrier C S hSig hReg
+  intro hRealizes hClassifies C hC
+  rcases hClassifies C hC with ⟨S, hSig, hReg⟩
+  exact hRealizes C S hSig hReg
 
 end CarrierSupportSignatureInvariant
 end Frontier
