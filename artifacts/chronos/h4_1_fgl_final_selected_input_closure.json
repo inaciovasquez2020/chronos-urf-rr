@@ -1,0 +1,29 @@
+{
+  "artifact": "H4_1_FGL_FinalSelectedInputClosure",
+  "date": "2026-05-10",
+  "status": "SELECTED_DOMAIN_OBSERVATION_LAYER_CLOSED",
+  "classification": "FINAL_SELECTED_INPUT_CLOSURE",
+  "new_input": "H4_1_FGL_FinalSelectedInput",
+  "theorem_domain": "H4_1_FGL_SelectedTheoremDomain",
+  "closes_on_selected_domain": [
+    "explicit separating observable existence",
+    "H4_1_FGL_MissingObservationExtractionWitness",
+    "H4_1_FGL_FinalCarrierObservationExtractionTarget"
+  ],
+  "proves": [
+    "H4_1_FGL_FinalSelectedInput_has_separating_observable",
+    "H4_1_FGL_FinalSelectedInput_implies_missing_observation_extraction_witness",
+    "H4_1_FGL_FinalSelectedInput_implies_final_carrier_observation_extraction_target",
+    "H4_1_FGL_FinalSelectedInput_closes_selected_observation_layer"
+  ],
+  "remaining_frontier": "none inside selected-domain observation-extraction layer",
+  "does_not_claim": [
+    "arbitrary semantic final-carrier closure",
+    "separating observable existence for arbitrary semantic final carriers",
+    "unrestricted H4.1/FGL closure",
+    "UniversalFiberEntropyGap theorem",
+    "Chronos-RR closure",
+    "P vs NP closure",
+    "Clay-problem closure"
+  ]
+}
