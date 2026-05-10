@@ -1,0 +1,26 @@
+{
+  "artifact": "H4_1_FGL_FormalObservationExtractionWitness",
+  "date": "2026-05-10",
+  "status": "FORMAL_PROP_COMPLETION_ONLY",
+  "classification": "PROPOSITION_VALUED_INTERFACE_COMPLETION",
+  "semantic_extraction": false,
+  "closed_formal_targets": [
+    "H4_1_FGL_MissingObservationExtractionWitness",
+    "H4_1_FGL_FinalCarrierObservationExtractionTarget"
+  ],
+  "closed_theorems": [
+    "h4_1_fgl_missing_observation_extraction_witness_solved",
+    "h4_1_fgl_final_carrier_observation_extraction_target_solved",
+    "h4_1_fgl_formal_witness_completion_boundary"
+  ],
+  "remaining_semantic_frontier": "semantic observation-map construction",
+  "does_not_claim": [
+    "semantic observation map construction",
+    "semantic extraction theorem",
+    "unrestricted H4.1/FGL closure",
+    "UniversalFiberEntropyGap theorem",
+    "Chronos-RR closure",
+    "P vs NP closure",
+    "Clay-problem closure"
+  ]
+}
