@@ -1,0 +1,18 @@
+{
+  "artifact": "H4_1_FGL_FinalCarrierObservationExtraction",
+  "date": "2026-05-10",
+  "status": "FRONTIER_OPEN",
+  "classification": "MISSING_THEOREM_LEVEL_OBSERVATION_EXTRACTION",
+  "domain": "SELECTED_FINAL_CARRIER_DOMAIN_ONLY",
+  "weakest_missing_object": "H4_1_FGL_FinalCarrierObservationExtraction",
+  "feeds": [
+    "H4_1_FGL_FinalCarrierSelectedGapSoundness"
+  ],
+  "does_not_claim": [
+    "unrestricted H4.1/FGL closure",
+    "UniversalFiberEntropyGap theorem",
+    "Chronos-RR closure",
+    "P vs NP closure",
+    "Clay-problem closure"
+  ]
+}
