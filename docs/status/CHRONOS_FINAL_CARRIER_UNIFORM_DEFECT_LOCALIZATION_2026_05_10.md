@@ -22,8 +22,8 @@ Equivalent witness form
   FinalCarrierDomain c → c.arity ≤ B
 Boundary
 This artifact records localization only.
-It does not prove FinalCarrierDomainUniformArityBound.
-It does not prove FinalCarrierDomainNormalForm → UniformStratumDefect.
+It does not prove `FinalCarrierDomainUniformArityBound`.
+It does not prove `FinalCarrierDomainNormalForm → UniformStratumDefect`.
 It does not prove unrestricted Chronos-RR.
 It does not prove H4.1/FGL.
 It does not prove UniversalFiberEntropyGap.
