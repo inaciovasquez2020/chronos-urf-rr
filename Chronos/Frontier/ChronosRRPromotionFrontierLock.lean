@@ -1,0 +1,17 @@
+import Chronos.Frontier.UniversalFiberEntropyGapWitnessInterface
+
+open Chronos.Frontier.SelectedCarrierDepthBridgeFiberGap
+open Chronos.Frontier.SelectedDepthBridgeSemanticGapNonPromotion
+
+namespace Chronos.Frontier.ChronosRRPromotionFrontierLock
+
+def ChronosRRPromotionFrontierLock : Prop :=
+  NoChronosRRPromotionFromSelectedDepthBridgeInterface ∧
+  SelectedDepthBridgeSemanticGapNonPromotion
+
+theorem chronos_rr_promotion_frontier_lock :
+    ChronosRRPromotionFrontierLock := by
+  exact ⟨no_chronos_rr_promotion_from_selected_depth_bridge_interface,
+    selected_depth_bridge_semantic_gap_non_promotion⟩
+
+end Chronos.Frontier.ChronosRRPromotionFrontierLock

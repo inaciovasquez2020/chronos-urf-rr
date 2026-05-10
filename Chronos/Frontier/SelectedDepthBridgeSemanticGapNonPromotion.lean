@@ -1,0 +1,16 @@
+import Chronos.Frontier.AnalyticShannonEntropyBridgeFrontierLock
+
+open Chronos.Frontier.SelectedCarrierDepthBridgeFiberGap
+
+namespace Chronos.Frontier.SelectedDepthBridgeSemanticGapNonPromotion
+
+def SelectedDepthBridgeSemanticGapNonPromotion : Prop :=
+  SelectedDepthBridgeDoesNotCloseSemanticUniversalGap ∧
+  NoGlobalPromotionFromUnrestrictedRegSNFDepthBridgeInterface
+
+theorem selected_depth_bridge_semantic_gap_non_promotion :
+    SelectedDepthBridgeSemanticGapNonPromotion := by
+  exact ⟨selected_depth_bridge_does_not_close_semantic_universal_gap,
+    no_global_promotion_from_unrestricted_reg_snf_depth_bridge_interface⟩
+
+end Chronos.Frontier.SelectedDepthBridgeSemanticGapNonPromotion
