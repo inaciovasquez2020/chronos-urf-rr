@@ -1,3 +1,4 @@
+import Chronos.Frontier.UniversalFiberEntropyGapSeparationLock
 import Chronos.Frontier.UnrestrictedRegSNFDepthBridgeInterface
 import Chronos.Frontier.RepresentedZeroArityRegSNFClosure
 import Chronos.Frontier.RepresentedZeroArityRegSNFFrontier
