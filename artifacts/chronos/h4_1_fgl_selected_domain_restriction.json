@@ -1,0 +1,28 @@
+{
+  "artifact": "H4_1_FGL_SelectedDomainRestriction",
+  "date": "2026-05-10",
+  "status": "ARBITRARY_DOMAIN_REFUTED_SELECTED_DOMAIN_RESTRICTED",
+  "classification": "DOMAIN_RESTRICTION_THEOREM",
+  "refutes": [
+    "arbitrary semantic final carriers all admit separating observables",
+    "arbitrary semantic final carriers all satisfy selected-instance separation data"
+  ],
+  "counterexample": "one-point semantic final carrier with both final-gap sides true",
+  "restricted_domain": "H4_1_FGL_SelectedTheoremDomain",
+  "proves": [
+    "H4_1_FGL_arbitrary_semantic_final_carrier_separating_observable_refuted",
+    "H4_1_FGL_arbitrary_semantic_final_carrier_selected_instance_refuted",
+    "H4_1_FGL_SelectedTheoremDomain.has_separating_observable",
+    "H4_1_FGL_restricted_selected_domain_implies_missing_witness"
+  ],
+  "remaining_frontier": "use selected final-carrier instances as the theorem domain",
+  "does_not_claim": [
+    "separating observable existence for arbitrary semantic final carriers",
+    "selected-instance separation data for arbitrary semantic final carriers",
+    "unrestricted H4.1/FGL closure",
+    "UniversalFiberEntropyGap theorem",
+    "Chronos-RR closure",
+    "P vs NP closure",
+    "Clay-problem closure"
+  ]
+}
