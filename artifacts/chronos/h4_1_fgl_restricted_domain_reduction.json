@@ -1,0 +1,20 @@
+{
+  "artifact": "H4_1_FGL_RestrictedDomainReduction",
+  "status": "RESTRICTED_DOMAIN_REDUCTION_ONLY",
+  "date": "2026-05-10",
+  "records": [
+    "Zero-arity counterexample refutes RealChronosAdmissiblePredicate -> FinalCarrierDomain.",
+    "Restricted FinalCarrierDomain target is separated from unrestricted admissible-carrier target.",
+    "Intended-carrier target is reduced to IntendedChronosCarrier -> FinalCarrierDomain plus FinalCarrierDomain target."
+  ],
+  "remaining_frontier": [
+    "H4_1_FGL_FinalCarrierSelectedGapSoundness",
+    "UniversalFiberEntropyGap from selected-carrier entropy gap"
+  ],
+  "boundary": [
+    "No unrestricted H4.1/FGL closure",
+    "No UniversalFiberEntropyGap theorem",
+    "No Chronos-RR closure",
+    "No P vs NP or Clay-problem closure"
+  ]
+}
