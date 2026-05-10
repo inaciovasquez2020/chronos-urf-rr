@@ -1,0 +1,18 @@
+{
+  "artifact": "post_final_carrier_remaining_frontiers_2026_05_10",
+  "date": "2026-05-10",
+  "closed_surface": "FINAL_CARRIER_EXTRACTION_SURFACE_CLOSED",
+  "remaining_frontiers": [
+    "UniversalFiberEntropyGap theorem",
+    "DepthBridge beyond selected final carrier domain",
+    "Chronos-RR theorem promotion"
+  ],
+  "lean_module": "Chronos.Frontier.PostFinalCarrierRemainingFrontiers",
+  "boundary": {
+    "universal_fiber_entropy_gap_closed": false,
+    "depth_bridge_beyond_selected_final_carrier_domain_closed": false,
+    "chronos_rr_theorem_closed": false,
+    "p_vs_np": false,
+    "clay_problem": false
+  }
+}
