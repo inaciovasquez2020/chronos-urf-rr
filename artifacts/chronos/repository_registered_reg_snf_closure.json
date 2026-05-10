@@ -1,0 +1,19 @@
+{
+  "artifact": "repository_registered_reg_snf_closure",
+  "date": "2026-05-10",
+  "status": "WEAKENED_THEOREM_PACKAGE",
+  "theorem_name": "Reg-SNF closure for repository-registered carriers",
+  "domain": "REPOSITORY_REGISTERED_CARRIERS_ONLY",
+  "backtrack_decision": "Do not prove unrestricted CarrierRegistryExhaustiveness here; weaken the theorem domain to repository-registered carriers.",
+  "preserved_open_frontier": "CarrierRegistryExhaustiveness remains FRONTIER_OPEN.",
+  "boundary": {
+    "unrestricted_reg_snf": "NO_UNRESTRICTED_REG_SNF_CLOSURE",
+    "carrier_registry_exhaustiveness": "NO_CARRIER_REGISTRY_EXHAUSTIVENESS_PROOF",
+    "universal_fiber_entropy_gap": "NO_UNIVERSAL_FIBER_ENTROPY_GAP_PROOF",
+    "depth_bridge": "NO_DEPTH_BRIDGE_EXTENSION_BEYOND_SELECTED_FINAL_CARRIER_DOMAIN",
+    "chronos_rr": "NO_CHRONOS_RR_CLOSURE",
+    "h4_1_fgl": "NO_H4_1_FGL_CLOSURE",
+    "p_vs_np": "NO_P_VS_NP_CLOSURE",
+    "clay": "NO_CLAY_PROBLEM_CLOSURE"
+  }
+}
