@@ -11,8 +11,13 @@ theorem map_ext {l : List E} {f g : E → Bool} (h : ∀ x, x ∈ l → f x = g 
     l.map f = l.map g := by
   induction l with
   | nil => rfl
-  | cons a t ih => 
-      simp [ih (λ x hx => h x (List.mem_cons_of_mem a hx)), h a (List.mem_cons_self a t)]
+  | cons a t ih =>
+      have ha : f a = g a := h a (by simp)
+      have ht : t.map f = t.map g := by
+        apply ih
+        intro x hx
+        exact h x (by simp [hx])
+      simp [ha, ht]
 
 /-- Structural induction for XOR parity changes. -/
 theorem parity_flip_induction [DecidableEq E] (l : List E) (h1 h2 : E → Bool) (target : E)
@@ -29,24 +34,23 @@ theorem parity_flip_induction [DecidableEq E] (l : List E) (h1 h2 : E → Bool) 
       simp only [List.map_cons, xorFold]
       by_cases hae : a = target
       · subst hae
-        -- Head is target; tails must match because all other elements agree.
         have h_tails : t.map h1 = t.map h2 := by
           apply map_ext
           intro x hx
           apply h_others x (List.mem_cons_of_mem _ hx)
-          intro h_rev; subst h_rev; contradiction
+          intro h_rev
+          subst h_rev
+          contradiction
         rw [h_tails]
-        -- Core XOR logic via case exhaustion
-        cases h1 target <;> cases h2 target <;> cases xorFold (t.map h2) <;> 
-        simp at h_diff <;> (try simp [h_diff])
-      · -- Head is not target; bits match and target is in the tail.
-        have ha_eq : h1 a = h2 a := h_others a (List.mem_cons_self _ _) hae
+        cases h1a : h1 a <;> cases h2a : h2 a <;> cases xorFold (t.map h2) <;> simp [h1a, h2a] at h_diff ⊢
+      · have ha_eq : h1 a = h2 a := h_others a (by simp) hae
         rw [ha_eq]
         have h_mem_t : target ∈ t := by
-          cases h_mem with | inl h => exact False.elim (hae h.symm) | inr h => exact h
-        have iht := ih ht_nodup h_mem_t (λ x hx hxe => h_others x (List.mem_cons_of_mem _ hx) hxe)
-        -- Bool cancellation logic
-        cases h1 a <;> simp [iht]
+          cases h_mem with
+          | inl h => exact False.elim (hae h.symm)
+          | inr h => exact h
+        have iht := ih ht_nodup h_mem_t (fun x hx hxe => h_others x (List.mem_cons_of_mem _ hx) hxe)
+        cases h2a : h2 a <;> cases x1 : xorFold (t.map h1) <;> cases x2 : xorFold (t.map h2) <;> simp [x1, x2] at iht ⊢
 
 theorem parityPair_ne_of_single_diff [DecidableEq E]
     (edges : List E) (h1 h2 : E → Bool)
@@ -61,9 +65,8 @@ theorem parityPair_ne_of_single_diff [DecidableEq E]
   by_contra h_neq
   exact hxe (huniq x ⟨hx, h_neq⟩)
 
-end Chronos
-
 lemma xor_tail_diff (P1 P2 b : Bool) :
   P1 ≠ P2 → (b != P1) ≠ (b != P2) := by
   cases P1 <;> cases P2 <;> cases b <;> simp
 
+end Chronos
