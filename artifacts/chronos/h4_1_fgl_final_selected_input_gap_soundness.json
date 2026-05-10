@@ -1,0 +1,23 @@
+{
+  "artifact": "h4_1_fgl_final_selected_input_gap_soundness",
+  "date": "2026-05-10",
+  "status": "SELECTED_DOMAIN_GAP_SOUNDNESS_CLOSED",
+  "theorem_domain": "H4_1_FGL_SelectedTheoremDomain",
+  "depends_on": [
+    "H4_1_FGL_FinalSelectedInputClosure",
+    "SELECTED_DOMAIN_OBSERVATION_LAYER_CLOSED"
+  ],
+  "proves": [
+    "H4_1_FGL_FinalSelectedCarrierGapSoundness"
+  ],
+  "remaining_frontier": "none inside selected-domain H4.1/FGL observation-to-gap/soundness bridge",
+  "does_not_claim": [
+    "arbitrary semantic final-carrier closure",
+    "separating-observable existence for arbitrary semantic final carriers",
+    "unrestricted H4.1/FGL closure",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "P vs NP closure",
+    "Clay-problem closure"
+  ]
+}
