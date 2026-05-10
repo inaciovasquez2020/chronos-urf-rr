@@ -1,0 +1,23 @@
+{
+  "artifact": "H4_1_FGL_ObservationExtractionWitnessInterface",
+  "date": "2026-05-10",
+  "status": "WITNESS_INTERFACE_ONLY",
+  "classification": "REDUCTION_INTERFACE",
+  "input_frontier": "H4_1_FGL_FinalCarrierObservationExtraction",
+  "new_weakest_missing_object": "H4_1_FGL_MissingObservationExtractionWitness",
+  "required_witness_fields": [
+    "selected_final_carrier_domain",
+    "observation_map_exists",
+    "observation_separates_final_carrier_gap",
+    "observation_preserves_selected_carrier_soundness"
+  ],
+  "does_not_claim": [
+    "construction of the observation-extraction witness",
+    "final selected-carrier soundness proof",
+    "unrestricted H4.1/FGL closure",
+    "UniversalFiberEntropyGap theorem",
+    "Chronos-RR closure",
+    "P vs NP closure",
+    "Clay-problem closure"
+  ]
+}
