@@ -1,0 +1,34 @@
+{
+  "artifact": "h4_1_fgl_final_carrier_extraction_closed",
+  "date": "2026-05-10",
+  "status": "H4_1_FGL_FINAL_CARRIER_EXTRACTION_CLOSED",
+  "lean_modules": [
+    "Chronos.Frontier.FinalCarrierObservationExtraction",
+    "Chronos.Frontier.H4_1_FGL_FinalCarrierExtractionClosed"
+  ],
+  "exported_theorems": [
+    "H4_1_FGL_final_carrier_extraction_closed",
+    "H4_1_FGL_final_carrier_gap_soundness_surface",
+    "H4_1_FGL_final_carrier_fiber_entropy_surface",
+    "H4_1_FGL_final_carrier_depth_bridge_surface"
+  ],
+  "closed_surface": [
+    "unrestricted admissible predicate",
+    "final carrier observation extraction",
+    "selected-domain gap soundness",
+    "selected-domain fiber entropy gap",
+    "selected-domain depth-bridge admissibility"
+  ],
+  "remaining_frontiers": [
+    "UniversalFiberEntropyGap theorem",
+    "DepthBridge beyond selected final carrier domain",
+    "Chronos-RR theorem promotion"
+  ],
+  "boundary": {
+    "p_vs_np": false,
+    "clay_problem": false,
+    "unrestricted_h4_1_fgl": false,
+    "universal_fiber_entropy_gap": false,
+    "chronos_rr_theorem": false
+  }
+}
