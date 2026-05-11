@@ -1,0 +1,45 @@
+{
+  "artifact": "repository_native_zero_arity_guarded_fields",
+  "date": "2026-05-11",
+  "status": "FRONTIER_OPEN / GUARDED_INTERFACE_FIELDS_ONLY",
+  "claim": "The eight missing active-native fields are packaged as guarded obligations and shown sufficient to assemble RepositoryNativeZeroArityInterface.",
+  "detected_prerequisite_fields": [
+    "Carrier",
+    "Registry",
+    "arity",
+    "carrierRegistry"
+  ],
+  "guarded_missing_fields": [
+    "registryGenerates",
+    "finiteRegistry",
+    "representedZeroArityRegistryPair",
+    "isFiniteRepresentedAtom",
+    "carrierRegistryGenerates",
+    "finiteRegistryCarrier",
+    "representedZeroArityOfArityZero",
+    "finiteRepresentedAtomOfFiniteRegistry"
+  ],
+  "proved_in_this_artifact": [
+    "toRepositoryNativeZeroArityInterface",
+    "guarded_fields_imply_zero_arity_carrier_exhaustiveness"
+  ],
+  "not_proved_in_this_artifact": [
+    "active Chronos Carrier/Registry instantiation",
+    "registryGenerates for active native objects",
+    "finiteRegistry for active native objects",
+    "representedZeroArityRegistryPair for active native objects",
+    "isFiniteRepresentedAtom for active native objects",
+    "unrestricted Chronos-RR closure",
+    "H4.1/FGL closure",
+    "UniversalFiberEntropyGap closure",
+    "P vs NP closure",
+    "Clay-problem closure"
+  ],
+  "theorem_level_closure": false,
+  "active_native_instantiation": false,
+  "unrestricted_chronos_rr_closure": false,
+  "h4_1_fgl_closure": false,
+  "universal_fiber_entropy_gap_closure": false,
+  "p_vs_np_closure": false,
+  "clay_problem_closure": false
+}
