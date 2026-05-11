@@ -12,6 +12,7 @@ SKIP_FILES = {
     "Chronos/Frontier/ZeroArityCarrierExhaustivenessConditional.lean",
     "Chronos/Frontier/RepositoryNativeZeroArityCarrierMigrationTarget.lean",
     "Chronos/Frontier/RepositoryNativeZeroArityInterfaceAudit.lean",
+    "Chronos/Frontier/RepositoryNativeZeroArityGuardedFields.lean",
 }
 
 FIELD_PATTERNS = {
