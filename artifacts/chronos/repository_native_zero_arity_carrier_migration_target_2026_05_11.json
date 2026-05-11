@@ -1,0 +1,27 @@
+{
+  "artifact": "repository_native_zero_arity_carrier_migration_target",
+  "date": "2026-05-11",
+  "status": "FRONTIER_OPEN / REPOSITORY_NATIVE_INTERFACE_REDUCTION_ONLY",
+  "claim": "Zero-arity carrier exhaustiveness reduces to a repository-native interface with explicit Carrier, Registry, arity, generation, finiteness, representation, and finite-atom obligations.",
+  "proved_in_this_artifact": [
+    "zero_arity_carrier_exhaustiveness_from_repository_native_interface"
+  ],
+  "not_proved_in_this_artifact": [
+    "repository-native Carrier satisfies the interface",
+    "repository-native Registry satisfies the interface",
+    "repository-native finiteRegistryCarrier",
+    "repository-native representedZeroArityOfArityZero",
+    "repository-native finiteRepresentedAtomOfFiniteRegistry",
+    "unrestricted Chronos-RR closure",
+    "H4.1/FGL closure",
+    "UniversalFiberEntropyGap closure",
+    "P vs NP closure",
+    "Clay-problem closure"
+  ],
+  "theorem_level_closure": false,
+  "unrestricted_chronos_rr_closure": false,
+  "h4_1_fgl_closure": false,
+  "universal_fiber_entropy_gap_closure": false,
+  "p_vs_np_closure": false,
+  "clay_problem_closure": false
+}
