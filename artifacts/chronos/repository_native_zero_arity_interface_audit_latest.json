@@ -29,6 +29,7 @@
       "Chronos/Frontier/RealChronosAdmissible.lean",
       "Chronos/Frontier/RepositoryNativeChronosCarrierBridge.lean",
       "Chronos/Frontier/RepositoryNativeImageCoverageCounterexample.lean",
+      "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeSemanticTrace.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFClosure.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFFrontier.lean",
@@ -57,6 +58,7 @@
       "Chronos/Frontier/RepositoryNativeChronosCarrierBridge.lean",
       "Chronos/Frontier/RepositoryNativeImageCoverageCounterexample.lean",
       "Chronos/Frontier/RepositoryNativeImageCoverageFrontier.lean",
+      "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFClosure.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFFrontier.lean",
       "Chronos/Frontier/SelectedCarrierRegSNFDownstreamBridge.lean",
@@ -68,12 +70,13 @@
     "finiteRegistryCarrier": [],
     "finiteRepresentedAtomOfFiniteRegistry": [],
     "isFiniteRepresentedAtom": [],
-    "registryGenerates": [],
+    "registryGenerates": [
+      "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean"
+    ],
     "representedZeroArityOfArityZero": [],
     "representedZeroArityRegistryPair": []
   },
   "missing_fields": [
-    "registryGenerates",
     "finiteRegistry",
     "representedZeroArityRegistryPair",
     "isFiniteRepresentedAtom",
