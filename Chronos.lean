@@ -121,3 +121,4 @@ import Chronos.Frontier.H4_1_FGL_FinalCarrierExtractionClosed
 import Chronos.Frontier.PostFinalCarrierRemainingFrontiers
 import Chronos.Frontier.UniversalFiberEntropyGapNativeObligations
 import Chronos.Frontier.RankRateGapAxiomaticBridge
+import Chronos.Frontier.DepthBridgeBeyondSelectedFinalCarrierDomain
