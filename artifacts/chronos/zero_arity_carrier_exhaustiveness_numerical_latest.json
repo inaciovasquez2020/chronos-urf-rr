@@ -1,0 +1,25 @@
+{
+  "boundary": "finite toy-model sanity check only; no unrestricted Chronos-RR closure",
+  "failures": [],
+  "status": "NUMERICAL_SANITY_ONLY",
+  "tested_carriers": [
+    {
+      "arity": 0,
+      "tag": "zero.unit"
+    },
+    {
+      "arity": 0,
+      "tag": "zero.empty"
+    },
+    {
+      "arity": 1,
+      "tag": "positive.unary"
+    },
+    {
+      "arity": 2,
+      "tag": "positive.binary"
+    }
+  ],
+  "theorem_level_closure": false,
+  "zero_arity_count": 2
+}
