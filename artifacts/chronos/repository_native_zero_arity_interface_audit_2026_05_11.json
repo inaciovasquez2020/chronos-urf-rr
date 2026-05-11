@@ -1,0 +1,27 @@
+{
+  "artifact": "repository_native_zero_arity_interface_audit",
+  "date": "2026-05-11",
+  "status": "FRONTIER_OPEN / ACTIVE_NATIVE_INTERFACE_AUDIT_ONLY",
+  "claim": "Audit target for identifying whether active repository-native Carrier/Registry symbols are available to instantiate RepositoryNativeZeroArityInterface.",
+  "required_fields": [
+    "Carrier",
+    "Registry",
+    "arity",
+    "carrierRegistry",
+    "registryGenerates",
+    "finiteRegistry",
+    "representedZeroArityRegistryPair",
+    "isFiniteRepresentedAtom",
+    "carrierRegistryGenerates",
+    "finiteRegistryCarrier",
+    "representedZeroArityOfArityZero",
+    "finiteRepresentedAtomOfFiniteRegistry"
+  ],
+  "weakest_missing_object": "active repository-native instantiation of RepositoryNativeZeroArityInterface",
+  "theorem_level_closure": false,
+  "unrestricted_chronos_rr_closure": false,
+  "h4_1_fgl_closure": false,
+  "universal_fiber_entropy_gap_closure": false,
+  "p_vs_np_closure": false,
+  "clay_problem_closure": false
+}
