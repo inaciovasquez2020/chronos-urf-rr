@@ -122,3 +122,4 @@ import Chronos.Frontier.PostFinalCarrierRemainingFrontiers
 import Chronos.Frontier.UniversalFiberEntropyGapNativeObligations
 import Chronos.Frontier.RankRateGapAxiomaticBridge
 import Chronos.Frontier.DepthBridgeBeyondSelectedFinalCarrierDomain
+import Chronos.Frontier.ZeroArityCarrierExhaustivenessConditional

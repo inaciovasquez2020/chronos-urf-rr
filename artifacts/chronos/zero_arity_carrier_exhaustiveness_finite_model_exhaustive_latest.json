@@ -1,0 +1,26 @@
+{
+  "boundary": "exhaustive proof over the declared finite toy universe only; no unrestricted Chronos-RR closure",
+  "failures": [],
+  "finite_universe": {
+    "arity_values": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "carrier_count": 832,
+    "tag_count": 64
+  },
+  "status": "FINITE_MODEL_EXHAUSTIVE_PROOF_ONLY",
+  "theorem_level_closure": false,
+  "zero_arity_count": 64
+}

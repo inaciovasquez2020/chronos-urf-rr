@@ -1,0 +1,25 @@
+{
+  "artifact": "zero_arity_carrier_exhaustiveness_conditional",
+  "date": "2026-05-11",
+  "status": "CONDITIONAL_SURFACE_ONLY",
+  "claim": "ZeroArityCarrierExhaustiveness is proved for the local CarrierData registry model.",
+  "theorem_level_closure": false,
+  "unrestricted_chronos_rr_closure": false,
+  "h4_1_fgl_closure": false,
+  "p_vs_np_closure": false,
+  "clay_problem_closure": false,
+  "remaining_unrestricted_inputs": [
+    "actual Carrier constructor exhaustiveness",
+    "actual RegistryGenerates source-of-truth",
+    "finite_registry_carrier for repository-native Registry",
+    "zero-arity representation for repository-native Carrier"
+  ],
+  "verified_surface": [
+    "Registry",
+    "RegistryGenerates",
+    "CarrierRegistryGeneration",
+    "ZeroArityRegistryRepresentation",
+    "RegistryGeneratedAtomsFinite",
+    "ZeroArityCarrierExhaustiveness"
+  ]
+}
