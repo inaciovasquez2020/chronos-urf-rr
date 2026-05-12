@@ -91,3 +91,4 @@ import Chronos.Frontier.ZeroArityExhaustivenessToRegSNFBridge
 import Chronos.Frontier.CurrentUnrestrictedRegSNFStatusLock
 import Chronos.Frontier.RepositoryNativeFiniteRegistryExhaustivenessBridge
 import Chronos.Frontier.RepositoryNativeFiniteRegistryExhaustivenessFromFintype
+import Chronos.Frontier.FinalCarrierGeneratedProjection
