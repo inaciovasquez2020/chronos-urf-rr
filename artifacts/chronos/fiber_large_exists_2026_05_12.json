@@ -1,0 +1,28 @@
+{
+  "artifact": "fiber_large_exists",
+  "date": "2026-05-12",
+  "status": "PROVED_COMBINATORIAL_LEMMA",
+  "lean_module": "Chronos.Frontier.FiberLargeExists",
+  "theorem": "Chronos.Frontier.fiber_large_exists",
+  "claim": "For finite types X and nonempty Y, if |X| >= |Y| * q^g for a map f : X -> Y, then some fiber has cardinality at least q^g.",
+  "proof_inputs": [
+    "q^g = 0 case handled separately",
+    "explicit sigma-fiber equivalence",
+    "Fintype.card_sigma",
+    "Fintype.card_congr",
+    "finite sum upper bound",
+    "Nat.pred_lt under q^g > 0"
+  ],
+  "theorem_level_closure": true,
+  "boundary": [
+    "combinatorial pigeonhole lemma only",
+    "does not prove RankRateGap",
+    "does not prove SemanticRankRateToFiberEntropySoundness",
+    "does not prove CountingFiberSeparation",
+    "does not prove FiberMassBalance",
+    "does not prove UniversalFiberEntropyGap",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP or Clay-problem closure"
+  ]
+}
