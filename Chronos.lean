@@ -26,91 +26,47 @@ import Chronos.ParityPair
 import Chronos.ParitySepProof
 import Chronos.XorReduce
 import Chronos.EP2Bundle
-
-
 import chronos.Certified.RepositoryNativeCertifiedDepth
 import Chronos.Frontier.DepthBridgeFiberGap
 import chronos.Frontier.FiberEntropyGapCertificate
-
 import chronos.Frontier.RegisteredRegSNFCore
-
 import chronos.Frontier.RegisteredNFDomination
-
 import chronos.Frontier.CarrierRegistryExhaustivenessBridge
-
-
-
-
 import Chronos.Frontier.RealChronosAdmissible
-
 import Chronos.Frontier.IntendedChronosAdmissibility
-
 import Chronos.Frontier.RepositoryNativeChronosCarrierBridge
-
 import Chronos.Frontier.TraceEquivalentCardinality
-
 import Chronos.Frontier.TraceEquivalentEquiv
-
 import Chronos.Frontier.RepositoryNativeSemanticTrace
-
 import Chronos.Frontier.RepositoryNativeTraceSyntax
-
 import Chronos.Frontier.OperationalTraceSyntax
-
 import Chronos.Frontier.OperationalTraceNormalizationLaws
-
 import Chronos.Frontier.OperationalTraceSemanticInterpretation
-
 import Chronos.Frontier.ErasingSemanticsIntended
-
 import Chronos.Frontier.CanonicalRepositoryNativeSemantics
-
 import Chronos.Frontier.CanonicalRepositoryNativeCarrierSelectionBridge
-
 import Chronos.Frontier.ConcreteRepositoryNativeCarrierSelectionBridge
-
 import Chronos.Frontier.ConcreteExportSemanticPreservation
-
 import Chronos.Frontier.OperationalTraceConstructorPreservation
-
 import Chronos.Frontier.ErasingCanonicalRepositoryNativeClosure
-
 import Chronos.Frontier.NonErasingOperationalTraceSemantics
-
 import Chronos.Frontier.NonErasingCanonicalRepositoryNativeClosure
-
 import Chronos.Frontier.NonErasingRegSNFImageBridge
-
 import Chronos.Frontier.RepositoryNativeImageCoverageFrontier
-
 import Chronos.Frontier.RepositoryNativeImageCoverageCounterexample
-
 import Chronos.Frontier.IntendedRepositoryNativeImageCoverage
-
 import Chronos.Frontier.PositiveArityRepositoryNativeCoverage
-
 import Chronos.Frontier.PositiveArityCoverageDecisionLock
-
 import Chronos.Frontier.FinalCarrierDomainDecision
-
 import Chronos.Frontier.SelectedCarrierRegSNFDownstreamBridge
-
 import Chronos.Frontier.SelectedCarrierDepthBridgeFiberGap
-
 import Chronos.Frontier.SelectedCarrierEntropyFunctional
-
 import Chronos.Frontier.SelectedCarrierNontrivialCountingFrontier
-
 import Chronos.Frontier.SelectedCarrierObservationDimensionExtraction
-
 import Chronos.Frontier.FiberEntropyGap
-
 import Chronos.Frontier.SemanticEntropyBridge
-
 import Chronos.Frontier.RealValuedShannonEntropyInequality
-
 import Chronos.Frontier.AnalyticEntropyFrontier
-
 import Chronos.Frontier.FiniteEntropySumFromLogKernel
 import Chronos.Frontier.H4_1_FGL_Bridge1Refutation
 import Chronos.Frontier.H4_1_FGL_RestrictedDomainReduction
@@ -130,3 +86,4 @@ import Chronos.Frontier.RepositoryNativeRegistryGeneratesInstantiation
 import Chronos.Frontier.RepositoryNativeFiniteRegistryInstantiation
 import Chronos.Frontier.RepositoryNativeRepresentedZeroArityRegistryPairInstantiation
 import Chronos.Frontier.RepositoryNativeIsFiniteRepresentedAtomInstantiation
+import Chronos.Frontier.RepositoryNativeZeroArityInterfaceClosure
