@@ -94,3 +94,4 @@ import Chronos.Frontier.RepositoryNativeFiniteRegistryExhaustivenessFromFintype
 import Chronos.Frontier.FinalCarrierGeneratedProjection
 \nimport Chronos.Frontier.RepositoryNativeFiniteRegistryExhaustivenessIndependent
 import Chronos.Frontier.NativeRankRateGapMissingBridge
+import Chronos.Frontier.NativeRankRateGapPropDataDegeneracy

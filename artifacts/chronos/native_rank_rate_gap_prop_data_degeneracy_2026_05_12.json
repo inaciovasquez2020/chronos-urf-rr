@@ -1,0 +1,24 @@
+{
+  "name": "NativeRankRateGapPropDataDegeneracy",
+  "date": "2026-05-12",
+  "status": "ENCODED_PROP_DATA_SURFACE_ONLY",
+  "lean_module": "Chronos.Frontier.NativeRankRateGapPropDataDegeneracy",
+  "proved_encoded_surface": [
+    "native_rank_rate_to_fiber_entropy_bridge_from_prop_data",
+    "chronos_native_rank_rate_gap_from_prop_data"
+  ],
+  "diagnosis": "CertifiedRankRateLowerBound and CertifiedFiberEntropyLowerBound currently store unconstrained Prop data, so the encoded bridge is constructible without semantic content.",
+  "new_missing_object": "semantic certificate soundness tying rank-rate certificates to fiber-entropy certificates",
+  "does_not_assert": [
+    "semantic NativeRankRateToFiberEntropyBridge",
+    "semantic RankRateGap",
+    "CountingFiberSeparation",
+    "FiberMassBalance",
+    "UniversalFiberEntropyGap",
+    "broader DepthBridge",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "Clay-problem closure"
+  ]
+}
