@@ -29,6 +29,7 @@
       "Chronos/Frontier/PositiveArityRepositoryNativeCoverage.lean",
       "Chronos/Frontier/RealChronosAdmissible.lean",
       "Chronos/Frontier/RepositoryNativeChronosCarrierBridge.lean",
+      "Chronos/Frontier/RepositoryNativeFiniteRegistryExhaustivenessIndependent.lean",
       "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeImageCoverageCounterexample.lean",
       "Chronos/Frontier/RepositoryNativeIsFiniteRepresentedAtomInstantiation.lean",
