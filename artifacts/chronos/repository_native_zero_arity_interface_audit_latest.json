@@ -32,6 +32,7 @@
       "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeImageCoverageCounterexample.lean",
       "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean",
+      "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeSemanticTrace.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFClosure.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFFrontier.lean",
@@ -62,6 +63,7 @@
       "Chronos/Frontier/RepositoryNativeImageCoverageCounterexample.lean",
       "Chronos/Frontier/RepositoryNativeImageCoverageFrontier.lean",
       "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean",
+      "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFClosure.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFFrontier.lean",
       "Chronos/Frontier/SelectedCarrierRegSNFDownstreamBridge.lean",
@@ -70,19 +72,22 @@
     ],
     "carrierRegistryGenerates": [],
     "finiteRegistry": [
-      "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean"
+      "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean",
+      "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean"
     ],
     "finiteRegistryCarrier": [],
     "finiteRepresentedAtomOfFiniteRegistry": [],
     "isFiniteRepresentedAtom": [],
     "registryGenerates": [
-      "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean"
+      "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean",
+      "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean"
     ],
     "representedZeroArityOfArityZero": [],
-    "representedZeroArityRegistryPair": []
+    "representedZeroArityRegistryPair": [
+      "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean"
+    ]
   },
   "missing_fields": [
-    "representedZeroArityRegistryPair",
     "isFiniteRepresentedAtom",
     "carrierRegistryGenerates",
     "finiteRegistryCarrier",
