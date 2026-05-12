@@ -1,0 +1,28 @@
+{
+  "name": "NativeRankRateSemanticCertificateSoundness",
+  "date": "2026-05-12",
+  "status": "FRONTIER_OPEN / SEMANTIC_CERTIFICATE_SOUNDNESS_INTERFACE_ONLY",
+  "lean_module": "Chronos.Frontier.NativeRankRateSemanticCertificateSoundness",
+  "weakest_missing_object": "SemanticRankRateToFiberEntropySoundness",
+  "sufficient_package": [
+    "EncodedRankRateCertificateSoundness",
+    "SemanticRankRateToFiberEntropySoundness",
+    "EncodedFiberEntropyCertificateRealization"
+  ],
+  "derives_encoded_surface": [
+    "NativeRankRateToFiberEntropyBridge",
+    "ChronosNativeRankRateGapTheorem"
+  ],
+  "does_not_assert": [
+    "SemanticRankRateToFiberEntropySoundness proof",
+    "semantic RankRateGap proof",
+    "CountingFiberSeparation",
+    "FiberMassBalance",
+    "UniversalFiberEntropyGap",
+    "broader DepthBridge",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "Clay-problem closure"
+  ]
+}

@@ -95,3 +95,4 @@ import Chronos.Frontier.FinalCarrierGeneratedProjection
 \nimport Chronos.Frontier.RepositoryNativeFiniteRegistryExhaustivenessIndependent
 import Chronos.Frontier.NativeRankRateGapMissingBridge
 import Chronos.Frontier.NativeRankRateGapPropDataDegeneracy
+import Chronos.Frontier.NativeRankRateSemanticCertificateSoundness
