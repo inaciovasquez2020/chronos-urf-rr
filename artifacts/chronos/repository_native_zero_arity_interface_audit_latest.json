@@ -16,7 +16,8 @@
     "Registry": [
       "Chronos/Frontier/IntendedChronosAdmissibility.lean",
       "Chronos/Frontier/RegisteredNFDomination.lean",
-      "Chronos/Frontier/RegisteredRegSNFCore.lean"
+      "Chronos/Frontier/RegisteredRegSNFCore.lean",
+      "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean"
     ],
     "arity": [
       "Chronos/Frontier/FinalCarrierDomainDecision.lean",
@@ -28,6 +29,7 @@
       "Chronos/Frontier/PositiveArityRepositoryNativeCoverage.lean",
       "Chronos/Frontier/RealChronosAdmissible.lean",
       "Chronos/Frontier/RepositoryNativeChronosCarrierBridge.lean",
+      "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeImageCoverageCounterexample.lean",
       "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeSemanticTrace.lean",
@@ -56,6 +58,7 @@
       "Chronos/Frontier/RegisteredNFDomination.lean",
       "Chronos/Frontier/RegisteredRegSNFCore.lean",
       "Chronos/Frontier/RepositoryNativeChronosCarrierBridge.lean",
+      "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeImageCoverageCounterexample.lean",
       "Chronos/Frontier/RepositoryNativeImageCoverageFrontier.lean",
       "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean",
@@ -66,7 +69,9 @@
       "Chronos/Frontier/ZeroPositiveRegSNFReduction.lean"
     ],
     "carrierRegistryGenerates": [],
-    "finiteRegistry": [],
+    "finiteRegistry": [
+      "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean"
+    ],
     "finiteRegistryCarrier": [],
     "finiteRepresentedAtomOfFiniteRegistry": [],
     "isFiniteRepresentedAtom": [],
@@ -77,7 +82,6 @@
     "representedZeroArityRegistryPair": []
   },
   "missing_fields": [
-    "finiteRegistry",
     "representedZeroArityRegistryPair",
     "isFiniteRepresentedAtom",
     "carrierRegistryGenerates",
