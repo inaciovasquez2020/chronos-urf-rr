@@ -1,0 +1,23 @@
+{
+  "artifact": "repository_native_finite_registry_exhaustiveness_independent",
+  "date": "2026-05-12",
+  "status": "INDEPENDENT_REDUCTION_WITH_FINITE_DOMAIN_AXIOM",
+  "proved_surfaces": [
+    "FinalCarrierDomain_repository_native_generated_independent",
+    "RepositoryNativeFiniteRegistryExhaustiveness_independent"
+  ],
+  "does_not_use": "RepositoryNativeFiniteRegistryExhaustiveness",
+  "remaining_axiom": "FinalCarrierDomain_fintype",
+  "theorem_level_closure": false,
+  "boundary": [
+    "does not use RepositoryNativeFiniteRegistryExhaustiveness",
+    "uses FinalCarrierDomain_fintype",
+    "does not prove finite-domain closure from raw constructors",
+    "does not prove unconditional UniversalFiberEntropyGap",
+    "does not prove broader DepthBridge",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay-problem closure"
+  ]
+}
