@@ -43,8 +43,7 @@ REQUIRED_DOC_TOKENS = [
 ]
 
 REQUIRED_MISSING_FIELDS = [
-        "isFiniteRepresentedAtom",
-    "carrierRegistryGenerates",
+        "carrierRegistryGenerates",
     "finiteRegistryCarrier",
     "representedZeroArityOfArityZero",
     "finiteRepresentedAtomOfFiniteRegistry",
