@@ -49,6 +49,7 @@
     ],
     "carrierRegistry": [
       "Chronos/Frontier/CarrierRegistryExhaustivenessBridge.lean",
+      "Chronos/Frontier/CurrentUnrestrictedRegSNFStatusLock.lean",
       "Chronos/Frontier/DepthBridgeBeyondSelectedFinalCarrierDomain.lean",
       "Chronos/Frontier/FinalCarrierDomainDecision.lean",
       "Chronos/Frontier/FinalCarrierObservationExtraction.lean",
