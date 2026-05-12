@@ -1,0 +1,27 @@
+{
+  "artifact": "semantic_rank_defect_controls_entropy_defect_frontier_2026_05_12",
+  "status": "FRONTIER_OPEN / WEAKEST_MISSING_QUANTITATIVE_LEMMA",
+  "proved": [
+    "conditional_rank_rate_gap_to_fiber_entropy_gap_from_semantic_control",
+    "rank_rate_gap_to_fiber_entropy_gap_on"
+  ],
+  "weakest_missing_theorem_level_input": "SemanticRankDefectControlsEntropyDefectOn",
+  "required_non_prop_content": [
+    "fiberSize",
+    "imageSize",
+    "rankDefect",
+    "entropyDefect"
+  ],
+  "boundary": [
+    "no RankRateGap proof",
+    "no SemanticRankRateToFiberEntropySoundness proof",
+    "no CountingFiberSeparation proof",
+    "no FiberMassBalance proof",
+    "no UniversalFiberEntropyGap proof",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs NP closure",
+    "no Clay-problem closure"
+  ],
+  "theorem_level_closure": false
+}
