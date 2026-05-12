@@ -96,3 +96,4 @@ import Chronos.Frontier.FinalCarrierGeneratedProjection
 import Chronos.Frontier.NativeRankRateGapMissingBridge
 import Chronos.Frontier.NativeRankRateGapPropDataDegeneracy
 import Chronos.Frontier.NativeRankRateSemanticCertificateSoundness
+import Chronos.Frontier.NativeRankRateSemanticPropDataDegeneracy

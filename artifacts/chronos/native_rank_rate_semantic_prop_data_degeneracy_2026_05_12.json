@@ -1,0 +1,28 @@
+{
+  "name": "NativeRankRateSemanticPropDataDegeneracy",
+  "date": "2026-05-12",
+  "status": "SEMANTIC_PROP_DATA_SURFACE_ONLY",
+  "lean_module": "Chronos.Frontier.NativeRankRateSemanticPropDataDegeneracy",
+  "proved_encoded_surface": [
+    "SemanticRankRateToFiberEntropySoundness",
+    "EncodedRankRateCertificateSoundness",
+    "EncodedFiberEntropyCertificateRealization",
+    "NativeRankRateSemanticCertificateSoundness",
+    "ChronosNativeRankRateGapTheorem"
+  ],
+  "diagnosis": "The current semantic certificate layer still stores only unconstrained Prop data, so semantic soundness is constructible without a non-Prop invariant.",
+  "new_missing_object": "non-Prop semantic invariant linking rank-rate structure to fiber-entropy structure",
+  "does_not_assert": [
+    "non-Prop semantic invariant",
+    "genuine SemanticRankRateToFiberEntropySoundness",
+    "semantic RankRateGap theorem",
+    "CountingFiberSeparation",
+    "FiberMassBalance",
+    "UniversalFiberEntropyGap",
+    "broader DepthBridge",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "Clay-problem closure"
+  ]
+}
