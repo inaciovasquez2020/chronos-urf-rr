@@ -1,5 +1,5 @@
 {
-  "all_required_fields_bound": false,
+  "all_required_fields_bound": true,
   "boundary": "static audit only; no active RepositoryNativeZeroArityInterface instantiation; no unrestricted Chronos-RR closure",
   "candidate_files": {
     "Carrier": [
@@ -35,6 +35,7 @@
       "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeSemanticTrace.lean",
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFClosure.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFFrontier.lean",
       "Chronos/Frontier/SelectedCarrierDepthBridgeFiberGap.lean",
@@ -65,39 +66,47 @@
       "Chronos/Frontier/RepositoryNativeImageCoverageFrontier.lean",
       "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean",
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFClosure.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFFrontier.lean",
       "Chronos/Frontier/SelectedCarrierRegSNFDownstreamBridge.lean",
       "Chronos/Frontier/UnrestrictedRegSNFDepthBridgeInterface.lean",
       "Chronos/Frontier/ZeroPositiveRegSNFReduction.lean"
     ],
-    "carrierRegistryGenerates": [],
+    "carrierRegistryGenerates": [
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
+    ],
     "finiteRegistry": [
       "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean",
-      "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean"
+      "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean",
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
     ],
-    "finiteRegistryCarrier": [],
-    "finiteRepresentedAtomOfFiniteRegistry": [],
+    "finiteRegistryCarrier": [
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
+    ],
+    "finiteRepresentedAtomOfFiniteRegistry": [
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
+    ],
     "isFiniteRepresentedAtom": [
-      "Chronos/Frontier/RepositoryNativeIsFiniteRepresentedAtomInstantiation.lean"
+      "Chronos/Frontier/RepositoryNativeIsFiniteRepresentedAtomInstantiation.lean",
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
     ],
     "registryGenerates": [
       "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean",
-      "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean"
+      "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean",
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
     ],
-    "representedZeroArityOfArityZero": [],
+    "representedZeroArityOfArityZero": [
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
+    ],
     "representedZeroArityRegistryPair": [
       "Chronos/Frontier/RepositoryNativeIsFiniteRepresentedAtomInstantiation.lean",
-      "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean"
+      "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean",
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
     ]
   },
-  "missing_fields": [
-    "carrierRegistryGenerates",
-    "finiteRegistryCarrier",
-    "representedZeroArityOfArityZero",
-    "finiteRepresentedAtomOfFiniteRegistry"
-  ],
+  "missing_fields": [],
   "status": "FRONTIER_OPEN / ACTIVE_NATIVE_INTERFACE_AUDIT_ONLY",
   "theorem_level_closure": false,
-  "weakest_missing_object": "active repository-native fields missing from static scan"
+  "weakest_missing_object": "none_detected_by_static_scan"
 }
