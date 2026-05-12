@@ -1,0 +1,20 @@
+{
+  "artifact": "current_unrestricted_reg_snf_status_lock",
+  "date": "2026-05-12",
+  "status": "CURRENT_REAL_CHRONOS_ADMISSIBLE_REG_SNF_CLOSED / SELECTED_DEPTHBRIDGE_ONLY",
+  "closed_objects": [
+    "RepresentedZeroArityRegSNF",
+    "current real Chronos-admissible unrestricted Reg-SNF",
+    "selected DepthBridge interface reachability"
+  ],
+  "boundary": [
+    "selected DepthBridge interface only",
+    "no UniversalFiberEntropyGap closure",
+    "no DepthBridge extension beyond selected final carrier domain",
+    "no Chronos-RR theorem-level closure",
+    "no H4.1/FGL theorem-level closure",
+    "no P vs NP closure",
+    "no Clay-problem closure"
+  ],
+  "theorem_level_closure": false
+}
