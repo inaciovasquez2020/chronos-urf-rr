@@ -41,6 +41,7 @@
       "Chronos/Frontier/SelectedCarrierDepthBridgeFiberGap.lean",
       "Chronos/Frontier/SelectedCarrierObservationDimensionExtraction.lean",
       "Chronos/Frontier/TraceEquivalentCardinality.lean",
+      "Chronos/Frontier/ZeroArityExhaustivenessToRegSNFBridge.lean",
       "Chronos/Frontier/ZeroArityRegistryReduction.lean",
       "Chronos/Frontier/ZeroArityRepresentation.lean",
       "Chronos/Frontier/ZeroPositiveCarrierCaseSplit.lean",
@@ -71,6 +72,7 @@
       "Chronos/Frontier/RepresentedZeroArityRegSNFFrontier.lean",
       "Chronos/Frontier/SelectedCarrierRegSNFDownstreamBridge.lean",
       "Chronos/Frontier/UnrestrictedRegSNFDepthBridgeInterface.lean",
+      "Chronos/Frontier/ZeroArityExhaustivenessToRegSNFBridge.lean",
       "Chronos/Frontier/ZeroPositiveRegSNFReduction.lean"
     ],
     "carrierRegistryGenerates": [
@@ -79,7 +81,8 @@
     "finiteRegistry": [
       "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean",
-      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean",
+      "Chronos/Frontier/ZeroArityExhaustivenessToRegSNFBridge.lean"
     ],
     "finiteRegistryCarrier": [
       "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
@@ -89,12 +92,14 @@
     ],
     "isFiniteRepresentedAtom": [
       "Chronos/Frontier/RepositoryNativeIsFiniteRepresentedAtomInstantiation.lean",
-      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean",
+      "Chronos/Frontier/ZeroArityExhaustivenessToRegSNFBridge.lean"
     ],
     "registryGenerates": [
       "Chronos/Frontier/RepositoryNativeRegistryGeneratesInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean",
-      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean",
+      "Chronos/Frontier/ZeroArityExhaustivenessToRegSNFBridge.lean"
     ],
     "representedZeroArityOfArityZero": [
       "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
@@ -102,7 +107,8 @@
     "representedZeroArityRegistryPair": [
       "Chronos/Frontier/RepositoryNativeIsFiniteRepresentedAtomInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeRepresentedZeroArityRegistryPairInstantiation.lean",
-      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean"
+      "Chronos/Frontier/RepositoryNativeZeroArityInterfaceClosure.lean",
+      "Chronos/Frontier/ZeroArityExhaustivenessToRegSNFBridge.lean"
     ]
   },
   "missing_fields": [],

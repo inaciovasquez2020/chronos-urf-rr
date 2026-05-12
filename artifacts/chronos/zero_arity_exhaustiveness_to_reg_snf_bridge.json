@@ -1,0 +1,22 @@
+{
+  "artifact": "zero_arity_exhaustiveness_to_reg_snf_bridge",
+  "date": "2026-05-12",
+  "status": "FRONTIER_OPEN / ZERO_ARITY_EXHAUSTIVENESS_TO_REPRESENTED_REG_SNF_BRIDGE_REQUIRED",
+  "closed_input": "RepositoryNativeZeroArityInterface implies ZeroArityCarrierExhaustiveness",
+  "remaining_bridge": "ZeroArityExhaustivenessToRepresentedZeroArityRegSNFBridge",
+  "conditional_outputs": [
+    "RepresentedZeroArityRegSNF",
+    "unrestricted Reg-SNF over real Chronos-admissible carriers"
+  ],
+  "theorem_level_closure": false,
+  "non_claims": [
+    "no proof of represented zero-arity Reg-SNF",
+    "no unconditional unrestricted Reg-SNF",
+    "no UniversalFiberEntropyGap",
+    "no DepthBridge extension beyond selected final carrier domain",
+    "no Chronos-RR theorem-level closure",
+    "no H4.1/FGL theorem-level closure",
+    "no P vs NP",
+    "no Clay-problem closure"
+  ]
+}
