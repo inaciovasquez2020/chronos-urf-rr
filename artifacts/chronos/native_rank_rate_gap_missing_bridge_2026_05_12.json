@@ -1,0 +1,20 @@
+{
+  "name": "NativeRankRateGapMissingBridge",
+  "date": "2026-05-12",
+  "status": "FRONTIER_OPEN / WEAKEST_MISSING_BRIDGE_ONLY",
+  "lean_module": "Chronos.Frontier.NativeRankRateGapMissingBridge",
+  "weakest_missing_object": "NativeRankRateToFiberEntropyBridge",
+  "equivalence": "ChronosNativeRankRateGapTheorem iff NativeRankRateToFiberEntropyBridge",
+  "does_not_assert": [
+    "NativeRankRateToFiberEntropyBridge proof",
+    "unconditional ChronosNativeRankRateGapTheorem",
+    "CountingFiberSeparation",
+    "FiberMassBalance",
+    "UniversalFiberEntropyGap",
+    "broader DepthBridge",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "Clay-problem closure"
+  ]
+}
