@@ -1,0 +1,16 @@
+{
+  "artifact": "semantic_rank_rate_coverage_realization",
+  "date": "2026-05-13",
+  "status": "FRONTIER_OPEN / REALIZATION_FRONTIER_ONLY",
+  "weakest_missing_object": "SemanticRankRateCoverageRealization",
+  "input_frontier": "FinalCarrierSemanticRankRateCoverage",
+  "proved_reduction": "SemanticRankRateCoverageRealization -> FinalCarrierSemanticRankRateCoverage",
+  "theorem_level_closure": false,
+  "boundary": [
+    "No unrestricted UniversalFiberEntropyGap theorem",
+    "No Chronos-RR",
+    "No H4.1/FGL",
+    "No P vs NP",
+    "No Clay closure"
+  ]
+}
