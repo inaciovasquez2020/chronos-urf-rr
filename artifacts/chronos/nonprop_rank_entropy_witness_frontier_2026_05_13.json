@@ -1,0 +1,30 @@
+{
+  "artifact": "nonprop_rank_entropy_witness_frontier",
+  "date": "2026-05-13",
+  "status": "FRONTIER_OPEN / WEAKEST_MISSING_NONPROP_WITNESS_ONLY",
+  "frontier_open_preserved": true,
+  "theorem_level_closure": false,
+  "lean_module": "Chronos.Frontier.NonPropRankEntropyWitnessFrontier",
+  "new_nonprop_carrier": "RankEntropyWitness",
+  "nonprop_fields": [
+    "fiber",
+    "rankMass",
+    "entropyMass"
+  ],
+  "bridge": {
+    "source": "NonPropRankEntropyWitnessFrontier",
+    "target": "SemanticRankRateToFiberEntropySoundness",
+    "theorem": "bridge_soundness_from_nonPropRankEntropyWitness",
+    "conditional": true
+  },
+  "weakest_missing_object": "NonPropRankEntropyWitnessFrontier",
+  "boundary": [
+    "FRONTIER_OPEN is preserved.",
+    "This records the weakest missing non-Prop witness object only.",
+    "No unrestricted UniversalFiberEntropyGap theorem is claimed.",
+    "No Chronos-RR theorem closure is claimed.",
+    "No H4.1/FGL closure is claimed.",
+    "No P vs NP closure is claimed.",
+    "No Clay-problem closure is claimed."
+  ]
+}
