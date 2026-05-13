@@ -112,3 +112,5 @@ import Chronos.Frontier.SemanticRankRateCoverageRealization
 import Chronos.Frontier.RepositoryNativeSemanticRankRateExhaustiveness
 
 import Chronos.Frontier.RepositoryNativeSemanticRankRateExhaustivenessRealization
+
+import Chronos.Frontier.RepositoryNativeRankAmbientDatum

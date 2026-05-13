@@ -1,0 +1,8 @@
+{
+  "carrierId": 0,
+  "index": 0,
+  "rank": 1,
+  "ambient": 1,
+  "scope": "repository-native rank/ambient datum for conditional data-surface verification only",
+  "boundary": "This source datum is not a theorem-level proof of mathematical Chronos semantics."
+}
