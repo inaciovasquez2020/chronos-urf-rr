@@ -1,0 +1,37 @@
+{
+  "artifact": "rank_entropy_witness_two_obligation_reduction",
+  "date": "2026-05-13",
+  "status": "FRONTIER_OPEN / TWO_OBLIGATION_REDUCTION_ONLY",
+  "frontier_open_preserved": true,
+  "theorem_level_closure": false,
+  "lean_module": "Chronos.Frontier.RankEntropyWitnessTwoObligationReduction",
+  "reduction": {
+    "from": [
+      "LiveRankEntropyWitnessSelector",
+      "RankEntropyWitnessBridgeLaw"
+    ],
+    "to": [
+      "NonPropRankEntropyWitnessFrontier",
+      "SemanticRankRateToFiberEntropySoundness"
+    ],
+    "theorems": [
+      "nonPropRankEntropyWitnessFrontier_from_selector_and_bridge",
+      "semanticRankRateToFiberEntropySoundness_from_selector_and_bridge"
+    ]
+  },
+  "remaining_obligations": [
+    "LiveRankEntropyWitnessSelector",
+    "RankEntropyWitnessBridgeLaw"
+  ],
+  "boundary": [
+    "FRONTIER_OPEN is preserved.",
+    "This is a two-obligation reduction only.",
+    "No LiveRankEntropyWitnessSelector theorem is claimed.",
+    "No RankEntropyWitnessBridgeLaw theorem is claimed.",
+    "No unrestricted UniversalFiberEntropyGap theorem is claimed.",
+    "No Chronos-RR theorem closure is claimed.",
+    "No H4.1/FGL closure is claimed.",
+    "No P vs NP closure is claimed.",
+    "No Clay-problem closure is claimed."
+  ]
+}
