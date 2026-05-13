@@ -1,3 +1,4 @@
+import Chronos.Frontier.ChronosRRRepositoryNativeConditionalClosure
 import Chronos.Frontier.DepthBridgeFromRepositoryNativeUniversalGap
 import Chronos.Frontier.UniversalFiberEntropyGapFromNonPropSoundness
 import Chronos.Frontier.NonPropSemanticRankRateToFiberEntropySoundness
