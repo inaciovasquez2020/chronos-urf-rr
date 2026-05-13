@@ -1,0 +1,23 @@
+{
+  "artifact": "native_semantic_rank_rate_certificate_witness_solved",
+  "date": "2026-05-13",
+  "status": "SOLVED_PROP_FIELD_WITNESS",
+  "proved": [
+    "Chronos.Frontier.native_semantic_rank_rate_certificate_exists",
+    "Chronos.Frontier.RepositoryNativeSemanticRankRateExhaustiveness_solved"
+  ],
+  "witness_n": 0,
+  "witness_field": "True",
+  "axioms_introduced": 0,
+  "admits_introduced": 0,
+  "sorries_introduced": 0,
+  "boundary": [
+    "current SemanticRankRateCertificate stores Prop data only",
+    "does not prove SemanticRankRateToFiberEntropySoundness",
+    "does not prove UniversalFiberEntropyGap",
+    "does not prove Chronos-RR closure",
+    "does not prove H4.1/FGL closure",
+    "does not prove P vs NP closure",
+    "does not prove any Clay-problem closure"
+  ]
+}
