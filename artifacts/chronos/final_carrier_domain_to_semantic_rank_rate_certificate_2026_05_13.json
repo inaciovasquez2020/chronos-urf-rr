@@ -1,0 +1,29 @@
+{
+  "object": "FinalCarrierDomain_to_native_SemanticRankRateCertificate_exists",
+  "date": "2026-05-13",
+  "status": "CONDITIONAL_IMPORTER_ONLY",
+  "theorem_level_closure": false,
+  "conditional_on": [
+    "RepositoryNativeSemanticRankRateExhaustiveness"
+  ],
+  "proved_surface": [
+    "FinalCarrierDomain_to_RepositoryNativeSemanticRankRateDomain",
+    "FinalCarrierDomain_to_native_SemanticRankRateCertificate_exists"
+  ],
+  "missing_objects": [
+    "RepositoryNativeSemanticRankRateExhaustiveness_proved",
+    "per-carrier SemanticRankRateCertificate c type bridge",
+    "SemanticRankRateToFiberEntropySoundness",
+    "UniversalFiberEntropyGap"
+  ],
+  "boundary": [
+    "no proof of RepositoryNativeSemanticRankRateExhaustiveness",
+    "no per-carrier SemanticRankRateCertificate theorem",
+    "no unconditional SemanticRankRateCertificate theorem",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs NP closure",
+    "no Clay-problem closure"
+  ]
+}
