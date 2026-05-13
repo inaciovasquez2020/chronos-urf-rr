@@ -1,3 +1,4 @@
+import Chronos.Frontier.LiveRankEntropyWitnessSelectorSurface
 import Chronos.Frontier.RankEntropyWitnessTwoObligationReduction
 import Chronos.Frontier.NonPropRankEntropyWitnessFrontier
 import Chronos.Frontier.FiberLargeExistsCertifiedSurface
