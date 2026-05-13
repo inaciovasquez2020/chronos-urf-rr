@@ -1,3 +1,4 @@
+import Chronos.Frontier.UnrestrictedChronosRRStatusLock
 import Chronos.Frontier.UnrestrictedChronosRRObstructionRegistry
 import Chronos.Frontier.ChronosRRRepositoryNativeConditionalClosure
 import Chronos.Frontier.DepthBridgeFromRepositoryNativeUniversalGap
