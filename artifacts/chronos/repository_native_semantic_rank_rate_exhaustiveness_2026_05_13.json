@@ -1,0 +1,18 @@
+{
+  "artifact": "repository_native_semantic_rank_rate_exhaustiveness",
+  "date": "2026-05-13",
+  "status": "FRONTIER_OPEN / EXHAUSTIVENESS_FRONTIER_ONLY",
+  "weakest_missing_object": "RepositoryNativeSemanticRankRateExhaustiveness",
+  "carrier": "ChronosCarrierData",
+  "domain": "FinalCarrierDomain",
+  "repository_native_rank_rate_domain": "RepositoryNativeSemanticRankRateDomain",
+  "proved_reduction": "RepositoryNativeSemanticRankRateExhaustivenessRealization -> SemanticRankRateCoverageRealization",
+  "theorem_level_closure": false,
+  "boundary": [
+    "No unrestricted UniversalFiberEntropyGap theorem",
+    "No Chronos-RR",
+    "No H4.1/FGL",
+    "No P vs NP",
+    "No Clay closure"
+  ]
+}
