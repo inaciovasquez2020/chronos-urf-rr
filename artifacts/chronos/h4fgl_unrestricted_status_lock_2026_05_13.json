@@ -1,0 +1,24 @@
+{
+  "artifact": "h4fgl_unrestricted_status_lock",
+  "date": "2026-05-13",
+  "status": "H4FGL_UNRESTRICTED_FRONTIER_OPEN_LOCKED",
+  "lean_file": "Chronos/Frontier/H4FGLUnrestrictedStatusLock.lean",
+  "status_marker": "h4FGLUnrestrictedStatusLock",
+  "main_theorem": "h4fgl_unrestricted_status_lock_from_chronos_rr_status_lock",
+  "canonical_witness": "canonical_repository_native_chronos_rr_conditional_closure_preserves_h4fgl_open_status",
+  "dependency": "unrestricted_chronos_rr_status_lock_from_obstruction_registry",
+  "new_axiom": false,
+  "new_admit": false,
+  "new_sorry": false,
+  "boundary": [
+    "Locks unrestricted H4.1/FGL status as FRONTIER_OPEN while unrestricted Chronos-RR remains locked open.",
+    "Repository-native Chronos-RR conditional closure does not promote unrestricted H4.1/FGL status.",
+    "Does not prove unrestricted H4.1/FGL closure.",
+    "Does not prove unrestricted Chronos-RR closure.",
+    "Does not prove unrestricted DepthBridge.",
+    "Does not prove unrestricted UniversalFiberEntropyGap.",
+    "Does not prove SemanticRankRateToFiberEntropySoundness.",
+    "Does not prove P vs NP closure.",
+    "Does not prove any Clay-problem closure."
+  ]
+}
