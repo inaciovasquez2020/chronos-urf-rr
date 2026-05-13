@@ -1,0 +1,33 @@
+{
+  "object": "RepositoryNativeSemanticRankRateExhaustiveness_from_global_certificate",
+  "date": "2026-05-13",
+  "status": "CONDITIONAL_REDUCTION_ONLY",
+  "theorem_level_closure": false,
+  "proved_surface": [
+    "RepositoryNativeSemanticRankRateExhaustiveness_from_global_certificate"
+  ],
+  "conditional_on": [
+    "native_semantic_rank_rate_certificate_exists"
+  ],
+  "minimal_missing_object": "native_semantic_rank_rate_certificate_exists",
+  "minimal_missing_statement": "exists n : Nat, SemanticRankRateCertificate ChronosNativeCarrierFamily n",
+  "boundary": [
+    "no global certificate is constructed here",
+    "no proof of native_semantic_rank_rate_certificate_exists",
+    "no unconditional RepositoryNativeSemanticRankRateExhaustiveness",
+    "no unconditional SemanticRankRateCertificate",
+    "no SemanticRankRateToFiberEntropySoundness",
+    "no UniversalFiberEntropyGap",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs NP closure",
+    "no Clay-problem closure"
+  ],
+  "files": [
+    "Chronos/Frontier/RepositoryNativeSemanticRankRateFromGlobalCertificate.lean",
+    "artifacts/chronos/repository_native_semantic_rank_rate_from_global_certificate_2026_05_13.json",
+    "docs/status/CHRONOS_REPOSITORY_NATIVE_SEMANTIC_RANK_RATE_FROM_GLOBAL_CERTIFICATE_2026_05_13.md",
+    "tools/verify_repository_native_semantic_rank_rate_from_global_certificate.py",
+    "tests/test_repository_native_semantic_rank_rate_from_global_certificate.py"
+  ]
+}
