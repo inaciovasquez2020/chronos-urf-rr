@@ -1,0 +1,37 @@
+{
+  "boundary": [
+    "Verified rank/ambient datum surface only",
+    "Metadata is not theorem-level source validity",
+    "Importer is not formalized in Lean",
+    "No unconditional SemanticRankRateCertificate",
+    "No unrestricted UniversalFiberEntropyGap theorem",
+    "No Chronos-RR",
+    "No H4.1/FGL",
+    "No P vs NP",
+    "No Clay closure"
+  ],
+  "lean_module": "Chronos.Frontier.RepositoryNativeRankAmbientDatum",
+  "record": {
+    "ambient": 1,
+    "carrierId": 0,
+    "extractorName": "verify_repository_native_rank_ambient_datum.py",
+    "extractorSha256": "07a9433a89adca510b027a6593a256b56f252fa82fc5ae68e64d729c17cfa3d1",
+    "index": 0,
+    "rank": 1,
+    "recordSha256": "ef3fbedeb013456f9df82a916d5a88f44a0cfe53ee0f185ace9bdc26d1d0ee63",
+    "sourcePath": "artifacts/chronos/repository_native_rank_ambient_source_2026_05_13.json",
+    "sourceSha256": "2ccd015c348834d2a9287c6688137da631f1a6f14697a127fd84912704638964"
+  },
+  "status": "CONDITIONAL / EXTERNAL_DATA_ASSUMPTION_ONLY",
+  "terminal_missing_object": "ChronosNativeRankAmbientDatumVerified",
+  "theorem_level_closure": false,
+  "verified_checks": [
+    "source file hash recorded",
+    "extractor file hash recorded",
+    "record canonical hash recorded",
+    "carrierId = 0",
+    "0 < ambient",
+    "0 < rank",
+    "rank <= ambient"
+  ]
+}
