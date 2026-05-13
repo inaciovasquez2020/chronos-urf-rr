@@ -1,0 +1,23 @@
+{
+  "artifact": "final_carrier_semantic_rank_rate_coverage",
+  "date": "2026-05-13",
+  "status": "FRONTIER_OPEN / COVERAGE_FRONTIER_ONLY",
+  "weakest_missing_object": "FinalCarrierSemanticRankRateCoverage",
+  "closed_chain_input": [
+    "FiberLargeExistsCertifiedSurface",
+    "NonPropRankEntropyWitnessFrontier",
+    "RankEntropyWitness two-obligation reduction",
+    "LiveRankEntropyWitnessSelector surface",
+    "RankEntropyWitnessBridgeLaw surface",
+    "repository-native SemanticRankRateToFiberEntropySoundness surface"
+  ],
+  "proved_reduction": "FinalCarrierSemanticRankRateCoverage -> UniversalFiberEntropyGap",
+  "theorem_level_closure": false,
+  "boundary": [
+    "No unrestricted UniversalFiberEntropyGap theorem",
+    "No Chronos-RR",
+    "No H4.1/FGL",
+    "No P vs NP",
+    "No Clay closure"
+  ]
+}

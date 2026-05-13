@@ -104,3 +104,5 @@ import chronos.Frontier.RegisteredNFDomination
 import chronos.Frontier.RegisteredRegSNFCore
 \nimport Chronos.Frontier.RepositoryNativeFiniteRegistryExhaustivenessIndependent
 import Chronos.Frontier.SemanticRankDefectControlsEntropyDefectFrontier
+
+import Chronos.Frontier.FinalCarrierSemanticRankRateCoverage
