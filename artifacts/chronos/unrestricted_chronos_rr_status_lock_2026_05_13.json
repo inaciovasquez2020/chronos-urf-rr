@@ -1,0 +1,24 @@
+{
+  "artifact": "unrestricted_chronos_rr_status_lock",
+  "date": "2026-05-13",
+  "status": "UNRESTRICTED_CHRONOS_RR_FRONTIER_OPEN_LOCKED",
+  "lean_file": "Chronos/Frontier/UnrestrictedChronosRRStatusLock.lean",
+  "status_marker": "unrestrictedChronosRRStatusLock",
+  "main_theorem": "unrestricted_chronos_rr_status_lock_from_obstruction_registry",
+  "canonical_witness": "canonical_repository_native_conditional_closure_preserves_unrestricted_open_status",
+  "dependency": "unrestricted_chronos_rr_obstruction_registry_nonempty",
+  "new_axiom": false,
+  "new_admit": false,
+  "new_sorry": false,
+  "boundary": [
+    "Locks unrestricted Chronos-RR status as FRONTIER_OPEN while the obstruction registry is nonempty.",
+    "Repository-native conditional closure does not promote unrestricted Chronos-RR status.",
+    "Does not prove unrestricted Chronos-RR closure.",
+    "Does not prove unrestricted DepthBridge.",
+    "Does not prove unrestricted UniversalFiberEntropyGap.",
+    "Does not prove SemanticRankRateToFiberEntropySoundness.",
+    "Does not prove H4.1/FGL closure.",
+    "Does not prove P vs NP closure.",
+    "Does not prove any Clay-problem closure."
+  ]
+}
