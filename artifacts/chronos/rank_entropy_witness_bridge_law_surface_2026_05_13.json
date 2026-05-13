@@ -1,0 +1,25 @@
+{
+  "artifact": "rank_entropy_witness_bridge_law_surface",
+  "date": "2026-05-13",
+  "status": "BRIDGE_SURFACE_CLOSED_ONLY",
+  "frontier_open_preserved_for_unrestricted_chronos": true,
+  "theorem_level_closure": false,
+  "lean_module": "Chronos.Frontier.RankEntropyWitnessBridgeLawSurface",
+  "closed_repository_native_surface": [
+    "RankEntropyWitnessBridgeLaw",
+    "SemanticRankRateToFiberEntropySoundness"
+  ],
+  "theorems": [
+    "rankEntropyWitnessBridgeLaw_surface",
+    "semanticRankRateToFiberEntropySoundness_repository_native_surface"
+  ],
+  "boundary": [
+    "RankEntropyWitnessBridgeLaw is closed only on the current repository-native formal surface.",
+    "SemanticRankRateToFiberEntropySoundness is closed only on the current repository-native formal surface.",
+    "This does not prove unrestricted UniversalFiberEntropyGap.",
+    "This does not prove Chronos-RR.",
+    "This does not close H4.1/FGL.",
+    "This does not prove P vs NP.",
+    "This does not solve any Clay problem."
+  ]
+}
