@@ -1,0 +1,22 @@
+{
+  "artifact": "depth_bridge_from_repository_native_universal_gap",
+  "date": "2026-05-13",
+  "status": "REPOSITORY_NATIVE_DEPTH_BRIDGE_WITNESS_SOLVED",
+  "lean_file": "Chronos/Frontier/DepthBridgeFromRepositoryNativeUniversalGap.lean",
+  "main_theorem": "repository_native_depth_bridge_from_universal_fiber_entropy_gap",
+  "canonical_witness": "canonical_repository_native_depth_bridge_witness",
+  "dependency": "repository_native_universal_fiber_entropy_gap_from_nonprop_soundness",
+  "new_axiom": false,
+  "new_admit": false,
+  "new_sorry": false,
+  "boundary": [
+    "Solves only the repository-native numerical depth-bridge witness surface.",
+    "Does not prove unrestricted DepthBridge.",
+    "Does not prove unrestricted UniversalFiberEntropyGap.",
+    "Does not prove SemanticRankRateToFiberEntropySoundness.",
+    "Does not prove Chronos-RR closure.",
+    "Does not prove H4.1/FGL closure.",
+    "Does not prove P vs NP closure.",
+    "Does not prove any Clay-problem closure."
+  ]
+}
