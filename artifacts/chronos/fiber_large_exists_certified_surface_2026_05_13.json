@@ -1,0 +1,22 @@
+{
+  "artifact": "fiber_large_exists_certified_surface",
+  "date": "2026-05-13",
+  "status": "CERTIFIED_SURFACE_ONLY",
+  "frontier_open_preserved": true,
+  "theorem_level_closure": false,
+  "depends_on": [
+    "Chronos.Frontier.FiberLargeExists"
+  ],
+  "certifies": [
+    "frontier_open_preserved",
+    "semanticRankRateToFiberEntropySoundness_conditional_only"
+  ],
+  "missing_object": "NonPropRankEntropyWitness",
+  "boundary": [
+    "No unrestricted UniversalFiberEntropyGap theorem is claimed.",
+    "No Chronos-RR theorem closure is claimed.",
+    "No H4.1/FGL closure is claimed.",
+    "No P vs NP closure is claimed.",
+    "No Clay-problem closure is claimed."
+  ]
+}
