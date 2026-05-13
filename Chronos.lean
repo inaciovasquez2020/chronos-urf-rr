@@ -106,3 +106,5 @@ import chronos.Frontier.RegisteredRegSNFCore
 import Chronos.Frontier.SemanticRankDefectControlsEntropyDefectFrontier
 
 import Chronos.Frontier.FinalCarrierSemanticRankRateCoverage
+
+import Chronos.Frontier.SemanticRankRateCoverageRealization
