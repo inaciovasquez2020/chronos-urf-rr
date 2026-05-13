@@ -110,3 +110,5 @@ import Chronos.Frontier.FinalCarrierSemanticRankRateCoverage
 import Chronos.Frontier.SemanticRankRateCoverageRealization
 
 import Chronos.Frontier.RepositoryNativeSemanticRankRateExhaustiveness
+
+import Chronos.Frontier.RepositoryNativeSemanticRankRateExhaustivenessRealization
