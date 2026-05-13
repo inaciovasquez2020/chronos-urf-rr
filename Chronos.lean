@@ -1,3 +1,4 @@
+import Chronos.Frontier.UniversalFiberEntropyGapFromNonPropSoundness
 import Chronos.Frontier.NonPropSemanticRankRateToFiberEntropySoundness
 import Chronos.Frontier.RankEntropyWitnessBridgeLawSurface
 import Chronos.Frontier.LiveRankEntropyWitnessSelectorSurface
