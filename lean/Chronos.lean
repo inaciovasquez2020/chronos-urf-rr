@@ -13,3 +13,5 @@ import Chronos.Frontier.FiberMassBalanceFromNonPropInvariant
 import Chronos.Frontier.UniversalFiberEntropyGapFromCountingAndMass
 
 import Chronos.Frontier.ChronosRRConditionalFromUniversalGap
+
+import Chronos.Frontier.LakeNativeNonPropInvariantConstruction
