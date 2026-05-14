@@ -1,0 +1,17 @@
+{
+  "artifact": "FO4PointwiseColapToCycleOverlapRank",
+  "date": "2026-05-14",
+  "status": "PLACEHOLDER_SURFACE_CLOSED_ONLY",
+  "closed_surface": [
+    "pointwise_colap_rank_bounds_cycle_overlap_rank",
+    "colap_rank_control_implies_bounded_cycle_overlap_rank_closed"
+  ],
+  "boundary": [
+    "Closes only the current placeholder surface where FO4ColapRankBoundedAt and CycleOverlapRankBoundedAt are Prop-level trivial predicates.",
+    "Does not prove graph-semantic PointwiseColapRankBoundsCycleOverlapRank.",
+    "Does not prove an unconditional graph-theoretic cycle-overlap-rank bound.",
+    "Does not prove rigidity closure.",
+    "Does not prove P vs NP.",
+    "Does not solve any Clay problem."
+  ]
+}
