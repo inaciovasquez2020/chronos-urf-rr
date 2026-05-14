@@ -1,0 +1,23 @@
+{
+  "artifact": "GraphSemanticColapCycleOverlapRankFrontier",
+  "date": "2026-05-14",
+  "status": "CONDITIONAL_GRAPH_SEMANTIC_NUMERIC_FRONTIER",
+  "closed_surface": [
+    "GraphSemanticFO4ColapRankBoundedAt",
+    "GraphSemanticCycleOverlapRankBoundedAt",
+    "GraphSemanticCycleOverlapRankDominatedByColapRank",
+    "graph_semantic_pointwise_colap_rank_bounds_cycle_overlap_rank",
+    "graph_semantic_colap_rank_control_implies_bounded_cycle_overlap_rank_from_domination"
+  ],
+  "remaining_frontier": [
+    "GraphSemanticCycleOverlapRankDominatedByColapRank"
+  ],
+  "boundary": [
+    "Conditional on numeric domination of cycle-overlap rank by Colap rank.",
+    "Does not prove GraphSemanticCycleOverlapRankDominatedByColapRank.",
+    "Does not prove an unconditional graph-theoretic cycle-overlap-rank bound.",
+    "Does not prove rigidity closure.",
+    "Does not prove P vs NP.",
+    "Does not solve any Clay problem."
+  ]
+}
