@@ -1,0 +1,40 @@
+
+{
+"artifact": "Vasquez Frontier AI Test Invitation",
+"date": "2026-05-14",
+"status": "PUBLIC_EVALUATION_INVITATION_ONLY",
+"canonical_case": "GraphSemanticCycleOverlapRankDominatedByColapRank",
+"gold_classification": "OPEN_PROBLEM_REQUIRED / NEGATIVE_UNRESTRICTED_RESULT",
+"gold_weakest_sufficient_missing_lemma": "For every admissible graph-semantic input X, cycleOverlapRank X <= colapRank X.",
+"results": [
+{
+"system": "DeepAI",
+"score": 4,
+"max_score": 6,
+"defect": "Treated the unrestricted statement as open even though the counterexample makes it false as stated."
+},
+{
+"system": "Claude",
+"score": 5,
+"max_score": 6,
+"defect": "Added extra open directions beyond the weakest sufficient missing lemma."
+},
+{
+"system": "Gemini",
+"score": 4,
+"max_score": 6,
+"defect": "Identified cycleOverlap_le_colap itself as the missing lemma instead of the quantified admissible-input domination lemma."
+}
+],
+"boundary": [
+"No P vs NP closure.",
+"No Clay-problem closure.",
+"No Chronos-RR closure.",
+"No H4.1/FGL closure.",
+"No UniversalFiberEntropyGap proof.",
+"No SemanticRankRateToFiberEntropySoundness proof.",
+"No unrestricted graph-semantic cycle-overlap domination.",
+"No unconditional graph-theoretic cycle-overlap-rank bound.",
+"No rigidity closure."
+]
+}

@@ -1,0 +1,27 @@
+{
+  "artifact": "Honest AI Frontier Test Protocol",
+  "date": "2026-05-14",
+  "status": "PUBLIC_EVALUATION_PROTOCOL_ONLY",
+  "honesty_rule": "Do not test an AI inside a conversation where it has already seen the gold answer, scoring rubric, prior model answers, expected failure modes, or repository verifier text.",
+  "current_chatgpt_test_status": "NOT_BLIND_CURRENT_SESSION_BIASED",
+  "fair_chatgpt_test_requires": [
+    "fresh chat",
+    "no prior gold answer",
+    "no prior model comparisons",
+    "no repository scoring file shown first",
+    "canonical blind prompt only"
+  ],
+  "gold_classification": "OPEN_PROBLEM_REQUIRED / NEGATIVE_UNRESTRICTED_RESULT",
+  "gold_weakest_sufficient_missing_lemma": "For every admissible graph-semantic input X, cycleOverlapRank X <= colapRank X.",
+  "boundary": [
+    "No P vs NP closure.",
+    "No Clay-problem closure.",
+    "No Chronos-RR closure.",
+    "No H4.1/FGL closure.",
+    "No UniversalFiberEntropyGap proof.",
+    "No SemanticRankRateToFiberEntropySoundness proof.",
+    "No unrestricted graph-semantic cycle-overlap domination.",
+    "No unconditional graph-theoretic cycle-overlap-rank bound.",
+    "No rigidity closure."
+  ]
+}
