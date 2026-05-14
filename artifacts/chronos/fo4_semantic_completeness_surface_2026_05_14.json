@@ -1,0 +1,23 @@
+{
+  "status": "SEMANTIC_COMPLETENESS_INTERFACE_CLOSED_ONLY",
+  "closed_surface": "semantic completeness interface for FO4 radius-R type codes",
+  "defined_objects": [
+    "FO4RadiusRNeighborhood",
+    "BoundedDegreeRadiusRNeighborhood",
+    "FO4SemanticTypeRealization",
+    "SemanticCompleteFO4RadiusRTypeCodes",
+    "FO4SemanticCompletenessHypothesis"
+  ],
+  "closed_theorems": [
+    "semanticCompletenessSurface_from_hypothesis"
+  ],
+  "next_missing_lemma": "SemanticCompletenessToColapRankControl: semantic completeness of FO4 radius-R type codes implies uniformly bounded ColapR rank.",
+  "boundary": [
+    "Defines semantic completeness interface only.",
+    "Does not prove semantic completeness from graph semantics.",
+    "Does not prove ColapR rank control.",
+    "Does not close rigidity.",
+    "Does not prove P vs NP.",
+    "Does not solve any Clay problem."
+  ]
+}
