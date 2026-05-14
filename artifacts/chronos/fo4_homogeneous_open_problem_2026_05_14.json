@@ -1,0 +1,13 @@
+{
+  "status": "OPEN_PROBLEM_REQUIRED",
+  "closed_surface": "FO4Homogeneous definition only",
+  "next_missing_object": "Colap_R(G) over F2",
+  "missing_lemma": "FO4-local indistinguishability under bounded degree implies uniformly bounded radius-R cycle-overlap rank.",
+  "boundary": [
+    "Defines FO4Homogeneous only.",
+    "Does not define Colap_R.",
+    "Does not prove finite FO4 radius-R type enumeration.",
+    "Does not prove bounded cycle-overlap rank.",
+    "Does not close rigidity."
+  ]
+}
