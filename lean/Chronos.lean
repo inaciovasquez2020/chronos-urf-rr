@@ -7,3 +7,5 @@ import Chronos.EP2Bundle
 import Chronos.Frontier.FiberLargeFromNonPropCore
 
 import Chronos.Frontier.CountingFiberSeparationFromFiberLarge
+
+import Chronos.Frontier.FiberMassBalanceFromNonPropInvariant
