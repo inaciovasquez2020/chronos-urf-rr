@@ -1,0 +1,19 @@
+{
+  "artifact": "fiber_mass_balance_from_nonprop_invariant",
+  "date": "2026-05-14",
+  "status": "LAKE_NATIVE_FIBER_MASS_BALANCE_FROM_NONPROP_INVARIANT_CLOSED",
+  "core_theorem_closed": true,
+  "downstream_theorem_closure": false,
+  "theorems": [
+    "fiberMassBalance_from_nonprop_invariant",
+    "countingFiberSeparation_and_fiberMassBalance_from_nonprop_invariant"
+  ],
+  "boundary": [
+    "Lake-native fiber-mass-balance theorem only.",
+    "Does not prove UniversalFiberEntropyGap.",
+    "Does not prove Chronos-RR closure.",
+    "Does not prove H4.1/FGL closure.",
+    "Does not prove P vs NP closure.",
+    "Does not prove any Clay-problem closure."
+  ]
+}
