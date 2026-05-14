@@ -25,3 +25,4 @@ import Chronos.Frontier.FO4RadiusRTypeEnumerationSurface
 import Chronos.Frontier.FO4SemanticCompletenessSurface
 
 import Chronos.Frontier.FO4SemanticCompletenessToColapRankControl
+import Chronos.Frontier.FO4ColapRankControlToCycleOverlapRank
