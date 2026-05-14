@@ -1,0 +1,22 @@
+{
+  "artifact": "fo4_cycle_overlap_open_problem_required",
+  "date": "2026-05-14",
+  "status": "OPEN_PROBLEM_REQUIRED",
+  "unrestricted_object": "GraphSemanticCycleOverlapRankDominatedByColapRank",
+  "counterexample": {
+    "Delta": 0,
+    "R": 0,
+    "colapRank": 0,
+    "cycleOverlapRank": 1
+  },
+  "closed_surface": "FO4GraphSemanticRankInputRestricted.cycleOverlap_le_colap",
+  "missing_theorem_level_object": "graph-theoretic proof that intended cycleOverlapRank is a subrank of intended colapRank",
+  "boundary": [
+    "Unrestricted graph-semantic domination is false for the current unrestricted structure.",
+    "Restricted domination is closed only by field projection.",
+    "No unconditional graph-theoretic cycle-overlap rank bound is proved.",
+    "No rigidity closure is proved.",
+    "No P vs NP closure is proved.",
+    "No Clay-problem closure is proved."
+  ]
+}
