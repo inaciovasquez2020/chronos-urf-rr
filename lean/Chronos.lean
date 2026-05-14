@@ -23,3 +23,5 @@ import Chronos.Frontier.FO4ColapROpenProblem
 import Chronos.Frontier.FO4RadiusRTypeEnumerationSurface
 
 import Chronos.Frontier.FO4SemanticCompletenessSurface
+
+import Chronos.Frontier.FO4SemanticCompletenessToColapRankControl

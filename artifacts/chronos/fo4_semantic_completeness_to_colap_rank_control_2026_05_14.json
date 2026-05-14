@@ -1,0 +1,22 @@
+{
+  "status": "CONDITIONAL_COLAP_RANK_CONTROL_INTERFACE_CLOSED",
+  "closed_surface": "conditional semantic-completeness-to-ColapRankBoundedAt interface",
+  "defined_objects": [
+    "ColapRankControlFromSemanticCompleteness",
+    "FO4CycleOverlapRankBoundConditional"
+  ],
+  "closed_theorems": [
+    "semanticCompletenessToColapRankControl",
+    "fo4CycleOverlapRankBoundConditional"
+  ],
+  "next_missing_lemma": "GraphSemanticColapRankSoundness: repository-native ColapRankBoundedAt implies actual F2 cycle-overlap rank bound for ColapR.",
+  "boundary": [
+    "Conditional interface only.",
+    "Rank control is repository-native ColapRankBoundedAt only.",
+    "Does not prove graph-semantic ColapR rank control.",
+    "Does not prove bounded cycle-overlap rank.",
+    "Does not close rigidity.",
+    "Does not prove P vs NP.",
+    "Does not solve any Clay problem."
+  ]
+}
