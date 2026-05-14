@@ -124,3 +124,5 @@ import Chronos.Frontier.RepositoryNativeRankAmbientDatum
 
 import Chronos.Frontier.FinalCarrierDomainToSemanticRankRateCertificate
 import Chronos.Frontier.RepositoryNativeSemanticRankRateFromGlobalCertificate
+
+import Chronos.Frontier.NonPropFinalCarrierInvariant
