@@ -1,0 +1,20 @@
+{
+  "artifact": "lake_native_nonprop_invariant_construction",
+  "date": "2026-05-14",
+  "status": "LAKE_NATIVE_NONPROP_INVARIANT_CONSTRUCTION_CLOSED",
+  "canonical_invariant_constructed": true,
+  "lake_native_conditional_rr_witness_constructed": true,
+  "unrestricted_repository_theorem_closure": false,
+  "theorems": [
+    "canonicalNonPropFinalCarrierInvariant",
+    "chronosRRLakeNativeUnrestricted_from_canonical_nonprop"
+  ],
+  "boundary": [
+    "Lake-native canonical invariant construction only.",
+    "Does not migrate the root Chronos/Frontier tree.",
+    "Does not prove unrestricted repository Chronos-RR closure.",
+    "Does not prove H4.1/FGL closure.",
+    "Does not prove P vs NP closure.",
+    "Does not prove any Clay-problem closure."
+  ]
+}
