@@ -1,0 +1,22 @@
+{
+  "status": "OPEN_PROBLEM_REQUIRED",
+  "closed_surface": "ColapR type surface over F2 formalized",
+  "defined_objects": [
+    "F2",
+    "RadiusRCycleWitness",
+    "CycleOverlapIncidence",
+    "F2WeightedOverlapRelation",
+    "ColapR",
+    "FO4CycleOverlapRankBoundProblem"
+  ],
+  "next_missing_object": "finite FO4 radius-R type enumeration under degree bound Delta",
+  "missing_lemma": "FO4-local indistinguishability under bounded degree implies uniformly bounded radius-R cycle-overlap rank.",
+  "boundary": [
+    "Defines ColapR only.",
+    "Does not prove finite FO4 radius-R type enumeration.",
+    "Does not prove bounded cycle-overlap rank.",
+    "Does not close rigidity.",
+    "Does not prove P vs NP.",
+    "Does not solve any Clay problem."
+  ]
+}
