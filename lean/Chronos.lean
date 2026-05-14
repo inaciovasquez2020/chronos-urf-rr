@@ -11,3 +11,5 @@ import Chronos.Frontier.CountingFiberSeparationFromFiberLarge
 import Chronos.Frontier.FiberMassBalanceFromNonPropInvariant
 
 import Chronos.Frontier.UniversalFiberEntropyGapFromCountingAndMass
+
+import Chronos.Frontier.ChronosRRConditionalFromUniversalGap

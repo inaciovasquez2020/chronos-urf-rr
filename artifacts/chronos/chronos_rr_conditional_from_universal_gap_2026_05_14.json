@@ -1,0 +1,18 @@
+{
+  "artifact": "chronos_rr_conditional_from_universal_gap",
+  "date": "2026-05-14",
+  "status": "LAKE_NATIVE_CHRONOS_RR_CONDITIONAL_FROM_UNIVERSAL_GAP_CLOSED",
+  "conditional_promotion_closed": true,
+  "unrestricted_theorem_closure": false,
+  "theorems": [
+    "chronosRRConditional_from_universalFiberEntropyGap",
+    "chronosRRConditional_from_nonprop_invariant"
+  ],
+  "boundary": [
+    "Lake-native Chronos-RR conditional promotion only.",
+    "Does not prove unrestricted Chronos-RR closure.",
+    "Does not prove H4.1/FGL closure.",
+    "Does not prove P vs NP closure.",
+    "Does not prove any Clay-problem closure."
+  ]
+}
