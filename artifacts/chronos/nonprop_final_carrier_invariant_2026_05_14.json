@@ -1,0 +1,24 @@
+{
+  "artifact": "nonprop_final_carrier_invariant",
+  "date": "2026-05-14",
+  "status": "NONPROP_INVARIANT_INTERFACE_ONLY",
+  "theorem_closure": false,
+  "introduced_nonprop_fields": [
+    "rank : ChronosCarrierData -> Nat",
+    "fiberSize : ChronosCarrierData -> Nat",
+    "entropyMass : ChronosCarrierData -> Rat",
+    "arity : ChronosCarrierData -> Nat",
+    "stratum : ChronosCarrierData -> Rat"
+  ],
+  "boundary": [
+    "No construction of NonPropFinalCarrierInvariant is claimed.",
+    "No FiberLargeExists proof is claimed.",
+    "No CountingFiberSeparation proof is claimed.",
+    "No FiberMassBalance proof is claimed.",
+    "No UniversalFiberEntropyGap proof is claimed.",
+    "No Chronos-RR closure is claimed.",
+    "No H4.1/FGL closure is claimed.",
+    "No P vs NP closure is claimed.",
+    "No Clay-problem closure is claimed."
+  ]
+}
