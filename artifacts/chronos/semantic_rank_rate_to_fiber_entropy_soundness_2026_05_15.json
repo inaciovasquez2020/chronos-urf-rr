@@ -1,0 +1,13 @@
+{
+  "artifact": "semantic_rank_rate_to_fiber_entropy_soundness",
+  "date": "2026-05-15",
+  "status": "FRONTIER_OPEN / WEAKEST_SUFFICIENT_LEMMA_ISOLATED",
+  "weakest_missing_lemma": "SemanticRankDefectControlsEntropyDefectOn",
+  "allowed_closure": "conditional_bridge_only",
+  "forbidden_closures": [
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "Clay"
+  ]
+}
