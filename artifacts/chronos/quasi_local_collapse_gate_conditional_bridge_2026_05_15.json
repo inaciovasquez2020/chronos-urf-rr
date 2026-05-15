@@ -1,0 +1,19 @@
+{
+  "artifact": "quasi_local_collapse_gate_conditional_bridge",
+  "date": "2026-05-15",
+  "status": "CONDITIONAL_BRIDGE_ONLY",
+  "lean_module": "Chronos.Frontier.QuasiLocalCollapseGateConditionalBridge",
+  "proved_surface": "QuasiLocalCollapseGateCondition plus NonsphericalCollapseBridgeLemma implies MarginalOrTrappedNullExpansionSurface",
+  "missing_object": "NonsphericalCollapseBridgeLemma",
+  "boundary": [
+    "Conditional bridge only.",
+    "Does not prove an unconditional quasi-local collapse theorem.",
+    "Does not prove unrestricted nonspherical collapse exclusion.",
+    "Does not prove Cosmic Censorship.",
+    "Does not prove the Hoop Conjecture.",
+    "Does not prove unrestricted Chronos-RR.",
+    "Does not prove H4.1/FGL.",
+    "Does not prove P vs NP.",
+    "Does not solve any Clay problem."
+  ]
+}
