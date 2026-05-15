@@ -1,0 +1,19 @@
+{
+  "artifact": "counting_with_entropy_mass_to_fiber_mass_balance_2026_05_15",
+  "status": "ENRICHED_COUNTING_TO_MASS_BRIDGE_CLOSED",
+  "closed_theorems": [
+    "countingFiberSeparation_from_counting_with_entropy_mass",
+    "fiberMassBalance_from_counting_with_entropy_mass",
+    "universalFiberEntropyGap_from_counting_with_entropy_mass"
+  ],
+  "new_predicate": "CountingFiberSeparationWithEntropyMassFromNonProp",
+  "added_datum": "W.fiber.entropyMass = I.entropyMass c",
+  "does_not_prove": [
+    "FiberMassBalance from ordinary CountingFiberSeparationFromNonProp alone",
+    "unrestricted UniversalFiberEntropyGap",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
