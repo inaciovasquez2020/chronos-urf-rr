@@ -1,0 +1,18 @@
+{
+  "artifact": "counting_to_mass_exactness_audit_2026_05_15",
+  "status": "EXACTNESS_GAP_ISOLATED",
+  "target": "FiberMassBalance from CountingFiberSeparation",
+  "audit_result": "CountingFiberSeparationFromNonProp and FiberMassBalanceFromNonProp are currently proved separately from NonPropFinalCarrierInvariant.",
+  "not_currently_proved": "CountingFiberSeparationFromNonProp I -> FiberMassBalanceFromNonProp I",
+  "weakest_missing_lemma": "For every NonPropFinalCarrierInvariant I, CountingFiberSeparationFromNonProp I -> FiberMassBalanceFromNonProp I.",
+  "equivalent_repair_path": "Strengthen CountingFiberSeparationWitness so that it carries exactly the entropy-mass data needed to construct FiberMassBalanceWitness.",
+  "does_not_prove": [
+    "CountingFiberSeparationToFiberMassBalance",
+    "FiberMassBalance from counting alone",
+    "UniversalFiberEntropyGap",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
