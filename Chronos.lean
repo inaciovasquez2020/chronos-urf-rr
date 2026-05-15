@@ -1,3 +1,4 @@
+import Chronos.Frontier.NonsphericalCollapseBridgeTheoremTarget
 import Chronos.Frontier.QuasiLocalCollapseGateConditionalBridge
 import Chronos.Frontier.SphericalCompactnessNullExpansionBridgeSurface
 import Chronos.Frontier.SphericalNullExpansionCriterionSurface

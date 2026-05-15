@@ -1,0 +1,23 @@
+{
+  "artifact": "nonspherical_collapse_bridge_theorem_target",
+  "date": "2026-05-15",
+  "status": "OPEN_PROBLEM_REQUIRED",
+  "lean_module": "Chronos.Frontier.NonsphericalCollapseBridgeTheoremTarget",
+  "theorem_target": "NonsphericalCollapseBridgeTheoremTarget",
+  "target_statement": "For every QuasiLocalCollapseGateInput I, QuasiLocalCollapseGateCondition I implies MarginalOrTrappedNullExpansionSurface I.",
+  "matches_existing_missing_object": "NonsphericalCollapseBridgeLemma",
+  "proof_status": "NOT_PROVED",
+  "boundary": [
+    "Theorem target only.",
+    "No axiom, admit, or sorry is introduced.",
+    "Does not prove NonsphericalCollapseBridgeTheoremTarget.",
+    "Does not prove an unconditional quasi-local collapse theorem.",
+    "Does not prove unrestricted nonspherical collapse exclusion.",
+    "Does not prove Cosmic Censorship.",
+    "Does not prove the Hoop Conjecture.",
+    "Does not prove unrestricted Chronos-RR.",
+    "Does not prove H4.1/FGL.",
+    "Does not prove P vs NP.",
+    "Does not solve any Clay problem."
+  ]
+}
