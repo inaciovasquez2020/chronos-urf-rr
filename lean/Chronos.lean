@@ -36,3 +36,4 @@ import Chronos.Frontier.FO4SemanticCompletenessToColapRankControl
 import Chronos.Frontier.FO4ColapRankControlToCycleOverlapRank
 import Chronos.Frontier.FO4PointwiseColapToCycleOverlapRank
 import Chronos.Frontier.GraphSemanticColapCycleOverlapRankFrontier
+import Chronos.Frontier.FiniteNonCollapsedEnergyBudget
