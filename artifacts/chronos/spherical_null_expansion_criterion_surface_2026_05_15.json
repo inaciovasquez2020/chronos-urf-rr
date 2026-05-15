@@ -1,0 +1,53 @@
+{
+  "id": "spherical_null_expansion_criterion_surface_2026_05_15",
+  "title": "Spherical Null Expansion Criterion Surface",
+  "status": "RESTRICTED_SPHERICAL_NULL_EXPANSION_SURFACE",
+  "restricted_surface_closure": true,
+  "unrestricted_theorem_level_closure": false,
+  "depends_on": [
+    "spherical_collapse_gate_threshold_surface_2026_05_15",
+    "quasi_local_collapse_dichotomy_conditional_frontier_2026_05_15"
+  ],
+  "lean_module": "Chronos.Frontier.SphericalNullExpansionCriterionSurface",
+  "definitions": {
+    "SphericalNullExpansionInput": "outgoingExpansion, ingoingExpansion",
+    "FutureTrappedSphericalSurface": "outgoingExpansion < 0 and ingoingExpansion < 0",
+    "FutureOuterMarginalSphericalSurface": "outgoingExpansion <= 0 and ingoingExpansion < 0",
+    "TrappedOrMarginalByNullExpansions": "FutureTrappedSphericalSurface or FutureOuterMarginalSphericalSurface"
+  },
+  "closed_surface": [
+    {
+      "name": "trapped_spherical_null_expansions_imply_trapped_or_marginal",
+      "statement": "FutureTrappedSphericalSurface(S) implies TrappedOrMarginalByNullExpansions(S)",
+      "scope": "restricted spherical null-expansion criterion surface"
+    },
+    {
+      "name": "marginal_spherical_null_expansions_imply_trapped_or_marginal",
+      "statement": "FutureOuterMarginalSphericalSurface(S) implies TrappedOrMarginalByNullExpansions(S)",
+      "scope": "restricted spherical null-expansion criterion surface"
+    }
+  ],
+  "remaining_bridge": "compactness threshold arealRadius <= 2 * misnerSharpMass implies the required null-expansion signs",
+  "boundary": [
+    "Restricted spherical null-expansion criterion surface only.",
+    "No compactness-threshold-to-null-expansion bridge is proved.",
+    "No nonspherical collapse exclusion is proved.",
+    "Cosmic Censorship is not proved.",
+    "The Hoop Conjecture is not proved.",
+    "Unrestricted UniversalBoundaryCompactness is not proved.",
+    "No unrestricted Chronos-RR, H4.1/FGL, P vs NP, or Clay-problem closure is claimed."
+  ],
+  "forbidden_claims": [
+    "proves compactness-threshold-to-null-expansion bridge",
+    "proves nonspherical collapse exclusion",
+    "proves Cosmic Censorship",
+    "proves the Hoop Conjecture",
+    "proves unrestricted UniversalBoundaryCompactness",
+    "proves unrestricted Chronos-RR",
+    "proves H4.1/FGL",
+    "proves P vs NP",
+    "solves P vs NP",
+    "solves a Clay problem",
+    "unconditional UniversalBoundaryCompactness is closed"
+  ]
+}
