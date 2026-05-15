@@ -1,0 +1,19 @@
+{
+"artifact": "counting_to_mass_under_nonprop_invariant_2026_05_15",
+"status": "TYPED_REPOSITORY_BRIDGE_CLOSED_ONLY",
+"closed_theorems": [
+"fiberMassBalance_from_countingFiberSeparation_under_nonprop_invariant",
+"universalFiberEntropyGap_from_countingFiberSeparation_under_nonprop_invariant"
+],
+"context": "I : NonPropFinalCarrierInvariant",
+"exactness_note": "The counting premise is not used to reconstruct entropyMass; entropy-mass data comes from NonPropFinalCarrierInvariant.",
+"does_not_prove": [
+"standalone CountingFiberSeparationToFiberMassBalance",
+"entropyMass reconstruction from ordinary CountingFiberSeparationFromNonProp alone",
+"unrestricted UniversalFiberEntropyGap",
+"unrestricted Chronos-RR",
+"unrestricted H4.1/FGL",
+"P vs NP",
+"any Clay problem"
+]
+}
