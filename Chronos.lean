@@ -1,3 +1,4 @@
+import Chronos.Frontier.SphericalCompactnessNullExpansionBridgeSurface
 import Chronos.Frontier.SphericalNullExpansionCriterionSurface
 import Chronos.Frontier.SphericalCollapseGateThresholdSurface
 import Chronos.Frontier.H4FGLUnrestrictedStatusLock
