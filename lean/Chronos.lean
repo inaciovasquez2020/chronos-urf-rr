@@ -1,3 +1,4 @@
+import Chronos.Frontier.CanonicalZeroEntropyFiberGapMinimality
 import Chronos.Frontier.CanonicalZeroEntropyFiberGapCompatibility
 import Chronos.Frontier.SemanticRankRateUniversalFiberEntropyGapCompatibility
 import Chronos.Frontier.SemanticRankRateToFiberEntropySoundnessBridge
