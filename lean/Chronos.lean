@@ -1,3 +1,4 @@
+import Chronos.Frontier.NontrivialFiberEntropyGapStrengthening
 import Chronos.Frontier.CanonicalZeroEntropyFiberGapMinimality
 import Chronos.Frontier.CanonicalZeroEntropyFiberGapCompatibility
 import Chronos.Frontier.SemanticRankRateUniversalFiberEntropyGapCompatibility
