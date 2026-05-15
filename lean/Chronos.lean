@@ -39,3 +39,4 @@ import Chronos.Frontier.GraphSemanticColapCycleOverlapRankFrontier
 import Chronos.Frontier.FiniteNonCollapsedEnergyBudget
 import Chronos.Frontier.CountingWithEntropyMassToFiberMassBalance
 import Chronos.Frontier.CountingToMassUnderNonPropInvariant
+import Chronos.Frontier.CountingSeparationNonPropInvariantExtraction
