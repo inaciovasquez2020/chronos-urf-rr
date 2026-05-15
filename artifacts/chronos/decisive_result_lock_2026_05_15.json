@@ -1,0 +1,21 @@
+{
+  "artifact": "decisive_result_lock_2026_05_15",
+  "status": "DECISIVE_TARGET_LOCKED",
+  "chosen_target": "FiberMassBalance from CountingFiberSeparation",
+  "freeze_rule": "No new frontier surface is admissible unless it directly serves this target.",
+  "allowed_work": [
+    "strengthen CountingFiberSeparation",
+    "define exact FiberMassBalance target",
+    "prove bridge from CountingFiberSeparation to FiberMassBalance",
+    "isolate weakest missing lemma if bridge fails",
+    "add only tests and verifiers that enforce the boundary"
+  ],
+  "does_not_prove": [
+    "FiberMassBalance",
+    "UniversalFiberEntropyGap",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
