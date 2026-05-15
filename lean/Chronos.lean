@@ -1,3 +1,4 @@
+import Chronos.Frontier.SemanticRankRateUniversalFiberEntropyGapCompatibility
 import Chronos.Frontier.SemanticRankRateToFiberEntropySoundnessBridge
 import Chronos.Frontier.SemanticRankDefectControlsEntropyDefectOn
 import Chronos.XorLemmas
