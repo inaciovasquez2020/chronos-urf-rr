@@ -31,7 +31,7 @@ structure BoundarySpectralInput
     (I : FiniteNonCollapsedEnergyBudgetInput) where
   eigenvalue : I.Mode → Nat
   spectralCountingBound : Nat → Nat
-  finiteSpectralCountingWitness : ∀ (Λ : Nat), True
+  finiteSpectralCountingWitness : ∀ (_Λ : Nat), True
 
 /--
 Operational mode-energy structure.
