@@ -1,3 +1,4 @@
+import Chronos.Frontier.SphericalCollapseGateThresholdSurface
 import Chronos.Frontier.H4FGLUnrestrictedStatusLock
 import Chronos.Frontier.UnrestrictedChronosRRStatusLock
 import Chronos.Frontier.UnrestrictedChronosRRObstructionRegistry
