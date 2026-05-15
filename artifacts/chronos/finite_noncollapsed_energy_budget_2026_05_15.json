@@ -1,0 +1,33 @@
+{
+  "artifact": "finite_noncollapsed_energy_budget",
+  "date": "2026-05-15",
+  "status": "CONDITIONAL_ON_FINITE_NONCOLLAPSED_ENERGY_BUDGET",
+  "lean_module": "Chronos.Frontier.FiniteNonCollapsedEnergyBudget",
+  "core_theorem": "compactness_from_finite_noncollapsed_energy_budget",
+  "formal_target": "UniversalBoundaryCompactnessConditional",
+  "weakest_admissibility_axiom": "FiniteNonCollapsedEnergyBudget",
+  "closed_surface": "FiniteNonCollapsedEnergyBudget plus energy accounting plus normalized modal growth implies operational boundary compactness cutoff",
+  "separations": [
+    "SphericalMisnerSharpClosure induces FiniteNonCollapsedEnergyBudget only in the restricted spherical class",
+    "NonsphericalFiniteEnergyClosure assumes FiniteNonCollapsedEnergyBudget directly",
+    "QL_CollapseGate is retained as an open strengthening"
+  ],
+  "proved": [
+    "finite non-collapsed energy budget implies a finite modal cutoff for every admissible state",
+    "unrestricted UniversalBoundaryCompactness is conditionally closed relative to FiniteNonCollapsedEnergyBudget",
+    "spherical Misner-Sharp closure is separated from nonspherical finite-energy closure",
+    "QL_CollapseGate remains open and is not used as a theorem"
+  ],
+  "not_proved": [
+    "unconditional unrestricted UniversalBoundaryCompactness",
+    "QL_CollapseGate",
+    "unrestricted nonspherical collapse exclusion",
+    "Cosmic Censorship",
+    "Hoop Conjecture",
+    "unrestricted Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay-problem closure"
+  ],
+  "boundary": "Conditional surface only; unrestricted UniversalBoundaryCompactness is closed only relative to FiniteNonCollapsedEnergyBudget."
+}
