@@ -1,0 +1,80 @@
+{
+  "id": "quasi_local_collapse_dichotomy_conditional_frontier_2026_05_15",
+  "title": "Quasi-Local Collapse Dichotomy Conditional Frontier",
+  "source": "uploaded frontier formulation",
+  "source_citation": ":contentReference[oaicite:0]{index=0}",
+  "status": "CONDITIONAL_FRONTIER_FRAMEWORK_ONLY",
+  "theorem_level_closure": false,
+  "object": "QuasiLocalCollapseDichotomy",
+  "data_class": {
+    "name": "AdmissibleEinsteinMatterData",
+    "fields": [
+      "smooth connected noncompact 3-manifold Sigma",
+      "Riemannian asymptotically flat metric h",
+      "symmetric extrinsic curvature tensor K",
+      "matter field Phi satisfying the Einstein-matter equations in the maximal Cauchy development",
+      "Hamiltonian constraint",
+      "momentum constraint",
+      "dominant energy condition",
+      "finite ADM mass",
+      "no past trapped boundary",
+      "generic nondegeneracy"
+    ]
+  },
+  "covariant_objects": {
+    "maximal_cauchy_development": "(M,g,Phi)",
+    "compact_region": "R subset M",
+    "future_domain": "D_plus(R)",
+    "boundary_capacity": "C_partial(R,epsilon)",
+    "collapse_gate": "QL_CollapseGate(R)"
+  },
+  "assumptions": [
+    {
+      "name": "CosmicCensorship",
+      "status": "OPEN_CONJECTURE"
+    },
+    {
+      "name": "HoopConjecture",
+      "status": "OPEN_CONJECTURE"
+    }
+  ],
+  "conditional_statements": [
+    {
+      "name": "collapse_implies_trapped_surface",
+      "statement": "CosmicCensorship and HoopConjecture imply QL_CollapseGate(R) implies existence of a closed future trapped surface S subset D_plus(R).",
+      "unconditional": false
+    },
+    {
+      "name": "no_collapse_implies_no_visible_naked_singularity",
+      "statement": "CosmicCensorship implies not QL_CollapseGate(R) implies no future null-incomplete singular point in D_plus(R) visible from future null infinity.",
+      "unconditional": false
+    }
+  ],
+  "restricted_next_targets": [
+    "spherical symmetry via Misner-Sharp mass threshold",
+    "axisymmetric perturbative regime",
+    "explicit Hawking-energy sufficient condition",
+    "conditional closure under explicit Cosmic Censorship axiom"
+  ],
+  "forbidden_claims": [
+    "proves QL_CollapseGate",
+    "proves unrestricted nonspherical collapse exclusion",
+    "proves Cosmic Censorship",
+    "proves the Hoop Conjecture",
+    "proves unrestricted UniversalBoundaryCompactness",
+    "proves unrestricted Chronos-RR",
+    "proves H4.1/FGL",
+    "proves P vs NP",
+    "solves P vs NP",
+    "solves a Clay problem",
+    "unconditional UniversalBoundaryCompactness is closed"
+  ],
+  "boundary": [
+    "Conditional frontier framework only.",
+    "Cosmic Censorship remains an open conjectural assumption.",
+    "Hoop Conjecture remains an open conjectural assumption.",
+    "No unrestricted nonspherical collapse exclusion is proved.",
+    "No unrestricted UniversalBoundaryCompactness theorem is proved.",
+    "No Chronos-RR, H4.1/FGL, P vs NP, or Clay-problem closure is claimed."
+  ]
+}
