@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-lean_path = Path("Chronos/Frontier/SphericalCollapseGateThresholdSurface.lean")
+lean_path = Path("lean/Chronos/Frontier/SphericalCollapseGateThresholdSurface.lean")
 artifact_path = Path("artifacts/chronos/spherical_collapse_gate_threshold_surface_2026_05_15.json")
 status_path = Path("docs/status/SPHERICAL_COLLAPSE_GATE_THRESHOLD_SURFACE_2026_05_15.md")
 root_path = Path("Chronos.lean")
