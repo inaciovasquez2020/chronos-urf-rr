@@ -1,0 +1,55 @@
+{
+  "name": "GravityOpenProblemLock",
+  "status": "OPEN_PROBLEM_LOCK_ONLY",
+  "program": "Chronos/URF",
+  "created": "2026-05-16",
+  "locks": [
+    {
+      "id": "A3",
+      "item": "Weak cosmic censorship",
+      "locked_status": "ASSUMPTION_ONLY",
+      "required_boundary": "Keep A3 as an assumption."
+    },
+    {
+      "id": "A4",
+      "item": "Restricted trapped-surface theorem",
+      "locked_status": "RESTRICTED_REPLACEMENT_ONLY",
+      "required_boundary": "Keep the Hoop criterion replaced by A4."
+    },
+    {
+      "id": "QL_COLLAPSE_GATE",
+      "item": "QL_CollapseGate",
+      "locked_status": "CONDITIONAL_ON_A1_TO_A6_ONLY",
+      "required_boundary": "Keep QL_CollapseGate conditional on A1--A6."
+    },
+    {
+      "id": "BOUNDARY_COMPACTNESS",
+      "item": "BoundaryCompactness(F_Lambda)",
+      "locked_status": "FINITE_DETECTOR_REPLACEMENT_ONLY",
+      "required_boundary": "Keep UniversalBoundaryCompactness replaced by BoundaryCompactness(F_Lambda)."
+    }
+  ],
+  "required_statuses": [
+    "OPEN_PROBLEM_LOCK_ONLY",
+    "ASSUMPTION_ONLY",
+    "RESTRICTED_REPLACEMENT_ONLY",
+    "CONDITIONAL_ON_A1_TO_A6_ONLY",
+    "FINITE_DETECTOR_REPLACEMENT_ONLY"
+  ],
+  "forbidden_promotions": [
+    "COSMIC_CENSORSHIP_THEOREM_CLAIM",
+    "HOOP_THEOREM_CLAIM",
+    "UNRESTRICTED_QL_COLLAPSE_GATE_CLAIM",
+    "UNIVERSAL_BOUNDARY_COMPACTNESS_CLAIM",
+    "CHRONOS_RR_GRAVITY_PROMOTION",
+    "H41_FGL_GRAVITY_PROMOTION",
+    "CLAY_GRAVITY_PROMOTION"
+  ],
+  "files": {
+    "lean": "lean/Chronos/Frontier/GravityOpenProblemLock.lean",
+    "artifact": "artifacts/chronos/gravity_open_problem_lock_2026_05_16.json",
+    "status_doc": "docs/status/GRAVITY_OPEN_PROBLEM_LOCK_2026_05_16.md",
+    "verifier": "tools/verify_gravity_open_problem_lock.py",
+    "pytest": "tests/test_gravity_open_problem_lock.py"
+  }
+}
