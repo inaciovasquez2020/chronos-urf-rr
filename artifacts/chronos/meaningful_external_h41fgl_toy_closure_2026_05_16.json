@@ -1,0 +1,27 @@
+{
+  "artifact": "meaningful_external_h41fgl_toy_closure",
+  "date": "2026-05-16",
+  "status": "VERIFIED_TOY_EXTERNAL_MODEL_ONLY",
+  "lean_module": "Chronos.Frontier.MeaningfulExternalH41FGLToyClosure",
+  "proved": [
+    "counting_implies_nonempty",
+    "counting_implies_nonprop_final_carrier_invariant",
+    "counting_implies_universal_fiber_entropy_gap",
+    "counting_implies_chronos_rr",
+    "counting_implies_h41_fgl",
+    "h41_fgl_internal_semantic_adequacy",
+    "bool_not_injects_witness",
+    "build_meaningful_external_h41_fgl_model",
+    "meaningful_external_h41_fgl_model_preservation",
+    "counting_implies_meaningful_external_intended_h41_fgl",
+    "impossible_external_preservation_refuted"
+  ],
+  "boundary": [
+    "toy external-model closure only",
+    "no nontrivial external H4.1/FGL theorem",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
