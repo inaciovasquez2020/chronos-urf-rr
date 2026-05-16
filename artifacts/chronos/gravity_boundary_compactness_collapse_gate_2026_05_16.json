@@ -1,0 +1,28 @@
+{
+  "artifact": "gravity_boundary_compactness_collapse_gate",
+  "date": "2026-05-16",
+  "status": "CONDITIONAL_BOUNDARY_COMPACTNESS_ROUTE_ONLY",
+  "formal_objects": [
+    "PhysicallyAdmissibleRegion",
+    "BoundaryAccessibleObservable",
+    "FiniteDetectorAlgebra",
+    "CovariantEntropyBound",
+    "UniversalBoundaryCompactness",
+    "QL_CollapseGate"
+  ],
+  "closed_conditional_bridges": [
+    "finite_detector_algebra_implies_universal_boundary_compactness",
+    "covariant_entropy_bound_implies_universal_boundary_compactness",
+    "universal_boundary_compactness_implies_QL_CollapseGate",
+    "finite_detector_algebra_implies_QL_CollapseGate",
+    "covariant_entropy_bound_implies_QL_CollapseGate"
+  ],
+  "boundary": [
+    "conditional surface only",
+    "no unconditional Universal Boundary Compactness",
+    "no unconditional QL_CollapseGate",
+    "no Cosmic Censorship",
+    "no Hoop Conjecture",
+    "no Clay problem closure"
+  ]
+}
