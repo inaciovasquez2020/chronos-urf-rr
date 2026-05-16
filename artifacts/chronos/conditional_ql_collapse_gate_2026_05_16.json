@@ -1,0 +1,92 @@
+{
+  "name": "ConditionalQLCollapseGate_vacuum_short_pulse",
+  "status": "CONDITIONAL_RESTRICTED_COLLAPSE_GATE_ONLY",
+  "program": "Chronos/URF",
+  "version": "1.0.0",
+  "created": "2026-05-16",
+  "matter_model": "vacuum Einstein",
+  "censorship_target": "weak cosmic censorship",
+  "domain": {
+    "symbol": "D_sp",
+    "description": "short-pulse collapse subdomain of smooth asymptotically flat vacuum Cauchy data satisfying the vacuum constraint equations",
+    "topology": "H^s_delta x H^{s-1}_{delta-1}, s >= 6, -1 < delta < -1/2",
+    "restriction": "TSC(x) short-pulse concentration condition"
+  },
+  "theorem": {
+    "statement": "For every x in D_sp, TSC(x) and assumptions A1--A6 imply existence of a maximal Cauchy development M such that QL_CollapseGate(x, M, F_Lambda) holds.",
+    "conditional": true,
+    "restricted": true,
+    "conclusion": "QL_CollapseGate on D_sp under TSC and A1--A6"
+  },
+  "assumptions_heading": "THE SIX ASSUMPTIONS",
+  "assumptions": [
+    {
+      "label": "A1",
+      "name": "Local well-posedness and maximal Cauchy development",
+      "status": "ASSUMPTION",
+      "scope": "D_sp"
+    },
+    {
+      "label": "A2",
+      "name": "Vacuum constraint preservation",
+      "status": "ASSUMPTION",
+      "scope": "Einstein evolution on D_sp"
+    },
+    {
+      "label": "A3",
+      "name": "Weak cosmic censorship",
+      "status": "OPEN_CONJECTURE_ASSUMED",
+      "scope": "D_sp",
+      "critical": true
+    },
+    {
+      "label": "A4",
+      "name": "Restricted trapped-surface theorem under TSC",
+      "status": "ASSUMPTION",
+      "scope": "D_sp with TSC",
+      "replaces": "general Hoop Conjecture"
+    },
+    {
+      "label": "A5",
+      "name": "Boundary observables factor through finite detector algebra F_Lambda",
+      "status": "ASSUMPTION",
+      "scope": "boundary-accessible observables"
+    },
+    {
+      "label": "A6",
+      "name": "BoundaryCompactness(F_Lambda)",
+      "status": "ASSUMPTION",
+      "scope": "finite detector algebra"
+    }
+  ],
+  "non_claims": [
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted QL_CollapseGate",
+    "Cosmic Censorship",
+    "Hoop Conjecture",
+    "unrestricted nonspherical collapse exclusion",
+    "unrestricted Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP or any Clay problem"
+  ],
+  "files": {
+    "lean": "lean/Chronos/Frontier/ConditionalQLCollapseGate_Objects.lean",
+    "artifact": "artifacts/chronos/conditional_ql_collapse_gate_2026_05_16.json",
+    "verifier": "tools/verify_conditional_ql_collapse_gate.py",
+    "pytest": "tests/test_conditional_ql_collapse_gate.py"
+  },
+  "verification": {
+    "required_checks": [
+      "status label is CONDITIONAL_RESTRICTED_COLLAPSE_GATE_ONLY",
+      "exactly six assumptions A1--A6",
+      "assumptions heading says THE SIX ASSUMPTIONS",
+      "domain is restricted to D_sp",
+      "A3 is assumption/open conjecture, not proved",
+      "A4 replaces Hoop Conjecture and does not prove it",
+      "all non-claims present",
+      "forbidden overclaim tokens absent",
+      "Lean file reference present",
+      "conditional and restricted flags are true"
+    ]
+  }
+}
