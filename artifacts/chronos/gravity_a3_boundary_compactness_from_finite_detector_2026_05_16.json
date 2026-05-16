@@ -1,0 +1,21 @@
+{
+  "artifact": "gravity_a3_boundary_compactness_from_finite_detector",
+  "date": "2026-05-16",
+  "status": "RESTRICTED_A3_DERIVATION_TARGET",
+  "lean_module": "Chronos.Frontier.GravityA3BoundaryCompactnessFromFiniteDetector",
+  "main_theorem": "A3BoundaryCompactnessBridge",
+  "compactness_input": "PhysicalToTopologicalCompactnessInput",
+  "result": "BoundaryCompactness is derived from finite detector algebra, spectral cutoff, finite-energy matter admissibility, and backreaction control only after explicitly registering the physical-to-topological compactness input.",
+  "boundary": [
+    "conditional restricted A3 bridge only",
+    "physical-to-topological compactness remains an explicit registered input",
+    "does not prove unrestricted UniversalBoundaryCompactness",
+    "does not prove unrestricted QL_CollapseGate",
+    "does not prove Cosmic Censorship",
+    "does not prove the Hoop Conjecture",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not solve any Clay problem"
+  ]
+}
