@@ -1,0 +1,29 @@
+{
+  "artifact": "einstein_dynamics_regularity_transfer_frontier_2026_05_16",
+  "status": "FRONTIER_OPEN",
+  "weakest_missing_lemma": "EinsteinDynamicsRegularityTransfer",
+  "defined_objects": [
+    "EinsteinMatterDevelopment",
+    "EinsteinEquationSatisfied",
+    "BoundaryFluxBound",
+    "BackreactionControlled",
+    "EinsteinDynamicsRegularityTransfer"
+  ],
+  "theorem_promotion": false,
+  "boundary": [
+    "FRONTIER_OPEN weakest missing lemma only",
+    "no Einstein dynamics proof",
+    "no EinsteinDynamicsRegularityTransfer proof",
+    "no finite-energy matter admissibility proof",
+    "no backreaction control proof",
+    "no covariant entropy bound proof",
+    "no unrestricted UniversalBoundaryCompactness",
+    "no unrestricted QL_CollapseGate",
+    "no Cosmic Censorship",
+    "no Hoop Conjecture",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
