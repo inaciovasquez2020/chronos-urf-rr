@@ -1,3 +1,4 @@
+import Chronos.Frontier.BulkToBoundaryNuclearitySoundness
 import Chronos.EP2Bundle
 import Chronos.Frontier.CanonicalToNontrivialStrengtheningForPredicate
 import Chronos.Frontier.CanonicalZeroEntropyFiberGapCompatibility
