@@ -1,0 +1,31 @@
+{
+  "artifact": "gravity_finite_state_boundary_compactness_certificate",
+  "date": "2026-05-16",
+  "status": "FINITE_STATE_CERTIFICATE_REDUCTION_PROVED",
+  "lean_module": "Chronos.Frontier.GravityFiniteStateBoundaryCompactnessCertificate",
+  "main_theorem": "finiteSpectralCompactnessCertificate_from_finite_state_certificate",
+  "input_certificate": "FiniteStateBoundaryCompactnessCertificate FΛ Λ",
+  "output_certificate": "FiniteSpectralCompactnessCertificate FΛ Λ",
+  "bridge_theorems": [
+    "physicalToTopologicalCompactnessInput_from_finite_state_certificate",
+    "A3BoundaryCompactnessBridge_from_finite_state_certificate"
+  ],
+  "proved": [
+    "FiniteStateBoundaryCompactnessCertificate reduces to FiniteSpectralCompactnessCertificate",
+    "PhysicalToTopologicalCompactnessInput follows from FiniteStateBoundaryCompactnessCertificate",
+    "A3BoundaryCompactnessBridge follows from FiniteStateBoundaryCompactnessCertificate and the four physical hypotheses"
+  ],
+  "remaining_missing_object": "construction of FiniteStateBoundaryCompactnessCertificate FΛ Λ",
+  "boundary": [
+    "finite-state certificate reduction only",
+    "does not construct FiniteStateBoundaryCompactnessCertificate",
+    "does not prove unrestricted UniversalBoundaryCompactness",
+    "does not prove unrestricted QL_CollapseGate",
+    "does not prove Cosmic Censorship",
+    "does not prove the Hoop Conjecture",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not solve any Clay problem"
+  ]
+}
