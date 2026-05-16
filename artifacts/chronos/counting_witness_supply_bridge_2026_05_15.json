@@ -1,0 +1,21 @@
+{
+  "artifact": "counting_witness_supply_bridge",
+  "date": "2026-05-15",
+  "status": "CONDITIONAL_WITNESS_SUPPLY_BRIDGE_CLOSED",
+  "minimal_missing_lemma": "rawCountingFiberSeparationFromNonProp -> SharedCountingExtractionWitnessExists internal",
+  "closed_results": [
+    "RawCountingSeparationSuppliesSharedWitness",
+    "RawCountingSeparationSuppliesStructuredNonPropInvariant"
+  ],
+  "boundary": [
+    "Conditional: requires a supply map from raw counting separation to the shared witness.",
+    "Does not prove the supply map exists.",
+    "Does not prove raw Prop-only extraction.",
+    "Does not prove ordinary CountingFiberSeparationFromNonProp alone implies FiberMassBalanceFromNonProp.",
+    "Does not prove unrestricted UniversalFiberEntropyGap.",
+    "Does not prove unrestricted Chronos-RR.",
+    "Does not prove unrestricted H4.1/FGL.",
+    "Does not prove P vs NP.",
+    "Does not solve any Clay problem."
+  ]
+}
