@@ -1,0 +1,30 @@
+{
+  "artifact": "nonsymmetric_collapse_censorship_hoop_frontiers_2026_05_16",
+  "status": "FRONTIER_OPEN",
+  "frontier_open_targets": [
+    "NonSymmetricTrappedSurfaceCriterion",
+    "CollapseToCensorshipBridge",
+    "HoopFromQLGate"
+  ],
+  "promotion_guards": [
+    "Cosmic Censorship closure blocked",
+    "Hoop Conjecture closure blocked",
+    "unrestricted UniversalBoundaryCompactness closure blocked",
+    "unrestricted QL_CollapseGate closure blocked"
+  ],
+  "theorem_promotion": false,
+  "boundary": [
+    "FRONTIER_OPEN only",
+    "no NonSymmetricTrappedSurfaceCriterion proof",
+    "no CollapseToCensorshipBridge proof",
+    "no HoopFromQLGate proof",
+    "no Cosmic Censorship proof",
+    "no Hoop Conjecture proof",
+    "no unrestricted UniversalBoundaryCompactness",
+    "no unrestricted QL_CollapseGate",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
