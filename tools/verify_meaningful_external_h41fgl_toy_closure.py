@@ -21,7 +21,7 @@ required_lean = [
     "structure ExternalH41FGLModel",
     "structure NonRepackagedExternalH41FGLModel",
     "structure MeaningfulExternalH41FGLModel",
-    "theorem bool_not_equiv_witness",
+    "theorem bool_not_injects_witness",
     "def build_meaningful_external_h41_fgl_model",
     "theorem counting_implies_meaningful_external_intended_h41_fgl",
     "theorem impossible_external_preservation_refuted",

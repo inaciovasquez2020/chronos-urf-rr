@@ -26,7 +26,7 @@ The external model uses:
 - interpretation: every internal witness maps to `true`
 - external property: `b = true`
 - nonvacuity witness: `false`
-- non-repackaging proof: `Bool` is not equivalent to the singleton witness type
+- non-repackaging proof: `Bool` cannot inject into the singleton witness type
 
 ## Boundary
 
