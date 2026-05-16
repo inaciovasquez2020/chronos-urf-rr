@@ -23,3 +23,10 @@ It does not assert:
 - Chronos-RR theorem closure
 - P vs NP closure
 - Clay-problem closure
+
+## Bulk-to-Boundary Nuclearity Soundness
+
+- Frontier: `BulkToBoundaryNuclearitySoundness`
+- Status: FRONTIER_OPEN
+- Next missing theorem: `BoundaryNuclearityFromFiniteDetectorAlgebra`
+- Boundary: conditional bridge only; no unrestricted `UniversalBoundaryCompactness`, unrestricted `QL_CollapseGate`, Cosmic Censorship, or Hoop Conjecture.
