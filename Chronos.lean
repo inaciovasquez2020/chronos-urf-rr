@@ -132,3 +132,5 @@ import Chronos.Frontier.RepositoryNativeSemanticRankRateFromGlobalCertificate
 
 import Chronos.Frontier.NonPropFinalCarrierInvariant
 import Chronos.Frontier.FO4CycleOverlapOpenProblemRequired
+
+import Chronos.Frontier.FPz1RateThickDomainGap

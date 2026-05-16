@@ -1,0 +1,31 @@
+{
+  "artifact": "FPz1RateThickDomainGap",
+  "date": "2026-05-16",
+  "status": "RATE_THICK_DOMAIN_GAP_CONDITIONAL_ONLY",
+  "lean_module": "Chronos.Frontier.FPz1RateThickDomainGap",
+  "defined": [
+    "RateThickDomain",
+    "EntropyFaithfulLowerEnvelopeAt",
+    "EntropyFaithfulLowerEnvelope",
+    "RateDependentUniversalFiberEntropyGap"
+  ],
+  "proved": [
+    "rateThickDomain_positive_rate_isolated",
+    "entropyFaithfulLowerEnvelopeAt_to_rateDependentUniversalFiberEntropyGap",
+    "entropyFaithfulLowerEnvelope_to_rateDependentUniversalFiberEntropyGap"
+  ],
+  "unrestricted_gap_status": "FALSE_UNDER_INVERSE_RATE_OBSTRUCTION_OTHERWISE_OPEN",
+  "requires": [
+    "lambda > 0",
+    "EntropyFaithfulLowerEnvelopeAt lambda or EntropyFaithfulLowerEnvelope"
+  ],
+  "boundary": [
+    "does not prove unrestricted RateSpectrumIsolation",
+    "does not prove EntropyFaithfulLowerEnvelope",
+    "does not prove unrestricted UniversalFiberEntropyGap",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove unrestricted H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
