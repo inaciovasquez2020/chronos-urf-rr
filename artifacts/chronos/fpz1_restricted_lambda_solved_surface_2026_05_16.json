@@ -1,0 +1,25 @@
+{
+  "artifact": "FPz1RestrictedLambdaSolvedSurface",
+  "date": "2026-05-16",
+  "status": "RESTRICTED_LAMBDA_ROUTE_SOLVED_SURFACE_ONLY",
+  "lean_module": "Chronos.Frontier.FPz1RestrictedLambdaSolvedSurface",
+  "closed_surface": [
+    "restrictedRateSpectrumIsolation",
+    "lowerEnvelope_to_quantitativeLambda",
+    "fpz1_restricted_lambda_route"
+  ],
+  "requires": [
+    "EntropyFaithfulLowerEnvelope",
+    "DepthBridgeLambda",
+    "lambda > 0"
+  ],
+  "boundary": [
+    "does not prove unrestricted RateSpectrumIsolation",
+    "does not prove unrestricted UniformRateGap",
+    "does not prove unrestricted UniversalFiberEntropyGap",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove unrestricted H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
