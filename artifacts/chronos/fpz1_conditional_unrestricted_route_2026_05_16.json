@@ -1,0 +1,25 @@
+{
+  "artifact": "FPz1ConditionalUnrestrictedRoute",
+  "date": "2026-05-16",
+  "status": "CONDITIONAL_UNRESTRICTED_ROUTE_ONLY",
+  "lean_module": "Chronos.Frontier.FPz1ConditionalUnrestrictedRoute",
+  "proved": [
+    "rateSpectrumIsolation_and_lowerEnvelope_to_quantitativeUnrestricted",
+    "fpz1_conditional_unrestricted_route"
+  ],
+  "requires": [
+    "RateSpectrumIsolation",
+    "EntropyFaithfulLowerEnvelope",
+    "DepthBridgeUnrestricted"
+  ],
+  "boundary": [
+    "does not prove RateSpectrumIsolation",
+    "does not prove EntropyFaithfulLowerEnvelope",
+    "does not prove DepthBridgeUnrestricted",
+    "does not prove unrestricted UniversalFiberEntropyGap",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove unrestricted H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
