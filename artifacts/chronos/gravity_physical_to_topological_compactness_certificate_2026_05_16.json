@@ -1,0 +1,25 @@
+{
+  "artifact": "gravity_physical_to_topological_compactness_certificate",
+  "date": "2026-05-16",
+  "status": "CERTIFICATE_REDUCTION_PROVED",
+  "lean_module": "Chronos.Frontier.GravityPhysicalToTopologicalCompactnessCertificate",
+  "main_theorem": "physicalToTopologicalCompactnessInput_from_certificate",
+  "bridge_theorem": "A3BoundaryCompactnessBridge_from_certificate",
+  "proved": [
+    "PhysicalToTopologicalCompactnessInput follows from FiniteSpectralCompactnessCertificate",
+    "A3BoundaryCompactnessBridge follows from FiniteSpectralCompactnessCertificate and the four physical hypotheses"
+  ],
+  "remaining_missing_object": "FiniteSpectralCompactnessCertificate FΛ Λ",
+  "boundary": [
+    "certificate reduction only",
+    "does not construct FiniteSpectralCompactnessCertificate",
+    "does not prove unrestricted UniversalBoundaryCompactness",
+    "does not prove unrestricted QL_CollapseGate",
+    "does not prove Cosmic Censorship",
+    "does not prove the Hoop Conjecture",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not solve any Clay problem"
+  ]
+}
