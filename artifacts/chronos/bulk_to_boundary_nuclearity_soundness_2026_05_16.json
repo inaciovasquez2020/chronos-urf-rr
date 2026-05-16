@@ -1,0 +1,20 @@
+{
+  "artifact": "bulk_to_boundary_nuclearity_soundness_2026_05_16",
+  "status": "FRONTIER_OPEN",
+  "lean_module": "Chronos.Frontier.BulkToBoundaryNuclearitySoundness",
+  "definitions": [
+    "BoundaryNuclearity",
+    "BulkDeformationPushforwardCompact_wstar",
+    "BulkToBoundaryNuclearitySoundness"
+  ],
+  "conditional_bridge": "bulk_to_boundary_nuclearity_soundness_implies_unrestricted_boundary_compactness",
+  "boundary": [
+    "operator-algebraic interface only",
+    "no construction of BoundaryNuclearity from Einstein--matter dynamics",
+    "no proof of BulkDeformationPushforwardCompact_wstar",
+    "no proof of unrestricted UniversalBoundaryCompactness",
+    "no proof of unrestricted QL_CollapseGate",
+    "no proof of Cosmic Censorship",
+    "no proof of the Hoop Conjecture"
+  ]
+}
