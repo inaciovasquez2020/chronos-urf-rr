@@ -1,0 +1,23 @@
+{
+  "artifact": "boundary_nuclearity_from_finite_detector_algebra_2026_05_16",
+  "status": "FRONTIER_OPEN",
+  "lean_module": "Chronos.Frontier.BoundaryNuclearityFromFiniteDetectorAlgebra",
+  "definitions": [
+    "FiniteDetectorAlgebra",
+    "BoundaryNuclearityFromFiniteDetectorAlgebra"
+  ],
+  "conditional_bridge": "boundary_nuclearity_from_finite_detector_algebra_implies_bulk_to_boundary_nuclearity_soundness",
+  "depends_on": [
+    "BulkToBoundaryNuclearitySoundness"
+  ],
+  "boundary": [
+    "finite detector algebra interface only",
+    "conditional bridge only",
+    "no construction of BoundaryNuclearity from Einstein--matter dynamics",
+    "no proof of BulkToBoundaryNuclearitySoundness",
+    "no proof of unrestricted UniversalBoundaryCompactness",
+    "no proof of unrestricted QL_CollapseGate",
+    "no proof of Cosmic Censorship",
+    "no proof of the Hoop Conjecture"
+  ]
+}
