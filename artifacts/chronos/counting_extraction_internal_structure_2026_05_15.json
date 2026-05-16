@@ -1,0 +1,25 @@
+{
+  "artifact": "counting_extraction_internal_structure",
+  "date": "2026-05-15",
+  "status": "STRUCTURED_EXTRACTION_SURFACE_CLOSED",
+  "internal_structures": {
+    "countingFiberSeparationFromNonProp": "exists W : Witness, ValidExtractionWitness W",
+    "nonPropInvariant": "exists W : Witness, ValidExtractionWitness W",
+    "shared_witness": "W : Witness"
+  },
+  "closed_results": [
+    "StructuredCountingFiberSeparationFromNonProp -> SharedCountingExtractionWitnessExists",
+    "SharedCountingExtractionWitnessExists -> StructuredNonPropInvariant",
+    "StructuredCountingFiberSeparationFromNonProp -> StructuredNonPropInvariant"
+  ],
+  "boundary": [
+    "Does not prove raw Prop-only extraction.",
+    "Does not prove ordinary CountingFiberSeparationFromNonProp alone implies FiberMassBalanceFromNonProp.",
+    "Does not prove that an unstructured counting separation proposition supplies this witness.",
+    "Does not prove unrestricted UniversalFiberEntropyGap.",
+    "Does not prove unrestricted Chronos-RR.",
+    "Does not prove unrestricted H4.1/FGL.",
+    "Does not prove P vs NP.",
+    "Does not solve any Clay problem."
+  ]
+}
