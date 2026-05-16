@@ -1,0 +1,28 @@
+{
+  "artifact": "finite_spectral_compactness_certificate_2026_05_16",
+  "status": "FINITE_SPECTRAL_COMPACTNESS_CERTIFICATE_SURFACE",
+  "closed_surface": [
+    "FiniteDetectorAlgebra",
+    "SpectralCutoff",
+    "BoundaryObservableStateSpace",
+    "boundaryObservableStateSpace_finite_dimensional",
+    "constructFiniteSpectralCompactnessCertificate",
+    "finiteSpectralCompactness_to_physicalTopologicalCompactness"
+  ],
+  "theorem_promotion": false,
+  "boundary": [
+    "certificate construction surface only",
+    "no Einstein dynamics",
+    "no finite-energy matter admissibility",
+    "no backreaction control",
+    "no covariant entropy bound",
+    "no unrestricted UniversalBoundaryCompactness",
+    "no unrestricted QL_CollapseGate",
+    "no Cosmic Censorship",
+    "no Hoop Conjecture",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}

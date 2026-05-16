@@ -38,6 +38,7 @@ import Chronos.Frontier.SemanticRankDefectControlsEntropyDefectOn
 import Chronos.Frontier.SemanticRankRateToFiberEntropySoundnessBridge
 import Chronos.Frontier.SemanticRankRateUniversalFiberEntropyGapCompatibility
 import Chronos.Frontier.UniversalFiberEntropyGapFromCountingAndMass
+import Chronos.Frontier.FiniteSpectralCompactnessCertificate
 import Chronos.ParityPair
 import Chronos.ParitySepProof
 import Chronos.XorLemmas
