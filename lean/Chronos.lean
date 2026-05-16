@@ -40,6 +40,7 @@ import Chronos.Frontier.SemanticRankRateUniversalFiberEntropyGapCompatibility
 import Chronos.Frontier.UniversalFiberEntropyGapFromCountingAndMass
 import Chronos.Frontier.FiniteSpectralCompactnessCertificate
 import Chronos.Frontier.EinsteinDynamicsRegularityTransferFrontier
+import Chronos.Frontier.UniversalBoundaryCompactnessConditionalBridge
 import Chronos.ParityPair
 import Chronos.ParitySepProof
 import Chronos.XorLemmas

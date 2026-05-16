@@ -1,0 +1,41 @@
+{
+  "artifact": "universal_boundary_compactness_conditional_bridge_2026_05_16",
+  "status": "CONDITIONAL_BRIDGE_ONLY",
+  "frontier_open_inputs": [
+    "FiniteEnergyMatterAdmissibility",
+    "BackreactionControlTheorem",
+    "EinsteinDynamicsRegularityTransfer"
+  ],
+  "external_inputs": [
+    "CovariantEntropyBoundInput"
+  ],
+  "conditional_bridge": [
+    "FiniteEnergyMatterAdmissibility",
+    "BackreactionControlTheorem",
+    "CovariantEntropyBoundAvailable",
+    "EinsteinDynamicsRegularityTransfer",
+    "UniversalBoundaryCompactnessConditionalConclusion"
+  ],
+  "theorem_promotion": false,
+  "forbidden_overclaim_guards": [
+    "Cosmic Censorship",
+    "Hoop Conjecture",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted QL_CollapseGate"
+  ],
+  "boundary": [
+    "conditional bridge only",
+    "no FiniteEnergyMatterAdmissibility proof",
+    "no BackreactionControlTheorem proof",
+    "no CovariantEntropyBoundInput proof",
+    "no EinsteinDynamicsRegularityTransfer proof",
+    "no unrestricted UniversalBoundaryCompactness",
+    "no unrestricted QL_CollapseGate",
+    "no Cosmic Censorship",
+    "no Hoop Conjecture",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
