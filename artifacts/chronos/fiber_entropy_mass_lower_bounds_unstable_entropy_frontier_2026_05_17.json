@@ -1,0 +1,29 @@
+{
+  "artifact": "fiber_entropy_mass_lower_bounds_unstable_entropy_frontier",
+  "date": "2026-05-17",
+  "status": "FRONTIER_OPEN",
+  "classification": "theorem_target_only",
+  "target": "FiberEntropyMassLowerBoundsUnstableEntropy",
+  "closed_surfaces": [
+    "fiberEntropyMassLowerBoundsUnstableEntropy_from_partition_dominance"
+  ],
+  "missing_theorem_target": [
+    "FiberEntropyMassLowerBoundsUnstableEntropy"
+  ],
+  "dependencies": [
+    "FiberEntropyMassDominatesEntropyProducingPartition",
+    "EntropyProducingPartitionDominatesUnstableEntropy"
+  ],
+  "boundary": [
+    "frontier open",
+    "theorem target only",
+    "no proof of FiberEntropyMassLowerBoundsUnstableEntropy",
+    "no proof of RateThickFiberEntropyGap",
+    "no full-category fiber-entropy gap promotion",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR closure",
+    "no unrestricted H4.1/FGL closure",
+    "no P vs NP closure",
+    "no Clay-problem closure"
+  ]
+}

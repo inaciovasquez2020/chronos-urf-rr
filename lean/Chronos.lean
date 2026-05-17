@@ -1,3 +1,4 @@
+import Chronos.Frontier.FiberEntropyMassLowerBoundsUnstableEntropyFrontier
 import Chronos.Frontier.RankRateToLyapunovExpansionFrontier
 import Chronos.Frontier.BoundaryNuclearityFromFiniteDetectorAlgebra
 import Chronos.Frontier.BulkToBoundaryNuclearitySoundness
