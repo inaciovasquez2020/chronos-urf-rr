@@ -1,0 +1,20 @@
+{
+  "artifact": "carrier_rank_soundness",
+  "date": "2026-05-17",
+  "status": "RESTRICTED_POSITIVE_BRIDGE",
+  "lean_module": "Chronos.Frontier.CarrierRankSoundness",
+  "added": [
+    "CarrierRankSoundness",
+    "restrictedRankRateBridge",
+    "restrictedRankRateBridge_fromLowerBound"
+  ],
+  "boundary": [
+    "Does not prove unrestricted RankRateBridgeLaw",
+    "Does not prove RateThickFiberCoercivity",
+    "Does not prove unrestricted UniversalFiberEntropyGap",
+    "Does not prove unrestricted Chronos-RR",
+    "Does not prove H4.1/FGL",
+    "Does not prove P vs NP",
+    "Does not prove any Clay problem"
+  ]
+}
