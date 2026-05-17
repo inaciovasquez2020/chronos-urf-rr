@@ -71,3 +71,4 @@ import Chronos.Frontier.SelectedDomainUniversalGapFromRestrictedCarrier
 import Chronos.Frontier.SelectedDomainChronosRRFromUniversalGap
 import Chronos.Frontier.SelectedDomainH41FGLFromChronosRR
 import Chronos.Frontier.UnrestrictedRateThickCoercivityRoute
+import Chronos.Frontier.RateThickFiberCoercivityCertificate
