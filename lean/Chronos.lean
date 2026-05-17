@@ -69,3 +69,4 @@ import Chronos.Frontier.CarrierRankSoundness
 import Chronos.Frontier.RestrictedCarrierRankToEntropyGap
 import Chronos.Frontier.SelectedDomainUniversalGapFromRestrictedCarrier
 import Chronos.Frontier.SelectedDomainChronosRRFromUniversalGap
+import Chronos.Frontier.SelectedDomainH41FGLFromChronosRR
