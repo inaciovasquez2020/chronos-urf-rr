@@ -1,14 +1,14 @@
 # Latent Trace Entropy Route
 
-Date: 2026-05-17
+## Status
 
-Status: CONDITIONAL_FRONTIER_ONLY
+CONDITIONAL_FRONTIER_ONLY
 
 ## Closed repository surface
 
 - `LatentState`
 - `Trace`
-- `TraceProjection : LatentState → Trace`
+- `TraceProjection`
 - `traceProjection_noninjective`
 - `EmptyTraceFiberNonempty`
 - `trace_empty_not_absent`
@@ -25,13 +25,15 @@ Status: CONDITIONAL_FRONTIER_ONLY
 
 ## Weakest correction
 
-Non-injectivity of a trace projection alone does not imply empty-trace latent existence.
+Non-injectivity of a trace projection alone does not imply that the empty-trace fiber is nonempty.
 
 The weakest sufficient condition is:
 
 ```lean
 def EmptyTraceFiberNonempty (π : LatentState → Trace) : Prop :=
   ∃ d : LatentState, π d = Trace.empty
+For the repository-local lossy projection, this is proved by:
+theorem trace_empty_not_absent : EmptyTraceFiberNonempty TraceProjection
 Remaining frontier inputs
 RankRateBridgeLaw λ
 RateThickFiberCoercivity λ
