@@ -1,0 +1,30 @@
+{
+"artifact": "rate_thick_binary_kappa_candidate",
+"date": "2026-05-17",
+"status": "FRONTIER_OPEN",
+"surface": "BINARY_KAPPA_CANDIDATE_ONLY",
+"candidate": "binaryKappaCandidate lambda = - (1 - lambda) * log(1 - lambda) - lambda * log(lambda)",
+"general_candidate": "mAryKappaCandidate m lambda",
+"open_targets": [
+"BinaryKappaPositiveTarget lambda",
+"EntropyMinDominatesBinaryCoefficientTarget m lambda",
+"BinaryCandidateUniformFiberMassBound lambda"
+],
+"closed_conditional_consequences": [
+"BinaryKappaCandidateCertificateInputs lambda implies UniformRateThickFiberLowerBoundCertificate lambda",
+"BinaryKappaCandidateCertificateInputs lambda implies RateThickFiberCoercivity lambda",
+"RankRateBridgeLaw lambda and BinaryKappaCandidateCertificateInputs lambda imply UniversalFiberEntropyGap lambda"
+],
+"boundary": [
+"does not prove positivity of binaryKappaCandidate lambda",
+"does not prove entropy-minimum domination",
+"does not prove uniform fiber-mass bound",
+"does not construct unrestricted certificate",
+"does not prove unrestricted RateThickFiberCoercivity lambda",
+"does not prove unrestricted UniversalFiberEntropyGap lambda",
+"does not prove unrestricted Chronos-RR",
+"does not prove H4.1/FGL",
+"does not prove P vs NP",
+"does not prove any Clay problem"
+]
+}
