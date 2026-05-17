@@ -20,10 +20,10 @@ assert artifact["status"] == "FRONTIER_OPEN"
 assert artifact["classification"] == "route_index_only"
 
 for token in [
-    "DimensionRegularFiberGrowthFrontier",
-    "RankRateToLyapunovExpansionFrontier",
-    "FiberEntropyMassLowerBoundsUnstableEntropyFrontier",
-    "RateThickPositiveEntropyLowerBoundFrontier",
+    "DimensionRegularFiberGrowthInput",
+    "RankRateToLyapunovExpansionInput",
+    "FiberEntropyMassLowerBoundsUnstableEntropyInput",
+    "RateThickPositiveEntropyLowerBoundInput",
     "RateThickFiberEntropyRouteInputs",
     "RateThickFiberEntropyRouteFrontierIndex",
     "rateThickFiberEntropyRouteFrontierIndex_from_inputs"

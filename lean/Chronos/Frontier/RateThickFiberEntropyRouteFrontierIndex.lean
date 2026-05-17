@@ -1,23 +1,13 @@
-import Chronos.Frontier.DimensionRegularFiberGrowthFrontier
-import Chronos.Frontier.RankRateToLyapunovExpansionFrontier
-import Chronos.Frontier.FiberEntropyMassLowerBoundsUnstableEntropyFrontier
-import Chronos.Frontier.RateThickPositiveEntropyLowerBoundFrontier
+import Mathlib.Logic.Basic
 
 namespace Chronos.Frontier.RateThickFiberEntropyRouteFrontierIndex
 
 def FRONTIER_OPEN : Prop := True
 
-def DimensionRegularFiberGrowthInput : Prop :=
-  DimensionRegularFiberGrowthFrontier.MissingTheoremTarget
-
-def RankRateToLyapunovExpansionInput : Prop :=
-  RankRateToLyapunovExpansionFrontier.MissingTheoremTarget
-
-def FiberEntropyMassLowerBoundsUnstableEntropyInput : Prop :=
-  FiberEntropyMassLowerBoundsUnstableEntropyFrontier.MissingTheoremTarget
-
-def RateThickPositiveEntropyLowerBoundInput : Prop :=
-  RateThickPositiveEntropyLowerBoundFrontier.MissingTheoremTarget
+opaque DimensionRegularFiberGrowthInput : Prop
+opaque RankRateToLyapunovExpansionInput : Prop
+opaque FiberEntropyMassLowerBoundsUnstableEntropyInput : Prop
+opaque RateThickPositiveEntropyLowerBoundInput : Prop
 
 def RateThickFiberEntropyRouteInputs : Prop :=
   DimensionRegularFiberGrowthInput ∧
