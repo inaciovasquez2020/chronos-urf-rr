@@ -1,0 +1,29 @@
+{
+  "artifact": "latent_trace_entropy_route",
+  "date": "2026-05-17",
+  "status": "CONDITIONAL_FRONTIER_ONLY",
+  "lean_module": "Chronos.Frontier.LatentTraceEntropyRoute",
+  "closed_surfaces": [
+    "LatentState",
+    "Trace",
+    "TraceProjection",
+    "traceProjection_noninjective",
+    "EmptyTraceFiberNonempty",
+    "trace_empty_not_absent",
+    "LatentTower",
+    "EntropyLoss",
+    "entropyFaithfulLowerEnvelope",
+    "universalFiberEntropyGap"
+  ],
+  "frontier_inputs": [
+    "RankRateBridgeLaw",
+    "RateThickFiberCoercivity"
+  ],
+  "boundary": [
+    "No unrestricted UniversalFiberEntropyGap",
+    "No unrestricted Chronos-RR",
+    "No H4.1/FGL",
+    "No P vs NP",
+    "No Clay-problem closure"
+  ]
+}
