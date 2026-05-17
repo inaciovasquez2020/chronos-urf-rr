@@ -57,3 +57,8 @@ import Chronos.ParityPair
 import Chronos.ParitySepProof
 import Chronos.XorLemmas
 import Chronos.XorReduce
+
+import Chronos.Frontier.GravityNonSymmetricEinsteinMatterCollapseCompactness
+import Chronos.Frontier.ActiveGravityCarrierBinding
+import Chronos.Frontier.RestrictedSphericalCollapseEntropyGap
+import Chronos.Frontier.NonSphericalStabilityTransfer

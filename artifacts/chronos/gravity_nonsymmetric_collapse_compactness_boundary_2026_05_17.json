@@ -1,0 +1,26 @@
+{
+  "artifact": "gravity_nonsymmetric_collapse_compactness_boundary_2026_05_17",
+  "status": "FRONTIER_OPEN",
+  "surfaces": [
+    "NonSymmetricEinsteinMatterCollapseCompactness",
+    "ActiveGravityCarrierBinding",
+    "RestrictedSphericalCollapseEntropyGap",
+    "NonSphericalStabilityTransfer"
+  ],
+  "boundary": [
+    "NonSymmetricEinsteinMatterCollapseCompactness remains FRONTIER_OPEN.",
+    "ActiveGravityCarrierBinding is ACTIVE_BINDING_INTERFACE_ONLY.",
+    "RestrictedSphericalCollapseEntropyGap is conditional.",
+    "NonSphericalStabilityTransfer is conditional."
+  ],
+  "non_claims": [
+    "Cosmic Censorship",
+    "the Hoop Conjecture",
+    "unconditional QL_CollapseGate",
+    "unconditional UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
