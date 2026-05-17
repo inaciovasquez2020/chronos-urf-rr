@@ -1,3 +1,4 @@
+import Chronos.Frontier.RateThickFiberEntropyRouteFrontierIndex
 import Chronos.Frontier.DimensionRegularFiberGrowthFrontier
 import Chronos.Frontier.RateThickPositiveEntropyLowerBoundFrontier
 import Chronos.Frontier.FiberEntropyMassLowerBoundsUnstableEntropyFrontier
