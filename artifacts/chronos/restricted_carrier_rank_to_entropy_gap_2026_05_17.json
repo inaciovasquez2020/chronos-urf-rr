@@ -1,0 +1,17 @@
+{
+  "artifact": "restricted_carrier_rank_to_entropy_gap",
+  "date": "2026-05-17",
+  "status": "PROVED_RESTRICTED_BRIDGE",
+  "lean_module": "Chronos.Frontier.RestrictedCarrierRankToEntropyGap",
+  "theorem": "restricted_carrier_rank_to_entropy_gap",
+  "boundary": [
+    "restricted carrier bridge only",
+    "does not prove unrestricted RankRateBridgeLaw",
+    "does not prove unrestricted RateThickFiberCoercivity",
+    "does not prove unrestricted UniversalFiberEntropyGap",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
