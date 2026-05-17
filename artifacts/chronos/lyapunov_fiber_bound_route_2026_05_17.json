@@ -1,0 +1,16 @@
+{
+  "status": "LYAPUNOV_FIBER_BOUND_ROUTE_ONLY",
+  "theorem_promotion": false,
+  "main_theorem": "NaturalHyperbolicUniversalGap_from_lyapunov_bounds",
+  "weakest_missing_input": "LyapunovFiberBoundData D L B",
+  "boundary": [
+    "route only",
+    "no construction of LyapunovFiberBoundData",
+    "no unrestricted RateThickFiberCoercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}

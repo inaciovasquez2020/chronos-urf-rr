@@ -74,3 +74,5 @@ import Chronos.Frontier.UnrestrictedRateThickCoercivityRoute
 import Chronos.Frontier.RateThickFiberCoercivityCertificate
 import Chronos.Frontier.RateThickBinaryKappaCandidate
 import Chronos.Frontier.FiniteRegisteredHyperbolicRateThickAssembly
+
+import Chronos.Frontier.LyapunovFiberBoundRoute
