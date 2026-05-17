@@ -67,3 +67,4 @@ import Chronos.Frontier.GravityActiveCarrierBindingTheoremTarget
 import Chronos.Frontier.LatentTraceEntropyRoute
 import Chronos.Frontier.CarrierRankSoundness
 import Chronos.Frontier.RestrictedCarrierRankToEntropyGap
+import Chronos.Frontier.SelectedDomainUniversalGapFromRestrictedCarrier
