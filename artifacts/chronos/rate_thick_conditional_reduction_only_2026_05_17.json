@@ -1,0 +1,26 @@
+{
+  "artifact": "rate_thick_conditional_reduction_only",
+  "date": "2026-05-17",
+  "status": "CONDITIONAL_REDUCTION_ONLY",
+  "classification": "frontier_reduction_surface",
+  "closed_surfaces": [
+    "dimensionRegularFiberGrowth_implies_rankRate_nonNullFiberWitness",
+    "rankRateToLyapunovExpansion_implies_lyapunov_lower_bound",
+    "fiberEntropyMassLowerBoundsUnstableEntropy_apply",
+    "rateThickFiberEntropyGap_from_entropy_lower_bound"
+  ],
+  "missing_lemmas": [
+    "DimensionRegularFiberGrowth",
+    "RankRateToLyapunovExpansion",
+    "FiberEntropyMassLowerBoundsUnstableEntropy",
+    "positive entropy lower bound on the rate-thick domain"
+  ],
+  "boundary": [
+    "conditional reduction only",
+    "no full-category fiber-entropy gap promotion",
+    "no unrestricted Chronos-RR closure",
+    "no unrestricted H4.1/FGL closure",
+    "no P vs NP closure",
+    "no Clay-problem closure"
+  ]
+}
