@@ -2,9 +2,7 @@ import Mathlib.Data.Real.Basic
 
 namespace Chronos.Frontier.RateThickConditionalReductionOnly
 
-universe u
-
-opaque ChronosObject : Type u
+opaque ChronosObject : Type
 
 opaque RankRate : ChronosObject → ℝ
 opaque FiberEntropyMass : ChronosObject → ℝ
@@ -16,35 +14,35 @@ opaque RateThickDomain : ℝ → ChronosObject → Prop
 
 def ConditionalReductionOnly : Prop := True
 
-def DimensionRegularFiberGrowth (λ : ℝ) : Prop :=
+def DimensionRegularFiberGrowth (lam : ℝ) : Prop :=
   ∀ X : ChronosObject,
-    RateThickDomain λ X →
-    RankRate X ≥ λ →
+    RateThickDomain lam X →
+    RankRate X ≥ lam →
     NonNullFiberWitness X
 
 theorem dimensionRegularFiberGrowth_implies_rankRate_nonNullFiberWitness
-    {λ : ℝ}
-    (h : DimensionRegularFiberGrowth λ) :
+    {lam : ℝ}
+    (h : DimensionRegularFiberGrowth lam) :
     ∀ X : ChronosObject,
-      RateThickDomain λ X →
-      RankRate X ≥ λ →
+      RateThickDomain lam X →
+      RankRate X ≥ lam →
       NonNullFiberWitness X := by
   intro X hthick hrank
   exact h X hthick hrank
 
-def RankRateToLyapunovExpansion (λ : ℝ) : Prop :=
+def RankRateToLyapunovExpansion (lam : ℝ) : Prop :=
   ∀ X : ChronosObject,
-    RateThickDomain λ X →
-    RankRate X ≥ λ →
-    UnstableLyapunovSum X ≥ λ
+    RateThickDomain lam X →
+    RankRate X ≥ lam →
+    UnstableLyapunovSum X ≥ lam
 
 theorem rankRateToLyapunovExpansion_implies_lyapunov_lower_bound
-    {λ : ℝ}
-    (h : RankRateToLyapunovExpansion λ) :
+    {lam : ℝ}
+    (h : RankRateToLyapunovExpansion lam) :
     ∀ X : ChronosObject,
-      RateThickDomain λ X →
-      RankRate X ≥ λ →
-      UnstableLyapunovSum X ≥ λ := by
+      RateThickDomain lam X →
+      RankRate X ≥ lam →
+      UnstableLyapunovSum X ≥ lam := by
   intro X hthick hrank
   exact h X hthick hrank
 
@@ -59,20 +57,20 @@ theorem fiberEntropyMassLowerBoundsUnstableEntropy_apply
   intro X
   exact h X
 
-def RateThickFiberEntropyGap (λ ε : ℝ) : Prop :=
+def RateThickFiberEntropyGap (lam eps : ℝ) : Prop :=
   ∀ X : ChronosObject,
-    RateThickDomain λ X →
+    RateThickDomain lam X →
     RankRate X > 0 →
-    FiberEntropyMass X ≥ ε
+    FiberEntropyMass X ≥ eps
 
 theorem rateThickFiberEntropyGap_from_entropy_lower_bound
-    {λ ε : ℝ}
+    {lam eps : ℝ}
     (hε :
       ∀ X : ChronosObject,
-        RateThickDomain λ X →
+        RateThickDomain lam X →
         RankRate X > 0 →
-        FiberEntropyMass X ≥ ε) :
-    RateThickFiberEntropyGap λ ε := by
+        FiberEntropyMass X ≥ eps) :
+    RateThickFiberEntropyGap lam eps := by
   intro X hthick hpos
   exact hε X hthick hpos
 
