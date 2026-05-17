@@ -1,0 +1,27 @@
+{
+"artifact": "gravity_active_carrier_binding_theorem_target_2026_05_17",
+"status": "CONDITIONAL / ACTIVE_BINDING_THEOREM_TARGET_ONLY",
+"lean_file": "lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean",
+"formal_additions": [
+"GravityActiveCarrierBindingTheoremTarget",
+"EinsteinMatterEvolutionActsOnCarrier",
+"GravityCarrierEntropyMass",
+"CertificateSurfaceFactorsThroughActiveCarrier",
+"certificateSurfaceFactorsThroughActiveCarrier_conditional"
+],
+"boundary": [
+"active-carrier theorem-target surface only",
+"conditional bridge only",
+"no theorem-level gravity promotion"
+],
+"non_claims": [
+"Cosmic Censorship",
+"the Hoop Conjecture",
+"unconditional QL_CollapseGate",
+"unconditional UniversalBoundaryCompactness",
+"unrestricted Chronos-RR",
+"H4.1/FGL",
+"P vs NP",
+"any Clay problem"
+]
+}
