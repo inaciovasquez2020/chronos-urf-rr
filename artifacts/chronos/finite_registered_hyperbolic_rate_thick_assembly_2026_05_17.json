@@ -1,0 +1,30 @@
+{
+  "name": "finite_registered_hyperbolic_rate_thick_assembly",
+  "date": "2026-05-17",
+  "status": "FINITE_REGISTERED_HYPERBOLIC_RATE_THICK_SURFACE_ONLY",
+  "theorem_promotion": false,
+  "main_theorem": "FiniteRegisteredHyperbolicRateThickUniversalGapAssembly",
+  "closed_surface": [
+    "finite registered ratio stability from uniform floor",
+    "finite registered uniform mass floor",
+    "finite registered domination certificate",
+    "finite registered uniform mass certificate",
+    "finite registered rate-thick coercivity",
+    "finite registered hyperbolic universal gap assembly"
+  ],
+  "required_input": [
+    "R : FiniteHyperbolicRegistry n",
+    "epsilon : Real",
+    "0 < epsilon",
+    "forall i : Fin n, epsilon <= (R.system i).entropyMass"
+  ],
+  "boundary": [
+    "finite registered hyperbolic domain only",
+    "no unrestricted RateThickFiberCoercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}

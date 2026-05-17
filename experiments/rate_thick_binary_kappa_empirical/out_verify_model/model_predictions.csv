@@ -1,0 +1,9 @@
+lambda,entropy_mass,rank_rate,fiber_count,admissible,split,kappa,theory_admissible,binary_kappa_positive,rank_positive,predicted_entropy_mass,domination_residual,domination_pass,uniform_bound_prediction,uniform_bound_pass
+0.05,0.05,1.0,20,True,train,0.0475,True,True,True,0.047626666666666664,0.0023733333333333384,True,0.05,True
+0.1,0.092,1.0,22,True,train,0.09000000000000001,True,True,True,0.09024,0.0017599999999999977,True,0.05,True
+0.15,0.13,1.0,25,True,train,0.1275,True,True,True,0.12783999999999998,0.002160000000000023,True,0.05,True
+0.2,0.164,1.0,26,True,train,0.16000000000000003,True,True,True,0.1604266666666667,0.0035733333333333173,True,0.05,True
+0.25,0.188,1.0,29,True,test,0.1875,True,True,True,0.188,0.0,True,0.05,True
+0.3,0.214,1.0,31,True,test,0.21,True,True,True,0.21055999999999997,0.0034400000000000264,True,0.05,True
+0.4,0.245,1.0,36,True,test,0.24,True,True,True,0.24063999999999997,0.0043600000000000305,True,0.05,True
+0.5,0.26,1.0,40,True,test,0.25,True,True,True,0.25066666666666665,0.00933333333333336,True,0.05,True

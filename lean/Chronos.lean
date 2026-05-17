@@ -73,3 +73,4 @@ import Chronos.Frontier.SelectedDomainH41FGLFromChronosRR
 import Chronos.Frontier.UnrestrictedRateThickCoercivityRoute
 import Chronos.Frontier.RateThickFiberCoercivityCertificate
 import Chronos.Frontier.RateThickBinaryKappaCandidate
+import Chronos.Frontier.FiniteRegisteredHyperbolicRateThickAssembly

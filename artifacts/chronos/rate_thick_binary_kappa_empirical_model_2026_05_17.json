@@ -1,0 +1,29 @@
+{
+  "name": "rate_thick_binary_kappa_empirical_model",
+  "date": "2026-05-17",
+  "status": "EMPIRICAL_MODEL_ONLY",
+  "theorem_promotion": false,
+  "alpha_train_min": 1.0196078431372548,
+  "alpha_holdout_safe": 1.0026666666666666,
+  "delta_loocv": 0.016380952380952385,
+  "delta_holdout": 0.016941176470588237,
+  "delta_observed_max": 0.016941176470588237,
+  "epsilon_train_min": 0.05,
+  "train_min_domination_failures": 2,
+  "loocv_train_min_domination_failures": 1,
+  "holdout_safe_domination_failures": 0,
+  "uniform_bound_failures": 0,
+  "boundary": [
+    "empirical comparison only",
+    "no entropy-minimum domination proof",
+    "no ratio stability proof",
+    "no uniform fiber-mass bound proof",
+    "no unrestricted certificate construction",
+    "no unrestricted RateThickFiberCoercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}

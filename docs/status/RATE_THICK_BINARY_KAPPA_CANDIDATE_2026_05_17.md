@@ -1,6 +1,6 @@
 # Rate-Thick Binary Kappa Candidate
 
-Status: FRONTIER_OPEN / BINARY_KAPPA_CANDIDATE_ONLY
+Status: FRONTIER_OPEN / BINARY_KAPPA_POSITIVITY_PROVED
 
 ## Candidate coefficient
 
@@ -25,7 +25,7 @@ RankRateBridgeLaw λ →
 BinaryKappaCandidateCertificateInputs λ →
 UniversalFiberEntropyGap λ
 Boundary
-Candidate coefficient surface only.
+Binary kappa positivity proved under `BinaryKappaAdmissible λ`.
 Does not prove:
 positivity of binaryKappaCandidate λ
 entropy-minimum domination

@@ -1,0 +1,30 @@
+{
+  "n_rows": 8,
+  "n_admissible": 8,
+  "n_theory_admissible": 8,
+  "n_rank_positive_admissible": 8,
+  "binary_kappa_positive_failures": 0,
+  "alpha_quantile": 0.0,
+  "alpha_hat": 1.0026666666666666,
+  "alpha_bootstrap_ci": {
+    "lo": 1.0026666666666666,
+    "mid": 1.0026666666666666,
+    "hi": 1.019047619047619
+  },
+  "epsilon_hat": 0.05,
+  "epsilon_bootstrap_ci": {
+    "lo": 0.05,
+    "mid": 0.05,
+    "hi": 0.13
+  },
+  "domination_failure_count": 0,
+  "domination_failure_rate": 0.0,
+  "uniform_bound_failure_count": 0,
+  "uniform_bound_failure_rate": 0.0,
+  "status": {
+    "binary_kappa_positivity": "empirically_passed",
+    "entropy_minimum_domination": "empirical_fit_only",
+    "uniform_fiber_mass_bound": "empirical_fit_only",
+    "unrestricted_theorem_closure": "not_claimed"
+  }
+}
