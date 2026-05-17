@@ -1,6 +1,5 @@
 {
-  "artifact": "latent_trace_entropy_route",
-  "date": "2026-05-17",
+  "artifact": "latent_trace_entropy_route_2026_05_17",
   "status": "CONDITIONAL_FRONTIER_ONLY",
   "lean_module": "Chronos.Frontier.LatentTraceEntropyRoute",
   "closed_surfaces": [
@@ -13,7 +12,7 @@
     "LatentTower",
     "EntropyLoss",
     "entropyFaithfulLowerEnvelope",
-    "universalFiberEntropyGap"
+    "universalFiberEntropyGap conditional on RankRateBridgeLaw and RateThickFiberCoercivity"
   ],
   "frontier_inputs": [
     "RankRateBridgeLaw",

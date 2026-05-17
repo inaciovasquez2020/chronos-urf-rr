@@ -16,9 +16,9 @@ def TraceProjection : LatentState → Trace :=
   fun _ => Trace.empty
 
 theorem traceProjection_noninjective : ¬ Function.Injective TraceProjection := by
-  intro h
-  have hw : LatentState.witness = LatentState.shadow := h rfl
-  cases hw
+  intro hinj
+  have h : LatentState.witness = LatentState.shadow := hinj rfl
+  cases h
 
 def EmptyTraceFiberNonempty (π : LatentState → Trace) : Prop :=
   ∃ d : LatentState, π d = Trace.empty
@@ -90,8 +90,8 @@ theorem entropyFaithfulLowerEnvelope
           sys.fiberEntropyMass ≥ ε := by
   rcases h_coercivity with ⟨κ, hκ_pos, hκ⟩
   refine ⟨κ, hκ_pos, ?_⟩
-  intro sys hsys ρ hρ
-  exact hκ sys hsys (h_bridge sys hsys ρ hρ)
+  intro sys hsys ρ h_rank
+  exact hκ sys hsys (h_bridge sys hsys ρ h_rank)
 
 theorem universalFiberEntropyGap
     (lam : ℝ)
@@ -103,10 +103,11 @@ theorem universalFiberEntropyGap
         ∀ ρ : Set (Set sys.State),
           (∃ n : Nat, sys.rankRate ρ n > 0) →
           sys.fiberEntropyMass ≥ ε := by
-  rcases entropyFaithfulLowerEnvelope lam h_bridge h_coercivity with ⟨ε, hε_pos, hε⟩
+  rcases entropyFaithfulLowerEnvelope lam h_bridge h_coercivity with
+    ⟨ε, hε_pos, hε⟩
   refine ⟨ε, hε_pos, ?_⟩
-  intro sys hsys ρ hpos
-  exact hε sys hsys ρ (hsys ρ hpos)
+  intro sys hsys ρ h_pos
+  exact hε sys hsys ρ (hsys ρ h_pos)
 
 structure HyperbolicCoercivityCertificate (lam : ℝ) where
   coercivity : RateThickFiberCoercivity lam

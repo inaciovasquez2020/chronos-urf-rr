@@ -4,13 +4,11 @@ import json
 
 ROOT = Path(__file__).resolve().parents[1]
 
-FILES = [
-    ROOT / "lean/Chronos/Frontier/LatentTraceEntropyRoute.lean",
-    ROOT / "docs/status/LATENT_TRACE_ENTROPY_ROUTE_2026_05_17.md",
-    ROOT / "artifacts/chronos/latent_trace_entropy_route_2026_05_17.json",
-]
+LEAN_PATH = ROOT / "lean/Chronos/Frontier/LatentTraceEntropyRoute.lean"
+DOC_PATH = ROOT / "docs/status/LATENT_TRACE_ENTROPY_ROUTE_2026_05_17.md"
+ARTIFACT_PATH = ROOT / "artifacts/chronos/latent_trace_entropy_route_2026_05_17.json"
 
-REQUIRED = [
+REQUIRED_LEAN = [
     "inductive LatentState",
     "inductive Trace",
     "def TraceProjection",
@@ -27,7 +25,14 @@ REQUIRED = [
     "theorem universalFiberEntropyGap",
     "structure HyperbolicCoercivityCertificate",
     "theorem hyperbolicRoute",
+]
+
+REQUIRED_DOC = [
     "CONDITIONAL_FRONTIER_ONLY",
+    "Non-injectivity of a trace projection alone does not imply",
+    "RankRateBridgeLaw λ",
+    "RateThickFiberCoercivity λ",
+    "Does not prove:",
     "unrestricted UniversalFiberEntropyGap",
     "unrestricted Chronos-RR",
     "H4.1/FGL",
@@ -41,40 +46,42 @@ FORBIDDEN_LEAN = [
     "axiom ",
 ]
 
-FORBIDDEN_CLAIMS = [
-    "proves unrestricted UniversalFiberEntropyGap",
-    "proves unrestricted Chronos-RR",
-    "proves H4.1/FGL",
-    "proves P vs NP",
-    "solves P vs NP",
-    "solves a Clay problem",
-    "Clay problem solved",
+FORBIDDEN_COMBINED = [
+    "proves unrestricted universalfiberentropygap",
+    "proves unrestricted chronos-rr",
+    "proves h4.1/fgl",
+    "proves p vs np",
+    "solves p vs np",
+    "solves a clay problem",
+    "clay problem solved",
 ]
 
-missing = [str(p.relative_to(ROOT)) for p in FILES if not p.exists()]
-assert not missing, f"Missing files: {missing}"
+def main() -> None:
+    lean = LEAN_PATH.read_text()
+    doc = DOC_PATH.read_text()
+    artifact = json.loads(ARTIFACT_PATH.read_text())
 
-lean = FILES[0].read_text()
-combined = "\n".join(p.read_text() for p in FILES)
-lowered = combined.lower()
+    for token in REQUIRED_LEAN:
+        assert token in lean, token
 
-for token in REQUIRED:
-    assert token.lower() in lowered, token
+    for token in FORBIDDEN_LEAN:
+        assert token not in lean, token
 
-for token in FORBIDDEN_LEAN:
-    assert token not in lean, token
+    for token in REQUIRED_DOC:
+        assert token in doc, token
 
-for token in FORBIDDEN_CLAIMS:
-    assert token.lower() not in lowered, token
+    assert artifact["status"] == "CONDITIONAL_FRONTIER_ONLY"
+    assert "RankRateBridgeLaw" in artifact["frontier_inputs"]
+    assert "RateThickFiberCoercivity" in artifact["frontier_inputs"]
 
-artifact = json.loads(FILES[2].read_text())
-assert artifact["status"] == "CONDITIONAL_FRONTIER_ONLY"
-assert "RankRateBridgeLaw" in artifact["frontier_inputs"]
-assert "RateThickFiberCoercivity" in artifact["frontier_inputs"]
+    chronos = (ROOT / "lean/Chronos.lean").read_text()
+    assert "import Chronos.Frontier.LatentTraceEntropyRoute" in chronos
 
-chronos = (ROOT / "lean/Chronos.lean").read_text()
-assert (
-    "import Chronos.Frontier.LatentTraceEntropyRoute" in chronos
-), "missing Chronos.lean import"
+    combined = (lean + "\n" + doc + "\n" + json.dumps(artifact)).lower()
+    for token in FORBIDDEN_COMBINED:
+        assert token not in combined, token
 
-print("Latent trace entropy route verified.")
+    print("Latent trace entropy route verified.")
+
+if __name__ == "__main__":
+    main()
