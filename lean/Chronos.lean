@@ -66,3 +66,4 @@ import Chronos.Frontier.NonSphericalStabilityTransfer
 import Chronos.Frontier.GravityActiveCarrierBindingTheoremTarget
 import Chronos.Frontier.LatentTraceEntropyRoute
 import Chronos.Frontier.CarrierRankSoundness
+import Chronos.Frontier.RestrictedCarrierRankToEntropyGap
