@@ -1,0 +1,22 @@
+{
+"artifact": "rate_thick_fiber_coercivity_certificate",
+"date": "2026-05-17",
+"status": "FRONTIER_OPEN",
+"surface": "CERTIFICATE_INPUT_SURFACE_ONLY",
+"certificate": "UniformRateThickFiberLowerBoundCertificate lambda",
+"conditional_consequences": [
+"UniformRateThickFiberLowerBoundCertificate lambda implies RateThickFiberCoercivity lambda",
+"RankRateBridgeLaw lambda and UniformRateThickFiberLowerBoundCertificate lambda imply RateThickFiberEntropyGap lambda",
+"RankRateBridgeLaw lambda and UniformRateThickFiberLowerBoundCertificate lambda imply UniversalFiberEntropyGap lambda",
+"RankRateBridgeLaw lambda and UniformRateThickFiberLowerBoundCertificate lambda and UniversalFiberEntropyGapToChronosRR lambda imply ChronosRR lambda"
+],
+"boundary": [
+"does not construct UniformRateThickFiberLowerBoundCertificate lambda",
+"does not prove unrestricted RateThickFiberCoercivity lambda",
+"does not prove unrestricted UniversalFiberEntropyGap lambda",
+"does not prove unrestricted Chronos-RR",
+"does not prove H4.1/FGL",
+"does not prove P vs NP",
+"does not prove any Clay problem"
+]
+}
