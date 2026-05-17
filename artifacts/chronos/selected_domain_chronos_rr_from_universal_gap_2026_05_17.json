@@ -1,0 +1,18 @@
+{
+  "artifact": "selected_domain_chronos_rr_from_universal_gap",
+  "date": "2026-05-17",
+  "status": "PROVED_SELECTED_DOMAIN_INTERFACE",
+  "lean_module": "Chronos.Frontier.SelectedDomainChronosRRFromUniversalGap",
+  "theorem": "selected_domain_chronos_rr_from_universal_gap",
+  "depends_on": [
+    "SelectedDomainUniversalFiberEntropyGap"
+  ],
+  "boundary": [
+    "selected-domain interface only",
+    "does not prove unrestricted UniversalFiberEntropyGap",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
