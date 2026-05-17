@@ -8,7 +8,7 @@ Files containing `sorry`, `admit`, or project axioms are frontier or conditional
 
 Axiom count: 21
 Admit count: 4
-Sorry count: 3
+Sorry count: 2
 
 ## Axiom locations
 
