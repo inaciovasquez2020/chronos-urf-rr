@@ -1,0 +1,23 @@
+{
+  "status": "VERIFIED_REDUCTION_FRONTIER_PROGRAM",
+  "theorem_promotion": false,
+  "program_stage": "frontier-index",
+  "current_head_meaning": "Chronos/URF has a verified reduction-and-frontier program with admissible-domain construction isolated as the next frontier.",
+  "closed_surfaces": [
+    "finite registered hyperbolic rate-thick surface",
+    "Lyapunov fiber-bound route",
+    "Lyapunov fiber-bound data certificate"
+  ],
+  "obstruction": "unrestricted Lyapunov certificate construction is false for the current NaturalHyperbolicBoundSystem interface via zeroBoundSystem",
+  "next_frontier": "admissible-domain construction excluding zero-gap systems",
+  "boundary": [
+    "status/index layer only",
+    "no admissible replacement domain constructed",
+    "no unrestricted RateThickFiberCoercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
