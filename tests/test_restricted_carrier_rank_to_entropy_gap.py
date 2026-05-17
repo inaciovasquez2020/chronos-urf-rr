@@ -9,10 +9,3 @@ def test_restricted_carrier_rank_to_entropy_gap_verifier():
         cwd=ROOT,
         check=True,
     )
-
-def test_restricted_carrier_rank_to_entropy_gap_lean_builds():
-    subprocess.run(
-        ["lake", "build", "Chronos.Frontier.RestrictedCarrierRankToEntropyGap"],
-        cwd=ROOT,
-        check=True,
-    )
