@@ -1,0 +1,17 @@
+{
+  "status": "LYAPUNOV_FIBER_BOUND_DATA_CERTIFICATE_CLOSED",
+  "theorem_promotion": false,
+  "main_theorem": "LyapunovFiberBoundData_from_certificate",
+  "closed_interface": "LyapunovFiberBoundData D L B from LyapunovFiberBoundCertificate D",
+  "remaining_input": "construct LyapunovFiberBoundCertificate D for an intended analytic system",
+  "boundary": [
+    "certificate construction only",
+    "no unrestricted analytic certificate construction",
+    "no unrestricted RateThickFiberCoercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}

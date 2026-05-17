@@ -76,3 +76,5 @@ import Chronos.Frontier.RateThickBinaryKappaCandidate
 import Chronos.Frontier.FiniteRegisteredHyperbolicRateThickAssembly
 
 import Chronos.Frontier.LyapunovFiberBoundRoute
+
+import Chronos.Frontier.LyapunovFiberBoundDataCertificate
