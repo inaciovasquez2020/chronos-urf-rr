@@ -64,3 +64,4 @@ import Chronos.Frontier.RestrictedSphericalCollapseEntropyGap
 import Chronos.Frontier.NonSphericalStabilityTransfer
 
 import Chronos.Frontier.GravityActiveCarrierBindingTheoremTarget
+import Chronos.Frontier.LatentTraceEntropyRoute
