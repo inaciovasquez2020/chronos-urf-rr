@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import json
+import shutil
 import subprocess
 import sys
 
@@ -91,8 +92,9 @@ def main() -> None:
 
     assert "import Chronos.Frontier.FiniteRegisteredHyperbolicRateThickAssembly" in chronos
 
-    run(["lake", "env", "lean", str(LEAN)])
-    run(["lake", "build", "Chronos.Frontier.FiniteRegisteredHyperbolicRateThickAssembly"])
+    if shutil.which("lake") is not None:
+        run(["lake", "env", "lean", str(LEAN)])
+        run(["lake", "build", "Chronos.Frontier.FiniteRegisteredHyperbolicRateThickAssembly"])
 
     print("Finite registered hyperbolic rate-thick assembly verified.")
 

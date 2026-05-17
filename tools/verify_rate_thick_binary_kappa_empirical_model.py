@@ -56,8 +56,10 @@ def run(cmd: list[str]) -> str:
         text=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
-        check=True,
     )
+    if proc.returncode != 0:
+        print(proc.stdout, file=sys.stderr)
+        raise subprocess.CalledProcessError(proc.returncode, cmd, output=proc.stdout)
     return proc.stdout
 
 
