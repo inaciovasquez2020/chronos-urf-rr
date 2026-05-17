@@ -78,3 +78,5 @@ import Chronos.Frontier.FiniteRegisteredHyperbolicRateThickAssembly
 import Chronos.Frontier.LyapunovFiberBoundRoute
 
 import Chronos.Frontier.LyapunovFiberBoundDataCertificate
+
+import Chronos.Frontier.LyapunovCertificateUnrestrictedObstruction
