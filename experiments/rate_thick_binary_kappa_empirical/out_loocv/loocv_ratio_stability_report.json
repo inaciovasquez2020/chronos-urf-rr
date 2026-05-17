@@ -1,0 +1,12 @@
+{
+  "rows": 8,
+  "train_min_domination_failures": 1,
+  "max_slack_required": 0.016380952380952385,
+  "max_relative_slack_required": 0.016074766355140192,
+  "holdout_safe_alpha_global": 1.0026666666666666,
+  "status": {
+    "ratio_stability": "empirical_slack_estimated",
+    "train_min_kappa_domination": "rejected_if_failures_positive",
+    "unrestricted_theorem_closure": "not_claimed"
+  }
+}

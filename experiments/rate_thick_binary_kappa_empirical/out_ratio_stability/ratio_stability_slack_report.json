@@ -1,0 +1,15 @@
+{
+  "alpha_train_min": 1.0196078431372548,
+  "delta_loocv": 0.016380952380952385,
+  "delta_holdout": 0.016941176470588237,
+  "delta_observed_max": 0.016941176470588237,
+  "passing_slack_models": [
+    "holdout_slack",
+    "observed_max_slack"
+  ],
+  "status": {
+    "ratio_stability_slack": "empirical_candidate_only",
+    "entropy_minimum_domination": "passes_holdout_only_after_slack",
+    "unrestricted_theorem_closure": "not_claimed"
+  }
+}

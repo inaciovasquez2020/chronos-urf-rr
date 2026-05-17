@@ -1,0 +1,5 @@
+lambda,entropy_mass,rank_rate,fiber_count,admissible,split,kappa,admissible_theory,rank_positive,ratio,train_min_predicted_entropy_mass,holdout_safe_predicted_entropy_mass,uniform_epsilon_prediction,train_min_domination_residual,holdout_safe_domination_residual,uniform_bound_residual,train_min_domination_pass,holdout_safe_domination_pass,uniform_bound_pass,stronger_lower_bound
+0.25,0.188,1.0,29,True,test,0.1875,True,True,1.0026666666666666,0.19117647058823528,0.188,0.05,-0.0031764705882352806,0.0,0.138,False,True,True,kappa_domination
+0.3,0.214,1.0,31,True,test,0.21,True,True,1.019047619047619,0.2141176470588235,0.21055999999999997,0.05,-0.00011764705882350013,0.0034400000000000264,0.16399999999999998,False,True,True,kappa_domination
+0.4,0.245,1.0,36,True,test,0.24,True,True,1.0208333333333333,0.24470588235294116,0.24063999999999997,0.05,0.0002941176470588336,0.0043600000000000305,0.195,True,True,True,kappa_domination
+0.5,0.26,1.0,40,True,test,0.25,True,True,1.04,0.2549019607843137,0.25066666666666665,0.05,0.005098039215686301,0.00933333333333336,0.21000000000000002,True,True,True,kappa_domination

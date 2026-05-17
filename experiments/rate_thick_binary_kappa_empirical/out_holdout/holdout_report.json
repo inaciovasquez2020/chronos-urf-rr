@@ -1,0 +1,19 @@
+{
+  "alpha_train_min": 1.0196078431372548,
+  "alpha_holdout_safe": 1.0026666666666666,
+  "ratio_stability_slack_required": 0.016941176470588237,
+  "ratio_stability_relative_slack_required": 0.01661538461538462,
+  "epsilon_train_min": 0.05,
+  "test_rows": 4,
+  "train_min_domination_failures": 2,
+  "holdout_safe_domination_failures": 0,
+  "uniform_bound_failures": 0,
+  "status": {
+    "binary_kappa_positivity": "empirically_passed_on_sample",
+    "entropy_minimum_domination_train_min": "holdout_rejected",
+    "entropy_minimum_domination_holdout_safe": "empirical_holdout_fit_only",
+    "ratio_stability": "slack_required",
+    "uniform_fiber_mass_bound": "holdout_empirical_test_only",
+    "unrestricted_theorem_closure": "not_claimed"
+  }
+}
