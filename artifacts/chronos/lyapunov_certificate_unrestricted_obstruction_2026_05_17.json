@@ -1,0 +1,18 @@
+{
+  "status": "UNRESTRICTED_LYAPUNOV_CERTIFICATE_FALSE",
+  "theorem_promotion": false,
+  "main_theorem": "unrestricted_LyapunovFiberBoundData_false",
+  "counterexample": "zeroBoundSystem",
+  "next_required_input": "restricted admissible domain excluding zero-gap systems",
+  "boundary": [
+    "obstruction only",
+    "unrestricted construction is false for NaturalHyperbolicBoundSystem",
+    "no replacement admissible domain constructed",
+    "no unrestricted RateThickFiberCoercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
