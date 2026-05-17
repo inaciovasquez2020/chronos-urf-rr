@@ -1,0 +1,46 @@
+# URF / Chronos boundary ledger.
+# This file records which formal surfaces are discharged, conditional, or frontier-open.
+# It is a status-control manifest only; it does not promote any theorem.
+
+[policy]
+allowed_statuses = [
+  "DISCHARGED_SURFACE",
+  "CONDITIONAL_SURFACE",
+  "FRONTIER_OPEN"
+]
+
+baseline_axioms = [
+  "Classical.choice",
+  "propext",
+  "Quot.sound"
+]
+
+forbidden_claims = [
+  "unconditional theorem-level closure",
+  "unconditional Chronos-RR",
+  "unrestricted Chronos-RR",
+  "unconditional H4.1/FGL",
+  "unrestricted H4.1/FGL",
+  "P vs NP closure",
+  "Clay problem closure",
+  "runtime dissipation-control theorem",
+  "production actuator-control guarantee",
+  "Lean-certified runtime topology mutation",
+  "deployed real-time controller"
+]
+
+[surfaces.boundary_ledger_fixture]
+status = "FRONTIER_OPEN"
+module = "Chronos.Frontier.BoundaryLedgerFixture"
+allowed_axioms = []
+allowed_placeholders = [
+  "BoundaryLedgerFixture.open_assumption"
+]
+open_assumptions = [
+  "BoundaryLedgerFixture.open_assumption"
+]
+forbidden_promotions = [
+  "unconditional theorem-level closure",
+  "runtime dissipation-control theorem",
+  "production actuator-control guarantee"
+]

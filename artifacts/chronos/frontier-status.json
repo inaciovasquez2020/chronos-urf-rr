@@ -1,0 +1,30 @@
+{
+  "errors": [],
+  "repository": "chronos-urf-rr",
+  "surfaces": [
+    {
+      "axioms": [],
+      "computed_status": "FRONTIER_OPEN",
+      "declared_status": "FRONTIER_OPEN",
+      "forbidden_promotions": [
+        "unconditional theorem-level closure",
+        "runtime dissipation-control theorem",
+        "production actuator-control guarantee"
+      ],
+      "module": "Chronos.Frontier.BoundaryLedgerFixture",
+      "name": "boundary_ledger_fixture",
+      "open_assumptions": [
+        "BoundaryLedgerFixture.open_assumption"
+      ],
+      "placeholders": [
+        "BoundaryLedgerFixture.open_assumption"
+      ]
+    }
+  ],
+  "verification_boundary": {
+    "conditional_surfaces": 0,
+    "discharged_surfaces": 0,
+    "open_frontier_objects": 1,
+    "total_surfaces": 1
+  }
+}
