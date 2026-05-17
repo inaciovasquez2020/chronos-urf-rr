@@ -1,3 +1,4 @@
+import Chronos.Frontier.RankRateToLyapunovExpansionFrontier
 import Chronos.Frontier.BoundaryNuclearityFromFiniteDetectorAlgebra
 import Chronos.Frontier.BulkToBoundaryNuclearitySoundness
 import Chronos.EP2Bundle
