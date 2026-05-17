@@ -1,0 +1,18 @@
+{
+  "artifact": "selected_domain_h41_fgl_from_chronos_rr",
+  "date": "2026-05-17",
+  "status": "PROVED_SELECTED_DOMAIN_INTERFACE",
+  "lean_module": "Chronos.Frontier.SelectedDomainH41FGLFromChronosRR",
+  "theorem": "selected_domain_h41_fgl_from_chronos_rr",
+  "depends_on": [
+    "SelectedDomainChronosRR"
+  ],
+  "boundary": [
+    "selected-domain interface only",
+    "does not prove unrestricted UniversalFiberEntropyGap",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove unrestricted H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
