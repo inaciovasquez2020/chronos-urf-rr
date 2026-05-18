@@ -1,0 +1,33 @@
+{
+  "artifact": "admissible_h41_fgl_to_pnp_boundary_lock",
+  "date": "2026-05-18",
+  "status": "ADMISSIBLE_PNP_BOUNDARY_LOCK_CLOSED_NO_THEOREM_PROMOTION",
+  "lean_module": "Chronos.Frontier.AdmissibleH41FGLToPNPBoundaryLock",
+  "closed_surface": [
+    "PNPStatus",
+    "PNPBoundaryLockTarget",
+    "H41FGLToPNPBoundaryLockBridge",
+    "pnpBoundaryLockTarget_from_h41FGLTarget",
+    "H41FGLToPNPBoundaryLockBridge_solved",
+    "AdmissibleH41FGLToPNPBoundaryLock",
+    "AdmissibleH41FGLToPNPBoundaryLock_solved",
+    "AdmissiblePNPBoundaryLockTarget",
+    "AdmissiblePNPBoundaryLockTarget_solved",
+    "pnp_boundary_status_frontier_open"
+  ],
+  "depends_on": [
+    "AdmissibleH41FGLTarget_solved",
+    "UnrestrictedH41FGLTarget_refuted"
+  ],
+  "boundary": [
+    "admissible restricted P vs NP boundary lock only",
+    "records PNPStatus.frontier_open only",
+    "does not prove unrestricted RateThickFiberCoercivity",
+    "does not prove unrestricted UniversalFiberEntropyGap",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove unrestricted H4.1/FGL",
+    "does not prove P vs NP",
+    "does not refute P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
