@@ -21,3 +21,10 @@ def test_latent_trace_entropy_route_boundary_present() -> None:
     assert "Does not prove:" in doc
     assert "unrestricted UniversalFiberEntropyGap" in doc
     assert "P vs NP" in doc
+
+def test_rate_thick_fiber_coercivity_refutation_present() -> None:
+    lean = (ROOT / "lean/Chronos/Frontier/LatentTraceEntropyRoute.lean").read_text()
+    doc = (ROOT / "docs/status/LATENT_TRACE_ENTROPY_ROUTE_2026_05_17.md").read_text()
+    assert "theorem rateThickFiberCoercivity_refuted" in lean
+    assert "¬ RateThickFiberCoercivity lam" in lean
+    assert "PositiveEntropyAdmissibleClass" in doc

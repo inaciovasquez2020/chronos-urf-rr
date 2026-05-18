@@ -37,6 +37,19 @@ theorem trace_empty_not_absent : EmptyTraceFiberNonempty TraceProjection
 Remaining frontier inputs
 RankRateBridgeLaw λ
 RateThickFiberCoercivity λ
+
+## Refutation surface
+
+The repository-local unrestricted definition of `RateThickFiberCoercivity λ` is refuted by a zero-entropy non-null system:
+
+```lean
+theorem rateThickFiberCoercivity_refuted
+    (lam : ℝ) :
+    ¬ RateThickFiberCoercivity lam
+Therefore HyperbolicCoercivityCertificate λ cannot be constructively populated under the present unrestricted DynamicalSystem interface.
+Weakest repair:
+def PositiveEntropyAdmissibleClass (lam : ℝ) : Prop := ...
+
 Boundary
 Conditional route only.
 Does not prove:

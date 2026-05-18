@@ -118,4 +118,33 @@ theorem hyperbolicRoute
     RateThickFiberCoercivity lam :=
   cert.coercivity
 
+
+theorem rateThickFiberCoercivity_refuted
+    (lam : ℝ) :
+    ¬ RateThickFiberCoercivity lam := by
+  intro h
+  rcases h with ⟨κ, hκ_pos, hκ⟩
+  let bad : DynamicalSystem :=
+    { State := PUnit
+      evolution := fun x => x
+      rankRate := fun _ _ => 0
+      fiberRank := 1
+      fiberDimension := 1
+      fiberEntropyMass := 0 }
+  have hRate : RateThickClass lam bad := by
+    intro ρ hpos
+    rcases hpos with ⟨n, hn⟩
+    have hzero_pos : (0 : ℝ) > 0 := by
+      simp at hn
+      exact hn
+    exact False.elim ((lt_irrefl (0 : ℝ)) hzero_pos)
+  have hNonNull : NonNullFiberWitness bad := by
+    constructor
+    · exact zero_lt_one
+    · exact le_refl (1 : ℝ)
+  have hge : bad.fiberEntropyMass ≥ κ := hκ bad hRate hNonNull
+  have hzero_ge : (0 : ℝ) ≥ κ := by
+    simpa [bad] using hge
+  exact (not_lt_of_ge hzero_ge) hκ_pos
+
 end Chronos
