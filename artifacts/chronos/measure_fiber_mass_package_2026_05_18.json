@@ -1,0 +1,33 @@
+{
+  "target": "MeasureFiberMassPackage",
+  "status": "MEASURE_FIBER_MASS_PACKAGE_FINITE_SUPPORT_PUSHFORWARD_CLOSED_FRONTIER_OPEN",
+  "depends_on": [
+    "FinitePositiveFiberMassToAdmissibleFiberMassData"
+  ],
+  "lean_module": "Chronos.Frontier.MeasureFiberMassPackage",
+  "closed_surfaces": [
+    "MeasureFiberMassPackage",
+    "MeasureFiberMassUniformFloor",
+    "finiteSupportPushforwardAdmissibleFiberMassData",
+    "finite_support_pushforward_case_from_finite_positive",
+    "finite_support_pushforward_uniform_floor_from_finite_positive",
+    "RestrictedRateThickFiberCoercivity",
+    "restricted_rate_thick_fiber_coercivity_from_finite_admissible_floor"
+  ],
+  "frontier_open": [
+    "unrestricted measure case",
+    "unrestricted measure fiber-mass uniform floor"
+  ],
+  "boundary": [
+    "finite-support pushforward case only",
+    "restricted-domain RateThickFiberCoercivity bridge only",
+    "unrestricted measure case remains FRONTIER_OPEN",
+    "no unrestricted FiberMassUniformFloor",
+    "no unrestricted RateThickFiberCoercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay-problem closure"
+  ]
+}
