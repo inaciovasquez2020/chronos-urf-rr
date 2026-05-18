@@ -1,3 +1,4 @@
+import Chronos.Frontier.UnrestrictedFiniteSupportLiftFrontier
 import Chronos.Frontier.FloorPreservingDomainLiftSufficientCondition
 import Chronos.Frontier.SinkClosureCountermodelDichotomyTarget
 import Chronos.Frontier.FiniteSupportToAdmissibleDomainLiftTarget
