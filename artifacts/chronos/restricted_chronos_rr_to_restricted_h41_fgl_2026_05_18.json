@@ -1,0 +1,17 @@
+{
+  "id": "restricted_chronos_rr_to_restricted_h41_fgl_2026_05_18",
+  "status": "RESTRICTED_H41FGL_TARGET_CLOSED_ONLY",
+  "closed": [
+    "RestrictedChronosRR -> RestrictedH41FGL"
+  ],
+  "boundary": [
+    "finite-support admissible restricted domain only",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay closure"
+  ],
+  "lean_module": "Chronos.Frontier.RestrictedChronosRRToRestrictedH41FGL",
+  "lean_theorem": "RestrictedChronosRRToRestrictedH41FGL"
+}
