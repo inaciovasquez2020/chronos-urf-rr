@@ -1,0 +1,28 @@
+{
+  "artifact": "finite_witness_theorem_cluster_2026_05_17",
+  "status": "PROVED_FINITE_THEOREM_CLUSTER_ONLY",
+  "lean_module": "Chronos.Frontier.FiniteWitnessTheoremCluster",
+  "proved_theorems": [
+    "finite_carrier_nonempty_of_positive",
+    "certificate_to_exists",
+    "exists_to_certificate_nonempty",
+    "certificate_nonempty_iff_exists",
+    "certificate_map_nonempty",
+    "exists_map",
+    "true_certificate_nonempty_of_positive",
+    "true_exists_of_positive"
+  ],
+  "data_definitions": [
+    "certificate_map",
+    "true_certificate_of_positive"
+  ],
+  "boundary": [
+    "finite witness certification only",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem",
+    "no physics or cosmology closure"
+  ]
+}
