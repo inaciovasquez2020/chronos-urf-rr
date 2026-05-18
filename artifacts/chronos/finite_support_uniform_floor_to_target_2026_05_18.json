@@ -1,0 +1,26 @@
+{
+  "artifact": "finite_support_uniform_floor_to_target",
+  "date": "2026-05-18",
+  "status": "FINITE_SUPPORT_TARGET_CLOSURE_ONLY",
+  "global_verdict_preserved": "OPEN",
+  "claim_promotion": false,
+  "source": "uniform_positive_fiber_mass_floor_target_2026_05_18",
+  "lean_module": "Chronos.Frontier.FiniteSupportUniformFloorToTarget",
+  "formal_objects": [
+    "FiniteSupportUniformFloorCertificate"
+  ],
+  "proved_surface_theorems": [
+    "finite_support_uniform_floor_to_target",
+    "finite_support_uniform_floor_resolves_sink"
+  ],
+  "boundary": {
+    "does_not_prove": [
+      "finite-support-to-admissible-domain lift",
+      "unrestricted UniversalFiberEntropyGap",
+      "unrestricted Chronos-RR",
+      "unrestricted H4.1/FGL",
+      "P vs NP",
+      "any Clay problem"
+    ]
+  }
+}
