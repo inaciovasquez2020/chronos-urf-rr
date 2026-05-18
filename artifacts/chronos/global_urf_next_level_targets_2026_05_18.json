@@ -1,0 +1,67 @@
+{
+  "artifact": "global_urf_next_level_targets",
+  "date": "2026-05-18",
+  "status": "NEXT_LEVEL_TARGET_SURFACE_ONLY",
+  "global_verdict_preserved": "OPEN",
+  "claim_promotion": false,
+  "source_layers": [
+    "global_urf_decision_audit",
+    "global_urf_numeric_snapshot",
+    "global_urf_dependency_dag"
+  ],
+  "snapshot_inputs": {
+    "total_claims_tracked": 4,
+    "proved_surface_percent": 25,
+    "conditional_percent": 25,
+    "open_or_countermodel_needed_percent": 50,
+    "dependency_dag_sink_obstacles": 3,
+    "boundary_warnings": 5,
+    "post_numeric_snapshot_tests_passed": 961,
+    "post_dependency_dag_tests_passed": 964
+  },
+  "ranked_next_targets": [
+    {
+      "rank": 1,
+      "target_id": "uniform_positive_mass_or_countermodel",
+      "status": "OPEN_TARGET",
+      "weakest_sufficient_next_ingredient": "Either prove a uniform positive fiber-mass/coercivity floor on the intended admissible domain, or construct a countermodel showing no such floor exists.",
+      "blocks": [
+        "restricted UniversalFiberEntropyGap expansion",
+        "restricted Chronos-RR expansion",
+        "selected-domain H4.1/FGL expansion"
+      ],
+      "nonclaim": "Does not prove unrestricted UniversalFiberEntropyGap."
+    },
+    {
+      "rank": 2,
+      "target_id": "domain_lift_from_finite_support",
+      "status": "OPEN_TARGET",
+      "weakest_sufficient_next_ingredient": "Prove that the finite-support positive-mass domain embeds into the next intended admissible Chronos domain without losing the uniform floor.",
+      "blocks": [
+        "finite-support-to-admissible-domain transfer",
+        "admissible restricted Chronos-RR strengthening"
+      ],
+      "nonclaim": "Does not prove unrestricted Chronos-RR."
+    },
+    {
+      "rank": 3,
+      "target_id": "countermodel_or_closure_dichotomy",
+      "status": "OPEN_TARGET",
+      "weakest_sufficient_next_ingredient": "For each remaining open sink, add either a Lean/Python-checkable closure theorem under explicit hypotheses or a machine-checkable countermodel schema.",
+      "blocks": [
+        "audit-to-resolution conversion",
+        "sink-obstacle elimination accounting"
+      ],
+      "nonclaim": "Does not prove P vs NP or any Clay problem."
+    }
+  ],
+  "boundary": {
+    "does_not_prove": [
+      "unrestricted UniversalFiberEntropyGap",
+      "unrestricted Chronos-RR",
+      "unrestricted H4.1/FGL",
+      "P vs NP",
+      "any Clay problem"
+    ]
+  }
+}
