@@ -111,3 +111,30 @@ Remaining frontier input:
 ```text
 PositiveEntropyAdmissibleClassUniformWitnessConstruction
 ```
+
+## Positive-entropy uniform witness construction refutation
+
+The unrestricted construction frontier is closed negatively.
+
+Lean objects:
+
+- `PositiveEntropyAdmissibleClassUniformWitnessConstruction`
+- `positiveEntropyAdmissibleClassUniformWitnessConstruction_refuted`
+
+Remaining frontier input:
+
+- `RestrictedPositiveEntropyDomainConstruction`
+
+## Boundary
+
+Negative closure only.
+
+Does not prove:
+
+- restricted positive-entropy domain construction
+- unrestricted RateThickFiberCoercivity λ
+- unrestricted UniversalFiberEntropyGap
+- unrestricted Chronos-RR
+- H4.1/FGL
+- P vs NP
+- any Clay problem

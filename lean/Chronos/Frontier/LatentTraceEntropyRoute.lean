@@ -186,4 +186,17 @@ theorem rateThickFiberCoercivity_refuted
     simpa [bad] using hge
   exact (not_lt_of_ge hzero_ge) hκ_pos
 
+
+def PositiveEntropyAdmissibleClassUniformWitnessConstruction
+    (lam : ℝ) : Prop :=
+  Nonempty (PositiveEntropyAdmissibleClassUniformWitness lam)
+
+theorem positiveEntropyAdmissibleClassUniformWitnessConstruction_refuted
+    (lam : ℝ) :
+    ¬ PositiveEntropyAdmissibleClassUniformWitnessConstruction lam := by
+  intro h
+  rcases h with ⟨w⟩
+  exact rateThickFiberCoercivity_refuted lam
+    (rateThickFiberCoercivity_from_positiveEntropyAdmissibleClassUniformWitness lam w)
+
 end Chronos

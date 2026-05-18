@@ -1,7 +1,12 @@
 {
   "artifact": "latent_trace_entropy_route_2026_05_17",
-  "status": "CONDITIONAL_FRONTIER_ONLY",
-  "lean_module": "Chronos.Frontier.LatentTraceEntropyRoute",
+  "boundary": [
+    "No unrestricted UniversalFiberEntropyGap",
+    "No unrestricted Chronos-RR",
+    "No H4.1/FGL",
+    "No P vs NP",
+    "No Clay-problem closure"
+  ],
   "closed_surfaces": [
     "LatentState",
     "Trace",
@@ -26,11 +31,21 @@
     "PositiveEntropyAdmissibleClassUniformWitness",
     "PositiveEntropyAdmissibleClassUniformWitnessConstruction"
   ],
-  "boundary": [
-    "No unrestricted UniversalFiberEntropyGap",
-    "No unrestricted Chronos-RR",
-    "No H4.1/FGL",
-    "No P vs NP",
-    "No Clay-problem closure"
-  ]
+  "lean_module": "Chronos.Frontier.LatentTraceEntropyRoute",
+  "positive_entropy_uniform_witness_construction_refutation": {
+    "boundary": [
+      "does not prove restricted positive-entropy domain construction",
+      "does not prove unrestricted RateThickFiberCoercivity",
+      "does not prove unrestricted UniversalFiberEntropyGap",
+      "does not prove unrestricted Chronos-RR",
+      "does not prove H4.1/FGL",
+      "does not prove P vs NP",
+      "does not prove any Clay problem"
+    ],
+    "lean_def": "PositiveEntropyAdmissibleClassUniformWitnessConstruction",
+    "lean_theorem": "positiveEntropyAdmissibleClassUniformWitnessConstruction_refuted",
+    "remaining_frontier_input": "RestrictedPositiveEntropyDomainConstruction",
+    "status": "NEGATIVE_CLOSURE_ONLY"
+  },
+  "status": "CONDITIONAL_FRONTIER_ONLY"
 }
