@@ -41,7 +41,7 @@ theorem finite_positive_fiber_mass_uniform_floor
 
 def FinitePositiveFiberMassUniformFloorTheorem : Prop :=
   ∀ {N : ℕ}
-    (hN : 0 < N)
+    (_ : 0 < N)
     (M : FiniteFiberMassData N),
     (∀ i : Fin N, 0 < M.mass i) →
     FiniteFiberMassUniformFloor M
