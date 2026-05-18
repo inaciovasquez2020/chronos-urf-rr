@@ -85,3 +85,29 @@ Remaining frontier input:
 
 ```text
 PositiveEntropyAdmissibleClassUniformWitness
+
+## Positive-entropy uniform witness interface
+
+The remaining admissible object is now typed as a uniform witness interface:
+
+```lean
+structure PositiveEntropyAdmissibleClassUniformWitness
+    (lam : ℝ)
+```
+
+It closes the bridge from a supplied uniform positive-entropy admissibility witness to repository-local coercivity:
+
+```lean
+theorem rateThickFiberCoercivity_from_positiveEntropyAdmissibleClassUniformWitness
+    (lam : ℝ)
+    (w : PositiveEntropyAdmissibleClassUniformWitness lam) :
+    RateThickFiberCoercivity lam
+```
+
+This is interface closure only. It does not construct such a witness for unrestricted systems.
+
+Remaining frontier input:
+
+```text
+PositiveEntropyAdmissibleClassUniformWitnessConstruction
+```

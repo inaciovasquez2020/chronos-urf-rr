@@ -130,6 +130,24 @@ theorem rateThickFiberCoercivity_from_positiveEntropyAdmissibleClass
   intro sys hsys hnon
   exact (hadm sys hsys hnon).2.2
 
+
+structure PositiveEntropyAdmissibleClassUniformWitness
+    (lam : ℝ) where
+  kappa : ℝ
+  kappa_pos : kappa > 0
+  uniform_admissible :
+    ∀ sys : DynamicalSystem,
+      RateThickClass lam sys →
+      NonNullFiberWitness sys →
+      PositiveEntropyAdmissibleClass lam kappa sys
+
+theorem rateThickFiberCoercivity_from_positiveEntropyAdmissibleClassUniformWitness
+    (lam : ℝ)
+    (w : PositiveEntropyAdmissibleClassUniformWitness lam) :
+    RateThickFiberCoercivity lam :=
+  rateThickFiberCoercivity_from_positiveEntropyAdmissibleClass
+    lam w.kappa w.kappa_pos w.uniform_admissible
+
 structure HyperbolicCoercivityCertificate (lam : ℝ) where
   coercivity : RateThickFiberCoercivity lam
 
