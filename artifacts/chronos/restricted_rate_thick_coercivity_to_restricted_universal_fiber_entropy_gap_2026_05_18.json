@@ -1,0 +1,35 @@
+{
+  "target": "RestrictedRateThickFiberCoercivityToRestrictedUniversalFiberEntropyGap",
+  "status": "RESTRICTED_RATE_THICK_COERCIVITY_TO_RESTRICTED_GAP_CLOSED",
+  "depends_on": [
+    "MeasureFiberMassPackage",
+    "RestrictedRateThickFiberCoercivity",
+    "MeasureFiberMassUniformFloor"
+  ],
+  "lean_module": "Chronos.Frontier.RestrictedRateThickFiberCoercivityToRestrictedUniversalFiberEntropyGap",
+  "closed_surfaces": [
+    "RestrictedUniversalFiberEntropyGap",
+    "RestrictedRateThickFiberCoercivityToRestrictedUniversalFiberEntropyGap",
+    "restricted_rate_thick_coercivity_to_restricted_gap_closed",
+    "restricted_gap_preserves_epsilon",
+    "restricted_gap_preserves_admissible_data",
+    "restricted_gap_preserves_uniform_floor"
+  ],
+  "frontier_open": [
+    "unrestricted UniversalFiberEntropyGap",
+    "unrestricted RateThickFiberCoercivity",
+    "unrestricted FiberMassUniformFloor"
+  ],
+  "boundary": [
+    "restricted-domain bridge only",
+    "finite-support measure package only",
+    "unrestricted UniversalFiberEntropyGap remains FRONTIER_OPEN",
+    "no unrestricted FiberMassUniformFloor",
+    "no unrestricted RateThickFiberCoercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay-problem closure"
+  ]
+}
