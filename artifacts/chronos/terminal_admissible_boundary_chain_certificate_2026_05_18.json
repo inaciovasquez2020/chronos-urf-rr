@@ -1,0 +1,34 @@
+{
+  "artifact": "terminal_admissible_boundary_chain_certificate",
+  "date": "2026-05-18",
+  "status": "TERMINAL_ADMISSIBLE_BOUNDARY_CHAIN_CERTIFICATE_CLOSED_NO_THEOREM_PROMOTION",
+  "lean_module": "Chronos.Frontier.TerminalAdmissibleBoundaryChainCertificate",
+  "closed_surface": [
+    "TerminalAdmissibleBoundaryChainCertificate",
+    "terminalCertificate_from_clayBoundaryLockTarget",
+    "TerminalAdmissibleBoundaryChainCertificate_solved",
+    "TerminalBoundaryChainStatus",
+    "TerminalBoundaryChainAudit",
+    "TerminalBoundaryChainAudit_solved"
+  ],
+  "depends_on": [
+    "AdmissibleClayBoundaryLockTarget_solved",
+    "AdmissiblePNPBoundaryLockTarget_solved",
+    "ClayStatus.frontier_open",
+    "PNPStatus.frontier_open"
+  ],
+  "boundary": [
+    "terminal admissible boundary-chain certificate only",
+    "records completed admissible boundary chain only",
+    "records PNPStatus.frontier_open only",
+    "records ClayStatus.frontier_open only",
+    "does not prove unrestricted RateThickFiberCoercivity",
+    "does not prove unrestricted UniversalFiberEntropyGap",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove unrestricted H4.1/FGL",
+    "does not prove P vs NP",
+    "does not refute P vs NP",
+    "does not prove any Clay problem",
+    "does not refute any Clay problem"
+  ]
+}
