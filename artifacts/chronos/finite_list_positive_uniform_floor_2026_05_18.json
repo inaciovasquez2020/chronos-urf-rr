@@ -1,0 +1,17 @@
+{
+  "id": "finite_list_positive_uniform_floor_2026_05_18",
+  "status": "FINITE_LIST_POSITIVE_UNIFORM_FLOOR_PROVED",
+  "closed": [
+    "nonempty finite list of positive real masses -> positive uniform lower floor"
+  ],
+  "boundary": [
+    "list-coded finite support only",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay closure"
+  ],
+  "lean_module": "Chronos.Frontier.FiniteListPositiveUniformFloor",
+  "lean_theorem": "FiniteSupportPositiveMassUniformFloor_list"
+}
