@@ -1,0 +1,30 @@
+{
+  "artifact": "unrestricted_finite_support_lift_frontier",
+  "date": "2026-05-18",
+  "status": "UNRESTRICTED_LIFT_FRONTIER_OPEN",
+  "global_verdict_preserved": "OPEN",
+  "claim_promotion": false,
+  "source": "floor_preserving_domain_lift_sufficient_condition_2026_05_18",
+  "lean_module": "Chronos.Frontier.UnrestrictedFiniteSupportLiftFrontier",
+  "formal_objects": [
+    "UnrestrictedFiniteSupportToAdmissibleDomainLift",
+    "UnrestrictedFiniteSupportLiftFailureCountermodel"
+  ],
+  "proved_conditional_theorems": [
+    "unrestricted_lift_specializes_to_local_lift",
+    "unrestricted_lift_transfers_any_finite_floor",
+    "unrestricted_lift_failure_countermodel_excludes_unrestricted_lift"
+  ],
+  "weakest_missing_lemma": "UnrestrictedFiniteSupportToAdmissibleDomainLift",
+  "boundary": {
+    "does_not_prove": [
+      "UnrestrictedFiniteSupportToAdmissibleDomainLift",
+      "absence of UnrestrictedFiniteSupportLiftFailureCountermodel",
+      "unrestricted UniversalFiberEntropyGap",
+      "unrestricted Chronos-RR",
+      "unrestricted H4.1/FGL",
+      "P vs NP",
+      "any Clay problem"
+    ]
+  }
+}
