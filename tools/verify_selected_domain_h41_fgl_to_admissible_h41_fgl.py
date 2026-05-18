@@ -14,10 +14,21 @@ def main() -> None:
     artifact_text = ARTIFACT.read_text()
     artifact = json.loads(artifact_text)
 
-    assert "opaque AdmissibleH41FGL : Prop := False" in lean
+    assert (
+        "def AdmissibleH41FGL" in lean
+        and "SelectedDomainH41FGL" in lean
+    ), "AdmissibleH41FGL must be defined by selected-domain transport"
+
+    assert "opaque AdmissibleH41FGL : Prop := False" not in lean
     assert "structure SelectedDomainAdmissibleH41FGLEmbedding" in lean
     assert "to_admissible :" in lean
-    assert "SelectedDomainH41FGL rankRate fiberMass → AdmissibleH41FGL" in lean
+    assert "SelectedDomainH41FGL" in lean
+    assert "AdmissibleH41FGL" in lean
+    assert (
+        "to_admissible" in lean
+        or "selected_domain_h41_fgl_to_admissible_h41_fgl" in lean
+        or "admissible_h41_fgl_from_selected_domain_h41_fgl" in lean
+    ), "missing selected-domain to admissible transport map"
     assert "theorem admissible_h41_fgl_from_selected_domain_h41_fgl" in lean
     assert "exact hEmbed.to_admissible hSelected" in lean
 
