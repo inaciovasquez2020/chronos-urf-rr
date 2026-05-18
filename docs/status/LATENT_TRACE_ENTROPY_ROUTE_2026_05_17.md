@@ -38,6 +38,28 @@ Remaining frontier inputs
 RankRateBridgeLaw λ
 RateThickFiberCoercivity λ
 
+
+
+## Positive-entropy admissible repair bridge
+
+The unrestricted coercivity route is refuted, so the admissible replacement is a restricted positive-entropy class:
+
+```lean
+def PositiveEntropyAdmissibleClass
+    (lam κ : ℝ)
+    (sys : DynamicalSystem) : Prop
+This class yields coercivity only when supplied with a uniform positive witness:
+theorem rateThickFiberCoercivity_from_positiveEntropyAdmissibleClass
+    (lam κ : ℝ)
+    (hκ : κ > 0)
+    (hadm :
+      ∀ sys : DynamicalSystem,
+        RateThickClass lam sys →
+        NonNullFiberWitness sys →
+        PositiveEntropyAdmissibleClass lam κ sys) :
+    RateThickFiberCoercivity lam
+This is a conditional repair bridge only. It does not populate hadm for unrestricted systems.
+
 ## Refutation surface
 
 The repository-local unrestricted definition of `RateThickFiberCoercivity λ` is refuted by a zero-entropy non-null system:
@@ -58,3 +80,8 @@ unrestricted Chronos-RR
 H4.1/FGL
 P vs NP
 any Clay problem
+
+Remaining frontier input:
+
+```text
+PositiveEntropyAdmissibleClassUniformWitness

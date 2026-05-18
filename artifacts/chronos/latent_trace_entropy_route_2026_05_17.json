@@ -13,12 +13,15 @@
     "EntropyLoss",
     "entropyFaithfulLowerEnvelope",
     "universalFiberEntropyGap conditional on RankRateBridgeLaw and RateThickFiberCoercivity",
-    "rateThickFiberCoercivity_refuted"
+    "rateThickFiberCoercivity_refuted",
+    "PositiveEntropyAdmissibleClass",
+    "rateThickFiberCoercivity_from_positiveEntropyAdmissibleClass"
   ],
   "frontier_inputs": [
     "RankRateBridgeLaw",
     "RateThickFiberCoercivity",
-    "PositiveEntropyAdmissibleClass"
+    "PositiveEntropyAdmissibleClass",
+    "PositiveEntropyAdmissibleClassUniformWitness"
   ],
   "boundary": [
     "No unrestricted UniversalFiberEntropyGap",

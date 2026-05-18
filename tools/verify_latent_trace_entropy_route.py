@@ -26,6 +26,8 @@ REQUIRED_LEAN = [
     "structure HyperbolicCoercivityCertificate",
     "theorem hyperbolicRoute",
  "theorem rateThickFiberCoercivity_refuted",
+ "def PositiveEntropyAdmissibleClass",
+ "theorem rateThickFiberCoercivity_from_positiveEntropyAdmissibleClass",
 ]
 
 REQUIRED_DOC = [
@@ -34,6 +36,9 @@ REQUIRED_DOC = [
     "RankRateBridgeLaw λ",
     "RateThickFiberCoercivity λ",
  "rateThickFiberCoercivity_refuted",
+ "PositiveEntropyAdmissibleClass",
+ "rateThickFiberCoercivity_from_positiveEntropyAdmissibleClass",
+ "PositiveEntropyAdmissibleClassUniformWitness",
     "Does not prove:",
     "unrestricted UniversalFiberEntropyGap",
     "unrestricted Chronos-RR",
@@ -77,6 +82,9 @@ def main() -> None:
     assert "RateThickFiberCoercivity" in artifact["frontier_inputs"]
     assert "PositiveEntropyAdmissibleClass" in artifact["frontier_inputs"]
     assert "rateThickFiberCoercivity_refuted" in artifact["closed_surfaces"]
+    assert "PositiveEntropyAdmissibleClass" in artifact["closed_surfaces"]
+    assert "rateThickFiberCoercivity_from_positiveEntropyAdmissibleClass" in artifact["closed_surfaces"]
+    assert "PositiveEntropyAdmissibleClassUniformWitness" in artifact["frontier_inputs"]
 
     chronos = (ROOT / "lean/Chronos.lean").read_text()
     assert "import Chronos.Frontier.LatentTraceEntropyRoute" in chronos
