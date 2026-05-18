@@ -1,0 +1,21 @@
+{
+  "id": "finite_support_fiber_mass_uniform_floor_2026_05_18",
+  "status": "FINITE_SUPPORT_FIBER_MASS_UNIFORM_FLOOR_CLOSED",
+  "lean_module": "Chronos.Frontier.FiniteSupportFiberMassUniformFloor",
+  "closed_targets": [
+    "FiniteSupportPositiveFiberMass",
+    "FiniteSupportFiberMassUniformFloor",
+    "finite_support_fiber_mass_uniform_floor",
+    "restricted_rate_thick_fiber_coercivity_from_finite_support",
+    "restricted_universal_fiber_entropy_gap_from_finite_support"
+  ],
+  "boundary": [
+    "finite positive support only",
+    "restricted UniversalFiberEntropyGap surface only",
+    "does not refute unconditional UniversalFiberEntropyGap obstruction",
+    "does not prove unrestricted UniversalFiberEntropyGap",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
