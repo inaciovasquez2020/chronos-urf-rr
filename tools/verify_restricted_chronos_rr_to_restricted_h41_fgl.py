@@ -14,10 +14,12 @@ data = json.loads(artifact.read_text())
 
 required_lean = [
     "structure RestrictedChronosRRData",
-    "structure RestrictedChronosRR",
-    "structure RestrictedH41FGL",
+    "abbrev RestrictedChronosRR",
+    "abbrev RestrictedH41FGL",
     "theorem restricted_h41_fgl_from_restricted_chronos_rr",
+    "theorem restricted_chronos_rr_to_restricted_h41_fgl",
     "theorem RestrictedChronosRRToRestrictedH41FGL",
+    "RestrictedChronosRR D → RestrictedH41FGL D",
 ]
 
 for token in required_lean:
@@ -31,6 +33,9 @@ for token in ["sorry", "admit", "axiom"]:
 if data["status"] != "RESTRICTED_H41FGL_TARGET_CLOSED_ONLY":
     raise SystemExit("wrong artifact status")
 
+if data["lean_theorem"] != "RestrictedChronosRRToRestrictedH41FGL":
+    raise SystemExit("wrong Lean theorem marker")
+
 for phrase in [
     "finite-support admissible restricted domain only",
     "no unrestricted UniversalFiberEntropyGap",
@@ -40,8 +45,8 @@ for phrase in [
     "no Clay closure",
 ]:
     if phrase not in doc_text:
-        raise SystemExit(f"missing boundary phrase: {phrase}")
+        raise SystemExit(f"missing boundary phrase in doc: {phrase}")
     if phrase not in data["boundary"]:
-        raise SystemExit(f"missing artifact boundary phrase: {phrase}")
+        raise SystemExit(f"missing boundary phrase in artifact: {phrase}")
 
 print("Restricted Chronos-RR to restricted H4.1/FGL verified.")

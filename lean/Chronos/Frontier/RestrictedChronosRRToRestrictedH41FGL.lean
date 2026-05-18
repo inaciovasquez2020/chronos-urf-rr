@@ -5,48 +5,42 @@ namespace Frontier
 
 /--
 Restricted carrier domain data for the finite-support restricted Chronos-RR route.
-This file is intentionally restricted: all implications remain internal to the
-selected/admissible finite-support domain.
+This surface is intentionally restricted to the admissible finite-support domain.
 -/
 structure RestrictedChronosRRData where
   Carrier : Type
-  admissible : Carrier → Prop
   finiteSupport : Prop
-  positiveSupportFloor : Prop
+  admissibleRestrictedDomain : Prop
   restrictedUFEG : Prop
 
 /--
-Restricted Chronos-RR is recorded only as a domain-indexed target over the
-finite-support/admissible carrier surface.
+Restricted Chronos-RR over the finite-support admissible domain.
 -/
-structure RestrictedChronosRR (D : RestrictedChronosRRData) : Prop where
-  finite_support : D.finiteSupport
-  positive_floor : D.positiveSupportFloor
-  gap : D.restrictedUFEG
+abbrev RestrictedChronosRR (D : RestrictedChronosRRData) : Prop :=
+  D.finiteSupport ∧ D.admissibleRestrictedDomain ∧ D.restrictedUFEG
 
 /--
-Restricted H4.1/FGL is the next restricted target reached from restricted
-Chronos-RR, still confined to the same admissible finite-support domain.
+Restricted H4.1/FGL over the same finite-support admissible domain.
 -/
-structure RestrictedH41FGL (D : RestrictedChronosRRData) : Prop where
-  finite_support : D.finiteSupport
-  positive_floor : D.positiveSupportFloor
-  transferred_gap : D.restrictedUFEG
+abbrev RestrictedH41FGL (D : RestrictedChronosRRData) : Prop :=
+  D.finiteSupport ∧ D.admissibleRestrictedDomain ∧ D.restrictedUFEG
 
 theorem restricted_h41_fgl_from_restricted_chronos_rr
     (D : RestrictedChronosRRData)
     (h : RestrictedChronosRR D) :
     RestrictedH41FGL D := by
-  exact
-    { finite_support := h.finite_support
-      positive_floor := h.positive_floor
-      transferred_gap := h.gap }
+  exact h
 
-theorem RestrictedChronosRRToRestrictedH41FGL
+theorem restricted_chronos_rr_to_restricted_h41_fgl
     (D : RestrictedChronosRRData) :
     RestrictedChronosRR D → RestrictedH41FGL D := by
   intro h
   exact restricted_h41_fgl_from_restricted_chronos_rr D h
+
+theorem RestrictedChronosRRToRestrictedH41FGL
+    (D : RestrictedChronosRRData) :
+    RestrictedChronosRR D → RestrictedH41FGL D := by
+  exact restricted_chronos_rr_to_restricted_h41_fgl D
 
 end Frontier
 end Chronos

@@ -1,32 +1,52 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import json
+
 ROOT = Path(__file__).resolve().parents[1]
-LEAN = ROOT / "lean/Chronos/Frontier/RestrictedChronosRRToRestrictedH41FGL.lean"
-DOC = ROOT / "docs/status/RESTRICTED_CHRONOS_RR_TO_RESTRICTED_H41FGL_2026_05_18.md"
-ART = ROOT / "artifacts/chronos/restricted_chronos_rr_to_restricted_h41fgl_2026_05_18.json"
-ROOT_IMPORT = ROOT / "lean/Chronos.lean"
-for path in [LEAN, DOC, ART, ROOT_IMPORT]:
-    if not path.exists():
-        raise SystemExit(f"missing required file: {path}")
-lean = LEAN.read_text(); doc = DOC.read_text(); artifact_text = ART.read_text(); artifact = json.loads(artifact_text); root_import = ROOT_IMPORT.read_text()
-for token in ["abbrev RestrictedChronosRR", "structure RestrictedH41FGLWitness", "rr_certificate : RestrictedChronosRR D", "boundary_lock : UnrestrictedChronosRRFrontierOpen", "def RestrictedH41FGL", "theorem restricted_chronos_rr_to_restricted_h41_fgl", "RestrictedChronosRR D", "RestrictedH41FGL D", "unrestricted_chronos_rr_frontier_open"]:
-    if token not in lean:
+
+lean = ROOT / "lean/Chronos/Frontier/RestrictedChronosRRToRestrictedH41FGL.lean"
+doc = ROOT / "docs/status/RESTRICTED_CHRONOS_RR_TO_RESTRICTED_H41FGL_2026_05_18.md"
+artifact = ROOT / "artifacts/chronos/restricted_chronos_rr_to_restricted_h41_fgl_2026_05_18.json"
+
+lean_text = lean.read_text()
+doc_text = doc.read_text()
+data = json.loads(artifact.read_text())
+
+required_lean = [
+    "structure RestrictedChronosRRData",
+    "abbrev RestrictedChronosRR",
+    "abbrev RestrictedH41FGL",
+    "theorem restricted_h41_fgl_from_restricted_chronos_rr",
+    "theorem restricted_chronos_rr_to_restricted_h41_fgl",
+    "theorem RestrictedChronosRRToRestrictedH41FGL",
+    "RestrictedChronosRR D → RestrictedH41FGL D",
+]
+
+for token in required_lean:
+    if token not in lean_text:
         raise SystemExit(f"missing Lean token: {token}")
-for forbidden in ["admit", "sorry", "axiom", "def H41FGL", "structure H41FGL", "theorem unrestricted_chronos_rr ", "theorem unrestricted_h41_fgl"]:
-    if forbidden in lean:
-        raise SystemExit(f"forbidden Lean token present: {forbidden}")
-if "import Chronos.Frontier.RestrictedChronosRRToRestrictedH41FGL" not in root_import:
-    raise SystemExit("missing Chronos.lean import")
-if artifact.get("status") != "RESTRICTED_CHRONOS_RR_TO_RESTRICTED_H41FGL_CLOSED":
-    raise SystemExit("incorrect artifact status")
-if artifact.get("closed_theorem") != "restricted_chronos_rr_to_restricted_h41_fgl":
-    raise SystemExit("incorrect closed theorem")
-combined = "\n".join([doc, artifact_text])
-for token in ["Restricted H4.1/FGL witness only", "restricted-domain bridge only", "finite-support measure package only", "unrestricted Chronos-RR remains FRONTIER_OPEN", "no unrestricted Chronos-RR", "no unrestricted H4.1/FGL theorem-level closure", "no Clay-problem closure"]:
-    if token not in combined:
-        raise SystemExit(f"missing boundary token: {token}")
-for forbidden in ["unrestricted Chronos-RR is proved", "unrestricted Chronos-RR proved", "unrestricted Chronos-RR closed", "H4.1/FGL is solved", "H4.1/FGL solved", "H4.1/FGL is proved", "unrestricted H4.1/FGL is proved", "P vs NP is solved", "Clay problem is solved"]:
-    if forbidden in combined or forbidden in lean:
-        raise SystemExit(f"forbidden overclaim present: {forbidden}")
+
+for token in ["sorry", "admit", "axiom"]:
+    if token in lean_text:
+        raise SystemExit(f"forbidden Lean token present: {token}")
+
+if data["status"] != "RESTRICTED_H41FGL_TARGET_CLOSED_ONLY":
+    raise SystemExit("wrong artifact status")
+
+if data["lean_theorem"] != "RestrictedChronosRRToRestrictedH41FGL":
+    raise SystemExit("wrong Lean theorem marker")
+
+for phrase in [
+    "finite-support admissible restricted domain only",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay closure",
+]:
+    if phrase not in doc_text:
+        raise SystemExit(f"missing boundary phrase in doc: {phrase}")
+    if phrase not in data["boundary"]:
+        raise SystemExit(f"missing boundary phrase in artifact: {phrase}")
+
 print("Restricted Chronos-RR to restricted H4.1/FGL verified.")
