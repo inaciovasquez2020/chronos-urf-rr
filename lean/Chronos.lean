@@ -104,3 +104,4 @@ import Chronos.Frontier.RestrictedH41FGLToSelectedDomainH41FGL
 import Chronos.Frontier.SelectedDomainH41FGLToAdmissibleH41FGL
 import Chronos.Frontier.UnconditionalUniversalFiberEntropyGapObstruction
 import Chronos.Frontier.FiniteSupportFiberMassUniformFloor
+import Chronos.Frontier.FiniteSupportRestrictedUFEGToRestrictedChronosRR
