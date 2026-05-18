@@ -1,0 +1,19 @@
+{
+  "id": "unconditional_universal_fiber_entropy_gap_obstruction_2026_05_18",
+  "status": "UNCONDITIONAL_UFEG_OBSTRUCTED",
+  "lean_module": "Chronos.Frontier.UnconditionalUniversalFiberEntropyGapObstruction",
+  "closed_targets": [
+    "FiberMassUniformFloor",
+    "zeroFiberMassData_no_uniform_floor",
+    "no_uniform_floor_of_arbitrarily_small",
+    "unconditional_universal_fiber_entropy_gap_obstructed"
+  ],
+  "boundary": [
+    "refutes unconditional UniversalFiberEntropyGap over arbitrary fiber-mass data",
+    "does not refute restricted UniversalFiberEntropyGap",
+    "does not refute admissible-domain H4.1/FGL",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
