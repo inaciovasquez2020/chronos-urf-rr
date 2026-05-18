@@ -1,0 +1,24 @@
+{
+  "target": "FinitePositiveFiberMassToAdmissibleFiberMassData",
+  "status": "FINITE_POSITIVE_FIBER_MASS_TO_ADMISSIBLE_FIBER_MASS_DATA_CLOSED",
+  "closed_commit_expected_after_merge": null,
+  "depends_on": [
+    "FinitePositiveFiberMassUniformFloor",
+    "FinitePositiveFiberMassUniformFloorNoWarning"
+  ],
+  "lean_module": "Chronos.Frontier.FinitePositiveFiberMassToAdmissibleFiberMassData",
+  "claim": "A finite-positive admissible package canonically projects to existing AdmissibleFiberMassData while preserving epsilon and the fiber-mass floor field.",
+  "boundary": [
+    "admissible payload projection only",
+    "finite-positive package transfer only",
+    "no new minimum-over-list theorem",
+    "no redeclaration of AdmissibleFiberMassData",
+    "no unrestricted FiberMassUniformFloor",
+    "no unrestricted RateThickFiberCoercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay-problem closure"
+  ]
+}
