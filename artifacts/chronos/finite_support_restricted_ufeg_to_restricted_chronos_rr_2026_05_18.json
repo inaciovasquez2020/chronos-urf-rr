@@ -1,0 +1,21 @@
+{
+  "id": "finite_support_restricted_ufeg_to_restricted_chronos_rr_2026_05_18",
+  "status": "FINITE_SUPPORT_RESTRICTED_UFEG_TO_RESTRICTED_CHRONOS_RR_CLOSED",
+  "lean_module": "Chronos.Frontier.FiniteSupportRestrictedUFEGToRestrictedChronosRR",
+  "closed_targets": [
+    "RestrictedChronosRRFromFiniteSupport",
+    "restricted_chronos_rr_from_restricted_universal_fiber_entropy_gap_finite_support",
+    "finite_support_restricted_chronos_rr",
+    "finite_support_restricted_chronos_rr_preserves_unconditional_ufeg_obstruction"
+  ],
+  "boundary": [
+    "finite positive support only",
+    "restricted Chronos-RR surface only",
+    "unconditional UniversalFiberEntropyGap obstruction remains valid",
+    "does not prove unrestricted UniversalFiberEntropyGap",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove H4.1/FGL unrestricted",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
