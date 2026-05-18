@@ -1,0 +1,64 @@
+{
+  "artifact": "global_urf_decision_audit",
+  "date": "2026-05-18",
+  "status": "STATUS_SURFACE_ONLY",
+  "global_verdict": "OPEN_WITH_EXPLICIT_SINK_LEMMAS",
+  "claims": [
+    {
+      "id": "finite_list_positive_uniform_floor",
+      "form": "A_i => B_i",
+      "A_i": "nonempty finite list of strictly positive real masses",
+      "B_i": "there exists a strictly positive uniform lower floor",
+      "assumption_status": "proved",
+      "lean_proof_target": "Chronos.Frontier.FiniteListPositiveUniformFloor",
+      "countermodel_target": "none: list-coded finite positive support",
+      "sink_lemma": "none",
+      "verdict": "proved_surface"
+    },
+    {
+      "id": "finite_support_restricted_ufeg_to_restricted_chronos_rr",
+      "form": "A_i => B_i",
+      "A_i": "finite positive support plus restricted admissible domain",
+      "B_i": "restricted UniversalFiberEntropyGap feeds restricted Chronos-RR",
+      "assumption_status": "conditional",
+      "lean_proof_target": "Chronos.Frontier.FiniteSupportRestrictedUFEGToRestrictedChronosRR",
+      "countermodel_target": "unrestricted arbitrary-fiber-mass data",
+      "sink_lemma": "uniform positivity or restricted-domain invariant",
+      "verdict": "conditional_surface"
+    },
+    {
+      "id": "unrestricted_universal_fiber_entropy_gap",
+      "form": "A_i => B_i",
+      "A_i": "arbitrary fiber-mass data",
+      "B_i": "unrestricted UniversalFiberEntropyGap",
+      "assumption_status": "open_frontier",
+      "lean_proof_target": "none",
+      "countermodel_target": "zero or vanishing fiber-mass family",
+      "sink_lemma": "unrestricted uniform positivity/coercivity",
+      "verdict": "countermodel_required"
+    },
+    {
+      "id": "unrestricted_chronos_rr_h41_fgl_p_np_clay",
+      "form": "A_i => B_i",
+      "A_i": "unrestricted Chronos-RR/H4.1/FGL terminal hypotheses",
+      "B_i": "P vs NP or Clay-level closure",
+      "assumption_status": "open_frontier",
+      "lean_proof_target": "none",
+      "countermodel_target": "boundary-overclaim audit",
+      "sink_lemma": "unrestricted UniversalFiberEntropyGap plus unrestricted DepthBridge",
+      "verdict": "open_missing_lemma"
+    }
+  ],
+  "dependency_dag_sinks": [
+    "uniform positivity or restricted-domain invariant",
+    "unrestricted uniform positivity/coercivity",
+    "unrestricted UniversalFiberEntropyGap plus unrestricted DepthBridge"
+  ],
+  "boundary": [
+    "Does not prove unrestricted UniversalFiberEntropyGap.",
+    "Does not prove unrestricted Chronos-RR.",
+    "Does not prove unrestricted H4.1/FGL.",
+    "Does not prove P vs NP.",
+    "Does not prove any Clay problem."
+  ]
+}
