@@ -1,3 +1,4 @@
+import Chronos.Frontier.DomainIndexedPositiveEntropyOrder
 import Chronos.EP2Bundle
 import Chronos.Frontier.BoundaryNuclearityFromFiniteDetectorAlgebra
 import Chronos.Frontier.BulkToBoundaryNuclearitySoundness
