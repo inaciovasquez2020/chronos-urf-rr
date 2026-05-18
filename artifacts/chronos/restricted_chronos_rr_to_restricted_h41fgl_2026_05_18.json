@@ -1,0 +1,27 @@
+{
+  "target": "RestrictedChronosRRToRestrictedH41FGL",
+  "status": "RESTRICTED_CHRONOS_RR_TO_RESTRICTED_H41FGL_CLOSED",
+  "date": "2026-05-18",
+  "lean_module": "Chronos.Frontier.RestrictedChronosRRToRestrictedH41FGL",
+  "definitions": [
+    "RestrictedChronosRR",
+    "RestrictedH41FGLWitness",
+    "RestrictedH41FGL"
+  ],
+  "closed_theorem": "restricted_chronos_rr_to_restricted_h41_fgl",
+  "input": "RestrictedChronosRR D",
+  "output": "RestrictedH41FGL D",
+  "boundary": [
+    "Restricted H4.1/FGL witness only",
+    "restricted-domain bridge only",
+    "finite-support measure package only",
+    "unrestricted Chronos-RR remains FRONTIER_OPEN",
+    "no unrestricted FiberMassUniformFloor",
+    "no unrestricted RateThickFiberCoercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL theorem-level closure",
+    "no P vs NP",
+    "no Clay-problem closure"
+  ]
+}
