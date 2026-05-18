@@ -1,0 +1,33 @@
+{
+  "artifact": "floor_preserving_domain_lift_sufficient_condition",
+  "date": "2026-05-18",
+  "status": "CONDITIONAL_LIFT_SUFFICIENT_CONDITION_ONLY",
+  "global_verdict_preserved": "OPEN",
+  "claim_promotion": false,
+  "source": "finite_support_to_admissible_domain_lift_target_2026_05_18",
+  "lean_module": "Chronos.Frontier.FloorPreservingDomainLiftSufficientCondition",
+  "formal_objects": [
+    "FloorPreservingDomainLift"
+  ],
+  "proved_surface_theorems": [
+    "floor_preserving_domain_lift_to_uniform_floor",
+    "floor_preserving_domain_lift_to_admissible_lift",
+    "floor_preserving_domain_lift_resolves_second_sink"
+  ],
+  "conditional_input": {
+    "required_object": "FloorPreservingDomainLift",
+    "minimal_form": "Each admissible target-domain fiber maps back to an admissible finite-domain fiber with no larger mass."
+  },
+  "boundary": {
+    "does_not_prove": [
+      "existence of FloorPreservingDomainLift",
+      "unconditional FiniteSupportToAdmissibleDomainLift",
+      "absence of FiniteSupportLiftFailureCountermodel",
+      "unrestricted UniversalFiberEntropyGap",
+      "unrestricted Chronos-RR",
+      "unrestricted H4.1/FGL",
+      "P vs NP",
+      "any Clay problem"
+    ]
+  }
+}
