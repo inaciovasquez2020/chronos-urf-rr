@@ -1,4 +1,5 @@
 import subprocess
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,3 +29,14 @@ def test_rate_thick_fiber_coercivity_refutation_present() -> None:
     assert "theorem rateThickFiberCoercivity_refuted" in lean
     assert "¬ RateThickFiberCoercivity lam" in lean
     assert "PositiveEntropyAdmissibleClass" in doc
+
+def test_positive_entropy_admissible_class_bridge_present() -> None:
+    lean = (ROOT / "lean/Chronos/Frontier/LatentTraceEntropyRoute.lean").read_text()
+    doc = (ROOT / "docs/status/LATENT_TRACE_ENTROPY_ROUTE_2026_05_17.md").read_text()
+    artifact = json.loads((ROOT / "artifacts/chronos/latent_trace_entropy_route_2026_05_17.json").read_text())
+    assert "def PositiveEntropyAdmissibleClass" in lean
+    assert "theorem rateThickFiberCoercivity_from_positiveEntropyAdmissibleClass" in lean
+    assert "This is a conditional repair bridge only" in doc
+    assert "PositiveEntropyAdmissibleClass" in artifact["closed_surfaces"]
+    assert "rateThickFiberCoercivity_from_positiveEntropyAdmissibleClass" in artifact["closed_surfaces"]
+    assert "PositiveEntropyAdmissibleClassUniformWitness" in artifact["frontier_inputs"]

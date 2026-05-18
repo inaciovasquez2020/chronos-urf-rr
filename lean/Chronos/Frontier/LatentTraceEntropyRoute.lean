@@ -109,6 +109,27 @@ theorem universalFiberEntropyGap
   intro sys hsys ρ h_pos
   exact hε sys hsys ρ (hsys ρ h_pos)
 
+
+def PositiveEntropyAdmissibleClass
+    (lam κ : ℝ)
+    (sys : DynamicalSystem) : Prop :=
+  RateThickClass lam sys ∧
+    NonNullFiberWitness sys ∧
+      sys.fiberEntropyMass ≥ κ
+
+theorem rateThickFiberCoercivity_from_positiveEntropyAdmissibleClass
+    (lam κ : ℝ)
+    (hκ : κ > 0)
+    (hadm :
+      ∀ sys : DynamicalSystem,
+        RateThickClass lam sys →
+        NonNullFiberWitness sys →
+        PositiveEntropyAdmissibleClass lam κ sys) :
+    RateThickFiberCoercivity lam := by
+  refine ⟨κ, hκ, ?_⟩
+  intro sys hsys hnon
+  exact (hadm sys hsys hnon).2.2
+
 structure HyperbolicCoercivityCertificate (lam : ℝ) where
   coercivity : RateThickFiberCoercivity lam
 
