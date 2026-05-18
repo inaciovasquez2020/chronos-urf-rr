@@ -25,6 +25,7 @@ REQUIRED_LEAN = [
     "theorem universalFiberEntropyGap",
     "structure HyperbolicCoercivityCertificate",
     "theorem hyperbolicRoute",
+ "theorem rateThickFiberCoercivity_refuted",
 ]
 
 REQUIRED_DOC = [
@@ -32,6 +33,7 @@ REQUIRED_DOC = [
     "Non-injectivity of a trace projection alone does not imply",
     "RankRateBridgeLaw λ",
     "RateThickFiberCoercivity λ",
+ "rateThickFiberCoercivity_refuted",
     "Does not prove:",
     "unrestricted UniversalFiberEntropyGap",
     "unrestricted Chronos-RR",
@@ -73,6 +75,8 @@ def main() -> None:
     assert artifact["status"] == "CONDITIONAL_FRONTIER_ONLY"
     assert "RankRateBridgeLaw" in artifact["frontier_inputs"]
     assert "RateThickFiberCoercivity" in artifact["frontier_inputs"]
+    assert "PositiveEntropyAdmissibleClass" in artifact["frontier_inputs"]
+    assert "rateThickFiberCoercivity_refuted" in artifact["closed_surfaces"]
 
     chronos = (ROOT / "lean/Chronos.lean").read_text()
     assert "import Chronos.Frontier.LatentTraceEntropyRoute" in chronos

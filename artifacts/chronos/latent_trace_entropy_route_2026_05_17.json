@@ -12,11 +12,13 @@
     "LatentTower",
     "EntropyLoss",
     "entropyFaithfulLowerEnvelope",
-    "universalFiberEntropyGap conditional on RankRateBridgeLaw and RateThickFiberCoercivity"
+    "universalFiberEntropyGap conditional on RankRateBridgeLaw and RateThickFiberCoercivity",
+    "rateThickFiberCoercivity_refuted"
   ],
   "frontier_inputs": [
     "RankRateBridgeLaw",
-    "RateThickFiberCoercivity"
+    "RateThickFiberCoercivity",
+    "PositiveEntropyAdmissibleClass"
   ],
   "boundary": [
     "No unrestricted UniversalFiberEntropyGap",
