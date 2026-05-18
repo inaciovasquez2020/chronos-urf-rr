@@ -1,3 +1,4 @@
+import Chronos.Frontier.OrderSurfaceToRateThickFiberCoercivityBridge
 import Chronos.Frontier.DomainIndexedPositiveEntropyOrder
 import Chronos.EP2Bundle
 import Chronos.Frontier.BoundaryNuclearityFromFiniteDetectorAlgebra
