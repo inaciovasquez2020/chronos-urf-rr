@@ -1,3 +1,4 @@
+import Chronos.Frontier.AdmissibleUniversalFiberEntropyGapToChronosRR
 import Chronos.Frontier.AdmissibleRateThickToUniversalFiberEntropyGap
 import Chronos.Frontier.AdmissibleFiberMassUniformFloor
 import Chronos.Frontier.UniversalWeakestMissingMeasureFiberMassLemmaRefutation
