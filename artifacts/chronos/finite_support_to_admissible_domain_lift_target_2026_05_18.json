@@ -1,0 +1,38 @@
+{
+  "artifact": "finite_support_to_admissible_domain_lift_target",
+  "date": "2026-05-18",
+  "status": "OPEN_LIFT_TARGET_SURFACE_ONLY",
+  "global_verdict_preserved": "OPEN",
+  "claim_promotion": false,
+  "source": "finite_support_uniform_floor_to_target_2026_05_18",
+  "sink_id": "domain_lift_from_finite_support",
+  "lean_module": "Chronos.Frontier.FiniteSupportToAdmissibleDomainLiftTarget",
+  "formal_objects": [
+    "FiniteSupportToAdmissibleDomainLift",
+    "FiniteSupportLiftFailureCountermodel"
+  ],
+  "proved_surface_theorems": [
+    "finite_support_lift_transfers_floor",
+    "finite_support_lift_resolves_admissible_sink",
+    "finite_support_lift_failure_countermodel_excludes_lift"
+  ],
+  "target_closure_exit": {
+    "required_object": "FiniteSupportToAdmissibleDomainLift",
+    "minimal_form": "FiniteSupportUniformFloorCertificate Dfinite implies UniformPositiveFiberMassFloor Dadm"
+  },
+  "target_countermodel_exit": {
+    "required_object": "FiniteSupportLiftFailureCountermodel",
+    "minimal_form": "FiniteSupportUniformFloorCertificate Dfinite together with NoUniformPositiveFiberMassFloorCountermodel Dadm"
+  },
+  "boundary": {
+    "does_not_prove": [
+      "existence of FiniteSupportToAdmissibleDomainLift",
+      "absence of FiniteSupportLiftFailureCountermodel",
+      "unrestricted UniversalFiberEntropyGap",
+      "unrestricted Chronos-RR",
+      "unrestricted H4.1/FGL",
+      "P vs NP",
+      "any Clay problem"
+    ]
+  }
+}

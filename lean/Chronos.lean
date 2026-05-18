@@ -1,3 +1,4 @@
+import Chronos.Frontier.FiniteSupportToAdmissibleDomainLiftTarget
 import Chronos.Frontier.FiniteSupportUniformFloorToTarget
 import Chronos.Frontier.UniformPositiveFiberMassFloorTarget
 import Chronos.Frontier.GlobalURFDecisionAudit
