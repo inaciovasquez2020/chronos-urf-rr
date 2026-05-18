@@ -1,0 +1,42 @@
+{
+  "artifact": "sink_closure_countermodel_dichotomy_target",
+  "date": "2026-05-18",
+  "status": "OPEN_DICHOTOMY_TARGET_SURFACE_ONLY",
+  "global_verdict_preserved": "OPEN",
+  "claim_promotion": false,
+  "source": "finite_support_to_admissible_domain_lift_target_2026_05_18",
+  "sink_id": "countermodel_or_closure_dichotomy",
+  "lean_module": "Chronos.Frontier.SinkClosureCountermodelDichotomyTarget",
+  "formal_objects": [
+    "SinkResolutionProblem",
+    "SinkResolved",
+    "CountermodelOrClosureDichotomyTarget",
+    "CountermodelOrClosureDichotomyFailure"
+  ],
+  "proved_surface_theorems": [
+    "closure_certificate_resolves_sink",
+    "countermodel_certificate_resolves_sink",
+    "unresolved_sink_excludes_dichotomy"
+  ],
+  "target_closure_exit": {
+    "required_object": "closureCertificate",
+    "minimal_form": "For each remaining sink, provide a named-hypothesis closure certificate."
+  },
+  "target_countermodel_exit": {
+    "required_object": "countermodelCertificate",
+    "minimal_form": "For each remaining sink, provide a countermodel certificate."
+  },
+  "boundary": {
+    "does_not_prove": [
+      "existence of closureCertificate for every sink",
+      "existence of countermodelCertificate for every sink",
+      "CountermodelOrClosureDichotomyTarget",
+      "finite-support-to-admissible-domain lift",
+      "unrestricted UniversalFiberEntropyGap",
+      "unrestricted Chronos-RR",
+      "unrestricted H4.1/FGL",
+      "P vs NP",
+      "any Clay problem"
+    ]
+  }
+}
