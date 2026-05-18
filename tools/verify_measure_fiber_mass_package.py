@@ -22,6 +22,7 @@ root_import = ROOT_IMPORT.read_text()
 required_lean_tokens = [
     "structure MeasureFiberMassPackage extends FinitePositiveFiberMassAdmissiblePackage",
     "structure MeasureFiberMassUniformFloor",
+    "fiber_mass_floor : ∀ n : ℕ, D.epsilon ≤ D.data.fiberMass n",
     "def finiteSupportPushforwardAdmissibleFiberMassData",
     "FinitePositiveFiberMassToAdmissibleFiberMassData",
     "theorem finite_support_pushforward_case_from_finite_positive",
@@ -30,7 +31,8 @@ required_lean_tokens = [
     "unrestricted_measure_case_frontier_open",
     "theorem unrestricted_measure_fiber_mass_case_frontier_open",
     "structure RestrictedRateThickFiberCoercivity",
-    "theorem restricted_rate_thick_fiber_coercivity_from_finite_admissible_floor",
+    "(D : MeasureFiberMassPackage) where",
+    "def restricted_rate_thick_fiber_coercivity_from_finite_admissible_floor",
     "theorem restricted_rate_thick_fiber_coercivity_preserves_floor",
 ]
 
@@ -39,6 +41,8 @@ for token in required_lean_tokens:
         raise SystemExit(f"missing Lean token: {token}")
 
 for forbidden in [
+    "fiber_mass_floor : D.fiber_mass_floor",
+    "structure RestrictedRateThickFiberCoercivity\n    (D : MeasureFiberMassPackage) : Prop where",
     "admit",
     "sorry",
     "axiom",
