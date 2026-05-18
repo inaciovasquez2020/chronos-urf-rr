@@ -1,0 +1,207 @@
+{
+  "artifact": "global_urf_decision_audit_dependency_dag",
+  "boundary": [
+    "Dependency DAG only.",
+    "Does not prove unrestricted UniversalFiberEntropyGap.",
+    "Does not prove unrestricted Chronos-RR.",
+    "Does not prove unrestricted H4.1/FGL.",
+    "Does not prove P vs NP.",
+    "Does not prove any Clay problem."
+  ],
+  "date": "2026-05-18",
+  "edge_count": 16,
+  "edges": [
+    {
+      "relation": "normalized_implication",
+      "source": "A:finite_list_positive_uniform_floor",
+      "target": "B:finite_list_positive_uniform_floor"
+    },
+    {
+      "relation": "attempts_to_verify",
+      "source": "ProofTarget:finite_list_positive_uniform_floor",
+      "target": "B:finite_list_positive_uniform_floor"
+    },
+    {
+      "relation": "attempts_to_refute",
+      "source": "CountermodelTarget:finite_list_positive_uniform_floor",
+      "target": "B:finite_list_positive_uniform_floor"
+    },
+    {
+      "relation": "blocks_or_closes",
+      "source": "Sink:none",
+      "target": "B:finite_list_positive_uniform_floor"
+    },
+    {
+      "relation": "normalized_implication",
+      "source": "A:finite_support_restricted_ufeg_to_restricted_chronos_rr",
+      "target": "B:finite_support_restricted_ufeg_to_restricted_chronos_rr"
+    },
+    {
+      "relation": "attempts_to_verify",
+      "source": "ProofTarget:finite_support_restricted_ufeg_to_restricted_chronos_rr",
+      "target": "B:finite_support_restricted_ufeg_to_restricted_chronos_rr"
+    },
+    {
+      "relation": "attempts_to_refute",
+      "source": "CountermodelTarget:finite_support_restricted_ufeg_to_restricted_chronos_rr",
+      "target": "B:finite_support_restricted_ufeg_to_restricted_chronos_rr"
+    },
+    {
+      "relation": "blocks_or_closes",
+      "source": "Sink:uniform positivity or restricted-domain invariant",
+      "target": "B:finite_support_restricted_ufeg_to_restricted_chronos_rr"
+    },
+    {
+      "relation": "normalized_implication",
+      "source": "A:unrestricted_universal_fiber_entropy_gap",
+      "target": "B:unrestricted_universal_fiber_entropy_gap"
+    },
+    {
+      "relation": "attempts_to_verify",
+      "source": "ProofTarget:unrestricted_universal_fiber_entropy_gap",
+      "target": "B:unrestricted_universal_fiber_entropy_gap"
+    },
+    {
+      "relation": "attempts_to_refute",
+      "source": "CountermodelTarget:unrestricted_universal_fiber_entropy_gap",
+      "target": "B:unrestricted_universal_fiber_entropy_gap"
+    },
+    {
+      "relation": "blocks_or_closes",
+      "source": "Sink:unrestricted uniform positivity/coercivity",
+      "target": "B:unrestricted_universal_fiber_entropy_gap"
+    },
+    {
+      "relation": "normalized_implication",
+      "source": "A:unrestricted_chronos_rr_h41_fgl_p_np_clay",
+      "target": "B:unrestricted_chronos_rr_h41_fgl_p_np_clay"
+    },
+    {
+      "relation": "attempts_to_verify",
+      "source": "ProofTarget:unrestricted_chronos_rr_h41_fgl_p_np_clay",
+      "target": "B:unrestricted_chronos_rr_h41_fgl_p_np_clay"
+    },
+    {
+      "relation": "attempts_to_refute",
+      "source": "CountermodelTarget:unrestricted_chronos_rr_h41_fgl_p_np_clay",
+      "target": "B:unrestricted_chronos_rr_h41_fgl_p_np_clay"
+    },
+    {
+      "relation": "blocks_or_closes",
+      "source": "Sink:unrestricted UniversalFiberEntropyGap plus unrestricted DepthBridge",
+      "target": "B:unrestricted_chronos_rr_h41_fgl_p_np_clay"
+    }
+  ],
+  "global_verdict": "OPEN_WITH_EXPLICIT_SINK_LEMMAS",
+  "node_count": 20,
+  "nodes": [
+    {
+      "id": "A:finite_list_positive_uniform_floor",
+      "kind": "assumption",
+      "label": "nonempty finite list of strictly positive real masses"
+    },
+    {
+      "id": "B:finite_list_positive_uniform_floor",
+      "kind": "conclusion",
+      "label": "there exists a strictly positive uniform lower floor"
+    },
+    {
+      "id": "ProofTarget:finite_list_positive_uniform_floor",
+      "kind": "lean_proof_target",
+      "label": "Chronos.Frontier.FiniteListPositiveUniformFloor"
+    },
+    {
+      "id": "CountermodelTarget:finite_list_positive_uniform_floor",
+      "kind": "countermodel_target",
+      "label": "none: list-coded finite positive support"
+    },
+    {
+      "id": "Sink:none",
+      "kind": "sink_lemma",
+      "label": "none"
+    },
+    {
+      "id": "A:finite_support_restricted_ufeg_to_restricted_chronos_rr",
+      "kind": "assumption",
+      "label": "finite positive support plus restricted admissible domain"
+    },
+    {
+      "id": "B:finite_support_restricted_ufeg_to_restricted_chronos_rr",
+      "kind": "conclusion",
+      "label": "restricted UniversalFiberEntropyGap feeds restricted Chronos-RR"
+    },
+    {
+      "id": "ProofTarget:finite_support_restricted_ufeg_to_restricted_chronos_rr",
+      "kind": "lean_proof_target",
+      "label": "Chronos.Frontier.FiniteSupportRestrictedUFEGToRestrictedChronosRR"
+    },
+    {
+      "id": "CountermodelTarget:finite_support_restricted_ufeg_to_restricted_chronos_rr",
+      "kind": "countermodel_target",
+      "label": "unrestricted arbitrary-fiber-mass data"
+    },
+    {
+      "id": "Sink:uniform positivity or restricted-domain invariant",
+      "kind": "sink_lemma",
+      "label": "uniform positivity or restricted-domain invariant"
+    },
+    {
+      "id": "A:unrestricted_universal_fiber_entropy_gap",
+      "kind": "assumption",
+      "label": "arbitrary fiber-mass data"
+    },
+    {
+      "id": "B:unrestricted_universal_fiber_entropy_gap",
+      "kind": "conclusion",
+      "label": "unrestricted UniversalFiberEntropyGap"
+    },
+    {
+      "id": "ProofTarget:unrestricted_universal_fiber_entropy_gap",
+      "kind": "lean_proof_target",
+      "label": "none"
+    },
+    {
+      "id": "CountermodelTarget:unrestricted_universal_fiber_entropy_gap",
+      "kind": "countermodel_target",
+      "label": "zero or vanishing fiber-mass family"
+    },
+    {
+      "id": "Sink:unrestricted uniform positivity/coercivity",
+      "kind": "sink_lemma",
+      "label": "unrestricted uniform positivity/coercivity"
+    },
+    {
+      "id": "A:unrestricted_chronos_rr_h41_fgl_p_np_clay",
+      "kind": "assumption",
+      "label": "unrestricted Chronos-RR/H4.1/FGL terminal hypotheses"
+    },
+    {
+      "id": "B:unrestricted_chronos_rr_h41_fgl_p_np_clay",
+      "kind": "conclusion",
+      "label": "P vs NP or Clay-level closure"
+    },
+    {
+      "id": "ProofTarget:unrestricted_chronos_rr_h41_fgl_p_np_clay",
+      "kind": "lean_proof_target",
+      "label": "none"
+    },
+    {
+      "id": "CountermodelTarget:unrestricted_chronos_rr_h41_fgl_p_np_clay",
+      "kind": "countermodel_target",
+      "label": "boundary-overclaim audit"
+    },
+    {
+      "id": "Sink:unrestricted UniversalFiberEntropyGap plus unrestricted DepthBridge",
+      "kind": "sink_lemma",
+      "label": "unrestricted UniversalFiberEntropyGap plus unrestricted DepthBridge"
+    }
+  ],
+  "sink_node_count": 3,
+  "sink_nodes": [
+    "Sink:uniform positivity or restricted-domain invariant",
+    "Sink:unrestricted UniversalFiberEntropyGap plus unrestricted DepthBridge",
+    "Sink:unrestricted uniform positivity/coercivity"
+  ],
+  "source_artifact": "global_urf_decision_audit_2026_05_18.json",
+  "status": "DAG_SURFACE_ONLY"
+}
