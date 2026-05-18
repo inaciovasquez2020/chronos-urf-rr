@@ -1,0 +1,18 @@
+{
+  "id": "finite_support_restricted_end_to_end_lock_2026_05_18",
+  "status": "FINITE_SUPPORT_RESTRICTED_END_TO_END_LOCK_CLOSED_ONLY",
+  "closed": [
+    "FiniteSupportRestrictedUFEG -> FiniteSupportRestrictedH41FGL"
+  ],
+  "boundary": [
+    "finite-support admissible restricted domain only",
+    "assembly lock only",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay closure"
+  ],
+  "lean_module": "Chronos.Frontier.FiniteSupportRestrictedEndToEndLock",
+  "lean_theorem": "FiniteSupportRestrictedEndToEndH41FGL"
+}
