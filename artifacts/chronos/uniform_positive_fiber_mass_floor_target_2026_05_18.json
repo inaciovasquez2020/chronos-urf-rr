@@ -1,0 +1,41 @@
+{
+  "artifact": "uniform_positive_fiber_mass_floor_target",
+  "date": "2026-05-18",
+  "status": "OPEN_TARGET_SURFACE_ONLY",
+  "global_verdict_preserved": "OPEN",
+  "claim_promotion": false,
+  "source": "global_urf_sink_resolution_matrix_2026_05_18",
+  "sink_id": "uniform_positive_mass_or_countermodel",
+  "lean_module": "Chronos.Frontier.UniformPositiveFiberMassFloorTarget",
+  "formal_objects": [
+    "FiberMassDomain",
+    "UniformPositiveFiberMassFloor",
+    "NoUniformPositiveFiberMassFloorCountermodel",
+    "UniformPositiveFiberMassSinkResolution"
+  ],
+  "proved_surface_theorems": [
+    "uniform_positive_floor_closure_resolves_sink",
+    "no_uniform_positive_floor_countermodel_resolves_sink",
+    "countermodel_excludes_uniform_positive_floor"
+  ],
+  "target_closure_exit": {
+    "required_object": "UniformPositiveFiberMassFloor",
+    "minimal_form": "exists epsilon > 0 such that every admissible fiber mass is at least epsilon"
+  },
+  "target_countermodel_exit": {
+    "required_object": "NoUniformPositiveFiberMassFloorCountermodel",
+    "minimal_form": "an admissible positive-mass sequence with masses arbitrarily close to zero"
+  },
+  "boundary": {
+    "does_not_prove": [
+      "existence of UniformPositiveFiberMassFloor",
+      "absence of NoUniformPositiveFiberMassFloorCountermodel",
+      "finite-support-to-admissible-domain lift",
+      "unrestricted UniversalFiberEntropyGap",
+      "unrestricted Chronos-RR",
+      "unrestricted H4.1/FGL",
+      "P vs NP",
+      "any Clay problem"
+    ]
+  }
+}
