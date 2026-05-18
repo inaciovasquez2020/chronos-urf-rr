@@ -109,3 +109,4 @@ import Chronos.Frontier.FiniteSupportRestrictedUFEGToRestrictedH41FGL
 import Chronos.Frontier.FiniteSupportRestrictedEndToEndLock
 import Chronos.Frontier.FiniteSupportRestrictedTerminalH41FGLLock
 import Chronos.Frontier.FiniteSupportRestrictedBoundaryLock
+import Chronos.Frontier.FiniteSupportRestrictedClayBoundaryLock
