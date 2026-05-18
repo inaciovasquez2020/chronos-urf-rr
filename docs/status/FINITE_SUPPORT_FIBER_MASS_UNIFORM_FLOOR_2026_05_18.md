@@ -26,3 +26,5 @@ This does not prove:
 - any Clay problem
 
 The unconditional arbitrary-fiber-mass obstruction remains valid.
+
+<!-- ci-trigger: finite-support-fiber-mass-uniform-floor -->
