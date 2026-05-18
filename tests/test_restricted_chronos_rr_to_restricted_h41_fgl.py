@@ -5,7 +5,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 
 def test_verifier_passes():
-    subprocess.run(["python3", "tools/verify_restricted_chronos_rr_to_restricted_h41fgl.py"], cwd=ROOT, check=True)
+    subprocess.run(["python3", "tools/verify_restricted_chronos_rr_to_restricted_h41_fgl.py"], cwd=ROOT, check=True)
 
 def test_files_present():
     assert (ROOT / "lean/Chronos/Frontier/RestrictedChronosRRToRestrictedH41FGL.lean").exists()

@@ -3,7 +3,13 @@ from __future__ import annotations
 
 import argparse
 import sys
-import tomllib
+try:
+    import tomllib
+except ModuleNotFoundError:
+    try:
+        import tomli as tomllib
+    except ModuleNotFoundError:
+        import toml_compat as tomllib
 from pathlib import Path
 from typing import Any
 
