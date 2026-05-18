@@ -1,0 +1,32 @@
+{
+  "artifact": "admissible_rate_thick_to_universal_fiber_entropy_gap",
+  "date": "2026-05-18",
+  "status": "ADMISSIBLE_UNIVERSAL_FIBER_ENTROPY_GAP_TARGET_CLOSED_RESTRICTED_ONLY",
+  "lean_module": "Chronos.Frontier.AdmissibleRateThickToUniversalFiberEntropyGap",
+  "closed_surface": [
+    "UniversalFiberEntropyGapTarget",
+    "RateThickToUniversalFiberEntropyGapBridge",
+    "universalFiberEntropyGapTarget_from_rate_thick_target",
+    "RateThickToUniversalFiberEntropyGapBridge_solved",
+    "AdmissibleRateThickFiberCoercivityToUniversalFiberEntropyGap",
+    "AdmissibleRateThickFiberCoercivityToUniversalFiberEntropyGap_solved",
+    "AdmissibleUniversalFiberEntropyGapTarget",
+    "AdmissibleUniversalFiberEntropyGapTarget_solved",
+    "UnrestrictedUniversalFiberEntropyGapTarget_refuted"
+  ],
+  "depends_on": [
+    "AdmissibleRateThickFiberCoercivityTarget_solved",
+    "AdmissibleFiberMassUniformFloor_solved",
+    "UniversalWeakestMissingMeasureFiberMassLemma_refuted"
+  ],
+  "boundary": [
+    "admissible restricted universal fiber-entropy gap target only",
+    "unrestricted arbitrary-FiberMassData universal fiber-entropy target is refuted",
+    "does not prove unrestricted RateThickFiberCoercivity",
+    "does not prove unrestricted UniversalFiberEntropyGap",
+    "does not prove unrestricted Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
