@@ -1,0 +1,16 @@
+{
+  "status": "SELECTED_DOMAIN_H41_FGL_TO_ADMISSIBLE_H41_FGL_CLOSED",
+  "result": "selected-domain to admissible bridge only",
+  "requires": [
+    "SelectedDomainH41FGL rankRate fiberMass",
+    "SelectedDomainAdmissibleH41FGLEmbedding rankRate fiberMass"
+  ],
+  "does_not_construct": [
+    "SelectedDomainAdmissibleH41FGLEmbedding"
+  ],
+  "nonclaims": [
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
