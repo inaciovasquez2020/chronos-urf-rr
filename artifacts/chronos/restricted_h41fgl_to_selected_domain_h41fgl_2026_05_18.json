@@ -1,0 +1,25 @@
+{
+  "target": "RestrictedH41FGLToSelectedDomainH41FGL",
+  "status": "RESTRICTED_H41FGL_TO_SELECTED_DOMAIN_H41FGL_CLOSED",
+  "date": "2026-05-18",
+  "lean_module": "Chronos.Frontier.RestrictedH41FGLToSelectedDomainH41FGL",
+  "embedding_object": "RestrictedH41FGLSelectedDomainEmbedding",
+  "closed_theorem": "selected_domain_h41fgl_from_restricted_h41_fgl",
+  "input": [
+    "RestrictedH41FGL D",
+    "RestrictedH41FGLSelectedDomainEmbedding D rankRate fiberMass"
+  ],
+  "output": "SelectedDomainH41FGL rankRate fiberMass",
+  "boundary": [
+    "restricted-to-selected-domain bridge only",
+    "requires explicit selected-domain embedding data",
+    "does not construct the embedding",
+    "no unrestricted FiberMassUniformFloor",
+    "no unrestricted RateThickFiberCoercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL theorem-level closure",
+    "no P vs NP",
+    "no Clay-problem closure"
+  ]
+}
