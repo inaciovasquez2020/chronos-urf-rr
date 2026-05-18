@@ -1,0 +1,64 @@
+# Global URF Decision Audit Numeric Snapshot
+
+Status: `NUMERIC_SNAPSHOT_ONLY`
+
+Source artifact: `global_urf_decision_audit_2026_05_18.json`
+
+Global verdict: `OPEN_WITH_EXPLICIT_SINK_LEMMAS`
+
+## Real values
+
+```json
+{
+  "artifact": "global_urf_decision_audit_numeric_snapshot",
+  "assumption_status_counts": {
+    "conditional": 1,
+    "open_frontier": 2,
+    "proved": 1
+  },
+  "boundary": [
+    "Numeric snapshot only.",
+    "Does not prove unrestricted UniversalFiberEntropyGap.",
+    "Does not prove unrestricted Chronos-RR.",
+    "Does not prove unrestricted H4.1/FGL.",
+    "Does not prove P vs NP.",
+    "Does not prove any Clay problem."
+  ],
+  "boundary_item_count": 5,
+  "claims_total": 4,
+  "conditional_surface_count": 1,
+  "conditional_surface_percent": 25.0,
+  "countermodel_required_count": 1,
+  "countermodel_required_percent": 25.0,
+  "date": "2026-05-18",
+  "dependency_dag_sink_count": 3,
+  "global_verdict": "OPEN_WITH_EXPLICIT_SINK_LEMMAS",
+  "latest_full_pytest_passed": 958,
+  "open_missing_lemma_count": 1,
+  "open_missing_lemma_percent": 25.0,
+  "open_or_countermodel_count": 2,
+  "open_or_countermodel_percent": 50.0,
+  "proved_surface_count": 1,
+  "proved_surface_percent": 25.0,
+  "source_artifact": "global_urf_decision_audit_2026_05_18.json",
+  "source_status": "STATUS_SURFACE_ONLY",
+  "verdict_counts": {
+    "conditional_surface": 1,
+    "countermodel_required": 1,
+    "open_missing_lemma": 1,
+    "proved_surface": 1
+  }
+}
+```
+
+## Boundary
+
+Numeric snapshot only.
+
+Does not prove:
+
+- unrestricted `UniversalFiberEntropyGap`
+- unrestricted Chronos-RR
+- unrestricted H4.1/FGL
+- P vs NP
+- any Clay problem
