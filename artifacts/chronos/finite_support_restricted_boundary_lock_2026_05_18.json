@@ -1,0 +1,18 @@
+{
+  "id": "finite_support_restricted_boundary_lock_2026_05_18",
+  "status": "FINITE_SUPPORT_RESTRICTED_BOUNDARY_LOCK_CLOSED_ONLY",
+  "closed": [
+    "FiniteSupportRestrictedUFEG -> FiniteSupportRestrictedBoundaryLock"
+  ],
+  "boundary": [
+    "finite-support admissible restricted domain only",
+    "boundary lock only",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay closure"
+  ],
+  "lean_module": "Chronos.Frontier.FiniteSupportRestrictedBoundaryLock",
+  "lean_theorem": "FiniteSupportRestrictedBoundaryLock_from_UFEG"
+}
