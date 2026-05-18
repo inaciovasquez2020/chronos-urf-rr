@@ -1,0 +1,19 @@
+{
+  "id": "selected_domain_admissible_embedding_construction_2026_05_18",
+  "status": "SELECTED_DOMAIN_ADMISSIBLE_EMBEDDING_CONSTRUCTED",
+  "lean_module": "Chronos.Frontier.SelectedDomainH41FGLToAdmissibleH41FGL",
+  "closed_targets": [
+    "SelectedDomainAdmissibleH41FGLEmbedding",
+    "selected_domain_admissible_h41_fgl_identity_embedding",
+    "admissible_h41_fgl_from_selected_domain_h41_fgl_constructed",
+    "admissible_h41_fgl_from_restricted_h41_fgl_constructed"
+  ],
+  "boundary": [
+    "selected-domain admissible target only",
+    "restricted carrier-gap input remains explicit",
+    "no unrestricted arbitrary-FiberMassData H4.1/FGL",
+    "no unrestricted Chronos-RR",
+    "no P vs NP",
+    "no Clay closure"
+  ]
+}
