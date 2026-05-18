@@ -1,3 +1,4 @@
+import Chronos.Frontier.AdmissiblePNPBoundaryLockToClayBoundaryLock
 import Chronos.Frontier.AdmissibleH41FGLToPNPBoundaryLock
 import Chronos.Frontier.AdmissibleChronosRRToH41FGL
 import Chronos.Frontier.AdmissibleUniversalFiberEntropyGapToChronosRR
