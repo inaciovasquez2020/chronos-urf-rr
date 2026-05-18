@@ -28,10 +28,13 @@ def test_lean_surface_contains_requested_objects():
     text = (ROOT / "lean/Chronos/Frontier/MeasureFiberMassPackage.lean").read_text()
     assert "structure MeasureFiberMassPackage" in text
     assert "structure MeasureFiberMassUniformFloor" in text
+    assert "fiber_mass_floor : ∀ n : ℕ, D.epsilon ≤ D.data.fiberMass n" in text
+    assert "fiber_mass_floor : D.fiber_mass_floor" not in text
     assert "finite_support_pushforward_case_from_finite_positive" in text
     assert "unrestricted_measure_fiber_mass_case_frontier_open" in text
     assert "RestrictedRateThickFiberCoercivity" in text
-    assert "restricted_rate_thick_fiber_coercivity_from_finite_admissible_floor" in text
+    assert "structure RestrictedRateThickFiberCoercivity\n    (D : MeasureFiberMassPackage) : Prop where" not in text
+    assert "def restricted_rate_thick_fiber_coercivity_from_finite_admissible_floor" in text
     assert "admit" not in text
     assert "sorry" not in text
     assert "axiom" not in text

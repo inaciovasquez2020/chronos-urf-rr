@@ -11,7 +11,7 @@ structure MeasureFiberMassPackage extends FinitePositiveFiberMassAdmissiblePacka
 structure MeasureFiberMassUniformFloor
     (D : MeasureFiberMassPackage) : Prop where
   epsilon_pos : 0 < D.epsilon
-  fiber_mass_floor : D.fiber_mass_floor
+  fiber_mass_floor : ∀ n : ℕ, D.epsilon ≤ D.data.fiberMass n
 
 def finiteSupportPushforwardAdmissibleFiberMassData
     (D : MeasureFiberMassPackage) :
@@ -51,16 +51,16 @@ theorem unrestricted_measure_fiber_mass_case_frontier_open :
   rfl
 
 structure RestrictedRateThickFiberCoercivity
-    (D : MeasureFiberMassPackage) : Prop where
+    (D : MeasureFiberMassPackage) where
   admissible_data : AdmissibleFiberMassData
   admissible_data_eq :
     admissible_data = finiteSupportPushforwardAdmissibleFiberMassData D
   uniform_floor : MeasureFiberMassUniformFloor D
 
-theorem restricted_rate_thick_fiber_coercivity_from_finite_admissible_floor
+def restricted_rate_thick_fiber_coercivity_from_finite_admissible_floor
     (D : MeasureFiberMassPackage) :
-    RestrictedRateThickFiberCoercivity D := by
-  exact {
+    RestrictedRateThickFiberCoercivity D :=
+  {
     admissible_data := finiteSupportPushforwardAdmissibleFiberMassData D
     admissible_data_eq := rfl
     uniform_floor := finite_support_pushforward_uniform_floor_from_finite_positive D
