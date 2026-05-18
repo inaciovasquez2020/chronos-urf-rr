@@ -1,0 +1,67 @@
+{
+  "artifact": "global_urf_sink_resolution_matrix",
+  "date": "2026-05-18",
+  "status": "SINK_RESOLUTION_MATRIX_ONLY",
+  "global_verdict_preserved": "OPEN",
+  "claim_promotion": false,
+  "source": "global_urf_next_level_targets_2026_05_18",
+  "resolution_rule": "Every open sink must exit by either an explicit conditional closure theorem under named hypotheses or a machine-checkable countermodel schema.",
+  "sink_resolution_matrix": [
+    {
+      "sink_id": "uniform_positive_mass_or_countermodel",
+      "rank": 1,
+      "current_status": "OPEN_TARGET",
+      "closure_exit": {
+        "required_object": "UniformPositiveFiberMassFloor",
+        "minimal_form": "For the intended admissible domain D, prove exists epsilon > 0 such that every admissible fiber mass is at least epsilon.",
+        "downstream_effect": "Feeds restricted UniversalFiberEntropyGap expansion."
+      },
+      "countermodel_exit": {
+        "required_object": "NoUniformPositiveFiberMassFloorCountermodel",
+        "minimal_form": "Construct an admissible sequence whose positive fiber masses tend to 0.",
+        "downstream_effect": "Blocks unrestricted uniform UFEG strengthening."
+      }
+    },
+    {
+      "sink_id": "domain_lift_from_finite_support",
+      "rank": 2,
+      "current_status": "OPEN_TARGET",
+      "closure_exit": {
+        "required_object": "FiniteSupportToAdmissibleDomainLift",
+        "minimal_form": "Embed the finite positive support domain into the intended admissible domain while preserving the uniform floor.",
+        "downstream_effect": "Strengthens finite-support restricted Chronos-RR toward admissible restricted Chronos-RR."
+      },
+      "countermodel_exit": {
+        "required_object": "FiniteSupportLiftFailureCountermodel",
+        "minimal_form": "Show a finite-support uniform floor need not survive the intended admissible-domain lift.",
+        "downstream_effect": "Forces the finite-support route to remain isolated."
+      }
+    },
+    {
+      "sink_id": "countermodel_or_closure_dichotomy",
+      "rank": 3,
+      "current_status": "OPEN_TARGET",
+      "closure_exit": {
+        "required_object": "SinkClosureCertificate",
+        "minimal_form": "For each remaining sink, give an explicit theorem statement with named hypotheses and verifier coverage.",
+        "downstream_effect": "Reduces unresolved audit sinks."
+      },
+      "countermodel_exit": {
+        "required_object": "SinkCountermodelCertificate",
+        "minimal_form": "For each remaining sink, give a concrete model showing why the unrestricted route fails.",
+        "downstream_effect": "Converts vague openness into certified obstruction."
+      }
+    }
+  ],
+  "boundary": {
+    "does_not_prove": [
+      "uniform positive fiber-mass floor",
+      "finite-support-to-admissible-domain lift",
+      "unrestricted UniversalFiberEntropyGap",
+      "unrestricted Chronos-RR",
+      "unrestricted H4.1/FGL",
+      "P vs NP",
+      "any Clay problem"
+    ]
+  }
+}
