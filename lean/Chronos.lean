@@ -131,3 +131,5 @@ import Chronos.Frontier.RestrictedEntropyDissipationCertificate
 import Chronos.Frontier.RestrictedAdmissibleDissipationSurface
 
 import Chronos.Frontier.RestrictedDissipationToRateThickCoercivitySurface
+
+import Chronos.Frontier.RestrictedRateThickToRecoveryRouteSurfaces
