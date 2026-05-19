@@ -124,3 +124,5 @@ import Chronos.Frontier.TemporalRelaxationChainStatusSnapshot
 import Chronos.Frontier.FiniteSinkQuadraticRelaxationTheorem
 import Chronos.Frontier.FiniteRationalSinkQuadraticRelaxationTheorem
 import Chronos.Frontier.FiniteOrderedRingSinkQuadraticRelaxationTheorem
+
+import Chronos.Frontier.UniformTemporalRelaxationWaveTarget
