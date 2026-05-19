@@ -123,3 +123,4 @@ import Chronos.Frontier.RestrictedRateThickToRecoveryRouteSurfaces
 import Chronos.Frontier.TemporalRelaxationChainStatusSnapshot
 import Chronos.Frontier.FiniteSinkQuadraticRelaxationTheorem
 import Chronos.Frontier.FiniteRationalSinkQuadraticRelaxationTheorem
+import Chronos.Frontier.FiniteOrderedRingSinkQuadraticRelaxationTheorem

@@ -1,0 +1,31 @@
+{
+"artifact": "finite_ordered_ring_sink_quadratic_relaxation_theorem_2026_05_19",
+"status": "FINITE_ORDERED_DATA_RESTRICTED_THEOREM_SOLVED",
+"lean_module": "Chronos.Frontier.FiniteOrderedRingSinkQuadraticRelaxationTheorem",
+"extends": [
+"finite_sink_quadratic_relaxation_theorem_2026_05_18",
+"finite_rational_sink_quadratic_relaxation_theorem_2026_05_19"
+],
+"closed_theorems": [
+"ordered_ring_quadratic_entropy_monotone_to_sink",
+"ordered_ring_quadratic_entropy_production_nonnegative",
+"finite_ordered_ring_sink_quadratic_relaxation_certificate",
+"finite_ordered_ring_sink_quadratic_relaxation_certificate_int",
+"finite_ordered_ring_sink_quadratic_relaxation_certificate_rat"
+],
+"domain": "finite domains over explicit square-nonnegative quadratic sink order data containing zero",
+"relaxation": "x maps to zero",
+"entropy": "x * x through explicit data",
+"boundary": [
+"no UniformTemporalRelaxationWave existence theorem",
+"no unrestricted admissible-domain construction",
+"no arbitrary entropy monotonicity theorem",
+"no unrestricted admissible dissipation",
+"no unrestricted rate-thick coercivity",
+"no unrestricted UniversalFiberEntropyGap",
+"no unrestricted Chronos-RR",
+"no unrestricted H4.1/FGL",
+"no P vs NP",
+"no Clay closure"
+]
+}
