@@ -75,12 +75,10 @@ import Chronos.ParityPair
 import Chronos.ParitySepProof
 import Chronos.XorLemmas
 import Chronos.XorReduce
-
 import Chronos.Frontier.GravityNonSymmetricEinsteinMatterCollapseCompactness
 import Chronos.Frontier.ActiveGravityCarrierBinding
 import Chronos.Frontier.RestrictedSphericalCollapseEntropyGap
 import Chronos.Frontier.NonSphericalStabilityTransfer
-
 import Chronos.Frontier.GravityActiveCarrierBindingTheoremTarget
 import Chronos.Frontier.LatentTraceEntropyRoute
 import Chronos.Frontier.CarrierRankSoundness
@@ -92,13 +90,9 @@ import Chronos.Frontier.UnrestrictedRateThickCoercivityRoute
 import Chronos.Frontier.RateThickFiberCoercivityCertificate
 import Chronos.Frontier.RateThickBinaryKappaCandidate
 import Chronos.Frontier.FiniteRegisteredHyperbolicRateThickAssembly
-
 import Chronos.Frontier.LyapunovFiberBoundRoute
-
 import Chronos.Frontier.LyapunovFiberBoundDataCertificate
-
 import Chronos.Frontier.LyapunovCertificateUnrestrictedObstruction
-
 import Chronos.Frontier.VerifiedReductionFrontierProgram
 import Chronos.Frontier.FiniteWitnessTheoremCluster
 import Chronos.Frontier.NaiveRestrictedPositiveEntropyDomainSeparator
@@ -119,19 +113,12 @@ import Chronos.Frontier.FiniteSupportRestrictedBoundaryLock
 import Chronos.Frontier.FiniteSupportRestrictedClayBoundaryLock
 import Chronos.Frontier.FiniteSupportRestrictedClayBoundaryStatusLock
 import Chronos.Frontier.FiniteListPositiveUniformFloor
-
 import Chronos.Frontier.TemporalRelaxationWaveInterface
-
 import Chronos.Frontier.TemporalRelaxationWaveLyapunovBridge
-
 import Chronos.Frontier.LyapunovDecayEnergyControl
-
 import Chronos.Frontier.RestrictedEntropyDissipationCertificate
-
 import Chronos.Frontier.RestrictedAdmissibleDissipationSurface
-
 import Chronos.Frontier.RestrictedDissipationToRateThickCoercivitySurface
-
 import Chronos.Frontier.RestrictedRateThickToRecoveryRouteSurfaces
-
 import Chronos.Frontier.TemporalRelaxationChainStatusSnapshot
+import Chronos.Frontier.FiniteSinkQuadraticRelaxationTheorem
