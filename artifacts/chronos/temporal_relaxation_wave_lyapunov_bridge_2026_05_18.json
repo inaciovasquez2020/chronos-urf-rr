@@ -1,0 +1,20 @@
+{
+  "artifact": "temporal_relaxation_wave_lyapunov_bridge",
+  "date": "2026-05-18",
+  "status": "INTERFACE_BRIDGE_ONLY",
+  "proved": [
+    "lyapunovDecay_from_temporalRelaxationWave",
+    "uniformLyapunovDecay_from_uniformTemporalRelaxationWave"
+  ],
+  "boundary": [
+    "no existence of temporal relaxation waves",
+    "no physical time travel",
+    "no global causal rewriting",
+    "no unrestricted admissible dissipation",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
