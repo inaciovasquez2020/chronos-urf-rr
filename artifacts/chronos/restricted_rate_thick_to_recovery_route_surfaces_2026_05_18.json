@@ -1,0 +1,27 @@
+{
+  "artifact": "restricted_rate_thick_to_recovery_route_surfaces",
+  "date": "2026-05-18",
+  "status": "INTERFACE_BRIDGE_ONLY",
+  "proved": [
+    "restrictedUniversalFiberEntropyGapRoute_from_restrictedRateThickCoercivity",
+    "restrictedChronosRRRecoveryBridge_from_restrictedUniversalFiberEntropyGapRoute",
+    "restrictedH41FGLRecoveryBridge_from_restrictedChronosRRRecoveryBridge",
+    "restrictedChronosRRRecoveryBridge_from_restrictedRateThickCoercivity",
+    "restrictedH41FGLRecoveryBridge_from_restrictedRateThickCoercivity",
+    "restrictedRecoveryRoute_from_uniformEntropyControl",
+    "restrictedRecoveryRoute_from_uniformLyapunovDecay_sameFunctional"
+  ],
+  "boundary": [
+    "no existence of admissible dissipation certificates",
+    "no construction of an admissible domain",
+    "no entropy production",
+    "no entropy monotonicity for arbitrary entropy functions",
+    "no unrestricted admissible dissipation",
+    "no unrestricted rate-thick coercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
