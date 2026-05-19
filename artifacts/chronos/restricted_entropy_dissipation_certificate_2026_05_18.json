@@ -1,0 +1,21 @@
+{
+  "artifact": "restricted_entropy_dissipation_certificate",
+  "date": "2026-05-18",
+  "status": "INTERFACE_BRIDGE_ONLY",
+  "proved": [
+    "restrictedEntropyDissipation_from_uniformEntropyControl",
+    "restrictedEntropyDissipation_from_uniformLyapunovDecay_sameFunctional"
+  ],
+  "boundary": [
+    "no existence of entropy-control certificates",
+    "no entropy production",
+    "no entropy monotonicity for arbitrary entropy functions",
+    "no construction of an admissible domain",
+    "no unrestricted admissible dissipation",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
