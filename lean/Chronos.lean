@@ -119,3 +119,5 @@ import Chronos.Frontier.FiniteSupportRestrictedBoundaryLock
 import Chronos.Frontier.FiniteSupportRestrictedClayBoundaryLock
 import Chronos.Frontier.FiniteSupportRestrictedClayBoundaryStatusLock
 import Chronos.Frontier.FiniteListPositiveUniformFloor
+
+import Chronos.Frontier.TemporalRelaxationWaveInterface
