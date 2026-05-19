@@ -133,3 +133,5 @@ import Chronos.Frontier.RestrictedAdmissibleDissipationSurface
 import Chronos.Frontier.RestrictedDissipationToRateThickCoercivitySurface
 
 import Chronos.Frontier.RestrictedRateThickToRecoveryRouteSurfaces
+
+import Chronos.Frontier.TemporalRelaxationChainStatusSnapshot
