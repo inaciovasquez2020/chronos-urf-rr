@@ -129,3 +129,5 @@ import Chronos.Frontier.LyapunovDecayEnergyControl
 import Chronos.Frontier.RestrictedEntropyDissipationCertificate
 
 import Chronos.Frontier.RestrictedAdmissibleDissipationSurface
+
+import Chronos.Frontier.RestrictedDissipationToRateThickCoercivitySurface
