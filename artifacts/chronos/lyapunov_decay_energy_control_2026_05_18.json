@@ -1,0 +1,22 @@
+{
+  "artifact": "lyapunov_decay_energy_control",
+  "date": "2026-05-18",
+  "status": "INTERFACE_BRIDGE_ONLY",
+  "proved": [
+    "energyBound_from_lyapunovDecay",
+    "uniformEnergyBound_from_uniformLyapunovDecay",
+    "entropyControl_from_lyapunovDecay_sameFunctional",
+    "uniformEntropyControl_from_uniformLyapunovDecay_sameFunctional"
+  ],
+  "boundary": [
+    "no existence of Lyapunov decay certificates",
+    "no entropy production",
+    "no entropy monotonicity for arbitrary entropy functions",
+    "no unrestricted admissible dissipation",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
