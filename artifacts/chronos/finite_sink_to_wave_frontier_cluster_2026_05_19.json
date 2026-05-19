@@ -1,0 +1,25 @@
+{
+  "artifact": "finite_sink_to_wave_frontier_cluster_2026_05_19",
+  "status": "STATUS_LOCK_ONLY",
+  "closed_cluster": [
+    "finite_sink_quadratic_relaxation_theorem",
+    "finite_rational_sink_quadratic_relaxation_theorem",
+    "finite_ordered_data_sink_quadratic_relaxation_theorem"
+  ],
+  "frontier_open_target": "UniformTemporalRelaxationWaveExistenceTarget",
+  "does_not_prove": [
+    "existence of UniformTemporalRelaxationWave",
+    "UniformTemporalRelaxationWaveExistenceTarget",
+    "finite-to-unrestricted relaxation lift",
+    "construction of unrestricted admissible domains",
+    "entropy production for arbitrary entropy functions",
+    "entropy monotonicity for arbitrary entropy functions",
+    "unrestricted admissible dissipation",
+    "unrestricted rate-thick coercivity",
+    "unrestricted UniversalFiberEntropyGap",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
