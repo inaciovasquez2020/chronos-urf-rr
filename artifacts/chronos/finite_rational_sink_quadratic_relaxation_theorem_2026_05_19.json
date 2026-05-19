@@ -1,0 +1,27 @@
+{
+"artifact": "finite_rational_sink_quadratic_relaxation_theorem_2026_05_19",
+"status": "FINITE_RATIONAL_RESTRICTED_THEOREM_SOLVED",
+"lean_module": "Chronos.Frontier.FiniteRationalSinkQuadraticRelaxationTheorem",
+"extends": "finite_sink_quadratic_relaxation_theorem_2026_05_18",
+"closed_theorems": [
+"rational_quadratic_entropy_monotone_to_sink",
+"rational_quadratic_entropy_production_nonnegative",
+"finite_rational_sink_quadratic_relaxation_certificate",
+"concrete_rational_symmetric_domain_certificate"
+],
+"domain": "finite rational domains containing 0",
+"relaxation": "x maps to 0",
+"entropy": "x * x over Rat",
+"boundary": [
+"no UniformTemporalRelaxationWave existence theorem",
+"no unrestricted admissible-domain construction",
+"no arbitrary entropy monotonicity theorem",
+"no unrestricted admissible dissipation",
+"no unrestricted rate-thick coercivity",
+"no unrestricted UniversalFiberEntropyGap",
+"no unrestricted Chronos-RR",
+"no unrestricted H4.1/FGL",
+"no P vs NP",
+"no Clay closure"
+]
+}
