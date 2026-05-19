@@ -121,3 +121,5 @@ import Chronos.Frontier.FiniteSupportRestrictedClayBoundaryStatusLock
 import Chronos.Frontier.FiniteListPositiveUniformFloor
 
 import Chronos.Frontier.TemporalRelaxationWaveInterface
+
+import Chronos.Frontier.TemporalRelaxationWaveLyapunovBridge
