@@ -1,0 +1,26 @@
+{
+"artifact": "finite_sink_quadratic_relaxation_theorem_2026_05_18",
+"status": "FINITE_RESTRICTED_THEOREM_SOLVED",
+"lean_module": "Chronos.Frontier.FiniteSinkQuadraticRelaxationTheorem",
+"closed_theorems": [
+"quadratic_entropy_monotone_to_sink",
+"quadratic_entropy_production_nonnegative",
+"finite_sink_quadratic_relaxation_certificate",
+"concrete_symmetric_domain_certificate"
+],
+"domain": "finite integer domains containing 0",
+"relaxation": "x maps to 0",
+"entropy": "Int.natAbs x * Int.natAbs x",
+"boundary": [
+"no UniformTemporalRelaxationWave existence theorem",
+"no unrestricted admissible-domain construction",
+"no arbitrary entropy monotonicity theorem",
+"no unrestricted admissible dissipation",
+"no unrestricted rate-thick coercivity",
+"no unrestricted UniversalFiberEntropyGap",
+"no unrestricted Chronos-RR",
+"no unrestricted H4.1/FGL",
+"no P vs NP",
+"no Clay closure"
+]
+}
