@@ -1,0 +1,24 @@
+{
+  "artifact": "restricted_dissipation_to_rate_thick_coercivity_surface",
+  "date": "2026-05-18",
+  "status": "INTERFACE_BRIDGE_ONLY",
+  "proved": [
+    "restrictedRateThickCoercivity_from_restrictedAdmissibleDissipation",
+    "restrictedDissipationToRateThickCoercivity_surface",
+    "restrictedRateThickCoercivity_from_uniformEntropyControl",
+    "restrictedRateThickCoercivity_from_uniformLyapunovDecay_sameFunctional"
+  ],
+  "boundary": [
+    "no existence of admissible dissipation certificates",
+    "no construction of an admissible domain",
+    "no entropy production",
+    "no entropy monotonicity for arbitrary entropy functions",
+    "no unrestricted admissible dissipation",
+    "no unrestricted rate-thick coercivity",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
