@@ -1,0 +1,20 @@
+{
+  "artifact": "temporal_relaxation_wave_interface",
+  "date": "2026-05-18",
+  "status": "INTERFACE_ONLY",
+  "lean_file": "lean/Chronos/Frontier/TemporalRelaxationWaveInterface.lean",
+  "proved": [
+    "temporalRelaxationWave_from_uniformDecay",
+    "unit_uniformTemporalRelaxationWave"
+  ],
+  "boundary": [
+    "no physical time travel",
+    "no global causal rewriting",
+    "no unrestricted admissible dissipation",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
