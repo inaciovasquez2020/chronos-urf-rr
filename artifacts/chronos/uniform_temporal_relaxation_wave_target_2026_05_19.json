@@ -1,0 +1,23 @@
+{
+  "artifact": "uniform_temporal_relaxation_wave_target_2026_05_19",
+  "status": "FRONTIER_OPEN",
+  "closed_object": "target_isolation_only",
+  "lean_module": "Chronos.Frontier.UniformTemporalRelaxationWaveTarget",
+  "target": "UniformTemporalRelaxationWaveExistenceTarget",
+  "bridge": "uniformTemporalRelaxationWave_from_input",
+  "does_not_prove": [
+    "existence of UniformTemporalRelaxationWave",
+    "UniformTemporalRelaxationWaveExistenceTarget",
+    "construction of unrestricted admissible domains",
+    "finite-to-unrestricted relaxation lift",
+    "entropy production for arbitrary entropy functions",
+    "entropy monotonicity for arbitrary entropy functions",
+    "unrestricted admissible dissipation",
+    "unrestricted rate-thick coercivity",
+    "unrestricted UniversalFiberEntropyGap",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
