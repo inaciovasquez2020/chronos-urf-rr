@@ -127,3 +127,5 @@ import Chronos.Frontier.TemporalRelaxationWaveLyapunovBridge
 import Chronos.Frontier.LyapunovDecayEnergyControl
 
 import Chronos.Frontier.RestrictedEntropyDissipationCertificate
+
+import Chronos.Frontier.RestrictedAdmissibleDissipationSurface

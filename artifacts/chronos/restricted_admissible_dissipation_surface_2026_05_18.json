@@ -1,0 +1,22 @@
+{
+  "artifact": "restricted_admissible_dissipation_surface",
+  "date": "2026-05-18",
+  "status": "INTERFACE_BRIDGE_ONLY",
+  "proved": [
+    "restrictedAdmissibleDissipation_from_restrictedEntropyDissipation",
+    "restrictedAdmissibleDissipation_from_uniformEntropyControl",
+    "restrictedAdmissibleDissipation_from_uniformLyapunovDecay_sameFunctional"
+  ],
+  "boundary": [
+    "no existence of admissible dissipation certificates",
+    "no construction of an admissible domain",
+    "no entropy production",
+    "no entropy monotonicity for arbitrary entropy functions",
+    "no unrestricted admissible dissipation",
+    "no unrestricted UniversalFiberEntropyGap",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
