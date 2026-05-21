@@ -1,0 +1,20 @@
+{
+  "id": "nonsymmetric_einstein_matter_bootstrap_kernel_2026_05_21",
+  "status": "CONDITIONAL_KERNEL_CLOSED",
+  "result": "BootstrapKernel plus InitialQLConcentration implies finite-time PDE outcome and restricted collapse closure",
+  "closed_surfaces": [
+    "bootstrap_kernel_derives_finite_time_pde_outcome",
+    "bootstrap_kernel_closes_restricted_gravity",
+    "bootstrap_kernel_final_conditional_gravity_package",
+    "final_gravity_no_overclaim_boundary"
+  ],
+  "weakest_missing_object": "Existence of NonSymmetricEinsteinMatterBootstrapKernel for genuine non-symmetric Einstein-matter PDE data",
+  "does_not_prove": [
+    "unrestricted cosmic censorship",
+    "unrestricted hoop theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
