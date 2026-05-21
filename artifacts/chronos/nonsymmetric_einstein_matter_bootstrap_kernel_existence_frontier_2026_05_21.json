@@ -1,0 +1,21 @@
+{
+  "id": "nonsymmetric_einstein_matter_bootstrap_kernel_existence_frontier_2026_05_21",
+  "status": "FRONTIER_OPEN_TARGET_ONLY",
+  "target": "NonSymmetricEinsteinMatterBootstrapKernelExistenceTarget",
+  "meaning": "Existence of NonSymmetricEinsteinMatterBootstrapKernel for genuine non-symmetric Einstein-matter PDE data",
+  "conditional_closure": "If the existence target is supplied, the PR418 conditional gravity package closes to finite-time PDE outcome plus restricted collapse closure",
+  "closed_surfaces": [
+    "existence_target_unpacks",
+    "supplied_kernel_closes_conditional_gravity_package",
+    "existence_target_closes_conditional_gravity_package",
+    "existence_frontier_no_overclaim_boundary"
+  ],
+  "does_not_prove": [
+    "unrestricted cosmic censorship",
+    "unrestricted hoop theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
