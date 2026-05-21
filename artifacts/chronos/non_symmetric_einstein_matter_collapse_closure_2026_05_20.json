@@ -1,0 +1,25 @@
+{
+  "id": "non_symmetric_einstein_matter_collapse_closure_2026_05_20",
+  "status": "OPEN_PROBLEM_REQUIRED",
+  "classification": "MACRO_AXIOM_BOUNDARY_ONLY",
+  "macro_axiom": "NonSymmetricEinsteinMatterCollapseClosure",
+  "minimal_missing_lemma": "NonSymmetricEinsteinMatterCollapseClosure",
+  "components": [
+    "NonSymmetricTrappedSurfaceCriterion",
+    "CollapseToCensorshipBridge",
+    "HoopFromQLGate",
+    "UnrestrictedUniversalBoundaryCompactness",
+    "UnrestrictedQLCollapseGate"
+  ],
+  "conditional_result": "Any unrestricted non-symmetric collapse closure, unrestricted weak cosmic censorship closure, or unrestricted hoop-theorem closure remains conditional on NonSymmetricEinsteinMatterCollapseClosure.",
+  "boundary": [
+    "Macro-axiom/status boundary only.",
+    "No unrestricted non-symmetric Einstein-matter collapse theorem is proved.",
+    "No unrestricted weak cosmic censorship theorem is proved.",
+    "No unrestricted hoop theorem is proved.",
+    "No PDE bootstrap closure is proved.",
+    "No operator-algebraic nuclearity-to-bulk-collapse theorem is proved.",
+    "No P vs NP claim.",
+    "No Clay-problem closure."
+  ]
+}
