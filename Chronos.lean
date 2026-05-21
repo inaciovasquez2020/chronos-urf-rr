@@ -134,3 +134,4 @@ import Chronos.Frontier.NonPropFinalCarrierInvariant
 import Chronos.Frontier.FO4CycleOverlapOpenProblemRequired
 
 import Chronos.Frontier.FPz1RateThickDomainGap
+import Chronos.Frontier.NonSymmetricEinsteinMatterBootstrapKernel
