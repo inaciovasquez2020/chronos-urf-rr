@@ -1,0 +1,43 @@
+{
+  "id": "restricted_non_symmetric_collapse_closure_refinement_2026_05_21",
+  "status": "STRICT_REFINEMENT_TARGET_OPEN",
+  "classification": "RESTRICTED_REFINEMENT_TARGET_ONLY",
+  "parent_macro_axiom": "NonSymmetricEinsteinMatterCollapseClosure",
+  "corrected_obstruction": "The parent macro-axiom is not logically contradictory; the obstruction is a scope mismatch. Components named as unrestricted closure targets are too strong to support a strict next reduction unless restricted domain and surface data are exposed explicitly.",
+  "restricted_refinement_target": "RestrictedNonSymmetricCollapseClosure",
+  "restriction_parameters": [
+    "RestrictedCollapseDomain D",
+    "RestrictedCollapseSurface S"
+  ],
+  "restricted_components": [
+    "RestrictedUniversalBoundaryCompactness(D)",
+    "RestrictedQLCollapseGate(D,S)",
+    "RestrictedHoopFromQLGate(S)"
+  ],
+  "minimal_new_objects": [
+    "RestrictedCollapseDomain",
+    "RestrictedCollapseSurface",
+    "RestrictedNonSymmetricCollapseClosure"
+  ],
+  "remaining_open": [
+    "Construct a nonempty admissible restricted collapse domain D.",
+    "Construct a nonempty admissible restricted collapse surface datum S.",
+    "Prove restricted boundary compactness on D.",
+    "Prove restricted QL-collapse gating from D to S.",
+    "Prove restricted hoop gating on S.",
+    "Show the restricted closure has nontrivial geometric content."
+  ],
+  "boundary": [
+    "Strict restricted-refinement target only.",
+    "Does not prove NonSymmetricEinsteinMatterCollapseClosure.",
+    "Does not prove unrestricted non-symmetric Einstein-matter collapse closure.",
+    "Does not prove unrestricted universal boundary compactness.",
+    "Does not prove unrestricted QL-collapse gating.",
+    "Does not prove unrestricted weak cosmic censorship.",
+    "Does not prove unrestricted hoop theorem.",
+    "Does not prove unrestricted PDE bootstrap closure.",
+    "Does not prove operator-algebraic nuclearity-to-bulk-collapse closure.",
+    "Does not prove P vs NP.",
+    "Does not prove any Clay problem."
+  ]
+}
