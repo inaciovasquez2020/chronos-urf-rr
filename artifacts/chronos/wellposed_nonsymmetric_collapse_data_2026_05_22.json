@@ -1,0 +1,27 @@
+{
+  "status": "RESTRICTED_PACKAGE_THEOREM_ONLY",
+  "object": "WellPosedNonSymmetricCollapseData",
+  "restricted_theorems": [
+    "restricted_analytic_package",
+    "restricted_constructor_input",
+    "restricted_existence_target",
+    "restricted_package_no_overclaim_boundary"
+  ],
+  "assumed_field": "closure : NonSymmetricEinsteinMatterBootstrapKernelAnalyticPackage base",
+  "does_not_prove": [
+    "SixFieldAnalyticPackageHypothesis",
+    "unrestricted analytic package",
+    "any single field implies the other five fields",
+    "pdeEvolution from PDE well-posedness",
+    "nonsymmetric evolution persistence",
+    "admissibility preservation",
+    "concentration transport",
+    "finite-time collapse alternative",
+    "unrestricted cosmic censorship",
+    "unrestricted hoop theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
