@@ -128,3 +128,5 @@ import Chronos.Frontier.FiniteOrderedRingSinkQuadraticRelaxationTheorem
 import Chronos.Frontier.UniformTemporalRelaxationWaveTarget
 
 import Chronos.Frontier.WECPointwisePositivityForNonnegativeScalarPotential
+
+import Chronos.Frontier.LeanFormalStressEnergyIdentityOrExternalTensorAudit

@@ -1,0 +1,43 @@
+{
+  "id": "ENERGY_ESTIMATE_DEDT_LE_CE",
+  "date": "2026-05-22",
+  "status": "OPEN_TARGET_NO_ENERGY_ESTIMATE_PROVED",
+  "repository": "chronos-urf-rr",
+  "kind": "open_energy_estimate_target",
+  "depends_on": [
+    "WEC_POINTWISE_POSITIVITY_FOR_NONNEGATIVE_SCALAR_POTENTIAL",
+    "EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_TARGET",
+    "FILLED_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_CALCULATION",
+    "GAUGE_SIGN_AND_BOUNDARY_CHECK_FOR_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY"
+  ],
+  "remaining_blockers": [
+    "BOUNDARY_FLUX_CONTROL_NOT_PROVED",
+    "NONLINEAR_GRAVITY_MATTER_COUPLING_NOT_BOUNDED",
+    "GRONWALL_READY_ENERGY_FUNCTIONAL_NOT_SUPPLIED"
+  ],
+  "next_admissible_object": "WEC_PRESERVATION_UNDER_TIME_EVOLUTION",
+  "does_not_prove": [
+    "unconditional stress-energy evolution identity",
+    "WEC preservation under time evolution",
+    "energy estimate dE/dt <= C E",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "finite-time collapse theorem",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional non-symmetric collapse theorem",
+    "any Clay problem"
+  ],
+  "boundary": [
+    "frontier target only",
+    "no unconditional stress-energy identity",
+    "no WEC preservation theorem",
+    "no energy estimate",
+    "no continuation criterion",
+    "no finite-time collapse theorem",
+    "no unrestricted gravity closure",
+    "no theorem promotion"
+  ]
+}
