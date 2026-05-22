@@ -1,0 +1,81 @@
+{
+  "id": "FILLED_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_CALCULATION",
+  "date": "2026-05-22",
+  "status": "FORMULA_PAYLOAD_FILLED_CONDITIONAL_NO_EVOLUTION_THEOREM",
+  "repository": "chronos-urf-rr",
+  "depends_on": [
+    "WEC_POINTWISE_POSITIVITY_FOR_NONNEGATIVE_SCALAR_POTENTIAL",
+    "EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_TARGET"
+  ],
+  "signature_convention": "(-,+,+,+)",
+  "normal_convention": "n^a future timelike unit normal, n^a n_a = -1",
+  "projection_convention": "gamma_ab = g_ab + n_a n_b",
+  "scalar_field_decomposition": {
+    "Pi": "Pi = n^a nabla_a phi",
+    "D_i_phi": "D_i phi = gamma_i^a nabla_a phi",
+    "grad_norm_square": "|D phi|_gamma^2 = gamma^{ij} D_i phi D_j phi"
+  },
+  "stress_energy_tensor": {
+    "formula": "T_ab = nabla_a phi nabla_b phi - (1/2) g_ab (nabla^c phi nabla_c phi) - g_ab V(phi)",
+    "scalar_equation_required_for_conservation": "Box_g phi - V'(phi) = 0",
+    "conservation_identity": "nabla_a T^{ab} = 0 conditional on scalar Euler-Lagrange equation"
+  },
+  "three_plus_one_components": {
+    "rho": "rho = (1/2) Pi^2 + (1/2) |D phi|_gamma^2 + V(phi)",
+    "j_i": "j_i = - Pi D_i phi",
+    "S_ij": "S_ij = D_i phi D_j phi + (1/2) gamma_ij (Pi^2 - |D phi|_gamma^2) - gamma_ij V(phi)",
+    "trace_S": "S = (3/2) Pi^2 - (1/2) |D phi|_gamma^2 - 3 V(phi)"
+  },
+  "candidate_energy_projection": {
+    "source": "normal projection of nabla_a T^{ab} = 0",
+    "candidate_form": "n^a nabla_a rho = -D_i j^i + K_ij S^ij + K rho - 2 a_i j^i",
+    "sign_status": "SIGN_CONVENTION_DEPENDENT_REQUIRES_VERIFICATION",
+    "lapse_acceleration": "a_i = D_i log N"
+  },
+  "coordinate_evolution_target": {
+    "flow": "partial_t = N n + beta",
+    "target_shape": "(partial_t - Lie_beta) rho = N[-D_i j^i + K_ij S^ij + K rho - 2 a_i j^i]",
+    "status": "TARGET_SHAPE_ONLY_NOT_PROMOTED"
+  },
+  "filled_calculation_content": [
+    "scalar-field stress-energy tensor supplied",
+    "rho component supplied",
+    "j_i component supplied",
+    "S_ij component supplied",
+    "trace_S component supplied",
+    "candidate normal-projected energy identity recorded with sign lock",
+    "coordinate lapse-shift target shape recorded with sign lock"
+  ],
+  "remaining_blockers": [
+    "SIGN_CONVENTION_CHECK_NOT_DISCHARGED",
+    "GAUGE_TERM_CHECK_NOT_DISCHARGED",
+    "BOUNDARY_FLUX_CONTROL_NOT_PROVED",
+    "CANDIDATE_IDENTITY_NOT_LEAN_FORMALIZED",
+    "NO_WEC_PRESERVATION_THEOREM",
+    "NO_CONTINUATION_CRITERION"
+  ],
+  "next_admissible_object": "GAUGE_SIGN_AND_BOUNDARY_CHECK_FOR_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY",
+  "does_not_prove": [
+    "unconditional stress-energy evolution identity",
+    "WEC preservation under time evolution",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "finite-time collapse theorem",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional non-symmetric collapse theorem",
+    "any Clay problem"
+  ],
+  "boundary": [
+    "formula payload only",
+    "conditional on scalar Euler-Lagrange equation",
+    "candidate identity remains sign-convention locked",
+    "no PDE evolution theorem",
+    "no continuation theorem",
+    "no finite-time collapse theorem",
+    "no trapped-surface existence theorem",
+    "no unrestricted theorem promotion"
+  ]
+}
