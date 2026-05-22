@@ -1,0 +1,56 @@
+{
+  "id": "EXTERNAL_TENSOR_AUDIT_REQUEST_TEMPLATE_CONTENT",
+  "date": "2026-05-22",
+  "status": "REQUEST_TEMPLATE_CONTENT_SUPPLIED_NO_REQUEST_SENT",
+  "repository": "chronos-urf-rr",
+  "kind": "audit_request_template_content",
+  "route": "ROUTE_B_EXTERNAL_TENSOR_AUDIT",
+  "depends_on": [
+    "SELECT_AUDIT_ROUTE_LEAN_FORMAL_OR_EXTERNAL_TENSOR",
+    "LEAN_FORMAL_STRESS_ENERGY_IDENTITY_OR_EXTERNAL_TENSOR_AUDIT",
+    "EXTERNAL_TENSOR_AUDIT_ROUTE_OBJECTS",
+    "GAUGE_SIGN_AND_BOUNDARY_CHECK_FOR_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY",
+    "FILLED_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_CALCULATION"
+  ],
+  "content": {
+    "subject": "Request for independent tensor-check audit of 3+1 stress-energy identity",
+    "email_template": "Dear Professor/Dr. [Name],\n\nI am preparing a mathematical-relativity audit packet for a scalar-field stress-energy evolution identity in 3+1 form. I am not asking for endorsement of any collapse theorem. I am only asking whether the displayed tensor calculation is correct under the stated conventions.\n\nThe conventions are signature (-,+,+,+), future unit normal n^a n_a = -1, gamma_ab = g_ab + n_a n_b, and partial_t = N n + beta. The candidate identity to audit is:\n\n(partial_t - Lie_beta) rho = N[-D_i j^i + K_ij S^ij + K rho - 2 a_i j^i], with a_i = D_i log N.\n\nCould you review the attached short derivation for sign, lapse/shift, projection, and boundary-flux correctness? A brief written verdict identifying confirmed terms, corrections, and scope limitations would be sufficient.\n\nThis request does not ask you to validate WEC preservation, an energy estimate, a continuation criterion, finite-time collapse, or unrestricted gravity closure.\n\nSincerely,\nInacio F. Vasquez",
+    "attachments_expected": [
+      "clean stress-energy derivation packet",
+      "one-page boundary and nonclaim summary"
+    ]
+  },
+  "remaining_blockers": [
+    "NO_REQUEST_SENT",
+    "NO_AUDITOR_SELECTED",
+    "NO_RESPONSE_RECEIVED"
+  ],
+  "next_admissible_object": "EXTERNAL_TENSOR_AUDIT_RESPONSE_SCHEMA_CONTENT",
+  "does_not_prove": [
+    "unconditional stress-energy evolution identity",
+    "WEC preservation under time evolution",
+    "energy estimate dE/dt <= C E",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "finite-time collapse theorem",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional non-symmetric collapse theorem",
+    "any Clay problem"
+  ],
+  "boundary": [
+    "admissible Route B preparation object only",
+    "no auditor contacted",
+    "no audit response supplied",
+    "no audit certificate supplied",
+    "no unconditional stress-energy identity",
+    "no WEC preservation theorem",
+    "no energy estimate",
+    "no continuation criterion",
+    "no finite-time collapse theorem",
+    "no unrestricted gravity closure",
+    "no theorem promotion"
+  ]
+}

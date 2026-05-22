@@ -1,0 +1,64 @@
+{
+  "id": "EXTERNAL_TENSOR_AUDIT_RESPONSE_SCHEMA_CONTENT",
+  "date": "2026-05-22",
+  "status": "RESPONSE_SCHEMA_CONTENT_SUPPLIED_NO_RESPONSE",
+  "repository": "chronos-urf-rr",
+  "kind": "audit_response_schema_content",
+  "route": "ROUTE_B_EXTERNAL_TENSOR_AUDIT",
+  "depends_on": [
+    "SELECT_AUDIT_ROUTE_LEAN_FORMAL_OR_EXTERNAL_TENSOR",
+    "LEAN_FORMAL_STRESS_ENERGY_IDENTITY_OR_EXTERNAL_TENSOR_AUDIT",
+    "EXTERNAL_TENSOR_AUDIT_ROUTE_OBJECTS",
+    "GAUGE_SIGN_AND_BOUNDARY_CHECK_FOR_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY",
+    "FILLED_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_CALCULATION"
+  ],
+  "content": {
+    "required_response_fields": {
+      "auditor_identity": "name/institution/contact or explicit anonymized identifier",
+      "date_received": "YYYY-MM-DD",
+      "review_scope": "which formulas and conventions were checked",
+      "convention_match": "yes/no/partial",
+      "stress_energy_tensor_verdict": "correct/incorrect/needs_revision",
+      "three_plus_one_decomposition_verdict": "correct/incorrect/needs_revision",
+      "normal_projection_verdict": "correct/incorrect/needs_revision",
+      "lapse_shift_verdict": "correct/incorrect/needs_revision",
+      "boundary_flux_verdict": "correct/incorrect/needs_assumption/unchecked",
+      "critical_corrections": "list of required corrections",
+      "scope_limitations": "what the audit does not certify",
+      "final_verdict": "positive/positive_with_minor_corrections/negative/inconclusive"
+    }
+  },
+  "remaining_blockers": [
+    "NO_EXTERNAL_RESPONSE_SUPPLIED",
+    "NO_VERDICT_SUPPLIED",
+    "NO_CORRECTION_LOG_SUPPLIED"
+  ],
+  "next_admissible_object": "EXTERNAL_TENSOR_AUDIT_CERTIFICATE_TARGET_CONTENT",
+  "does_not_prove": [
+    "unconditional stress-energy evolution identity",
+    "WEC preservation under time evolution",
+    "energy estimate dE/dt <= C E",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "finite-time collapse theorem",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional non-symmetric collapse theorem",
+    "any Clay problem"
+  ],
+  "boundary": [
+    "admissible Route B preparation object only",
+    "no auditor contacted",
+    "no audit response supplied",
+    "no audit certificate supplied",
+    "no unconditional stress-energy identity",
+    "no WEC preservation theorem",
+    "no energy estimate",
+    "no continuation criterion",
+    "no finite-time collapse theorem",
+    "no unrestricted gravity closure",
+    "no theorem promotion"
+  ]
+}

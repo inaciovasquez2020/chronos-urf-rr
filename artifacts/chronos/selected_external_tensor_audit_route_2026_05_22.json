@@ -1,0 +1,56 @@
+{
+  "id": "SELECTED_EXTERNAL_TENSOR_AUDIT_ROUTE",
+  "date": "2026-05-22",
+  "status": "ROUTE_B_SELECTED_NO_CERTIFICATE",
+  "repository": "chronos-urf-rr",
+  "kind": "route_selection_record",
+  "route": "ROUTE_B_EXTERNAL_TENSOR_AUDIT",
+  "depends_on": [
+    "SELECT_AUDIT_ROUTE_LEAN_FORMAL_OR_EXTERNAL_TENSOR",
+    "LEAN_FORMAL_STRESS_ENERGY_IDENTITY_OR_EXTERNAL_TENSOR_AUDIT",
+    "EXTERNAL_TENSOR_AUDIT_ROUTE_OBJECTS",
+    "GAUGE_SIGN_AND_BOUNDARY_CHECK_FOR_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY",
+    "FILLED_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_CALCULATION"
+  ],
+  "content": {
+    "selected_route": "ROUTE_B_EXTERNAL_TENSOR_AUDIT",
+    "rejected_route": "ROUTE_A_LEAN_FORMAL_TENSOR_PROOF_FOR_NOW",
+    "reason": "External tensor audit is the minimal near-term route; Lean formalization may remain a later parallel route.",
+    "acceptance_rule": "Route selection alone proves nothing; it only authorizes preparing an external derivation packet and audit materials."
+  },
+  "remaining_blockers": [
+    "NO_DERIVATION_PACKET_CONTENT_SUPPLIED",
+    "NO_AUDITOR_CONTACTS_SUPPLIED",
+    "NO_AUDIT_REQUEST_SENT",
+    "NO_AUDIT_RESPONSE_SUPPLIED",
+    "NO_AUDIT_CERTIFICATE_SUPPLIED"
+  ],
+  "next_admissible_object": "CLEAN_STRESS_ENERGY_TENSOR_DERIVATION_PACKET_CONTENT",
+  "does_not_prove": [
+    "unconditional stress-energy evolution identity",
+    "WEC preservation under time evolution",
+    "energy estimate dE/dt <= C E",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "finite-time collapse theorem",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional non-symmetric collapse theorem",
+    "any Clay problem"
+  ],
+  "boundary": [
+    "admissible Route B preparation object only",
+    "no auditor contacted",
+    "no audit response supplied",
+    "no audit certificate supplied",
+    "no unconditional stress-energy identity",
+    "no WEC preservation theorem",
+    "no energy estimate",
+    "no continuation criterion",
+    "no finite-time collapse theorem",
+    "no unrestricted gravity closure",
+    "no theorem promotion"
+  ]
+}

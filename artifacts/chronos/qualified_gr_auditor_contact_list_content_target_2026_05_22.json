@@ -1,0 +1,69 @@
+{
+  "id": "QUALIFIED_GR_AUDITOR_CONTACT_LIST_CONTENT_TARGET",
+  "date": "2026-05-22",
+  "status": "CONTACT_LIST_CONTENT_TARGET_RECORDED_NO_CONTACTS_SUPPLIED",
+  "repository": "chronos-urf-rr",
+  "kind": "contact_list_content_target",
+  "route": "ROUTE_B_EXTERNAL_TENSOR_AUDIT",
+  "depends_on": [
+    "SELECT_AUDIT_ROUTE_LEAN_FORMAL_OR_EXTERNAL_TENSOR",
+    "LEAN_FORMAL_STRESS_ENERGY_IDENTITY_OR_EXTERNAL_TENSOR_AUDIT",
+    "EXTERNAL_TENSOR_AUDIT_ROUTE_OBJECTS",
+    "GAUGE_SIGN_AND_BOUNDARY_CHECK_FOR_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY",
+    "FILLED_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_CALCULATION"
+  ],
+  "content": {
+    "minimum_target_count": 5,
+    "preferred_confirmations": 2,
+    "qualification_filters": [
+      "mathematical relativity",
+      "ADM or 3+1 formalism experience",
+      "Einstein-scalar or Einstein-matter familiarity",
+      "tensor-calculation competence",
+      "no direct conflict of interest"
+    ],
+    "required_contact_fields": [
+      "auditor_name",
+      "institution",
+      "email_or_contact_channel",
+      "expertise_basis",
+      "conflict_of_interest_status",
+      "contact_status",
+      "response_status"
+    ],
+    "note": "No auditor names are supplied by this repository object."
+  },
+  "remaining_blockers": [
+    "NO_ACTUAL_AUDITOR_CONTACTS_SUPPLIED",
+    "NO_PERMISSION_TO_CONTACT_RECORDED",
+    "NO_AUDIT_REQUEST_SENT"
+  ],
+  "next_admissible_object": "EXTERNAL_TENSOR_AUDIT_REQUEST_TEMPLATE_CONTENT",
+  "does_not_prove": [
+    "unconditional stress-energy evolution identity",
+    "WEC preservation under time evolution",
+    "energy estimate dE/dt <= C E",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "finite-time collapse theorem",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional non-symmetric collapse theorem",
+    "any Clay problem"
+  ],
+  "boundary": [
+    "admissible Route B preparation object only",
+    "no auditor contacted",
+    "no audit response supplied",
+    "no audit certificate supplied",
+    "no unconditional stress-energy identity",
+    "no WEC preservation theorem",
+    "no energy estimate",
+    "no continuation criterion",
+    "no finite-time collapse theorem",
+    "no unrestricted gravity closure",
+    "no theorem promotion"
+  ]
+}
