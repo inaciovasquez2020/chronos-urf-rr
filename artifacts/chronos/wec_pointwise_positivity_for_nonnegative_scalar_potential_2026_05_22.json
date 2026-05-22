@@ -1,0 +1,46 @@
+{
+  "id": "WEC_POINTWISE_POSITIVITY_FOR_NONNEGATIVE_SCALAR_POTENTIAL",
+  "date": "2026-05-22",
+  "status": "ADMISSIBLE_LEMMA_PROVED_ALGEBRAIC_ONLY",
+  "repository": "chronos-urf-rr",
+  "lean_module": "Chronos.Frontier.WECPointwisePositivityForNonnegativeScalarPotential",
+  "lean_file": "lean/Chronos/Frontier/WECPointwisePositivityForNonnegativeScalarPotential.lean",
+  "proved_theorems": [
+    "wec_pointwise_positivity_for_nonnegative_scalar_potential",
+    "scalarFieldEnergyDensity_nonneg"
+  ],
+  "corrected_naming": {
+    "rejected_name": "WEC_POINTWISE_PRESERVATION_FOR_NONNEGATIVE_SCALAR_POTENTIAL",
+    "accepted_name": "WEC_POINTWISE_POSITIVITY_FOR_NONNEGATIVE_SCALAR_POTENTIAL",
+    "reason": "The proved statement is algebraic pointwise positivity, not dynamical preservation under Einstein-matter evolution."
+  },
+  "statement": "For real pi, gradSq, and potentialValue, if gradSq >= 0 and potentialValue >= 0, then (1/2) * pi^2 + (1/2) * gradSq + potentialValue >= 0.",
+  "solves": [
+    "pointwise algebraic WEC positivity for nonnegative scalar potential"
+  ],
+  "does_not_solve": [
+    "stress-energy evolution identity",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "unrestricted physics theorem analytic core"
+  ],
+  "open_blockers": [
+    "EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_REQUIRES_TENSOR_CALCULATION_AND_GAUGE_CHECK",
+    "NON_SYMMETRIC_EINSTEIN_SCALAR_CONTINUATION_CRITERION_OPEN",
+    "RAYCHAUDHURI_FOCUSING_WITH_SHEAR_CONTROL_OPEN",
+    "NON_SYMMETRIC_TRAPPED_SURFACE_TRIGGER_FROM_CONCENTRATION_OPEN"
+  ],
+  "boundary": [
+    "algebraic pointwise lemma only",
+    "no PDE evolution theorem",
+    "no continuation theorem",
+    "no finite-time collapse theorem",
+    "no trapped-surface existence theorem",
+    "no unrestricted gravity closure",
+    "no cosmic censorship proof",
+    "no hoop conjecture proof",
+    "no four-dimensional non-symmetric collapse theorem",
+    "no Clay problem closure"
+  ]
+}
