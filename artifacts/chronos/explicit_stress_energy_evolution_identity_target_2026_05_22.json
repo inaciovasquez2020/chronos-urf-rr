@@ -1,0 +1,54 @@
+{
+  "id": "EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_TARGET",
+  "date": "2026-05-22",
+  "status": "CONDITIONAL_TENSOR_CALCULATION_TARGET_ONLY",
+  "repository": "chronos-urf-rr",
+  "depends_on": [
+    "WEC_POINTWISE_POSITIVITY_FOR_NONNEGATIVE_SCALAR_POTENTIAL"
+  ],
+  "target_object": "EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY",
+  "required_inputs": [
+    "3_PLUS_1_EINSTEIN_SCALAR_STRESS_ENERGY_TENSOR_COMPONENTS",
+    "LAPSE_SHIFT_GAUGE_CONVENTION",
+    "COVARIANT_DIVERGENCE_IDENTITY",
+    "CURVATURE_COUPLING_TERM_SIGN_CHECK",
+    "BOUNDARY_FLUX_TERM_CHECK"
+  ],
+  "calculation_obligations": [
+    "define scalar-field stress-energy tensor T_munu",
+    "decompose T_munu into rho, j_i, and S_ij",
+    "compute evolution derivative of rho along lapse-shift flow",
+    "identify flux divergence term",
+    "identify K_ij S^ij curvature-coupling term",
+    "verify gauge-dependent lapse and shift terms",
+    "record boundary flux terms without assuming they vanish"
+  ],
+  "current_blockers": [
+    "TENSOR_CALCULATION_NOT_COMPLETED",
+    "GAUGE_TERM_CHECK_NOT_COMPLETED",
+    "BOUNDARY_FLUX_CONTROL_NOT_PROVED"
+  ],
+  "next_admissible_object": "FILLED_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_CALCULATION",
+  "does_not_prove": [
+    "stress-energy evolution identity",
+    "WEC preservation under time evolution",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "finite-time collapse theorem",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional non-symmetric collapse theorem",
+    "any Clay problem"
+  ],
+  "boundary": [
+    "target object only",
+    "no tensor calculation supplied",
+    "no PDE evolution theorem",
+    "no continuation theorem",
+    "no finite-time collapse theorem",
+    "no trapped-surface existence theorem",
+    "no unrestricted theorem promotion"
+  ]
+}
