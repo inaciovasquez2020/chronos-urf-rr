@@ -1,0 +1,58 @@
+{
+  "id": "EXTERNAL_TENSOR_AUDIT_REQUEST_TEMPLATE",
+  "date": "2026-05-22",
+  "status": "REQUEST_TEMPLATE_SCHEMA_RECORDED_NO_REQUEST_SENT",
+  "repository": "chronos-urf-rr",
+  "kind": "audit_request_template_schema",
+  "route": "ROUTE_B_EXTERNAL_TENSOR_AUDIT",
+  "depends_on": [
+    "LEAN_FORMAL_STRESS_ENERGY_IDENTITY_OR_EXTERNAL_TENSOR_AUDIT",
+    "GAUGE_SIGN_AND_BOUNDARY_CHECK_FOR_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY",
+    "FILLED_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_CALCULATION",
+    "EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_TARGET",
+    "WEC_POINTWISE_POSITIVITY_FOR_NONNEGATIVE_SCALAR_POTENTIAL"
+  ],
+  "required_sections": [
+    "subject_template",
+    "one_paragraph_summary",
+    "specific_identity_to_check",
+    "sign_conventions",
+    "requested_checks",
+    "materials_attached",
+    "requested_response_format",
+    "nonclaim_boundary"
+  ],
+  "remaining_blockers": [
+    "REQUEST_TEMPLATE_NOT_SENT",
+    "DERIVATION_PACKET_NOT_ATTACHED",
+    "NO_AUDITOR_RESPONSE"
+  ],
+  "next_admissible_object": "EXTERNAL_TENSOR_AUDIT_RESPONSE_SCHEMA",
+  "does_not_prove": [
+    "unconditional stress-energy evolution identity",
+    "WEC preservation under time evolution",
+    "energy estimate dE/dt <= C E",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "finite-time collapse theorem",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional non-symmetric collapse theorem",
+    "any Clay problem"
+  ],
+  "boundary": [
+    "external audit route infrastructure only",
+    "no auditor contacted by repository artifact",
+    "no audit response supplied",
+    "no audit certificate supplied",
+    "no unconditional stress-energy identity",
+    "no WEC preservation theorem",
+    "no energy estimate",
+    "no continuation criterion",
+    "no finite-time collapse theorem",
+    "no unrestricted gravity closure",
+    "no theorem promotion"
+  ]
+}
