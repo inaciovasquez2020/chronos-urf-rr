@@ -1,0 +1,37 @@
+{
+  "status": "OPEN_PROBLEM_FRONTIER_C_MINIMAL_BLOCKER",
+  "problem": "forall G : GenuineNonSymmetricEinsteinMatterPDEData, NonSymmetricEinsteinMatterBootstrapKernelAnalyticPackage G",
+  "weakest_sufficient_object": "SixFieldAnalyticPackageHypothesis",
+  "corrected_false_claim": "A single uniform field does not close the six-field analytic package.",
+  "required_fields": [
+    "pdeEvolution",
+    "nonsymmetricEvolution",
+    "initialAdmissible",
+    "surfaceRealization",
+    "concentrationTransport",
+    "finiteTimeCollapseAlternative"
+  ],
+  "single_fields_not_sufficient_alone": [
+    "pdeEvolution",
+    "nonsymmetricEvolution",
+    "initialAdmissible",
+    "surfaceRealization",
+    "concentrationTransport",
+    "finiteTimeCollapseAlternative"
+  ],
+  "does_not_prove": [
+    "analytic package",
+    "any single field implies the other five fields",
+    "pdeEvolution from PDE well-posedness",
+    "nonsymmetric evolution persistence",
+    "admissibility preservation",
+    "concentration transport",
+    "finite-time collapse alternative",
+    "unrestricted cosmic censorship",
+    "unrestricted hoop theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
