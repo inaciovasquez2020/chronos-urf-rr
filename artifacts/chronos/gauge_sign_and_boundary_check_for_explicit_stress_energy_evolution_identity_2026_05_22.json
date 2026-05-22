@@ -1,0 +1,80 @@
+{
+  "id": "GAUGE_SIGN_AND_BOUNDARY_CHECK_FOR_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY",
+  "date": "2026-05-22",
+  "status": "GAUGE_SIGN_BOUNDARY_CHECK_RECORDED_CONDITIONAL_NO_IDENTITY_PROMOTION",
+  "repository": "chronos-urf-rr",
+  "depends_on": [
+    "WEC_POINTWISE_POSITIVITY_FOR_NONNEGATIVE_SCALAR_POTENTIAL",
+    "EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_TARGET",
+    "FILLED_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_CALCULATION"
+  ],
+  "fixed_conventions": {
+    "signature": "(-,+,+,+)",
+    "normal": "n^a future timelike unit normal with n^a n_a = -1",
+    "projection": "gamma_ab = g_ab + n_a n_b",
+    "evolution_flow": "partial_t = N n + beta",
+    "normal_derivative": "Pi = n^a nabla_a phi",
+    "spatial_derivative": "D_i phi = gamma_i^a nabla_a phi",
+    "extrinsic_curvature_sign_lock": "K_ij convention must be checked against K_ij = -1/2 Lie_n gamma_ij before theorem promotion"
+  },
+  "candidate_identity_under_selected_conventions": {
+    "normal_projected_shape": "n^a nabla_a rho = -D_i j^i + K_ij S^ij + K rho - 2 a_i j^i",
+    "coordinate_shape": "(partial_t - Lie_beta) rho = N[-D_i j^i + K_ij S^ij + K rho - 2 a_i j^i]",
+    "acceleration": "a_i = D_i log N",
+    "status": "CANDIDATE_SHAPE_RECORDED_NOT_THEOREM"
+  },
+  "gauge_checks": [
+    "lapse acceleration term retained as a_i = D_i log N",
+    "shift contribution retained through Lie_beta rho",
+    "no gauge term is discarded",
+    "no harmonic gauge simplification is assumed",
+    "no boundary gauge normalization is assumed"
+  ],
+  "boundary_flux_checks": [
+    "divergence term -D_i j^i is retained",
+    "boundary contribution integral over partial Omega is not assumed to vanish",
+    "asymptotically flat flux vanishing is not assumed",
+    "compact-without-boundary cancellation is not assumed",
+    "periodic-boundary cancellation is not assumed"
+  ],
+  "checked_obligations": [
+    "sign convention dependencies recorded",
+    "lapse-shift dependencies recorded",
+    "boundary flux dependencies recorded",
+    "candidate identity kept conditional",
+    "no theorem promotion allowed"
+  ],
+  "remaining_blockers": [
+    "EXTRINSIC_CURVATURE_SIGN_CONVENTION_NOT_EXTERNALLY_DISCHARGED",
+    "BOUNDARY_FLUX_VANISHING_NOT_PROVED",
+    "CANDIDATE_IDENTITY_NOT_LEAN_FORMALIZED_AS_TENSOR_THEOREM",
+    "NO_WEC_PRESERVATION_THEOREM",
+    "NO_CONTINUATION_CRITERION",
+    "NO_COLLAPSE_TRIGGER_DERIVATION"
+  ],
+  "next_admissible_object": "LEAN_FORMAL_STRESS_ENERGY_IDENTITY_OR_EXTERNAL_TENSOR_AUDIT",
+  "does_not_prove": [
+    "unconditional stress-energy evolution identity",
+    "WEC preservation under time evolution",
+    "energy estimate dE/dt <= C E",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "finite-time collapse theorem",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional non-symmetric collapse theorem",
+    "any Clay problem"
+  ],
+  "boundary": [
+    "gauge sign and boundary check surface only",
+    "candidate identity remains conditional",
+    "no tensor theorem supplied",
+    "no PDE evolution theorem",
+    "no continuation theorem",
+    "no finite-time collapse theorem",
+    "no trapped-surface existence theorem",
+    "no unrestricted theorem promotion"
+  ]
+}
