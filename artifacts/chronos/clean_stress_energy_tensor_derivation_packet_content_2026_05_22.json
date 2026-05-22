@@ -1,0 +1,72 @@
+{
+  "id": "CLEAN_STRESS_ENERGY_TENSOR_DERIVATION_PACKET_CONTENT",
+  "date": "2026-05-22",
+  "status": "DERIVATION_PACKET_CONTENT_SUPPLIED_FOR_AUDIT_NO_CERTIFICATE",
+  "repository": "chronos-urf-rr",
+  "kind": "audit_packet_content",
+  "route": "ROUTE_B_EXTERNAL_TENSOR_AUDIT",
+  "depends_on": [
+    "SELECT_AUDIT_ROUTE_LEAN_FORMAL_OR_EXTERNAL_TENSOR",
+    "LEAN_FORMAL_STRESS_ENERGY_IDENTITY_OR_EXTERNAL_TENSOR_AUDIT",
+    "EXTERNAL_TENSOR_AUDIT_ROUTE_OBJECTS",
+    "GAUGE_SIGN_AND_BOUNDARY_CHECK_FOR_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY",
+    "FILLED_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_CALCULATION"
+  ],
+  "content": {
+    "title": "Stress-energy evolution identity audit packet",
+    "signature": "(-,+,+,+)",
+    "normal": "n^a future timelike unit normal, n^a n_a = -1",
+    "projection": "gamma_ab = g_ab + n_a n_b",
+    "evolution_flow": "partial_t = N n + beta",
+    "scalar_field_variables": {
+      "Pi": "Pi = n^a nabla_a phi",
+      "D_i_phi": "D_i phi = gamma_i^a nabla_a phi",
+      "grad_norm": "|D phi|_gamma^2 = gamma^{ij} D_i phi D_j phi"
+    },
+    "stress_energy_tensor": "T_ab = nabla_a phi nabla_b phi - (1/2) g_ab nabla^c phi nabla_c phi - g_ab V(phi)",
+    "scalar_equation": "Box_g phi - V'(phi) = 0",
+    "conservation_target": "nabla_a T^{ab} = 0",
+    "rho": "rho = (1/2) Pi^2 + (1/2) |D phi|_gamma^2 + V(phi)",
+    "j_i": "j_i = - Pi D_i phi",
+    "S_ij": "S_ij = D_i phi D_j phi + (1/2) gamma_ij (Pi^2 - |D phi|_gamma^2) - gamma_ij V(phi)",
+    "trace_S": "S = (3/2) Pi^2 - (1/2) |D phi|_gamma^2 - 3 V(phi)",
+    "candidate_normal_identity": "n^a nabla_a rho = -D_i j^i + K_ij S^ij + K rho - 2 a_i j^i",
+    "candidate_coordinate_identity": "(partial_t - Lie_beta) rho = N[-D_i j^i + K_ij S^ij + K rho - 2 a_i j^i]",
+    "acceleration": "a_i = D_i log N",
+    "auditor_instruction": "Check all signs, index placements, lapse/shift terms, K_ij convention, and boundary flux handling. Do not treat this packet as a theorem."
+  },
+  "remaining_blockers": [
+    "NO_EXTERNAL_AUDITOR_HAS_CONFIRMED_PACKET",
+    "BOUNDARY_FLUX_STATUS_NOT_AUDITED",
+    "K_ij_SIGN_CONVENTION_NOT_AUDITED",
+    "NO_AUDIT_CERTIFICATE_SUPPLIED"
+  ],
+  "next_admissible_object": "QUALIFIED_GR_AUDITOR_CONTACT_LIST_CONTENT_TARGET",
+  "does_not_prove": [
+    "unconditional stress-energy evolution identity",
+    "WEC preservation under time evolution",
+    "energy estimate dE/dt <= C E",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "finite-time collapse theorem",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional non-symmetric collapse theorem",
+    "any Clay problem"
+  ],
+  "boundary": [
+    "admissible Route B preparation object only",
+    "no auditor contacted",
+    "no audit response supplied",
+    "no audit certificate supplied",
+    "no unconditional stress-energy identity",
+    "no WEC preservation theorem",
+    "no energy estimate",
+    "no continuation criterion",
+    "no finite-time collapse theorem",
+    "no unrestricted gravity closure",
+    "no theorem promotion"
+  ]
+}
