@@ -1,0 +1,28 @@
+{
+  "status": "CONSTRUCTOR_INPUT_ONLY_TARGET_REDUCED_NOT_SOLVED",
+  "object": "NonSymmetricEinsteinMatterBootstrapKernelConstructorInput",
+  "reduces_target": "NonSymmetricEinsteinMatterBootstrapKernelExistenceTarget",
+  "meaning": "The remaining gravity blocker is reduced to the exact constructor fields needed to instantiate NonSymmetricEinsteinMatterBootstrapKernel for genuine non-symmetric Einstein-matter PDE data.",
+  "closed_surfaces": [
+    "kernel_from_constructor_input",
+    "constructor_input_implies_existence_target",
+    "constructor_input_closes_conditional_gravity_package",
+    "constructor_input_no_overclaim_boundary"
+  ],
+  "remaining_missing_objects": [
+    "pdeEvolution",
+    "nonsymmetricEvolution",
+    "initialAdmissible",
+    "surfaceRealization",
+    "concentrationTransport",
+    "finiteTimeCollapseAlternative"
+  ],
+  "does_not_prove": [
+    "unrestricted cosmic censorship",
+    "unrestricted hoop theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}

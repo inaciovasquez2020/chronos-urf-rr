@@ -1,0 +1,39 @@
+{
+  "status": "ANALYTIC_PACKAGE_INPUT_ONLY_NOT_PROVED",
+  "object": "NonSymmetricEinsteinMatterBootstrapKernelAnalyticPackage",
+  "sufficient_for": [
+    "NonSymmetricEinsteinMatterBootstrapKernelConstructorInput",
+    "NonSymmetricEinsteinMatterBootstrapKernelExistenceTarget",
+    "conditional gravity package closure"
+  ],
+  "closed_surfaces": [
+    "analytic_package_to_constructor_input",
+    "analytic_package_implies_constructor_input",
+    "analytic_package_implies_existence_target",
+    "analytic_package_closes_conditional_gravity_package",
+    "analytic_package_no_overclaim_boundary"
+  ],
+  "minimal_missing_assumption": "forall G : GenuineNonSymmetricEinsteinMatterPDEData, NonSymmetricEinsteinMatterBootstrapKernelAnalyticPackage G",
+  "remaining_missing_objects": [
+    "analyticPackage",
+    "pdeWellPosedness",
+    "nonsymmetricEvolutionPersistence",
+    "admissibilityPreservation",
+    "concentrationTransport",
+    "finiteTimeCollapseAlternative"
+  ],
+  "does_not_prove": [
+    "analytic package",
+    "pdeEvolution from PDE well-posedness",
+    "nonsymmetric evolution persistence",
+    "admissibility preservation",
+    "concentration transport",
+    "finite-time collapse alternative",
+    "unrestricted cosmic censorship",
+    "unrestricted hoop theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
