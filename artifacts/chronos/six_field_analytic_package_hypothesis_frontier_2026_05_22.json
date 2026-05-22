@@ -1,0 +1,76 @@
+{
+  "id": "six_field_analytic_package_hypothesis_frontier_2026_05_22",
+  "date": "2026-05-22",
+  "repo": "chronos-urf-rr",
+  "status": "FRONTIER_OBJECT_ONLY_RESTRICTED_PACKAGE_THEOREM_NOT_PROMOTED",
+  "source_status": "RESTRICTED_PACKAGE_THEOREM_ONLY",
+  "frontier_object": "SixFieldAnalyticPackageHypothesis",
+  "sole_frontier_object": true,
+  "gravity_stack": [
+    {
+      "pr": 420,
+      "role": "analytic package boundary",
+      "status": "BOUNDARY_ONLY"
+    },
+    {
+      "pr": 421,
+      "role": "open problem minimal blocker",
+      "status": "OPEN_PROBLEM_FRONTIER_C_MINIMAL_BLOCKER"
+    },
+    {
+      "pr": 422,
+      "role": "restricted well-posed non-symmetric collapse data theorem",
+      "status": "RESTRICTED_PACKAGE_THEOREM_ONLY"
+    }
+  ],
+  "dependency_map": [
+    {
+      "source": "#420 analytic package boundary",
+      "target": "SixFieldAnalyticPackageHypothesis",
+      "edge_status": "constructor-input boundary only"
+    },
+    {
+      "source": "#421 open problem minimal blocker",
+      "target": "SixFieldAnalyticPackageHypothesis",
+      "edge_status": "minimal blocker isolated"
+    },
+    {
+      "source": "#422 restricted well-posed collapse data",
+      "target": "SixFieldAnalyticPackageHypothesis",
+      "edge_status": "does not construct unrestricted analytic package"
+    }
+  ],
+  "obstruction_certificate": {
+    "name": "restricted_data_does_not_supply_missing_five_fields",
+    "source": "#422 restricted well-posed collapse data",
+    "does_not_supply": [
+      "unrestricted PDE well-posedness",
+      "nonsymmetric evolution persistence",
+      "admissibility preservation",
+      "concentration transport",
+      "finite-time collapse alternative"
+    ],
+    "result": "#422 cannot be promoted to SixFieldAnalyticPackageHypothesis without new analytic input"
+  },
+  "theorem_promotion_lock": {
+    "enabled": true,
+    "allowed_claim": "restricted package theorem only",
+    "blocked_claim": "unrestricted SixFieldAnalyticPackageHypothesis"
+  },
+  "does_not_prove": [
+    "unrestricted SixFieldAnalyticPackageHypothesis",
+    "unrestricted analytic package",
+    "single field implies the other five fields",
+    "PDE well-posedness",
+    "nonsymmetric evolution persistence",
+    "admissibility preservation",
+    "concentration transport",
+    "finite-time collapse alternative",
+    "unrestricted cosmic censorship",
+    "unrestricted hoop theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
