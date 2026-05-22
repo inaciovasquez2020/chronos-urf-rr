@@ -1,0 +1,59 @@
+{
+  "id": "CLEAN_STRESS_ENERGY_TENSOR_DERIVATION_PACKET",
+  "date": "2026-05-22",
+  "status": "DERIVATION_PACKET_SCHEMA_RECORDED_NO_AUDIT_SUPPLIED",
+  "repository": "chronos-urf-rr",
+  "kind": "audit_input_packet",
+  "route": "ROUTE_B_EXTERNAL_TENSOR_AUDIT",
+  "depends_on": [
+    "LEAN_FORMAL_STRESS_ENERGY_IDENTITY_OR_EXTERNAL_TENSOR_AUDIT",
+    "GAUGE_SIGN_AND_BOUNDARY_CHECK_FOR_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY",
+    "FILLED_EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_CALCULATION",
+    "EXPLICIT_STRESS_ENERGY_EVOLUTION_IDENTITY_TARGET",
+    "WEC_POINTWISE_POSITIVITY_FOR_NONNEGATIVE_SCALAR_POTENTIAL"
+  ],
+  "required_sections": [
+    "fixed_sign_conventions",
+    "scalar_stress_energy_tensor",
+    "scalar_euler_lagrange_equation",
+    "covariant_conservation_derivation",
+    "three_plus_one_decomposition",
+    "normal_projected_energy_identity",
+    "lapse_shift_coordinate_form",
+    "boundary_flux_terms",
+    "known_blockers_and_nonclaims"
+  ],
+  "remaining_blockers": [
+    "DERIVATION_PACKET_NOT_WRITTEN",
+    "NO_EXTERNAL_AUDITOR_HAS_REVIEWED_PACKET",
+    "NO_CERTIFICATE_SUPPLIED"
+  ],
+  "next_admissible_object": "QUALIFIED_GR_AUDITOR_CONTACT_LIST",
+  "does_not_prove": [
+    "unconditional stress-energy evolution identity",
+    "WEC preservation under time evolution",
+    "energy estimate dE/dt <= C E",
+    "non-symmetric Einstein-scalar continuation criterion",
+    "Raychaudhuri focusing with shear control",
+    "non-symmetric trapped-surface trigger from concentration",
+    "finite-time collapse theorem",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional non-symmetric collapse theorem",
+    "any Clay problem"
+  ],
+  "boundary": [
+    "external audit route infrastructure only",
+    "no auditor contacted by repository artifact",
+    "no audit response supplied",
+    "no audit certificate supplied",
+    "no unconditional stress-energy identity",
+    "no WEC preservation theorem",
+    "no energy estimate",
+    "no continuation criterion",
+    "no finite-time collapse theorem",
+    "no unrestricted gravity closure",
+    "no theorem promotion"
+  ]
+}

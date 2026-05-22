@@ -130,3 +130,5 @@ import Chronos.Frontier.UniformTemporalRelaxationWaveTarget
 import Chronos.Frontier.WECPointwisePositivityForNonnegativeScalarPotential
 
 import Chronos.Frontier.LeanFormalStressEnergyIdentityOrExternalTensorAudit
+
+import Chronos.Frontier.ExternalTensorAuditRouteObjects
