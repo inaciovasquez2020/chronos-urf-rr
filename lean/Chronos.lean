@@ -151,3 +151,4 @@ import Chronos.Frontier.BootstrapSlabToSixFieldSlotConstraintClosure
 import Chronos.Frontier.RemainingSixFieldProofObligationsRegistry
 import Chronos.Frontier.AnalyticEstimateCandidatePacket
 import Chronos.Frontier.FilledConcreteInitialDataClass
+import Chronos.Frontier.ConcreteConstraintCompatibilityCertificate
