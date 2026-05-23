@@ -1,0 +1,36 @@
+{
+  "id": "CONCRETE_CONSTRAINT_COMPATIBILITY_CERTIFICATE",
+  "date": "2026-05-23",
+  "repository": "chronos-urf-rr",
+  "status": "CONCRETE_CONSTRAINT_COMPATIBILITY_CERTIFICATE_ONLY_NO_ANALYTIC_ESTIMATE_PROOF",
+  "previous_frontier": "FILLED_CONCRETE_INITIAL_DATA_CLASS_ONLY_NO_ANALYTIC_ESTIMATE_PROOF",
+  "object_type": "constructor_constraint_certificate",
+  "input_object": "FILLED_CONCRETE_INITIAL_DATA_CLASS",
+  "certified_gates": {
+    "hamiltonian_constraint_compatible": true,
+    "momentum_constraint_compatible": true,
+    "gauge_constraint_compatible": true,
+    "matter_constraint_compatible": true,
+    "boundary_constraint_compatible": true
+  },
+  "lean_module": "Chronos.Frontier.ConcreteConstraintCompatibilityCertificate",
+  "lean_theorem": "Chronos.Frontier.canonicalConcreteConstraintCompatibilityCertificate_isCertified",
+  "next_admissible_object": "ConcreteMatterCouplingCompatibilityCertificate",
+  "does_not_prove": [
+    "analytic estimate proof",
+    "SixFieldAnalyticPackageHypothesis proof",
+    "NonSymmetricEinsteinMatterBootstrapKernelAnalyticPackage proof",
+    "Einstein-matter well-posedness",
+    "non-symmetric persistence",
+    "matter-coupling control",
+    "concentration transport",
+    "collapse-gate trigger",
+    "cosmic censorship",
+    "hoop conjecture",
+    "gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
