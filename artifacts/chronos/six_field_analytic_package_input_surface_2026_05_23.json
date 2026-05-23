@@ -1,0 +1,27 @@
+{
+  "id": "SIX_FIELD_ANALYTIC_PACKAGE_INPUT_SURFACE_2026_05_23",
+  "status": "INPUT_SURFACE_ONLY_NO_ANALYTIC_PACKAGE_PROOF",
+  "objects_defined": [
+    "EinsteinMatterPDEModel",
+    "GaugeFixing",
+    "InitialDataClass",
+    "EnergyFunctional",
+    "BootstrapEnergyCloses"
+  ],
+  "lean_module": "Chronos.Frontier.SixFieldAnalyticPackageInputSurface",
+  "admissible_claim": "Defines the structural input surface required before attempting SixFieldAnalyticPackageHypothesis.",
+  "does_not_prove": [
+    "SixFieldAnalyticPackageHypothesis",
+    "NonSymmetricEinsteinMatterBootstrapKernelAnalyticPackage",
+    "unrestricted Einstein-matter well-posedness",
+    "non-symmetric collapse theorem",
+    "cosmic censorship",
+    "hoop conjecture",
+    "gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_missing_object": "NonSymmetricEinsteinMatterBootstrapKernelAnalyticPackage"
+}
