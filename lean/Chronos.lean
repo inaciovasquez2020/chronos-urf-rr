@@ -1,3 +1,4 @@
+import Chronos.Frontier.GenuinePDEEstimateWitnessComponents
 import Chronos.Frontier.GenuineAnalyticEstimatePackageProofReduction
 import Chronos.Frontier.AnalyticEstimatePackageExistsProof
 import Chronos.Frontier.NonSymmetricEinsteinMatterBootstrapKernelConstructor
