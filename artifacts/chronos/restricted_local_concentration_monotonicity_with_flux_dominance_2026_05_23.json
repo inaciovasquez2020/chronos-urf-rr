@@ -1,0 +1,41 @@
+{
+  "name": "RESTRICTED_LOCAL_CONCENTRATION_MONOTONICITY_WITH_FLUX_DOMINANCE",
+  "status": "ESTIMATE_CANDIDATE_ONLY_NO_GRAVITY_CLOSURE",
+  "supplies_next_analytic_ingredient_for": "RESTRICTED_CONCENTRATION_MONOTONICITY",
+  "quantity": {
+    "Q_t": "integral over Omega_t of [T_ab n^a n^b + lambda |K|_gamma^2 + mu |NonSym(gamma,K)|_gamma^2] dvol_gamma"
+  },
+  "assumptions": [
+    "nabla^a T_ab = 0",
+    "WEC",
+    "DEC",
+    "BootstrapInequalitiesB",
+    "flux_in(partial Omega_t) - flux_out(partial Omega_t) >= M(t)",
+    "deformation_error(Omega_t) <= eta M(t)",
+    "nonsymmetric_error(Omega_t) <= (1-eta) M(t)",
+    "0 <= eta <= 1",
+    "local balance law for dQ/dt"
+  ],
+  "conclusion": "dQ/dt >= 0; therefore concentrationMonotone",
+  "formalized_definitions": [
+    "flux_in",
+    "flux_out",
+    "deformation_error",
+    "nonsymmetric_error"
+  ],
+  "boundary": [
+    "estimate candidate only",
+    "local balance law assumed",
+    "no analytic Einstein-matter bootstrap package",
+    "no concrete analytic Einstein-matter estimate package",
+    "no finite continuation norm proof",
+    "no bootstrap bound proof",
+    "no threshold crossing proof",
+    "no gravity closure",
+    "no Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ],
+  "next_admissible_object": "RESTRICTED_CONTINUATION_NORM_CONTROL"
+}
