@@ -1,0 +1,50 @@
+{
+  "name": "RESTRICTED_CONCENTRATION_MONOTONICITY_PROOF",
+  "status": "PROOF_SURFACE_ONLY_RESTRICTED_CONCENTRATION_MONOTONICITY_NOT_UNCONDITIONAL",
+  "previous_object": "LOCAL_BALANCE_LAW_DQDT_DERIVATION",
+  "uses": [
+    "LOCAL_BALANCE_LAW_DQDT_DERIVATION",
+    "RESTRICTED_LOCAL_CONCENTRATION_MONOTONICITY_WITH_FLUX_DOMINANCE"
+  ],
+  "objects": [
+    "localBalanceData",
+    "localConcentrationData",
+    "localFluxTerms",
+    "concentrationFunctionalQ",
+    "massTermM",
+    "eta"
+  ],
+  "assumptions": [
+    "localBalanceLawDQDTDerived",
+    "stressEnergyConserved",
+    "weakEnergyCondition",
+    "dominantEnergyCondition",
+    "bootstrapInequalitiesB",
+    "fluxDominance",
+    "deformationErrorControlled",
+    "nonsymmetricErrorControlled",
+    "etaRange",
+    "fluxDominanceAbsorbsErrors",
+    "qDerivativeNonnegative",
+    "nonnegativeDerivativeImpliesConcentrationMonotone"
+  ],
+  "conclusion": "restricted concentration-monotonicity proof slot is conditionally closed",
+  "boundary": [
+    "proof surface only",
+    "local balance-law dQ/dt derivation remains conditional",
+    "flux-dominance absorption step assumed",
+    "qDerivativeNonnegative extraction assumed",
+    "monotonicity-from-derivative step assumed",
+    "no unconditional restricted concentration monotonicity theorem",
+    "no restricted continuation norm control proof",
+    "no package compatibility proof",
+    "no target-interface compatibility proof",
+    "no concrete analytic Einstein-matter estimate package proof",
+    "no gravity closure",
+    "no Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ],
+  "next_admissible_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_PROOF"
+}
