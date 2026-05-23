@@ -1,3 +1,4 @@
+import Chronos.Frontier.GenuineFourPDEComponentExistenceReduction
 import Chronos.Frontier.GenuinePDEEstimateWitnessComponents
 import Chronos.Frontier.GenuineAnalyticEstimatePackageProofReduction
 import Chronos.Frontier.AnalyticEstimatePackageExistsProof
