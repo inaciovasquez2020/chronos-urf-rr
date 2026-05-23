@@ -163,3 +163,5 @@ import Chronos.Frontier.ConcreteAnalyticEinsteinMatterEstimatePackageTarget
 import Chronos.Frontier.RestrictedLocalConcentrationMonotonicityWithFluxDominance
 
 import Chronos.Frontier.RestrictedContinuationNormControl
+
+import Chronos.Frontier.ConcreteAnalyticEinsteinMatterEstimatePackageBridge
