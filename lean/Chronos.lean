@@ -165,3 +165,5 @@ import Chronos.Frontier.RestrictedLocalConcentrationMonotonicityWithFluxDominanc
 import Chronos.Frontier.RestrictedContinuationNormControl
 
 import Chronos.Frontier.ConcreteAnalyticEinsteinMatterEstimatePackageBridge
+
+import Chronos.Frontier.ConcreteAnalyticEinsteinMatterEstimatePackageProofObligationLock
