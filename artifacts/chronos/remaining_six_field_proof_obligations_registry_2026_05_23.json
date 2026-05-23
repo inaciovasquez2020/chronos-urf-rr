@@ -1,0 +1,163 @@
+{
+  "artifact": "REMAINING_SIX_FIELD_PROOF_OBLIGATIONS_REGISTRY",
+  "date": "2026-05-23",
+  "status": "OPEN_PROOF_OBLIGATION_REGISTRY_ONLY_NO_ANALYTIC_PACKAGE_PROOF",
+  "obligation_count": 22,
+  "obligations": [
+    {
+      "name": "AnalyticEstimateCandidatePacket",
+      "status": "OPEN",
+      "requires": ["candidate analytic estimates", "proof references", "slot compatibility"]
+    },
+    {
+      "name": "FilledConcreteInitialDataClass",
+      "status": "OPEN",
+      "requires": [
+        "geometric regularity proof",
+        "constraint-equation solvability proof",
+        "admissible initial-data nonemptiness proof",
+        "nonsymmetric seed existence proof",
+        "concentration seed existence proof",
+        "boundary/asymptotic admissibility proof"
+      ]
+    },
+    {
+      "name": "FilledConcreteMatterModel",
+      "status": "OPEN",
+      "requires": [
+        "matter equation supplied",
+        "stress-energy tensor supplied",
+        "Einstein-matter coupling supplied",
+        "stress-energy conservation proof",
+        "energy-condition proof",
+        "matter regularity proof",
+        "source-term control proof"
+      ]
+    },
+    {
+      "name": "LocalExistenceProof",
+      "status": "OPEN",
+      "requires": ["existence of slab solution from admissible initial data"]
+    },
+    {
+      "name": "LocalUniquenessProof",
+      "status": "OPEN",
+      "requires": ["uniqueness of slab solution in the selected solution class"]
+    },
+    {
+      "name": "ConstraintPropagationProof",
+      "status": "OPEN",
+      "requires": ["initial constraints remain true under evolution"]
+    },
+    {
+      "name": "GaugeControlProof",
+      "status": "OPEN",
+      "requires": ["selected gauge remains controlled on each slab"]
+    },
+    {
+      "name": "EnergyBootstrapProof",
+      "status": "OPEN",
+      "requires": ["bootstrap energy bound is propagated on a slab"]
+    },
+    {
+      "name": "RefinedEnergyEstimateProof",
+      "status": "OPEN",
+      "requires": ["assumed bootstrap bound improves to refined bound"]
+    },
+    {
+      "name": "BootstrapClosureProof",
+      "status": "OPEN",
+      "requires": ["refined estimate closes the bootstrap loop"]
+    },
+    {
+      "name": "MatterCouplingControlProof",
+      "status": "OPEN",
+      "requires": ["matter source terms stay controlled by the energy hierarchy"]
+    },
+    {
+      "name": "EnergyConditionPreservationProof",
+      "status": "OPEN",
+      "requires": ["selected energy condition persists under evolution"]
+    },
+    {
+      "name": "NonSymmetricPersistenceProof",
+      "status": "OPEN",
+      "requires": ["non-symmetric sector does not vanish or exit the admissible class"]
+    },
+    {
+      "name": "ConcentrationTransportProof",
+      "status": "OPEN",
+      "requires": ["initial concentration seed persists or strengthens along evolution"]
+    },
+    {
+      "name": "ContinuationAlternativeProof",
+      "status": "OPEN",
+      "requires": ["either regular continuation holds or threshold is reached"]
+    },
+    {
+      "name": "CollapseThresholdCriterionProof",
+      "status": "OPEN",
+      "requires": ["threshold condition is precisely defined and reachable"]
+    },
+    {
+      "name": "CollapseGateTriggerProof",
+      "status": "OPEN",
+      "requires": ["threshold implies QL_CollapseGate"]
+    },
+    {
+      "name": "SlabIterationProof",
+      "status": "OPEN",
+      "requires": ["closed slab advances to the next slab"]
+    },
+    {
+      "name": "BootstrapSlabToSixFieldInstantiationProof",
+      "status": "OPEN",
+      "requires": ["analytic estimates fill all six-field slots"]
+    },
+    {
+      "name": "NonSymmetricEinsteinMatterBootstrapKernelAnalyticPackageProof",
+      "status": "OPEN",
+      "requires": ["kernel package fully instantiated from obligations 1-19"]
+    },
+    {
+      "name": "SixFieldAnalyticPackageHypothesisProof",
+      "status": "OPEN",
+      "requires": ["six-field analytic package follows from instantiated kernel"]
+    },
+    {
+      "name": "RestrictedGravityClosureBridgeProof",
+      "status": "OPEN",
+      "requires": ["SixFieldAnalyticPackageHypothesis implies restricted gravity target"]
+    }
+  ],
+  "still_not_proved": [
+    "unrestricted Einstein-matter well-posedness",
+    "unrestricted non-symmetric collapse theorem",
+    "cosmic censorship",
+    "hoop conjecture",
+    "unrestricted gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "admissible_use": [
+    "record all remaining six-field proof obligations after PR #442",
+    "preserve proof-target order before analytic estimates are supplied",
+    "prevent theorem promotion while obligations remain open"
+  ],
+  "blocked_use": [
+    "proof of SixFieldAnalyticPackageHypothesis",
+    "proof of NonSymmetricEinsteinMatterBootstrapKernelAnalyticPackage",
+    "proof of Einstein-matter well-posedness",
+    "proof of non-symmetric collapse",
+    "proof of cosmic censorship",
+    "proof of hoop conjecture",
+    "proof of gravity closure",
+    "proof of Chronos-RR",
+    "proof of H4.1/FGL",
+    "proof of P vs NP",
+    "proof of any Clay problem"
+  ],
+  "next_admissible_object": "AnalyticEstimateCandidatePacket"
+}
