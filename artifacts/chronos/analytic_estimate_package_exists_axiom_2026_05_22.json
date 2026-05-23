@@ -1,0 +1,29 @@
+{
+  "id": "ANALYTIC_ESTIMATE_PACKAGE_EXISTS_CONDITIONAL_2026_05_22",
+  "status": "CONDITIONAL_ANALYTIC_PACKAGE_EXISTENCE_REDUCTION_ONLY_NO_UNCONDITIONAL_GRAVITY_PROOF",
+  "repository": "chronos-urf-rr",
+  "lean_module": "Chronos.Frontier.AnalyticEstimatePackageExistsAxiom",
+  "closed_results": [
+    "bootstrapKernel_from_analyticEstimatePackageExists",
+    "collapseGate_from_analyticEstimatePackageExists"
+  ],
+  "remaining_missing_object": "proof of AnalyticEstimatePackageExists",
+  "does_not_prove": [
+    "unconditional gravity closure",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional collapse theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unaxiomatized Einstein-matter PDE existence",
+    "unaxiomatized Einstein-matter PDE regularity",
+    "unaxiomatized Einstein-matter PDE continuation",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "ANALYTIC_ESTIMATE_PACKAGE_EXISTS_PROOF",
+  "proposition": "AnalyticEstimatePackageExists"
+}
