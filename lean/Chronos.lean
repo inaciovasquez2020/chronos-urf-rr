@@ -152,3 +152,4 @@ import Chronos.Frontier.RemainingSixFieldProofObligationsRegistry
 import Chronos.Frontier.AnalyticEstimateCandidatePacket
 import Chronos.Frontier.FilledConcreteInitialDataClass
 import Chronos.Frontier.ConcreteConstraintCompatibilityCertificate
+import Chronos.Frontier.ConcreteMatterCouplingCompatibilityCertificate
