@@ -153,3 +153,4 @@ import Chronos.Frontier.AnalyticEstimateCandidatePacket
 import Chronos.Frontier.FilledConcreteInitialDataClass
 import Chronos.Frontier.ConcreteConstraintCompatibilityCertificate
 import Chronos.Frontier.ConcreteMatterCouplingCompatibilityCertificate
+import Chronos.Frontier.ConcreteConstraintPropagationCertificate
