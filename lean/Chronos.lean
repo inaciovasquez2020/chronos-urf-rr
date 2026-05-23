@@ -169,3 +169,5 @@ import Chronos.Frontier.ConcreteAnalyticEinsteinMatterEstimatePackageBridge
 import Chronos.Frontier.ConcreteAnalyticEinsteinMatterEstimatePackageProofObligationLock
 
 import Chronos.Frontier.LocalBalanceLawDQDTDerivation
+
+import Chronos.Frontier.RestrictedConcentrationMonotonicityProof
