@@ -1,0 +1,39 @@
+{
+  "name": "CONCRETE_ANALYTIC_EINSTEIN_MATTER_ESTIMATE_PACKAGE_PROOF_OBLIGATION_LOCK",
+  "status": "PROOF_OBLIGATION_LOCK_ONLY_NO_ANALYTIC_PACKAGE_PROOF",
+  "previous_object": "CONCRETE_ANALYTIC_EINSTEIN_MATTER_ESTIMATE_PACKAGE_BRIDGE",
+  "remaining_next_admissible_objects": [
+    "LOCAL_BALANCE_LAW_DQDT_DERIVATION",
+    "RESTRICTED_CONCENTRATION_MONOTONICITY_PROOF",
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_PROOF",
+    "PACKAGE_COMPATIBILITY_PROOF",
+    "TARGET_INTERFACE_COMPATIBILITY_PROOF",
+    "CONCRETE_ANALYTIC_EINSTEIN_MATTER_ESTIMATE_PACKAGE_PROOF"
+  ],
+  "locked_missing_proof_obligations": [
+    "local balance law dQ/dt derivation is not supplied",
+    "restricted concentration monotonicity proof is not supplied",
+    "restricted continuation norm control proof is not supplied",
+    "package compatibility proof is not supplied",
+    "target-interface compatibility proof is not supplied",
+    "concrete analytic Einstein-matter estimate package proof is not supplied"
+  ],
+  "boundary": [
+    "proof-obligation lock only",
+    "no local balance law dQ/dt derivation",
+    "no restricted concentration monotonicity proof",
+    "no restricted continuation norm control proof",
+    "no package compatibility proof",
+    "no target-interface compatibility proof",
+    "no analytic Einstein-matter bootstrap package",
+    "no concrete analytic Einstein-matter estimate package proof",
+    "no finite continuation norm theorem",
+    "no threshold crossing proof",
+    "no gravity closure",
+    "no Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ],
+  "next_admissible_object": "LOCAL_BALANCE_LAW_DQDT_DERIVATION"
+}
