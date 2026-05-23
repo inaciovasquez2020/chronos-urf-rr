@@ -1,0 +1,40 @@
+{
+  "id": "FILLED_CONCRETE_INITIAL_DATA_CLASS",
+  "date": "2026-05-23",
+  "repository": "chronos-urf-rr",
+  "status": "FILLED_CONCRETE_INITIAL_DATA_CLASS_ONLY_NO_ANALYTIC_ESTIMATE_PROOF",
+  "current_frontier_before": "CANDIDATE_PACKET_ONLY_NO_ANALYTIC_ESTIMATE_PROOF",
+  "object_type": "constructor_input_surface",
+  "filled_fields": {
+    "name": "FILLED_CONCRETE_INITIAL_DATA_CLASS",
+    "spatial_dimension": 3,
+    "regularity_index": 8,
+    "compact_support": true,
+    "finite_energy": true,
+    "constraint_compatible": true,
+    "matter_compatible": true,
+    "nonsymmetric_seed_present": true,
+    "bootstrap_slab_compatible": true,
+    "boundary_conditions_specified": true
+  },
+  "lean_module": "Chronos.Frontier.FilledConcreteInitialDataClass",
+  "lean_theorem": "Chronos.Frontier.canonicalFilledConcreteInitialDataClass_isFilled",
+  "next_admissible_object": "ConcreteConstraintCompatibilityCertificate",
+  "does_not_prove": [
+    "analytic estimate proof",
+    "SixFieldAnalyticPackageHypothesis proof",
+    "NonSymmetricEinsteinMatterBootstrapKernelAnalyticPackage proof",
+    "Einstein-matter well-posedness",
+    "non-symmetric persistence",
+    "matter-coupling control",
+    "concentration transport",
+    "collapse-gate trigger",
+    "cosmic censorship",
+    "hoop conjecture",
+    "gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
