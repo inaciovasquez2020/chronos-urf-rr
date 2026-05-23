@@ -1,0 +1,132 @@
+{
+  "artifact": "ANALYTIC_ESTIMATE_CANDIDATE_PACKET",
+  "date": "2026-05-23",
+  "status": "CANDIDATE_PACKET_ONLY_NO_ANALYTIC_ESTIMATE_PROOF",
+  "candidate_count": 10,
+  "candidates": [
+    {
+      "name": "SemiclassicalEinsteinKGFixedPointTemplate",
+      "target_slots": ["localExistenceSlot", "constraintPropagationSlot"],
+      "source_class": "semiclassical Einstein--Klein--Gordon fixed-point source",
+      "status": "CANDIDATE_ONLY",
+      "proof_supplied": false,
+      "admissible_use": "fixed-point and semiclassical Einstein-equation technique template",
+      "blocked_use": "not a six-field analytic package proof"
+    },
+    {
+      "name": "MaxwellBoltzmannBianchiMatterWellPosednessTemplate",
+      "target_slots": ["localExistenceSlot", "matterCouplingControlSlot"],
+      "source_class": "Maxwell--Boltzmann system in Bianchi spacetime source",
+      "status": "CANDIDATE_ONLY",
+      "proof_supplied": false,
+      "admissible_use": "matter-model and iteration-template candidate",
+      "blocked_use": "not a non-symmetric Einstein--matter bootstrap kernel proof"
+    },
+    {
+      "name": "ActiveLiquidCrystalBootstrapEnergyTemplate",
+      "target_slots": ["energyBootstrapSlot", "refinedEnergyEstimateSlot"],
+      "source_class": "non-GR PDE bootstrap source",
+      "status": "CANDIDATE_ONLY",
+      "proof_supplied": false,
+      "admissible_use": "generic bootstrap, commutator, and time-weighted energy technique template",
+      "blocked_use": "not an Einstein--matter proof"
+    },
+    {
+      "name": "TSIMFGRPDEFurtherLiteratureTargets",
+      "target_slots": ["sourceMapFollowupSlot"],
+      "source_class": "conference program and schedule source",
+      "status": "CANDIDATE_ONLY",
+      "proof_supplied": false,
+      "admissible_use": "identify GR/PDE talks for later literature follow-up",
+      "blocked_use": "not a proof source"
+    },
+    {
+      "name": "LeanSearchPremiseRetrievalSupport",
+      "target_slots": ["formalizationToolingSlot"],
+      "source_class": "Lean premise-retrieval tooling source",
+      "status": "CANDIDATE_ONLY",
+      "proof_supplied": false,
+      "admissible_use": "support Mathlib premise discovery during formalization",
+      "blocked_use": "not an analytic estimate"
+    },
+    {
+      "name": "StatisticalHypothesisTestingEmpiricalAuditSupport",
+      "target_slots": ["empiricalAuditSlot"],
+      "source_class": "statistical methodology source",
+      "status": "CANDIDATE_ONLY",
+      "proof_supplied": false,
+      "admissible_use": "support empirical validation language outside the gravity proof",
+      "blocked_use": "not a GR/PDE proof source"
+    },
+    {
+      "name": "StatisticalFieldTheoryBackgroundSupport",
+      "target_slots": ["backgroundFieldTheorySlot"],
+      "source_class": "statistical field theory background source",
+      "status": "CANDIDATE_ONLY",
+      "proof_supplied": false,
+      "admissible_use": "background terminology and analogy support",
+      "blocked_use": "not an Einstein--matter analytic package proof"
+    },
+    {
+      "name": "KOTheoreticGravityBackgroundSupport",
+      "target_slots": ["topologicalBackgroundSlot"],
+      "source_class": "KO-theory gravity preprint/background source",
+      "status": "CANDIDATE_ONLY",
+      "proof_supplied": false,
+      "admissible_use": "topological background/source-map support",
+      "blocked_use": "not a PDE estimate or collapse proof"
+    },
+    {
+      "name": "TotalityTheoremClaimBoundaryBackground",
+      "target_slots": ["claimBoundaryAuditSlot"],
+      "source_class": "broad foundational preprint/source",
+      "status": "CANDIDATE_ONLY",
+      "proof_supplied": false,
+      "admissible_use": "claim-boundary audit only",
+      "blocked_use": "not a mathematical or physical proof input"
+    },
+    {
+      "name": "ConcreteSixFieldSlotEstimateGap",
+      "target_slots": ["allSixFieldAnalyticSlots"],
+      "source_class": "open analytic estimate gap",
+      "status": "OPEN_GAP",
+      "proof_supplied": false,
+      "admissible_use": "record that no candidate currently fills all analytic slots",
+      "blocked_use": "not theorem promotion"
+    }
+  ],
+  "unfilled_slots_after_packet": [
+    "localExistenceSlot",
+    "localUniquenessSlot",
+    "constraintPropagationSlot",
+    "gaugeControlSlot",
+    "energyBootstrapSlot",
+    "refinedEnergyEstimateSlot",
+    "matterCouplingControlSlot",
+    "energyConditionPreservationSlot",
+    "nonsymmetricPersistenceSlot",
+    "concentrationTransportSlot",
+    "continuationAlternativeSlot",
+    "collapseThresholdCriterionSlot",
+    "collapseGateTriggerSlot",
+    "slabIterationSlot",
+    "sixFieldInstantiationSlot"
+  ],
+  "blocked_use": [
+    "proof of SixFieldAnalyticPackageHypothesis",
+    "proof of NonSymmetricEinsteinMatterBootstrapKernelAnalyticPackage",
+    "proof of Einstein-matter well-posedness",
+    "proof of non-symmetric persistence",
+    "proof of matter-coupling control",
+    "proof of concentration transport",
+    "proof of collapse-gate trigger",
+    "proof of cosmic censorship",
+    "proof of hoop conjecture",
+    "proof of gravity closure",
+    "proof of Chronos-RR",
+    "proof of H4.1/FGL",
+    "proof of P vs NP",
+    "proof of any Clay problem"
+  ],
+  "next_admissible_object": "FilledConcreteInitialDataClass"
+}
