@@ -145,3 +145,5 @@ import Chronos.Frontier.RemainingRouteBAdmissibleObjects
 import Chronos.Frontier.TSIMFPDFSourceClassification
 
 import Chronos.Frontier.ConcreteInitialDataClassSpecification
+
+import Chronos.Frontier.ConcreteMatterModelSpecification
