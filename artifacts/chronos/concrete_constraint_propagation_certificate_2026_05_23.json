@@ -1,0 +1,25 @@
+{
+  "artifact": "CONCRETE_CONSTRAINT_PROPAGATION_CERTIFICATE",
+  "date": "2026-05-23",
+  "status": "CONCRETE_CONSTRAINT_PROPAGATION_CERTIFICATE_ONLY_NO_GRAVITY_CLOSURE",
+  "lean_module": "Chronos.Frontier.ConcreteConstraintPropagationCertificate",
+  "closed_surface": "A homogeneous constraint-propagation certificate yields constraint preservation from zero initial constraints on the verified propagation interval.",
+  "conditional_role": [
+    "A2 homogeneous constraint-propagation interface",
+    "repository-native constraint preservation certificate",
+    "second component of the restricted Einstein-matter bootstrap package"
+  ],
+  "does_not_prove": [
+    "analytic Einstein-matter bootstrap package",
+    "matter-coupling compatibility",
+    "energy-condition preservation",
+    "continuation until collapse threshold",
+    "restricted collapse-gate trigger",
+    "gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "ConcreteEnergyConditionPreservationCertificate"
+}
