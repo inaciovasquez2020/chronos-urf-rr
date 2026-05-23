@@ -1,3 +1,4 @@
+import Chronos.Frontier.NonSymmetricEinsteinMatterBootstrapKernelConstructor
 import Chronos.Frontier.GravityClosureKernelTarget
 import Chronos.Frontier.UnrestrictedFiniteSupportLiftFrontier
 import Chronos.Frontier.FloorPreservingDomainLiftSufficientCondition

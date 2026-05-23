@@ -1,0 +1,28 @@
+{
+  "id": "NON_SYMMETRIC_EINSTEIN_MATTER_BOOTSTRAP_KERNEL_CONSTRUCTOR_2026_05_22",
+  "status": "SUPPLIED_FIELD_CONSTRUCTOR_CLOSED_PDE_EXISTENCE_OPEN",
+  "repository": "chronos-urf-rr",
+  "lean_module": "Chronos.Frontier.NonSymmetricEinsteinMatterBootstrapKernelConstructor",
+  "closed_results": [
+    "nonSymmetricEinsteinMatterBootstrapKernel_constructor",
+    "gravityClosureKernelTarget_from_supplied_fields",
+    "collapseGate_from_supplied_bootstrap_fields"
+  ],
+  "remaining_missing_object": "PDE theorem proving genuine four-dimensional non-symmetric Einstein-matter data supply dimension_four, nonsymmetric, field_system, energy_condition, continuation, and collapse_gate fields",
+  "does_not_prove": [
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional collapse theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "Einstein-matter PDE existence",
+    "Einstein-matter PDE regularity",
+    "Einstein-matter PDE continuation",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "GENUINE_EINSTEIN_MATTER_PDE_FIELD_SUPPLY_THEOREM"
+}
