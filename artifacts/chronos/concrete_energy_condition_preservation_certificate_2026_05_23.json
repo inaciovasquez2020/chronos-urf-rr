@@ -1,0 +1,25 @@
+{
+  "artifact": "CONCRETE_ENERGY_CONDITION_PRESERVATION_CERTIFICATE",
+  "date": "2026-05-23",
+  "status": "CONCRETE_ENERGY_CONDITION_PRESERVATION_CERTIFICATE_ONLY_NO_GRAVITY_CLOSURE",
+  "lean_module": "Chronos.Frontier.ConcreteEnergyConditionPreservationCertificate",
+  "closed_surface": "A bootstrap pointwise sign and bounds certificate yields energy-condition preservation on the verified slab.",
+  "conditional_role": [
+    "A3 energy-condition preservation interface",
+    "repository-native bootstrap energy-condition certificate",
+    "third component of the restricted Einstein-matter bootstrap package"
+  ],
+  "does_not_prove": [
+    "analytic Einstein-matter bootstrap package",
+    "matter-coupling compatibility",
+    "constraint propagation",
+    "continuation until collapse threshold",
+    "restricted collapse-gate trigger",
+    "gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "RestrictedContinuationUntilThresholdCertificate"
+}
