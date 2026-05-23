@@ -1,0 +1,36 @@
+{
+  "name": "RESTRICTED_CONTINUATION_NORM_CONTROL",
+  "status": "CONTINUATION_NORM_CONTROL_CANDIDATE_ONLY_NO_GRAVITY_CLOSURE",
+  "previous_ingredient": "RESTRICTED_LOCAL_CONCENTRATION_MONOTONICITY_WITH_FLUX_DOMINANCE",
+  "purpose": "Record the guarded continuation-norm route needed by the concrete analytic Einstein-matter estimate package target.",
+  "objects": [
+    "continuationNormN",
+    "bootstrapInequalitiesB",
+    "concentrationFunctionalQ",
+    "thresholdQ"
+  ],
+  "assumptions": [
+    "initialNormFinite",
+    "bootstrapControlsNorm",
+    "concentrationMonotone",
+    "belowThresholdOnInterval",
+    "localContinuationCriterion",
+    "noBlowupBeforeThreshold"
+  ],
+  "conclusion": "continuation norm remains finite until Q reaches threshold",
+  "supplies_next_analytic_ingredient_for": "CONCRETE_ANALYTIC_EINSTEIN_MATTER_ESTIMATE_PACKAGE",
+  "boundary": [
+    "candidate continuation-norm control only",
+    "local continuation criterion assumed",
+    "no-blowup-before-threshold estimate assumed",
+    "no analytic Einstein-matter bootstrap package",
+    "no concrete analytic Einstein-matter estimate package",
+    "no threshold crossing proof",
+    "no gravity closure",
+    "no Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ],
+  "next_admissible_object": "CONCRETE_ANALYTIC_EINSTEIN_MATTER_ESTIMATE_PACKAGE_BRIDGE"
+}
