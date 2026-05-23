@@ -1,0 +1,24 @@
+{
+  "artifact": "RESTRICTED_COLLAPSE_GATE_TRIGGER_CERTIFICATE",
+  "date": "2026-05-23",
+  "status": "RESTRICTED_COLLAPSE_GATE_TRIGGER_CERTIFICATE_ONLY_NO_GRAVITY_CLOSURE",
+  "lean_module": "Chronos.Frontier.RestrictedCollapseGateTriggerCertificate",
+  "closed_surface": "Monotone concentration plus threshold crossing plus certified constraint, energy, and continuation inputs imply the restricted collapse gate.",
+  "conditional_role": [
+    "A5 restricted collapse-gate trigger interface",
+    "fifth component of the restricted Einstein-matter bootstrap package"
+  ],
+  "does_not_prove": [
+    "analytic Einstein-matter bootstrap package",
+    "matter-coupling compatibility",
+    "constraint propagation",
+    "energy-condition preservation",
+    "continuation until collapse threshold",
+    "gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "RestrictedEinsteinMatterBootstrapPackageCertificate"
+}
