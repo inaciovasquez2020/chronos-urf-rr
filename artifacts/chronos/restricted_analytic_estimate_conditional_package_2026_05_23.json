@@ -1,0 +1,32 @@
+{
+  "id": "RESTRICTED_ANALYTIC_ESTIMATE_CONDITIONAL_PACKAGE_2026_05_23",
+  "status": "CONDITIONAL_PACKAGE_WITH_NUMERICAL_SANITY_WITNESS",
+  "lean_module": "Chronos.Frontier.RestrictedAnalyticEstimateConditionalPackage",
+  "closed_objects": [
+    "RESTRICTED_CONCENTRATION_MONOTONICITY_FROM_DERIVATIVE_IDENTITY_AND_NONNEGATIVE_FLUX",
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_FROM_BOOTSTRAP_BOUND_AND_FINITE_CONSTANT",
+    "CONCRETE_ANALYTIC_EINSTEIN_MATTER_ESTIMATE_PACKAGE_FROM_FLUX_AND_BOOTSTRAP",
+    "NUMERICAL_RESTRICTED_ANALYTIC_ESTIMATE_SANITY_WITNESS"
+  ],
+  "required_inputs": [
+    "derivativeIdentity: forall t, deriv Q t = FluxDefect t",
+    "fluxNonnegative: forall t, 0 <= FluxDefect t",
+    "bootstrapBound: forall t, Q t < Qstar -> N t <= C",
+    "finiteC: C < top"
+  ],
+  "numerical_witness": {
+    "N": "5",
+    "Q": "0",
+    "Qstar": "1",
+    "C": "10",
+    "FluxDefect": "0"
+  },
+  "does_not_prove": [
+    "physical Einstein-matter flux identity",
+    "unrestricted gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
