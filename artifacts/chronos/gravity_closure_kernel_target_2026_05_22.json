@@ -1,0 +1,30 @@
+{
+  "id": "GRAVITY_CLOSURE_KERNEL_TARGET_2026_05_22",
+  "status": "KERNEL_TARGET_ONLY_GRAVITY_CLOSURE_OPEN",
+  "repository": "chronos-urf-rr",
+  "lean_module": "Chronos.Frontier.GravityClosureKernelTarget",
+  "closed_result": "collapseGate_from_bootstrapKernel",
+  "open_target": "GravityClosureKernelTarget",
+  "missing_object": "NonSymmetricEinsteinMatterBootstrapKernel for genuine four-dimensional non-symmetric Einstein-matter PDE data",
+  "admissible_result": "If a bootstrap kernel is supplied, the collapse-gate predicate follows.",
+  "not_admissible_result": "Source-level gravity evidence does not construct the bootstrap kernel.",
+  "does_not_prove": [
+    "gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional collapse theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_objects": [
+    "RESTRICTED_FOUR_DIMENSIONAL_EINSTEIN_MATTER_DATA_CLASS",
+    "RESTRICTED_ENERGY_CONDITION_PRESERVATION_THEOREM",
+    "RESTRICTED_WELLPOSEDNESS_CONTINUATION_THEOREM",
+    "RESTRICTED_COLLAPSE_GATE_CRITERION_THEOREM",
+    "NON_SYMMETRIC_EINSTEIN_MATTER_BOOTSTRAP_KERNEL_CONSTRUCTOR"
+  ]
+}
