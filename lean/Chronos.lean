@@ -147,3 +147,4 @@ import Chronos.Frontier.TSIMFPDFSourceClassification
 import Chronos.Frontier.ConcreteInitialDataClassSpecification
 
 import Chronos.Frontier.ConcreteMatterModelSpecification
+import Chronos.Frontier.BootstrapSlabToSixFieldSlotConstraintClosure
