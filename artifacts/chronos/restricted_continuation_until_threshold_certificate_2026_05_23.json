@@ -1,0 +1,24 @@
+{
+  "artifact": "RESTRICTED_CONTINUATION_UNTIL_THRESHOLD_CERTIFICATE",
+  "date": "2026-05-23",
+  "status": "RESTRICTED_CONTINUATION_UNTIL_THRESHOLD_CERTIFICATE_ONLY_NO_GRAVITY_CLOSURE",
+  "lean_module": "Chronos.Frontier.RestrictedContinuationUntilThresholdCertificate",
+  "closed_surface": "Finite continuation norm plus bootstrap bounds plus below-threshold status imply extension past the selected time.",
+  "conditional_role": [
+    "A4 restricted continuation interface",
+    "fourth component of the restricted Einstein-matter bootstrap package"
+  ],
+  "does_not_prove": [
+    "analytic Einstein-matter bootstrap package",
+    "matter-coupling compatibility",
+    "constraint propagation",
+    "energy-condition preservation",
+    "restricted collapse-gate trigger",
+    "gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "RestrictedCollapseGateTriggerCertificate"
+}

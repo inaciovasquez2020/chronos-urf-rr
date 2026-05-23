@@ -1,0 +1,25 @@
+{
+  "artifact": "RESTRICTED_EINSTEIN_MATTER_BOOTSTRAP_PACKAGE_CERTIFICATE",
+  "date": "2026-05-23",
+  "status": "RESTRICTED_EINSTEIN_MATTER_BOOTSTRAP_PACKAGE_CERTIFICATE_ONLY_NO_GRAVITY_CLOSURE",
+  "lean_module": "Chronos.Frontier.RestrictedEinsteinMatterBootstrapPackageCertificate",
+  "closed_surface": "The restricted package bundles matter coupling, constraint propagation, energy-condition preservation, continuation until threshold, and collapse-gate triggering under selected concrete seed hypotheses.",
+  "conditional_role": [
+    "A6 combined restricted Einstein-matter bootstrap package interface",
+    "conditional closure of A1 through A5 at certificate layer"
+  ],
+  "does_not_prove": [
+    "analytic Einstein-matter bootstrap package",
+    "concrete analytic Einstein-matter estimate package",
+    "finite continuation norm",
+    "bootstrap bounds",
+    "concentration monotonicity",
+    "threshold crossing",
+    "gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "minimal_missing_lemma": "CONCRETE_ANALYTIC_EINSTEIN_MATTER_ESTIMATE_PACKAGE"
+}
