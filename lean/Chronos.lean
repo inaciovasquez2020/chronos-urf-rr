@@ -1,3 +1,4 @@
+import Chronos.Frontier.AnalyticEstimatePackageExistsProof
 import Chronos.Frontier.NonSymmetricEinsteinMatterBootstrapKernelConstructor
 import Chronos.Frontier.GravityClosureKernelTarget
 import Chronos.Frontier.UnrestrictedFiniteSupportLiftFrontier
