@@ -1,0 +1,32 @@
+{
+  "id": "ANALYTIC_ESTIMATE_PACKAGE_EXISTS_PROOF_2026_05_22",
+  "status": "SYNTHETIC_INTERFACE_PROOF_CLOSED_GENUINE_PDE_PROOF_OPEN",
+  "repository": "chronos-urf-rr",
+  "lean_module": "Chronos.Frontier.AnalyticEstimatePackageExistsProof",
+  "closed_results": [
+    "analyticEstimatePackageExists_syntheticInterfaceProof",
+    "bootstrapKernel_from_analyticEstimatePackageExists",
+    "bootstrapKernel_from_syntheticAnalyticEstimatePackage",
+    "collapseGate_from_analyticEstimatePackageExists",
+    "collapseGate_from_syntheticAnalyticEstimatePackage"
+  ],
+  "proved_object": "AnalyticEstimatePackageExists inside the abstract Prop-valued interface",
+  "remaining_missing_object": "genuine PDE proof of AnalyticEstimatePackageExists for non-synthetic four-dimensional non-symmetric Einstein-matter data",
+  "does_not_prove": [
+    "genuine Einstein-matter PDE existence",
+    "genuine Einstein-matter PDE regularity",
+    "genuine Einstein-matter PDE continuation",
+    "unconditional gravity closure",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional collapse theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "GENUINE_ANALYTIC_ESTIMATE_PACKAGE_EXISTS_PROOF"
+}
