@@ -1,0 +1,36 @@
+{
+  "id": "GENUINE_PDE_ESTIMATE_WITNESS_COMPONENTS_2026_05_22",
+  "status": "FOUR_COMPONENT_ASSEMBLY_CLOSED_PDE_COMPONENT_PROOFS_OPEN",
+  "repository": "chronos-urf-rr",
+  "lean_module": "Chronos.Frontier.GenuinePDEEstimateWitnessComponents",
+  "four_components": [
+    "constraint_propagation",
+    "energy_condition_preservation",
+    "continuation_up_to_collapse_threshold",
+    "collapse_criterion_from_restricted_seed"
+  ],
+  "closed_results": [
+    "genuinePDEEstimateWitness_from_components",
+    "analyticEstimatePackageExists_from_genuinePDEComponents",
+    "bootstrapKernel_from_genuinePDEComponents",
+    "collapseGate_from_genuinePDEComponents"
+  ],
+  "remaining_missing_object": "proof of GenuinePDEEstimateWitnessComponentsExist for non-synthetic four-dimensional non-symmetric Einstein-matter data",
+  "does_not_prove": [
+    "genuine Einstein-matter PDE existence",
+    "genuine Einstein-matter PDE regularity",
+    "genuine Einstein-matter PDE continuation",
+    "unconditional gravity closure",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional collapse theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "GENUINE_PDE_ESTIMATE_WITNESS_COMPONENTS_EXIST"
+}
