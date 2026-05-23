@@ -1,0 +1,31 @@
+{
+  "id": "GENUINE_ANALYTIC_ESTIMATE_PACKAGE_PROOF_REDUCTION_2026_05_22",
+  "status": "GENUINE_PDE_WITNESS_REDUCTION_CLOSED_GENUINE_PDE_WITNESS_OPEN",
+  "repository": "chronos-urf-rr",
+  "lean_module": "Chronos.Frontier.GenuineAnalyticEstimatePackageProofReduction",
+  "closed_results": [
+    "analyticEstimatePackage_from_genuinePDEEstimateWitness",
+    "analyticEstimatePackageExists_from_genuinePDEEstimateWitness",
+    "bootstrapKernel_from_genuinePDEEstimateWitness",
+    "collapseGate_from_genuinePDEEstimateWitness",
+    "analyticEstimatePackageExists_from_genuineProof"
+  ],
+  "remaining_missing_object": "GenuinePDEEstimateWitness for non-synthetic four-dimensional non-symmetric Einstein-matter data",
+  "does_not_prove": [
+    "genuine Einstein-matter PDE existence",
+    "genuine Einstein-matter PDE regularity",
+    "genuine Einstein-matter PDE continuation",
+    "unconditional gravity closure",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional collapse theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "GENUINE_PDE_ESTIMATE_WITNESS"
+}
