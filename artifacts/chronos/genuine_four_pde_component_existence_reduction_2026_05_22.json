@@ -1,0 +1,37 @@
+{
+  "id": "GENUINE_FOUR_PDE_COMPONENT_EXISTENCE_REDUCTION_2026_05_22",
+  "status": "FOUR_COMPONENT_EXISTENCE_REDUCTION_CLOSED_COMPONENT_PROOFS_OPEN",
+  "repository": "chronos-urf-rr",
+  "lean_module": "Chronos.Frontier.GenuineFourPDEComponentExistenceReduction",
+  "component_targets": [
+    "GenuineConstraintPropagationComponentExists",
+    "GenuineEnergyConditionPreservationComponentExists",
+    "GenuineContinuationUpToCollapseThresholdComponentExists",
+    "GenuineCollapseCriterionFromRestrictedSeedComponentExists"
+  ],
+  "closed_results": [
+    "genuinePDEEstimateWitnessComponents_from_four_components",
+    "genuinePDEEstimateWitnessComponentsExist_from_four_components",
+    "genuinePDEEstimateWitnessComponentsExist_from_four_component_target"
+  ],
+  "remaining_missing_object": "GenuineFourPDEComponentExistenceReductionTarget",
+  "does_not_prove": [
+    "constraint propagation PDE theorem",
+    "energy-condition preservation PDE theorem",
+    "continuation PDE theorem",
+    "collapse criterion PDE theorem",
+    "genuine Einstein-matter PDE existence",
+    "genuine Einstein-matter PDE regularity",
+    "genuine Einstein-matter PDE continuation",
+    "unconditional gravity closure",
+    "unrestricted gravity closure",
+    "cosmic censorship",
+    "hoop conjecture",
+    "four-dimensional collapse theorem",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "GENUINE_FOUR_PDE_COMPONENT_EXISTENCE_REDUCTION_TARGET"
+}
