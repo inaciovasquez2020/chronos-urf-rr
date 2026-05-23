@@ -1,0 +1,20 @@
+{
+  "artifact": "CONCRETE_MATTER_COUPLING_COMPATIBILITY_CERTIFICATE",
+  "date": "2026-05-23",
+  "status": "CONCRETE_MATTER_COUPLING_COMPATIBILITY_CERTIFICATE_ONLY_NO_GRAVITY_CLOSURE",
+  "lean_module": "Chronos.Frontier.ConcreteMatterCouplingCompatibilityCertificate",
+  "closed_surface": "A certificate that selectedStress equals canonicalStress on admissible states yields SelectedStressPreserved.",
+  "does_not_prove": [
+    "analytic Einstein-matter bootstrap package",
+    "constraint propagation",
+    "energy-condition preservation",
+    "continuation until collapse threshold",
+    "restricted collapse-gate trigger",
+    "gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "ConcreteConstraintPropagationCertificate"
+}
