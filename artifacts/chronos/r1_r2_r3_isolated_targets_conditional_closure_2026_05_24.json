@@ -1,0 +1,27 @@
+{
+  "artifact": "R1_R2_R3_ISOLATED_TARGETS_CONDITIONAL_CLOSURE",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "CONDITIONAL_COMPOSITION_ONLY_FRONTIER_OPEN",
+  "lean_module": "Chronos.Frontier.R1R2R3IsolatedTargetsConditionalClosure",
+  "isolated_targets": [
+    "LongChordExclusionProofTarget",
+    "DiameterSeparationFillingObstructionProofTarget",
+    "UniformLocalTypeCapacityProofTarget"
+  ],
+  "finite_checker": "tools/check_long_chord_witness_obstruction.py",
+  "conditional_theorem": "repository_native_r1_r2_r3_binding_conditional_closure",
+  "missing_object": "RepositoryNativeR1R2R3BindingClosureMissingObject",
+  "weakest_sufficient_next_object": "RepositoryNativeR1R2R3BindingClosureConditionalTarget",
+  "does_not_prove": [
+    "native R1/R2/R3 instance",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "NON_FACTORISATION",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
