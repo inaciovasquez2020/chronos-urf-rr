@@ -182,3 +182,4 @@ import Chronos.Frontier.FiniteCapacityOpticalMetricSymbolicProfileTheorem
 import Chronos.Frontier.BlackHoleScaleNormalizationMap
 import Chronos.Frontier.BlackHoleDerivedScaleValuesMap
 import Chronos.Frontier.R1R2R3NonFactorisationPromotionLock
+import Chronos.Frontier.R1R2R3SemanticTheoremProofTargets
