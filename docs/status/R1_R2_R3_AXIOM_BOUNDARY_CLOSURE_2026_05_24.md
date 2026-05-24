@@ -1,21 +1,21 @@
-# R1/R2/R3 axiom-boundary closure
+# R1/R2/R3 opaque-boundary declaration
 
-Status: `CLOSED_BY_EXPLICIT_AXIOM_BOUNDARY_NOT_THEOREM_LEVEL`.
+Status: `OPAQUE_ASSUMPTION_DECLARATION_ONLY`.
 
-This file closes the current R1/R2/R3 promotion registry only by making the four missing bridge assumptions explicit as axioms.
+This record makes the four missing R1/R2/R3 bridge assumptions explicit as opaque declarations.
 
-Closed by explicit axiom boundary:
+Declared opaque assumptions:
 
-- `r1_finite_data_to_general_proof_promotion_axiom`
-- `r2_finite_data_to_general_proof_promotion_axiom`
-- `r3_finite_data_to_general_proof_promotion_axiom`
-- `repository_native_r1_r2_r3_instance_to_non_factorisation_axiom`
+- `r1_finite_data_to_general_proof_promotion_assumption`
+- `r2_finite_data_to_general_proof_promotion_assumption`
+- `r3_finite_data_to_general_proof_promotion_assumption`
+- `repository_native_r1_r2_r3_instance_to_non_factorisation_assumption`
 
-Resulting Lean surfaces:
+Opaque-dependent Lean surfaces:
 
-- `RepositoryNativeR1R2R3InstanceTarget_closed_by_axiom_boundary`
-- `NonFactorisationProofTarget_closed_by_axiom_boundary`
-- `R1R2R3PromotionProofTargetRegistry_closed_by_axiom_boundary`
+- `RepositoryNativeR1R2R3InstanceTarget_derived_under_opaque_boundary`
+- `NonFactorisationProofTarget_derived_under_opaque_boundary`
+- `R1R2R3PromotionProofTargetRegistry_derived_under_opaque_boundary`
 
 Boundary:
 
