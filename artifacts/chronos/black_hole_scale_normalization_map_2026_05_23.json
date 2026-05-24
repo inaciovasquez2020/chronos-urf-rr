@@ -1,0 +1,43 @@
+{
+  "id": "BLACK_HOLE_SCALE_NORMALIZATION_MAP_2026_05_23",
+  "status": "SCALE_NORMALIZATION_ONLY_NOT_THEOREM_INPUT",
+  "lean_module": "Chronos.Frontier.BlackHoleScaleNormalizationMap",
+  "executable": "tools/run_black_hole_scale_normalization.py",
+  "constants": {
+    "G_m3_kg_s2": "6.67430e-11",
+    "c_m_s": "299792458",
+    "M_sun_kg": "1.98847e30",
+    "rs_km_per_solar_mass": "2.95325008"
+  },
+  "default_dimensionless_domain": "100 r_s",
+  "example_masses_solar": {
+    "stellar_10_solar_mass": "10",
+    "sagittarius_A_star_scale": "4.0e6",
+    "m87_star_scale": "6.5e9"
+  },
+  "admissible_use": [
+    "scale normalization for bounded optical metric radial profiles",
+    "conversion from dimensionless r_s units to km, AU, and light-years",
+    "not a theorem input"
+  ],
+  "does_not_prove": [
+    "gravity closure",
+    "physical Einstein-matter flux identity",
+    "restricted analytic estimate package assumptions",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "verifier_tokens": [
+    "scale normalization only",
+    "not a theorem input",
+    "gravity closure",
+    "physical Einstein-matter flux identity",
+    "restricted analytic estimate package assumptions",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
