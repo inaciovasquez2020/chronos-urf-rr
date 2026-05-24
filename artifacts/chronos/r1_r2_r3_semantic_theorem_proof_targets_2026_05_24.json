@@ -1,0 +1,31 @@
+{
+  "artifact": "R1_R2_R3_SEMANTIC_THEOREM_PROOF_TARGETS",
+  "date": "2026-05-24",
+  "status": "CONDITIONAL_SEMANTIC_THEOREM_PROOF_ROUTE_ONLY",
+  "closed_surfaces": [
+    "R1_LongChordExclusion_from_semantic_inputs",
+    "R2_DiameterSeparationFillingObstruction_from_semantic_inputs",
+    "R3_UniformLocalTypeCapacity_from_semantic_inputs",
+    "R1_R2_R3_theorem_proof_targets_from_semantic_inputs",
+    "no_R1_R2_R3_theorem_promotion_without_concrete_semantics"
+  ],
+  "required_concrete_semantic_objects": [
+    "concreteR1WordEdgeFaceSupportModel",
+    "concreteR2FiberChainBoundaryDiameterModel",
+    "concreteR3LocalTypeQuotientDimensionModel"
+  ],
+  "boundary": [
+    "conditional theorem-proof route only",
+    "does not prove concrete R1 semantics",
+    "does not prove concrete R2 semantics",
+    "does not prove concrete R3 semantics",
+    "does not prove LongChordExclusion",
+    "does not prove DiameterSeparationFillingObstruction",
+    "does not prove UniformLocalTypeCapacity",
+    "does not prove NON_FACTORISATION",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
