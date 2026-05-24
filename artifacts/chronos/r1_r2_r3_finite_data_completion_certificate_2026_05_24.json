@@ -1,0 +1,57 @@
+{
+  "artifact": "R1_R2_R3_FINITE_DATA_COMPLETION_CERTIFICATE",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "FINITE_DATA_COMPLETE_NO_THEOREM_CLOSURE",
+  "branch": "formalize/r1-r2-r3-isolated-targets-conditional-closure-2026-05-24",
+  "linked_pr": 474,
+  "latest_known_commit": "83b559b8",
+  "structural_completeness": {
+    "filled": 30,
+    "total": 30,
+    "ratio": "30/30"
+  },
+  "completed_finite_data_targets": {
+    "R1": {
+      "target": "LongChordExclusionProofTarget",
+      "packet": "artifacts/chronos/r1_long_chord_exclusion_mathematical_data_packet_2026_05_24.json",
+      "checker": "tools/check_r1_long_chord_exclusion_mathematical_data_packet.py",
+      "status": "FINITE_DATA_SUPPLIED_AND_CHECKED"
+    },
+    "R2": {
+      "target": "DiameterSeparationFillingObstructionProofTarget",
+      "packet": "artifacts/chronos/r2_diameter_separation_filling_mathematical_data_packet_2026_05_24.json",
+      "checker": "tools/check_r2_diameter_separation_filling_mathematical_data_packet.py",
+      "status": "FINITE_DATA_SUPPLIED_AND_CHECKED"
+    },
+    "R3": {
+      "target": "UniformLocalTypeCapacityProofTarget",
+      "packet": "artifacts/chronos/r3_uniform_local_type_capacity_mathematical_data_packet_2026_05_24.json",
+      "checker": "tools/check_r3_uniform_local_type_capacity_mathematical_data_packet.py",
+      "status": "FINITE_DATA_SUPPLIED_AND_CHECKED"
+    }
+  },
+  "closure_state": {
+    "closure_ready": false,
+    "strict_completion_status": "NOT_READY",
+    "reason": "finite mathematical data is complete, but repository-native Lean proof artifacts for R1/R2/R3/CLOSURE are not supplied"
+  },
+  "next_missing_objects": [
+    "R1_LEAN_PROOF_ARTIFACT",
+    "R2_LEAN_PROOF_ARTIFACT",
+    "R3_LEAN_PROOF_ARTIFACT",
+    "REPOSITORY_NATIVE_R1_R2_R3_INSTANCE",
+    "REPOSITORY_NATIVE_R1_R2_R3_BINDING_CLOSURE"
+  ],
+  "does_not_prove": [
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "native R1/R2/R3 instance",
+    "NON_FACTORISATION",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
