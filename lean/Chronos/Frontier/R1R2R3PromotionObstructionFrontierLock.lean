@@ -15,12 +15,12 @@ def AllR1R2R3PromotionObstructionCertificatesRecorded : Prop :=
 theorem all_r1_r2_r3_promotion_obstruction_certificates_recorded :
     AllR1R2R3PromotionObstructionCertificatesRecorded :=
   by
-    exact ⟨
-      r1_promotion_proof_obstruction_certificate,
-      r2_promotion_proof_obstruction_certificate,
-      r3_promotion_proof_obstruction_certificate,
-      non_factorisation_bridge_proof_obstruction_certificate
-    ⟩
+    unfold AllR1R2R3PromotionObstructionCertificatesRecorded
+    unfold R1PromotionProofObstructionCertificate
+    unfold R2PromotionProofObstructionCertificate
+    unfold R3PromotionProofObstructionCertificate
+    unfold NonFactorisationBridgeProofObstructionCertificate
+    exact ⟨trivial, trivial, trivial, trivial⟩
 
 def R1R2R3PromotionObstructionFrontierStillOpen : Prop :=
   True
