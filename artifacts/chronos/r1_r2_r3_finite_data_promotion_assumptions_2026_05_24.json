@@ -1,0 +1,31 @@
+{
+  "artifact": "R1_R2_R3_FINITE_DATA_PROMOTION_ASSUMPTIONS",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "PROMOTION_ASSUMPTION_LAYER_ONLY_NON_FACTORISATION_CONDITIONAL",
+  "lean_module": "Chronos.Frontier.R1R2R3FiniteDataPromotionAssumptions",
+  "promotion_assumptions": [
+    "R1FiniteDataToGeneralProofPromotionAssumption",
+    "R2FiniteDataToGeneralProofPromotionAssumption",
+    "R3FiniteDataToGeneralProofPromotionAssumption"
+  ],
+  "assembled_conditional_instance": "repository_native_r1_r2_r3_instance_from_finite_data_promotion_assumptions",
+  "non_factorisation_surface": "non_factorisation_from_finite_data_promotion_assumptions_conditional",
+  "remaining_open_objects": [
+    "proof of R1FiniteDataToGeneralProofPromotionAssumption",
+    "proof of R2FiniteDataToGeneralProofPromotionAssumption",
+    "proof of R3FiniteDataToGeneralProofPromotionAssumption",
+    "proof of NonFactorisationConditionalOnRepositoryNativeR1R2R3Instance"
+  ],
+  "does_not_prove": [
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "native R1/R2/R3 instance unconditionally",
+    "NON_FACTORISATION unconditionally",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
