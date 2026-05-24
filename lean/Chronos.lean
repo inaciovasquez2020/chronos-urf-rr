@@ -183,3 +183,4 @@ import Chronos.Frontier.BlackHoleScaleNormalizationMap
 import Chronos.Frontier.BlackHoleDerivedScaleValuesMap
 import Chronos.Frontier.R1R2R3NonFactorisationPromotionLock
 import Chronos.Frontier.R1R2R3SemanticTheoremProofTargets
+import Chronos.Frontier.NewsteinR1R2R3NativeBindingSpec
