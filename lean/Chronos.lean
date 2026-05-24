@@ -191,3 +191,5 @@ import Chronos.Frontier.R1R2R3FiniteDataLeanCertificates
 import Chronos.Frontier.R1R2R3FiniteDataPromotionAssumptions
 import Chronos.Frontier.R1R2R3PromotionProofTargetRegistry
 import Chronos.Frontier.R1PromotionProofObstructionCertificate
+
+import Chronos.Frontier.R2PromotionProofObstructionCertificate
