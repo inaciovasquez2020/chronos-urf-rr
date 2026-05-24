@@ -51,6 +51,9 @@ def main() -> None:
 
     for token in REQUIRED_LEAN:
         assert token in lean_text, token
+
+    for token in data["closed_structural_ingredients"]:
+        assert token in lean_text, token
         assert token in art_text, token
 
     for token in REQUIRED_BOUNDARY:
