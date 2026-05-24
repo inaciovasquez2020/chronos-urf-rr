@@ -1,0 +1,35 @@
+{
+  "id": "GRAVITATIONAL_ENERGY_FLUX_SOURCE_MAP_2026_05_23",
+  "status": "SOURCE_BACKED_MAP_ONLY_NOT_THEOREM_INPUT",
+  "lean_module": "Chronos.Frontier.GravitationalEnergyFluxSourceMap",
+  "source": {
+    "title": "The Role of Gravitational Energy Flux in Cosmic Acceleration",
+    "identifier": "arXiv:2605.20063v1",
+    "date": "2026-05-19",
+    "url": "https://arxiv.org/html/2605.20063v1",
+    "framework": "Teleparallel Equivalent of General Relativity",
+    "radiative_spacetime_model": "Bondi-Sachs radiative space-times"
+  },
+  "source_claims_recorded": [
+    "TEGR gives a framework in which gravitational energy and energy flux are treated as physical quantities",
+    "Bondi-Sachs radiative space-times are used to analyze total gravitational energy and energy flux in asymptotic regions",
+    "the total energy-momentum flux is obtained from a conservation identity and boundary surface integral",
+    "the paper reports localized energy-flux profiles and net negative gravitational-energy contribution in representative radiative configurations"
+  ],
+  "admissible_use": [
+    "candidate source map for the physical flux-identity / flux-sign slot",
+    "source context for the restricted analytic estimate conditional package",
+    "background for gravitational radiation energy-flux language",
+    "not a theorem input"
+  ],
+  "does_not_prove": [
+    "physical Einstein-matter flux identity",
+    "restricted analytic estimate package assumptions",
+    "unrestricted gravity closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_missing_object": "PHYSICAL_EINSTEIN_MATTER_FLUX_IDENTITY_OR_SIGN_CERTIFICATE"
+}
