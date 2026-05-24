@@ -1,0 +1,37 @@
+{
+  "artifact": "NON_FACTORISATION_BRIDGE_PROOF_OBSTRUCTION_CERTIFICATE_2026_05_24",
+  "status": "NON_FACTORISATION_BRIDGE_PROOF_OBSTRUCTION_CERTIFICATE_OPEN_FRONTIER",
+  "selected_target": "NonFactorisationBridgeProofTarget",
+  "obstruction_certificate": "NonFactorisationBridgeProofObstructionCertificate",
+  "counterexample_search_harness": "NonFactorisationBridgeCounterexampleSearchHarnessTarget",
+  "obstruction_elimination_certificate_target": "NonFactorisationBridgeProofObstructionEliminationCertificate",
+  "theorem_target_reduction": "NonFactorisationBridgeProofTargetReductionFromObstructionElimination",
+  "depends_on_open_targets": [
+    "R1PromotionProofTarget",
+    "R2PromotionProofTarget",
+    "R3PromotionProofTarget"
+  ],
+  "target_state": "OPEN",
+  "next_missing_objects": [
+    "NON_FACTORISATION_BRIDGE_COUNTEREXAMPLE_SEARCH_RESULT",
+    "NON_FACTORISATION_BRIDGE_OBSTRUCTION_ELIMINATION_PROOF",
+    "NON_FACTORISATION_BRIDGE_THEOREM_PROOF"
+  ],
+  "does_not_prove": [
+    "NonFactorisationBridgeProofTarget",
+    "NonFactorisationBridgeProofObstructionEliminationCertificate",
+    "NonFactorisationBridgeProofTargetReductionFromObstructionElimination as closed target",
+    "R1PromotionProofTarget",
+    "R2PromotionProofTarget",
+    "R3PromotionProofTarget",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "native R1/R2/R3 instance unconditionally",
+    "NON_FACTORISATION unconditionally",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}

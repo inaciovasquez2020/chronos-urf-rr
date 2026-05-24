@@ -195,3 +195,5 @@ import Chronos.Frontier.R1PromotionProofObstructionCertificate
 import Chronos.Frontier.R2PromotionProofObstructionCertificate
 
 import Chronos.Frontier.R3PromotionProofObstructionCertificate
+
+import Chronos.Frontier.NonFactorisationBridgeProofObstructionCertificate
