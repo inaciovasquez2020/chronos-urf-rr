@@ -180,3 +180,4 @@ import Chronos.Frontier.GravitationalEnergyFluxSourceMap
 import Chronos.Frontier.FiniteCapacityOpticalMetricNumericalWitness
 import Chronos.Frontier.FiniteCapacityOpticalMetricSymbolicProfileTheorem
 import Chronos.Frontier.BlackHoleScaleNormalizationMap
+import Chronos.Frontier.BlackHoleDerivedScaleValuesMap

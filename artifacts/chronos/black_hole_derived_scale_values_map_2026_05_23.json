@@ -1,0 +1,65 @@
+{
+  "id": "BLACK_HOLE_DERIVED_SCALE_VALUES_MAP_2026_05_23",
+  "status": "DERIVED_SCALE_VALUES_ONLY_NOT_THEOREM_INPUT",
+  "lean_module": "Chronos.Frontier.BlackHoleDerivedScaleValuesMap",
+  "executable": "tools/run_black_hole_derived_scale_values.py",
+  "depends_on": [
+    "BLACK_HOLE_SCALE_NORMALIZATION_MAP_2026_05_23",
+    "FINITE_CAPACITY_OPTICAL_METRIC_NUMERICAL_WITNESS_2026_05_23",
+    "FINITE_CAPACITY_OPTICAL_METRIC_SYMBOLIC_PROFILE_THEOREM_2026_05_23"
+  ],
+  "value_maps": [
+    "LIGHT_CROSSING_TIME_MAP",
+    "HORIZON_AREA_MAP",
+    "SURFACE_GRAVITY_MAP",
+    "MEAN_DENSITY_MAP",
+    "TIDAL_GRADIENT_MAP",
+    "HAWKING_TEMPERATURE_MAP",
+    "OPTICAL_DOMAIN_SWEEP_BY_MASS_MAP"
+  ],
+  "formulas": {
+    "light_crossing_time": "t_s = r_s/c and t_100 = 100 r_s/c",
+    "horizon_area": "A = 4*pi*r_s^2",
+    "surface_gravity": "kappa = c^4/(4GM)",
+    "mean_density": "rho = 3M/(4*pi*r_s^3)",
+    "tidal_gradient": "tidal scale = 2GM/r_s^3",
+    "hawking_temperature": "T_H = hbar*c^3/(8*pi*G*M*k_B)",
+    "optical_domain_sweep_by_mass": "domain = {10 r_s, 100 r_s, 1000 r_s}"
+  },
+  "masses_solar": {
+    "stellar_10_solar_mass": "10",
+    "sagittarius_A_star_scale": "4.0e6",
+    "m87_star_scale": "6.5e9"
+  },
+  "admissible_use": [
+    "derived value maps for black-hole scale interpretation",
+    "physical scale context for finite-capacity optical metric profiles",
+    "not a theorem input"
+  ],
+  "does_not_prove": [
+    "gravity closure",
+    "physical Einstein-matter flux identity",
+    "restricted analytic estimate package assumptions",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "verifier_tokens": [
+    "light crossing time",
+    "horizon area",
+    "surface gravity",
+    "mean density",
+    "tidal gradient",
+    "Hawking temperature",
+    "optical domain sweep by mass",
+    "not a theorem input",
+    "gravity closure",
+    "physical Einstein-matter flux identity",
+    "restricted analytic estimate package assumptions",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
