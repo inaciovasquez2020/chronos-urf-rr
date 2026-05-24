@@ -1,0 +1,95 @@
+{
+  "artifact": "R1_R2_R3_MATHEMATICAL_DATA_ACCURACY_SCHEMA",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "MATHEMATICAL_DATA_SCHEMA_ONLY_NO_ACCURACY_CLAIM",
+  "linked_progressive_packet": "artifacts/chronos/r1_r2_r3_progressive_witness_packet_2026_05_24.json",
+  "purpose": "Require explicit mathematical data before any R1/R2/R3 accuracy or closure-readiness score can be computed.",
+  "accuracy_policy": {
+    "score_type": "STRUCTURAL_COMPLETENESS_ONLY",
+    "truth_accuracy_claim": false,
+    "empirical_accuracy_claim": false,
+    "theorem_accuracy_claim": false,
+    "minimum_verified_fields_per_target": [
+      "formal_statement",
+      "domain",
+      "objects",
+      "invariants",
+      "obstruction_or_capacity_quantity",
+      "finite_witness_schema",
+      "proof_dependencies",
+      "checker_contract",
+      "lean_target",
+      "boundary"
+    ]
+  },
+  "targets": {
+    "R1_LONG_CHORD_EXCLUSION": {
+      "formal_statement": null,
+      "domain": null,
+      "objects": [],
+      "invariants": [],
+      "obstruction_or_capacity_quantity": null,
+      "finite_witness_schema": {
+        "vertices": [],
+        "edges": [],
+        "diameter_bound": null,
+        "long_chord_threshold": null,
+        "distance_function": null,
+        "forbidden_chord_predicate": null
+      },
+      "proof_dependencies": [],
+      "checker_contract": "tools/check_long_chord_witness_obstruction.py",
+      "lean_target": "LongChordExclusionProofTarget",
+      "boundary": "open proof target"
+    },
+    "R2_DIAMETER_SEPARATION_FILLING_OBSTRUCTION": {
+      "formal_statement": null,
+      "domain": null,
+      "objects": [],
+      "invariants": [],
+      "obstruction_or_capacity_quantity": null,
+      "finite_witness_schema": {
+        "diameter_function": null,
+        "separation_function": null,
+        "filling_radius_or_area": null,
+        "forbidden_filling_predicate": null
+      },
+      "proof_dependencies": [],
+      "checker_contract": null,
+      "lean_target": "DiameterSeparationFillingObstructionProofTarget",
+      "boundary": "open proof target"
+    },
+    "R3_UNIFORM_LOCAL_TYPE_CAPACITY": {
+      "formal_statement": null,
+      "domain": null,
+      "objects": [],
+      "invariants": [],
+      "obstruction_or_capacity_quantity": null,
+      "finite_witness_schema": {
+        "local_type_radius": null,
+        "type_alphabet": [],
+        "capacity_bound": null,
+        "uniformity_quantifier": null,
+        "forbidden_capacity_violation_predicate": null
+      },
+      "proof_dependencies": [],
+      "checker_contract": null,
+      "lean_target": "UniformLocalTypeCapacityProofTarget",
+      "boundary": "open proof target"
+    }
+  },
+  "does_not_prove": [
+    "mathematical accuracy",
+    "truth accuracy",
+    "native R1/R2/R3 instance",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "NON_FACTORISATION",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
