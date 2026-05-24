@@ -1,0 +1,52 @@
+{
+  "artifact": "BLACK_HOLE_OBSERVATIONAL_MOTIVATION_REGISTRY_2026_05_24",
+  "status": "OBSERVATIONAL_MOTIVATION_REGISTRY_ONLY_NO_THEOREM_PROMOTION",
+  "date": "2026-05-24",
+  "role": "External black-hole observation and venue context for the restricted gravity-collapse frontier.",
+  "usable_as_proof_input": false,
+  "records": [
+    {
+      "id": "NASA_NEOWISE_M31_2014_DS1_FAILED_SUPERNOVA_CONTEXT",
+      "source_url": "https://science.nasa.gov/blogs/science-news/2026/02/12/archival-data-from-nasas-neowise-tracks-star-turning-into-black-hole/",
+      "observation_class": "stellarCollapseThreshold",
+      "gravity_motivation": "collapse-threshold and inward-failure framing"
+    },
+    {
+      "id": "CHANDRA_SMBH_GROWTH_SLOWDOWN_CONTEXT",
+      "source_url": "https://chandra.harvard.edu/photo/2026/bhgrowth/",
+      "observation_class": "supermassiveGrowthConstraint",
+      "gravity_motivation": "feeding-capacity and growth-rate constraint framing"
+    },
+    {
+      "id": "J1007_EPISODIC_AGN_JET_CONTEXT",
+      "source_url": "https://www.space.com/astronomy/black-holes/reborn-black-hole-seen-erupting-across-1-million-light-years-of-space-like-a-cosmic-volcano",
+      "observation_class": "episodicJetFeedback",
+      "gravity_motivation": "boundary-environment feedback and regime-switching context"
+    },
+    {
+      "id": "ABELL_402_BCG_ULTRAMASSIVE_PAIR_CONTEXT",
+      "source_url": "https://www.sciencenews.org/article/largest-pair-black-holes-collision",
+      "observation_class": "mergerRestructuring",
+      "gravity_motivation": "merger-driven geometry and matter-restructuring context"
+    },
+    {
+      "id": "AAS_SMBH_BLUE_NOTES_2026_VENUE_CONTEXT",
+      "source_url": "https://aas.org/events/2025-09/supermassive-black-holes-and-blue-notes-international-conference",
+      "observation_class": "activeResearchVenue",
+      "gravity_motivation": "active research context for event-horizon observations, feeding, feedback, and SMBH formation/growth"
+    }
+  ],
+  "does_not_prove": [
+    "no analytic Einstein-matter bootstrap package",
+    "no concrete analytic estimate proof",
+    "no restricted collapse-gate trigger",
+    "no unrestricted black-hole formation theorem",
+    "no cosmic censorship",
+    "no hoop conjecture",
+    "no gravity closure",
+    "no Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
