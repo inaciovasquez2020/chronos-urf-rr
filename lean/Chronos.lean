@@ -177,3 +177,4 @@ import Chronos.Frontier.RestrictedAnalyticEstimateConditionalPackage
 import Chronos.Frontier.DrivenPhaseRigidityAnalogyMap
 import Chronos.Frontier.FiniteCapacityOpticalMetricDeflectionSourceMap
 import Chronos.Frontier.GravitationalEnergyFluxSourceMap
+import Chronos.Frontier.FiniteCapacityOpticalMetricNumericalWitness
