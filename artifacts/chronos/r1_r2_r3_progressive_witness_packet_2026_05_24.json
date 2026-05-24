@@ -22,13 +22,13 @@
   "targets": {
     "R1": {
       "name": "LongChordExclusionProofTarget",
-      "state": "PENDING",
-      "mathematical_statement": null,
-      "data_packet_path": null,
-      "checker_path": "tools/check_long_chord_witness_obstruction.py",
-      "lean_artifact_path": null,
+      "state": "SUPPLIED",
+      "mathematical_statement": "For each supplied finite skeleton graph S=(V,E_skel), candidate chord set C, and threshold lambda, no candidate chord {u,v} is a long chord when every computed skeleton distance d_S(u,v) is strictly below lambda.",
+      "data_packet_path": "artifacts/chronos/r1_long_chord_exclusion_mathematical_data_packet_2026_05_24.json",
+      "checker_path": "tools/check_r1_long_chord_exclusion_mathematical_data_packet.py",
+      "lean_artifact_path": "lean/Chronos/Frontier/R1R2R3IsolatedTargetsConditionalClosure.lean",
       "proof_artifact_path": null,
-      "verification_result": "NOT_SUPPLIED"
+      "verification_result": "FINITE_DATA_CHECKER_SUPPLIED_NOT_LEAN_PROOF"
     },
     "R2": {
       "name": "DiameterSeparationFillingObstructionProofTarget",

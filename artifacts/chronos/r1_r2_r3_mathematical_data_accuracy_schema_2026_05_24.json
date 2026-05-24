@@ -25,23 +25,40 @@
   },
   "targets": {
     "R1_LONG_CHORD_EXCLUSION": {
-      "formal_statement": null,
-      "domain": null,
-      "objects": [],
-      "invariants": [],
-      "obstruction_or_capacity_quantity": null,
+      "formal_statement": "For each supplied finite skeleton graph S=(V,E_skel), candidate chord set C, and threshold lambda, no candidate chord {u,v} is a long chord when every computed skeleton distance d_S(u,v) is strictly below lambda.",
+      "domain": "finite simple undirected graph packets with explicit skeleton edges, candidate chords, and integer path metric",
+      "objects": [
+        "finite vertex set V",
+        "skeleton edge relation E_skel",
+        "candidate chord set C",
+        "integer threshold lambda",
+        "BFS-computed skeleton path metric d_S"
+      ],
+      "invariants": [
+        "vertices are unique",
+        "edges are loop-free",
+        "candidate endpoints lie in V",
+        "candidate endpoints are connected in the skeleton graph",
+        "computed distances match the packet values"
+      ],
+      "obstruction_or_capacity_quantity": "max_candidate_skeleton_distance",
       "finite_witness_schema": {
-        "vertices": [],
-        "edges": [],
-        "diameter_bound": null,
-        "long_chord_threshold": null,
-        "distance_function": null,
-        "forbidden_chord_predicate": null
+        "packet_path": "artifacts/chronos/r1_long_chord_exclusion_mathematical_data_packet_2026_05_24.json",
+        "vertices": "objects.vertices",
+        "skeleton_edges": "objects.skeleton_edges",
+        "candidate_chords": "objects.candidate_chords",
+        "long_chord_threshold": "objects.long_chord_threshold",
+        "distance_function": "BFS distance in skeleton graph",
+        "forbidden_chord_predicate": "candidate chord {u,v} with d_S(u,v) >= long_chord_threshold"
       },
-      "proof_dependencies": [],
-      "checker_contract": "tools/check_long_chord_witness_obstruction.py",
+      "proof_dependencies": [
+        "finite BFS distance computation",
+        "candidate edge endpoint validation",
+        "exhaustive threshold comparison over candidate_chords"
+      ],
+      "checker_contract": "tools/check_r1_long_chord_exclusion_mathematical_data_packet.py",
       "lean_target": "LongChordExclusionProofTarget",
-      "boundary": "open proof target"
+      "boundary": "finite computable data packet only; no general LongChordExclusion proof"
     },
     "R2_DIAMETER_SEPARATION_FILLING_OBSTRUCTION": {
       "formal_statement": null,

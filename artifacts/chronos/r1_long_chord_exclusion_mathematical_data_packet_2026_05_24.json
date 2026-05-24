@@ -1,0 +1,51 @@
+{
+  "artifact": "R1_LONG_CHORD_EXCLUSION_MATHEMATICAL_DATA_PACKET",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "R1_DATA_PACKET_COMPUTABLE_NO_PROOF_CLAIM",
+  "target": "LongChordExclusionProofTarget",
+  "formal_statement": "For the supplied finite skeleton graph S=(V,E_skel) and candidate chord set C, every candidate chord {u,v} has skeleton distance d_S(u,v) strictly below the long-chord threshold lambda. Therefore this finite packet has no computed long-chord witness.",
+  "domain": "finite simple undirected graph packets with explicit vertices, skeleton edges, candidate chords, and integer long-chord threshold",
+  "objects": {
+    "vertices": ["v0", "v1", "v2", "v3", "v4"],
+    "skeleton_edges": [["v0", "v1"], ["v1", "v2"], ["v2", "v3"], ["v3", "v4"]],
+    "candidate_chords": [["v0", "v2"], ["v1", "v3"], ["v2", "v4"]],
+    "long_chord_threshold": 3
+  },
+  "invariants": {
+    "finite_vertex_set": true,
+    "simple_undirected_edges": true,
+    "connected_skeleton_on_candidate_endpoints": true,
+    "integer_path_metric": true
+  },
+  "computed_quantities": {
+    "candidate_distances": {
+      "v0--v2": 2,
+      "v1--v3": 2,
+      "v2--v4": 2
+    },
+    "max_candidate_skeleton_distance": 2,
+    "long_chord_threshold": 3,
+    "computed_long_chords": [],
+    "computed_long_chords_absent": true
+  },
+  "checker_contract": "tools/check_r1_long_chord_exclusion_mathematical_data_packet.py",
+  "lean_target": "LongChordExclusionProofTarget",
+  "proof_dependencies": [
+    "finite BFS distance computation",
+    "candidate endpoint membership check",
+    "threshold comparison for every candidate chord"
+  ],
+  "boundary": "finite data packet only; does not prove general LongChordExclusion",
+  "does_not_prove": [
+    "general LongChordExclusion",
+    "native R1/R2/R3 instance",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "NON_FACTORISATION",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
