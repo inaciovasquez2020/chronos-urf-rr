@@ -1,0 +1,53 @@
+{
+  "id": "FINITE_CAPACITY_OPTICAL_METRIC_SYMBOLIC_PROFILE_THEOREM_2026_05_23",
+  "status": "SYMBOLIC_OPTICAL_PROFILE_THEOREM_ONLY_NOT_GRAVITY_CLOSURE",
+  "lean_module": "Chronos.Frontier.FiniteCapacityOpticalMetricSymbolicProfileTheorem",
+  "depends_on": [
+    "FINITE_CAPACITY_OPTICAL_METRIC_NUMERICAL_WITNESS_2026_05_23",
+    "FINITE_CAPACITY_OPTICAL_METRIC_DEFLECTION_SOURCE_MAP_2026_05_23"
+  ],
+  "assumptions": [
+    "0 < eps",
+    "eps < 1",
+    "0 < R",
+    "0 < expFactor",
+    "expFactor <= 1"
+  ],
+  "profile": {
+    "opticalIndex": "n = 1 - eps * expFactor",
+    "indexDerivativeProxy": "dn_dr = (eps / R) * expFactor",
+    "alphaDerivativeProxy": "dalpha_dr = -2 * n^(-3) * dn_dr"
+  },
+  "proved_relations": [
+    "0 < opticalIndex",
+    "opticalIndex < 1",
+    "1 - eps <= opticalIndex",
+    "0 < 1 - eps",
+    "0 < opticalIndexDerivativeProxy",
+    "opticalAlphaDerivativeProxy < 0"
+  ],
+  "admissible_use": [
+    "symbolic theorem layer for the optical metric finite-capacity profile",
+    "upgrades finite numerical sampling to algebraic sign and bound checks under expFactor assumptions",
+    "not a theorem input for gravity closure"
+  ],
+  "does_not_prove": [
+    "gravity closure",
+    "physical Einstein-matter flux identity",
+    "restricted analytic estimate package assumptions",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "verifier_tokens": [
+    "symbolic optical profile theorem",
+    "not gravity closure",
+    "physical Einstein-matter flux identity",
+    "restricted analytic estimate package assumptions",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
