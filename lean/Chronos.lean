@@ -217,3 +217,5 @@ import Chronos.Frontier.R1RestrictedLongChordSafeAdmissibility
 import Chronos.Frontier.FourBridgesSourceSolvedOpenTarget
 
 import Chronos.Frontier.RemainingThreeBridgesRouteScan
+
+import Chronos.Frontier.AdmissibilityGatedBridgeIngredientKernel
