@@ -42,13 +42,13 @@
     },
     "R3": {
       "name": "UniformLocalTypeCapacityProofTarget",
-      "state": "PENDING",
-      "mathematical_statement": null,
-      "data_packet_path": null,
-      "checker_path": null,
-      "lean_artifact_path": null,
+      "state": "SUPPLIED",
+      "mathematical_statement": "For each supplied finite labeled graph packet with radius r and capacity bound K, the R3 capacity instance is present when the number of distinct computed radius-r local type signatures is at most K.",
+      "data_packet_path": "artifacts/chronos/r3_uniform_local_type_capacity_mathematical_data_packet_2026_05_24.json",
+      "checker_path": "tools/check_r3_uniform_local_type_capacity_mathematical_data_packet.py",
+      "lean_artifact_path": "lean/Chronos/Frontier/R1R2R3IsolatedTargetsConditionalClosure.lean",
       "proof_artifact_path": null,
-      "verification_result": "NOT_SUPPLIED"
+      "verification_result": "FINITE_DATA_CHECKER_SUPPLIED_NOT_LEAN_PROOF"
     },
     "CLOSURE": {
       "name": "RepositoryNativeR1R2R3BindingClosureConditionalTarget",

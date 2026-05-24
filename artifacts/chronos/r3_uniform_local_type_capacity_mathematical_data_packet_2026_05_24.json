@@ -1,0 +1,68 @@
+{
+  "artifact": "R3_UNIFORM_LOCAL_TYPE_CAPACITY_MATHEMATICAL_DATA_PACKET",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "R3_DATA_PACKET_COMPUTABLE_NO_PROOF_CLAIM",
+  "target": "UniformLocalTypeCapacityProofTarget",
+  "formal_statement": "For the supplied finite labeled graph packet, the radius-r local type signature of every vertex belongs to a finite computed type set whose cardinality is at most the supplied capacity bound K. Therefore this finite packet computes a uniform local-type capacity instance.",
+  "domain": "finite simple undirected labeled graph packets with explicit radius, type alphabet, vertex labels, and capacity bound",
+  "objects": {
+    "vertices": ["u0", "u1", "u2", "u3", "u4", "u5"],
+    "edges": [["u0", "u1"], ["u1", "u2"], ["u2", "u3"], ["u3", "u4"], ["u4", "u5"], ["u5", "u0"]],
+    "labels": {
+      "u0": "A",
+      "u1": "B",
+      "u2": "A",
+      "u3": "B",
+      "u4": "A",
+      "u5": "B"
+    },
+    "type_alphabet": ["A", "B"],
+    "local_type_radius": 1,
+    "capacity_bound": 2
+  },
+  "invariants": {
+    "finite_vertex_set": true,
+    "simple_undirected_edges": true,
+    "all_vertices_labeled": true,
+    "labels_in_type_alphabet": true,
+    "integer_radius": true,
+    "integer_capacity_bound": true
+  },
+  "computed_quantities": {
+    "local_type_signatures": {
+      "u0": "A|B,B",
+      "u1": "B|A,A",
+      "u2": "A|B,B",
+      "u3": "B|A,A",
+      "u4": "A|B,B",
+      "u5": "B|A,A"
+    },
+    "distinct_local_types": ["A|B,B", "B|A,A"],
+    "distinct_local_type_count": 2,
+    "capacity_bound": 2,
+    "uniform_capacity_bound_satisfied": true,
+    "computed_capacity_instance_present": true
+  },
+  "checker_contract": "tools/check_r3_uniform_local_type_capacity_mathematical_data_packet.py",
+  "lean_target": "UniformLocalTypeCapacityProofTarget",
+  "proof_dependencies": [
+    "finite radius-neighborhood BFS computation",
+    "label membership validation",
+    "local type signature computation",
+    "distinct local type counting",
+    "capacity-bound comparison"
+  ],
+  "boundary": "finite data packet only; does not prove general UniformLocalTypeCapacity",
+  "does_not_prove": [
+    "general UniformLocalTypeCapacity",
+    "native R1/R2/R3 instance",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "NON_FACTORISATION",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}

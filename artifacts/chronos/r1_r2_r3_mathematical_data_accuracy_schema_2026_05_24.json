@@ -102,22 +102,45 @@
       "boundary": "finite computable data packet only; no general DiameterSeparationFillingObstruction proof"
     },
     "R3_UNIFORM_LOCAL_TYPE_CAPACITY": {
-      "formal_statement": null,
-      "domain": null,
-      "objects": [],
-      "invariants": [],
-      "obstruction_or_capacity_quantity": null,
+      "formal_statement": "For each supplied finite labeled graph packet with radius r and capacity bound K, the R3 capacity instance is present when the number of distinct computed radius-r local type signatures is at most K.",
+      "domain": "finite simple undirected labeled graph packets with explicit radius, finite type alphabet, vertex labels, and capacity bound",
+      "objects": [
+        "finite vertex set V",
+        "edge relation E",
+        "vertex label function ell : V -> Alphabet",
+        "finite type alphabet",
+        "local type radius r",
+        "capacity bound K",
+        "computed radius-r local type signatures"
+      ],
+      "invariants": [
+        "vertices are unique",
+        "edges are loop-free",
+        "every vertex has exactly one label",
+        "labels lie in the supplied type alphabet",
+        "local type radius is a nonnegative integer",
+        "capacity bound is a positive integer",
+        "computed signatures match packet values"
+      ],
+      "obstruction_or_capacity_quantity": "distinct_radius_r_local_type_count",
       "finite_witness_schema": {
-        "local_type_radius": null,
-        "type_alphabet": [],
-        "capacity_bound": null,
-        "uniformity_quantifier": null,
-        "forbidden_capacity_violation_predicate": null
+        "packet_path": "artifacts/chronos/r3_uniform_local_type_capacity_mathematical_data_packet_2026_05_24.json",
+        "local_type_radius": "objects.local_type_radius",
+        "type_alphabet": "objects.type_alphabet",
+        "capacity_bound": "objects.capacity_bound",
+        "uniformity_quantifier": "for every vertex v in V, local_type_signature(v,r) belongs to a type set of size <= K",
+        "forbidden_capacity_violation_predicate": "distinct_local_type_count > capacity_bound"
       },
-      "proof_dependencies": [],
-      "checker_contract": null,
+      "proof_dependencies": [
+        "finite radius-neighborhood BFS computation",
+        "label membership validation",
+        "local type signature computation",
+        "distinct local type counting",
+        "capacity-bound comparison"
+      ],
+      "checker_contract": "tools/check_r3_uniform_local_type_capacity_mathematical_data_packet.py",
       "lean_target": "UniformLocalTypeCapacityProofTarget",
-      "boundary": "open proof target"
+      "boundary": "finite computable data packet only; no general UniformLocalTypeCapacity proof"
     }
   },
   "does_not_prove": [
