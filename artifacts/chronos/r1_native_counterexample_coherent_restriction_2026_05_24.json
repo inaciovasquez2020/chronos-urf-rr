@@ -1,0 +1,36 @@
+{
+  "id": "R1_NATIVE_COUNTEREXAMPLE_COHERENT_RESTRICTION_2026_05_24",
+  "status": "UNRESTRICTED_R1_FALSE_COHERENT_R1_CLOSED",
+  "lean_module": "Chronos.Frontier.R1NativeCounterexampleCoherentRestriction",
+  "counterexample_object": "R1NativeLongChordCounterexampleObject",
+  "counterexample_theorem": "R1NativeLongChordCounterexampleObject_is_witness",
+  "unrestricted_false_theorem": "R1UnrestrictedNativeLongChordExclusionFalse",
+  "restricted_target": "R1CoherentLongChordExclusionProofTarget",
+  "restricted_target_theorem": "R1CoherentLongChordExclusionProofTarget_proved",
+  "weakest_sufficient_native_ingredient": "RepositoryNativeR1LongChordCoherence",
+  "weakest_sufficient_theorem": "R1WeakestSufficientNativeIngredientForLongChordExclusion_suffices",
+  "claims": {
+    "unrestricted_native_r1_long_chord_exclusion_false": true,
+    "coherent_native_r1_long_chord_exclusion_closed": true,
+    "opaque_LongChordExclusionProofTarget_closed": false,
+    "theorem_level_R1_promotion_closed": false,
+    "R2_closed": false,
+    "R3_closed": false,
+    "NON_FACTORISATION_closed": false,
+    "Chronos_RR_closed": false,
+    "H4_1_FGL_closed": false,
+    "P_vs_NP_closed": false,
+    "Clay_problem_closed": false
+  },
+  "boundary": [
+    "does not prove opaque LongChordExclusionProofTarget",
+    "does not prove theorem-level R1 promotion",
+    "does not prove R2",
+    "does not prove R3",
+    "does not prove NON_FACTORISATION",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
