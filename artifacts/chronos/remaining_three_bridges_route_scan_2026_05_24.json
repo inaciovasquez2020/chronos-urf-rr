@@ -1,0 +1,30 @@
+{
+  "id": "REMAINING_THREE_BRIDGES_ROUTE_SCAN_2026_05_24",
+  "status": "REMAINING_THREE_UNRESTRICTED_NAIVE_ROUTES_REFUTED_THEOREM_TARGETS_OPEN",
+  "closed_route_refutations": [
+    "unrestricted_r2_naive_promotion_route_refuted",
+    "unrestricted_r3_naive_promotion_route_refuted",
+    "unrestricted_non_factorisation_naive_promotion_route_refuted"
+  ],
+  "remaining_route_refutation_count": 3,
+  "remaining_theorem_target_closure_count": 0,
+  "still_open": [
+    "DiameterSeparationFillingObstructionProofTarget",
+    "UniformLocalTypeCapacityProofTarget",
+    "NonFactorisationBridgeProofTarget"
+  ],
+  "does_not_prove": [
+    "R2 theorem target",
+    "R3 theorem target",
+    "NON_FACTORISATION theorem target",
+    "DiameterSeparationFillingObstructionProofTarget",
+    "UniformLocalTypeCapacityProofTarget",
+    "NonFactorisationBridgeProofTarget",
+    "LongChordExclusionProofTarget",
+    "FourBridgesSourceSolved theorem closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
