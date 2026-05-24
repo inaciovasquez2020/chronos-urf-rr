@@ -1,0 +1,28 @@
+{
+  "artifact": "REPOSITORY_NATIVE_R1_R2_R3_BINDING_MISSING_OBJECT",
+  "date": "2026-05-24",
+  "status": "MISSING_OBJECT_RECORDED_NO_THEOREM_PROMOTION",
+  "missing_object": "RepositoryNativeR1R2R3BindingSpec",
+  "required_fields": [
+    "nativeWordSpec",
+    "nativeEdgeSpec",
+    "nativeFaceSpec",
+    "nativeFiberSpec",
+    "nativeTwoChainSpec",
+    "nativeQuotientDataSpec",
+    "r1MatchesOpenInputsRegistry",
+    "r2MatchesOpenInputsRegistry",
+    "r3MatchesOpenInputsRegistry"
+  ],
+  "boundary": [
+    "records missing repository-native R1/R2/R3 binding only",
+    "does not prove LongChordExclusion",
+    "does not prove DiameterSeparationFillingObstruction",
+    "does not prove UniformLocalTypeCapacity",
+    "does not prove NON_FACTORISATION",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
