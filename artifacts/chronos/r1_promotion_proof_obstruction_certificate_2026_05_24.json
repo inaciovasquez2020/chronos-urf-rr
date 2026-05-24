@@ -1,0 +1,27 @@
+{
+  "artifact": "R1_PROMOTION_PROOF_OBSTRUCTION_CERTIFICATE",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "R1_SELECTED_OBSTRUCTION_CERTIFICATE_OPEN",
+  "selected_target": "R1PromotionProofTarget",
+  "lean_module": "Chronos.Frontier.R1PromotionProofObstructionCertificate",
+  "obstruction_certificate": "R1PromotionProofObstructionCertificate",
+  "counterexample_search_harness_target": "R1PromotionCounterexampleSearchHarnessTarget",
+  "obstruction_elimination_certificate": "R1PromotionProofObstructionEliminationCertificate",
+  "theorem_target_reduction": "R1PromotionProofTargetReductionFromObstructionElimination",
+  "target_status": "OPEN",
+  "does_not_prove": [
+    "R1PromotionProofTarget",
+    "R1PromotionProofObstructionEliminationCertificate",
+    "R1PromotionProofTargetReductionFromObstructionElimination",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "native R1/R2/R3 instance unconditionally",
+    "NON_FACTORISATION unconditionally",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
