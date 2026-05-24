@@ -1,0 +1,44 @@
+{
+  "artifact": "R1_R2_R3_PROMOTION_OBSTRUCTION_FRONTIER_LOCK_2026_05_24",
+  "status": "PROMOTION_OBSTRUCTION_FRONTIER_LOCKED_OPEN",
+  "recorded_obstruction_certificates": [
+    "R1PromotionProofObstructionCertificate",
+    "R2PromotionProofObstructionCertificate",
+    "R3PromotionProofObstructionCertificate",
+    "NonFactorisationBridgeProofObstructionCertificate"
+  ],
+  "recorded_counterexample_harness_targets": [
+    "R1PromotionCounterexampleSearchHarnessTarget",
+    "R2PromotionCounterexampleSearchHarnessTarget",
+    "R3PromotionCounterexampleSearchHarnessTarget",
+    "NonFactorisationBridgeCounterexampleSearchHarnessTarget"
+  ],
+  "closure_requires": [
+    "R1PromotionProofObstructionEliminationCertificate",
+    "R2PromotionProofObstructionEliminationCertificate",
+    "R3PromotionProofObstructionEliminationCertificate",
+    "NonFactorisationBridgeProofObstructionEliminationCertificate"
+  ],
+  "frontier_state": "OPEN",
+  "next_missing_objects": [
+    "R1_PROMOTION_OBSTRUCTION_ELIMINATION_PROOF",
+    "R2_PROMOTION_OBSTRUCTION_ELIMINATION_PROOF",
+    "R3_PROMOTION_OBSTRUCTION_ELIMINATION_PROOF",
+    "NON_FACTORISATION_BRIDGE_OBSTRUCTION_ELIMINATION_PROOF"
+  ],
+  "does_not_prove": [
+    "R1PromotionProofTarget",
+    "R2PromotionProofTarget",
+    "R3PromotionProofTarget",
+    "NonFactorisationBridgeProofTarget",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "native R1/R2/R3 instance unconditionally",
+    "NON_FACTORISATION unconditionally",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
