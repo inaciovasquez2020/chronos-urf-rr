@@ -1,0 +1,42 @@
+{
+  "artifact": "R1_R2_R3_NON_FACTORISATION_PROMOTION_LOCK",
+  "date": "2026-05-24",
+  "status": "CONDITIONAL_INTERFACE_AND_NO_PROMOTION_LOCK_ONLY",
+  "formalized_substeps": {
+    "R1": [
+      "R1a_trivialFacesAvoidLongChords",
+      "R1b_linearCombinationsCannotCreateLongChords",
+      "R1c_maximalSeparationForbidsTrivialLongChord"
+    ],
+    "R2": [
+      "R2a_boundedFillingLocalizesToRootedRegion",
+      "R2b_distinctFiberSupportsCannotBeJoinedByBoundedTwoChain",
+      "R2c_boundedFillingForcesForbiddenTwistedClassIdentification",
+      "R2d_geometricSeparationImpliesAlgebraicInjectivity"
+    ],
+    "R3": [
+      "R3a_boundedLocalTypeFactorizationFiniteStateSpace",
+      "R3b_finiteStateFactorizationBoundsImageDimension",
+      "R3c_equalLocalTypeDataGivesEqualQuotientData",
+      "R3d_uniformDimensionBoundExtracted"
+    ]
+  },
+  "conditional_chain": "R1_R2_R3_TO_NON_FACTORISATION",
+  "promotion_lock": {
+    "ChronosRRPromotionAllowed": "requires R1_theorem_proved, R2_theorem_proved, R3_theorem_proved",
+    "H41FGLPromotionAllowed": "requires R1_theorem_proved, R2_theorem_proved, R3_theorem_proved"
+  },
+  "boundary": [
+    "formalizes R1a R1b R1c R2a R2b R2c R2d R3a R3b R3c R3d as interfaces",
+    "adds conditional R1_R2_R3_TO_NON_FACTORISATION dependency-chain surface",
+    "adds no-promotion lock for Chronos-RR and H4.1/FGL until R1 R2 R3 are theorem-proved",
+    "does not prove LongChordExclusion",
+    "does not prove DiameterSeparationFillingObstruction",
+    "does not prove UniformLocalTypeCapacity",
+    "does not prove NON_FACTORISATION",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
