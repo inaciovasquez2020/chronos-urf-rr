@@ -176,3 +176,4 @@ import Chronos.Frontier.ConcreteAnalyticEinsteinMatterEstimatePackageCloseoutSta
 import Chronos.Frontier.RestrictedAnalyticEstimateConditionalPackage
 import Chronos.Frontier.DrivenPhaseRigidityAnalogyMap
 import Chronos.Frontier.FiniteCapacityOpticalMetricDeflectionSourceMap
+import Chronos.Frontier.GravitationalEnergyFluxSourceMap
