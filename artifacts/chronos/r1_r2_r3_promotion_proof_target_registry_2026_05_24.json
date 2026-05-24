@@ -1,0 +1,46 @@
+{
+  "artifact": "R1_R2_R3_PROMOTION_PROOF_TARGET_REGISTRY",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "PROOF_TARGET_REGISTRY_OPEN",
+  "lean_module": "Chronos.Frontier.R1R2R3PromotionProofTargetRegistry",
+  "open_targets": [
+    {
+      "name": "R1PromotionProofTarget",
+      "definition": "R1FiniteDataToGeneralProofPromotionAssumption",
+      "status": "OPEN"
+    },
+    {
+      "name": "R2PromotionProofTarget",
+      "definition": "R2FiniteDataToGeneralProofPromotionAssumption",
+      "status": "OPEN"
+    },
+    {
+      "name": "R3PromotionProofTarget",
+      "definition": "R3FiniteDataToGeneralProofPromotionAssumption",
+      "status": "OPEN"
+    },
+    {
+      "name": "NonFactorisationBridgeProofTarget",
+      "definition": "NonFactorisationConditionalOnRepositoryNativeR1R2R3Instance",
+      "status": "OPEN"
+    }
+  ],
+  "registry": "R1R2R3PromotionProofTargetRegistry",
+  "open_marker": "R1R2R3PromotionProofTargetRegistryOpen",
+  "does_not_prove": [
+    "R1PromotionProofTarget",
+    "R2PromotionProofTarget",
+    "R3PromotionProofTarget",
+    "NonFactorisationBridgeProofTarget",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "native R1/R2/R3 instance unconditionally",
+    "NON_FACTORISATION unconditionally",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
