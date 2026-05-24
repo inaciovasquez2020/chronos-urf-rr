@@ -1,0 +1,42 @@
+{
+  "id": "ADMISSIBILITY_GATED_BRIDGE_INGREDIENT_KERNEL_2026_05_24",
+  "status": "ADMISSIBILITY_GATED_BRIDGE_INGREDIENT_KERNEL_ADDED_THEOREM_TARGETS_OPEN",
+  "new_bridge_ingredient": "AdmissibilityGatedBridgeIngredientKernel",
+  "reason": "The unrestricted naive-promotion routes for R2, R3, and NON_FACTORISATION were refuted, so the next admissible ingredient must be admissibility-gated.",
+  "ingredient_count": 3,
+  "theorem_target_closure_count": 0,
+  "ingredients": [
+    "R2AdmissibilityGatedBridgeIngredient",
+    "R3AdmissibilityGatedBridgeIngredient",
+    "NonFactorisationAdmissibilityGatedBridgeIngredient"
+  ],
+  "gates": [
+    "R2DiameterFillingCompatibilityGate",
+    "R3UniformLocalTypeCapacityGate",
+    "NonFactorisationAdmissibleBridgeGate"
+  ],
+  "closed_kernel_facts": [
+    "r2_gate_excludes_refuted_naive_route_class",
+    "r2_gate_supplies_positive_invariant",
+    "r3_gate_excludes_refuted_naive_route_class",
+    "r3_gate_supplies_positive_invariant",
+    "non_factorisation_gate_excludes_refuted_naive_route_class",
+    "non_factorisation_gate_supplies_positive_invariant"
+  ],
+  "still_open": [
+    "DiameterSeparationFillingObstructionProofTarget",
+    "UniformLocalTypeCapacityProofTarget",
+    "NonFactorisationBridgeProofTarget",
+    "FourBridgesSourceSolved theorem closure"
+  ],
+  "does_not_prove": [
+    "R2 theorem target closure",
+    "R3 theorem target closure",
+    "NON_FACTORISATION theorem target closure",
+    "FourBridgesSourceSolved theorem closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
