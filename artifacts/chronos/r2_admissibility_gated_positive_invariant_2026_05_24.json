@@ -1,0 +1,34 @@
+{
+  "id": "R2_ADMISSIBILITY_GATED_POSITIVE_INVARIANT_2026_05_24",
+  "status": "R2_POSITIVE_INVARIANT_INGREDIENT_CLOSED_THEOREM_TARGET_OPEN",
+  "source_kernel": "AdmissibilityGatedBridgeIngredientKernel",
+  "lane": "R2",
+  "closed_ingredient": "R2ConcreteDiameterFillingCompatibilityInvariant",
+  "closed_theorems": [
+    "r2_concrete_positive_invariant_ready",
+    "r2_concrete_positive_invariant_excludes_refuted_naive_class",
+    "r2_concrete_positive_invariant_supplies_diameter_stability",
+    "r2_concrete_positive_invariant_supplies_filling_compatibility",
+    "r2_concrete_positive_invariant_preserves_obstruction_witness"
+  ],
+  "positive_invariant_ingredient_closed_count": 1,
+  "r2_theorem_target_closure_count": 0,
+  "still_open": [
+    "DiameterSeparationFillingObstructionProofTarget",
+    "R2 theorem target closure",
+    "R3 theorem target closure",
+    "NON_FACTORISATION theorem target closure",
+    "FourBridgesSourceSolved theorem closure"
+  ],
+  "does_not_prove": [
+    "DiameterSeparationFillingObstructionProofTarget",
+    "R2 theorem target closure",
+    "R3 theorem target closure",
+    "NON_FACTORISATION theorem target closure",
+    "FourBridgesSourceSolved theorem closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
