@@ -193,3 +193,5 @@ import Chronos.Frontier.R1R2R3PromotionProofTargetRegistry
 import Chronos.Frontier.R1PromotionProofObstructionCertificate
 
 import Chronos.Frontier.R2PromotionProofObstructionCertificate
+
+import Chronos.Frontier.R3PromotionProofObstructionCertificate
