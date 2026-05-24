@@ -1,0 +1,42 @@
+{
+  "id": "FOUR_BRIDGES_SOURCE_SOLVED_OPEN_TARGET_2026_05_24",
+  "status": "FOUR_BRIDGES_SOURCE_SOLVED_OPEN_TARGET_ONLY",
+  "open_target": "FourBridgesSourceSolved",
+  "bridge_stubs": [
+    "solve_R1_bridge_theorem_stub",
+    "solve_R2_bridge_theorem_stub",
+    "solve_R3_bridge_theorem_stub",
+    "solve_NON_FACTORISATION_bridge_theorem_stub"
+  ],
+  "counterexample_search_harnesses": [
+    "r1_counterexample_search_harness",
+    "r2_counterexample_search_harness",
+    "r3_counterexample_search_harness",
+    "non_factorisation_counterexample_search_harness"
+  ],
+  "closed_first_bridge_result": {
+    "bridge": "R1",
+    "result": "REFUTES_UNRESTRICTED_NATIVE_R1_PROMOTION_ROUTE_ONLY",
+    "lean_theorem": "unrestricted_r1_native_promotion_refuted_first",
+    "closed_result_count": 1
+  },
+  "still_open": [
+    "LongChordExclusionProofTarget",
+    "DiameterSeparationFillingObstructionProofTarget",
+    "UniformLocalTypeCapacityProofTarget",
+    "NonFactorisationBridgeProofTarget"
+  ],
+  "does_not_prove": [
+    "RepositoryNativeR1LongChordCoherence",
+    "NoRepositoryNativeLongChordWitness",
+    "LongChordExclusionProofTarget",
+    "DiameterSeparationFillingObstructionProofTarget",
+    "UniformLocalTypeCapacityProofTarget",
+    "NonFactorisationBridgeProofTarget",
+    "NON_FACTORISATION",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}

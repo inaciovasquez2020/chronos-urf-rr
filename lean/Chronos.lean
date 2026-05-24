@@ -213,3 +213,5 @@ import Chronos.Frontier.BlackHoleObservationalMotivationRegistry
 import Chronos.Frontier.ExternalStrengtheningDataLedger
 import Chronos.Frontier.R1NativeCoherenceRefutation
 import Chronos.Frontier.R1RestrictedLongChordSafeAdmissibility
+
+import Chronos.Frontier.FourBridgesSourceSolvedOpenTarget
