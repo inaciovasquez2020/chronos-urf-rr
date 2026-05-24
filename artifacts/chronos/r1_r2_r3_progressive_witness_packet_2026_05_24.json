@@ -32,13 +32,13 @@
     },
     "R2": {
       "name": "DiameterSeparationFillingObstructionProofTarget",
-      "state": "PENDING",
-      "mathematical_statement": null,
-      "data_packet_path": null,
-      "checker_path": null,
-      "lean_artifact_path": null,
+      "state": "SUPPLIED",
+      "mathematical_statement": "For each supplied finite connected graph packet with terminal pairs, diameter bound D, separation threshold sigma, and filling floor phi, the R2 obstruction is present when graph diameter is at most D, every terminal distance is at least sigma, and every filling certificate has size strictly greater than phi.",
+      "data_packet_path": "artifacts/chronos/r2_diameter_separation_filling_mathematical_data_packet_2026_05_24.json",
+      "checker_path": "tools/check_r2_diameter_separation_filling_mathematical_data_packet.py",
+      "lean_artifact_path": "lean/Chronos/Frontier/R1R2R3IsolatedTargetsConditionalClosure.lean",
       "proof_artifact_path": null,
-      "verification_result": "NOT_SUPPLIED"
+      "verification_result": "FINITE_DATA_CHECKER_SUPPLIED_NOT_LEAN_PROOF"
     },
     "R3": {
       "name": "UniformLocalTypeCapacityProofTarget",

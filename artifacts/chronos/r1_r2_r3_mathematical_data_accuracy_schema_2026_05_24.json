@@ -61,21 +61,45 @@
       "boundary": "finite computable data packet only; no general LongChordExclusion proof"
     },
     "R2_DIAMETER_SEPARATION_FILLING_OBSTRUCTION": {
-      "formal_statement": null,
-      "domain": null,
-      "objects": [],
-      "invariants": [],
-      "obstruction_or_capacity_quantity": null,
+      "formal_statement": "For each supplied finite connected graph packet with terminal pairs, diameter bound D, separation threshold sigma, and filling floor phi, the R2 obstruction is present when graph diameter is at most D, every terminal distance is at least sigma, and every filling certificate has size strictly greater than phi.",
+      "domain": "finite simple connected undirected graph packets with terminal pairs, diameter bound, separation threshold, and filling certificates",
+      "objects": [
+        "finite vertex set V",
+        "edge relation E",
+        "terminal pair set T",
+        "diameter bound D",
+        "separation threshold sigma",
+        "filling floor phi",
+        "filling certificates indexed by terminal pair"
+      ],
+      "invariants": [
+        "vertices are unique",
+        "edges are loop-free",
+        "graph is connected",
+        "terminal endpoints lie in V",
+        "filling certificates use only existing graph edges",
+        "computed diameter and distances match packet values"
+      ],
+      "obstruction_or_capacity_quantity": "minimum_filling_size_above_floor_under_diameter_and_separation_constraints",
       "finite_witness_schema": {
-        "diameter_function": null,
-        "separation_function": null,
-        "filling_radius_or_area": null,
-        "forbidden_filling_predicate": null
+        "packet_path": "artifacts/chronos/r2_diameter_separation_filling_mathematical_data_packet_2026_05_24.json",
+        "vertices": "objects.vertices",
+        "edges": "objects.edges",
+        "terminal_pairs": "objects.terminal_pairs",
+        "diameter_bound": "objects.diameter_bound",
+        "separation_function": "BFS graph distance on terminal pairs",
+        "filling_radius_or_area": "certificate edge-count size",
+        "forbidden_filling_predicate": "diameter <= D and terminal distances >= sigma and filling sizes > phi"
       },
-      "proof_dependencies": [],
-      "checker_contract": null,
+      "proof_dependencies": [
+        "finite all-pairs BFS diameter computation",
+        "terminal separation check",
+        "filling certificate edge validation",
+        "filling lower-floor comparison"
+      ],
+      "checker_contract": "tools/check_r2_diameter_separation_filling_mathematical_data_packet.py",
       "lean_target": "DiameterSeparationFillingObstructionProofTarget",
-      "boundary": "open proof target"
+      "boundary": "finite computable data packet only; no general DiameterSeparationFillingObstruction proof"
     },
     "R3_UNIFORM_LOCAL_TYPE_CAPACITY": {
       "formal_statement": null,
