@@ -1,0 +1,29 @@
+{
+  "artifact": "R3_PROMOTION_PROOF_OBSTRUCTION_CERTIFICATE_2026_05_24",
+  "status": "R3_PROMOTION_PROOF_OBSTRUCTION_CERTIFICATE_OPEN_FRONTIER",
+  "selected_target": "R3PromotionProofTarget",
+  "obstruction_certificate": "R3PromotionProofObstructionCertificate",
+  "counterexample_search_harness": "R3PromotionCounterexampleSearchHarnessTarget",
+  "obstruction_elimination_certificate_target": "R3PromotionProofObstructionEliminationCertificate",
+  "theorem_target_reduction": "R3PromotionProofTargetReductionFromObstructionElimination",
+  "target_state": "OPEN",
+  "next_missing_objects": [
+    "R3_PROMOTION_COUNTEREXAMPLE_SEARCH_RESULT",
+    "R3_PROMOTION_OBSTRUCTION_ELIMINATION_PROOF",
+    "R3_PROMOTION_THEOREM_PROOF"
+  ],
+  "does_not_prove": [
+    "R3PromotionProofTarget",
+    "R3PromotionProofObstructionEliminationCertificate",
+    "R3PromotionProofTargetReductionFromObstructionElimination as closed target",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "native R1/R2/R3 instance unconditionally",
+    "NON_FACTORISATION unconditionally",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
