@@ -1,0 +1,37 @@
+{
+  "id": "FINITE_CAPACITY_OPTICAL_METRIC_DEFLECTION_SOURCE_MAP_2026_05_23",
+  "status": "SOURCE_BACKED_MAP_ONLY_NOT_THEOREM_INPUT",
+  "lean_module": "Chronos.Frontier.FiniteCapacityOpticalMetricDeflectionSourceMap",
+  "source": {
+    "title": "Admissible Spacetime Deflection under Finite Capacity: Lessons from Optical Metrics",
+    "author": "Inacio F. Vasquez",
+    "date": "2026-01-19",
+    "context": "Gravity Research Foundation 2026 Essay Competition",
+    "source_type": "uploaded PDF essay"
+  },
+  "source_claims_recorded": [
+    "finite capacity is proposed as an admissibility requirement for physically realizable spacetime geometry",
+    "realizable metrics support bounded information transport, bounded amplification of gradients, and finite operational resolution",
+    "optical metrics provide exact analog geometries for light rays",
+    "outward deflection can arise from bounded geometry alone without exotic matter",
+    "the optical metric relation is n(r) = alpha(r)^(-1/2)",
+    "outward deflection occurs when d_r n(r) > 0, equivalently d_r alpha(r) < 0",
+    "a bounded witness profile is n(r) = 1 - epsilon * exp(-r/R), with 0 < epsilon < 1"
+  ],
+  "admissible_use": [
+    "finite-capacity source map for bounded outward deflection",
+    "model-selection analogy for excluding infinite operational amplification",
+    "background source for optical-metric admissibility language",
+    "not a theorem input"
+  ],
+  "does_not_prove": [
+    "gravity closure",
+    "physical Einstein-matter flux identity",
+    "restricted analytic estimate package assumptions",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_missing_object": "FINITE_CAPACITY_OPTICAL_METRIC_DEFLECTION_FORMAL_THEOREM_OR_EXTERNAL_CITATION"
+}
