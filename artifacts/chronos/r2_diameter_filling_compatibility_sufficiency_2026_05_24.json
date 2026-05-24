@@ -1,0 +1,32 @@
+{
+  "artifact": "R2_DIAMETER_FILLING_COMPATIBILITY_SUFFICIENCY_2026_05_24",
+  "status": "R2_COMPATIBILITY_LOWER_BOUND_CLOSED_PROMOTION_ELIMINATION_OPEN",
+  "closed_structural_ingredients": [
+    "RepositoryNativeR2DiameterFillingCompatibility",
+    "RepositoryNativeR2SeparationLowerBound",
+    "repository_native_r2_diameter_filling_compatibility_gives_lower_bound",
+    "R2DiameterFillingCompatibilityToPromotionObstructionEliminationTarget",
+    "R2DiameterFillingCompatibilitySufficiencyFrontierOpen"
+  ],
+  "closed_result": "Repository-native R2 diameter/filling compatibility implies the monotone separation lower bound.",
+  "still_missing_for_r2_elimination": [
+    "R2DiameterFillingCompatibilityToPromotionObstructionEliminationTarget proof",
+    "R2PromotionProofObstructionEliminationCertificate"
+  ],
+  "does_not_prove": [
+    "R2PromotionProofObstructionEliminationCertificate",
+    "R2PromotionProofTarget",
+    "DiameterSeparationFillingObstruction",
+    "R1PromotionProofObstructionEliminationCertificate",
+    "R3PromotionProofObstructionEliminationCertificate",
+    "NonFactorisationBridgeProofTarget",
+    "LongChordExclusion",
+    "UniformLocalTypeCapacity",
+    "native R1/R2/R3 instance unconditionally",
+    "NON_FACTORISATION unconditionally",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
