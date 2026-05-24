@@ -1,0 +1,24 @@
+{
+  "id": "R1_R2_R3_AXIOM_BOUNDARY_CLOSURE_2026_05_24",
+  "status": "CLOSED_BY_EXPLICIT_AXIOM_BOUNDARY_NOT_THEOREM_LEVEL",
+  "closure_type": "AXIOM_BOUNDARY",
+  "lean_module": "Chronos.Frontier.R1R2R3AxiomBoundaryClosure",
+  "axioms": [
+    "r1_finite_data_to_general_proof_promotion_axiom",
+    "r2_finite_data_to_general_proof_promotion_axiom",
+    "r3_finite_data_to_general_proof_promotion_axiom",
+    "repository_native_r1_r2_r3_instance_to_non_factorisation_axiom"
+  ],
+  "closed_registry_surface": "R1R2R3PromotionProofTargetRegistry_closed_by_axiom_boundary",
+  "closed_downstream_surface": "NonFactorisationProofTarget_closed_by_axiom_boundary",
+  "boundary": [
+    "not theorem-level R1 closure",
+    "not theorem-level R2 closure",
+    "not theorem-level R3 closure",
+    "not theorem-level NON_FACTORISATION closure",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs NP closure",
+    "no Clay-problem closure"
+  ]
+}
