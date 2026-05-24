@@ -1,0 +1,61 @@
+{
+  "id": "EXTERNAL_GRAVITY_SOURCE_MATHEMATICAL_TEST_2026_05_23",
+  "status": "SOURCE_BACKED_MATHEMATICAL_TEST_ONLY_NOT_THEOREM_INPUT",
+  "sources": [
+    {
+      "source_id": "APS_PRD_BLACK_HOLE_SHADOW_LOWER_BOUND",
+      "source_url": "https://journals.aps.org/prd/abstract/10.1103/83t3-r7j2",
+      "identifier": "DOI:10.1103/83t3-r7j2",
+      "reported_object": "Lower bound on the radii of black-hole shadows",
+      "mathematical_gate": "(r_sh/r_H)^2 >= 27/4",
+      "admissible_use": "source-backed gravity-bound map",
+      "boundary": "not theorem input; not gravity closure"
+    },
+    {
+      "source_id": "ACT_KSZ_INVERSE_SQUARE_GRAVITY_CONSTRAINT",
+      "source_url": "https://okdiario.com/techy/en/einstein-and-newton-just-survived-a-huge-cosmic-test-and-the-result-makes-dark-matter-harder-to-dismiss-than-ever/3664/",
+      "reported_object": "large-scale ACT/kSZ inverse-square gravity constraint",
+      "mathematical_gate": "2 in [2.1 - 0.3, 2.1 + 0.3]",
+      "admissible_use": "external large-scale gravity constraint map",
+      "boundary": "not dark-matter detection; not DFM-MKC validation or refutation"
+    },
+    {
+      "source_id": "FINSLER_FRIEDMANN_GEOMETRIC_ACCELERATION_ANALOGY",
+      "source_url": "https://www.sciencedaily.com/releases/2026/01/260110211221.htm",
+      "reported_object": "Finsler-Friedmann geometric acceleration analogy",
+      "mathematical_gate": "no numeric gate admitted",
+      "admissible_use": "source-backed geometric-cosmology analogy map",
+      "boundary": "not empirical validation; not dark-energy disproof"
+    }
+  ],
+  "mathematical_tests": [
+    {
+      "name": "black_hole_shadow_lower_bound_squared_gate",
+      "formula": "(r_sh/r_H)^2 >= 27/4",
+      "test_value": "27/4",
+      "passes": true
+    },
+    {
+      "name": "act_ksz_inverse_square_one_sigma_gate",
+      "formula": "abs(2 - 21/10) <= 3/10",
+      "central": "21/10",
+      "tolerance": "3/10",
+      "target": "2",
+      "passes": true
+    }
+  ],
+  "boundaries": [
+    "Does not prove gravity closure",
+    "Does not prove physical Einstein-matter flux identity",
+    "Does not prove restricted analytic estimate assumption",
+    "Does not prove dark matter detection",
+    "Does not prove dark energy disproof",
+    "Does not prove DFM-MKC validation",
+    "Does not prove Lambda-CDM failure",
+    "Does not prove Chronos-RR",
+    "Does not prove H4.1/FGL",
+    "Does not prove P vs NP",
+    "Does not prove any Clay problem"
+  ],
+  "next_admissible_object": "PRIMARY_SOURCE_DIGEST_AND_OBSERVATIONAL_CONSTRAINT_TEST_PACKET"
+}
