@@ -201,3 +201,5 @@ import Chronos.Frontier.NonFactorisationBridgeProofObstructionCertificate
 import Chronos.Frontier.R1R2R3PromotionObstructionFrontierLock
 
 import Chronos.Frontier.NativeLongChordDiameterCapacityIngredients
+
+import Chronos.Frontier.R1LongChordCoherenceSufficiency

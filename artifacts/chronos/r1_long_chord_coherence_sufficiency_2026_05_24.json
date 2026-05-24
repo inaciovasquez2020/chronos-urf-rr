@@ -1,0 +1,30 @@
+{
+  "artifact": "R1_LONG_CHORD_COHERENCE_SUFFICIENCY_2026_05_24",
+  "status": "R1_COHERENCE_WITNESS_EXCLUSION_CLOSED_PROMOTION_ELIMINATION_OPEN",
+  "closed_structural_ingredients": [
+    "RepositoryNativeR1LongChordCoherence",
+    "NoRepositoryNativeLongChordWitness",
+    "repository_native_r1_long_chord_coherence_blocks_witness",
+    "R1LongChordCoherenceToPromotionObstructionEliminationTarget",
+    "R1LongChordCoherenceSufficiencyFrontierOpen"
+  ],
+  "closed_result": "Repository-native R1 long-chord coherence excludes native long-chord witnesses.",
+  "still_missing_for_r1_elimination": [
+    "R1LongChordCoherenceToPromotionObstructionEliminationTarget proof",
+    "R1PromotionProofObstructionEliminationCertificate"
+  ],
+  "does_not_prove": [
+    "R1PromotionProofObstructionEliminationCertificate",
+    "R1PromotionProofTarget",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "NonFactorisationBridgeProofTarget",
+    "native R1/R2/R3 instance unconditionally",
+    "NON_FACTORISATION unconditionally",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
