@@ -1,0 +1,34 @@
+{
+  "artifact": "R1_NATIVE_COHERENCE_PROMOTION_TARGET_2026_05_24",
+  "status": "OPEN_PROMOTION_TARGET_ONLY",
+  "lean_module": "Chronos.Frontier.R1NativeCoherencePromotionTarget",
+  "defined_objects": [
+    "NativeAdmissibilityPackage",
+    "R1NativeCoherencePromotionTarget",
+    "R1NativeCoherenceCounterexampleTarget",
+    "NativeAdmissibility_implies_R1LongChordCoherence_OPEN",
+    "NativeAdmissibility_R1LongChordCoherence_counterexample_OPEN",
+    "R1NativeCoherencePromotionBoundary"
+  ],
+  "accepted_prior_result": {
+    "unrestricted_native_r1_refuted_by": "R1UnrestrictedNativeLongChordExclusionFalse",
+    "coherent_r1_closed_by": "R1CoherentLongChordExclusionProofTarget_proved",
+    "coherent_sufficient_ingredient": "RepositoryNativeR1LongChordCoherence"
+  },
+  "open_problem": "NativeAdmissibilityPackage -> RepositoryNativeR1LongChordCoherence",
+  "counterexample_target": "NativeAdmissibilityPackage and not RepositoryNativeR1LongChordCoherence",
+  "boundary": [
+    "does not prove NativeAdmissibilityPackage -> RepositoryNativeR1LongChordCoherence",
+    "does not prove RepositoryNativeR1LongChordCoherence",
+    "does not prove NoRepositoryNativeLongChordWitness",
+    "does not prove opaque LongChordExclusionProofTarget",
+    "does not prove theorem-level R1 promotion",
+    "does not prove R2",
+    "does not prove R3",
+    "does not prove NON_FACTORISATION",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
