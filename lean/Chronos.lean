@@ -211,3 +211,4 @@ import Chronos.Frontier.R1NativeCounterexampleCoherentRestriction
 import Chronos.Frontier.FourBridgesRegistryIntegration
 import Chronos.Frontier.BlackHoleObservationalMotivationRegistry
 import Chronos.Frontier.ExternalStrengtheningDataLedger
+import Chronos.Frontier.R1NativeCoherenceRefutation
