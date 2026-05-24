@@ -1,0 +1,37 @@
+{
+  "id": "FINITE_CAPACITY_OPTICAL_METRIC_NUMERICAL_WITNESS_2026_05_23",
+  "status": "NUMERICAL_SANITY_WITNESS_ONLY_NOT_THEOREM_INPUT",
+  "lean_module": "Chronos.Frontier.FiniteCapacityOpticalMetricNumericalWitness",
+  "depends_on": [
+    "FINITE_CAPACITY_OPTICAL_METRIC_DEFLECTION_SOURCE_MAP_2026_05_23"
+  ],
+  "values": {
+    "centerIndex": "1/2",
+    "outerIndex": "3/4",
+    "centerAlpha": "4",
+    "outerAlpha": "16/9"
+  },
+  "verified_relations": [
+    "0 < centerIndex",
+    "0 < outerIndex",
+    "centerIndex < outerIndex",
+    "0 < outerAlpha",
+    "outerAlpha < centerAlpha",
+    "centerAlpha <= 4",
+    "outerAlpha <= 4"
+  ],
+  "admissible_use": [
+    "numerical sanity witness for bounded optical-metric outward-deflection source map",
+    "checks lower central refractive index and decreasing alpha outward",
+    "not a theorem input"
+  ],
+  "does_not_prove": [
+    "gravity closure",
+    "physical Einstein-matter flux identity",
+    "restricted analytic estimate package assumptions",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
