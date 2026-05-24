@@ -1,0 +1,41 @@
+{
+  "artifact": "NATIVE_LONG_CHORD_DIAMETER_CAPACITY_INGREDIENTS_2026_05_24",
+  "status": "STRUCTURAL_INGREDIENT_PACKET_CLOSED_PROMOTION_FRONTIER_OPEN",
+  "closed_structural_ingredients": [
+    "LongChordEndpoint",
+    "LongChordMetricDatum",
+    "LongChordNativeObject",
+    "LongChordWitness",
+    "NativeLongChordCoherence",
+    "long_chord_witness_contradiction",
+    "DiameterFillingNativeObject",
+    "DiameterFillingCompatibility",
+    "monotone_separation_lower_bound",
+    "LocalTypeCapacityNativeObject",
+    "ExplicitLocalTypeCapacityC",
+    "WithinExplicitLocalTypeCapacity",
+    "local_type_capacity_bound_certificate"
+  ],
+  "explicit_capacity_bound_C": 4096,
+  "still_missing_for_obstruction_elimination": [
+    "R1PromotionProofObstructionEliminationCertificate",
+    "R2PromotionProofObstructionEliminationCertificate",
+    "R3PromotionProofObstructionEliminationCertificate",
+    "NonFactorisationBridgeProofObstructionEliminationCertificate"
+  ],
+  "does_not_prove": [
+    "R1PromotionProofTarget",
+    "R2PromotionProofTarget",
+    "R3PromotionProofTarget",
+    "NonFactorisationBridgeProofTarget",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "native R1/R2/R3 instance unconditionally",
+    "NON_FACTORISATION unconditionally",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
