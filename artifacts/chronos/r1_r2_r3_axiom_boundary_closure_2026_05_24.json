@@ -1,0 +1,36 @@
+{
+  "id": "R1_R2_R3_CONDITIONAL_ASSUMPTION_SURFACE_2026_05_24",
+  "status": "CONDITIONAL_ASSUMPTION_SURFACE_ONLY_NOT_CLOSURE",
+  "closure_type": "NONE_CONDITIONAL_ASSUMPTION_SURFACE_ONLY",
+  "lean_module": "Chronos.Frontier.R1R2R3AxiomBoundaryClosure",
+  "assumption_surface": "R1R2R3ConditionalAssumptionSurface",
+  "bridge_assumptions": [
+    "R1FiniteDataToGeneralProofPromotionBridgeAssumption",
+    "R2FiniteDataToGeneralProofPromotionBridgeAssumption",
+    "R3FiniteDataToGeneralProofPromotionBridgeAssumption",
+    "RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumption"
+  ],
+  "conditional_surfaces": [
+    "RepositoryNativeR1R2R3InstanceTarget_conditional_on_surface",
+    "NonFactorisationProofTarget_conditional_on_surface",
+    "R1R2R3PromotionProofTargetRegistry_conditional_on_surface"
+  ],
+  "theorem_level_r1_closure": false,
+  "theorem_level_r2_closure": false,
+  "theorem_level_r3_closure": false,
+  "theorem_level_non_factorisation_closure": false,
+  "chronos_rr_closure": false,
+  "h4_1_fgl_closure": false,
+  "p_vs_np_closure": false,
+  "clay_problem_closure": false,
+  "boundary": [
+    "not theorem-level R1 closure",
+    "not theorem-level R2 closure",
+    "not theorem-level R3 closure",
+    "not theorem-level NON_FACTORISATION closure",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs NP closure",
+    "no Clay-problem closure"
+  ]
+}

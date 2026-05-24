@@ -205,3 +205,6 @@ import Chronos.Frontier.NativeLongChordDiameterCapacityIngredients
 import Chronos.Frontier.R1LongChordCoherenceSufficiency
 
 import Chronos.Frontier.R2DiameterFillingCompatibilitySufficiency
+import Chronos.Frontier.R1R2R3AxiomBoundaryClosure
+import Chronos.Frontier.R1NativeCounterexampleCoherentRestriction
+import Chronos.Frontier.FourBridgesRegistryIntegration

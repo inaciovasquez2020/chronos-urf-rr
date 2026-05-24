@@ -1,0 +1,65 @@
+{
+  "id": "FOUR_BRIDGES_REGISTRY_INTEGRATION_2026_05_24",
+  "status": "FOUR_BRIDGES_REGISTRY_INTEGRATION_CONDITIONAL_EXTERNAL_ONLY",
+  "lean_module": "Chronos.Frontier.FourBridgesRegistryIntegration",
+  "bridge_source": "FourBridgesSource",
+  "registry_class": "URF11BridgeRegistry",
+  "active_registry_instance_declared": false,
+  "native_finished_theorems": [
+    "R1FinishedTheorem",
+    "R2FinishedTheorem",
+    "R3FinishedTheorem"
+  ],
+  "native_finished_theorem_proofs": [
+    "R1FinishedTheorem_proved",
+    "R2FinishedTheorem_proved",
+    "R3FinishedTheorem_proved"
+  ],
+  "extraction_surfaces": [
+    "R1_from_4bS",
+    "R2_from_4bS",
+    "R3_from_4bS",
+    "RepositoryNativeR1R2R3InstanceTarget_from_4bS",
+    "R4_from_4bS",
+    "CompleteOpaqueSystem_conditional_on_4bS",
+    "R1_registered_extraction",
+    "R2_registered_extraction",
+    "R3_registered_extraction",
+    "R4_registered_extraction",
+    "CompleteOpaqueSystem_registered"
+  ],
+  "policy": {
+    "admissible": "External 4bS certification supplies the URF11BridgeRegistry instance.",
+    "rejected": [
+      "native active registry instance",
+      "global bridge declaration",
+      "macro or meta-program injection",
+      "unconditional opaque-target closure without 4bS"
+    ]
+  },
+  "claims": {
+    "r1_native_coherent_kernel_closed": true,
+    "r2_native_kernel_closed": true,
+    "r3_native_kernel_closed": true,
+    "four_bridges_registry_wired": true,
+    "active_registry_instance_declared": false,
+    "unconditional_opaque_targets_closed": false,
+    "non_factorisation_unconditional_closed": false,
+    "chronos_rr_closed": false,
+    "h4_1_fgl_closed": false,
+    "p_vs_np_closed": false,
+    "clay_problem_closed": false
+  },
+  "boundary": [
+    "does not provide an active URF11BridgeRegistry instance",
+    "does not prove unconditional opaque R1",
+    "does not prove unconditional opaque R2",
+    "does not prove unconditional opaque R3",
+    "does not prove unconditional R4",
+    "does not prove unconditional NON_FACTORISATION",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
