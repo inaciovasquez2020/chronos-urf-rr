@@ -1,3 +1,5 @@
+import Chronos.Frontier.ExternalGravitySourceMathematicalTest
+import Chronos.Frontier.ExternalGravitySourceInputValues
 import Chronos.Frontier.NonsphericalCollapseBridgeTheoremTarget
 import Chronos.Frontier.QuasiLocalCollapseGateConditionalBridge
 import Chronos.Frontier.SphericalCompactnessNullExpansionBridgeSurface
