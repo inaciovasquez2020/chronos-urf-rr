@@ -1,0 +1,32 @@
+{
+  "artifact": "R1_RESTRICTED_LONG_CHORD_SAFE_ADMISSIBILITY_2026_05_24",
+  "status": "RESTRICTED_R1_LONG_CHORD_SAFE_ADMISSIBILITY_CLOSED",
+  "lean_module": "Chronos.Frontier.R1RestrictedLongChordSafeAdmissibility",
+  "proved_theorems": [
+    "R1RestrictedNoLongChordWitness_proved",
+    "R1NativeLongChordCounterexampleObject_not_safe"
+  ],
+  "defined_objects": [
+    "R1LongChordSafeNativeAdmissible",
+    "R1RestrictedNoLongChordWitness",
+    "R1RestrictedLongChordSafeAdmissibilityStatus"
+  ],
+  "reason_for_repair": [
+    "RepositoryNativeR1LongChordCoherence_refuted proves not RepositoryNativeR1LongChordCoherence",
+    "therefore the repaired R1 bridge must be restricted or object-indexed",
+    "R1LongChordSafeNativeAdmissible excludes exactly objects carrying LongChordWitness"
+  ],
+  "boundary": [
+    "does not prove RepositoryNativeR1LongChordCoherence",
+    "does not prove NoRepositoryNativeLongChordWitness",
+    "does not prove opaque LongChordExclusionProofTarget",
+    "does not prove theorem-level unrestricted R1 promotion",
+    "does not prove R2",
+    "does not prove R3",
+    "does not prove NON_FACTORISATION",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
