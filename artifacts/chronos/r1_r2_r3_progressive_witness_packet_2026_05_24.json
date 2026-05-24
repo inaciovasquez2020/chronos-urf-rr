@@ -1,0 +1,87 @@
+{
+  "artifact": "R1_R2_R3_PROGRESSIVE_WITNESS_PACKET",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "PROGRESSIVE_TEST_HARNESS_ONLY_FRONTIER_OPEN",
+  "linked_conditional_surface": "R1_R2_R3_ISOLATED_TARGETS_CONDITIONAL_CLOSURE",
+  "closure_ready": false,
+  "strict_completion_status": "NOT_READY",
+  "piece_by_piece_order": [
+    "R1_LONG_CHORD_EXCLUSION_DATA",
+    "R1_LONG_CHORD_EXCLUSION_VERIFIER",
+    "R1_LONG_CHORD_EXCLUSION_LEAN_PROOF",
+    "R2_DIAMETER_SEPARATION_FILLING_DATA",
+    "R2_DIAMETER_SEPARATION_FILLING_VERIFIER",
+    "R2_DIAMETER_SEPARATION_FILLING_LEAN_PROOF",
+    "R3_UNIFORM_LOCAL_TYPE_CAPACITY_DATA",
+    "R3_UNIFORM_LOCAL_TYPE_CAPACITY_VERIFIER",
+    "R3_UNIFORM_LOCAL_TYPE_CAPACITY_LEAN_PROOF",
+    "REPOSITORY_NATIVE_R1_R2_R3_INSTANCE",
+    "REPOSITORY_NATIVE_R1_R2_R3_BINDING_CLOSURE"
+  ],
+  "targets": {
+    "R1": {
+      "name": "LongChordExclusionProofTarget",
+      "state": "PENDING",
+      "mathematical_statement": null,
+      "data_packet_path": null,
+      "checker_path": "tools/check_long_chord_witness_obstruction.py",
+      "lean_artifact_path": null,
+      "proof_artifact_path": null,
+      "verification_result": "NOT_SUPPLIED"
+    },
+    "R2": {
+      "name": "DiameterSeparationFillingObstructionProofTarget",
+      "state": "PENDING",
+      "mathematical_statement": null,
+      "data_packet_path": null,
+      "checker_path": null,
+      "lean_artifact_path": null,
+      "proof_artifact_path": null,
+      "verification_result": "NOT_SUPPLIED"
+    },
+    "R3": {
+      "name": "UniformLocalTypeCapacityProofTarget",
+      "state": "PENDING",
+      "mathematical_statement": null,
+      "data_packet_path": null,
+      "checker_path": null,
+      "lean_artifact_path": null,
+      "proof_artifact_path": null,
+      "verification_result": "NOT_SUPPLIED"
+    },
+    "CLOSURE": {
+      "name": "RepositoryNativeR1R2R3BindingClosureConditionalTarget",
+      "state": "PENDING",
+      "mathematical_statement": null,
+      "data_packet_path": null,
+      "checker_path": null,
+      "lean_artifact_path": null,
+      "proof_artifact_path": null,
+      "verification_result": "NOT_SUPPLIED"
+    }
+  },
+  "strict_completion_requirements": [
+    "R1.state == VERIFIED",
+    "R2.state == VERIFIED",
+    "R3.state == VERIFIED",
+    "CLOSURE.state == VERIFIED",
+    "closure_ready == true",
+    "strict_completion_status == READY",
+    "each verified target has a non-null mathematical_statement",
+    "each verified target has an existing lean_artifact_path",
+    "each verified target has an existing proof_artifact_path",
+    "each verified target has verification_result == VERIFIED_BY_REPOSITORY_NATIVE_PROOF"
+  ],
+  "does_not_prove": [
+    "native R1/R2/R3 instance",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "NON_FACTORISATION",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
