@@ -1,0 +1,70 @@
+{
+  "artifact": "R2_DIAMETER_SEPARATION_FILLING_MATHEMATICAL_DATA_PACKET",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "R2_DATA_PACKET_COMPUTABLE_NO_PROOF_CLAIM",
+  "target": "DiameterSeparationFillingObstructionProofTarget",
+  "formal_statement": "For the supplied finite metric-filling packet, every separated terminal pair has graph distance at least sigma, the ambient skeleton has diameter at most D, and every supplied filling certificate has size strictly greater than the obstruction floor phi. Therefore this finite packet computes a diameter/separation/filling obstruction instance.",
+  "domain": "finite simple connected undirected graph packets with explicit terminal pairs, diameter bound, separation threshold, and filling-size lower floor",
+  "objects": {
+    "vertices": ["a", "b", "c", "d", "e", "f"],
+    "edges": [["a", "b"], ["b", "c"], ["c", "d"], ["d", "e"], ["e", "f"]],
+    "terminal_pairs": [["a", "d"], ["b", "e"], ["c", "f"]],
+    "diameter_bound": 5,
+    "separation_threshold": 3,
+    "filling_floor": 2,
+    "filling_certificates": {
+      "a--d": [["a", "b"], ["b", "c"], ["c", "d"]],
+      "b--e": [["b", "c"], ["c", "d"], ["d", "e"]],
+      "c--f": [["c", "d"], ["d", "e"], ["e", "f"]]
+    }
+  },
+  "invariants": {
+    "finite_vertex_set": true,
+    "simple_undirected_edges": true,
+    "connected_graph": true,
+    "integer_path_metric": true,
+    "terminal_endpoints_exist": true,
+    "filling_certificates_use_existing_edges": true
+  },
+  "computed_quantities": {
+    "graph_diameter": 5,
+    "terminal_distances": {
+      "a--d": 3,
+      "b--e": 3,
+      "c--f": 3
+    },
+    "minimum_terminal_separation": 3,
+    "filling_sizes": {
+      "a--d": 3,
+      "b--e": 3,
+      "c--f": 3
+    },
+    "minimum_filling_size": 3,
+    "diameter_bound_satisfied": true,
+    "separation_threshold_satisfied": true,
+    "filling_floor_obstruction_satisfied": true,
+    "computed_obstruction_present": true
+  },
+  "checker_contract": "tools/check_r2_diameter_separation_filling_mathematical_data_packet.py",
+  "lean_target": "DiameterSeparationFillingObstructionProofTarget",
+  "proof_dependencies": [
+    "finite all-pairs BFS diameter computation",
+    "terminal endpoint membership check",
+    "terminal separation threshold comparison",
+    "filling certificate edge validation",
+    "filling floor comparison"
+  ],
+  "boundary": "finite data packet only; does not prove general DiameterSeparationFillingObstruction",
+  "does_not_prove": [
+    "general DiameterSeparationFillingObstruction",
+    "native R1/R2/R3 instance",
+    "LongChordExclusion",
+    "UniformLocalTypeCapacity",
+    "NON_FACTORISATION",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}

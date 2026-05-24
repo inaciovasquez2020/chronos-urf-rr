@@ -1,0 +1,159 @@
+{
+  "artifact": "R1_R2_R3_MATHEMATICAL_DATA_ACCURACY_SCHEMA",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "MATHEMATICAL_DATA_SCHEMA_ONLY_NO_ACCURACY_CLAIM",
+  "linked_progressive_packet": "artifacts/chronos/r1_r2_r3_progressive_witness_packet_2026_05_24.json",
+  "purpose": "Require explicit mathematical data before any R1/R2/R3 accuracy or closure-readiness score can be computed.",
+  "accuracy_policy": {
+    "score_type": "STRUCTURAL_COMPLETENESS_ONLY",
+    "truth_accuracy_claim": false,
+    "empirical_accuracy_claim": false,
+    "theorem_accuracy_claim": false,
+    "minimum_verified_fields_per_target": [
+      "formal_statement",
+      "domain",
+      "objects",
+      "invariants",
+      "obstruction_or_capacity_quantity",
+      "finite_witness_schema",
+      "proof_dependencies",
+      "checker_contract",
+      "lean_target",
+      "boundary"
+    ]
+  },
+  "targets": {
+    "R1_LONG_CHORD_EXCLUSION": {
+      "formal_statement": "For each supplied finite skeleton graph S=(V,E_skel), candidate chord set C, and threshold lambda, no candidate chord {u,v} is a long chord when every computed skeleton distance d_S(u,v) is strictly below lambda.",
+      "domain": "finite simple undirected graph packets with explicit skeleton edges, candidate chords, and integer path metric",
+      "objects": [
+        "finite vertex set V",
+        "skeleton edge relation E_skel",
+        "candidate chord set C",
+        "integer threshold lambda",
+        "BFS-computed skeleton path metric d_S"
+      ],
+      "invariants": [
+        "vertices are unique",
+        "edges are loop-free",
+        "candidate endpoints lie in V",
+        "candidate endpoints are connected in the skeleton graph",
+        "computed distances match the packet values"
+      ],
+      "obstruction_or_capacity_quantity": "max_candidate_skeleton_distance",
+      "finite_witness_schema": {
+        "packet_path": "artifacts/chronos/r1_long_chord_exclusion_mathematical_data_packet_2026_05_24.json",
+        "vertices": "objects.vertices",
+        "skeleton_edges": "objects.skeleton_edges",
+        "candidate_chords": "objects.candidate_chords",
+        "long_chord_threshold": "objects.long_chord_threshold",
+        "distance_function": "BFS distance in skeleton graph",
+        "forbidden_chord_predicate": "candidate chord {u,v} with d_S(u,v) >= long_chord_threshold"
+      },
+      "proof_dependencies": [
+        "finite BFS distance computation",
+        "candidate edge endpoint validation",
+        "exhaustive threshold comparison over candidate_chords"
+      ],
+      "checker_contract": "tools/check_r1_long_chord_exclusion_mathematical_data_packet.py",
+      "lean_target": "LongChordExclusionProofTarget",
+      "boundary": "finite computable data packet only; no general LongChordExclusion proof"
+    },
+    "R2_DIAMETER_SEPARATION_FILLING_OBSTRUCTION": {
+      "formal_statement": "For each supplied finite connected graph packet with terminal pairs, diameter bound D, separation threshold sigma, and filling floor phi, the R2 obstruction is present when graph diameter is at most D, every terminal distance is at least sigma, and every filling certificate has size strictly greater than phi.",
+      "domain": "finite simple connected undirected graph packets with terminal pairs, diameter bound, separation threshold, and filling certificates",
+      "objects": [
+        "finite vertex set V",
+        "edge relation E",
+        "terminal pair set T",
+        "diameter bound D",
+        "separation threshold sigma",
+        "filling floor phi",
+        "filling certificates indexed by terminal pair"
+      ],
+      "invariants": [
+        "vertices are unique",
+        "edges are loop-free",
+        "graph is connected",
+        "terminal endpoints lie in V",
+        "filling certificates use only existing graph edges",
+        "computed diameter and distances match packet values"
+      ],
+      "obstruction_or_capacity_quantity": "minimum_filling_size_above_floor_under_diameter_and_separation_constraints",
+      "finite_witness_schema": {
+        "packet_path": "artifacts/chronos/r2_diameter_separation_filling_mathematical_data_packet_2026_05_24.json",
+        "vertices": "objects.vertices",
+        "edges": "objects.edges",
+        "terminal_pairs": "objects.terminal_pairs",
+        "diameter_bound": "objects.diameter_bound",
+        "separation_function": "BFS graph distance on terminal pairs",
+        "filling_radius_or_area": "certificate edge-count size",
+        "forbidden_filling_predicate": "diameter <= D and terminal distances >= sigma and filling sizes > phi"
+      },
+      "proof_dependencies": [
+        "finite all-pairs BFS diameter computation",
+        "terminal separation check",
+        "filling certificate edge validation",
+        "filling lower-floor comparison"
+      ],
+      "checker_contract": "tools/check_r2_diameter_separation_filling_mathematical_data_packet.py",
+      "lean_target": "DiameterSeparationFillingObstructionProofTarget",
+      "boundary": "finite computable data packet only; no general DiameterSeparationFillingObstruction proof"
+    },
+    "R3_UNIFORM_LOCAL_TYPE_CAPACITY": {
+      "formal_statement": "For each supplied finite labeled graph packet with radius r and capacity bound K, the R3 capacity instance is present when the number of distinct computed radius-r local type signatures is at most K.",
+      "domain": "finite simple undirected labeled graph packets with explicit radius, finite type alphabet, vertex labels, and capacity bound",
+      "objects": [
+        "finite vertex set V",
+        "edge relation E",
+        "vertex label function ell : V -> Alphabet",
+        "finite type alphabet",
+        "local type radius r",
+        "capacity bound K",
+        "computed radius-r local type signatures"
+      ],
+      "invariants": [
+        "vertices are unique",
+        "edges are loop-free",
+        "every vertex has exactly one label",
+        "labels lie in the supplied type alphabet",
+        "local type radius is a nonnegative integer",
+        "capacity bound is a positive integer",
+        "computed signatures match packet values"
+      ],
+      "obstruction_or_capacity_quantity": "distinct_radius_r_local_type_count",
+      "finite_witness_schema": {
+        "packet_path": "artifacts/chronos/r3_uniform_local_type_capacity_mathematical_data_packet_2026_05_24.json",
+        "local_type_radius": "objects.local_type_radius",
+        "type_alphabet": "objects.type_alphabet",
+        "capacity_bound": "objects.capacity_bound",
+        "uniformity_quantifier": "for every vertex v in V, local_type_signature(v,r) belongs to a type set of size <= K",
+        "forbidden_capacity_violation_predicate": "distinct_local_type_count > capacity_bound"
+      },
+      "proof_dependencies": [
+        "finite radius-neighborhood BFS computation",
+        "label membership validation",
+        "local type signature computation",
+        "distinct local type counting",
+        "capacity-bound comparison"
+      ],
+      "checker_contract": "tools/check_r3_uniform_local_type_capacity_mathematical_data_packet.py",
+      "lean_target": "UniformLocalTypeCapacityProofTarget",
+      "boundary": "finite computable data packet only; no general UniformLocalTypeCapacity proof"
+    }
+  },
+  "does_not_prove": [
+    "mathematical accuracy",
+    "truth accuracy",
+    "native R1/R2/R3 instance",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "NON_FACTORISATION",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}

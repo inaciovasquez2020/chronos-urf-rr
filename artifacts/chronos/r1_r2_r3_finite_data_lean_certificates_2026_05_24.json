@@ -1,0 +1,30 @@
+{
+  "artifact": "R1_R2_R3_FINITE_DATA_LEAN_CERTIFICATES",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "FINITE_DATA_LEAN_CERTIFIED_PROMOTION_GAP_OPEN",
+  "lean_module": "Chronos.Frontier.R1R2R3FiniteDataLeanCertificates",
+  "closed_finite_certificates": [
+    "r1_finite_long_chord_data_certified",
+    "r2_finite_diameter_separation_filling_data_certified",
+    "r3_finite_uniform_local_type_capacity_data_certified",
+    "r1_r2_r3_finite_data_bundle_certified"
+  ],
+  "open_promotion_gaps": [
+    "R1FiniteDataToGeneralProofPromotionGap",
+    "R2FiniteDataToGeneralProofPromotionGap",
+    "R3FiniteDataToGeneralProofPromotionGap",
+    "R1R2R3FiniteDataToNativeProofPromotionGap"
+  ],
+  "does_not_prove": [
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "native R1/R2/R3 instance",
+    "NON_FACTORISATION",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}

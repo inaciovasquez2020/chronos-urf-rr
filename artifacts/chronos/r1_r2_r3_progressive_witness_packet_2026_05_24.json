@@ -1,0 +1,87 @@
+{
+  "artifact": "R1_R2_R3_PROGRESSIVE_WITNESS_PACKET",
+  "date": "2026-05-24",
+  "repository": "chronos-urf-rr",
+  "status": "PROGRESSIVE_TEST_HARNESS_ONLY_FRONTIER_OPEN",
+  "linked_conditional_surface": "R1_R2_R3_ISOLATED_TARGETS_CONDITIONAL_CLOSURE",
+  "closure_ready": false,
+  "strict_completion_status": "NOT_READY",
+  "piece_by_piece_order": [
+    "R1_LONG_CHORD_EXCLUSION_DATA",
+    "R1_LONG_CHORD_EXCLUSION_VERIFIER",
+    "R1_LONG_CHORD_EXCLUSION_LEAN_PROOF",
+    "R2_DIAMETER_SEPARATION_FILLING_DATA",
+    "R2_DIAMETER_SEPARATION_FILLING_VERIFIER",
+    "R2_DIAMETER_SEPARATION_FILLING_LEAN_PROOF",
+    "R3_UNIFORM_LOCAL_TYPE_CAPACITY_DATA",
+    "R3_UNIFORM_LOCAL_TYPE_CAPACITY_VERIFIER",
+    "R3_UNIFORM_LOCAL_TYPE_CAPACITY_LEAN_PROOF",
+    "REPOSITORY_NATIVE_R1_R2_R3_INSTANCE",
+    "REPOSITORY_NATIVE_R1_R2_R3_BINDING_CLOSURE"
+  ],
+  "targets": {
+    "R1": {
+      "name": "LongChordExclusionProofTarget",
+      "state": "SUPPLIED",
+      "mathematical_statement": "For each supplied finite skeleton graph S=(V,E_skel), candidate chord set C, and threshold lambda, no candidate chord {u,v} is a long chord when every computed skeleton distance d_S(u,v) is strictly below lambda.",
+      "data_packet_path": "artifacts/chronos/r1_long_chord_exclusion_mathematical_data_packet_2026_05_24.json",
+      "checker_path": "tools/check_r1_long_chord_exclusion_mathematical_data_packet.py",
+      "lean_artifact_path": "lean/Chronos/Frontier/R1R2R3IsolatedTargetsConditionalClosure.lean",
+      "proof_artifact_path": null,
+      "verification_result": "FINITE_DATA_CHECKER_SUPPLIED_NOT_LEAN_PROOF"
+    },
+    "R2": {
+      "name": "DiameterSeparationFillingObstructionProofTarget",
+      "state": "SUPPLIED",
+      "mathematical_statement": "For each supplied finite connected graph packet with terminal pairs, diameter bound D, separation threshold sigma, and filling floor phi, the R2 obstruction is present when graph diameter is at most D, every terminal distance is at least sigma, and every filling certificate has size strictly greater than phi.",
+      "data_packet_path": "artifacts/chronos/r2_diameter_separation_filling_mathematical_data_packet_2026_05_24.json",
+      "checker_path": "tools/check_r2_diameter_separation_filling_mathematical_data_packet.py",
+      "lean_artifact_path": "lean/Chronos/Frontier/R1R2R3IsolatedTargetsConditionalClosure.lean",
+      "proof_artifact_path": null,
+      "verification_result": "FINITE_DATA_CHECKER_SUPPLIED_NOT_LEAN_PROOF"
+    },
+    "R3": {
+      "name": "UniformLocalTypeCapacityProofTarget",
+      "state": "SUPPLIED",
+      "mathematical_statement": "For each supplied finite labeled graph packet with radius r and capacity bound K, the R3 capacity instance is present when the number of distinct computed radius-r local type signatures is at most K.",
+      "data_packet_path": "artifacts/chronos/r3_uniform_local_type_capacity_mathematical_data_packet_2026_05_24.json",
+      "checker_path": "tools/check_r3_uniform_local_type_capacity_mathematical_data_packet.py",
+      "lean_artifact_path": "lean/Chronos/Frontier/R1R2R3IsolatedTargetsConditionalClosure.lean",
+      "proof_artifact_path": null,
+      "verification_result": "FINITE_DATA_CHECKER_SUPPLIED_NOT_LEAN_PROOF"
+    },
+    "CLOSURE": {
+      "name": "RepositoryNativeR1R2R3BindingClosureConditionalTarget",
+      "state": "PENDING",
+      "mathematical_statement": null,
+      "data_packet_path": null,
+      "checker_path": null,
+      "lean_artifact_path": null,
+      "proof_artifact_path": null,
+      "verification_result": "NOT_SUPPLIED"
+    }
+  },
+  "strict_completion_requirements": [
+    "R1.state == VERIFIED",
+    "R2.state == VERIFIED",
+    "R3.state == VERIFIED",
+    "CLOSURE.state == VERIFIED",
+    "closure_ready == true",
+    "strict_completion_status == READY",
+    "each verified target has a non-null mathematical_statement",
+    "each verified target has an existing lean_artifact_path",
+    "each verified target has an existing proof_artifact_path",
+    "each verified target has verification_result == VERIFIED_BY_REPOSITORY_NATIVE_PROOF"
+  ],
+  "does_not_prove": [
+    "native R1/R2/R3 instance",
+    "LongChordExclusion",
+    "DiameterSeparationFillingObstruction",
+    "UniformLocalTypeCapacity",
+    "NON_FACTORISATION",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
