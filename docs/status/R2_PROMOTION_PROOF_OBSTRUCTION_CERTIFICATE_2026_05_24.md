@@ -24,7 +24,7 @@ Does not prove:
 - `DiameterSeparationFillingObstruction`
 - `UniformLocalTypeCapacity`
 - native R1/R2/R3 instance unconditionally
-- `NON_FACTORISATION` unconditionally
+- NON_FACTORISATION unconditionally
 - Chronos-RR
 - H4.1/FGL
 - P vs NP
