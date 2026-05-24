@@ -3,70 +3,86 @@ import Chronos.Frontier.R1R2R3PromotionProofTargetRegistry
 namespace Chronos.Frontier
 
 /--
-OPAQUE ASSUMPTION BOUNDARY DECLARATION ONLY.
+CONDITIONAL ASSUMPTION SURFACE ONLY.
 
 The repository-native R1/R2/R3 targets are opaque proof targets.
 Finite arithmetic certificates alone do not reduce to those targets.
 
-This file records the four missing bridge assumptions explicitly.
-It does not convert those assumptions into theorem-level closure.
+This file records the four missing bridges as a Prop-valued assumption
+surface and proves only conditional assembly from that surface.
+
+It introduces no `axiom` declarations and no `opaque` declarations.
+It does not close R1, R2, R3, or NON_FACTORISATION theorem-level targets.
 -/
-opaque r1_finite_data_to_general_proof_promotion_assumption :
+def R1FiniteDataToGeneralProofPromotionBridgeAssumption : Prop :=
   R1FiniteLongChordDataCertified → LongChordExclusionProofTarget
 
-opaque r2_finite_data_to_general_proof_promotion_assumption :
+def R2FiniteDataToGeneralProofPromotionBridgeAssumption : Prop :=
   R2FiniteDiameterSeparationFillingDataCertified →
     DiameterSeparationFillingObstructionProofTarget
 
-opaque r3_finite_data_to_general_proof_promotion_assumption :
+def R3FiniteDataToGeneralProofPromotionBridgeAssumption : Prop :=
   R3FiniteUniformLocalTypeCapacityDataCertified →
     UniformLocalTypeCapacityProofTarget
 
-opaque repository_native_r1_r2_r3_instance_to_non_factorisation_assumption :
+def RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumption : Prop :=
   RepositoryNativeR1R2R3InstanceTarget → NonFactorisationProofTarget
 
-theorem R1FiniteDataToGeneralProofPromotionAssumption_declared_by_opaque :
+structure R1R2R3ConditionalAssumptionSurface : Prop where
+  r1 : R1FiniteDataToGeneralProofPromotionBridgeAssumption
+  r2 : R2FiniteDataToGeneralProofPromotionBridgeAssumption
+  r3 : R3FiniteDataToGeneralProofPromotionBridgeAssumption
+  nonfactorisation : RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumption
+
+theorem R1FiniteDataToGeneralProofPromotionAssumption_conditional_on_surface
+    (h : R1R2R3ConditionalAssumptionSurface) :
     R1FiniteDataToGeneralProofPromotionAssumption :=
-  r1_finite_data_to_general_proof_promotion_assumption
+  h.r1
 
-theorem R2FiniteDataToGeneralProofPromotionAssumption_declared_by_opaque :
+theorem R2FiniteDataToGeneralProofPromotionAssumption_conditional_on_surface
+    (h : R1R2R3ConditionalAssumptionSurface) :
     R2FiniteDataToGeneralProofPromotionAssumption :=
-  r2_finite_data_to_general_proof_promotion_assumption
+  h.r2
 
-theorem R3FiniteDataToGeneralProofPromotionAssumption_declared_by_opaque :
+theorem R3FiniteDataToGeneralProofPromotionAssumption_conditional_on_surface
+    (h : R1R2R3ConditionalAssumptionSurface) :
     R3FiniteDataToGeneralProofPromotionAssumption :=
-  r3_finite_data_to_general_proof_promotion_assumption
+  h.r3
 
-theorem NonFactorisationConditionalOnRepositoryNativeR1R2R3Instance_declared_by_opaque :
+theorem NonFactorisationConditionalOnRepositoryNativeR1R2R3Instance_conditional_on_surface
+    (h : R1R2R3ConditionalAssumptionSurface) :
     NonFactorisationConditionalOnRepositoryNativeR1R2R3Instance :=
-  repository_native_r1_r2_r3_instance_to_non_factorisation_assumption
+  h.nonfactorisation
 
-theorem RepositoryNativeR1R2R3InstanceTarget_derived_under_opaque_boundary :
+theorem RepositoryNativeR1R2R3InstanceTarget_conditional_on_surface
+    (h : R1R2R3ConditionalAssumptionSurface) :
     RepositoryNativeR1R2R3InstanceTarget :=
   repository_native_r1_r2_r3_instance_from_finite_data_promotion_assumptions
-    R1FiniteDataToGeneralProofPromotionAssumption_declared_by_opaque
-    R2FiniteDataToGeneralProofPromotionAssumption_declared_by_opaque
-    R3FiniteDataToGeneralProofPromotionAssumption_declared_by_opaque
+    (R1FiniteDataToGeneralProofPromotionAssumption_conditional_on_surface h)
+    (R2FiniteDataToGeneralProofPromotionAssumption_conditional_on_surface h)
+    (R3FiniteDataToGeneralProofPromotionAssumption_conditional_on_surface h)
 
-theorem NonFactorisationProofTarget_derived_under_opaque_boundary :
+theorem NonFactorisationProofTarget_conditional_on_surface
+    (h : R1R2R3ConditionalAssumptionSurface) :
     NonFactorisationProofTarget :=
-  NonFactorisationConditionalOnRepositoryNativeR1R2R3Instance_declared_by_opaque
-    RepositoryNativeR1R2R3InstanceTarget_derived_under_opaque_boundary
+  h.nonfactorisation
+    (RepositoryNativeR1R2R3InstanceTarget_conditional_on_surface h)
 
-theorem R1R2R3PromotionProofTargetRegistry_derived_under_opaque_boundary :
+theorem R1R2R3PromotionProofTargetRegistry_conditional_on_surface
+    (h : R1R2R3ConditionalAssumptionSurface) :
     R1R2R3PromotionProofTargetRegistry :=
   And.intro
-    R1FiniteDataToGeneralProofPromotionAssumption_declared_by_opaque
+    (R1FiniteDataToGeneralProofPromotionAssumption_conditional_on_surface h)
     (And.intro
-      R2FiniteDataToGeneralProofPromotionAssumption_declared_by_opaque
+      (R2FiniteDataToGeneralProofPromotionAssumption_conditional_on_surface h)
       (And.intro
-        R3FiniteDataToGeneralProofPromotionAssumption_declared_by_opaque
-        NonFactorisationConditionalOnRepositoryNativeR1R2R3Instance_declared_by_opaque))
+        (R3FiniteDataToGeneralProofPromotionAssumption_conditional_on_surface h)
+        (NonFactorisationConditionalOnRepositoryNativeR1R2R3Instance_conditional_on_surface h)))
 
-def R1R2R3OpaqueBoundaryDeclarationStatus : String :=
-  "OPAQUE_ASSUMPTION_DECLARATION_ONLY"
+def R1R2R3ConditionalAssumptionSurfaceStatus : String :=
+  "CONDITIONAL_ASSUMPTION_SURFACE_ONLY_NOT_CLOSURE"
 
-def R1R2R3OpaqueBoundaryDeclarationBoundary : String :=
+def R1R2R3ConditionalAssumptionSurfaceBoundary : String :=
   "Does not prove theorem-level R1, R2, R3, NON_FACTORISATION, Chronos-RR, H4.1/FGL, P vs NP, or any Clay problem."
 
 end Chronos.Frontier

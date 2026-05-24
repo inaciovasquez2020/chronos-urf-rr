@@ -1,21 +1,25 @@
-# R1/R2/R3 opaque-boundary declaration
+# R1/R2/R3 conditional assumption surface
 
-Status: `OPAQUE_ASSUMPTION_DECLARATION_ONLY`.
+Status: `CONDITIONAL_ASSUMPTION_SURFACE_ONLY_NOT_CLOSURE`.
 
-This record makes the four missing R1/R2/R3 bridge assumptions explicit as opaque declarations.
+This record replaces the failed opaque-boundary closure with a Prop-valued conditional assumption surface.
 
-Declared opaque assumptions:
+Bridge assumptions recorded as propositions:
 
-- `r1_finite_data_to_general_proof_promotion_assumption`
-- `r2_finite_data_to_general_proof_promotion_assumption`
-- `r3_finite_data_to_general_proof_promotion_assumption`
-- `repository_native_r1_r2_r3_instance_to_non_factorisation_assumption`
+- `R1FiniteDataToGeneralProofPromotionBridgeAssumption`
+- `R2FiniteDataToGeneralProofPromotionBridgeAssumption`
+- `R3FiniteDataToGeneralProofPromotionBridgeAssumption`
+- `RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumption`
 
-Opaque-dependent Lean surfaces:
+Assumption package:
 
-- `RepositoryNativeR1R2R3InstanceTarget_derived_under_opaque_boundary`
-- `NonFactorisationProofTarget_derived_under_opaque_boundary`
-- `R1R2R3PromotionProofTargetRegistry_derived_under_opaque_boundary`
+- `R1R2R3ConditionalAssumptionSurface`
+
+Conditional Lean surfaces:
+
+- `RepositoryNativeR1R2R3InstanceTarget_conditional_on_surface`
+- `NonFactorisationProofTarget_conditional_on_surface`
+- `R1R2R3PromotionProofTargetRegistry_conditional_on_surface`
 
 Boundary:
 
