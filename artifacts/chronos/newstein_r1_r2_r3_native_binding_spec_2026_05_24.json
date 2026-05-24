@@ -1,0 +1,53 @@
+{
+  "artifact": "NEWSTEIN_R1_R2_R3_NATIVE_BINDING_SPEC",
+  "date": "2026-05-24",
+  "status": "SPECIFICATION_ONLY_NO_NATIVE_INSTANCE",
+  "lean_object": "RepositoryNativeR1R2R3BindingSpec",
+  "required_native_data": [
+    "nativeR1Data",
+    "nativeR2Data",
+    "nativeR3Data"
+  ],
+  "required_correctness_fields": [
+    "r1Correct",
+    "r2Correct",
+    "r3Correct"
+  ],
+  "required_native_specs": [
+    "nativeWTrivSpec",
+    "nativePhi2TrivSpec",
+    "nativeBoundaryOperatorSpec",
+    "nativeSupportSpec",
+    "nativeLongChordSpec",
+    "nativeFiberClassSpec",
+    "nativeFiberToGlobalQuotientSpec",
+    "nativeTwoChainSpec",
+    "nativeDiameterSpec",
+    "nativeSeparationParameterSpec",
+    "nativeQuotientDataSpec",
+    "nativeLocalTypeSpec",
+    "nativeCapacityFunctionSpec",
+    "r1MatchesOpenInputsRegistry",
+    "r2MatchesOpenInputsRegistry",
+    "r3MatchesOpenInputsRegistry"
+  ],
+  "closed_surfaces": [
+    "repository_native_R1_R2_R3_theorems_from_binding_spec",
+    "repository_native_nonfactorisation_promotion_from_binding_spec",
+    "no_repository_native_promotion_without_binding_supplied",
+    "no_repository_native_chronos_rr_promotion_without_binding_supplied",
+    "no_repository_native_h41_fgl_promotion_without_binding_supplied"
+  ],
+  "boundary": [
+    "specification only",
+    "does not construct RepositoryNativeR1R2R3BindingSpec",
+    "does not prove LongChordExclusion",
+    "does not prove DiameterSeparationFillingObstruction",
+    "does not prove UniformLocalTypeCapacity",
+    "does not prove NON_FACTORISATION",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ]
+}
