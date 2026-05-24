@@ -1,18 +1,19 @@
 {
-  "id": "R1_R2_R3_OPAQUE_BOUNDARY_DECLARATION_2026_05_24",
-  "status": "OPAQUE_ASSUMPTION_DECLARATION_ONLY",
-  "closure_type": "NONE_OPAQUE_BOUNDARY_ONLY",
+  "id": "R1_R2_R3_CONDITIONAL_ASSUMPTION_SURFACE_2026_05_24",
+  "status": "CONDITIONAL_ASSUMPTION_SURFACE_ONLY_NOT_CLOSURE",
+  "closure_type": "NONE_CONDITIONAL_ASSUMPTION_SURFACE_ONLY",
   "lean_module": "Chronos.Frontier.R1R2R3AxiomBoundaryClosure",
-  "opaque_assumptions": [
-    "r1_finite_data_to_general_proof_promotion_assumption",
-    "r2_finite_data_to_general_proof_promotion_assumption",
-    "r3_finite_data_to_general_proof_promotion_assumption",
-    "repository_native_r1_r2_r3_instance_to_non_factorisation_assumption"
+  "assumption_surface": "R1R2R3ConditionalAssumptionSurface",
+  "bridge_assumptions": [
+    "R1FiniteDataToGeneralProofPromotionBridgeAssumption",
+    "R2FiniteDataToGeneralProofPromotionBridgeAssumption",
+    "R3FiniteDataToGeneralProofPromotionBridgeAssumption",
+    "RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumption"
   ],
-  "opaque_dependent_surfaces": [
-    "RepositoryNativeR1R2R3InstanceTarget_derived_under_opaque_boundary",
-    "NonFactorisationProofTarget_derived_under_opaque_boundary",
-    "R1R2R3PromotionProofTargetRegistry_derived_under_opaque_boundary"
+  "conditional_surfaces": [
+    "RepositoryNativeR1R2R3InstanceTarget_conditional_on_surface",
+    "NonFactorisationProofTarget_conditional_on_surface",
+    "R1R2R3PromotionProofTargetRegistry_conditional_on_surface"
   ],
   "theorem_level_r1_closure": false,
   "theorem_level_r2_closure": false,
