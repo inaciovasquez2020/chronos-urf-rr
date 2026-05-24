@@ -1,0 +1,36 @@
+{
+  "id": "R2_POSITIVE_INVARIANT_TO_TARGET_CONDITIONAL_REDUCTION_2026_05_24",
+  "status": "R2_CONDITIONAL_REDUCTION_CLOSED_FINAL_TRANSFER_LEMMA_OPEN",
+  "source": "R2ConcreteDiameterFillingCompatibilityInvariant",
+  "conditional_reduction": "R2PositiveInvariantToTargetConditionalReduction",
+  "terminal_missing_lemma": "R2FinalObstructionTransferLemma",
+  "terminal_missing_lemma_status": "OPEN_REQUIRED_FOR_R2_THEOREM_TARGET_CLOSURE",
+  "closed_theorems": [
+    "r2_positive_invariant_ready_for_conditional_reduction",
+    "r2_positive_invariant_to_target_conditional_reduction",
+    "r2_conditional_reduction_closed_count",
+    "no_r2_theorem_target_closed_by_conditional_reduction"
+  ],
+  "conditional_reduction_closed_count": 1,
+  "r2_theorem_target_closure_count": 0,
+  "still_open": [
+    "R2FinalObstructionTransferLemma",
+    "DiameterSeparationFillingObstructionProofTarget",
+    "R2 theorem target closure",
+    "R3 theorem target closure",
+    "NON_FACTORISATION theorem target closure",
+    "FourBridgesSourceSolved theorem closure"
+  ],
+  "does_not_prove": [
+    "R2FinalObstructionTransferLemma",
+    "DiameterSeparationFillingObstructionProofTarget",
+    "R2 theorem target closure",
+    "R3 theorem target closure",
+    "NON_FACTORISATION theorem target closure",
+    "FourBridgesSourceSolved theorem closure",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
