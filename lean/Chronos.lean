@@ -188,3 +188,4 @@ import Chronos.Frontier.NewsteinR1R2R3NativeBindingSpec
 
 import Chronos.Frontier.R1R2R3IsolatedTargetsConditionalClosure
 import Chronos.Frontier.R1R2R3FiniteDataLeanCertificates
+import Chronos.Frontier.R1R2R3FiniteDataPromotionAssumptions
