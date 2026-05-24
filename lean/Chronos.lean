@@ -209,3 +209,4 @@ import Chronos.Frontier.R1R2R3AxiomBoundaryClosure
 import Chronos.Frontier.R1NativeCounterexampleCoherentRestriction
 import Chronos.Frontier.FourBridgesRegistryIntegration
 import Chronos.Frontier.BlackHoleObservationalMotivationRegistry
+import Chronos.Frontier.ExternalStrengtheningDataLedger
