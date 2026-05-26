@@ -16,6 +16,7 @@ required_actions = [
     "THERMAL_BOUNDARY_CERTIFICATE",
     "CFD_VALIDATION_DEPENDENCY_SLOT",
     "WIND_TUNNEL_OR_FLIGHT_TEST_EVIDENCE_GATE",
+    "LIGHT_CONE_RIGIDITY_DEPENDENCY_SLOT",
 ]
 
 for token in required_actions:
@@ -34,11 +35,12 @@ for forbidden_claim in [
     "CFD validation",
     "wind-tunnel validation",
     "flight-test validation",
+    "light-speed propulsion claim",
 ]:
     assert forbidden_claim in data["does_not_prove"], forbidden_claim
     assert forbidden_claim in doc, forbidden_claim
 
-assert data["next_missing_object"] == "REQUIREMENT_REGISTRY"
+assert data["next_missing_object"] == "LIGHT_CONE_RIGIDITY_DEPENDENCY_SLOT"
 assert "FRONTIER_DESIGN_SURFACE_ONLY" in doc
 
 print("HYBRID_HYPERSONIC_PROPULSION_ARCHITECTURE_BOUNDARY_CERTIFICATE_OK")

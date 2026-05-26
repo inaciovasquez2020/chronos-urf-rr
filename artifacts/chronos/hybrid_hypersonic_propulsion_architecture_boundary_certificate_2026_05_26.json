@@ -8,14 +8,16 @@
     "FAILURE_MODE_TAXONOMY",
     "THERMAL_BOUNDARY_CERTIFICATE",
     "CFD_VALIDATION_DEPENDENCY_SLOT",
-    "WIND_TUNNEL_OR_FLIGHT_TEST_EVIDENCE_GATE"
+    "WIND_TUNNEL_OR_FLIGHT_TEST_EVIDENCE_GATE",
+    "LIGHT_CONE_RIGIDITY_DEPENDENCY_SLOT"
   ],
   "allowed_claims": [
     "architecture-level requirement tracking",
     "boundary discipline for propulsion design discussion",
     "empirical-dependency isolation",
     "failure-mode taxonomy placeholder",
-    "validation-gate placeholder"
+    "validation-gate placeholder",
+    "causal speed-limit dependency isolation"
   ],
   "does_not_prove": [
     "a better engine than a scramjet",
@@ -28,7 +30,8 @@
     "hypersonic vehicle closure",
     "CFD validation",
     "wind-tunnel validation",
-    "flight-test validation"
+    "flight-test validation",
+    "light-speed propulsion claim"
   ],
-  "next_missing_object": "REQUIREMENT_REGISTRY"
+  "next_missing_object": "LIGHT_CONE_RIGIDITY_DEPENDENCY_SLOT"
 }
