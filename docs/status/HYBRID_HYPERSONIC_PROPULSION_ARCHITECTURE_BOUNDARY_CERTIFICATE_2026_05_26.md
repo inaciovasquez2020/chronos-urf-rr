@@ -11,6 +11,7 @@ This certificate records only an architecture-level boundary surface for hypothe
 3. `THERMAL_BOUNDARY_CERTIFICATE`
 4. `CFD_VALIDATION_DEPENDENCY_SLOT`
 5. `WIND_TUNNEL_OR_FLIGHT_TEST_EVIDENCE_GATE`
+6. `LIGHT_CONE_RIGIDITY_DEPENDENCY_SLOT`
 
 ## Allowed claims
 
@@ -33,6 +34,7 @@ This certificate records only an architecture-level boundary surface for hypothe
 - CFD validation
 - wind-tunnel validation
 - flight-test validation
+- light-speed propulsion claim
 
 ## Next missing object
 
