@@ -1,0 +1,44 @@
+{
+  "id": "HYPERSONIC_PROPULSION_VALIDATION_TARGETS_2026_05_26",
+  "status": "TARGETS_ONLY_NO_VALIDATION_SUPPLIED",
+  "object_class": "external_validation_target_registry",
+  "parent_boundary_certificate": "HYBRID_HYPERSONIC_PROPULSION_ARCHITECTURE_BOUNDARY_CERTIFICATE_2026_05_26",
+  "validation_targets": [
+    "CFD_VERIFICATION_VALIDATION_DOSSIER",
+    "WIND_TUNNEL_TEST_REPORT",
+    "FLIGHT_TEST_TELEMETRY_DOSSIER",
+    "SCRAMJET_BASELINE_COMPARATIVE_BENCHMARK",
+    "TRL_GATE_REGISTRY"
+  ],
+  "allowed_claims": [
+    "external validation targets identified",
+    "CFD validation dependency isolated",
+    "wind-tunnel validation dependency isolated",
+    "flight-test validation dependency isolated",
+    "scramjet benchmark dependency isolated",
+    "TRL gate dependency isolated"
+  ],
+  "missing_objects": {
+    "CFD_VERIFICATION_VALIDATION_DOSSIER": "not supplied",
+    "WIND_TUNNEL_TEST_REPORT": "not supplied",
+    "FLIGHT_TEST_TELEMETRY_DOSSIER": "not supplied",
+    "SCRAMJET_BASELINE_COMPARATIVE_BENCHMARK": "not supplied",
+    "TRL_GATE_REGISTRY": "not supplied"
+  },
+  "does_not_prove": [
+    "CFD validation",
+    "wind-tunnel validation",
+    "flight-test validation",
+    "scramjet superiority",
+    "flight viability",
+    "propulsion breakthrough",
+    "thrust advantage",
+    "thermal survivability",
+    "manufacturability",
+    "aerospace validation",
+    "military applicability",
+    "hypersonic vehicle closure",
+    "light-speed propulsion claim"
+  ],
+  "next_missing_object": "CFD_VERIFICATION_VALIDATION_DOSSIER"
+}
