@@ -1,0 +1,34 @@
+{
+  "id": "HYBRID_HYPERSONIC_PROPULSION_ARCHITECTURE_BOUNDARY_CERTIFICATE_2026_05_26",
+  "status": "FRONTIER_DESIGN_SURFACE_ONLY",
+  "object_class": "architecture_boundary_certificate",
+  "purpose": "Record a non-claim design-surface boundary for a hypothetical hybrid hypersonic propulsion architecture.",
+  "structural_actions": [
+    "REQUIREMENT_REGISTRY",
+    "FAILURE_MODE_TAXONOMY",
+    "THERMAL_BOUNDARY_CERTIFICATE",
+    "CFD_VALIDATION_DEPENDENCY_SLOT",
+    "WIND_TUNNEL_OR_FLIGHT_TEST_EVIDENCE_GATE"
+  ],
+  "allowed_claims": [
+    "architecture-level requirement tracking",
+    "boundary discipline for propulsion design discussion",
+    "empirical-dependency isolation",
+    "failure-mode taxonomy placeholder",
+    "validation-gate placeholder"
+  ],
+  "does_not_prove": [
+    "a better engine than a scramjet",
+    "flight viability",
+    "thrust advantage",
+    "thermal survivability",
+    "manufacturability",
+    "aerospace validation",
+    "military applicability",
+    "hypersonic vehicle closure",
+    "CFD validation",
+    "wind-tunnel validation",
+    "flight-test validation"
+  ],
+  "next_missing_object": "REQUIREMENT_REGISTRY"
+}
