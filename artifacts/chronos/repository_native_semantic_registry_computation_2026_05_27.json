@@ -1,0 +1,44 @@
+{
+  "date": "2026-05-27",
+  "object": "repositoryNativeSemanticRegistryComputation",
+  "status": "REPOSITORY_NATIVE_SEMANTIC_REGISTRY_COMPUTATION_CLOSED_ONE_REGISTRY_ONLY",
+  "imports": [
+    "Chronos.Frontier.SemanticRegistryRankGapExtraction"
+  ],
+  "lean_declarations": [
+    "RepositoryNativeSemanticRegistryEntry",
+    "RepositoryNativeSemanticRegistry",
+    "repositoryNativeFiniteRegisteredHyperbolicRegistry",
+    "repositoryNativeSemanticRankRate",
+    "repositoryNativeFiberEntropyGap",
+    "repositoryNativeSemanticSlack",
+    "repositoryNativeSemanticRegistryRankGapInequality",
+    "repositoryNativeSemanticRegistry_rank_eq",
+    "repositoryNativeSemanticRegistry_gap_eq",
+    "repositoryNativeSemanticRegistry_slack_eq",
+    "repositoryNativeSemanticRegistry_rank_plus_slack_le_gap",
+    "repositoryNativeSemanticRegistry_rank_lt_gap",
+    "repositoryNativeSemanticRegistry_computation_exists"
+  ],
+  "extraction_source": "repository-native semantic registry entries",
+  "semantic_rank_rate": 1,
+  "fiber_entropy_gap": 3,
+  "semantic_slack": 1,
+  "next_missing_ingredient": "generalize repository-native semantic computation from one finite registry to arbitrary concrete target registries",
+  "does_not_prove": [
+    "repository-native semantic computation for arbitrary concrete target registries",
+    "real target semantic extraction for arbitrary applications",
+    "certificate construction for every concrete target application",
+    "certificate construction for arbitrary finite registered hyperbolic registries",
+    "raw opaque admissibility implies dominance",
+    "RawToStructuredAdmissibilityDominance for the old raw class",
+    "stability under admissible limits",
+    "finite-support approximation theorem",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
