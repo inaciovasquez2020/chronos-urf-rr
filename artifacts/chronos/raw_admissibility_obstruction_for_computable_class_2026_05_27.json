@@ -1,0 +1,30 @@
+{
+  "date": "2026-05-27",
+  "status": "RAW_ADMISSIBILITY_OBSTRUCTION_PROVED",
+  "object": "rawAdmissibilityCounterexample",
+  "proved": [
+    "opaque raw admissibility alone does not imply SemanticRankRate X <= FiberEntropyGap X",
+    "RawToStructuredAdmissibilityDominance is false for the current ComputableFiniteAdmissibleClass definition",
+    "FiniteSupportBridgeLawForComputableClass is false for the current ComputableFiniteAdmissibleClass definition",
+    "FiniteSupportBridgeCertificateSupply is false for the current ComputableFiniteAdmissibleClass definition"
+  ],
+  "counterexample": {
+    "objectCount": 1,
+    "semanticRankRate": 1,
+    "fiberEntropyGap": 0,
+    "admissible": true
+  },
+  "next_missing_ingredient": "replace opaque admissible : Prop with strengthened admissibility carrying rank-entropy dominance or structural axioms implying it",
+  "does_not_prove": [
+    "structured admissibility for raw objects",
+    "intrinsic bridge from opaque raw admissibility",
+    "stability under admissible limits",
+    "finite-support approximation theorem",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
