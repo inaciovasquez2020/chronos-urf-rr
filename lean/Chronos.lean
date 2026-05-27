@@ -1,3 +1,4 @@
+import Chronos.Frontier.FiniteSupportBridgeForComputableClass
 import Chronos.Frontier.ComputableFiniteAdmissibleClass
 import Chronos.Frontier.SixFieldAnalyticPackageInputSurface
 import Chronos.Frontier.GenuineFourPDEComponentExistenceReduction

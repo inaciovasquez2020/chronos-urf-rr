@@ -1,0 +1,24 @@
+{
+  "date": "2026-05-27",
+  "status": "FINITE_SUPPORT_BRIDGE_CERTIFICATE_ONLY",
+  "structural_action": 2,
+  "object": "FiniteSupportBridgeCertificate",
+  "proved": [
+    "SemanticRankRate X <= FiberEntropyGap X from explicit finite-support bridge certificate",
+    "finite-support positivity is preserved for certified computable finite classes",
+    "certificate-supply implies finite-support bridge"
+  ],
+  "next_missing_ingredient": "certificate supply theorem: every admissible ComputableFiniteAdmissibleClass admits FiniteSupportBridgeCertificate",
+  "does_not_prove": [
+    "certificate supply theorem",
+    "finite-support bridge for every computable finite admissible class without certificate",
+    "stability under admissible limits",
+    "finite-support approximation theorem",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
