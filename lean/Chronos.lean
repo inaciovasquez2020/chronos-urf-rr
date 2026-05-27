@@ -1,3 +1,4 @@
+import Chronos.Frontier.DominanceAdmissibleComputableClass
 import Chronos.Frontier.RawAdmissibilityObstructionForComputableClass
 import Chronos.Frontier.StructuredAdmissibilityDominanceForComputableClass
 import Chronos.Frontier.CertificateSupplyLawForComputableClass
