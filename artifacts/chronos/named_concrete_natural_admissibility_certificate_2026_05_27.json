@@ -1,0 +1,25 @@
+{
+  "date": "2026-05-27",
+  "status": "NAMED_CONCRETE_CERTIFICATE_CLOSED_ONE_TARGET_ONLY",
+  "object": "firstNamedConcreteNaturalAdmissibilityCertificate",
+  "proved": [
+    "constructs NaturalAdmissibilityDominanceCertificate for firstNamedConcreteTargetApplication",
+    "constructs FirstTargetNaturalAdmissibilityCertificateFrontier for firstNamedConcreteTargetApplication",
+    "derives Nonempty NaturalDominanceAdmissibleComputableClass from the named concrete certificate"
+  ],
+  "next_missing_ingredient": "construct NaturalAdmissibilityDominanceCertificate X for a non-toy target application already used by the Chronos-RR bridge stack",
+  "does_not_prove": [
+    "certificate construction for every concrete target application",
+    "certificate construction for any non-toy target application",
+    "raw opaque admissibility implies dominance",
+    "RawToStructuredAdmissibilityDominance for the old raw class",
+    "stability under admissible limits",
+    "finite-support approximation theorem",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
