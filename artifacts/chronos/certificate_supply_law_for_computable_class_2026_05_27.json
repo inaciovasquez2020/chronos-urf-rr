@@ -1,0 +1,24 @@
+{
+  "date": "2026-05-27",
+  "status": "CERTIFICATE_SUPPLY_FROM_EXPLICIT_LAW_ONLY",
+  "structural_action": 3,
+  "object": "FiniteSupportBridgeLawForComputableClass",
+  "proved": [
+    "explicit finite-support bridge law implies FiniteSupportBridgeCertificateSupply",
+    "explicit finite-support bridge law implies SemanticRankRate X <= FiberEntropyGap X for admissible computable finite X"
+  ],
+  "next_missing_ingredient": "intrinsic proof of FiniteSupportBridgeLawForComputableClass from the admissibility structure of ComputableFiniteAdmissibleClass",
+  "does_not_prove": [
+    "intrinsic finite-support bridge law",
+    "certificate supply theorem without explicit law",
+    "bridge for every computable finite admissible class from raw admissibility alone",
+    "stability under admissible limits",
+    "finite-support approximation theorem",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}

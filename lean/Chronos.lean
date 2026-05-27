@@ -1,3 +1,4 @@
+import Chronos.Frontier.CertificateSupplyLawForComputableClass
 import Chronos.Frontier.FiniteSupportBridgeForComputableClass
 import Chronos.Frontier.ComputableFiniteAdmissibleClass
 import Chronos.Frontier.SixFieldAnalyticPackageInputSurface
