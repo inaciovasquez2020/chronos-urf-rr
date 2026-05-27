@@ -1,0 +1,23 @@
+{
+  "date": "2026-05-27",
+  "status": "FIRST_TARGET_CERTIFICATE_FRONTIER_ONLY",
+  "object": "FirstTargetNaturalAdmissibilityCertificateFrontier",
+  "proved": [
+    "a target-local NaturalAdmissibilityDominanceCertificate yields a DominanceAdmissibleComputableClass",
+    "the first target certificate obligation is isolated as an explicit frontier object"
+  ],
+  "next_missing_ingredient": "construct NaturalAdmissibilityDominanceCertificate X for a named concrete target application",
+  "does_not_prove": [
+    "certificate construction for any concrete target application",
+    "raw opaque admissibility implies dominance",
+    "RawToStructuredAdmissibilityDominance for the old raw class",
+    "stability under admissible limits",
+    "finite-support approximation theorem",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
