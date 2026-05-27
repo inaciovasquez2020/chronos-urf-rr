@@ -231,3 +231,4 @@ import Chronos.Frontier.R2AdmissibilityGatedPositiveInvariant
 
 import Chronos.Frontier.R2PositiveInvariantToTargetConditionalReduction
 import Chronos.Frontier.FirstTargetNaturalAdmissibilityCertificateFrontier
+import Chronos.Frontier.NamedConcreteNaturalAdmissibilityCertificate
