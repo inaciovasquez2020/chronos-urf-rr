@@ -1,0 +1,58 @@
+{
+  "id": "GLOBAL_MATHEMATICAL_GAP_MAP_2026_05_27",
+  "date": "2026-05-27",
+  "status": "OPEN_MATHEMATICAL_GAP_MAP_ONLY",
+  "claim_type": "mathematical_missing_object_registry",
+  "targets": [
+    {
+      "name": "RankEntropyGapLemma",
+      "strand": "Chronos entropy / rank",
+      "weakest_sufficient_object": "A nontrivial quantitative inequality from registered rank/fiber growth to a uniform positive entropy or mass gap.",
+      "status": "OPEN_MATHEMATICAL_GAP"
+    },
+    {
+      "name": "FiniteToUniformUpgradeLemma",
+      "strand": "Cross-strand finite-to-uniform",
+      "weakest_sufficient_object": "A compactness, monotonicity, or coercivity principle upgrading finite verified witnesses to a uniform family-level lower bound.",
+      "status": "OPEN_MATHEMATICAL_GAP"
+    },
+    {
+      "name": "LocalToGlobalRigidityTransferLemma",
+      "strand": "URF local-to-global transfer",
+      "weakest_sufficient_object": "A theorem showing that admissible local rigidity certificates force global rigidity without assuming the global conclusion.",
+      "status": "OPEN_MATHEMATICAL_GAP"
+    },
+    {
+      "name": "BoundaryCompactnessCollapseControlLemma",
+      "strand": "Gravity / analysis",
+      "weakest_sufficient_object": "An analytic compactness theorem converting finite detector algebra, spectral cutoff, finite energy, and backreaction control into boundary compactness or collapse control.",
+      "status": "OPEN_MATHEMATICAL_GAP"
+    },
+    {
+      "name": "DfmMkcExecutablePredictionBinding",
+      "strand": "DFM-MKC prediction",
+      "weakest_sufficient_object": "An executable solver implementation or trusted external solver binding producing a numerical prediction vector aligned to the comparison protocol.",
+      "status": "OPEN_MATHEMATICAL_COMPUTATION_GAP"
+    }
+  ],
+  "does_not_prove": [
+    "unrestricted UniversalFiberEntropyGap",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem",
+    "DFM-MKC empirical validation",
+    "Lambda-CDM failure",
+    "dark matter replacement",
+    "Cosmic Censorship",
+    "Hoop Conjecture",
+    "unrestricted gravity closure"
+  ],
+  "next_admissible_mathematical_objects": [
+    "RankEntropyGapLemma",
+    "FiniteToUniformUpgradeLemma",
+    "LocalToGlobalRigidityTransferLemma",
+    "BoundaryCompactnessCollapseControlLemma",
+    "DfmMkcExecutablePredictionBinding"
+  ]
+}
