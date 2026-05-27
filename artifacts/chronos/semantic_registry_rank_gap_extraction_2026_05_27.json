@@ -1,0 +1,37 @@
+{
+  "date": "2026-05-27",
+  "object": "semanticRegistryRankGapExtraction",
+  "status": "SEMANTIC_REGISTRY_RANK_GAP_EXTRACTION_CLOSED_CONSTRUCTION_FIELD_ONLY",
+  "imports": [
+    "Chronos.Frontier.ConcreteNonToyApplicationRankGapExtraction"
+  ],
+  "lean_declarations": [
+    "SemanticRegistryRankGapConstruction",
+    "finiteRegisteredHyperbolicSemanticRegistryConstruction",
+    "semanticRegistryExtractedRankGapInequality",
+    "semanticRegistry_rank_plus_slack_le_gap",
+    "semanticRegistry_rank_lt_gap",
+    "semanticRegistry_construction_exists"
+  ],
+  "extraction_source": "semantic registry construction fields",
+  "semantic_rank_rate": 1,
+  "fiber_entropy_gap": 3,
+  "semantic_slack": 1,
+  "next_missing_ingredient": "replace semantic registry construction fields with repository-native semantic computation from the actual target registry",
+  "does_not_prove": [
+    "repository-native semantic computation from the actual target registry",
+    "real target semantic extraction for arbitrary applications",
+    "certificate construction for every concrete target application",
+    "certificate construction for arbitrary finite registered hyperbolic registries",
+    "raw opaque admissibility implies dominance",
+    "RawToStructuredAdmissibilityDominance for the old raw class",
+    "stability under admissible limits",
+    "finite-support approximation theorem",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
