@@ -1,0 +1,26 @@
+{
+  "date": "2026-05-27",
+  "status": "STRUCTURED_ADMISSIBILITY_DOMINANCE_ONLY",
+  "structural_action": 4,
+  "object": "StructuredAdmissibilityDominance",
+  "proved": [
+    "structured admissibility dominance supplies SemanticRankRate X <= FiberEntropyGap X",
+    "structured finite-support bridge law",
+    "raw-to-structured admissibility dominance implies FiniteSupportBridgeLawForComputableClass",
+    "raw-to-structured admissibility dominance implies FiniteSupportBridgeCertificateSupply"
+  ],
+  "next_missing_ingredient": "prove RawToStructuredAdmissibilityDominance from intrinsic admissibility structure",
+  "does_not_prove": [
+    "RawToStructuredAdmissibilityDominance",
+    "intrinsic finite-support bridge law from opaque raw admissibility alone",
+    "certificate supply theorem without structured dominance or explicit law",
+    "stability under admissible limits",
+    "finite-support approximation theorem",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
