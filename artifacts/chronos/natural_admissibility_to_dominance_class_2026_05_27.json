@@ -1,0 +1,26 @@
+{
+  "date": "2026-05-27",
+  "status": "NATURAL_ADMISSIBILITY_TO_DOMINANCE_CLASS_INTERFACE",
+  "object": "NaturalDominanceAdmissibleComputableClass",
+  "proved": [
+    "natural admissibility dominance certificate constructs DominanceAdmissibleComputableClass",
+    "natural admissibility supplies SemanticRankRate <= FiberEntropyGap",
+    "natural admissibility preserves finite-support positivity",
+    "natural admissibility preserves computability of SemanticRankRate",
+    "natural admissibility preserves computability of FiberEntropyGap"
+  ],
+  "next_missing_ingredient": "construct NaturalAdmissibilityDominanceCertificate inside each target application",
+  "does_not_prove": [
+    "certificate construction for any target application",
+    "raw opaque admissibility implies dominance",
+    "RawToStructuredAdmissibilityDominance for the old raw class",
+    "stability under admissible limits",
+    "finite-support approximation theorem",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
