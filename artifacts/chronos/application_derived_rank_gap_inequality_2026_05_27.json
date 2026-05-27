@@ -1,0 +1,34 @@
+{
+  "date": "2026-05-27",
+  "object": "applicationDerivedRankGapInequality",
+  "status": "APPLICATION_DERIVED_RANK_GAP_INEQUALITY_CLOSED_ONE_STACK_TARGET_ONLY",
+  "imports": [
+    "Chronos.Frontier.DerivedFiniteRegisteredHyperbolicNaturalAdmissibilityCertificate"
+  ],
+  "lean_declarations": [
+    "ApplicationDerivedRankGapInequality",
+    "finiteRegisteredHyperbolicApplicationRankGapInequality",
+    "finiteRegisteredHyperbolicApplication_rank_lt_gap",
+    "finiteRegisteredHyperbolicApplication_has_nontrivial_slack",
+    "finiteRegisteredHyperbolicApplication_rank_plus_slack_le_gap"
+  ],
+  "application_target": "finite-registered-hyperbolic-rate-thick-stack",
+  "semantic_rank_rate": 1,
+  "fiber_entropy_gap": 2,
+  "slack": 1,
+  "next_missing_ingredient": "replace toy numeric application-derived inequality with a proof extracted from the concrete non-toy target application data",
+  "does_not_prove": [
+    "certificate construction for every concrete target application",
+    "certificate construction for arbitrary finite registered hyperbolic registries",
+    "raw opaque admissibility implies dominance",
+    "RawToStructuredAdmissibilityDominance for the old raw class",
+    "stability under admissible limits",
+    "finite-support approximation theorem",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
