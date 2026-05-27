@@ -1,0 +1,23 @@
+{
+  "date": "2026-05-27",
+  "object": "ArbitraryConcreteTargetRegistryComputation",
+  "status": "FINITE_CONCRETE_TARGET_REGISTRY_COMPUTATION_LIFT_CLOSED_WITNESS_ONLY",
+  "closed": [
+    "ConcreteTargetRegistry definition",
+    "FiniteConcreteTargetRegistry definition",
+    "one-registry computation witness surface",
+    "lift from per-registry one-registry witnesses to arbitrary finite concrete target registries",
+    "boundary lock"
+  ],
+  "weakest_missing_ingredient": "construct canonical one-registry semantic computation witnesses for every concrete target registry from repository-native semantic data",
+  "does_not_prove": [
+    "arbitrary-registry computation without finite concrete target data",
+    "canonical witness construction for every concrete target registry",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
