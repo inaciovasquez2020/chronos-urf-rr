@@ -1,0 +1,25 @@
+{
+  "date": "2026-05-27",
+  "status": "COMPUTABLE_FINITE_ADMISSIBLE_CLASS_ONLY",
+  "structural_action": 1,
+  "object": "ComputableFiniteAdmissibleClass",
+  "provides": [
+    "concrete finite admissible class",
+    "computable SemanticRankRate projection",
+    "computable FiberEntropyGap projection",
+    "finite-support positivity field"
+  ],
+  "does_not_prove": [
+    "SemanticRankRate <= FiberEntropyGap",
+    "finite-support bridge",
+    "stability under admissible limits",
+    "finite-support approximation theorem",
+    "unrestricted semantic-rank-to-fiber-entropy bridge",
+    "UniversalFiberEntropyGap",
+    "Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_missing_ingredient": "finite-support bridge: SemanticRankRate X <= FiberEntropyGap X for ComputableFiniteAdmissibleClass X"
+}
