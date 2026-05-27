@@ -237,3 +237,4 @@ import Chronos.Frontier.DerivedFiniteRegisteredHyperbolicNaturalAdmissibilityCer
 import Chronos.Frontier.ApplicationDerivedRankGapInequality
 import Chronos.Frontier.ConcreteNonToyApplicationRankGapExtraction
 import Chronos.Frontier.SemanticRegistryRankGapExtraction
+import Chronos.Frontier.RepositoryNativeSemanticRegistryComputation
