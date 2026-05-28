@@ -253,3 +253,5 @@ import Chronos.Frontier.ConcreteGravityCoerciveEstimateProofObligation
 import Chronos.Frontier.RestrictedStationaryGravityEstimateCandidate
 
 import Chronos.Frontier.RestrictedKomarHawkingFluxSignTarget
+
+import Chronos.Frontier.GDMGravityDarkMatterDeficitModel
