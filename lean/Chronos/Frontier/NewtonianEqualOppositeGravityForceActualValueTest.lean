@@ -17,7 +17,7 @@ def forceOnBByA (x : NewtonianTwoBodySample) : Int :=
   Int.ofNat (commonForceMagnitude x)
 
 def equalAndOppositeForces (x : NewtonianTwoBodySample) : Prop :=
-  forceOnAByB x + forceOnBByA x = 0
+  forceOnAByB x = -forceOnBByA x
 
 def actualEarthMoonScaledWitness : NewtonianTwoBodySample :=
   { massA := 6, massB := 2, distanceSquared := 3, gravitationalScale := 9 }
@@ -27,8 +27,7 @@ def actualBalancedUnitWitness : NewtonianTwoBodySample :=
 
 theorem equal_opposite_force_identity (x : NewtonianTwoBodySample) :
     equalAndOppositeForces x := by
-  unfold equalAndOppositeForces forceOnAByB forceOnBByA
-  exact neg_add_cancel (Int.ofNat (commonForceMagnitude x))
+  rfl
 
 theorem actual_earth_moon_scaled_force_values :
     commonForceMagnitude actualEarthMoonScaledWitness = 36 ∧
