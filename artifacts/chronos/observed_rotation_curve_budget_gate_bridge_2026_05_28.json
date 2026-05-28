@@ -1,0 +1,26 @@
+{
+  "artifact": "OBSERVED_ROTATION_CURVE_BUDGET_GATE_BRIDGE_2026_05_28",
+  "status": "CONDITIONAL_OBSERVED_RESIDUAL_TO_RESTRICTED_GATE_BRIDGE",
+  "lean_module": "Chronos.Frontier.ObservedRotationCurveBudgetGateBridge",
+  "main_theorems": [
+    "physicalGDMBudget_partitioned_certificate_from_observed_rotation_curve",
+    "physicalGDM_observed_rotation_curve_feeds_gate"
+  ],
+  "requires": [
+    "pointwise reading <= physicalGDMBudget",
+    "local partition bound physicalGDMBudget * active_count <= extractedRadiusFloor"
+  ],
+  "boundaries": [
+    "observable residual budget bridge only",
+    "no galaxy rotation curve fit",
+    "no lensing fit",
+    "no empirical dark-matter replacement",
+    "no Lambda-CDM refutation",
+    "no modified-gravity theorem",
+    "no gravity closure",
+    "no Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
