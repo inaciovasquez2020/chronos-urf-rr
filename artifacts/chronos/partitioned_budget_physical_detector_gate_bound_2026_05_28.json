@@ -1,0 +1,34 @@
+{
+  "date": "2026-05-28",
+  "artifact": "PARTITIONED_BUDGET_PHYSICAL_DETECTOR_GATE_BOUND_2026_05_28",
+  "status": "DERIVED_GATE_BOUND_FROM_PARTITIONED_BUDGET_CERTIFICATE",
+  "lean_module": "Chronos.Frontier.PartitionedBudgetPhysicalDetectorGateBound",
+  "closed_theorems": [
+    "partitionedBudgetCertificate_implies_gate_bound",
+    "partitionedBudgetCertificate_to_admissible",
+    "partitionedBudgetCertificate_feeds_restrictedFiniteDetectorGate_derived",
+    "twoDetectorExample_closes_gate"
+  ],
+  "conditional_on": [
+    "PartitionedPhysicalDetectorBudgetCertificate"
+  ],
+  "research_novelty": "The restricted physical detector gate bound is derived from a cardinality-scaled local budget partition certificate rather than assumed directly as gate_bound.",
+  "harder_obstruction_removed": "The certificate removes the circular aggregate gate-bound assumption and replaces it with a checkable finite per-detector budget partition condition.",
+  "does_not_prove": [
+    "existence of a partitioned budget certificate for arbitrary physical detector fields",
+    "derivation of partitioned budget certificates from continuum GR data",
+    "arbitrary physical detector fields are admissible",
+    "physical detector-field extraction for continuum GR data",
+    "Einstein-matter PDE well-posedness",
+    "trapped-surface formation theorem",
+    "black-hole formation theorem",
+    "cosmic censorship proof",
+    "hoop conjecture proof",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
