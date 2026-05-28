@@ -1,0 +1,33 @@
+{
+  "id": "FINITE_DETECTOR_PARTITION_2026_05_28",
+  "status": "FINITE_PARTITION_OBJECT_ONLY",
+  "object": "FiniteDetectorPartition",
+  "date": "2026-05-28",
+  "depends_on": [
+    "PHYSICAL_FIELD_DATA_FINITE_SAMPLES_2026_05_28"
+  ],
+  "claims": [
+    "Defines DetectorCell as a finite arithmetic detector cell.",
+    "Defines FiniteDetectorPartition as an explicit finite list of detector cells over PhysicalFieldData.",
+    "Proves finite cell support, empty cell-count zero, finite active detector-id support, and active-id length equals cell count."
+  ],
+  "does_not_prove": [
+    "PhysicalDetectorFieldExtractionMap",
+    "extractPhysicalDetectorWitness",
+    "DetectorBudgetCompatible",
+    "coverage of physical field data",
+    "disjointness of detector cells",
+    "geometric partition correctness",
+    "Einstein-matter PDE well-posedness",
+    "trapped-surface formation",
+    "black-hole formation",
+    "cosmic censorship",
+    "hoop conjecture",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
