@@ -283,3 +283,5 @@ import Chronos.Frontier.ObservedRotationCurveBudgetGateBridge
 import Chronos.Frontier.PhysicalFieldDataFiniteSamples
 
 import Chronos.Frontier.FiniteDetectorPartition
+
+import Chronos.Frontier.ExtractPhysicalDetectorWitness

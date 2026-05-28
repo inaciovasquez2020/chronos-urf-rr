@@ -1,0 +1,40 @@
+{
+  "id": "EXTRACT_PHYSICAL_DETECTOR_WITNESS_2026_05_28",
+  "status": "FINITE_EXTRACTION_WITNESS_OBJECT_ONLY",
+  "object": "extractPhysicalDetectorWitness",
+  "date": "2026-05-28",
+  "depends_on": [
+    "PHYSICAL_FIELD_DATA_FINITE_SAMPLES_2026_05_28",
+    "FINITE_DETECTOR_PARTITION_2026_05_28"
+  ],
+  "claims": [
+    "Defines ExtractedPhysicalDetectorWitness as a finite arithmetic witness object.",
+    "Defines extractPhysicalDetectorWitness from PhysicalFieldData and FiniteDetectorPartition.",
+    "Proves extracted active mass equals finite sampled total energy.",
+    "Proves extracted sample count equals finite support size.",
+    "Proves extracted detector-cell count equals partition cell count.",
+    "Proves extracted detector-id length equals detector-cell count.",
+    "Proves extracted active mass is nonnegative.",
+    "Proves the empty-data extracted active mass is zero."
+  ],
+  "does_not_prove": [
+    "PhysicalDetectorFieldExtractionMap",
+    "DetectorBudgetCompatible",
+    "DetectorBudgetCompatible to RestrictedFiniteDetectorExtractionGate",
+    "coverage of physical field data",
+    "disjointness of detector cells",
+    "geometric partition correctness",
+    "empirical detector correctness",
+    "Einstein-matter PDE well-posedness",
+    "trapped-surface formation",
+    "black-hole formation",
+    "cosmic censorship",
+    "hoop conjecture",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
