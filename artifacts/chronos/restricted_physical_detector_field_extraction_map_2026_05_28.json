@@ -1,0 +1,34 @@
+{
+  "date": "2026-05-28",
+  "artifact": "RESTRICTED_PHYSICAL_DETECTOR_FIELD_EXTRACTION_MAP_2026_05_28",
+  "status": "CONDITIONAL_RESTRICTED_INTERFACE_BRIDGE_SOLVED",
+  "lean_module": "Chronos.Frontier.RestrictedPhysicalDetectorFieldExtractionMap",
+  "closed_theorems": [
+    "physicalExtraction_activeSet_correct",
+    "physicalExtraction_atomMass_coherent",
+    "physicalExtraction_data_activeMass",
+    "physicalExtraction_data_radiusFloor",
+    "physicalExtraction_feeds_restrictedFiniteDetectorGate"
+  ],
+  "conditional_on": [
+    "PhysicalDetectorFieldAdmissible.gate_bound"
+  ],
+  "research_novelty": "A finite physical detector sampling profile is mapped into the verified finite detector accounting interface, with aggregate gate compatibility carried as an explicit boundary admissibility invariant.",
+  "harder_obstruction_removed": "The false pointwise reading-radius route is removed; aggregate gate compatibility is now represented as the exact admissibility boundary rather than incorrectly derived from local pointwise bounds.",
+  "does_not_prove": [
+    "derivation of gate_bound from raw physical readings",
+    "arbitrary physical detector fields are admissible",
+    "physical detector-field extraction for continuum GR data",
+    "Einstein-matter PDE well-posedness",
+    "trapped-surface formation theorem",
+    "black-hole formation theorem",
+    "cosmic censorship proof",
+    "hoop conjecture proof",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
