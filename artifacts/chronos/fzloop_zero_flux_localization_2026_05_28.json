@@ -1,0 +1,29 @@
+{
+  "id": "FZLOOP_ZERO_FLUX_LOCALIZATION_V1",
+  "date": "2026-05-28",
+  "status": "FZLOOP_ZERO_FLUX_LOCALIZATION_PROVED_FINITE_NONNEGATIVE_MODEL_ONLY",
+  "toolkit_name": "FZloop",
+  "mathematical_object": "finite cyclic nonnegative flux-sector loop",
+  "proved_lemma": "If the total FZloop flux is zero, then every nonnegative flux sector is zero.",
+  "lean_theorem": "FZLoop.zero_flux_localization",
+  "intended_gravity_use": "Model restricted stationary gravity estimates using a Komar/Hawking flux-sector decomposition where nonnegative sectors and vanishing total boundary flux force sectorwise flux cancellation.",
+  "new_ingredient": "FZloop packages zero-total nonnegative flux cancellation as a reusable localization primitive for restricted stationary gravity estimates.",
+  "boundary": [
+    "finite nonnegative model only",
+    "proved internal localization lemma only",
+    "no Komar sign proof",
+    "no Hawking mass theorem",
+    "no restricted estimate proof",
+    "no coercive estimate proof",
+    "no analytic estimate proof",
+    "no Einstein-matter theorem",
+    "no collapse theorem",
+    "no Cosmic Censorship",
+    "no Hoop Conjecture",
+    "no quantum gravity",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
