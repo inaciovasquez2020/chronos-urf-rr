@@ -243,3 +243,5 @@ import Chronos.Frontier.ArbitraryConcreteTargetRegistryComputation
 
 import Chronos.Frontier.GlobalMathematicalGapMap
 import Chronos.Frontier.DecisiveMathematicalObjectsTargetRegistry
+
+import Chronos.Frontier.ConcreteGravityEstimateTarget
