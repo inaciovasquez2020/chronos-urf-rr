@@ -264,3 +264,9 @@ import Chronos.Frontier.RestrictedQLFiniteDetectorMassRadiusExtraction
 import Chronos.Frontier.ComputedActiveRadiusMinimum
 
 import Chronos.Frontier.EmptyActiveDetectorDefaultPolicy
+
+import Chronos.Frontier.PhysicalDetectorFieldExtractionMap
+
+import Chronos.Frontier.GDMEmpiricalMassMapBindingTheorem
+
+import Chronos.Frontier.ConcreteNonToyApplicationDerivedRankGapProof

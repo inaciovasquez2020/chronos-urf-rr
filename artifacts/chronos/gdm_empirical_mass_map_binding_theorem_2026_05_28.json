@@ -1,0 +1,23 @@
+{
+  "id": "GDM_EMPIRICAL_MASS_MAP_BINDING_THEOREM_2026_05_28",
+  "date": "2026-05-28",
+  "repository": "chronos-urf-rr",
+  "status": "EMPIRICAL_BINDING_OBLIGATION_INTERFACE_ONLY",
+  "object": "GDM_EmpiricalMassMapBindingTheorem",
+  "lean_module": "Chronos.Frontier.GDMEmpiricalMassMapBindingTheorem",
+  "proved_items": [
+    "empirical_mass_map_binding_from_obligation",
+    "zero_residual_under_identical_masses"
+  ],
+  "does_not_prove": [
+    "empirical validation",
+    "Lambda-CDM failure",
+    "dark matter replacement",
+    "dark matter phase claim",
+    "gravity closure",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "Clay problem"
+  ]
+}

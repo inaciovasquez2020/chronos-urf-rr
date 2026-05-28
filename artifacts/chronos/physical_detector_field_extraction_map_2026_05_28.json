@@ -1,0 +1,26 @@
+{
+  "id": "PHYSICAL_DETECTOR_FIELD_EXTRACTION_MAP_2026_05_28",
+  "date": "2026-05-28",
+  "repository": "chronos-urf-rr",
+  "status": "RESTRICTED_INTERFACE_GATE_COMPATIBILITY_ONLY",
+  "object": "PhysicalDetectorFieldExtractionMap",
+  "lean_module": "Chronos.Frontier.PhysicalDetectorFieldExtractionMap",
+  "proved_items": [
+    "extracted_detector_count_def",
+    "physical_detector_field_feeds_restricted_gate",
+    "empty_physical_detector_field_zero_active_mass",
+    "empty_physical_detector_field_zero_detector_count"
+  ],
+  "does_not_prove": [
+    "PDE well-posedness",
+    "collapse theorem",
+    "cosmic censorship",
+    "hoop conjecture",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "Clay problem"
+  ]
+}
