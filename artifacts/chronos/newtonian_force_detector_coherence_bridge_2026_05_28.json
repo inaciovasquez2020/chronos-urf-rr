@@ -1,0 +1,57 @@
+{
+  "id": "NEWTONIAN_FORCE_DETECTOR_COHERENCE_BRIDGE_2026_05_28",
+  "date": "2026-05-28",
+  "repository": "chronos-urf-rr",
+  "status": "RESTRICTED_FINITE_DETECTOR_COHERENCE_BRIDGE_ONLY",
+  "object": "NewtonianForceDetectorCoherenceBridge",
+  "lean_module": "Chronos.Frontier.NewtonianForceDetectorCoherenceBridge",
+  "source_objects": [
+    "PhysicalDetectorFieldExtractionMap",
+    "NewtonianEqualOppositeGravityForceActualValueTest"
+  ],
+  "actual_values": {
+    "earth_moon_scaled": {
+      "commonForceMagnitude": 36,
+      "detectorCount": 2,
+      "detectorFieldSamples": [36, 36],
+      "extractedActiveMass": 72,
+      "forceOnAByB": -36,
+      "forceOnBByA": 36,
+      "forceCoherent": true
+    },
+    "balanced_unit": {
+      "commonForceMagnitude": 30,
+      "detectorCount": 2,
+      "detectorFieldSamples": [30, 30],
+      "extractedActiveMass": 60,
+      "forceOnAByB": -30,
+      "forceOnBByA": 30,
+      "forceCoherent": true
+    }
+  },
+  "proved_items": [
+    "detector_field_from_newtonian_sample_gate",
+    "newtonian_force_detector_coherence_bridge",
+    "actual_earth_moon_scaled_detector_coherence_values",
+    "actual_balanced_unit_detector_coherence_values"
+  ],
+  "does_not_prove": [
+    "new gravitational force law",
+    "physical detector accuracy",
+    "physical repulsive gravity",
+    "relativistic Einstein equation",
+    "Einstein-matter PDE well-posedness",
+    "collapse theorem",
+    "black-hole formation theorem",
+    "cosmic censorship",
+    "hoop conjecture",
+    "dark matter replacement",
+    "gravity closure",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "Clay problem"
+  ]
+}
