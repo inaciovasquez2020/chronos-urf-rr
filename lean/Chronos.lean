@@ -261,3 +261,5 @@ import Chronos.Frontier.RestrictedQLMassRadiusGateMonotonicity
 import Chronos.Frontier.RestrictedQLFiniteDetectorMassRadiusExtraction
 
 import Chronos.Frontier.ComputedActiveRadiusMinimum
+
+import Chronos.Frontier.EmptyActiveDetectorDefaultPolicy
