@@ -1,0 +1,32 @@
+{
+  "date": "2026-05-28",
+  "artifact": "FINITE_DETECTOR_COHERENCE_FORCES_ATOMIC_MASS_REPRESENTATION_2026_05_28",
+  "status": "FINITE_COHERENCE_THEOREM_SOLVED",
+  "lean_module": "Chronos.Frontier.FiniteDetectorCoherenceForcesAtomicMassRepresentation",
+  "closed_theorems": [
+    "finiteDetectorCoherence_forces_atomicMassRepresentation",
+    "finiteDetectorCoherence_uniqueExtraction",
+    "finiteDetectorCoherence_noRegroupingObstruction"
+  ],
+  "research_novelty": "The extraction map is not defined as a sum; finite additivity and singleton calibration forced atomic mass representation for every coherent finite detector interface.",
+  "harder_obstruction_removed": "Finite regrouping, ordering, and blocking dependence cannot survive the coherence axioms.",
+  "comparison": [
+    "Mathlib already supplies Finset and finite-sum infrastructure.",
+    "This artifact packages a domain-specific detector-coherence uniqueness theorem rather than another direct sum-definition lemma.",
+    "The theorem sits below measure-theoretic formalizations such as Haar-measure uniqueness, but uses the same invariant-from-axioms pattern in a finite detector setting."
+  ],
+  "does_not_prove": [
+    "physical detector-field extraction map",
+    "Einstein-matter PDE well-posedness",
+    "trapped-surface formation theorem",
+    "black-hole formation theorem",
+    "cosmic censorship proof",
+    "hoop conjecture proof",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
