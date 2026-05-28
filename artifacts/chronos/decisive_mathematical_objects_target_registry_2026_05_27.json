@@ -1,0 +1,67 @@
+{
+  "id": "DECISIVE_MATHEMATICAL_OBJECTS_TARGET_REGISTRY_2026_05_27",
+  "date": "2026-05-27",
+  "status": "OPEN_TARGET_REGISTRY_ONLY_NO_MATHEMATICAL_CLOSURE",
+  "central_mathematical_slogan": "Nontrivial registered structure forces a nonzero quantitative gap.",
+  "claim_type": "decisive_missing_object_registry",
+  "targets": [
+    {
+      "name": "RankEntropyGapLemma",
+      "status": "OPEN_TARGET_NOT_PROVED",
+      "weakest_sufficient_object": "A theorem converting registered rank/fiber growth into a uniform positive entropy gap."
+    },
+    {
+      "name": "FiniteToUniformUpgradeLemma",
+      "status": "OPEN_TARGET_NOT_PROVED",
+      "weakest_sufficient_object": "A compactness, monotonicity, or coercivity theorem upgrading finite verified witnesses to a uniform family-level lower bound."
+    },
+    {
+      "name": "LowerBoundInequality",
+      "status": "OPEN_TARGET_NOT_PROVED",
+      "weakest_sufficient_object": "A nonzero quantitative lower bound showing that nontrivial registered structure cannot collapse to zero cost."
+    },
+    {
+      "name": "CompactnessTheorem",
+      "status": "OPEN_TARGET_NOT_PROVED",
+      "weakest_sufficient_object": "A compactness theorem preserving positive quantitative gap data along admissible limiting families."
+    },
+    {
+      "name": "RealNumericalPredictionVectorRun",
+      "status": "OPEN_TARGET_NOT_EXECUTED",
+      "weakest_sufficient_object": "A hash-locked finite-output numerical prediction-vector run from an executable DFM-MKC solver or trusted external solver."
+    }
+  ],
+  "current_state": {
+    "infrastructure": "substantially improved",
+    "mathematical_closure": "not finished",
+    "prediction_vector_closure": "not finished"
+  },
+  "does_not_prove": [
+    "RankEntropyGapLemma",
+    "FiniteToUniformUpgradeLemma",
+    "LowerBoundInequality",
+    "CompactnessTheorem",
+    "RealNumericalPredictionVectorRun",
+    "unrestricted UniversalFiberEntropyGap",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem",
+    "DFM-MKC empirical validation",
+    "Lambda-CDM failure",
+    "dark matter replacement",
+    "dark matter is liquid",
+    "dark matter is solid",
+    "dark matter is a phase",
+    "Cosmic Censorship",
+    "Hoop Conjecture",
+    "unrestricted gravity closure"
+  ],
+  "next_admissible_objects": [
+    "prove RankEntropyGapLemma",
+    "prove FiniteToUniformUpgradeLemma",
+    "prove LowerBoundInequality",
+    "prove CompactnessTheorem",
+    "execute RealNumericalPredictionVectorRun"
+  ]
+}
