@@ -1,0 +1,40 @@
+{
+  "id": "DETECTOR_BUDGET_COMPATIBLE_TO_GATE_2026_05_28",
+  "status": "FINITE_COMPATIBILITY_TO_RESTRICTED_GATE_BRIDGE_ONLY",
+  "object": "DetectorBudgetCompatible to RestrictedFiniteDetectorExtractionGate",
+  "date": "2026-05-28",
+  "depends_on": [
+    "PHYSICAL_FIELD_DATA_FINITE_SAMPLES_2026_05_28",
+    "FINITE_DETECTOR_PARTITION_2026_05_28",
+    "EXTRACT_PHYSICAL_DETECTOR_WITNESS_2026_05_28",
+    "DETECTOR_BUDGET_COMPATIBLE_2026_05_28"
+  ],
+  "claims": [
+    "Defines RestrictedFiniteDetectorExtractionGateFromBudget as a finite arithmetic gate certificate.",
+    "Proves DetectorBudgetCompatible implies the restricted finite-detector extraction-gate certificate.",
+    "Proves every extracted finite detector witness induces the restricted finite-detector extraction-gate certificate.",
+    "Exposes nonnegative active mass from the restricted gate.",
+    "Exposes detector-id length agreement with partition cell count from the restricted gate.",
+    "Exposes sample-count agreement with finite support size from the restricted gate.",
+    "Exposes detector-cell count agreement with partition cell count from the restricted gate.",
+    "Proves empty-data active mass is zero through the restricted gate."
+  ],
+  "does_not_prove": [
+    "PhysicalDetectorFieldExtractionMap",
+    "coverage of physical field data",
+    "disjointness of detector cells",
+    "geometric partition correctness",
+    "empirical detector correctness",
+    "Einstein-matter PDE well-posedness",
+    "trapped-surface formation",
+    "black-hole formation",
+    "cosmic censorship",
+    "hoop conjecture",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
