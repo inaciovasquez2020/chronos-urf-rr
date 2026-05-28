@@ -27,7 +27,8 @@ def actualBalancedUnitWitness : NewtonianTwoBodySample :=
 
 theorem equal_opposite_force_identity (x : NewtonianTwoBodySample) :
     equalAndOppositeForces x := by
-  simp [equalAndOppositeForces, forceOnAByB, forceOnBByA]
+  unfold equalAndOppositeForces forceOnAByB forceOnBByA
+  exact neg_add_cancel (Int.ofNat (commonForceMagnitude x))
 
 theorem actual_earth_moon_scaled_force_values :
     commonForceMagnitude actualEarthMoonScaledWitness = 36 ∧
