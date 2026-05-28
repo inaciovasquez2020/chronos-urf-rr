@@ -19,7 +19,7 @@ theorem FZLoop.zero_flux_localization_list :
     ∀ qs : List Nat, FZLoop.fluxSum qs = 0 -> FZLoop.locallyZero qs
   | [], _ => True.intro
   | q :: qs, h => by
-      have hz := Nat.add_eq_zero.mp h
+      have hz := Nat.add_eq_zero_iff.mp h
       exact And.intro hz.left (FZLoop.zero_flux_localization_list qs hz.right)
 
 theorem FZLoop.zero_flux_localization (L : FZLoop) :
