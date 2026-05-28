@@ -1,0 +1,42 @@
+{
+  "id": "COMPUTED_ACTIVE_RADIUS_MINIMUM_2026_05_28",
+  "date": "2026-05-28",
+  "repo": "chronos-urf-rr",
+  "status": "SOLVED_RESTRICTED_COMPUTED_ACTIVE_RADIUS_MINIMUM_ONLY",
+  "type": "restricted_gravity_finite_detector_minimum_bridge",
+  "depends_on": [
+    "RESTRICTED_QL_FINITE_DETECTOR_MASS_RADIUS_EXTRACTION_2026_05_28",
+    "RESTRICTED_QL_MASS_RADIUS_GATE_MONOTONICITY_2026_05_28"
+  ],
+  "lean_module": "Chronos.Frontier.ComputedActiveRadiusMinimum",
+  "proved_objects": [
+    "activeDetectors",
+    "activeRadiusValues",
+    "computedActiveRadiusMinimum",
+    "active_radius_mem_values_of_active",
+    "computedActiveRadiusMinimum_le_active_radius",
+    "finiteDetectorExtraction_gate_of_computed_min_le_mass",
+    "finiteDetectorExtraction_computed_min_gate_mono_mass"
+  ],
+  "meaning": "For a finite detector field with nonempty active-radius values, the active-radius floor is computed as the finite minimum of active detector radii and can be used in the restricted finite-detector extraction gate.",
+  "does_not_prove": [
+    "cosmic censorship proved",
+    "hoop conjecture proved",
+    "Einstein-matter PDE well-posedness",
+    "trapped-surface formation theorem",
+    "black-hole formation theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR proved",
+    "unrestricted H4.1/FGL proved",
+    "solves P vs NP",
+    "Clay problem solved"
+  ],
+  "next_missing_objects": [
+    "EmptyActiveDetectorDefaultPolicy",
+    "PhysicalDetectorFieldExtractionMap",
+    "RestrictedEinsteinMatterDataToFiniteDetectorField",
+    "TrappedSurfaceFormationFromRestrictedGate",
+    "PDEConstraintPropagationForRestrictedCollapseDomain"
+  ]
+}

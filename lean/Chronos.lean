@@ -259,3 +259,5 @@ import Chronos.Frontier.GDMGravityDarkMatterDeficitModel
 import Chronos.Frontier.GDMResidualIdentificationTheorem
 import Chronos.Frontier.RestrictedQLMassRadiusGateMonotonicity
 import Chronos.Frontier.RestrictedQLFiniteDetectorMassRadiusExtraction
+
+import Chronos.Frontier.ComputedActiveRadiusMinimum
