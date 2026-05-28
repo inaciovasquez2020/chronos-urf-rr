@@ -249,3 +249,5 @@ import Chronos.Frontier.ConcreteGravityEstimateTarget
 import Chronos.Frontier.ConcreteGravityAnalyticEstimateReadiness
 
 import Chronos.Frontier.ConcreteGravityCoerciveEstimateProofObligation
+
+import Chronos.Frontier.RestrictedStationaryGravityEstimateCandidate
