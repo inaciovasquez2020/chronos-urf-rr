@@ -279,3 +279,5 @@ import Chronos.Frontier.NewtonianForceDetectorCoherenceBridge
 import Chronos.Frontier.FiniteScalingInvarianceOfDetectorExtraction
 import Chronos.Frontier.ObservedRotationCurveResidualBridge
 import Chronos.Frontier.ObservedRotationCurveBudgetGateBridge
+
+import Chronos.Frontier.PhysicalFieldDataFiniteSamples

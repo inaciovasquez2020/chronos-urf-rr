@@ -1,0 +1,28 @@
+{
+  "id": "PHYSICAL_FIELD_DATA_FINITE_SAMPLES_2026_05_28",
+  "status": "FINITE_FIELD_DATA_OBJECT_ONLY",
+  "object": "PhysicalFieldData",
+  "date": "2026-05-28",
+  "claims": [
+    "Defines finite compact-support physical field data as an explicit finite list of samples.",
+    "Defines total finite sampled energy.",
+    "Proves finite support and nonnegative total energy in the arithmetic finite model."
+  ],
+  "does_not_prove": [
+    "PhysicalDetectorFieldExtractionMap",
+    "FiniteDetectorPartition",
+    "extractPhysicalDetectorWitness",
+    "DetectorBudgetCompatible",
+    "Einstein-matter PDE well-posedness",
+    "trapped-surface formation",
+    "black-hole formation",
+    "cosmic censorship",
+    "hoop conjecture",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}
