@@ -255,3 +255,12 @@ import Chronos.Frontier.RestrictedStationaryGravityEstimateCandidate
 import Chronos.Frontier.RestrictedKomarHawkingFluxSignTarget
 
 import Chronos.Frontier.FZLoopZeroFluxLocalization
+import Chronos.Frontier.GDMGravityDarkMatterDeficitModel
+
+import Chronos.Frontier.GDMResidualIdentificationTheorem
+import Chronos.Frontier.RestrictedQLMassRadiusGateMonotonicity
+import Chronos.Frontier.RestrictedQLFiniteDetectorMassRadiusExtraction
+
+import Chronos.Frontier.ComputedActiveRadiusMinimum
+
+import Chronos.Frontier.EmptyActiveDetectorDefaultPolicy

@@ -1,0 +1,38 @@
+{
+  "artifact": "GDM_RESIDUAL_IDENTIFICATION_THEOREM_V1",
+  "boundary": [
+    "finite nonnegative model only",
+    "no observational evidence",
+    "no galaxy rotation curve fit",
+    "no lensing fit",
+    "no empirical residual measurement",
+    "no dark matter replacement",
+    "no Lambda-CDM refutation",
+    "no modified gravity theorem",
+    "no Einstein-matter theorem",
+    "no collapse theorem",
+    "no Cosmic Censorship",
+    "no Hoop Conjecture",
+    "no quantum gravity",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ],
+  "core_decomposition": "observedMass = baryonicMass + geometricDeficitMass",
+  "date": "2026-05-28",
+  "expanded_name": "Gravity Dark Matter / Geometric Deficit Mass",
+  "id": "GDM_RESIDUAL_IDENTIFICATION_THEOREM_V1",
+  "identification": "observedMass - baryonicMass equals geometric deficit mass inside the finite nonnegative GDM model",
+  "intended_gravity_use": "Convert a gravity-side apparent missing-mass residual into a named geometric-deficit variable before any observational, lensing, rotation-curve, or field-equation instantiation.",
+  "mathematical_object": "finite nonnegative residual-identification model",
+  "model_scope": "finite nonnegative model only",
+  "modeling_closure": "Within the finite nonnegative GDM model, the dark-matter-like residual is exactly identified with the geometric deficit mass.",
+  "proved_identification": "residualMass = observedMass - baryonicMass = geometricDeficitMass",
+  "proved_theorems": [
+    "gdmResidualIdentification",
+    "gdmResidualIdentification_nonnegative"
+  ],
+  "status": "FINITE_NONNEGATIVE_GDM_RESIDUAL_IDENTIFICATION_CLOSED",
+  "toolkit_name": "GDM"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "RESTRICTED_QL_MASS_RADIUS_GATE_MONOTONICITY_2026_05_28",
+  "date": "2026-05-28",
+  "repo": "chronos-urf-rr",
+  "status": "SOLVED_RESTRICTED_LOCAL_ARITHMETIC_GATE_ONLY",
+  "type": "restricted_gravity_local_certificate",
+  "lean_module": "Chronos.Frontier.RestrictedQLMassRadiusGateMonotonicity",
+  "proved_objects": [
+    "restrictedQLCollapseGate_mono_massRadius",
+    "restrictedQLCollapseGate_zero_mass_rigid"
+  ],
+  "meaning": "Within a finite restricted quasi-local mass-radius gate model, an active collapse-gate flag is monotone under increasing mass-radius budget, and zero mass-radius budget forces zero concentration radius whenever the gate is active.",
+  "does_not_prove": [
+    "cosmic censorship proved",
+    "hoop conjecture proved",
+    "Einstein-matter PDE well-posedness",
+    "trapped-surface formation theorem",
+    "black-hole formation theorem",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR proved",
+    "unrestricted H4.1/FGL proved",
+    "solves P vs NP",
+    "Clay problem solved"
+  ],
+  "next_missing_objects": [
+    "PhysicalMassRadiusExtractionMap",
+    "RestrictedEinsteinMatterDataToMassRadiusSample",
+    "TrappedSurfaceFormationFromRestrictedGate",
+    "PDEConstraintPropagationForRestrictedCollapseDomain"
+  ]
+}

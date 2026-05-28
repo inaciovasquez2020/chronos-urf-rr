@@ -1,0 +1,36 @@
+{
+  "id": "GDM_GRAVITY_DARK_MATTER_DEFICIT_MODEL_V1",
+  "date": "2026-05-28",
+  "status": "GDM_DEFICIT_ACCOUNTING_MODEL_PROVED_FINITE_NONNEGATIVE_ONLY",
+  "toolkit_name": "GDM",
+  "expanded_name": "Gravity Dark Matter / Geometric Deficit Mass",
+  "mathematical_object": "finite nonnegative gravitational deficit accounting model",
+  "proved_theorems": [
+    "GDM.baryonic_le_effective",
+    "GDM.zero_deficit_effective_eq_baryonic",
+    "GDM.positive_deficit_effective_gt_baryonic",
+    "GDM.effective_eq_baryonic_implies_zero_deficit"
+  ],
+  "core_identity": "effectiveMass = baryonicMass + geometricDeficitMass",
+  "intended_gravity_use": "Abstractly model a gravity-side apparent dark-matter residual as a nonnegative geometric deficit mass term before any physical or observational instantiation.",
+  "new_ingredient": "GDM packages the dark-matter-like gravitational residual as a finite nonnegative deficit object with proved monotonicity and zero-deficit rigidity.",
+  "boundary": [
+    "finite nonnegative accounting model only",
+    "internal theorem only",
+    "no observational evidence",
+    "no galaxy rotation curve fit",
+    "no lensing fit",
+    "no dark matter replacement",
+    "no Lambda-CDM refutation",
+    "no modified gravity theorem",
+    "no Einstein-matter theorem",
+    "no collapse theorem",
+    "no Cosmic Censorship",
+    "no Hoop Conjecture",
+    "no quantum gravity",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
