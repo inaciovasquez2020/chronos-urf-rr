@@ -273,3 +273,4 @@ import Chronos.Frontier.ConcreteNonToyApplicationDerivedRankGapProof
 import Chronos.Frontier.GravityPullPushActualValueTest
 import Chronos.Frontier.NewtonianEqualOppositeGravityForceActualValueTest
 import Chronos.Frontier.NewtonianForceDetectorCoherenceBridge
+import Chronos.Frontier.FiniteScalingInvarianceOfDetectorExtraction
