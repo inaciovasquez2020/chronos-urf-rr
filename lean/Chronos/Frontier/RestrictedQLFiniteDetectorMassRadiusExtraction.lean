@@ -4,7 +4,7 @@ import Chronos.Frontier.RestrictedQLMassRadiusGateMonotonicity
 namespace Chronos
 namespace Frontier
 
-variable {DetectorId : Type*} [Fintype DetectorId] [DecidableEq DetectorId]
+variable {DetectorId : Type*} [Fintype DetectorId]
 
 /-- Sum of masses over active finite detectors. -/
 def activeMass (mass : DetectorId → Nat) (active : DetectorId → Bool) : Nat :=
@@ -12,7 +12,7 @@ def activeMass (mass : DetectorId → Nat) (active : DetectorId → Bool) : Nat 
 
 /-- Finite detector extraction into the restricted quasi-local mass-radius sample. -/
 def finiteDetectorMassRadiusExtraction
-    (mass radius : DetectorId → Nat)
+    (mass _radius : DetectorId → Nat)
     (active : DetectorId → Bool)
     (activeRadiusFloor : Nat) :
     RestrictedQLMassRadiusSample :=
