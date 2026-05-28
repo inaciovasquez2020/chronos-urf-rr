@@ -272,3 +272,4 @@ import Chronos.Frontier.GDMEmpiricalMassMapBindingTheorem
 import Chronos.Frontier.ConcreteNonToyApplicationDerivedRankGapProof
 import Chronos.Frontier.GravityPullPushActualValueTest
 import Chronos.Frontier.NewtonianEqualOppositeGravityForceActualValueTest
+import Chronos.Frontier.NewtonianForceDetectorCoherenceBridge
