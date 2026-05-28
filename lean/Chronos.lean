@@ -257,3 +257,4 @@ import Chronos.Frontier.RestrictedKomarHawkingFluxSignTarget
 import Chronos.Frontier.GDMGravityDarkMatterDeficitModel
 
 import Chronos.Frontier.GDMResidualIdentificationTheorem
+import Chronos.Frontier.RestrictedQLMassRadiusGateMonotonicity
