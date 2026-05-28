@@ -1,0 +1,41 @@
+{
+  "id": "DETECTOR_BUDGET_COMPATIBLE_2026_05_28",
+  "status": "FINITE_DETECTOR_BUDGET_COMPATIBILITY_CERTIFICATE_ONLY",
+  "object": "DetectorBudgetCompatible",
+  "date": "2026-05-28",
+  "depends_on": [
+    "PHYSICAL_FIELD_DATA_FINITE_SAMPLES_2026_05_28",
+    "FINITE_DETECTOR_PARTITION_2026_05_28",
+    "EXTRACT_PHYSICAL_DETECTOR_WITNESS_2026_05_28"
+  ],
+  "claims": [
+    "Defines DetectorBudgetCompatible as a finite arithmetic compatibility certificate.",
+    "Proves every finite extracted physical detector witness satisfies the finite compatibility certificate.",
+    "Proves compatibility exposes active-mass equality with finite sampled total energy.",
+    "Proves compatibility exposes sample-count equality with finite support size.",
+    "Proves compatibility exposes detector-cell count equality with partition cell count.",
+    "Proves compatible extracted active mass is nonnegative.",
+    "Proves compatible extracted detector-id length equals partition cell count.",
+    "Proves compatible empty-data extracted active mass is zero."
+  ],
+  "does_not_prove": [
+    "PhysicalDetectorFieldExtractionMap",
+    "DetectorBudgetCompatible to RestrictedFiniteDetectorExtractionGate",
+    "restricted finite-detector extraction gate",
+    "coverage of physical field data",
+    "disjointness of detector cells",
+    "geometric partition correctness",
+    "empirical detector correctness",
+    "Einstein-matter PDE well-posedness",
+    "trapped-surface formation",
+    "black-hole formation",
+    "cosmic censorship",
+    "hoop conjecture",
+    "unrestricted QL_CollapseGate",
+    "unrestricted UniversalBoundaryCompactness",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ]
+}

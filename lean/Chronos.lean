@@ -285,3 +285,5 @@ import Chronos.Frontier.PhysicalFieldDataFiniteSamples
 import Chronos.Frontier.FiniteDetectorPartition
 
 import Chronos.Frontier.ExtractPhysicalDetectorWitness
+
+import Chronos.Frontier.DetectorBudgetCompatible
