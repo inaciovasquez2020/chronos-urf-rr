@@ -290,3 +290,4 @@ import Chronos.Frontier.DetectorBudgetCompatible
 
 import Chronos.Frontier.DetectorBudgetCompatibleToGate
 import Chronos.Frontier.RotationCurveResidualAccountingBridge
+import Chronos.Frontier.RotationCurveResidualDeficitMassBridge
