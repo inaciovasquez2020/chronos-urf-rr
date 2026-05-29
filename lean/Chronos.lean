@@ -315,3 +315,4 @@ import Chronos.Frontier.ThetaResidualPredictionVectorExecutionGate
 
 import Chronos.Frontier.AuthenticSPARCThetaResidualPredictionVectorRun
 import Chronos.Frontier.ThetaResidualCrossValidationStabilityRun
+import Chronos.Frontier.ThetaResidualNontrivialityLeakageAudit
