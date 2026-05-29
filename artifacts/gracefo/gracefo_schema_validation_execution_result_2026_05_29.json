@@ -1,0 +1,295 @@
+{
+  "status": "GRACEFO_SCHEMA_VALIDATION_EXECUTION_RESULT_CREATED",
+  "dataset_short_name": "GRACEFO_L2_JPL_MONTHLY_0063",
+  "input_digest_artifact": "artifacts/gracefo/authenticated_gracefo_payload_digest_certificate_2026_05_29.json",
+  "collection_sha256": "5b45e2420f5d852994abf8c2bd0284f311740864ea2f7246b460fba51d1a4312",
+  "schema_checks": {
+    "digest_artifact_exists": true,
+    "dataset_short_name_matches": true,
+    "collection_sha256_is_64_hex_chars": true,
+    "payload_files_exist": true,
+    "payload_file_sizes_match_digest_artifact": true,
+    "payload_file_sha256_values_match_digest_artifact": true,
+    "required_monthly_products_present_per_period": true,
+    "period_count": 2,
+    "data_file_count": 12
+  },
+  "periods": [
+    {
+      "start_day": "2024001",
+      "end_day": "2024031",
+      "required_products": [
+        [
+          "GAA",
+          "BC01"
+        ],
+        [
+          "GAB",
+          "BC01"
+        ],
+        [
+          "GAC",
+          "BC01"
+        ],
+        [
+          "GAD",
+          "BC01"
+        ],
+        [
+          "GSM",
+          "BA01"
+        ],
+        [
+          "GSM",
+          "BB01"
+        ]
+      ]
+    },
+    {
+      "start_day": "2024032",
+      "end_day": "2024060",
+      "required_products": [
+        [
+          "GAA",
+          "BC01"
+        ],
+        [
+          "GAB",
+          "BC01"
+        ],
+        [
+          "GAC",
+          "BC01"
+        ],
+        [
+          "GAD",
+          "BC01"
+        ],
+        [
+          "GSM",
+          "BA01"
+        ],
+        [
+          "GSM",
+          "BB01"
+        ]
+      ]
+    }
+  ],
+  "matched_payload_files": [
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GAA-2_2024001-2024031_GRFO_JPLEM_BC01_0603",
+      "product": "GAA",
+      "branch": "BC01",
+      "start_day": "2024001",
+      "end_day": "2024031",
+      "key": [
+        "GAA",
+        "BC01"
+      ],
+      "period": [
+        "2024001",
+        "2024031"
+      ],
+      "bytes": 1818251,
+      "sha256": "2628d2062b80a8ba3f373f11b8bf572d2565f34a49dcc310c406d26e8fd6eaae"
+    },
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GAA-2_2024032-2024060_GRFO_JPLEM_BC01_0603",
+      "product": "GAA",
+      "branch": "BC01",
+      "start_day": "2024032",
+      "end_day": "2024060",
+      "key": [
+        "GAA",
+        "BC01"
+      ],
+      "period": [
+        "2024032",
+        "2024060"
+      ],
+      "bytes": 1818251,
+      "sha256": "db6aa9cba65a4739ce968fbedf8a62bb64809ba5b78e5ebc49937616393214e5"
+    },
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GAB-2_2024001-2024031_GRFO_JPLEM_BC01_0603",
+      "product": "GAB",
+      "branch": "BC01",
+      "start_day": "2024001",
+      "end_day": "2024031",
+      "key": [
+        "GAB",
+        "BC01"
+      ],
+      "period": [
+        "2024001",
+        "2024031"
+      ],
+      "bytes": 1817981,
+      "sha256": "41bfbbb9d8eadafbb418e7f4c1b7f7cc2a4f7cdff574802b3a0f1f1d29909140"
+    },
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GAB-2_2024032-2024060_GRFO_JPLEM_BC01_0603",
+      "product": "GAB",
+      "branch": "BC01",
+      "start_day": "2024032",
+      "end_day": "2024060",
+      "key": [
+        "GAB",
+        "BC01"
+      ],
+      "period": [
+        "2024032",
+        "2024060"
+      ],
+      "bytes": 1817981,
+      "sha256": "8e92b5edb3cd09bb26b8011ff87a468baefcd657bf1d335339a3343c61765e4e"
+    },
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GAC-2_2024001-2024031_GRFO_JPLEM_BC01_0603",
+      "product": "GAC",
+      "branch": "BC01",
+      "start_day": "2024001",
+      "end_day": "2024031",
+      "key": [
+        "GAC",
+        "BC01"
+      ],
+      "period": [
+        "2024001",
+        "2024031"
+      ],
+      "bytes": 1818315,
+      "sha256": "b3e93918b9c01f563ff76648758ff16b96037d8c32b472b5c69ead135912d30c"
+    },
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GAC-2_2024032-2024060_GRFO_JPLEM_BC01_0603",
+      "product": "GAC",
+      "branch": "BC01",
+      "start_day": "2024032",
+      "end_day": "2024060",
+      "key": [
+        "GAC",
+        "BC01"
+      ],
+      "period": [
+        "2024032",
+        "2024060"
+      ],
+      "bytes": 1818315,
+      "sha256": "e0730937c8a00137171f0ecc1bee9a2608e750a7a318029895efd72812e5af9b"
+    },
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GAD-2_2024001-2024031_GRFO_JPLEM_BC01_0603",
+      "product": "GAD",
+      "branch": "BC01",
+      "start_day": "2024001",
+      "end_day": "2024031",
+      "key": [
+        "GAD",
+        "BC01"
+      ],
+      "period": [
+        "2024001",
+        "2024031"
+      ],
+      "bytes": 1818197,
+      "sha256": "6471549819c25e9001fe7179261f80f3d920db51522bcc085171a8ebafe39506"
+    },
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GAD-2_2024032-2024060_GRFO_JPLEM_BC01_0603",
+      "product": "GAD",
+      "branch": "BC01",
+      "start_day": "2024032",
+      "end_day": "2024060",
+      "key": [
+        "GAD",
+        "BC01"
+      ],
+      "period": [
+        "2024032",
+        "2024060"
+      ],
+      "bytes": 1818197,
+      "sha256": "081e0eeceb0e9fa32ad695ef3f3b1b93c5a43399c086d773e7004b739c7f0d42"
+    },
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GSM-2_2024001-2024031_GRFO_JPLEM_BA01_0603",
+      "product": "GSM",
+      "branch": "BA01",
+      "start_day": "2024001",
+      "end_day": "2024031",
+      "key": [
+        "GSM",
+        "BA01"
+      ],
+      "period": [
+        "2024001",
+        "2024031"
+      ],
+      "bytes": 214972,
+      "sha256": "b2ced2cbdef18dbbf793b911933e6d0077097213c599698192d95adc9aa4918e"
+    },
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GSM-2_2024001-2024031_GRFO_JPLEM_BB01_0603",
+      "product": "GSM",
+      "branch": "BB01",
+      "start_day": "2024001",
+      "end_day": "2024031",
+      "key": [
+        "GSM",
+        "BB01"
+      ],
+      "period": [
+        "2024001",
+        "2024031"
+      ],
+      "bytes": 529792,
+      "sha256": "8b62c627f782d41bdb0771692d2b5c98b797c745e8e1863a12db34468aded9f7"
+    },
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GSM-2_2024032-2024060_GRFO_JPLEM_BA01_0603",
+      "product": "GSM",
+      "branch": "BA01",
+      "start_day": "2024032",
+      "end_day": "2024060",
+      "key": [
+        "GSM",
+        "BA01"
+      ],
+      "period": [
+        "2024032",
+        "2024060"
+      ],
+      "bytes": 214972,
+      "sha256": "83d960cec804434aa5f9f50a09053c42af5b5f38b85b3aefd3c94832881d2f24"
+    },
+    {
+      "path": "data/gracefo/GRACEFO_L2_JPL_MONTHLY_0063/GSM-2_2024032-2024060_GRFO_JPLEM_BB01_0603",
+      "product": "GSM",
+      "branch": "BB01",
+      "start_day": "2024032",
+      "end_day": "2024060",
+      "key": [
+        "GSM",
+        "BB01"
+      ],
+      "period": [
+        "2024032",
+        "2024060"
+      ],
+      "bytes": 529792,
+      "sha256": "baf6d608e6f08528e79121834a5a958208eeda78251099a2bce4825999d18288"
+    }
+  ],
+  "verified_file_count_in_digest_artifact": 13,
+  "boundary": [
+    "schema validation execution result only",
+    "no real GRACEFO tidal-derivative model execution yet",
+    "no empirical residual result",
+    "no GR failure claim",
+    "no new gravity claim",
+    "no dark matter replacement claim",
+    "no Lambda-CDM failure claim"
+  ]
+}
