@@ -1,0 +1,33 @@
+{
+  "id": "YTR_ONSLAUGHT_BLIND_VALIDATION_PROTOCOL_2026_05_29",
+  "name": "YtR ONSLAUGHT Blind Validation Protocol",
+  "short_name": "YtR",
+  "expansion": "Yet-to-Replicate",
+  "onslaught_role": "blind empirical validation campaign",
+  "status": "YTR_BLIND_VALIDATION_CANDIDATE_NOT_NEW_PHYSICS",
+  "classification": "candidate predictive-physics validation target",
+  "promotion_rule": {
+    "new_physics_admissible_only_if": [
+      "blind likelihood improvement passes",
+      "independent replication passes"
+    ]
+  },
+  "required_gates": [
+    "predictive law candidate",
+    "blind holdout partition",
+    "residual access exclusion",
+    "frozen prediction vector",
+    "LCDM-compatible baseline comparison model",
+    "blind likelihood run",
+    "independent replication run"
+  ],
+  "forbidden_promotions": [
+    "new physics",
+    "new dark-matter science",
+    "Lambda-CDM failure evidence",
+    "physical validation",
+    "predictive law closure",
+    "dark matter replacement claim"
+  ],
+  "allowed_claim": "YtR is a blind validation candidate until both promotion gates pass."
+}
