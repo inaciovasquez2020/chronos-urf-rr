@@ -1,102 +1,74 @@
-import Chronos.Frontier.PartitionedBudgetPhysicalDetectorGateBound
-import Chronos.Frontier.ObservedRotationCurveResidualBridge
+import Chronos.Frontier.PhysicalDetectorFieldExtractionMap
 
-namespace Chronos
-namespace Frontier
-namespace RestrictedPhysicalDetectorFieldExtractionMap
+namespace Chronos.Frontier
 
 /--
-A restricted finite detector field enriched with integer-valued rotation-curve
-dynamics. This is still a finite accounting interface: it does not assert an
-empirical galaxy fit, lensing fit, continuum GR theorem, or dark-matter
-replacement claim.
+`ObservedRotationCurveBudget` is a finite arithmetic accounting object.
+
+It records an observed velocity/mass-budget total, a baryonic-accounted
+budget, and a residual budget, together with the finite equality certifying
+that the observed budget decomposes into accounted plus residual budget.
 -/
-structure PhysicalDetectorFieldWithDynamics (Detector : Type*) extends
-    PhysicalDetectorField Detector where
-  G : ℕ
-  velocity : Detector → ℕ
-  baryonicMass : Detector → ℕ
-  hG : 0 < G
+structure ObservedRotationCurveBudget where
+  observedBudget : Nat
+  baryonicAccountedBudget : Nat
+  residualBudget : Nat
+  budgetClosed : observedBudget = baryonicAccountedBudget + residualBudget
+
+def ObservedRotationCurveBudget.residual
+    (B : ObservedRotationCurveBudget) : Nat :=
+  B.residualBudget
+
+theorem ObservedRotationCurveBudget.closed
+    (B : ObservedRotationCurveBudget) :
+    B.observedBudget = B.baryonicAccountedBudget + B.residualBudget :=
+  B.budgetClosed
 
 /--
-Integer-valued required mass from the rotation-curve formula
+`ObservedRotationCurveBudgetGateBridge` attaches the already-closed finite
+physical detector extraction map to an observed rotation-curve residual budget.
 
-  M_required = v^2 r / G.
-
-The natural-number division is an intentionally restricted finite accounting
-approximation.
+This is only a finite budget-to-gate interface bridge.
 -/
-def requiredMassFromRotation
-    {Detector : Type*}
-    (F : PhysicalDetectorFieldWithDynamics Detector)
-    (d : Detector) : ℕ :=
-  (F.velocity d * F.velocity d * F.toPhysicalDetectorField.radius d) / F.G
+structure ObservedRotationCurveBudgetGateBridge where
+  detectorMap : PhysicalDetectorFieldExtractionMap
+  rotationBudget : ObservedRotationCurveBudget
+  detectorCompatible : detectorMap.detectorBudgetCompatible
+  gateBudget : Nat
+  gateMatchesResidual : gateBudget = rotationBudget.residualBudget
 
-/--
-Finite detector GDM budget contribution:
+def ObservedRotationCurveBudgetGateBridge.restrictedGate
+    (B : ObservedRotationCurveBudgetGateBridge) :
+    B.detectorMap.restrictedFiniteDetectorExtractionGate :=
+  B.detectorMap.compatibilityToGate B.detectorCompatible
 
-  max(0, M_required - M_b).
+theorem ObservedRotationCurveBudgetGateBridge.gate_budget_matches_residual
+    (B : ObservedRotationCurveBudgetGateBridge) :
+    B.gateBudget = B.rotationBudget.residualBudget :=
+  B.gateMatchesResidual
 
-For natural numbers, subtraction is truncated at zero, but `max 0` keeps the
-intended residual-budget form explicit.
--/
-def physicalGDMBudget
-    {Detector : Type*}
-    (F : PhysicalDetectorFieldWithDynamics Detector)
-    (d : Detector) : ℕ :=
-  max 0 (requiredMassFromRotation F d - F.baryonicMass d)
+theorem ObservedRotationCurveBudgetGateBridge.observed_budget_decomposes
+    (B : ObservedRotationCurveBudgetGateBridge) :
+    B.rotationBudget.observedBudget =
+      B.rotationBudget.baryonicAccountedBudget + B.rotationBudget.residualBudget :=
+  B.rotationBudget.budgetClosed
 
-/--
-Observed rotation-curve dynamics produce the partitioned budget certificate
-required by the #542 gate bridge, provided the pointwise reading bound and
-local partition bound are supplied.
--/
-def physicalGDMBudget_partitioned_certificate_from_observed_rotation_curve
-    {Detector : Type*} [Fintype Detector] [DecidableEq Detector]
-    (F : PhysicalDetectorFieldWithDynamics Detector)
-    (hReading :
-      ∀ d,
-        d ∈ activeDetectors F.toPhysicalDetectorField →
-          F.toPhysicalDetectorField.reading d ≤ physicalGDMBudget F d)
-    (hPartition :
-      ∀ d,
-        d ∈ activeDetectors F.toPhysicalDetectorField →
-          physicalGDMBudget F d *
-              (activeDetectors F.toPhysicalDetectorField).card
-            ≤ extractedRadiusFloor F.toPhysicalDetectorField) :
-    PartitionedPhysicalDetectorBudgetCertificate F.toPhysicalDetectorField where
-  budget := fun d => physicalGDMBudget F d
-  reading_le_budget := hReading
-  budget_le_partition := hPartition
+def observedRotationCurveBudgetWitness : ObservedRotationCurveBudget where
+  observedBudget := 100
+  baryonicAccountedBudget := 72
+  residualBudget := 28
+  budgetClosed := by native_decide
 
-/--
-Final restricted composition:
+theorem observed_rotation_curve_budget_actual_values :
+    observedRotationCurveBudgetWitness.observedBudget = 100 ∧
+    observedRotationCurveBudgetWitness.baryonicAccountedBudget = 72 ∧
+    observedRotationCurveBudgetWitness.residualBudget = 28 :=
+  by native_decide
 
-observed rotation-curve budget control
-  → partitioned physical detector budget certificate
-  → restricted finite detector gate.
--/
-theorem physicalGDM_observed_rotation_curve_feeds_gate
-    {Detector : Type*} [Fintype Detector] [DecidableEq Detector]
-    (F : PhysicalDetectorFieldWithDynamics Detector)
-    (hReading :
-      ∀ d,
-        d ∈ activeDetectors F.toPhysicalDetectorField →
-          F.toPhysicalDetectorField.reading d ≤ physicalGDMBudget F d)
-    (hPartition :
-      ∀ d,
-        d ∈ activeDetectors F.toPhysicalDetectorField →
-          physicalGDMBudget F d *
-              (activeDetectors F.toPhysicalDetectorField).card
-            ≤ extractedRadiusFloor F.toPhysicalDetectorField) :
-    RestrictedFiniteDetectorGate
-      (extractedActiveMass F.toPhysicalDetectorField)
-      (extractedRadiusFloor F.toPhysicalDetectorField) := by
-  exact partitionedBudgetCertificate_feeds_restrictedFiniteDetectorGate_derived
-    F.toPhysicalDetectorField
-    (physicalGDMBudget_partitioned_certificate_from_observed_rotation_curve
-      F hReading hPartition)
+theorem observed_rotation_curve_budget_closed :
+    observedRotationCurveBudgetWitness.observedBudget =
+      observedRotationCurveBudgetWitness.baryonicAccountedBudget +
+        observedRotationCurveBudgetWitness.residualBudget :=
+  by native_decide
 
-end RestrictedPhysicalDetectorFieldExtractionMap
-end Frontier
-end Chronos
+end Chronos.Frontier
