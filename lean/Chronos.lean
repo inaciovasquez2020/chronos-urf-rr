@@ -343,3 +343,4 @@ import Chronos.Frontier.MASCONPayloadDigestCertificate
 import Chronos.Frontier.AuthenticatedMASCONPayloadDigest
 import Chronos.Frontier.MASCONSchemaValidationExecutionResult
 import Chronos.Frontier.MASCONModelComparisonExecutionTarget
+import Chronos.Frontier.MASCONBaselineGravityModelPredictionVector
