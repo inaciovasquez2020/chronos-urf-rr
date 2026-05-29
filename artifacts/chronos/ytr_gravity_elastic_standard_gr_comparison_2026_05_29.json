@@ -1,0 +1,46 @@
+{
+  "id": "YTR_GRAVITY_ELASTIC_STANDARD_GR_COMPARISON_2026_05_29",
+  "status": "STANDARD_GR_COMPARISON_GATE_ONLY",
+  "depends_on": [
+    "YTR_GRAVITY_ELASTIC_OBSERVABLE_PREDICTION_2026_05_29",
+    "YTR_GRAVITY_ELASTIC_LAW_SELECTION_GATE_2026_05_29"
+  ],
+  "comparison_pairs": [
+    {
+      "prediction": "YtRMetricElasticLensingObservablePrediction",
+      "standard_gr_baseline": "standard lensing shift"
+    },
+    {
+      "prediction": "YtRMetricElasticWavePhaseObservablePrediction",
+      "standard_gr_baseline": "standard gravitational-wave phase shift"
+    },
+    {
+      "prediction": "YtRTidalRestoringOrbitDriftObservablePrediction",
+      "standard_gr_baseline": "standard orbit drift"
+    },
+    {
+      "prediction": "YtRTidalRestoringRotationCurveObservablePrediction",
+      "standard_gr_baseline": "standard rotation-curve correction"
+    },
+    {
+      "prediction": "YtRTidalRestoringWavePhaseObservablePrediction",
+      "standard_gr_baseline": "standard gravitational-wave phase shift"
+    }
+  ],
+  "meaning": "Adds a standard-GR comparison gate for each YtR gravity-elastic observable-prediction target without asserting separation, empirical support, or physical truth.",
+  "does_not_prove": [
+    "empirical validation",
+    "nontriviality certificate",
+    "independent replication",
+    "literal gravity elasticity",
+    "standard GR failure",
+    "new physics",
+    "dark matter replacement",
+    "Lambda-CDM failure",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "YtRGravityElasticEmpiricalValidationRun"
+}
