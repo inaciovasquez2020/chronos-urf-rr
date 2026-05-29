@@ -1,0 +1,45 @@
+{
+  "id": "YTR_GRAVITY_ELASTIC_OBSERVABLE_PREDICTION_2026_05_29",
+  "status": "OBSERVABLE_PREDICTION_GATE_ONLY",
+  "depends_on": [
+    "YTR_GRAVITY_ELASTIC_LAW_SELECTION_GATE_2026_05_29"
+  ],
+  "candidate_observables": [
+    {
+      "selected_law": "YtRMetricElasticLaw",
+      "observable": "lensing shift"
+    },
+    {
+      "selected_law": "YtRMetricElasticLaw",
+      "observable": "gravitational-wave phase shift"
+    },
+    {
+      "selected_law": "YtRTidalRestoringElasticLaw",
+      "observable": "orbit drift"
+    },
+    {
+      "selected_law": "YtRTidalRestoringElasticLaw",
+      "observable": "rotation-curve correction"
+    },
+    {
+      "selected_law": "YtRTidalRestoringElasticLaw",
+      "observable": "gravitational-wave phase shift"
+    }
+  ],
+  "meaning": "Adds a concrete observable-prediction gate after the YtR gravity-elastic law-selection gate without asserting standard-GR separation or empirical support.",
+  "does_not_prove": [
+    "standard GR comparison",
+    "empirical validation",
+    "nontriviality certificate",
+    "independent replication",
+    "literal gravity elasticity",
+    "new physics",
+    "dark matter replacement",
+    "Lambda-CDM failure",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "YtRGravityElasticStandardGRComparison"
+}
