@@ -1,0 +1,40 @@
+{
+  "id": "YTR_GRAVITY_ELASTIC_NONTRIVIALITY_CERTIFICATE_2026_05_29",
+  "status": "SYNTHETIC_NONTRIVIALITY_CERTIFICATE_GATE_ONLY",
+  "date": "2026-05-29",
+  "repository": "chronos-urf-rr",
+  "theorem_object": "YtRGravityElasticNontrivialityCertificate",
+  "lean_module": "Chronos.Frontier.YtRGravityElasticNontrivialityCertificate",
+  "depends_on": [
+    "YTR_GRAVITY_ELASTIC_STANDARD_GR_COMPARISON_2026_05_29"
+  ],
+  "certificate_targets": [
+    {
+      "name": "metric-elastic observable target",
+      "standard_gr_reference": 0,
+      "ytr_candidate": 1,
+      "certificate_kind": "synthetic_separation_witness"
+    },
+    {
+      "name": "tidal-restoring observable target",
+      "standard_gr_reference": 0,
+      "ytr_candidate": 2,
+      "certificate_kind": "synthetic_separation_witness"
+    }
+  ],
+  "boundary": [
+    "synthetic nontriviality certificate gate only",
+    "no empirical validation",
+    "no real likelihood evidence",
+    "no independent replication",
+    "no literal gravity elasticity",
+    "no standard GR failure",
+    "no new physics",
+    "no dark matter replacement",
+    "no Lambda-CDM failure",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}

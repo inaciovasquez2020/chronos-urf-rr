@@ -323,3 +323,4 @@ import Chronos.Frontier.YtRSyntheticInjectionRecoveryProtocol
 import Chronos.Frontier.YtRGravityElasticLawSelectionGate
 import Chronos.Frontier.YtRGravityElasticObservablePrediction
 import Chronos.Frontier.YtRGravityElasticStandardGRComparison
+import Chronos.Frontier.YtRGravityElasticNontrivialityCertificate
