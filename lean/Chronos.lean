@@ -347,3 +347,5 @@ import Chronos.Frontier.MASCONBaselineGravityModelPredictionVector
 import Chronos.Frontier.MASCONDeficitMassModelPredictionVector
 
 import Chronos.Frontier.ConcreteMASCONDeficitMassPredictionLaw
+
+import Chronos.Frontier.MASCONDeficitMassPredictionVectorBound
