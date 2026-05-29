@@ -1,0 +1,33 @@
+{
+  "id": "YTR_GRAVITY_ELASTIC_HELDOUT_EVIDENCE_CERTIFICATE_2026_05_29",
+  "object": "YtRGravityElasticHeldoutEvidenceCertificate",
+  "status": "HELDOUT_EVIDENCE_CERTIFICATE_INTERFACE_ONLY_NO_EMPIRICAL_EVIDENCE_SUPPLIED",
+  "depends_on": [
+    "YtRGravityElasticBaselineComparisonRun"
+  ],
+  "required_conditions": [
+    "baseline comparison run completed",
+    "holdoutSplitFrozen",
+    "heldoutEvaluationExecuted",
+    "uncertaintyAccountingExecuted",
+    "acceptanceCriterionDeclared",
+    "replicationPacketRecorded",
+    "evidenceBoundaryPreserved"
+  ],
+  "boundary": "Held-out evidence certificate interface only; no empirical evidence, independent replication result, or physics validation is supplied by this artifact.",
+  "does_not_prove": [
+    "real data evidence supplied",
+    "empirical validation",
+    "independent replication result",
+    "standard GR failure",
+    "Lambda-CDM failure",
+    "new physics",
+    "dark matter replacement",
+    "literal gravity elasticity",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_object": "Authentic empirical payload plus executed held-out validation"
+}

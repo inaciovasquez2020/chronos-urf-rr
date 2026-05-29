@@ -1,0 +1,32 @@
+{
+  "id": "YTR_GRAVITY_ELASTIC_BASELINE_COMPARISON_RUN_2026_05_29",
+  "object": "YtRGravityElasticBaselineComparisonRun",
+  "status": "BASELINE_COMPARISON_INTERFACE_ONLY_NO_EMPIRICAL_COMPARISON_EXECUTED",
+  "depends_on": [
+    "YtRGravityElasticPredictionVectorRealDataRun"
+  ],
+  "required_conditions": [
+    "prediction run completed",
+    "standardGRComparisonExecuted",
+    "lambdaCDMComparisonExecuted",
+    "commonMetricDeclared",
+    "baselineMetricsRecorded",
+    "comparisonResultFrozen",
+    "uncertaintyInputsRecorded"
+  ],
+  "boundary": "Baseline-comparison interface only; no empirical standard-GR or Lambda-CDM comparison is executed by this artifact.",
+  "does_not_prove": [
+    "standard GR failure",
+    "Lambda-CDM failure",
+    "real likelihood evidence",
+    "held-out validation",
+    "empirical validation",
+    "new physics",
+    "dark matter replacement",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_object": "YtRGravityElasticHeldoutEvidenceCertificate"
+}
