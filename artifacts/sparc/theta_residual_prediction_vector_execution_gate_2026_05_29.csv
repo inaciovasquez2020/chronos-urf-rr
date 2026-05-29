@@ -1,0 +1,4 @@
+galaxy_id,observed_velocity_squared,baryonic_velocity_squared,theta_numerator,theta_denominator,residual,deficit_numerator,prediction_numerator,observed_numerator,theta_squared_error_numerator,baseline_numerator,baseline_squared_error_numerator
+1,150,100,1,2,50,50,250,300,2500,200,10000
+2,200,180,1,2,20,20,380,400,400,360,1600
+3,90,100,1,2,0,0,200,180,400,200,400
