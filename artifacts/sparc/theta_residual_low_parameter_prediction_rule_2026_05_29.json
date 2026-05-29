@@ -1,0 +1,44 @@
+{
+  "id": "THETA_RESIDUAL_LOW_PARAMETER_PREDICTION_RULE_2026_05_29",
+  "status": "LOW_PARAMETER_RULE_SURFACE_ONLY_NO_EMPIRICAL_VALIDATION",
+  "object_name": "ThetaResidualLowParameterPredictionRule",
+  "extends": "ConcretePredictiveDeficitMassLawOrConcreteLowParameterDeficitMassModel",
+  "theta_representation": {
+    "theta_numerator": 1,
+    "theta_denominator": 2,
+    "domain": "0 <= theta < 1 represented by numerator < denominator"
+  },
+  "rule": {
+    "residual": "observedVelocitySquared - baryonicVelocitySquared using Nat truncation",
+    "deficit_numerator": "thetaNumerator * residual",
+    "prediction_numerator": "thetaDenominator * baryonicVelocitySquared + deficit_numerator"
+  },
+  "proves": [
+    "Theta residual low-parameter rule object exists",
+    "Rule projects to the already-merged concrete predictive deficit-mass candidate",
+    "Theta denominator is positive",
+    "Theta is strictly below one",
+    "Frozen-before-likelihood guard is present",
+    "Low-parameter guard is present",
+    "No empirical validation claim is asserted",
+    "No physical replacement claim is asserted",
+    "Residual is zero when observed velocity squared is at most baryonic velocity squared",
+    "Prediction numerator reduces to baryonic numerator when residual is zero"
+  ],
+  "does_not_prove": [
+    "authentic SPARC empirical validation",
+    "independent real-data holdout validation",
+    "predictive GDM law closure",
+    "low-parameter deficit-mass model closure",
+    "dark matter replacement claim",
+    "Lambda-CDM failure claim",
+    "physical validation claim",
+    "SPARC empirical victory claim",
+    "PhD-complete final result claim",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "Clay problem"
+  ],
+  "next_missing_object": "ThetaResidualPredictionVectorExecutionGate"
+}
