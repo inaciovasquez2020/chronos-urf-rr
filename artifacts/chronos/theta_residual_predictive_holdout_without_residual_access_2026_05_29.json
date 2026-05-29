@@ -1,0 +1,37 @@
+{
+  "id": "THETA_RESIDUAL_PREDICTIVE_HOLDOUT_WITHOUT_RESIDUAL_ACCESS_2026_05_29",
+  "status": "HOLDOUT_GATE_ONLY_NO_PREDICTIVE_SIGNAL_CLAIM",
+  "date": "2026-05-29",
+  "lean_module": "Chronos.Frontier.ThetaResidualPredictiveHoldoutWithoutResidualAccess",
+  "depends_on": [
+    "THETA_RESIDUAL_NONTRIVIALITY_LEAKAGE_AUDIT"
+  ],
+  "closed_object": "ThetaResidualPredictiveHoldoutWithoutResidualAccess",
+  "purpose": "Introduce the next admissible holdout gate after the theta residual leakage audit: predictive rows are admissible only when the withheld residual and the deterministic half-residual identity are unavailable to the prediction rule.",
+  "substantive_boundary": {
+    "prior_audit_result": "The 75% theta reduction is algebraically forced by the deterministic half-residual identity.",
+    "nontrivial_predictive_signal_certified": false,
+    "new_gate": "holdout without residual access",
+    "required_exclusion_1": "no direct withheld residual access",
+    "required_exclusion_2": "no deterministic half-residual identity access"
+  },
+  "theorems": [
+    "ThetaResidualPredictiveHoldoutWithoutResidualAccess.no_residual_access",
+    "ThetaResidualPredictiveHoldoutWithoutResidualAccess.no_half_residual_identity_access",
+    "ThetaResidualPredictiveHoldoutWithoutResidualAccess.clean_rows"
+  ],
+  "next_admissible_object": "ThetaResidualPredictiveHoldoutExecutionRun",
+  "does_not_prove": [
+    "nontrivial theta predictive signal",
+    "predictive GDM law closure",
+    "low-parameter deficit-mass model closure",
+    "dark matter replacement claim",
+    "Lambda-CDM failure claim",
+    "physical validation",
+    "independent holdout validation result",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "Clay problem"
+  ]
+}
