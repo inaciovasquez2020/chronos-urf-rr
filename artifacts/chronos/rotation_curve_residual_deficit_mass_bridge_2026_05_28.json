@@ -1,0 +1,37 @@
+{
+  "id": "ROTATION_CURVE_RESIDUAL_DEFICIT_MASS_BRIDGE_2026_05_28",
+  "object": "RotationCurveResidualDeficitMassBridge",
+  "status": "FINITE_DEFICIT_MASS_ACCOUNTING_BRIDGE_ONLY",
+  "date": "2026-05-28",
+  "repository": "chronos-urf-rr",
+  "depends_on": [
+    "ROTATION_CURVE_RESIDUAL_ACCOUNTING_BRIDGE_2026_05_28"
+  ],
+  "lean_module": "Chronos.Frontier.RotationCurveResidualDeficitMassBridge",
+  "actual_value_witness": {
+    "observedBudget": 100,
+    "baryonicAccountedBudget": 72,
+    "residualAccountedMass": 28,
+    "geometricDeficitMass": 28
+  },
+  "boundary": [
+    "finite deficit-mass accounting bridge only",
+    "no empirical rotation-curve fit",
+    "no galaxy data ingestion",
+    "no dark matter replacement",
+    "no Lambda-CDM failure",
+    "no modified gravity claim",
+    "no empirical detector correctness",
+    "no Einstein-matter PDE well-posedness",
+    "no trapped-surface formation",
+    "no black-hole formation",
+    "no cosmic censorship",
+    "no hoop conjecture",
+    "no unrestricted QL_CollapseGate",
+    "no unrestricted UniversalBoundaryCompactness",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
