@@ -320,3 +320,4 @@ import Chronos.Frontier.ThetaResidualPredictiveHoldoutWithoutResidualAccess
 import Chronos.Frontier.ThetaResidualPredictiveHoldoutExecutionRun
 
 import Chronos.Frontier.YtRSyntheticInjectionRecoveryProtocol
+import Chronos.Frontier.YtRGravityElasticLawSelectionGate

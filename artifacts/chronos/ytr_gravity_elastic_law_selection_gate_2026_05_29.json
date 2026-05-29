@@ -1,0 +1,30 @@
+{
+  "id": "YTR_GRAVITY_ELASTIC_LAW_SELECTION_GATE_2026_05_29",
+  "status": "LAW_SELECTION_GATE_ONLY",
+  "selected_admissible_candidates": [
+    "YtRMetricElasticLaw",
+    "YtRTidalRestoringElasticLaw"
+  ],
+  "excluded_as_primary_selection_candidates": [
+    "YtRScalarDeformationElasticLaw",
+    "YtRPotentialWallElasticLaw",
+    "YtRCurvatureStrainElasticLaw"
+  ],
+  "meaning": "Selects the serious candidate laws from the YtR gravity-elastic law target surface without asserting physical truth.",
+  "does_not_prove": [
+    "observable prediction",
+    "standard GR comparison",
+    "empirical validation",
+    "nontriviality certificate",
+    "independent replication",
+    "literal gravity elasticity",
+    "new physics",
+    "dark matter replacement",
+    "Lambda-CDM failure",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_admissible_object": "YtRGravityElasticObservablePrediction"
+}
