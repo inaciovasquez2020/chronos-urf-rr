@@ -1,0 +1,53 @@
+{
+  "boundaries": [
+    "No predictive GDM law closure",
+    "No low-parameter deficit-mass model closure",
+    "No dark matter replacement claim",
+    "No Lambda-CDM failure claim",
+    "No physical validation claim",
+    "No independent holdout validation claim",
+    "No PhD-complete final result claim",
+    "No unrestricted Chronos-RR",
+    "No unrestricted H4.1/FGL",
+    "No P vs NP",
+    "No Clay problem"
+  ],
+  "closed_objects": [
+    "BaryonicVelocityConventionForSPARC",
+    "FixedYdiskYbulForSPARC",
+    "BaselineModelPredictionVector",
+    "DeficitMassModelPredictionVector_saturated_accounting",
+    "LikelihoodComparisonResult_saturated_accounting"
+  ],
+  "critical_boundary": "The GDM vector is saturated residual accounting and is not a predictive empirical validation.",
+  "data": {
+    "baryonic_overshoot_rows": 214,
+    "galaxies_used": 175,
+    "positive_deficit_rows": 3177,
+    "rows_used": 3391,
+    "source_payload_sha256": "9c6b6726abbf4daecdaa1b81cfc30e8234880e2b1bf704a08dada4bb18240d32"
+  },
+  "date_utc": "2026-05-29T02:37:09Z",
+  "formal_status": "SATURATED_ACCOUNTING_RUN_ARCHIVED_PREDICTIVE_DEFICIT_MODEL_TARGET_OPEN",
+  "id": "SPARC_ROTATION_CURVE_STEP3_5_ACCOUNTING_RUN_AND_PREDICTIVE_TARGET_2026_05_28",
+  "metrics": {
+    "aic_baseline": 1960466.562888448,
+    "aic_gdm_saturated": 10865.00392288288,
+    "baryonic_overshoot_rows": 214,
+    "bic_baseline": 1960466.562888448,
+    "bic_gdm_saturated": 30336.456134416032,
+    "chi2_baseline": 1960466.562888448,
+    "chi2_gdm_saturated_accounting": 4511.003922882878,
+    "delta_aic_gdm_minus_baseline": -1949601.558965565,
+    "delta_bic_gdm_minus_baseline": -1930130.106754032,
+    "delta_chi2_gdm_minus_baseline": -1955955.558965565,
+    "positive_deficit_rows": 3177,
+    "reduced_chi2_baseline": 578.1381783805508,
+    "reduced_chi2_gdm_saturated_accounting": 21.079457583564853
+  },
+  "next_required_object": {
+    "minimum_closure_condition": "A fixed low-parameter law must predict nonnegative deficit mass from radius/galaxy observables without assigning one fitted residual degree of freedom per positive-deficit row.",
+    "name": "PredictiveDeficitMassLawOrLowParameterDeficitMassModel"
+  },
+  "open_object": "PredictiveDeficitMassLawOrLowParameterDeficitMassModel"
+}

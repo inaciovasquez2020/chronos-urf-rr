@@ -1,0 +1,48 @@
+SPARC STEP 3-5 COMPLETION SUMMARY 2026-05-28
+
+FORMAL STATUS:
+  LIKELIHOOD_COMPARISON_EXECUTED_AS_SATURATED_ACCOUNTING_BASELINE_NOT_PREDICTIVE_VALIDATION
+
+Closed objects:
+  1. BaryonicVelocityConventionForSPARC
+  2. Fixed Υdisk and Υbul
+  3. BaselineModelPredictionVector
+  4. DeficitMassModelPredictionVector
+  5. LikelihoodComparisonResult
+
+Fixed convention:
+  Ydisk = 0.5
+  Ybul = 0.7
+  Ygas = 1.0
+  Vbar^2 = Vgas*abs(Vgas) + 0.5*Vdisk^2 + 0.7*Vbul^2
+  Vbaseline = sqrt(max(Vbar^2, 0))
+
+Data:
+  rows used = 3391
+  galaxies used = 175
+  rows excluded = 0
+
+Likelihood:
+  chi2_baseline = 1960466.56289
+  chi2_gdm_saturated_accounting = 4511.00392288
+  delta_chi2_gdm_minus_baseline = -1955955.55897
+  reduced_chi2_baseline = 578.138178381
+  reduced_chi2_gdm_saturated_accounting = 21.0794575836
+
+Penalized metrics:
+  k_baseline = 0
+  k_gdm_saturated = 3177
+  AIC_baseline = 1960466.56289
+  AIC_gdm_saturated = 10865.0039229
+  delta_AIC_gdm_minus_baseline = -1949601.55897
+  BIC_baseline = 1960466.56289
+  BIC_gdm_saturated = 30336.4561344
+  delta_BIC_gdm_minus_baseline = -1930130.10675
+
+Interpretation boundary:
+  The GDM vector is saturated accounting: it assigns a nonnegative residual deficit wherever Vobs^2 exceeds Vbar^2.
+  Therefore the chi-square improvement is an accounting identity, not a predictive empirical validation.
+  AIC/BIC penalization treats each positive residual row as a fitted degree of freedom.
+
+Next missing object:
+  PredictiveDeficitMassLawOrLowParameterDeficitMassModel

@@ -1,0 +1,62 @@
+{
+  "boundaries": [
+    "No dark matter replacement claim",
+    "No Lambda-CDM failure claim",
+    "No physical validation claim",
+    "No predictive GDM model claim",
+    "No independent holdout validation claim",
+    "No lensing validation claim",
+    "No cosmological validation claim",
+    "No PhD-complete final result promotion from saturated accounting alone"
+  ],
+  "convention": {
+    "G_kpc_km2_s2_Msun_minus1": 4.30091e-06,
+    "Ybul": 0.7,
+    "Ydisk": 0.5,
+    "Ygas": 1.0,
+    "baseline_velocity": "sqrt(max(vbar2_signed, 0))",
+    "gdm_accounting_velocity": "sqrt(max(vbar2_signed, 0) + gdm_deficit_v2)",
+    "gdm_deficit_v2": "max(Vobs^2 - max(vbar2_signed, 0), 0)",
+    "name": "BaryonicVelocityConventionForSPARC",
+    "negative_Vgas_rows": 361,
+    "negative_signed_baryon_v2_rows_clamped": 2,
+    "vbar2_for_predictions": "max(vbar2_signed, 0)",
+    "vbar2_signed_formula": "Ygas*Vgas*abs(Vgas) + Ydisk*Vdisk^2 + Ybul*Vbul^2"
+  },
+  "date_utc": "2026-05-29T02:14:06Z",
+  "formal_status": "LIKELIHOOD_COMPARISON_EXECUTED_AS_SATURATED_ACCOUNTING_BASELINE_NOT_PREDICTIVE_VALIDATION",
+  "galaxies_used": 175,
+  "input_rows_total": 3391,
+  "input_typed_data": "/mnt/data/sparc_step2_schema_validation/GALAXY_ROTATION_CURVE_TYPED_DATA_2026_05_28.csv",
+  "likelihood_protocol": {
+    "aic_formula": "chi2 + 2*k",
+    "baseline_parameter_count": 0,
+    "bic_formula": "chi2 + k*ln(n)",
+    "chi2_formula": "sum(((Vobs - Vmodel)/errV)^2)",
+    "gdm_saturated_accounting_parameter_count": 3177,
+    "name": "FixedChiSquareVelocityProtocol",
+    "warning": "GDM vector is saturated accounting residual with one nonnegative deficit degree where Vobs^2 exceeds Vbar^2; it is not a predictive empirical model."
+  },
+  "metrics": {
+    "AIC_baseline_k0": 1960466.562888448,
+    "AIC_gdm_saturated_k_positive_deficit_rows": 10865.00392288288,
+    "BIC_baseline_k0": 1960466.562888448,
+    "BIC_gdm_saturated_k_positive_deficit_rows": 30336.456134416032,
+    "baryonic_overshoot_rows": 214,
+    "chi2_baseline": 1960466.562888448,
+    "chi2_gdm_saturated_accounting": 4511.003922882878,
+    "delta_AIC_gdm_minus_baseline": -1949601.558965565,
+    "delta_BIC_gdm_minus_baseline": -1930130.106754032,
+    "delta_chi2_gdm_minus_baseline": -1955955.558965565,
+    "median_deficit_mass_Msun_per_positive_row": 11256791189.073944,
+    "positive_deficit_rows": 3177,
+    "reduced_chi2_baseline": 578.1381783805508,
+    "reduced_chi2_gdm_saturated_accounting": 21.079457583564853,
+    "total_deficit_mass_Msun_sum_over_points_not_galaxy_mass": 210085661975804.5
+  },
+  "next_missing_object": "PredictiveDeficitMassLawOrLowParameterDeficitMassModel",
+  "protocol_sha256": "139f592404ebc8fb449f9b54f7c615a78df7c26822f8eaf6020a3526f030d643",
+  "rows_excluded": 0,
+  "rows_used": 3391,
+  "typed_csv_sha256": "29abfbec89b8ce9a7cbf02c2c1515cbccf29fab86b31b5f77787b3bd7d320b52"
+}
