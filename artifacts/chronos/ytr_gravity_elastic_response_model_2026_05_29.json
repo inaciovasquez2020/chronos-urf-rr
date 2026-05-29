@@ -1,0 +1,42 @@
+{
+  "id": "YTR_GRAVITY_ELASTIC_RESPONSE_MODEL_2026_05_29",
+  "status": "SYMBOLIC_RESPONSE_MODEL_ONLY_NO_PHYSICAL_VALIDATION",
+  "date": "2026-05-29",
+  "repository": "chronos-urf-rr",
+  "theorem_object": "YtRGravityElasticResponseModel",
+  "lean_module": "Chronos.Frontier.YtRGravityElasticResponseModel",
+  "depends_on": [
+    "YTR_GRAVITY_ELASTIC_INDEPENDENT_REPLICATION_GATE_2026_05_29"
+  ],
+  "definitions": [
+    "Phi(r) = -GM/r",
+    "g(r) = GM/r^2",
+    "v_esc = sqrt(2GM/R)",
+    "Delta_g approximately equals -(2g0/R)x",
+    "K_g = 2g0/R",
+    "tidal signature: radial stretch and transverse compression"
+  ],
+  "formal_closure": [
+    "symbolic response model object exists",
+    "coefficient law recorded",
+    "escape scale law recorded",
+    "response approximation string recorded",
+    "tidal signature string recorded"
+  ],
+  "boundary": [
+    "symbolic response model only",
+    "no empirical validation",
+    "no real likelihood evidence",
+    "no independent replication result",
+    "no physical validation",
+    "no literal gravity elasticity",
+    "no standard GR failure",
+    "no new physics",
+    "no dark matter replacement",
+    "no Lambda-CDM failure",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
