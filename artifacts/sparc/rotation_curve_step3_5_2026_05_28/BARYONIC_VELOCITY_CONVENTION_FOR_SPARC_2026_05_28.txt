@@ -1,0 +1,31 @@
+BARYONIC_VELOCITY_CONVENTION_FOR_SPARC_2026_05_28
+
+FORMAL STATUS: CLOSED_FOR_FIXED_PROTOCOL
+
+Definition:
+  Ydisk := 0.5
+  Ybul  := 0.7
+  Ygas  := 1.0
+  G     := 4.30091e-06 kpc (km/s)^2 Msun^-1
+
+For each SPARC row:
+  Vbar2_signed := Ygas * Vgas * abs(Vgas) + Ydisk * Vdisk^2 + Ybul * Vbul^2
+  Vbar2        := max(Vbar2_signed, 0)
+  Vbaseline    := sqrt(Vbar2)
+
+Deficit accounting layer:
+  deficit_v2 := max(Vobs^2 - Vbar2, 0)
+  Mdeficit   := deficit_v2 * Rad / G
+  Vgdm       := sqrt(Vbar2 + deficit_v2)
+
+Validation facts from typed payload:
+  rows_used: 3391
+  galaxies_used: 175
+  negative_Vgas_rows: 361
+  negative_signed_baryon_v2_rows_clamped: 2
+
+Boundary:
+  This fixes a reproducible baryonic velocity convention and a saturated finite residual accounting layer.
+  It does not define a predictive low-parameter gravity law.
+  It does not validate dark matter replacement.
+  It does not prove Lambda-CDM failure.
