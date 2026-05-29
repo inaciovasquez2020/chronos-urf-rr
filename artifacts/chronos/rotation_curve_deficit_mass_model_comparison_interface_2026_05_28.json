@@ -1,0 +1,36 @@
+{
+  "id": "ROTATION_CURVE_DEFICIT_MASS_MODEL_COMPARISON_INTERFACE_2026_05_28",
+  "object": "RotationCurveDeficitMassModelComparisonInterface",
+  "status": "FINITE_MODEL_COMPARISON_INTERFACE_ONLY",
+  "source_dependency": "RotationCurveResidualDeficitMassBridge",
+  "closed_slots": [
+    "finiteResidualDeficitMassBridgeClosed",
+    "comparisonVectorSlotDeclared",
+    "predictionVectorSlotDeclared"
+  ],
+  "remaining_objects_after_this_pr": [
+    "ConcreteRotationCurvePredictionVectorSchema",
+    "RotationCurveGalaxyDataIngestionAdapter",
+    "RotationCurveLikelihoodModelComparisonExecutionGate",
+    "ActualGalaxyRotationCurveEmpiricalRun"
+  ],
+  "blocked_claims": [
+    "no empirical rotation-curve fit",
+    "no galaxy data ingestion",
+    "no dark matter replacement",
+    "no Lambda-CDM failure",
+    "no modified gravity claim",
+    "no empirical detector correctness",
+    "no Einstein-matter PDE well-posedness",
+    "no trapped-surface formation",
+    "no black-hole formation",
+    "no cosmic censorship",
+    "no hoop conjecture",
+    "no unrestricted QL_CollapseGate",
+    "no unrestricted UniversalBoundaryCompactness",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
