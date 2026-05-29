@@ -293,3 +293,9 @@ import Chronos.Frontier.RotationCurveResidualAccountingBridge
 import Chronos.Frontier.RotationCurveResidualDeficitMassBridge
 
 import Chronos.Frontier.RotationCurveDeficitMassModelComparisonInterface
+
+import Chronos.Frontier.ConcreteRotationCurvePredictionVectorSchema
+
+import Chronos.Frontier.RotationCurveGalaxyDataIngestionAdapter
+
+import Chronos.Frontier.RotationCurveLikelihoodModelComparisonExecutionGate
