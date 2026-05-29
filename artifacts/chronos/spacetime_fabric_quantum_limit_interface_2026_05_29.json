@@ -1,0 +1,55 @@
+{
+  "id": "SPACETIME_FABRIC_QUANTUM_LIMIT_INTERFACE_2026_05_29",
+  "object": "SpacetimeFabricQuantumLimitInterface",
+  "status": "QUANTUM_GRAVITY_INTERFACE_ONLY_NO_QUANTUM_GRAVITY_PROOF",
+  "depends_on": [
+    "SpacetimeFabricMetricInput"
+  ],
+  "mathematical_interpretation": {
+    "classical_layer": "(M, g)",
+    "quantum_layer": "quantum state space plus metric-operator or path-integral slot",
+    "classical_recovery": "<g_hat_{mu nu}> approximately recovers g_{mu nu} in the semiclassical limit",
+    "semiclassical_stress_energy_bridge": "G_{mu nu} + Lambda g_{mu nu} = (8 pi G / c^4) <T_hat_{mu nu}>"
+  },
+  "required_conditions": [
+    "classicalMetricInputRecorded",
+    "quantumStateSpaceRecorded",
+    "metricOperatorOrPathIntegralSlotRecorded",
+    "planckScaleRegimeRecorded",
+    "semiclassicalLimitRecorded",
+    "classicalRecoveryMapRecorded",
+    "einsteinEquationRecoveryConditionRecorded",
+    "quantumCorrectionSlotRecorded",
+    "expectationMetricBridgeRecorded",
+    "stressEnergyExpectationBridgeRecorded",
+    "boundaryPreserved"
+  ],
+  "canonical_equations": [
+    "classical gravity: g_{mu nu}",
+    "quantum gravity slot: g_hat_{mu nu} or path integral over geometries",
+    "<g_hat_{mu nu}> approx g_{mu nu}",
+    "G_{mu nu} + Lambda g_{mu nu} = (8 pi G / c^4) <T_hat_{mu nu}>",
+    "quantum correction slot: Delta_QG[g, psi]"
+  ],
+  "boundary": "Quantum-limit interface only. This records where a quantum-gravity candidate must attach to the classical spacetime metric container and recover the classical limit.",
+  "does_not_prove": [
+    "quantum gravity",
+    "unification of GR and quantum mechanics",
+    "spacetime discreteness",
+    "graviton existence",
+    "string theory",
+    "loop quantum gravity",
+    "emergent spacetime",
+    "new physics",
+    "standard GR failure",
+    "Lambda-CDM failure",
+    "dark matter replacement",
+    "empirical validation",
+    "independent replication",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_object": "QuantumGravityRecoveryCertificate"
+}
