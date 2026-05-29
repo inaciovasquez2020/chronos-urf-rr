@@ -1,0 +1,144 @@
+{
+  "status": "NASA_GRAVITY_CROSS_VALIDATION_DATASET_REGISTRY_CREATED",
+  "created_utc": "2026-05-29T21:27:57.205087+00:00",
+  "successor_to": "REAL_GRACEFO_TIDAL_DERIVATIVE_MODEL_RUN_2026_05_29",
+  "purpose": "Register NASA cross-validation datasets that can separate gravity-field variation from hydrology, cryosphere, ocean, atmosphere, geodesy, precipitation, surface-water, and cosmology-side controls.",
+  "dataset_count": 12,
+  "datasets": [
+    {
+      "short_name": "GRACEFO_L2_JPL_MONTHLY_0063",
+      "source_center": "PO.DAAC / JPL / NASA",
+      "source_url": "https://podaac.jpl.nasa.gov/dataset/GRACEFO_L2_JPL_MONTHLY_0063",
+      "role": "authenticated monthly spherical-harmonic gravity payload already bound",
+      "registry_status": "BOUND_AUTHENTICATED_PAYLOAD",
+      "real_payload_required_before_use": false,
+      "downstream_gate": "baseline gravity payload already used by REAL_GRACEFO_TIDAL_DERIVATIVE_MODEL_RUN_2026_05_29"
+    },
+    {
+      "short_name": "TELLUS_GRAC-GRFO_MASCON_GRID_RL06.3_V4",
+      "source_center": "PO.DAAC / JPL / NASA",
+      "source_url": "https://podaac.jpl.nasa.gov/dataset/TELLUS_GRAC-GRFO_MASCON_GRID_RL06.3_V4",
+      "role": "global monthly mass anomaly / equivalent-water-height cross-validation",
+      "registry_status": "REGISTERED_SOURCE_ONLY_PAYLOAD_NOT_BOUND",
+      "real_payload_required_before_use": true,
+      "downstream_gate": "mascon_payload_digest_certificate"
+    },
+    {
+      "short_name": "TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4",
+      "source_center": "PO.DAAC / JPL / NASA",
+      "source_url": "https://podaac.jpl.nasa.gov/dataset/TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4",
+      "role": "coastal-resolution-improved mass anomaly cross-validation",
+      "registry_status": "REGISTERED_SOURCE_ONLY_PAYLOAD_NOT_BOUND",
+      "real_payload_required_before_use": true,
+      "downstream_gate": "cri_mascon_payload_digest_certificate"
+    },
+    {
+      "short_name": "GRC-GFO_GRIDDED_AOD1B_JPL_MASCON_RL06.3",
+      "source_center": "PO.DAAC / JPL / NASA",
+      "source_url": "https://podaac.jpl.nasa.gov/dataset/GRC-GFO_GRIDDED_AOD1B_JPL_MASCON_RL06.3",
+      "role": "atmosphere-ocean de-aliasing control for gravity payload",
+      "registry_status": "REGISTERED_SOURCE_ONLY_PAYLOAD_NOT_BOUND",
+      "real_payload_required_before_use": true,
+      "downstream_gate": "aod1b_payload_digest_certificate"
+    },
+    {
+      "short_name": "GLDAS_NOAH025_3H_2.1",
+      "source_center": "GES DISC / NASA",
+      "source_url": "https://www.earthdata.nasa.gov/data/catalog/ges-disc-gldas-noah025-3h-2.1",
+      "role": "land hydrology and soil-water control",
+      "registry_status": "REGISTERED_SOURCE_ONLY_PAYLOAD_NOT_BOUND",
+      "real_payload_required_before_use": true,
+      "downstream_gate": "gldas_payload_digest_certificate"
+    },
+    {
+      "short_name": "SPL4SMGP.008",
+      "source_center": "NSIDC DAAC / NASA",
+      "source_url": "https://www.earthdata.nasa.gov/data/catalog/nsidc-cprd-spl4smgp-008",
+      "role": "SMAP surface and root-zone soil-moisture control",
+      "registry_status": "REGISTERED_SOURCE_ONLY_PAYLOAD_NOT_BOUND",
+      "real_payload_required_before_use": true,
+      "downstream_gate": "smap_payload_digest_certificate"
+    },
+    {
+      "short_name": "ATL06.007",
+      "source_center": "NSIDC DAAC / NASA",
+      "source_url": "https://www.earthdata.nasa.gov/data/catalog/nsidc-cprd-atl06-007",
+      "role": "ICESat-2 land-ice height control",
+      "registry_status": "REGISTERED_SOURCE_ONLY_PAYLOAD_NOT_BOUND",
+      "real_payload_required_before_use": true,
+      "downstream_gate": "icesat2_payload_digest_certificate"
+    },
+    {
+      "short_name": "SWOT_L2_HR_RiverSP_2.0",
+      "source_center": "PO.DAAC / NASA",
+      "source_url": "https://podaac.jpl.nasa.gov/dataset/SWOT_L2_HR_RiverSP_2.0",
+      "role": "river surface elevation, slope, width, and discharge control",
+      "registry_status": "REGISTERED_SOURCE_ONLY_PAYLOAD_NOT_BOUND",
+      "real_payload_required_before_use": true,
+      "downstream_gate": "swot_riversp_payload_digest_certificate"
+    },
+    {
+      "short_name": "GPM_3IMERGDF.07",
+      "source_center": "GES DISC / NASA",
+      "source_url": "https://www.earthdata.nasa.gov/dashboard/data-catalog/GPM_3IMERGDF.v07",
+      "role": "daily precipitation forcing control",
+      "registry_status": "REGISTERED_SOURCE_ONLY_PAYLOAD_NOT_BOUND",
+      "real_payload_required_before_use": true,
+      "downstream_gate": "gpm_imerg_payload_digest_certificate"
+    },
+    {
+      "short_name": "MERRA2_SURFACE_ATMOSPHERE_PRODUCTS",
+      "source_center": "GES DISC / NASA GMAO",
+      "source_url": "https://cmr.earthdata.nasa.gov/search/concepts/C1276812868-GES_DISC",
+      "role": "atmospheric pressure and surface flux control",
+      "registry_status": "REGISTERED_SOURCE_ONLY_PAYLOAD_NOT_BOUND",
+      "real_payload_required_before_use": true,
+      "downstream_gate": "merra2_payload_digest_certificate"
+    },
+    {
+      "short_name": "CDDIS_GNSS_SLR_PRODUCTS",
+      "source_center": "CDDIS / NASA",
+      "source_url": "https://www.earthdata.nasa.gov/centers/cddis-daac",
+      "role": "independent geodetic deformation and orbit-control evidence",
+      "registry_status": "REGISTERED_SOURCE_ONLY_PAYLOAD_NOT_BOUND",
+      "real_payload_required_before_use": true,
+      "downstream_gate": "cddis_geodesy_payload_digest_certificate"
+    },
+    {
+      "short_name": "NASA_LAMBDA_CMB_PRODUCTS",
+      "source_center": "NASA LAMBDA / GSFC",
+      "source_url": "https://lambda.gsfc.nasa.gov/product/",
+      "role": "cosmology-side archive for cross-domain boundary discipline",
+      "registry_status": "REGISTERED_SOURCE_ONLY_PAYLOAD_NOT_BOUND",
+      "real_payload_required_before_use": true,
+      "downstream_gate": "lambda_cmb_payload_digest_certificate"
+    }
+  ],
+  "required_next_payload_gates": [
+    "mascon_payload_digest_certificate",
+    "cri_mascon_payload_digest_certificate",
+    "aod1b_payload_digest_certificate",
+    "gldas_payload_digest_certificate",
+    "smap_payload_digest_certificate",
+    "icesat2_payload_digest_certificate",
+    "swot_riversp_payload_digest_certificate",
+    "gpm_imerg_payload_digest_certificate",
+    "merra2_payload_digest_certificate",
+    "cddis_geodesy_payload_digest_certificate",
+    "lambda_cmb_payload_digest_certificate"
+  ],
+  "boundary": [
+    "dataset registry only",
+    "no new payload bytes downloaded by this registry",
+    "no new digest certificate for unbound datasets",
+    "no schema validation execution for unbound datasets",
+    "no cross-validation model execution",
+    "no empirical falsification conclusion",
+    "no GR failure claim",
+    "no new gravity claim",
+    "no dark matter replacement claim",
+    "no Lambda-CDM failure claim",
+    "no quantum gravity claim",
+    "no Clay problem claim"
+  ]
+}
