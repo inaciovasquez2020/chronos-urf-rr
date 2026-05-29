@@ -345,3 +345,5 @@ import Chronos.Frontier.MASCONSchemaValidationExecutionResult
 import Chronos.Frontier.MASCONModelComparisonExecutionTarget
 import Chronos.Frontier.MASCONBaselineGravityModelPredictionVector
 import Chronos.Frontier.MASCONDeficitMassModelPredictionVector
+
+import Chronos.Frontier.ConcreteMASCONDeficitMassPredictionLaw
