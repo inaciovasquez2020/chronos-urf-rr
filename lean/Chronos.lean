@@ -318,3 +318,5 @@ import Chronos.Frontier.ThetaResidualCrossValidationStabilityRun
 import Chronos.Frontier.ThetaResidualNontrivialityLeakageAudit
 import Chronos.Frontier.ThetaResidualPredictiveHoldoutWithoutResidualAccess
 import Chronos.Frontier.ThetaResidualPredictiveHoldoutExecutionRun
+
+import Chronos.Frontier.YtRSyntheticInjectionRecoveryProtocol

@@ -1,0 +1,50 @@
+{
+  "id": "YTR_SYNTHETIC_INJECTION_RECOVERY_PROTOCOL_2026_05_29",
+  "name": "YtR Synthetic Injection-Recovery Protocol",
+  "status": "SYNTHETIC_PIPELINE_READINESS_ONLY_NOT_EMPIRICAL",
+  "classification": "synthetic pipeline-readiness infrastructure",
+  "purpose": "Verify that the formal YtR gravitational-elastic correction pipeline can bind and recover a synthetic injected correction without treating the result as empirical evidence.",
+  "lean_module": "Chronos.Frontier.YtRSyntheticInjectionRecoveryProtocol",
+  "closed_objects": [
+    "YtRFiniteElasticInput",
+    "YtRFrozenElasticityCoefficient",
+    "ytrGravitationalElasticCorrection",
+    "YtRSyntheticInjection",
+    "YtRSyntheticInjectionRecovered",
+    "YtRSyntheticInjectionRecoveryProtocol"
+  ],
+  "closed_theorems": [
+    "ytr_synthetic_injection_recovered",
+    "ytr_synthetic_injection_recovery_is_pipeline_readiness_only",
+    "ytr_synthetic_injection_recovery_is_not_empirical_witness"
+  ],
+  "synthetic_inputs": {
+    "kappa": "1",
+    "baryonicSignal": "2",
+    "observedSignal": "5",
+    "injectedCorrection": "definitionally bound to ytrGravitationalElasticCorrection"
+  },
+  "boundary": [
+    "synthetic injection-recovery only",
+    "not empirical evidence",
+    "not real likelihood evidence",
+    "not independent replication",
+    "not physical validation",
+    "not new physics",
+    "not new dark-matter science",
+    "not Lambda-CDM failure evidence",
+    "not dark matter replacement",
+    "not predictive law closure",
+    "not unrestricted Chronos-RR",
+    "not unrestricted H4.1/FGL",
+    "not P vs NP",
+    "not any Clay problem"
+  ],
+  "next_missing_objects": [
+    "real nonzero FrozenElasticityCoefficient",
+    "real nontrivial boundary window",
+    "real frozen candidate likelihood",
+    "real frozen LCDM-compatible baseline likelihood",
+    "real independent replication result"
+  ]
+}
