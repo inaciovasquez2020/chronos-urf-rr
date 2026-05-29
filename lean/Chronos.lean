@@ -301,3 +301,7 @@ import Chronos.Frontier.RotationCurveGalaxyDataIngestionAdapter
 import Chronos.Frontier.RotationCurveLikelihoodModelComparisonExecutionGate
 
 import Chronos.Frontier.RotationCurveAuthenticPayloadTarget
+
+import Chronos.Frontier.BoundedSyntheticRotationCurvePayloadGate
+
+import Chronos.Frontier.AuthenticSPARCRotationCurvePayloadBinding
