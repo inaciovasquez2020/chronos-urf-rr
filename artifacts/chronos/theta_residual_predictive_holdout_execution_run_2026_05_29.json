@@ -1,0 +1,40 @@
+{
+  "id": "THETA_RESIDUAL_PREDICTIVE_HOLDOUT_EXECUTION_RUN_2026_05_29",
+  "status": "EXECUTION_RUN_ONLY_NO_VALIDATION_CLAIM",
+  "date": "2026-05-29",
+  "lean_module": "Chronos.Frontier.ThetaResidualPredictiveHoldoutExecutionRun",
+  "depends_on": [
+    "THETA_RESIDUAL_PREDICTIVE_HOLDOUT_WITHOUT_RESIDUAL_ACCESS_2026_05_29"
+  ],
+  "closed_object": "ThetaResidualPredictiveHoldoutExecutionRun",
+  "purpose": "Record the execution-run layer after the theta residual predictive holdout gate, preserving the exclusion of direct residual access and deterministic half-residual-identity access.",
+  "substantive_boundary": {
+    "prior_gate": "ThetaResidualPredictiveHoldoutWithoutResidualAccess",
+    "nontrivial_predictive_signal_certified": false,
+    "run_layer": "execution metadata over a clean holdout gate",
+    "required_exclusion_1": "no direct withheld residual access",
+    "required_exclusion_2": "no deterministic half-residual identity access",
+    "validation_claim": false
+  },
+  "theorems": [
+    "ThetaResidualPredictiveHoldoutExecutionRun.nonempty_rows",
+    "ThetaResidualPredictiveHoldoutExecutionRun.rowCount_eq_length",
+    "ThetaResidualPredictiveHoldoutExecutionRun.no_residual_access",
+    "ThetaResidualPredictiveHoldoutExecutionRun.no_half_residual_identity_access",
+    "ThetaResidualPredictiveHoldoutExecutionRun.clean_rows"
+  ],
+  "next_admissible_object": "ThetaResidualPredictiveHoldoutIndependentValidationGate",
+  "does_not_prove": [
+    "nontrivial theta predictive signal",
+    "predictive GDM law closure",
+    "low-parameter deficit-mass model closure",
+    "dark matter replacement claim",
+    "Lambda-CDM failure claim",
+    "physical validation",
+    "independent holdout validation result",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "Clay problem"
+  ]
+}
