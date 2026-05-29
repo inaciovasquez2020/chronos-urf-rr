@@ -299,3 +299,5 @@ import Chronos.Frontier.ConcreteRotationCurvePredictionVectorSchema
 import Chronos.Frontier.RotationCurveGalaxyDataIngestionAdapter
 
 import Chronos.Frontier.RotationCurveLikelihoodModelComparisonExecutionGate
+
+import Chronos.Frontier.RotationCurveAuthenticPayloadTarget
