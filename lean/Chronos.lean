@@ -314,3 +314,4 @@ import Chronos.Frontier.ThetaResidualLowParameterPredictionRule
 import Chronos.Frontier.ThetaResidualPredictionVectorExecutionGate
 
 import Chronos.Frontier.AuthenticSPARCThetaResidualPredictionVectorRun
+import Chronos.Frontier.ThetaResidualCrossValidationStabilityRun
