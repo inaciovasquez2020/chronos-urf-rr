@@ -289,3 +289,4 @@ import Chronos.Frontier.ExtractPhysicalDetectorWitness
 import Chronos.Frontier.DetectorBudgetCompatible
 
 import Chronos.Frontier.DetectorBudgetCompatibleToGate
+import Chronos.Frontier.RotationCurveResidualAccountingBridge
