@@ -312,3 +312,5 @@ import Chronos.Frontier.IndependentHoldoutValidationRunForConcretePredictiveDefi
 import Chronos.Frontier.ThetaResidualLowParameterPredictionRule
 
 import Chronos.Frontier.ThetaResidualPredictionVectorExecutionGate
+
+import Chronos.Frontier.AuthenticSPARCThetaResidualPredictionVectorRun
