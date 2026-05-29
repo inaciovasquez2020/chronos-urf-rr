@@ -1,0 +1,58 @@
+{
+  "id": "SPACETIME_FABRIC_METRIC_INPUT_2026_05_29",
+  "object": "SpacetimeFabricMetricInput",
+  "status": "METRIC_CONTAINER_INPUT_ONLY_NO_NEW_GRAVITY_CLAIM",
+  "depends_on": [
+    "YtRGravityElasticRealDataEvidenceTarget"
+  ],
+  "mathematical_interpretation": {
+    "spacetime_fabric": "A smooth 4-dimensional manifold equipped with a Lorentzian metric tensor.",
+    "canonical_container": "(M, g)",
+    "not_literal_fabric": true
+  },
+  "required_conditions": [
+    "smoothManifold4D",
+    "lorentzianMetric",
+    "metricSignatureRecorded",
+    "leviCivitaConnectionRecorded",
+    "riemannCurvatureTensorRecorded",
+    "ricciCurvatureTensorRecorded",
+    "scalarCurvatureRecorded",
+    "stressEnergyTensorRecorded",
+    "einsteinEquationReferenceRecorded",
+    "ytrElasticResponseSlotRecorded",
+    "boundaryPreserved"
+  ],
+  "canonical_equations": [
+    "M = smooth 4-manifold",
+    "g_{mu nu} = Lorentzian metric tensor",
+    "nabla = Levi-Civita connection of g",
+    "R^rho_{ sigma mu nu } = Riemann curvature tensor",
+    "R_{mu nu} = Ricci curvature tensor",
+    "R = g^{mu nu} R_{mu nu}",
+    "T_{mu nu} = stress-energy tensor",
+    "G_{mu nu} = R_{mu nu} - (1/2) R g_{mu nu}",
+    "G_{mu nu} + Lambda g_{mu nu} = (8 pi G / c^4) T_{mu nu}"
+  ],
+  "boundary": "Metric-container input only. This supplies the standard mathematical container where a gravity-response law may be represented. It does not prove literal spacetime elasticity or new physics.",
+  "does_not_prove": [
+    "literal spacetime fabric",
+    "literal gravity elasticity",
+    "new gravity",
+    "standard GR failure",
+    "Lambda-CDM failure",
+    "dark matter replacement",
+    "empirical validation",
+    "independent replication",
+    "Einstein-matter PDE closure",
+    "trapped-surface formation",
+    "black-hole formation",
+    "cosmic censorship",
+    "hoop conjecture",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_object": "SpacetimeFabricCurvatureResponseSlot"
+}
