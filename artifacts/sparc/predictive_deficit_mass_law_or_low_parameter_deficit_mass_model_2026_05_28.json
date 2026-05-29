@@ -1,0 +1,37 @@
+{
+  "id": "PREDICTIVE_DEFICIT_MASS_LAW_OR_LOW_PARAMETER_DEFICIT_MASS_MODEL_2026_05_28",
+  "status": "TARGET_SURFACE_ONLY_PREDICTIVE_OBJECT_NOT_SUPPLIED",
+  "object_name": "PredictiveDeficitMassLawOrLowParameterDeficitMassModel",
+  "routes": [
+    "PredictiveDeficitMassLaw",
+    "LowParameterDeficitMassModel"
+  ],
+  "low_parameter_bound": 8,
+  "requires": [
+    "non_accounting_constraint",
+    "positive_holdout_galaxy_count",
+    "boundary_guard",
+    "predictive_law_or_low_parameter_model"
+  ],
+  "proves": [
+    "Lean target interface is nonempty",
+    "accepted targets carry boundary guards",
+    "accepted targets carry non-accounting constraints",
+    "accepted targets require a positive holdout count"
+  ],
+  "does_not_prove": [
+    "predictive GDM law closure",
+    "low-parameter deficit-mass model closure",
+    "dark matter replacement claim",
+    "Lambda-CDM failure claim",
+    "physical validation claim",
+    "independent holdout validation claim",
+    "SPARC empirical victory claim",
+    "PhD-complete final result claim",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "Clay problem"
+  ],
+  "next_missing_object": "ConcretePredictiveDeficitMassLawOrConcreteLowParameterDeficitMassModel"
+}
