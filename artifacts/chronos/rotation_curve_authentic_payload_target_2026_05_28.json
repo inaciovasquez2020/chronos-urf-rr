@@ -1,0 +1,45 @@
+{
+  "id": "ROTATION_CURVE_AUTHENTIC_PAYLOAD_TARGET_2026_05_28",
+  "object": "RotationCurveAuthenticPayloadTarget",
+  "status": "PAYLOAD_TARGET_ONLY_NO_DATA_BOUND",
+  "source_dependency": "RotationCurveLikelihoodModelComparisonExecutionGate",
+  "real_data_candidate": {
+    "name": "SPARC Galaxy Rotation Curve",
+    "source": "SPARC / Zenodo",
+    "doi": "10.5281/zenodo.16284118",
+    "dataset_scope": "175 disk galaxies with rotation curves, photometry, and stellar mass models"
+  },
+  "bounded_synthetic_payload_gate": {
+    "status": "DECLARED_ONLY",
+    "purpose": "local schema and execution testing before authentic payload binding"
+  },
+  "remaining_open_objects": [
+    "AuthenticGalaxyRotationCurvePayload",
+    "ActualGalaxyRotationCurveEmpiricalRun",
+    "BaselineModelPredictionVector",
+    "DeficitMassModelPredictionVector",
+    "LikelihoodComparisonResult"
+  ],
+  "blocked_claims": [
+    "no SPARC payload downloaded",
+    "no authentic galaxy data bound",
+    "no empirical rotation-curve fit",
+    "no galaxy data ingestion",
+    "no actual empirical run",
+    "no dark matter replacement",
+    "no Lambda-CDM failure",
+    "no modified gravity claim",
+    "no empirical detector correctness",
+    "no Einstein-matter PDE well-posedness",
+    "no trapped-surface formation",
+    "no black-hole formation",
+    "no cosmic censorship",
+    "no hoop conjecture",
+    "no unrestricted QL_CollapseGate",
+    "no unrestricted UniversalBoundaryCompactness",
+    "no unrestricted Chronos-RR",
+    "no unrestricted H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ]
+}
