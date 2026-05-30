@@ -1,0 +1,116 @@
+{
+  "boundary": {
+    "comparison_only": true,
+    "independent_validation_required_before_physical_claim": true,
+    "mascon_unit_equivalence_not_closed": true,
+    "no_clay_claim": true,
+    "no_dark_matter_replacement_claim": true,
+    "no_empirical_gravity_result_claim": true,
+    "no_gr_failure_claim": true,
+    "no_lambda_cdm_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_quantum_gravity_claim": true,
+    "physical_source_units_operator_only": true,
+    "time_dependent_operator_not_closed": true
+  },
+  "comparison_metrics_recorded_on_normalized_alignment_vector": true,
+  "finite_physical_vector_statistics_verified": true,
+  "mascon_unit_equivalence_closed": false,
+  "missing_for_full_closure": [
+    "MASCON vector physical units declaration",
+    "absolute source-to-MASCON scaling law",
+    "time-dependent source-to-MASCON operator",
+    "validation of operator against independent physical-unit observations"
+  ],
+  "next_admissible_object": "MASCON_VECTOR_PHYSICAL_UNITS_DECLARATION_OR_TIME_DEPENDENT_SOURCE_TO_MASCON_OPERATOR",
+  "normalized_alignment_comparison": {
+    "baseline_metrics": {
+      "mean_absolute_delta": 0.42980143611368193,
+      "root_mean_square_delta": 0.999999999831217
+    },
+    "comparison_space": "dimensionless normalized alignment vector; not physical MASCON-unit equivalence",
+    "deficit_metrics": {
+      "mean_absolute_delta": 7.401460345356238,
+      "root_mean_square_delta": 26.742683884165196
+    },
+    "lower_rmse_model": "baseline"
+  },
+  "normalized_alignment_vector_path": "data/gravity_external_vectors/xgm2019e_2159_physical_operator_normalized_alignment_vector_2026_05_30.npy",
+  "normalized_alignment_vector_sha256": "91a46120dddca4da6af7f32a86eaa64b9c6e60799a7b876dc0e22b73a4fc2b52",
+  "object": "PHYSICAL_UNITS_CALIBRATED_SOURCE_TO_MASCON_OPERATOR_2026_05_30",
+  "operator": {
+    "coefficient_count_used": 322,
+    "grid": {
+      "lat_centers_degrees": "uniform cell centers from -89.5 to 89.5",
+      "lat_count": 360,
+      "lon_centers_degrees": "uniform cell centers from 0.5 to 359.5",
+      "lon_count": 720
+    },
+    "input_format": "ICGEM .gfc fully-normalized spherical harmonic coefficients",
+    "max_degree_used": 24,
+    "numeric_rows_seen": 2401336,
+    "output_quantity": "radial gravity disturbance proxy",
+    "output_units": "mGal",
+    "physical_vector_mean_mgal_before_alignment_normalization": -8.30498496807932e+25,
+    "physical_vector_std_mgal_before_alignment_normalization": 9.29378652805856e+28,
+    "raw_physical_grid_mean_mgal": -8.304984968079315e+25,
+    "raw_physical_grid_std_mgal": 9.293786528058573e+28,
+    "source_header_max_degree": "2190",
+    "source_header_modelname": "XGM2019e_2159",
+    "source_header_norm": "fully_normalized",
+    "source_header_tide_system": "zero_tide",
+    "synthesis_terms_used": 322,
+    "time_index": {
+      "time_count": 255,
+      "time_semantics": "static physical source grid broadcast to each MASCON time index"
+    },
+    "token_prefixes_seen": {
+      "(2019):": 1,
+      "4.0": 1,
+      "========================================================================": 1,
+      "Abstract:": 1,
+      "Over": 2,
+      "Services.": 3,
+      "The": 2,
+      "These": 1,
+      "XGM2019e": 3,
+      "Zingerle,": 1,
+      "consistency": 1,
+      "consists": 1,
+      "gfc": 2401336,
+      "gravity": 1,
+      "measurements": 1,
+      "model": 2,
+      "of": 1,
+      "resolution": 2,
+      "spheroidal": 2,
+      "topographically": 1
+    }
+  },
+  "physical_constants": {
+    "earth_gravity_constant_m3_s2": 398600441500000.0,
+    "evaluation_radius_m": 6378136.3,
+    "mgal_per_m_per_s2": 100000.0,
+    "reference_radius_m": 6378136.3
+  },
+  "physical_vector_path": "data/gravity_external_vectors/xgm2019e_2159_physical_radial_gravity_disturbance_mgal_mascon_shape_2026_05_30.npy",
+  "physical_vector_sha256": "0b36edf4f6cd45e8943e8c055212b18877295336ce63c619b56056d0ba1c1cd7",
+  "prior_gate": {
+    "artifact": "artifacts/gravity/physical_units_calibrated_source_to_mascon_operator_or_third_public_holdout_2026_05_30.json",
+    "current_lower_rmse_model": "baseline",
+    "physical_units_calibrated_source_to_mascon_operator_closed": false,
+    "status": "THIRD_PUBLIC_HOLDOUT_EXECUTED_PHYSICAL_UNITS_CALIBRATED_OPERATOR_NOT_CLOSED"
+  },
+  "source_doi": "10.5880/ICGEM.2019.007",
+  "source_gfc_path": "external_data/xgm2019e/XGM2019e_2159.gfc",
+  "source_gfc_sha256": "ee24f7cf68f45b44cdbf3ccbf57e7382c7667869356061419f00f2ca951861e4",
+  "source_name": "XGM2019e_2159",
+  "source_output_units": "mGal radial gravity disturbance proxy",
+  "source_page": "https://icgem.gfz-potsdam.de/tom",
+  "source_physical_units_operator_recorded": true,
+  "source_to_grid_physical_units_calibrated": true,
+  "source_to_mascon_shape_operator_recorded": true,
+  "source_url_used": "https://icgem.gfz-potsdam.de/getmodel/zip/eeb03971cf6e533e6eeb6b010336463286dcda0846684248d5530acf8e800055/XGM2019e_2159.zip",
+  "status": "SOURCE_PHYSICAL_UNITS_OPERATOR_RECORDED_MASCON_UNIT_EQUIVALENCE_NOT_CLOSED",
+  "time_dependent_source_to_mascon_operator_closed": false
+}
