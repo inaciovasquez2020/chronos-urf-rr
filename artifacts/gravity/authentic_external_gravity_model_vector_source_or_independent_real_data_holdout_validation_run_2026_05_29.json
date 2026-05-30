@@ -1,0 +1,68 @@
+{
+  "authentic_external_gravity_model_vector_source_supplied": false,
+  "authenticated_binding_artifact_count": 4,
+  "authenticated_binding_artifacts": [
+    {
+      "path": "artifacts/gravity/authenticated_mascon_payload_digest_2026_05_29.json",
+      "sha256": "b324f86a40d14d3a160cbd72c5473db78e2d4ba49262bc47838ba70526d0f6f6"
+    },
+    {
+      "path": "artifacts/gravity/mascon_payload_digest_certificate_2026_05_29.json",
+      "sha256": "d05255dae540df20d982163c2b03f28283e1dc5618d1fe7c679721dea9e30a59"
+    },
+    {
+      "path": "artifacts/gravity/mascon_schema_validation_execution_result_2026_05_29.json",
+      "sha256": "d8878822123540b89888a3f4d51231bb9f75fef85e7b631d5b0264775f902d4c"
+    },
+    {
+      "path": "artifacts/gravity/nasa_gravity_cross_validation_dataset_registry_2026_05_29.json",
+      "sha256": "d8a3892c4d85b16936e731227625cdd81078c2bde0944b9e0f8259a1da84dc2a"
+    }
+  ],
+  "bound_vectors": {
+    "comparison_vector_file_exists": true,
+    "comparison_vector_path": "data/mascon_vectors/deficit_vector.npy",
+    "independent_baseline_file_exists": true,
+    "independent_baseline_path": "data/mascon_vectors/independent_nonzero_baseline_vector.npy"
+  },
+  "boundary": {
+    "independent_real_data_holdout_validation_run_only": true,
+    "no_authentic_external_gravity_model_vector_source_supplied": true,
+    "no_clay_problem": true,
+    "no_dark_matter_replacement": true,
+    "no_empirical_gravity_result": true,
+    "no_external_gravity_model_validation": true,
+    "no_external_gravity_model_vector_fabrication": true,
+    "no_gr_failure_claim": true,
+    "no_lambda_cdm_failure": true,
+    "no_new_gravity_claim": true,
+    "no_quantum_gravity": true
+  },
+  "branch_selected": "independent_real_data_holdout_validation_run",
+  "empirical_gravity_result": false,
+  "external_gravity_model_validation": false,
+  "holdout_validation": {
+    "holdout_vector_length": 13219200,
+    "max_absolute_delta": 918.1955583085551,
+    "mean_absolute_delta": 7.183321015907208,
+    "positive_metric_check_passed": true,
+    "required_shape": [
+      255,
+      360,
+      720
+    ],
+    "required_vector_length": 66096000,
+    "root_mean_square_delta": 26.40223772685677,
+    "rule": "time_index_mod_5_eq_0",
+    "time_count": 51
+  },
+  "id": "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE_OR_INDEPENDENT_REAL_DATA_HOLDOUT_VALIDATION_RUN_2026_05_29",
+  "independent_real_data_holdout_validation_run_executed": true,
+  "next_admissible_object": "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE_OR_EXTERNAL_MODEL_COMPARISON_REGISTRY",
+  "source_artifact": {
+    "path": "artifacts/gravity/authentic_external_gravity_model_vector_source_or_real_holdout_dataset_binding_2026_05_29.json",
+    "sha256": "c62af1a67fd5f5d465f4351663e68a4db28f07a7b2f515425705e00db13ae443"
+  },
+  "source_object": "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE_OR_REAL_HOLDOUT_DATASET_BINDING_2026_05_29",
+  "status": "INDEPENDENT_REAL_DATA_HOLDOUT_VALIDATION_RUN_EXECUTED_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE_NOT_SUPPLIED"
+}
