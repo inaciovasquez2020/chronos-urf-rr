@@ -1,0 +1,34 @@
+{
+  "object": "MASCON_UNIT_EQUIVALENCE_CERTIFICATE_2026_05_30",
+  "status": "CERTIFICATE_RECORDED_TIME_DEPENDENT_OPERATOR_NOT_CLOSED",
+  "depends_on": [
+    "AUTHENTIC_MASCON_COMPARISON_METRIC_2026_05_30",
+    "SOURCE_GRID_TO_MASCON_GRID_UNIT_CONVERSION_LAW_2026_05_30"
+  ],
+  "certificate": {
+    "conversion_law_recorded": true,
+    "authentic_comparison_metric_recorded": true,
+    "source_grid_units": "mGal radial gravity disturbance proxy",
+    "mascon_grid_units": "mGal-equivalent radial gravity disturbance on MASCON comparison grid",
+    "conversion_factor": 1.0,
+    "conversion_factor_units": "mGal-equivalent per mGal",
+    "same_physical_dimension": true,
+    "mascon_unit_equivalence_certificate_supplied": true,
+    "time_dependent_source_to_mascon_operator_closed": false,
+    "empirical_comparison_executed": false
+  },
+  "boundary": {
+    "empirical_gravity_result_claimed": false,
+    "general_relativity_failure_claimed": false,
+    "new_gravity_claimed": false,
+    "dark_matter_replacement_claimed": false,
+    "lambda_cdm_failure_claimed": false,
+    "quantum_gravity_claimed": false,
+    "clay_problem_claimed": false
+  },
+  "weakest_missing_inputs": [
+    "TIME_DEPENDENT_SOURCE_TO_MASCON_OPERATOR",
+    "EMPIRICAL_MASCON_COMPARISON_EXECUTION_RUN"
+  ],
+  "next_admissible_object": "TIME_DEPENDENT_SOURCE_TO_MASCON_OPERATOR"
+}
