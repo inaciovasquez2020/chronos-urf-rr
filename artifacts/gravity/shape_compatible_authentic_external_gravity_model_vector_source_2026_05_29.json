@@ -1,0 +1,51 @@
+{
+  "id": "SHAPE_COMPATIBLE_AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE_2026_05_29",
+  "status": "SOURCE_CONTRACT_ONLY_AUTHENTIC_EXTERNAL_VECTOR_SOURCE_NOT_SUPPLIED",
+  "source_object": "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE_OR_EXTERNAL_MODEL_COMPARISON_REGISTRY_2026_05_29",
+  "required_vector_length": 66096000,
+  "required_shape": [255, 360, 720],
+  "authentic_external_source_supplied": false,
+  "shape_compatible_vector_supplied": false,
+  "external_model_comparison_executable": false,
+  "required_source_contract": {
+    "public_or_archived_source_url_required": true,
+    "source_name_required": true,
+    "source_version_or_release_required": true,
+    "download_or_access_procedure_required": true,
+    "license_or_access_terms_required": true,
+    "extraction_script_required": true,
+    "shape_check_required": true,
+    "vector_sha256_required": true,
+    "provenance_certificate_required": true
+  },
+  "accepted_source_classes": [
+    "EGM2008-derived grid vector",
+    "GOCO/ITSG/GRACE-derived gravity-field model vector",
+    "GOCE gravity-gradient model vector",
+    "JPL MASCON independent release vector",
+    "CSR/GFZ/JPL cross-center MASCON vector"
+  ],
+  "candidate_local_paths": [
+    "data/external_gravity_models/authentic_external_gravity_model_vector.npy",
+    "data/mascon_vectors/external_gravity_model_vector.npy"
+  ],
+  "weakest_missing_object": "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_FILE_AND_PROVENANCE_CERTIFICATE",
+  "empirical_gravity_result": false,
+  "external_gravity_model_validation": false,
+  "boundary": {
+    "source_contract_only": true,
+    "no_authentic_external_gravity_model_vector_source_supplied": true,
+    "no_shape_compatible_external_vector_supplied": true,
+    "no_external_gravity_model_vector_fabrication": true,
+    "no_external_gravity_model_validation": true,
+    "no_external_model_comparison_execution": true,
+    "no_empirical_gravity_result": true,
+    "no_gr_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_dark_matter_replacement": true,
+    "no_lambda_cdm_failure": true,
+    "no_quantum_gravity": true,
+    "no_clay_problem": true
+  },
+  "next_admissible_object": "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_FILE_AND_PROVENANCE_CERTIFICATE"
+}
