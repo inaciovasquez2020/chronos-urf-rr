@@ -30,7 +30,7 @@
     "dtype": "float32",
     "nonzero_sample_check": true,
     "path": "data/mascon_vectors/independent_nonzero_baseline_vector.npy",
-    "sha256": "eb454f8cfd785e4482afc0c3af39e2de72ad830240c3b6189e4bbfe96de185a7",
+    "sha256": "97de4c1d12d37623aad72964cdd3347d1fcc31a99c973c4e39110038c6fc9ac5",
     "shape": [
       255,
       360,
@@ -39,15 +39,15 @@
     "size": 66096000
   },
   "metrics": {
-    "cosine_similarity": 1.0,
+    "cosine_similarity": -0.04095632448972327,
     "deficit_vector_nonzero_count": 66096000,
     "independent_baseline_nonzero_count": 66096000,
-    "max_absolute_delta": 0.0,
+    "max_absolute_delta": 933.0850236410894,
     "mean_absolute_deficit_vector": 7.2880555623358045,
-    "mean_absolute_delta": 0.0,
-    "mean_absolute_independent_baseline": 7.2880555623358045,
-    "mean_delta": 0.0,
-    "root_mean_square_delta": 0.0,
+    "mean_absolute_delta": 7.288055109574425,
+    "mean_absolute_independent_baseline": 2.000000024250027e-06,
+    "mean_delta": -0.9295559735030958,
+    "root_mean_square_delta": 26.723080502313827,
     "vector_length": 66096000
   },
   "next_admissible_object": "EXTERNAL_GRAVITY_MODEL_VECTOR_FROM_AUTHENTIC_GRAVITY_MODEL_SOURCE_OR_INDEPENDENT_HOLDOUT_COMPARISON_PROTOCOL",
