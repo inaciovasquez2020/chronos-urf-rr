@@ -1,0 +1,47 @@
+{
+  "id": "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_FILE_AND_PROVENANCE_CERTIFICATE_2026_05_30",
+  "status": "REQUIRED_AUTHENTIC_EXTERNAL_VECTOR_FILE_AND_PROVENANCE_CERTIFICATE_NOT_SUPPLIED",
+  "source_object": "SHAPE_COMPATIBLE_AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE_2026_05_29",
+  "required_vector_length": 66096000,
+  "required_shape": [255, 360, 720],
+  "candidate_local_paths": [
+    "data/external_gravity_models/authentic_external_gravity_model_vector.npy",
+    "data/mascon_vectors/external_gravity_model_vector.npy"
+  ],
+  "required_provenance_certificate_fields": {
+    "source_name": true,
+    "source_url_or_archive": true,
+    "source_version_or_release": true,
+    "download_or_access_procedure": true,
+    "license_or_access_terms": true,
+    "extraction_script_path": true,
+    "vector_path": true,
+    "vector_shape": true,
+    "vector_length": true,
+    "vector_sha256": true
+  },
+  "authentic_external_vector_file_supplied": false,
+  "provenance_certificate_supplied": false,
+  "shape_compatible": false,
+  "external_model_comparison_executable": false,
+  "weakest_missing_object": "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_FILE_WITH_SOURCE_URL_EXTRACTION_SCRIPT_AND_SHA256",
+  "empirical_gravity_result": false,
+  "external_gravity_model_validation": false,
+  "boundary": {
+    "file_and_provenance_certificate_target_only": true,
+    "no_authentic_external_gravity_model_vector_file_supplied": true,
+    "no_provenance_certificate_supplied": true,
+    "no_shape_compatible_external_vector_supplied": true,
+    "no_external_gravity_model_vector_fabrication": true,
+    "no_external_gravity_model_validation": true,
+    "no_external_model_comparison_execution": true,
+    "no_empirical_gravity_result": true,
+    "no_gr_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_dark_matter_replacement": true,
+    "no_lambda_cdm_failure": true,
+    "no_quantum_gravity": true,
+    "no_clay_problem": true
+  },
+  "next_admissible_object": "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_FILE_WITH_SOURCE_URL_EXTRACTION_SCRIPT_AND_SHA256"
+}
