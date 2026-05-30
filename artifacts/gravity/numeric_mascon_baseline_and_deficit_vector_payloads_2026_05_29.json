@@ -1,0 +1,26 @@
+{
+  "id": "NUMERIC_MASCON_BASELINE_AND_DEFICIT_VECTOR_PAYLOADS_2026_05_29",
+  "status": "LOCAL_NUMERIC_PAYLOADS_GENERATED_NOT_COMMITTED",
+  "source_payload": "data/mascon_payload/GRCTellus.JPL.200204_202603.GLO.RL06.3M.MSCNv04.nc",
+  "source_variable": "lwe_thickness",
+  "shape": [
+    255,
+    360,
+    720
+  ],
+  "vector_length": 66096000,
+  "baseline_vector": "data/mascon_vectors/baseline_vector.npy",
+  "deficit_vector": "data/mascon_vectors/deficit_vector.npy",
+  "baseline_sha256": "7cc89385032f6c2e2194dad40a17d8be3e58d67f2238eee5a500f331ddb92a8a",
+  "deficit_sha256": "f66864ed92015b1a02c9ab18747ccb00e07bd1b7b2e3e94fcfe86766d6a767c2",
+  "boundary": {
+    "no_model_comparison_execution": true,
+    "no_empirical_gravity_result": true,
+    "no_gr_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_dark_matter_replacement": true,
+    "no_lambda_cdm_failure": true,
+    "no_quantum_gravity": true,
+    "no_clay_problem": true
+  }
+}
