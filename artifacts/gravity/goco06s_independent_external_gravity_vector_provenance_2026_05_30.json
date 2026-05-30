@@ -1,0 +1,84 @@
+{
+  "boundary": {
+    "comparison_only": true,
+    "independent_validation_required_before_physical_claim": true,
+    "no_clay_claim": true,
+    "no_dark_matter_replacement_claim": true,
+    "no_empirical_gravity_result_claim": true,
+    "no_gr_failure_claim": true,
+    "no_lambda_cdm_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_quantum_gravity_claim": true,
+    "replication_or_public_holdout_only": true
+  },
+  "external_vector_path": "data/gravity_external_vectors/goco06s_low_degree_static_mascon_compatible_vector_2026_05_30.npy",
+  "external_vector_sha256": "d75e8d96f22c55bac2507a15ddd6dac2aa34faf3ef8baa8001d1d37d9134e440",
+  "grid": {
+    "lat_centers_degrees": "uniform cell centers from -89.5 to 89.5",
+    "lat_count": 360,
+    "lon_centers_degrees": "uniform cell centers from 0.5 to 359.5",
+    "lon_count": 720
+  },
+  "object": "GOCO06S_INDEPENDENT_EXTERNAL_GRAVITY_VECTOR_PROVENANCE_2026_05_30",
+  "schema": "static low-degree spherical-harmonic synthesis from GOCO06s GFC coefficients, normalized to zero mean and unit variance, broadcast across MASCON time dimension",
+  "shape": {
+    "baseline_shape": [
+      66096000
+    ],
+    "deficit_shape": [
+      66096000
+    ],
+    "external_shape": [
+      66096000
+    ],
+    "shape_compatible_with_baseline": true,
+    "shape_compatible_with_deficit": true
+  },
+  "source_doi": "10.5880/ICGEM.2019.002",
+  "source_gfc_path": "external_data/goco06s/GOCO06s.gfc",
+  "source_gfc_sha256": "351d9d20b84cd2c0f52ce77146b1e3b774f408200b579ffaf98593cf3d271819",
+  "source_kind": "ICGEM satellite-only global Earth gravity field model; GFC spherical harmonic coefficients",
+  "source_name": "GOCO06s",
+  "source_page": "https://dataservices.gfz-potsdam.de/icgem/showshort.php?id=escidoc%3A4081892",
+  "source_url": "https://datapub.gfz-potsdam.de/download/10.5880.ICGEM.2019.002/GOCO06s.gfc",
+  "status": "SHAPE_COMPATIBLE_PUBLIC_HOLDOUT_GRAVITY_VECTOR_DERIVED_FROM_ICGEM_GOCO06S",
+  "synthesis": {
+    "coefficient_count_used": 322,
+    "max_degree_used": 24,
+    "numeric_rows_seen": 45451,
+    "raw_grid_mean_before_normalization": -5420259123922514.0,
+    "raw_grid_std_before_normalization": 6.070820340882523e+18,
+    "source_header_max_degree": "300",
+    "source_header_modelname": "GOCO06s",
+    "source_header_norm": "fully_normalized",
+    "source_header_tide_system": "zero_tide",
+    "synthesis_terms_used": 322,
+    "token_prefixes_seen": {
+      "-": 10,
+      "300,": 1,
+      "4.0": 1,
+      "==============================================": 1,
+      "GOCO06s": 1,
+      "It": 1,
+      "J\u00e4ggi,": 1,
+      "Kvas,": 1,
+      "Schubert,": 1,
+      "The": 2,
+      "These": 1,
+      "When": 1,
+      "acos": 20298,
+      "asin": 20298,
+      "gfc": 25153,
+      "gfct": 20298,
+      "http://doi.org/10.5880/ICGEM.2019.002": 1,
+      "is": 1,
+      "observations": 1,
+      "trnd": 20298
+    }
+  },
+  "time_index": {
+    "time_count": 255,
+    "time_semantics": "static GOCO06s source broadcast to each MASCON time index"
+  },
+  "units": "dimensionless normalized source-derived gravity-field proxy; replication/holdout comparison only, not a physical gravity-anomaly unit claim"
+}
