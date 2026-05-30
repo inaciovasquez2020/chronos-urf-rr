@@ -1,0 +1,28 @@
+{
+  "object": "SOURCE_TO_MASCON_OPERATOR_AUDIT_2026_05_30",
+  "status": "AUDIT_RECORDED_NO_MASCON_UNIT_EQUIVALENCE_CLOSURE",
+  "depends_on": [
+    "PHYSICAL_UNITS_CALIBRATED_SOURCE_TO_MASCON_OPERATOR_2026_05_30"
+  ],
+  "audit": {
+    "physical_units_operator_recorded": true,
+    "finite_physical_vector_statistics_verified": true,
+    "source_to_mascon_shape_operator_recorded": true,
+    "source_to_mascon_operator_audit_recorded": true,
+    "mascon_unit_equivalence_closed": false,
+    "time_dependent_source_to_mascon_operator_closed": false,
+    "empirical_gravity_result_claimed": false,
+    "general_relativity_failure_claimed": false,
+    "new_gravity_claimed": false,
+    "dark_matter_replacement_claimed": false,
+    "lambda_cdm_failure_claimed": false,
+    "quantum_gravity_claimed": false,
+    "clay_problem_claimed": false
+  },
+  "weakest_missing_inputs": [
+    "MASCON_UNIT_EQUIVALENCE_CERTIFICATE",
+    "TIME_DEPENDENT_SOURCE_TO_MASCON_OPERATOR",
+    "AUTHENTIC_MASCON_COMPARISON_METRIC"
+  ],
+  "next_admissible_object": "MASCON_UNIT_EQUIVALENCE_CERTIFICATE_OR_TIME_DEPENDENT_SOURCE_TO_MASCON_OPERATOR"
+}
