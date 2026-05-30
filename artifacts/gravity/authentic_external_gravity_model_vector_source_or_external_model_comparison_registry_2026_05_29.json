@@ -1,0 +1,48 @@
+{
+  "id": "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE_OR_EXTERNAL_MODEL_COMPARISON_REGISTRY_2026_05_29",
+  "status": "EXTERNAL_MODEL_COMPARISON_REGISTRY_ONLY_VECTOR_SOURCE_NOT_SUPPLIED",
+  "source_object": "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE_OR_INDEPENDENT_REAL_DATA_HOLDOUT_VALIDATION_RUN_2026_05_29",
+  "required_vector_length": 66096000,
+  "required_shape": [255, 360, 720],
+  "external_gravity_model_vector_source_supplied": false,
+  "external_model_comparison_executable": false,
+  "candidate_external_sources": [
+    {
+      "name": "EGM2008-derived grid vector",
+      "required_object": "EGM2008_SHAPE_COMPATIBLE_VECTOR_EXTRACTION"
+    },
+    {
+      "name": "GOCO/ITSG/GRACE-derived gravity-field model vector",
+      "required_object": "GRACE_DERIVED_EXTERNAL_FIELD_VECTOR_EXTRACTION"
+    },
+    {
+      "name": "GOCE gravity-gradient model vector",
+      "required_object": "GOCE_GRAVITY_GRADIENT_VECTOR_EXTRACTION"
+    },
+    {
+      "name": "JPL MASCON independent release vector",
+      "required_object": "JPL_MASCON_INDEPENDENT_RELEASE_VECTOR_EXTRACTION"
+    },
+    {
+      "name": "CSR/GFZ/JPL cross-center MASCON vector",
+      "required_object": "CROSS_CENTER_MASCON_VECTOR_EXTRACTION"
+    }
+  ],
+  "weakest_missing_object": "SHAPE_COMPATIBLE_AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE",
+  "empirical_gravity_result": false,
+  "external_gravity_model_validation": false,
+  "boundary": {
+    "registry_only": true,
+    "no_authentic_external_gravity_model_vector_source_supplied": true,
+    "no_external_gravity_model_vector_fabrication": true,
+    "no_external_gravity_model_validation": true,
+    "no_empirical_gravity_result": true,
+    "no_gr_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_dark_matter_replacement": true,
+    "no_lambda_cdm_failure": true,
+    "no_quantum_gravity": true,
+    "no_clay_problem": true
+  },
+  "next_admissible_object": "SHAPE_COMPATIBLE_AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE"
+}
