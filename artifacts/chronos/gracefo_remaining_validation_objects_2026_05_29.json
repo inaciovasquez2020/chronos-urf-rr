@@ -1,0 +1,55 @@
+{
+  "id": "GRACEFO_REMAINING_VALIDATION_OBJECTS_2026_05_29",
+  "status": "REMAINING_GRACEFO_VALIDATION_OBJECTS_REGISTERED_AS_REQUIRED_ONLY",
+  "successor_to": "GRACEFO_PAYLOAD_DIGEST_AND_SCHEMA_VALIDATION_RUN_2026_05_29",
+  "objects": {
+    "authenticated_payload_digest_certificate": {
+      "name": "AuthenticatedGRACEFOPayloadDigestCertificate",
+      "status": "AUTHENTICATED_PAYLOAD_DIGEST_CERTIFICATE_REQUIRED_ONLY",
+      "dataset": "GRACEFO_L2_JPL_MONTHLY_0063",
+      "digest_algorithm": "SHA256",
+      "digest_value": "UNSUPPLIED_REQUIRED_INPUT",
+      "payload_bytes_supplied": false,
+      "digest_value_supplied": false,
+      "digest_authentication_executed": false
+    },
+    "schema_validation_execution_result": {
+      "name": "GRACEFOSchemaValidationExecutionResult",
+      "status": "SCHEMA_VALIDATION_EXECUTION_RESULT_REQUIRED_ONLY",
+      "dataset": "GRACEFO_L2_JPL_MONTHLY_0063",
+      "schema": "GRACEFO_L2_JPL_MONTHLY_0063_SCHEMA_V1",
+      "authenticated_digest_required": true,
+      "schema_validation_executed": false,
+      "schema_validation_passed": false
+    },
+    "real_model_run": {
+      "name": "RealGRACEFOTidalDerivativeModelRun",
+      "status": "REAL_GRACEFO_TIDAL_DERIVATIVE_MODEL_RUN_REQUIRED_ONLY",
+      "dataset": "GRACEFO_L2_JPL_MONTHLY_0063",
+      "observable": "radial_gravity_gradient_dg_dr",
+      "baseline": "standard_GR_or_Newtonian_geodesy_prediction",
+      "tolerance": "measurement_uncertainty_plus_model_error_bound",
+      "authenticated_digest_required": true,
+      "schema_validation_required": true,
+      "model_run_executed": false,
+      "empirical_result_supplied": false
+    }
+  },
+  "weakest_missing_input": "actual_GRACEFO_payload_bytes_and_SHA256_digest",
+  "boundary": [
+    "remaining validation objects registered only",
+    "no payload bytes supplied",
+    "no digest value supplied",
+    "no digest authentication executed",
+    "no schema validation executed",
+    "no model execution",
+    "no empirical result",
+    "no measured result",
+    "no GR failure claim",
+    "no new gravity claim",
+    "no dark matter replacement claim",
+    "no Lambda-CDM failure claim",
+    "no quantum gravity proof",
+    "no Clay problem claim"
+  ]
+}

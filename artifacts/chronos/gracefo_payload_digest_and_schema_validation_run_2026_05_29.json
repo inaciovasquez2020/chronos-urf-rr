@@ -1,0 +1,42 @@
+{
+  "id": "GRACEFO_PAYLOAD_DIGEST_AND_SCHEMA_VALIDATION_RUN_2026_05_29",
+  "status": "PAYLOAD_DIGEST_AND_SCHEMA_VALIDATION_RUN_GATE_ONLY",
+  "successor_to": "YTR_GRAVITY_TIDAL_DERIVATIVE_REAL_DATASET_FALSIFICATION_RUN_2026_05_29",
+  "dataset": {
+    "dataset_name": "GRACEFO_L2_JPL_MONTHLY_0063",
+    "provider": "NASA PO.DAAC / JPL",
+    "product": "GRACE-FO Level-2 Monthly Geopotential Spherical Harmonics JPL RL06.3",
+    "payload_identifier": "public_GRACE_FO_Level_2_monthly_geopotential_payload"
+  },
+  "digest_gate": {
+    "algorithm": "SHA256",
+    "digest_required": true,
+    "digest_value_supplied": false,
+    "payload_bytes_embedded": false
+  },
+  "schema_gate": {
+    "schema_name": "GRACEFO_L2_JPL_MONTHLY_0063_SCHEMA_V1",
+    "required_format_family": "GRACE_FO_Level_2_geopotential_spherical_harmonics",
+    "required_dataset_id": "GRACEFO_L2_JPL_MONTHLY_0063",
+    "required_payload_digest": "SHA256",
+    "required_monthly_geopotential_coefficients": true,
+    "required_metadata_fields": true,
+    "schema_validation_required": true,
+    "schema_validation_executed": false
+  },
+  "boundary": [
+    "digest and schema validation gate only",
+    "no payload bytes embedded",
+    "no payload digest value supplied yet",
+    "no schema validation executed yet",
+    "no model execution",
+    "no empirical result",
+    "no measured result",
+    "no GR failure claim",
+    "no new gravity claim",
+    "no dark matter replacement claim",
+    "no Lambda-CDM failure claim",
+    "no quantum gravity proof",
+    "no Clay problem claim"
+  ]
+}

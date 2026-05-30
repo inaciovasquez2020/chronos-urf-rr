@@ -1,0 +1,25 @@
+{
+  "id": "MASCON_DEFICIT_MASS_MODEL_PREDICTION_VECTOR_BOUND_FROM_CONCRETE_LAW_2026_05_29",
+  "status": "VECTOR_BOUND_FROM_CONCRETE_LAW_INTERFACE_NO_MODEL_COMPARISON",
+  "source_law": "CONCRETE_MASCON_DEFICIT_MASS_PREDICTION_LAW_2026_05_29",
+  "baseline_vector": "MASCON_BASELINE_GRAVITY_MODEL_PREDICTION_VECTOR_2026_05_29",
+  "shape": {
+    "time": 255,
+    "lat": 360,
+    "lon": 720
+  },
+  "vector_length": 66096000,
+  "numeric_payload_in_git": false,
+  "residual_metric_slot": "MASCON_BASELINE_RESIDUAL_ERROR_METRICS",
+  "model_comparison_executed": false,
+  "empirical_gravity_result": false,
+  "boundary": {
+    "no_gr_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_dark_matter_replacement": true,
+    "no_lambda_cdm_failure": true,
+    "no_quantum_gravity": true,
+    "no_clay_problem": true
+  },
+  "next_admissible_object": "MASCON_BASELINE_RESIDUAL_ERROR_METRICS"
+}

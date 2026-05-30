@@ -1,0 +1,37 @@
+{
+  "id": "AUTHENTICATED_MASCON_PAYLOAD_DIGEST_2026_05_29",
+  "status": "AUTHENTICATED_MASCON_PAYLOAD_DIGEST_BOUND_BYTES_NOT_COMMITTED",
+  "predecessor": "MASCON_PAYLOAD_DIGEST_CERTIFICATE_2026_05_29",
+  "registry_id": "NASA_GRAVITY_CROSS_VALIDATION_DATASET_REGISTRY_2026_05_29",
+  "target_id": "AUTHENTICATED_MASCON_PAYLOAD_BYTES_AND_SHA256_DIGEST",
+  "payload_bytes_bound": true,
+  "digest_bound": true,
+  "payload_bytes_committed_to_git": false,
+  "payload_directory": "data/mascon_payload",
+  "file_count": 1,
+  "total_bytes": 39915332,
+  "collection_sha256": "2e567a8fc84017d6595fb9a90f3c7f43d17f71e74f8a395b610f831ac897f345",
+  "manifest": [
+    {
+      "path": "data/mascon_payload/GRCTellus.JPL.200204_202603.GLO.RL06.3M.MSCNv04.nc",
+      "size_bytes": 39915332,
+      "sha256": "5447c8a5f21c70ada719a5a69143267f4ce427c47115ce1e4a794e525d709bfb"
+    }
+  ],
+  "created_utc": "2026-05-29T22:13:37.491842+00:00",
+  "weakest_missing_object_closed": "AUTHENTICATED_MASCON_PAYLOAD_BYTES_AND_SHA256_DIGEST",
+  "next_admissible_object": "MASCON_SCHEMA_VALIDATION_EXECUTION_RESULT",
+  "boundary": [
+    "digest certificate only",
+    "payload bytes are locally hashed but not committed to git",
+    "no MASCON schema validation is executed",
+    "no MASCON model comparison is executed",
+    "no empirical gravity result is asserted",
+    "no GR failure is asserted",
+    "no new gravity claim is asserted",
+    "no dark matter replacement claim is asserted",
+    "no Lambda-CDM failure claim is asserted",
+    "no quantum gravity claim is asserted",
+    "no Clay problem claim is asserted"
+  ]
+}

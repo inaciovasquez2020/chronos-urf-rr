@@ -1,0 +1,32 @@
+{
+  "id": "MASCON_MODEL_COMPARISON_EXECUTION_TARGET_2026_05_29",
+  "status": "MASCON_MODEL_COMPARISON_EXECUTION_TARGET_ONLY_NO_MODEL_RUN",
+  "predecessor": "MASCON_SCHEMA_VALIDATION_EXECUTION_RESULT_2026_05_29",
+  "schema_validation_passed": true,
+  "model_comparison_executed": false,
+  "baseline_prediction_vector_bound": false,
+  "deficit_mass_prediction_vector_bound": false,
+  "comparison_metric_bound": false,
+  "required_inputs": [
+    "MASCON_BASELINE_GRAVITY_MODEL_PREDICTION_VECTOR",
+    "MASCON_DEFICIT_MASS_MODEL_PREDICTION_VECTOR",
+    "MASCON_COMPARISON_METRIC_SPECIFICATION",
+    "MASCON_MODEL_COMPARISON_EXECUTION_RUN"
+  ],
+  "weakest_missing_object": "MASCON_BASELINE_GRAVITY_MODEL_PREDICTION_VECTOR",
+  "next_admissible_object": "MASCON_BASELINE_GRAVITY_MODEL_PREDICTION_VECTOR",
+  "boundary": [
+    "execution target only",
+    "no MASCON model comparison is executed",
+    "no baseline gravity model prediction vector is bound",
+    "no deficit-mass model prediction vector is bound",
+    "no comparison metric is bound",
+    "no empirical gravity result is asserted",
+    "no GR failure is asserted",
+    "no new gravity claim is asserted",
+    "no dark matter replacement claim is asserted",
+    "no Lambda-CDM failure claim is asserted",
+    "no quantum gravity claim is asserted",
+    "no Clay problem claim is asserted"
+  ]
+}
