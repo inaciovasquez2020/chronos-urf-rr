@@ -381,3 +381,5 @@ import Chronos.Frontier.AuthenticExternalGravityModelVectorSourceOrExternalModel
 import Chronos.Frontier.ShapeCompatibleAuthenticExternalGravityModelVectorSource
 
 import Chronos.Frontier.AuthenticExternalGravityModelVectorFileAndProvenanceCertificate
+
+import Chronos.Frontier.AuthenticExternalGravityModelComparisonResult
