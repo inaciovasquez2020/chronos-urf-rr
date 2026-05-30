@@ -1,0 +1,48 @@
+{
+  "boundary": {
+    "comparison_only": true,
+    "no_clay_claim": true,
+    "no_dark_matter_replacement_claim": true,
+    "no_empirical_gravity_result_claim": true,
+    "no_gr_failure_claim": true,
+    "no_lambda_cdm_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_quantum_gravity_claim": true,
+    "physical_units_calibration_not_closed": true,
+    "public_reproducibility_manifest_only": true
+  },
+  "downloads": [
+    {
+      "bytes": 8062035,
+      "local_path": "external_data/itsg_grace2018s/ITSG-Grace2018s.gfc",
+      "sha256": "6d7412b4ef1068081281831524b95de78bad2dd2e1c94dc9e0f93f466a50af17",
+      "source_doi": "10.5880/ICGEM.2018.003",
+      "source_name": "ITSG-Grace2018s",
+      "source_page": "https://dataservices.gfz-potsdam.de/icgem/showshort.php?id=escidoc%3A3600910",
+      "source_url_used": "https://icgem.gfz-potsdam.de/getmodel/gfc/cdcab005ac449315efdb79244dbd7a7f2426dff747305644f6d9e509843f3968/ITSG-Grace2018s.gfc"
+    }
+  ],
+  "generated_vectors": [
+    {
+      "bytes": 264384128,
+      "dtype": "float32",
+      "local_path": "data/gravity_external_vectors/itsg_grace2018s_low_degree_static_mascon_compatible_vector_2026_05_30.npy",
+      "sha256": "a65c3e4de0e7030178bbc10974bdd5ce54eef51acd35d734bb5228ca5acfea1d",
+      "shape": [
+        66096000
+      ],
+      "source_name": "ITSG-Grace2018s"
+    }
+  ],
+  "object": "PUBLIC_GRAVITY_EXTERNAL_DOWNLOAD_REPRODUCIBILITY_MANIFEST_2026_05_30",
+  "operator": {
+    "grid": "360x720 global cell-center grid",
+    "input": "ICGEM .gfc spherical harmonic coefficients",
+    "max_degree_used": 24,
+    "name": "LOW_DEGREE_STATIC_SPHERICAL_HARMONIC_TO_MASCON_COMPATIBLE_VECTOR_OPERATOR",
+    "normalization": "zero mean, unit variance",
+    "physical_units_calibration_status": "RECORDED_NOT_CLOSED",
+    "time_mapping": "static source broadcast across 255 MASCON time indices"
+  },
+  "status": "PUBLIC_REPRODUCIBILITY_MANIFEST_RECORDED"
+}

@@ -1,0 +1,110 @@
+{
+  "agrees_with_prior_lower_rmse_models": true,
+  "baseline_metrics": {
+    "mean_absolute_delta": 0.4297904913040576,
+    "root_mean_square_delta": 1.0000000001023832
+  },
+  "baseline_vector_path": "data/mascon_vectors/baseline_vector.npy",
+  "boundary": {
+    "comparison_only": true,
+    "independent_validation_required_before_physical_claim": true,
+    "no_clay_claim": true,
+    "no_dark_matter_replacement_claim": true,
+    "no_empirical_gravity_result_claim": true,
+    "no_gr_failure_claim": true,
+    "no_lambda_cdm_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_quantum_gravity_claim": true,
+    "physical_units_calibration_not_closed": true,
+    "second_independent_replication_or_calibration_gate_only": true
+  },
+  "comparison_result_interpretation_boundary_locked": true,
+  "current_lower_rmse_model": "baseline",
+  "deficit_metrics": {
+    "mean_absolute_delta": 7.401499940745102,
+    "root_mean_square_delta": 26.742685137124827
+  },
+  "deficit_vector_path": "data/mascon_vectors/deficit_vector.npy",
+  "external_vector_path": "data/gravity_external_vectors/itsg_grace2018s_low_degree_static_mascon_compatible_vector_2026_05_30.npy",
+  "external_vector_sha256": "a65c3e4de0e7030178bbc10974bdd5ce54eef51acd35d734bb5228ca5acfea1d",
+  "next_admissible_object": "PHYSICAL_UNITS_CALIBRATED_SOURCE_TO_MASCON_OPERATOR_OR_THIRD_PUBLIC_HOLDOUT",
+  "object": "SECOND_INDEPENDENT_REPLICATION_OR_PHYSICAL_UNITS_CALIBRATION_GATE_2026_05_30",
+  "physical_units_calibration_closed": false,
+  "physical_units_calibration_gate": {
+    "calibration_status": "RECORDED_NOT_CLOSED",
+    "mascon_units": "not asserted by this gate",
+    "missing_for_closure": [
+      "physical unit mapping from source functional to MASCON vector units",
+      "absolute scale calibration",
+      "time-dependent operator rather than static broadcast",
+      "independent external validation in physical units"
+    ],
+    "source_units": "dimensionless normalized spherical-harmonic synthesis proxy after internal normalization"
+  },
+  "physical_units_calibration_gate_recorded": true,
+  "prior_lower_rmse_models": {
+    "EIGEN-6C4": "baseline",
+    "GOCO06s": "baseline"
+  },
+  "public_reproducibility_manifest_recorded": true,
+  "second_independent_replication_executed": true,
+  "source_doi": "10.5880/ICGEM.2018.003",
+  "source_gfc_path": "external_data/itsg_grace2018s/ITSG-Grace2018s.gfc",
+  "source_gfc_sha256": "6d7412b4ef1068081281831524b95de78bad2dd2e1c94dc9e0f93f466a50af17",
+  "source_kind": "GRACE-only static gravity field solution",
+  "source_name": "ITSG-Grace2018s",
+  "source_page": "https://dataservices.gfz-potsdam.de/icgem/showshort.php?id=escidoc%3A3600910",
+  "source_to_mascon_operator_audit": {
+    "coefficient_count_used": 322,
+    "grid": {
+      "lat_centers_degrees": "uniform cell centers from -89.5 to 89.5",
+      "lat_count": 360,
+      "lon_centers_degrees": "uniform cell centers from 0.5 to 359.5",
+      "lon_count": 720
+    },
+    "input_format": "ICGEM .gfc spherical harmonic coefficients",
+    "max_degree_used": 24,
+    "normalization": "zero mean and unit variance before comparison",
+    "numeric_rows_seen": 20301,
+    "raw_grid_mean_before_normalization": -5420144076347514.0,
+    "raw_grid_std_before_normalization": 6.070714143397306e+18,
+    "source_header_max_degree": "200",
+    "source_header_modelname": "ITSG-Grace2018s",
+    "source_header_norm": "fully_normalized",
+    "source_header_tide_system": "zero_tide",
+    "synthesis_terms_used": 322,
+    "time_index": {
+      "time_count": 255,
+      "time_semantics": "static ITSG-Grace2018s source broadcast to each MASCON time index"
+    },
+    "token_prefixes_seen": {
+      "======================================================================================": 1,
+      "Antarctica,": 1,
+      "Even": 1,
+      "In": 1,
+      "Linear": 1,
+      "Specifically,": 1,
+      "T.": 1,
+      "The": 4,
+      "Unconstrained": 2,
+      "acos": 20298,
+      "asin": 20298,
+      "from": 1,
+      "gfc": 3,
+      "gfct": 20298,
+      "in": 1,
+      "matrix": 1,
+      "the": 3,
+      "trnd": 20298,
+      "varying": 1,
+      "window": 1
+    }
+  },
+  "source_to_mascon_operator_audit_recorded": true,
+  "source_url_used": "https://icgem.gfz-potsdam.de/getmodel/gfc/cdcab005ac449315efdb79244dbd7a7f2426dff747305644f6d9e509843f3968/ITSG-Grace2018s.gfc",
+  "status": "SECOND_INDEPENDENT_REPLICATION_EXECUTED_PHYSICAL_UNITS_CALIBRATION_GATE_RECORDED_NOT_CLOSED",
+  "vector_length": 66096000,
+  "vector_shape": [
+    66096000
+  ]
+}
