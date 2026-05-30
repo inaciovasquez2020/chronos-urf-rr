@@ -1,0 +1,111 @@
+{
+  "agrees_with_prior_lower_rmse_models": true,
+  "baseline_metrics": {
+    "mean_absolute_delta": 0.42979053059986616,
+    "root_mean_square_delta": 0.9999999998437703
+  },
+  "baseline_vector_path": "data/mascon_vectors/baseline_vector.npy",
+  "boundary": {
+    "comparison_only": true,
+    "independent_validation_required_before_physical_claim": true,
+    "no_clay_claim": true,
+    "no_dark_matter_replacement_claim": true,
+    "no_empirical_gravity_result_claim": true,
+    "no_gr_failure_claim": true,
+    "no_lambda_cdm_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_quantum_gravity_claim": true,
+    "physical_units_calibrated_operator_not_closed": true,
+    "third_public_holdout_only": true
+  },
+  "comparison_result_interpretation_boundary_locked": true,
+  "current_lower_rmse_model": "baseline",
+  "deficit_metrics": {
+    "mean_absolute_delta": 7.401499925036888,
+    "root_mean_square_delta": 26.74268510739777
+  },
+  "deficit_vector_path": "data/mascon_vectors/deficit_vector.npy",
+  "external_vector_path": "data/gravity_external_vectors/xgm2019e_2159_low_degree_static_mascon_compatible_vector_2026_05_30.npy",
+  "external_vector_sha256": "62e9005b5c8531ccdc5bb202943e3b878920f4a79fb8e31797694b093dc797aa",
+  "next_admissible_object": "PHYSICAL_UNITS_CALIBRATED_SOURCE_TO_MASCON_OPERATOR",
+  "object": "PHYSICAL_UNITS_CALIBRATED_SOURCE_TO_MASCON_OPERATOR_OR_THIRD_PUBLIC_HOLDOUT_2026_05_30",
+  "physical_units_calibrated_source_to_mascon_operator_closed": false,
+  "physical_units_calibration_gate": {
+    "calibration_status": "NOT_CLOSED",
+    "mascon_units": "not asserted by this gate",
+    "missing_for_closure": [
+      "physical unit mapping from spherical harmonic functional to MASCON vector units",
+      "absolute scale calibration",
+      "time-dependent source-to-MASCON mapping instead of static broadcast",
+      "independent validation in physical units"
+    ],
+    "source_units": "dimensionless normalized spherical-harmonic synthesis proxy after internal normalization"
+  },
+  "prior_lower_rmse_models": {
+    "EIGEN-6C4": "baseline",
+    "GOCO06s": "baseline",
+    "ITSG-Grace2018s": "baseline"
+  },
+  "source_doi": "10.5880/ICGEM.2019.007",
+  "source_gfc_path": "external_data/xgm2019e/XGM2019e_2159.gfc",
+  "source_gfc_sha256": "ee24f7cf68f45b44cdbf3ccbf57e7382c7667869356061419f00f2ca951861e4",
+  "source_kind": "combined global gravity field model; XGM2019e_2159 spherical harmonic expansion used as public holdout",
+  "source_name": "XGM2019e_2159",
+  "source_page": "https://dataservices.gfz-potsdam.de/icgem/showshort.php?id=escidoc%3A4529896",
+  "source_to_mascon_operator_audit": {
+    "coefficient_count_used": 322,
+    "grid": {
+      "lat_centers_degrees": "uniform cell centers from -89.5 to 89.5",
+      "lat_count": 360,
+      "lon_centers_degrees": "uniform cell centers from 0.5 to 359.5",
+      "lon_count": 720
+    },
+    "input_format": "ICGEM .gfc spherical harmonic coefficients",
+    "max_degree_used": 24,
+    "normalization": "zero mean and unit variance before comparison",
+    "numeric_rows_seen": 2401336,
+    "raw_grid_mean_before_normalization": -5420255205212660.0,
+    "raw_grid_std_before_normalization": 6.070815607731827e+18,
+    "source_header_max_degree": "2190",
+    "source_header_modelname": "XGM2019e_2159",
+    "source_header_norm": "fully_normalized",
+    "source_header_tide_system": "zero_tide",
+    "synthesis_terms_used": 322,
+    "time_index": {
+      "time_count": 255,
+      "time_semantics": "static XGM2019e_2159 source broadcast to each MASCON time index"
+    },
+    "token_prefixes_seen": {
+      "(2019):": 1,
+      "4.0": 1,
+      "========================================================================": 1,
+      "Abstract:": 1,
+      "Over": 2,
+      "Services.": 3,
+      "The": 2,
+      "These": 1,
+      "XGM2019e": 3,
+      "Zingerle,": 1,
+      "consistency": 1,
+      "consists": 1,
+      "gfc": 2401336,
+      "gravity": 1,
+      "measurements": 1,
+      "model": 2,
+      "of": 1,
+      "resolution": 2,
+      "spheroidal": 2,
+      "topographically": 1
+    }
+  },
+  "source_to_mascon_operator_audit_recorded": true,
+  "source_tom": "https://icgem.gfz-potsdam.de/tom",
+  "source_url_used": "https://icgem.gfz-potsdam.de/getmodel/zip/eeb03971cf6e533e6eeb6b010336463286dcda0846684248d5530acf8e800055/XGM2019e_2159.zip",
+  "status": "THIRD_PUBLIC_HOLDOUT_EXECUTED_PHYSICAL_UNITS_CALIBRATED_OPERATOR_NOT_CLOSED",
+  "third_public_holdout_executed": true,
+  "third_public_holdout_reproducibility_manifest_recorded": true,
+  "vector_length": 66096000,
+  "vector_shape": [
+    66096000
+  ]
+}
