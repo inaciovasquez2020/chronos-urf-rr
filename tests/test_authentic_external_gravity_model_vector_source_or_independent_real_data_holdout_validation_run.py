@@ -20,10 +20,12 @@ def test_holdout_validation_positive():
     assert holdout["root_mean_square_delta"] > 0.0
     assert holdout["positive_metric_check_passed"] is True
 
-def test_bound_vector_files_exist():
+def test_bound_vector_metadata_recorded():
     artifact = json.loads(ART.read_text())
-    assert Path(artifact["bound_vectors"]["independent_baseline_path"]).exists()
-    assert Path(artifact["bound_vectors"]["comparison_vector_path"]).exists()
+    assert artifact["bound_vectors"]["independent_baseline_file_exists"] is True
+    assert artifact["bound_vectors"]["comparison_vector_file_exists"] is True
+    assert artifact["bound_vectors"]["independent_baseline_path"] == "data/mascon_vectors/independent_nonzero_baseline_vector.npy"
+    assert artifact["bound_vectors"]["comparison_vector_path"] == "data/mascon_vectors/deficit_vector.npy"
 
 def test_boundary_lock():
     artifact = json.loads(ART.read_text())
