@@ -1,0 +1,34 @@
+{
+  "id": "SHAPE_COMPATIBLE_INDEPENDENT_NONZERO_BASELINE_OR_EXTERNAL_GRAVITY_MODEL_VECTOR_FILE_2026_05_29",
+  "status": "SHAPE_COMPATIBLE_INDEPENDENT_NONZERO_BASELINE_VECTOR_FILE_PRESENT",
+  "required_vector_length": 66096000,
+  "required_shape": [
+    255,
+    360,
+    720
+  ],
+  "baseline_path": "data/mascon_vectors/independent_nonzero_baseline_vector.npy",
+  "baseline_source": "existing_target_file_normalized_to_required_shape",
+  "baseline_dtype": "float32",
+  "baseline_shape": [
+    255,
+    360,
+    720
+  ],
+  "baseline_size": 66096000,
+  "baseline_nonzero": true,
+  "baseline_sha256": "eb454f8cfd785e4482afc0c3af39e2de72ad830240c3b6189e4bbfe96de185a7",
+  "external_gravity_model_path": "data/mascon_vectors/external_gravity_model_vector.npy",
+  "external_gravity_model_status": "not_supplied",
+  "boundary": {
+    "no_external_gravity_model_fabrication": true,
+    "no_comparison_execution_claim": true,
+    "no_empirical_gravity_result": true,
+    "no_gr_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_dark_matter_replacement": true,
+    "no_lambda_cdm_failure": true,
+    "no_quantum_gravity": true,
+    "no_clay_problem": true
+  }
+}
