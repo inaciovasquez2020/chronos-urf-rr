@@ -1,0 +1,27 @@
+{
+  "id": "MASCON_BASELINE_RESIDUAL_ERROR_METRICS_2026_05_29",
+  "status": "RESIDUAL_ERROR_METRICS_INTERFACE_ONLY_NO_NUMERIC_EXECUTION",
+  "baseline_vector": "MASCON_BASELINE_GRAVITY_MODEL_PREDICTION_VECTOR_2026_05_29",
+  "candidate_vector": "MASCON_DEFICIT_MASS_MODEL_PREDICTION_VECTOR_BOUND_FROM_CONCRETE_LAW_2026_05_29",
+  "vector_length": 66096000,
+  "metrics": {
+    "mean_absolute_error": "mean(abs(candidate - baseline))",
+    "mean_squared_error": "mean((candidate - baseline)^2)",
+    "root_mean_squared_error": "sqrt(mean((candidate - baseline)^2))",
+    "max_absolute_residual": "max(abs(candidate - baseline))",
+    "cosine_similarity": "dot(candidate, baseline) / (norm(candidate) * norm(baseline))",
+    "pearson_correlation": "corr(candidate, baseline)"
+  },
+  "numeric_metrics_executed": false,
+  "model_comparison_executed": false,
+  "empirical_gravity_result": false,
+  "boundary": {
+    "no_gr_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_dark_matter_replacement": true,
+    "no_lambda_cdm_failure": true,
+    "no_quantum_gravity": true,
+    "no_clay_problem": true
+  },
+  "next_admissible_object": "MASCON_MODEL_COMPARISON_EXECUTION_RESULT"
+}

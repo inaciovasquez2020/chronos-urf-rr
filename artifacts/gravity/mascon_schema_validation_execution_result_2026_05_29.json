@@ -1,0 +1,317 @@
+{
+  "id": "MASCON_SCHEMA_VALIDATION_EXECUTION_RESULT_2026_05_29",
+  "status": "MASCON_SCHEMA_VALIDATION_EXECUTED",
+  "predecessor": "AUTHENTICATED_MASCON_PAYLOAD_DIGEST_2026_05_29",
+  "payload_path": "data/mascon_payload/GRCTellus.JPL.200204_202603.GLO.RL06.3M.MSCNv04.nc",
+  "payload_sha256": "5447c8a5f21c70ada719a5a69143267f4ce427c47115ce1e4a794e525d709bfb",
+  "payload_size_bytes": 39915332,
+  "matches_authenticated_digest_manifest": true,
+  "schema_validation_passed": true,
+  "required_dimensions": [
+    "time",
+    "lat",
+    "lon"
+  ],
+  "required_coordinate_variables": [
+    "time",
+    "lat",
+    "lon"
+  ],
+  "required_dimensions_present": true,
+  "required_coordinate_variables_present": true,
+  "dimension_count": 4,
+  "variable_count": 10,
+  "grid_variable_count": 4,
+  "time_dependent_grid_variable_count": 3,
+  "dimensions": {
+    "lon": {
+      "size": 720,
+      "isunlimited": false
+    },
+    "lat": {
+      "size": 360,
+      "isunlimited": false
+    },
+    "time": {
+      "size": 255,
+      "isunlimited": false
+    },
+    "bounds": {
+      "size": 2,
+      "isunlimited": false
+    }
+  },
+  "variables": {
+    "lon": {
+      "dtype": "float64",
+      "dimensions": [
+        "lon"
+      ],
+      "shape": [
+        720
+      ],
+      "attribute_names": [
+        "axis",
+        "bounds",
+        "long_name",
+        "standard_name",
+        "units",
+        "valid_max",
+        "valid_min"
+      ]
+    },
+    "lat": {
+      "dtype": "float64",
+      "dimensions": [
+        "lat"
+      ],
+      "shape": [
+        360
+      ],
+      "attribute_names": [
+        "axis",
+        "bounds",
+        "long_name",
+        "standard_name",
+        "units",
+        "valid_max",
+        "valid_min"
+      ]
+    },
+    "time": {
+      "dtype": "float64",
+      "dimensions": [
+        "time"
+      ],
+      "shape": [
+        255
+      ],
+      "attribute_names": [
+        "axis",
+        "bounds",
+        "calendar",
+        "long_name",
+        "standard_name",
+        "units"
+      ]
+    },
+    "lwe_thickness": {
+      "dtype": "float64",
+      "dimensions": [
+        "time",
+        "lat",
+        "lon"
+      ],
+      "shape": [
+        255,
+        360,
+        720
+      ],
+      "attribute_names": [
+        "_FillValue",
+        "comment",
+        "coordinates",
+        "grid_mapping",
+        "long_name",
+        "standard_name",
+        "units",
+        "valid_max",
+        "valid_min"
+      ]
+    },
+    "uncertainty": {
+      "dtype": "float64",
+      "dimensions": [
+        "time",
+        "lat",
+        "lon"
+      ],
+      "shape": [
+        255,
+        360,
+        720
+      ],
+      "attribute_names": [
+        "_FillValue",
+        "comment",
+        "coordinates",
+        "grid_mapping",
+        "long_name",
+        "standard_name",
+        "units",
+        "valid_max",
+        "valid_min"
+      ]
+    },
+    "lat_bounds": {
+      "dtype": "float64",
+      "dimensions": [
+        "lat",
+        "bounds"
+      ],
+      "shape": [
+        360,
+        2
+      ],
+      "attribute_names": [
+        "comment",
+        "long_name",
+        "units"
+      ]
+    },
+    "lon_bounds": {
+      "dtype": "float64",
+      "dimensions": [
+        "lon",
+        "bounds"
+      ],
+      "shape": [
+        720,
+        2
+      ],
+      "attribute_names": [
+        "comment",
+        "long_name",
+        "units"
+      ]
+    },
+    "time_bounds": {
+      "dtype": "float64",
+      "dimensions": [
+        "time",
+        "bounds"
+      ],
+      "shape": [
+        255,
+        2
+      ],
+      "attribute_names": [
+        "comment",
+        "long_name",
+        "units"
+      ]
+    },
+    "mascon_ID": {
+      "dtype": "float64",
+      "dimensions": [
+        "lat",
+        "lon"
+      ],
+      "shape": [
+        360,
+        720
+      ],
+      "attribute_names": [
+        "coordinates",
+        "description",
+        "long_name",
+        "standard_name",
+        "units",
+        "valid_max",
+        "valid_min"
+      ]
+    },
+    "GAD": {
+      "dtype": "float64",
+      "dimensions": [
+        "time",
+        "lat",
+        "lon"
+      ],
+      "shape": [
+        255,
+        360,
+        720
+      ],
+      "attribute_names": [
+        "_FillValue",
+        "comment",
+        "coordinates",
+        "grid_mapping",
+        "long_name",
+        "standard_name",
+        "units",
+        "valid_max",
+        "valid_min"
+      ]
+    }
+  },
+  "global_attribute_names": [
+    "C_20_substitution",
+    "C_30_substitution",
+    "Conventions",
+    "GIA_removed",
+    "Metadata_Conventions",
+    "acknowledgement",
+    "creator_email",
+    "creator_institution",
+    "creator_name",
+    "creator_type",
+    "creator_url",
+    "date_created",
+    "geocenter_correction",
+    "geospatial_lat_max",
+    "geospatial_lat_min",
+    "geospatial_lat_resolution",
+    "geospatial_lat_units",
+    "geospatial_lon_max",
+    "geospatial_lon_min",
+    "geospatial_lon_resolution",
+    "geospatial_lon_units",
+    "id",
+    "institution",
+    "journal_reference",
+    "keywords",
+    "keywords_vocabulary",
+    "license",
+    "months_missing",
+    "naming_authority",
+    "platform",
+    "postprocess_1",
+    "postprocess_2",
+    "processing_level",
+    "product_version",
+    "program",
+    "project",
+    "publisher_email",
+    "publisher_institution",
+    "publisher_name",
+    "publisher_type",
+    "publisher_url",
+    "source",
+    "standard_name_vocabulary",
+    "summary",
+    "time_coverage_end",
+    "time_coverage_start",
+    "time_epoch",
+    "time_mean_removed",
+    "title",
+    "user_note_1",
+    "user_note_2"
+  ],
+  "grid_variables": [
+    "lwe_thickness",
+    "uncertainty",
+    "mascon_ID",
+    "GAD"
+  ],
+  "time_dependent_grid_variables": [
+    "lwe_thickness",
+    "uncertainty",
+    "GAD"
+  ],
+  "executed_utc": "2026-05-29T22:30:38.583496+00:00",
+  "next_admissible_object": "MASCON_MODEL_COMPARISON_EXECUTION_TARGET",
+  "boundary": [
+    "schema validation only",
+    "payload bytes are local only and not committed to git",
+    "no MASCON model comparison is executed",
+    "no empirical gravity result is asserted",
+    "no GR failure is asserted",
+    "no new gravity claim is asserted",
+    "no dark matter replacement claim is asserted",
+    "no Lambda-CDM failure claim is asserted",
+    "no quantum gravity claim is asserted",
+    "no Clay problem claim is asserted"
+  ]
+}

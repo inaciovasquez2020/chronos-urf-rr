@@ -1,0 +1,31 @@
+{
+  "id": "MASCON_PAYLOAD_DIGEST_CERTIFICATE_2026_05_29",
+  "status": "MASCON_PAYLOAD_DIGEST_CERTIFICATE_TARGET_ONLY_PAYLOAD_NOT_BOUND",
+  "registry_id": "NASA_GRAVITY_CROSS_VALIDATION_DATASET_REGISTRY_2026_05_29",
+  "target_id": "MASCON_PAYLOAD_DIGEST_CERTIFICATE",
+  "payload_bytes_bound": false,
+  "digest_bound": false,
+  "collection_sha256": null,
+  "file_count": 0,
+  "total_bytes": 0,
+  "candidate_products": [
+    "JPL_MASCON",
+    "CSR_MASCON",
+    "GSFC_MASCON"
+  ],
+  "weakest_missing_object": "AUTHENTICATED_MASCON_PAYLOAD_BYTES_AND_SHA256_DIGEST",
+  "boundary": [
+    "target object only",
+    "no MASCON payload bytes are committed",
+    "no MASCON SHA256 digest is supplied",
+    "no MASCON schema validation is executed",
+    "no MASCON model comparison is executed",
+    "no empirical gravity result is asserted",
+    "no GR failure is asserted",
+    "no new gravity claim is asserted",
+    "no dark matter replacement claim is asserted",
+    "no Lambda-CDM failure claim is asserted",
+    "no quantum gravity claim is asserted",
+    "no Clay problem claim is asserted"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "MASCON_MODEL_COMPARISON_EXECUTION_RESULT_2026_05_29",
+  "status": "MODEL_COMPARISON_EXECUTION_BLOCKED_NO_NUMERIC_VECTOR_PAYLOADS",
+  "baseline_vector": "MASCON_BASELINE_GRAVITY_MODEL_PREDICTION_VECTOR_2026_05_29",
+  "candidate_vector": "MASCON_DEFICIT_MASS_MODEL_PREDICTION_VECTOR_BOUND_FROM_CONCRETE_LAW_2026_05_29",
+  "metrics_interface": "MASCON_BASELINE_RESIDUAL_ERROR_METRICS_2026_05_29",
+  "vector_length": 66096000,
+  "comparison_executable": false,
+  "numeric_metrics_executed": false,
+  "model_comparison_executed": false,
+  "blocked_by_missing_numeric_payload": true,
+  "weakest_missing_object": "NUMERIC_MASCON_BASELINE_AND_DEFICIT_VECTOR_PAYLOADS",
+  "empirical_gravity_result": false,
+  "boundary": {
+    "no_gr_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_dark_matter_replacement": true,
+    "no_lambda_cdm_failure": true,
+    "no_quantum_gravity": true,
+    "no_clay_problem": true
+  },
+  "next_admissible_object": "NUMERIC_MASCON_BASELINE_AND_DEFICIT_VECTOR_PAYLOADS"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "MASCON_DEFICIT_MASS_MODEL_PREDICTION_VECTOR_2026_05_29",
+  "status": "MASCON_DEFICIT_MASS_MODEL_PREDICTION_VECTOR_TARGET_ONLY_NO_LAW",
+  "predecessor": "MASCON_BASELINE_GRAVITY_MODEL_PREDICTION_VECTOR_2026_05_29",
+  "baseline_prediction_vector_bound": true,
+  "deficit_mass_prediction_vector_bound": false,
+  "concrete_deficit_mass_law_bound": false,
+  "prediction_vector_materialized": false,
+  "comparison_metric_bound": false,
+  "model_comparison_executed": false,
+  "required_inputs": [
+    "CONCRETE_MASCON_DEFICIT_MASS_PREDICTION_LAW",
+    "MASCON_GRID_TO_DEFICIT_MASS_OPERATOR",
+    "MASCON_DEFICIT_MASS_VECTOR_GENERATOR",
+    "MASCON_DEFICIT_MASS_VECTOR_DIGEST"
+  ],
+  "weakest_missing_object": "CONCRETE_MASCON_DEFICIT_MASS_PREDICTION_LAW",
+  "next_admissible_object": "CONCRETE_MASCON_DEFICIT_MASS_PREDICTION_LAW",
+  "boundary": [
+    "target object only",
+    "no deficit-mass prediction vector is bound",
+    "no concrete deficit-mass prediction law is supplied",
+    "no grid-to-deficit-mass operator is supplied",
+    "no deficit-mass vector generator is supplied",
+    "no comparison metric is bound",
+    "no MASCON model comparison is executed",
+    "no empirical gravity result is asserted",
+    "no GR failure is asserted",
+    "no new gravity claim is asserted",
+    "no dark matter replacement claim is asserted",
+    "no Lambda-CDM failure claim is asserted",
+    "no quantum gravity claim is asserted",
+    "no Clay problem claim is asserted"
+  ]
+}
