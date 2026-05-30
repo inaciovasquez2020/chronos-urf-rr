@@ -1,0 +1,62 @@
+{
+  "boundary": {
+    "no_clay_problem": true,
+    "no_dark_matter_replacement": true,
+    "no_empirical_gravity_result": true,
+    "no_external_gravity_model_fabrication": true,
+    "no_external_gravity_model_validation": true,
+    "no_gr_failure_claim": true,
+    "no_lambda_cdm_failure": true,
+    "no_new_gravity_claim": true,
+    "no_quantum_gravity": true
+  },
+  "comparison_execution_using_local_independent_baseline": true,
+  "comparison_result_type": "local control comparison only; not external-model validation",
+  "comparison_vector": {
+    "dtype": "float32",
+    "nonzero_sample_check": true,
+    "path": "data/mascon_vectors/deficit_vector.npy",
+    "sha256": "f66864ed92015b1a02c9ab18747ccb00e07bd1b7b2e3e94fcfe86766d6a767c2",
+    "shape": [
+      66096000
+    ],
+    "size": 66096000
+  },
+  "empirical_gravity_result": false,
+  "execution_mode": "local independent nonzero baseline comparison",
+  "external_gravity_model_vector_supplied": false,
+  "id": "EXTERNAL_GRAVITY_MODEL_VECTOR_OR_COMPARISON_EXECUTION_USING_LOCAL_INDEPENDENT_NONZERO_BASELINE_2026_05_29",
+  "independent_baseline": {
+    "dtype": "float32",
+    "nonzero_sample_check": true,
+    "path": "data/mascon_vectors/independent_nonzero_baseline_vector.npy",
+    "sha256": "eb454f8cfd785e4482afc0c3af39e2de72ad830240c3b6189e4bbfe96de185a7",
+    "shape": [
+      255,
+      360,
+      720
+    ],
+    "size": 66096000
+  },
+  "metrics": {
+    "cosine_similarity": 1.0,
+    "deficit_vector_nonzero_count": 66096000,
+    "independent_baseline_nonzero_count": 66096000,
+    "max_absolute_delta": 0.0,
+    "mean_absolute_deficit_vector": 7.2880555623358045,
+    "mean_absolute_delta": 0.0,
+    "mean_absolute_independent_baseline": 7.2880555623358045,
+    "mean_delta": 0.0,
+    "root_mean_square_delta": 0.0,
+    "vector_length": 66096000
+  },
+  "next_admissible_object": "EXTERNAL_GRAVITY_MODEL_VECTOR_FROM_AUTHENTIC_GRAVITY_MODEL_SOURCE_OR_INDEPENDENT_HOLDOUT_COMPARISON_PROTOCOL",
+  "required_shape": [
+    255,
+    360,
+    720
+  ],
+  "required_vector_length": 66096000,
+  "source_object": "SHAPE_COMPATIBLE_INDEPENDENT_NONZERO_BASELINE_VECTOR_FILE_2026_05_29",
+  "status": "COMPARISON_EXECUTED_USING_LOCAL_INDEPENDENT_NONZERO_BASELINE_EXTERNAL_GRAVITY_MODEL_VECTOR_NOT_SUPPLIED"
+}
