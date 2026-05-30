@@ -39,7 +39,9 @@ def main():
     metrics = artifact["metrics"]
     assert metrics["vector_length"] == 66096000
     assert finite_number(metrics["mean_absolute_delta"])
+    assert metrics["mean_absolute_delta"] > 0.0
     assert finite_number(metrics["root_mean_square_delta"])
+    assert metrics["root_mean_square_delta"] > 0.0
     assert finite_number(metrics["max_absolute_delta"])
     assert metrics["independent_baseline_nonzero_count"] > 0
     assert metrics["deficit_vector_nonzero_count"] > 0

@@ -23,8 +23,8 @@ def test_metrics_present():
     artifact = json.loads(ART.read_text())
     metrics = artifact["metrics"]
     assert metrics["vector_length"] == 66096000
-    assert metrics["mean_absolute_delta"] >= 0.0
-    assert metrics["root_mean_square_delta"] >= 0.0
+    assert metrics["mean_absolute_delta"] > 0.0
+    assert metrics["root_mean_square_delta"] > 0.0
     assert metrics["max_absolute_delta"] >= 0.0
 
 def test_boundary_lock():

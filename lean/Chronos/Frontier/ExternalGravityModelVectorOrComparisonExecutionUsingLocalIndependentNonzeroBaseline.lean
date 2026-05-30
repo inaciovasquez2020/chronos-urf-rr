@@ -1,4 +1,4 @@
-import Chronos.Frontier.IndependentNonzeroMASCONBaselineVectorOrExternalGravityModelVector
+import Chronos.Frontier.IndependentMASCONNonzeroBaselineOrExternalGravityModelComparison
 
 namespace Chronos.Frontier
 
