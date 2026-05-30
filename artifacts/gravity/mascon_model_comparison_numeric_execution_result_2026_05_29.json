@@ -1,0 +1,37 @@
+{
+  "baseline_sha256": "7cc89385032f6c2e2194dad40a17d8be3e58d67f2238eee5a500f331ddb92a8a",
+  "baseline_vector": "data/mascon_vectors/baseline_vector.npy",
+  "boundary": {
+    "no_clay_problem": true,
+    "no_dark_matter_replacement": true,
+    "no_empirical_gravity_result": true,
+    "no_gr_failure_claim": true,
+    "no_lambda_cdm_failure": true,
+    "no_new_gravity_claim": true,
+    "no_quantum_gravity": true
+  },
+  "deficit_sha256": "f66864ed92015b1a02c9ab18747ccb00e07bd1b7b2e3e94fcfe86766d6a767c2",
+  "deficit_vector": "data/mascon_vectors/deficit_vector.npy",
+  "empirical_gravity_result": false,
+  "id": "MASCON_MODEL_COMPARISON_NUMERIC_EXECUTION_RESULT_2026_05_29",
+  "interpretation": "numeric residual comparison only against zero-anomaly baseline control",
+  "metrics": {
+    "baseline_l2_norm": 0.0,
+    "cosine_similarity": null,
+    "deficit_l2_norm": 217257.16467169602,
+    "max_absolute_residual": 933.0850219726562,
+    "mean_absolute_error": 7.288055562335805,
+    "mean_squared_error": 714.1230271299875,
+    "pearson_correlation": null,
+    "residual_l2_norm": 217257.16467169602,
+    "root_mean_squared_error": 26.723080419928902
+  },
+  "model_comparison_executed": true,
+  "next_admissible_object": "MASCON_MODEL_COMPARISON_INTERPRETATION_BOUNDARY",
+  "numeric_metrics_executed": true,
+  "shape": [
+    66096000
+  ],
+  "status": "NUMERIC_MODEL_COMPARISON_EXECUTED_NO_EMPIRICAL_CLAIM",
+  "vector_length": 66096000
+}
