@@ -363,3 +363,5 @@ import Chronos.Frontier.MASCONModelComparisonExecutionResult
 import Chronos.Frontier.NumericMASCONBaselineAndDeficitVectorPayloads
 
 import Chronos.Frontier.MASCONModelComparisonNumericExecutionResult
+
+import Chronos.Frontier.MASCONModelComparisonInterpretationBoundary

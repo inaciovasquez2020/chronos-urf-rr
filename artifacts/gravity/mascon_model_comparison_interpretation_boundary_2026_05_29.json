@@ -1,0 +1,27 @@
+{
+  "id": "MASCON_MODEL_COMPARISON_INTERPRETATION_BOUNDARY_2026_05_29",
+  "status": "INTERPRETATION_BOUNDARY_CLOSED_NO_EMPIRICAL_GRAVITY_CLAIM",
+  "source_result": "MASCON_MODEL_COMPARISON_NUMERIC_EXECUTION_RESULT_2026_05_29",
+  "comparison_kind": "numeric residual magnitude against zero-anomaly baseline control",
+  "baseline_kind": "zero baseline",
+  "allowed_interpretation": "the local MASCON deficit vector has computable residual magnitudes relative to zero",
+  "forbidden_interpretation": "does not compare against GR, does not falsify GR, and does not establish new gravity",
+  "metrics_recorded": {
+    "mean_absolute_error": 7.288055562335805,
+    "root_mean_squared_error": 26.723080419928902,
+    "max_absolute_residual": 933.0850219726562,
+    "cosine_similarity": null,
+    "pearson_correlation": null
+  },
+  "external_baseline_comparison": false,
+  "empirical_gravity_result": false,
+  "boundary": {
+    "no_gr_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_dark_matter_replacement": true,
+    "no_lambda_cdm_failure": true,
+    "no_quantum_gravity": true,
+    "no_clay_problem": true
+  },
+  "next_admissible_object": "INDEPENDENT_MASCON_NONZERO_BASELINE_OR_EXTERNAL_GRAVITY_MODEL_COMPARISON"
+}
