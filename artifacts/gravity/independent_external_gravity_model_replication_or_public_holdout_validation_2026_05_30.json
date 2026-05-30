@@ -1,0 +1,44 @@
+{
+  "baseline_metrics": {
+    "mean_absolute_delta": 0.4297905293621243,
+    "root_mean_square_delta": 0.9999999998850709
+  },
+  "baseline_vector_path": "data/mascon_vectors/baseline_vector.npy",
+  "boundary": {
+    "comparison_only": true,
+    "independent_validation_required_before_physical_claim": true,
+    "no_clay_claim": true,
+    "no_dark_matter_replacement_claim": true,
+    "no_empirical_gravity_result_claim": true,
+    "no_gr_failure_claim": true,
+    "no_lambda_cdm_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_quantum_gravity_claim": true,
+    "replication_or_public_holdout_only": true
+  },
+  "deficit_metrics": {
+    "mean_absolute_delta": 7.4014999240073305,
+    "root_mean_square_delta": 26.742685108172868
+  },
+  "deficit_vector_path": "data/mascon_vectors/deficit_vector.npy",
+  "lower_rmse_model": "baseline",
+  "next_admissible_object": "SECOND_INDEPENDENT_REPLICATION_OR_PHYSICAL_UNITS_CALIBRATION_GATE",
+  "object": "INDEPENDENT_EXTERNAL_GRAVITY_MODEL_REPLICATION_OR_PUBLIC_HOLDOUT_VALIDATION_2026_05_30",
+  "prior_comparison_artifact": "artifacts/gravity/authentic_external_gravity_model_comparison_result_2026_05_30.json",
+  "prior_external_source_doi": "10.5880/icgem.2015.1",
+  "prior_external_source_name": "EIGEN-6C4",
+  "prior_lower_rmse_model": "baseline",
+  "replicates_prior_lower_rmse_model": true,
+  "replication_external_vector_path": "data/gravity_external_vectors/goco06s_low_degree_static_mascon_compatible_vector_2026_05_30.npy",
+  "replication_external_vector_sha256": "d75e8d96f22c55bac2507a15ddd6dac2aa34faf3ef8baa8001d1d37d9134e440",
+  "replication_or_public_holdout_validation_executed": true,
+  "replication_source_doi": "10.5880/ICGEM.2019.002",
+  "replication_source_name": "GOCO06s",
+  "replication_source_page": "https://dataservices.gfz-potsdam.de/icgem/showshort.php?id=escidoc%3A4081892",
+  "replication_source_url": "https://datapub.gfz-potsdam.de/download/10.5880.ICGEM.2019.002/GOCO06s.gfc",
+  "status": "INDEPENDENT_PUBLIC_HOLDOUT_VALIDATION_EXECUTED_BOUNDARY_LOCKED",
+  "vector_length": 66096000,
+  "vector_shape": [
+    66096000
+  ]
+}
