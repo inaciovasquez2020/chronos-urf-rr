@@ -1,0 +1,53 @@
+{
+  "id": "YTR_GRAVITY_TIDAL_DERIVATIVE_REAL_DATASET_FALSIFICATION_RUN_2026_05_29",
+  "status": "REAL_DATA_FALSIFICATION_GATE_ONLY",
+  "successor_to": [
+    "YtRGravityElasticResponseModel",
+    "YtRGravityElasticRealDataEvidenceChain",
+    "GravitationalConstantInput",
+    "SpacetimeFabricMetricInput"
+  ],
+  "changes": {
+    "rename": {
+      "from": "K_g",
+      "to": "tidalDerivativeCoefficient",
+      "meaning": "radial_gravity_gradient_dg_dr",
+      "elastic_terminology_retired": true
+    },
+    "earth_scale_constants": {
+      "g0_m_per_s2": "9.80665",
+      "R_m": "6371000",
+      "formula": "dg_dr = -2*g0/R",
+      "predicted_radial_gradient_s_minus_2": "-1961330/637100000000"
+    },
+    "public_dataset_payload_binding": {
+      "dataset": "GRACEFO_L2_JPL_MONTHLY_0063",
+      "provider": "NASA PO.DAAC / JPL",
+      "product": "GRACE-FO Level-2 Monthly Geopotential Spherical Harmonics JPL RL06.3",
+      "payload_required": true,
+      "payload_digest_required": true,
+      "schema_validation_required": true
+    },
+    "comparison_metric": {
+      "observable": "radial_gravity_gradient_dg_dr",
+      "baseline": "standard_GR_or_Newtonian_geodesy_prediction",
+      "domain": "GRACEFO_L2_JPL_MONTHLY_0063_public_payload",
+      "tolerance": "measurement_uncertainty_plus_model_error_bound"
+    },
+    "falsification_certificate": {
+      "pass_condition": "candidate_error_less_than_baseline_error_under_declared_tolerance",
+      "fail_condition": "candidate_error_greater_or_equal_baseline_error_or_no_nontrivial_residual_survives_uncertainty",
+      "disconfirmation_path_exists": true
+    }
+  },
+  "boundary": [
+    "no empirical execution",
+    "no measured result",
+    "no GR failure claim",
+    "no new gravity claim",
+    "no dark matter replacement claim",
+    "no Lambda-CDM failure claim",
+    "no quantum gravity proof",
+    "no Clay problem claim"
+  ]
+}

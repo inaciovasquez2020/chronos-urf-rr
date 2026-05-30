@@ -1,0 +1,193 @@
+{
+  "aggregate": {
+    "max_tidal_derivative_coefficient": 6.335400790313835e-12,
+    "mean_degree2_delta_norm": 9.644696090552194e-11,
+    "mean_tidal_derivative_coefficient": 3.214898696850731e-12,
+    "min_tidal_derivative_coefficient": 1.224427876557164e-12,
+    "product_branch_count": 6
+  },
+  "boundary": [
+    "real GRACEFO payload model execution only",
+    "finite degree-2 month-to-month tidal-derivative proxy only",
+    "no empirical falsification conclusion",
+    "no GR failure claim",
+    "no new gravity claim",
+    "no dark matter replacement claim",
+    "no Lambda-CDM failure claim",
+    "no unrestricted Chronos-RR claim",
+    "no H4.1/FGL claim",
+    "no P vs NP claim",
+    "no Clay problem claim"
+  ],
+  "collection_sha256": "5b45e2420f5d852994abf8c2bd0284f311740864ea2f7246b460fba51d1a4312",
+  "created_utc": "2026-05-29T21:09:08.080097+00:00",
+  "dataset_short_name": "GRACEFO_L2_JPL_MONTHLY_0063",
+  "input_schema_artifact": "artifacts/gracefo/gracefo_schema_validation_execution_result_2026_05_29.json",
+  "model": {
+    "definition": "For each GRACEFO product branch with two monthly periods, parse degree-2 normalized spherical harmonic coefficients and compute the Euclidean month-to-month coefficient-change norm divided by midpoint separation in days.",
+    "name": "finite_degree2_month_to_month_tidal_derivative_proxy",
+    "scope": "real-data finite execution proxy only"
+  },
+  "payload_record_count": 12,
+  "period_count": 2,
+  "product_branch_count": 6,
+  "product_runs": [
+    {
+      "branch": "BC01",
+      "degree2_delta_norm": 3.6732836296714915e-11,
+      "degree2_max_abs_delta": 2.5137020126100003e-11,
+      "midpoint_separation_days": 30.0,
+      "period_a": [
+        "2024001",
+        "2024031"
+      ],
+      "period_b": [
+        "2024032",
+        "2024060"
+      ],
+      "product": "GAA",
+      "shared_degree2_count": 6,
+      "shared_degree2_keys": [
+        "2:0:C",
+        "2:0:S",
+        "2:1:C",
+        "2:1:S",
+        "2:2:C",
+        "2:2:S"
+      ],
+      "tidal_derivative_coefficient": 1.224427876557164e-12,
+      "units": "normalized_spherical_harmonic_degree2_delta_per_day"
+    },
+    {
+      "branch": "BC01",
+      "degree2_delta_norm": 5.477895289543089e-11,
+      "degree2_max_abs_delta": 3.5255644283700004e-11,
+      "midpoint_separation_days": 30.0,
+      "period_a": [
+        "2024001",
+        "2024031"
+      ],
+      "period_b": [
+        "2024032",
+        "2024060"
+      ],
+      "product": "GAB",
+      "shared_degree2_count": 6,
+      "shared_degree2_keys": [
+        "2:0:C",
+        "2:0:S",
+        "2:1:C",
+        "2:1:S",
+        "2:2:C",
+        "2:2:S"
+      ],
+      "tidal_derivative_coefficient": 1.825965096514363e-12,
+      "units": "normalized_spherical_harmonic_degree2_delta_per_day"
+    },
+    {
+      "branch": "BC01",
+      "degree2_delta_norm": 7.236654130829898e-11,
+      "degree2_max_abs_delta": 5.792416325572001e-11,
+      "midpoint_separation_days": 30.0,
+      "period_a": [
+        "2024001",
+        "2024031"
+      ],
+      "period_b": [
+        "2024032",
+        "2024060"
+      ],
+      "product": "GAC",
+      "shared_degree2_count": 6,
+      "shared_degree2_keys": [
+        "2:0:C",
+        "2:0:S",
+        "2:1:C",
+        "2:1:S",
+        "2:2:C",
+        "2:2:S"
+      ],
+      "tidal_derivative_coefficient": 2.412218043609966e-12,
+      "units": "normalized_spherical_harmonic_degree2_delta_per_day"
+    },
+    {
+      "branch": "BC01",
+      "degree2_delta_norm": 5.7236793832362974e-11,
+      "degree2_max_abs_delta": 3.6988138416599994e-11,
+      "midpoint_separation_days": 30.0,
+      "period_a": [
+        "2024001",
+        "2024031"
+      ],
+      "period_b": [
+        "2024032",
+        "2024060"
+      ],
+      "product": "GAD",
+      "shared_degree2_count": 6,
+      "shared_degree2_keys": [
+        "2:0:C",
+        "2:0:S",
+        "2:1:C",
+        "2:1:S",
+        "2:2:C",
+        "2:2:S"
+      ],
+      "tidal_derivative_coefficient": 1.9078931277454323e-12,
+      "units": "normalized_spherical_harmonic_degree2_delta_per_day"
+    },
+    {
+      "branch": "BA01",
+      "degree2_delta_norm": 1.675046173909088e-10,
+      "degree2_max_abs_delta": 1.5473700001444185e-10,
+      "midpoint_separation_days": 30.0,
+      "period_a": [
+        "2024001",
+        "2024031"
+      ],
+      "period_b": [
+        "2024032",
+        "2024060"
+      ],
+      "product": "GSM",
+      "shared_degree2_count": 6,
+      "shared_degree2_keys": [
+        "2:0:C",
+        "2:0:S",
+        "2:1:C",
+        "2:1:S",
+        "2:2:C",
+        "2:2:S"
+      ],
+      "tidal_derivative_coefficient": 5.583487246363626e-12,
+      "units": "normalized_spherical_harmonic_degree2_delta_per_day"
+    },
+    {
+      "branch": "BB01",
+      "degree2_delta_norm": 1.9006202370941504e-10,
+      "degree2_max_abs_delta": 1.7642499998892988e-10,
+      "midpoint_separation_days": 30.0,
+      "period_a": [
+        "2024001",
+        "2024031"
+      ],
+      "period_b": [
+        "2024032",
+        "2024060"
+      ],
+      "product": "GSM",
+      "shared_degree2_count": 6,
+      "shared_degree2_keys": [
+        "2:0:C",
+        "2:0:S",
+        "2:1:C",
+        "2:1:S",
+        "2:2:C",
+        "2:2:S"
+      ],
+      "tidal_derivative_coefficient": 6.335400790313835e-12,
+      "units": "normalized_spherical_harmonic_degree2_delta_per_day"
+    }
+  ],
+  "status": "REAL_GRACEFO_TIDAL_DERIVATIVE_MODEL_RUN_CREATED"
+}

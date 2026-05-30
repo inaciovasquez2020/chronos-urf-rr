@@ -1,0 +1,54 @@
+{
+  "id": "GRAVITATIONAL_CONSTANT_INPUT_2026_05_29",
+  "object": "GravitationalConstantInput",
+  "status": "PHYSICAL_CONSTANT_INPUT_ONLY_NO_NEW_G_MEASUREMENT",
+  "depends_on": [
+    "SpacetimeFabricMetricInput"
+  ],
+  "source": {
+    "name": "NIST CODATA Newtonian constant of gravitation",
+    "url": "https://physics.nist.gov/cgi-bin/cuu/Value?bg=",
+    "value": "6.67430e-11",
+    "unit": "m^3 kg^-1 s^-2",
+    "standard_uncertainty": "0.00015e-11",
+    "relative_standard_uncertainty": "2.2e-5"
+  },
+  "mathematical_role": {
+    "newtonian_force_law": "F = G m_1 m_2 / r^2",
+    "einstein_coupling": "G_{mu nu} + Lambda g_{mu nu} = (8 pi G / c^4) T_{mu nu}",
+    "interpretation": "G sets the coupling strength between matter-energy and gravitational curvature."
+  },
+  "required_conditions": [
+    "gravitationalConstantSymbolRecorded",
+    "codataValueRecorded",
+    "codataSourceRecorded",
+    "siUnitRecorded",
+    "standardUncertaintyRecorded",
+    "relativeUncertaintyRecorded",
+    "newtonianForceUseRecorded",
+    "einsteinCouplingUseRecorded",
+    "notFittedParameterBoundaryRecorded",
+    "noVaryingGClaimBoundaryRecorded",
+    "boundaryPreserved"
+  ],
+  "boundary": "Physical-constant input only. This records G as an external CODATA/NIST constant used in Newtonian gravity and Einstein-equation coupling.",
+  "does_not_prove": [
+    "new measurement of G",
+    "derivation of G",
+    "varying-G theory",
+    "time variation of G",
+    "spatial variation of G",
+    "quantum gravity",
+    "new gravity",
+    "standard GR failure",
+    "Lambda-CDM failure",
+    "dark matter replacement",
+    "empirical validation",
+    "independent replication",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_object": "EinsteinCouplingConstantSlot"
+}
