@@ -1,0 +1,20 @@
+{
+  "id": "INDEPENDENT_MASCON_NONZERO_BASELINE_OR_EXTERNAL_GRAVITY_MODEL_COMPARISON_2026_05_29",
+  "status": "TARGET_ONLY_EXTERNAL_BASELINE_NOT_SUPPLIED",
+  "source_boundary": "MASCON_MODEL_COMPARISON_INTERPRETATION_BOUNDARY_2026_05_29",
+  "required_baseline_kind": "nonzero independent baseline or external gravity-model prediction vector",
+  "required_input": "INDEPENDENT_NONZERO_MASCON_BASELINE_VECTOR_OR_EXTERNAL_GRAVITY_MODEL_VECTOR",
+  "comparison_executable": false,
+  "external_baseline_supplied": false,
+  "empirical_gravity_result": false,
+  "weakest_missing_object": "INDEPENDENT_NONZERO_MASCON_BASELINE_VECTOR_OR_EXTERNAL_GRAVITY_MODEL_VECTOR",
+  "boundary": {
+    "no_gr_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_dark_matter_replacement": true,
+    "no_lambda_cdm_failure": true,
+    "no_quantum_gravity": true,
+    "no_clay_problem": true
+  },
+  "next_admissible_object": "INDEPENDENT_NONZERO_MASCON_BASELINE_VECTOR_OR_EXTERNAL_GRAVITY_MODEL_VECTOR"
+}
