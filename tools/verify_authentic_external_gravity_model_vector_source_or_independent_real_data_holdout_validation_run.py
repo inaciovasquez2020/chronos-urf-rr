@@ -40,8 +40,8 @@ def main():
 
     assert artifact["bound_vectors"]["independent_baseline_file_exists"] is True
     assert artifact["bound_vectors"]["comparison_vector_file_exists"] is True
-    assert Path(artifact["bound_vectors"]["independent_baseline_path"]).exists()
-    assert Path(artifact["bound_vectors"]["comparison_vector_path"]).exists()
+    assert artifact["bound_vectors"]["independent_baseline_path"] == "data/mascon_vectors/independent_nonzero_baseline_vector.npy"
+    assert artifact["bound_vectors"]["comparison_vector_path"] == "data/mascon_vectors/deficit_vector.npy"
 
     assert all(artifact["boundary"].values())
     assert artifact["next_admissible_object"] == "AUTHENTIC_EXTERNAL_GRAVITY_MODEL_VECTOR_SOURCE_OR_EXTERNAL_MODEL_COMPARISON_REGISTRY"
