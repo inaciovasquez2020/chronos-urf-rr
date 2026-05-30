@@ -1,0 +1,32 @@
+{
+  "id": "AUTHENTIC_YTR_GRAVITY_ELASTIC_DATASET_PAYLOAD_BINDING_2026_05_29",
+  "object": "AuthenticYtRGravityElasticDatasetPayloadBinding",
+  "status": "CERTIFICATE_INTERFACE_ONLY_NO_AUTHENTIC_PAYLOAD_SUPPLIED",
+  "depends_on": [
+    "YtRGravityElasticRealDataEvidenceTarget"
+  ],
+  "required_conditions": [
+    "publicDataset",
+    "payloadDigestVerified",
+    "sourceIdentifierRecorded",
+    "immutablePayloadPathRecorded",
+    "licenseOrAccessTermsRecorded"
+  ],
+  "boundary": "Dataset-payload binding interface only; no authentic dataset payload is supplied by this artifact.",
+  "does_not_prove": [
+    "real data evidence",
+    "dataset payload bound",
+    "payload digest verified externally",
+    "schema validation",
+    "prediction vector execution",
+    "standard GR failure",
+    "Lambda-CDM failure",
+    "new physics",
+    "dark matter replacement",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_object": "YtRGravityElasticSchemaValidationRun"
+}

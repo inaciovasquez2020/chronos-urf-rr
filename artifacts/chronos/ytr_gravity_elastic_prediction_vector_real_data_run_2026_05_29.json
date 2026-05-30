@@ -1,0 +1,33 @@
+{
+  "id": "YTR_GRAVITY_ELASTIC_PREDICTION_VECTOR_REAL_DATA_RUN_2026_05_29",
+  "object": "YtRGravityElasticPredictionVectorRealDataRun",
+  "status": "PREDICTION_VECTOR_INTERFACE_ONLY_NO_REAL_DATA_RUN_EXECUTED",
+  "depends_on": [
+    "YtRGravityElasticSchemaValidationRun"
+  ],
+  "required_conditions": [
+    "schema validation run completed",
+    "modelVersionFrozen",
+    "predictionCodeFrozen",
+    "noOutcomeLeakage",
+    "realDataPredictionVectorProduced",
+    "runMetadataRecorded"
+  ],
+  "boundary": "Prediction-vector run interface only; no real-data prediction vector is produced by this artifact.",
+  "does_not_prove": [
+    "real data evidence",
+    "prediction vector executed on authentic data",
+    "nontrivial physical prediction",
+    "standard GR empirical comparison",
+    "Lambda-CDM empirical comparison",
+    "held-out validation",
+    "empirical validation",
+    "new physics",
+    "dark matter replacement",
+    "unrestricted Chronos-RR",
+    "unrestricted H4.1/FGL",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "next_object": "YtRGravityElasticBaselineComparisonRun"
+}
