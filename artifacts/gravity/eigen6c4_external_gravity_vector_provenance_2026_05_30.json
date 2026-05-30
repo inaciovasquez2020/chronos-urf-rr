@@ -1,0 +1,58 @@
+{
+  "boundary": {
+    "comparison_only": true,
+    "independent_validation_required_before_physical_claim": true,
+    "no_clay_claim": true,
+    "no_dark_matter_replacement_claim": true,
+    "no_empirical_gravity_result_claim": true,
+    "no_external_gravity_model_fabrication": true,
+    "no_gr_failure_claim": true,
+    "no_lambda_cdm_failure_claim": true,
+    "no_new_gravity_claim": true,
+    "no_quantum_gravity_claim": true
+  },
+  "external_vector_path": "data/gravity_external_vectors/eigen6c4_low_degree_static_mascon_compatible_vector_2026_05_30.npy",
+  "external_vector_sha256": "a465f03f75c38592207be60e315a07f2ab3f2b03c0c3ebdb54c39d1b2c4ba7cd",
+  "grid": {
+    "lat_centers_degrees": "uniform cell centers from -89.5 to 89.5",
+    "lat_count": 360,
+    "lon_centers_degrees": "uniform cell centers from 0.5 to 359.5",
+    "lon_count": 720
+  },
+  "object": "EIGEN6C4_EXTERNAL_GRAVITY_VECTOR_PROVENANCE_2026_05_30",
+  "schema": "static low-degree spherical-harmonic synthesis from EIGEN-6C4 GFC coefficients, normalized to zero mean and unit variance, broadcast across MASCON time dimension",
+  "shape": {
+    "baseline_shape": [
+      66096000
+    ],
+    "deficit_shape": [
+      66096000
+    ],
+    "external_shape": [
+      66096000
+    ],
+    "shape_compatible_with_baseline": true,
+    "shape_compatible_with_deficit": true
+  },
+  "source_doi": "10.5880/icgem.2015.1",
+  "source_gfc_path": "external_data/icgem/EIGEN-6C4.gfc",
+  "source_gfc_sha256": "2ac274a66a25fb25bdddcec7074669867939345ad003bbc1ece3967450d48dc1",
+  "source_kind": "ICGEM static global combined Earth gravity field model; GFC spherical harmonic coefficients",
+  "source_name": "EIGEN-6C4",
+  "source_page": "https://dataservices.gfz-potsdam.de/icgem/showshort.php?id=escidoc%3A1119897",
+  "source_url": "https://icgem.gfz.de/getmodel/gfc/7fd8fe44aa1518cd79ca84300aef4b41ddb2364aef9e82b7cdaabdb60a9053f1/EIGEN-6C4.gfc",
+  "status": "SHAPE_COMPATIBLE_AUTHENTIC_EXTERNAL_GRAVITY_VECTOR_DERIVED_FROM_ICGEM_EIGEN6C4",
+  "synthesis": {
+    "coefficient_count_used": 325,
+    "max_degree_used": 24,
+    "source_header_max_degree": "2190",
+    "source_header_modelname": "EIGEN-6C4",
+    "source_header_norm": "fully_normalized",
+    "source_header_tide_system": "tide_free"
+  },
+  "time_index": {
+    "time_count": 255,
+    "time_semantics": "static EIGEN-6C4 source broadcast to each MASCON time index"
+  },
+  "units": "dimensionless normalized source-derived gravity-field proxy; comparison-only, not a physical gravity-anomaly unit claim"
+}
