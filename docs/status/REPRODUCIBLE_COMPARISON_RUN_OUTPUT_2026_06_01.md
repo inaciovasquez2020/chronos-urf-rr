@@ -32,6 +32,8 @@ None.
 
 ## Certified Non-Claims
 
+This packet records run output only.
+
 This packet records:
 
 - reproducible comparison run output only;
