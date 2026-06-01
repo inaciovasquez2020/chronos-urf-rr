@@ -1,0 +1,22 @@
+{
+  "schema_version": "2026-06-01.v1",
+  "route": "A",
+  "metadata": {
+    "model_name": "REPLACE_WITH_MODEL_NAME",
+    "model_version": "REPLACE_WITH_MODEL_VERSION",
+    "generation_timestamp": "REPLACE_WITH_ISO8601_TIMESTAMP",
+    "independence_certificate_sha256": "REPLACE_WITH_64_CHAR_LOWERCASE_SHA256",
+    "independent_of_lwe_baseline": true
+  },
+  "coordinates": [
+    {
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "depth_m": 0.0
+    }
+  ],
+  "values": [
+    1.0
+  ],
+  "unit": "mm_EWH"
+}

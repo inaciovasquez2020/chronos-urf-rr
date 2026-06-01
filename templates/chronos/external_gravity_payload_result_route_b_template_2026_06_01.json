@@ -1,0 +1,39 @@
+{
+  "schema_version": "2026-06-01.v1",
+  "route": "B",
+  "provenance": {
+    "source_agency": "REPLACE_WITH_SOURCE_AGENCY",
+    "dataset_name": "REPLACE_WITH_DATASET_NAME",
+    "dataset_version": "REPLACE_WITH_DATASET_VERSION",
+    "doi_or_url": "REPLACE_WITH_DOI_OR_URL",
+    "authenticated_by": "REPLACE_WITH_AUTHENTICATOR",
+    "authentication_timestamp": "REPLACE_WITH_ISO8601_TIMESTAMP"
+  },
+  "coordinate_system": "MASCON_ID",
+  "unit": "mm_EWH",
+  "rows": [
+    {
+      "mascon_id": 1,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "value": 1.0,
+      "unit": "mm_EWH"
+    }
+  ],
+  "comparison_metrics": [
+    {
+      "metric_name": "REPLACE_WITH_METRIC_NAME",
+      "reference_label": "REPLACE_WITH_REFERENCE_LABEL",
+      "value": 1.0,
+      "unit": "mm_EWH"
+    }
+  ],
+  "run_result": {
+    "run_id": "REPLACE_WITH_RUN_ID",
+    "pipeline_version": "REPLACE_WITH_PIPELINE_VERSION",
+    "execution_timestamp": "REPLACE_WITH_ISO8601_TIMESTAMP",
+    "input_hash_sha256": "REPLACE_WITH_64_CHAR_LOWERCASE_SHA256",
+    "output_hash_sha256": "REPLACE_WITH_64_CHAR_LOWERCASE_SHA256",
+    "command_or_notebook": "REPLACE_WITH_REPRODUCIBLE_COMMAND_OR_NOTEBOOK"
+  }
+}
