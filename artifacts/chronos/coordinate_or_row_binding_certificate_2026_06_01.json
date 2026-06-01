@@ -1,0 +1,313 @@
+{
+  "artifact": "COORDINATE_OR_ROW_BINDING_CERTIFICATE_2026_06_01",
+  "certified_non_claims": [
+    "coordinate and row binding only",
+    "payload bytes are local external data and are not committed to git",
+    "no baseline gravity vector supplied",
+    "no model or deficit-mass vector supplied",
+    "no unit conversion certificate supplied",
+    "no predeclared comparison metric supplied",
+    "no reproducible comparison run output supplied",
+    "no empirical gravity result supplied",
+    "no anomaly detection result",
+    "no model-favored result",
+    "no baseline-favored result",
+    "no DFM-MKC validation",
+    "no Lambda-CDM failure",
+    "no dark matter resolution",
+    "no dark energy resolution",
+    "no physical discovery claim",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs NP claim",
+    "no Clay-problem claim"
+  ],
+  "coordinate_variables": [
+    "time",
+    "lat",
+    "lon",
+    "lat_bounds",
+    "lon_bounds"
+  ],
+  "data_variables": [
+    "lwe_thickness",
+    "uncertainty",
+    "mascon_ID",
+    "land_mask",
+    "scale_factor",
+    "time_bounds",
+    "GAD"
+  ],
+  "decision": "PASS",
+  "depends_on": [
+    "AUTHENTICATED_GRAVITY_PAYLOAD_2026_06_01"
+  ],
+  "netcdf_dimensions": {
+    "bounds": 2,
+    "lat": 360,
+    "lon": 720,
+    "time": 255
+  },
+  "netcdf_variable_count": 12,
+  "next_admissible_object": "BASELINE_GRAVITY_VECTOR",
+  "object": "COORDINATE_OR_ROW_BINDING_CERTIFICATE",
+  "remaining_missing_input_count": 5,
+  "remaining_missing_inputs": [
+    "baseline_gravity_vector",
+    "model_or_deficit_mass_vector",
+    "unit_conversion_certificate",
+    "predeclared_comparison_metric",
+    "reproducible_comparison_run_output"
+  ],
+  "resolved_missing_input": "coordinate_or_row_binding_certificate",
+  "row_binding_rule": {
+    "coordinate_extraction_rule": "Use coordinate_variables and each variable_bindings[name].dimensions entry to map index coordinates to payload coordinates.",
+    "data_extraction_rule": "Use data_variables and each variable_bindings[name].dimensions entry to map data cells to coordinate-index tuples.",
+    "kind": "netCDF dimension-order binding",
+    "statement": "Each array row/index is bound by the ordered netCDF dimensions recorded for its variable; coordinate variables are bound by their own named netCDF dimensions and attributes."
+  },
+  "source_payload": {
+    "byte_count": 45289360,
+    "dataset_short_name": "TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4",
+    "granule_filename": "GRCTellus.JPL.200204_202603.GLO.RL06.3M.MSCNv04CRI.nc",
+    "local_payload_path": "external_payloads/gravity/download/GRCTellus.JPL.200204_202603.GLO.RL06.3M.MSCNv04CRI.nc",
+    "payload_bytes_committed_to_git": false,
+    "sha256": "6554527f30e77923eae9f9793bcb315577551ad86ed763aa8a86110df463fd29"
+  },
+  "status": "COORDINATE_ROW_BINDING_CERTIFICATE_SUPPLIED_FROM_LOCAL_NETCDF_METADATA",
+  "variable_bindings": {
+    "GAD": {
+      "attrs": {
+        "_FillValue": -99999.0,
+        "comment": "Coastline Resolution Improvement (CRI) filter is applied",
+        "coordinates": "time lat lon",
+        "grid_mapping": "WGS84",
+        "long_name": "OCEAN_ATMOSPHERE_DEALIAS_MODEL_(GAD)",
+        "standard_name": "OCEAN_ATMOSPHERE_DEALIAS_MODEL_(GAD)",
+        "units": "cm",
+        "valid_max": 46.22734734845975,
+        "valid_min": -30.70794414526409
+      },
+      "dimensions": [
+        "time",
+        "lat",
+        "lon"
+      ],
+      "dtype": "float64",
+      "shape": [
+        255,
+        360,
+        720
+      ]
+    },
+    "land_mask": {
+      "attrs": {
+        "coordinates": "lat lon",
+        "description": "Land Mask that was used with the CRI filter",
+        "long_name": "Land_Mask",
+        "standard_name": "Land_Mask",
+        "units": "binary"
+      },
+      "dimensions": [
+        "lat",
+        "lon"
+      ],
+      "dtype": "float64",
+      "shape": [
+        360,
+        720
+      ]
+    },
+    "lat": {
+      "attrs": {
+        "axis": "Y",
+        "bounds": "lat_bounds",
+        "long_name": "latitude",
+        "standard_name": "latitude",
+        "units": "degrees_north",
+        "valid_max": 89.75,
+        "valid_min": -89.75
+      },
+      "dimensions": [
+        "lat"
+      ],
+      "dtype": "float64",
+      "shape": [
+        360
+      ]
+    },
+    "lat_bounds": {
+      "attrs": {
+        "comment": "latitude values at the north and south bounds of each pixel",
+        "long_name": "latitude boundaries",
+        "units": "degrees_north"
+      },
+      "dimensions": [
+        "lat",
+        "bounds"
+      ],
+      "dtype": "float64",
+      "shape": [
+        360,
+        2
+      ]
+    },
+    "lon": {
+      "attrs": {
+        "axis": "X",
+        "bounds": "lon_bounds",
+        "long_name": "longitude",
+        "standard_name": "longitude",
+        "units": "degrees_east",
+        "valid_max": 359.75,
+        "valid_min": 0.25
+      },
+      "dimensions": [
+        "lon"
+      ],
+      "dtype": "float64",
+      "shape": [
+        720
+      ]
+    },
+    "lon_bounds": {
+      "attrs": {
+        "comment": "longitude values at the west and east bounds of each pixel",
+        "long_name": "longitude boundaries",
+        "units": "degrees_east"
+      },
+      "dimensions": [
+        "lon",
+        "bounds"
+      ],
+      "dtype": "float64",
+      "shape": [
+        720,
+        2
+      ]
+    },
+    "lwe_thickness": {
+      "attrs": {
+        "_FillValue": -99999.0,
+        "comment": "Coastline Resolution Improvement (CRI) filter is applied",
+        "coordinates": "time lat lon",
+        "grid_mapping": "WGS84",
+        "long_name": "Liquid_Water_Equivalent_Thickness",
+        "standard_name": "Liquid_Water_Equivalent_Thickness",
+        "units": "cm",
+        "valid_max": 1199.6261541193558,
+        "valid_min": -2229.199743600562
+      },
+      "dimensions": [
+        "time",
+        "lat",
+        "lon"
+      ],
+      "dtype": "float64",
+      "shape": [
+        255,
+        360,
+        720
+      ]
+    },
+    "mascon_ID": {
+      "attrs": {
+        "coordinates": "lat lon",
+        "description": "Mascon identifier mapped to the grid",
+        "long_name": "Mascon_Identifier",
+        "standard_name": "Mascon_ID",
+        "units": "dimensionless",
+        "valid_max": 4551.0,
+        "valid_min": 1.0
+      },
+      "dimensions": [
+        "lat",
+        "lon"
+      ],
+      "dtype": "float64",
+      "shape": [
+        360,
+        720
+      ]
+    },
+    "scale_factor": {
+      "attrs": {
+        "_FillValue": -99999.0,
+        "coordinates": "lat lon",
+        "description": "Gridded scale factors to be used with mascon solution that has the CRI filter applied; based on CLM data from 2002-2009",
+        "long_name": "Scale_Factor_CRI",
+        "standard_name": "Scale_Factor_CRI",
+        "units": "dimensionless",
+        "valid_max": 24.133988467789724,
+        "valid_min": -2.8803287269599895
+      },
+      "dimensions": [
+        "lat",
+        "lon"
+      ],
+      "dtype": "float64",
+      "shape": [
+        360,
+        720
+      ]
+    },
+    "time": {
+      "attrs": {
+        "axis": "T",
+        "bounds": "time_bounds",
+        "calendar": "gregorian",
+        "long_name": "time",
+        "standard_name": "time",
+        "units": "days since 2002-01-01T00:00:00Z"
+      },
+      "dimensions": [
+        "time"
+      ],
+      "dtype": "float64",
+      "shape": [
+        255
+      ]
+    },
+    "time_bounds": {
+      "attrs": {
+        "comment": "time bounds for each time value, i.e. the first day and last day included in the monthly solution",
+        "long_name": "time boundaries",
+        "units": "days since 2002-01-01T00:00:00Z"
+      },
+      "dimensions": [
+        "time",
+        "bounds"
+      ],
+      "dtype": "float64",
+      "shape": [
+        255,
+        2
+      ]
+    },
+    "uncertainty": {
+      "attrs": {
+        "_FillValue": -99999.0,
+        "comment": "1-sigma uncertainty: not for each 0.5 degree grid cell, but for each 3-degree mascon estimate",
+        "coordinates": "time lat lon",
+        "grid_mapping": "WGS84",
+        "long_name": "uncertainty",
+        "standard_name": "uncertainty",
+        "units": "cm",
+        "valid_max": 53.34469598560085,
+        "valid_min": 0.22740321267317315
+      },
+      "dimensions": [
+        "time",
+        "lat",
+        "lon"
+      ],
+      "dtype": "float64",
+      "shape": [
+        255,
+        360,
+        720
+      ]
+    }
+  },
+  "weakest_sufficient_next_input": "BaselineGravityVector"
+}
