@@ -1,0 +1,39 @@
+{
+  "object": "ExternalReviewRecipientContacted",
+  "status": "EMAIL_SENT",
+  "decision": "PASS",
+  "date": "2026-06-01",
+  "recipient": {
+    "name": "Eyal Markman",
+    "email": "markman@umass.edu",
+    "role": "qualified K3^[n] / hyperkahler / monodromy / Hodge-theory reviewer"
+  },
+  "related_pr": {
+    "number": 623,
+    "url": "https://github.com/inaciovasquez2020/chronos-urf-rr/pull/623",
+    "status": "MERGED"
+  },
+  "sent_packet": {
+    "terminal_boundary_archive": true,
+    "external_theorem_input_seek_registry": true,
+    "expert_review_packet": true,
+    "reviewer_email": true
+  },
+  "open_objects": [
+    "K3nNonCircularDefectWitnessConstruction",
+    "K3nLLVComplementHighestWeightVectorAlgebraicity",
+    "RestrictedZeroDayClosure_K3n",
+    "HodgeConjecture_general",
+    "Clay problem closure"
+  ],
+  "nonclaims": [
+    "no Hodge Conjecture closure",
+    "no Clay closure",
+    "no unrestricted K3^[n] theorem",
+    "no noncircular defect witness",
+    "no external theorem input received yet",
+    "no expert confirmation received yet"
+  ],
+  "next_admissible_object": "ExternalReviewerReplyOrSecondReviewerAfterWaitingWindow",
+  "weakest_sufficient_next_input": "ReviewerReplyOrWaitingWindowExpiry"
+}
