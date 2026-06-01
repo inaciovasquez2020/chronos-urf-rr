@@ -1,0 +1,51 @@
+{
+  "artifact": "GRAVITY_BASELINE_VS_MODEL_COMPARISON_RESULT_2026_06_01",
+  "object": "GRAVITY_BASELINE_VS_MODEL_COMPARISON_RESULT",
+  "status": "TARGET_OPEN_COMPARISON_INPUTS_NOT_SUPPLIED",
+  "decision": "PASS",
+  "comparison_result_supplied": false,
+  "authenticated_gravity_payload_supplied": false,
+  "coordinate_or_row_binding_certificate_supplied": false,
+  "baseline_gravity_vector_supplied": false,
+  "model_or_deficit_mass_vector_supplied": false,
+  "unit_conversion_certificate_supplied": false,
+  "predeclared_comparison_metric_supplied": false,
+  "reproducible_comparison_run_output_supplied": false,
+  "acceptable_outcomes": [
+    "MODEL_FAVORED_UNDER_PREDECLARED_METRIC",
+    "NULL_OR_BASELINE_FAVORED",
+    "INCONCLUSIVE_DUE_TO_BINDING_FAILURE",
+    "INCONCLUSIVE_DUE_TO_ROW_MAPPING_FAILURE",
+    "INCONCLUSIVE_DUE_TO_DATA_PROVENANCE_FAILURE",
+    "INCONCLUSIVE_DUE_TO_UNIT_CONVERSION_FAILURE",
+    "INCONCLUSIVE_DUE_TO_MISSING_MODEL_VECTOR",
+    "INCONCLUSIVE_DUE_TO_MISSING_BASELINE_VECTOR"
+  ],
+  "missing_inputs": [
+    "authenticated_gravity_payload",
+    "coordinate_or_row_binding_certificate",
+    "baseline_gravity_vector",
+    "model_or_deficit_mass_vector",
+    "unit_conversion_certificate",
+    "predeclared_comparison_metric",
+    "reproducible_comparison_run_output"
+  ],
+  "next_admissible_object": "GRAVITY_RESULT_BOUNDARY_CERTIFICATE",
+  "weakest_sufficient_next_input": "CompleteGravityBaselineVsModelComparisonRunOutput",
+  "boundary": [
+    "target artifact only",
+    "no empirical comparison result supplied",
+    "no model-favored result claimed",
+    "no baseline-favored result claimed",
+    "no gravity anomaly claim",
+    "no dark matter claim",
+    "no dark energy claim",
+    "no DFM-MKC validation",
+    "no Lambda-CDM failure",
+    "no physical discovery claim",
+    "no Chronos-RR theorem closure",
+    "no H4.1/FGL closure",
+    "no P vs NP claim",
+    "no Clay-problem claim"
+  ]
+}
