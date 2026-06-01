@@ -1,0 +1,40 @@
+{
+  "artifact": "GRAVITY_RESULT_BOUNDARY_CERTIFICATE_2026_06_01",
+  "object": "GRAVITY_RESULT_BOUNDARY_CERTIFICATE",
+  "status": "BOUNDARY_CERTIFICATE_FOR_TARGET_OPEN_COMPARISON",
+  "decision": "PASS",
+  "depends_on": [
+    "GRAVITY_BASELINE_VS_MODEL_COMPARISON_RESULT_2026_06_01"
+  ],
+  "certified_prior_status": "TARGET_OPEN_COMPARISON_INPUTS_NOT_SUPPLIED",
+  "empirical_result_supplied": false,
+  "comparison_inputs_complete": false,
+  "boundary_certificate_supplied": true,
+  "certified_missing_inputs": [
+    "authenticated_gravity_payload",
+    "coordinate_or_row_binding_certificate",
+    "baseline_gravity_vector",
+    "model_or_deficit_mass_vector",
+    "unit_conversion_certificate",
+    "predeclared_comparison_metric",
+    "reproducible_comparison_run_output"
+  ],
+  "certified_non_claims": [
+    "no empirical comparison result",
+    "no model-favored result",
+    "no baseline-favored result",
+    "no anomaly detection result",
+    "no DFM-MKC validation",
+    "no Lambda-CDM failure",
+    "no dark matter resolution",
+    "no dark energy resolution",
+    "no physical discovery claim",
+    "no unrestricted gravity theorem",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs NP claim",
+    "no Clay-problem claim"
+  ],
+  "next_admissible_object": "GLOBAL_URF_LAW3_RESTRICTED_VALID_KERNEL_INSTANCE",
+  "weakest_sufficient_next_input": "RestrictedValidKernelLaw3InstanceOrExplicitMissingLemma"
+}
