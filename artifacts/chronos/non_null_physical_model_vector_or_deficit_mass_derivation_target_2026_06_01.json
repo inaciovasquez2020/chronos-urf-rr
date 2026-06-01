@@ -1,0 +1,68 @@
+{
+  "artifact": "NON_NULL_PHYSICAL_MODEL_VECTOR_OR_DEFICIT_MASS_DERIVATION_TARGET_2026_06_01",
+  "blocked_downstream_without_required_input": [
+    "non_null_model_comparison_run_output",
+    "non_null_model_result_interpretation",
+    "empirical_gravity_result_candidate",
+    "model_favored_or_baseline_favored_result_candidate"
+  ],
+  "certified_non_claims": [
+    "target only",
+    "non-null physical model vector not supplied",
+    "deficit-mass derivation not supplied",
+    "current comparison remains null comparator only",
+    "no empirical gravity result claim",
+    "no anomaly detection claim",
+    "no model-favored result claim",
+    "no baseline-favored result claim",
+    "no DFM-MKC validation",
+    "no Lambda-CDM failure",
+    "no dark matter resolution",
+    "no dark energy resolution",
+    "no physical discovery claim",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs NP claim",
+    "no Clay-problem claim"
+  ],
+  "current_model_is_deficit_mass_derivation": false,
+  "current_model_is_physical": false,
+  "current_model_kind": "aligned_zero_null_vector",
+  "decision": "PASS",
+  "depends_on": [
+    "GRAVITY_BASELINE_VS_MODEL_COMPARISON_RESULT_INTERPRETATION_2026_06_01",
+    "REPRODUCIBLE_COMPARISON_RUN_OUTPUT_2026_06_01",
+    "BASELINE_GRAVITY_VECTOR_2026_06_01",
+    "MODEL_OR_DEFICIT_MASS_VECTOR_2026_06_01"
+  ],
+  "next_admissible_object": "NON_NULL_PHYSICAL_MODEL_VECTOR_OR_DEFICIT_MASS_DERIVATION",
+  "object": "NON_NULL_PHYSICAL_MODEL_VECTOR_OR_DEFICIT_MASS_DERIVATION_TARGET",
+  "previous_favored_result": "none",
+  "previous_primary_metric_value": 0.43265461462247096,
+  "previous_result_class": "null_comparator_residual_recorded",
+  "required_input_schema": {
+    "acceptance_predicates": [
+      "vector_length equals baseline vector length",
+      "vector is not identically zero",
+      "coordinate alignment certificate is supplied",
+      "unit alignment certificate is supplied",
+      "derivation or physical model definition is supplied",
+      "boundary explicitly preserves no empirical result without rerun and interpretation"
+    ],
+    "required_fields": [
+      "non_null_physical_model_vector_or_deficit_mass_derivation",
+      "derivation_source_or_model_definition",
+      "coordinate_alignment_to_baseline_vector",
+      "unit_alignment_to_baseline_vector",
+      "vector_length",
+      "vector_sha256",
+      "nonzero_entry_count",
+      "physical_interpretation_boundary",
+      "forbidden_overclaim_boundary"
+    ]
+  },
+  "required_input_supplied": false,
+  "required_new_input": "NonNullPhysicalModelVectorOrDeficitMassDerivation",
+  "status": "TARGET_OPEN_NON_NULL_PHYSICAL_MODEL_VECTOR_OR_DEFICIT_MASS_DERIVATION_NOT_SUPPLIED",
+  "weakest_sufficient_next_input": "NonNullPhysicalModelVectorOrDeficitMassDerivation"
+}
