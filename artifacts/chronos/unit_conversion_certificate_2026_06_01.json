@@ -1,0 +1,77 @@
+{
+  "artifact": "UNIT_CONVERSION_CERTIFICATE_2026_06_01",
+  "certified_non_claims": [
+    "unit conversion certificate only",
+    "no predeclared comparison metric supplied",
+    "no reproducible comparison run output supplied",
+    "no empirical gravity result supplied",
+    "no anomaly detection result",
+    "no model-favored result",
+    "no baseline-favored result",
+    "no DFM-MKC validation",
+    "no Lambda-CDM failure",
+    "no dark matter resolution",
+    "no dark energy resolution",
+    "no physical discovery claim",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs NP claim",
+    "no Clay-problem claim"
+  ],
+  "decision": "PASS",
+  "depends_on": [
+    "AUTHENTICATED_GRAVITY_PAYLOAD_2026_06_01",
+    "COORDINATE_OR_ROW_BINDING_CERTIFICATE_2026_06_01",
+    "BASELINE_GRAVITY_VECTOR_2026_06_01",
+    "MODEL_OR_DEFICIT_MASS_VECTOR_2026_06_01"
+  ],
+  "next_admissible_object": "PREDECLARED_COMPARISON_METRIC",
+  "object": "UNIT_CONVERSION_CERTIFICATE",
+  "remaining_missing_input_count": 2,
+  "remaining_missing_inputs": [
+    "predeclared_comparison_metric",
+    "reproducible_comparison_run_output"
+  ],
+  "resolved_missing_input": "unit_conversion_certificate",
+  "source_baseline_vector": {
+    "artifact": "BASELINE_GRAVITY_VECTOR_2026_06_01",
+    "baseline_variable": "lwe_thickness",
+    "baseline_variable_units": "cm",
+    "baseline_vector_length": 4096,
+    "baseline_vector_sha256": "ad97608af3130d0e3bc4e3afb2dce836ddb982ae729ace874b21e8a0d3c51d2e",
+    "status": "BASELINE_GRAVITY_VECTOR_SUPPLIED_FROM_AUTHENTICATED_NETCDF_PAYLOAD_DETERMINISTIC_FINITE_SAMPLE"
+  },
+  "source_model_or_deficit_mass_vector": {
+    "alignment_basis": "same vector length and sample index set as baseline gravity vector",
+    "artifact": "MODEL_OR_DEFICIT_MASS_VECTOR_2026_06_01",
+    "status": "MODEL_OR_DEFICIT_MASS_VECTOR_SUPPLIED_AS_ALIGNED_ZERO_NULL_VECTOR",
+    "vector_length": 4096,
+    "vector_sha256": "fbdadfc49edbe2da54bd8d9106e70852b42e99c28e89bc32ab199e6432ee9040"
+  },
+  "source_payload": {
+    "byte_count": 45289360,
+    "dataset_short_name": "TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4",
+    "granule_filename": "GRCTellus.JPL.200204_202603.GLO.RL06.3M.MSCNv04CRI.nc",
+    "payload_bytes_committed_to_git": false,
+    "sha256": "6554527f30e77923eae9f9793bcb315577551ad86ed763aa8a86110df463fd29"
+  },
+  "status": "UNIT_CONVERSION_CERTIFICATE_SUPPLIED_FOR_BASELINE_AND_MODEL_VECTOR_ALIGNMENT",
+  "unit_conversion": {
+    "applies_to": [
+      "baseline_gravity_vector",
+      "model_or_deficit_mass_vector"
+    ],
+    "canonical_unit": "meter liquid-water-equivalent thickness",
+    "conversion_rule": "x_meters = x_cm * 0.01",
+    "factor_to_canonical": 0.01,
+    "offset_to_canonical": 0.0,
+    "source_units_normalized": "cm",
+    "source_units_raw": "cm"
+  },
+  "vector_alignment_check": {
+    "baseline_vector_length": 4096,
+    "model_or_deficit_mass_vector_length": 4096,
+    "same_length": true
+  },
+  "weakest_sufficient_next_input": "PredeclaredComparisonMetric"
+}
