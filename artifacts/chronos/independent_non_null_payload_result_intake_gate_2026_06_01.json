@@ -1,0 +1,31 @@
+{
+  "object": "INDEPENDENT_NON_NULL_PAYLOAD_RESULT_INTAKE_GATE",
+  "status": "INTAKE_GATE_SUPPLIED_PAYLOAD_RESULT_NOT_SUPPLIED",
+  "decision": "PASS",
+  "runner": "tools/intake_independent_non_null_payload_result.py",
+  "schema": "schemas/chronos/independent_non_null_payload_schema.py",
+  "default_output": "artifacts/chronos/independent_non_null_payload_result_ingested_latest.json",
+  "required_input_supplied": false,
+  "accepted_routes": [
+    "A",
+    "B"
+  ],
+  "claim_boundaries": [
+    "intake gate only",
+    "no independent predictive DFM-MKC model supplied",
+    "no external gravity payload result supplied",
+    "no empirical gravity result",
+    "no anomaly detection claim",
+    "no model-favored result claim",
+    "no DFM-MKC validation",
+    "no Lambda-CDM failure",
+    "no dark matter or dark energy resolution",
+    "no physical discovery",
+    "no Chronos-RR closure",
+    "no H4.1 or FGL closure",
+    "no P vs NP closure",
+    "no Clay problem closure"
+  ],
+  "next_admissible_object": "INDEPENDENT_NON_NULL_PREDICTIVE_MODEL_VECTOR_OR_EXTERNAL_GRAVITY_PAYLOAD_RESULT",
+  "weakest_sufficient_next_input": "IndependentNonNullPredictiveModelVectorOrExternalGravityPayloadResult"
+}
