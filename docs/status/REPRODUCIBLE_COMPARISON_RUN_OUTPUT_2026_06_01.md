@@ -30,25 +30,24 @@ This packet records the reproducible comparison run output for the aligned basel
 
 None.
 
-## Boundary
+## Certified Non-Claims
 
-This packet records run output only.
+This packet records:
 
-It does not supply:
-
-- empirical gravity result interpretation;
-- anomaly detection claim;
-- model-favored result claim;
-- baseline-favored result claim;
-- DFM-MKC validation;
-- Lambda-CDM failure;
-- dark matter resolution;
-- dark energy resolution;
-- physical discovery claim;
-- Chronos-RR closure;
-- H4.1/FGL closure;
-- P vs NP claim;
-- Clay-problem claim.
+- reproducible comparison run output only;
+- no empirical gravity result interpretation supplied;
+- no anomaly detection claim;
+- no model-favored result claim;
+- no baseline-favored result claim;
+- no DFM-MKC validation;
+- no Lambda-CDM failure;
+- no dark matter resolution;
+- no dark energy resolution;
+- no physical discovery claim;
+- no Chronos-RR closure;
+- no H4.1/FGL closure;
+- no P vs NP claim;
+- no Clay-problem claim.
 
 ## Next Admissible Object
 
