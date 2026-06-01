@@ -1,0 +1,51 @@
+{
+  "artifact": "GRAVITY_EMPIRICAL_RESULT_INPUTS_MISSING_CERTIFICATE_2026_06_01",
+  "object": "GRAVITY_EMPIRICAL_RESULT_INPUTS_MISSING_CERTIFICATE",
+  "status": "EXPLICIT_EMPIRICAL_INPUTS_MISSING_NO_RESULT_SUPPLIED",
+  "decision": "PASS",
+  "depends_on": [
+    "GRAVITY_BASELINE_VS_MODEL_COMPARISON_RESULT_2026_06_01",
+    "GRAVITY_RESULT_BOUNDARY_CERTIFICATE_2026_06_01"
+  ],
+  "empirical_gravity_result_supplied": false,
+  "authenticated_gravity_payload_supplied": false,
+  "coordinate_or_row_binding_certificate_supplied": false,
+  "baseline_gravity_vector_supplied": false,
+  "model_or_deficit_mass_vector_supplied": false,
+  "unit_conversion_certificate_supplied": false,
+  "predeclared_comparison_metric_supplied": false,
+  "reproducible_comparison_run_output_supplied": false,
+  "missing_inputs": [
+    "authenticated_gravity_payload",
+    "coordinate_or_row_binding_certificate",
+    "baseline_gravity_vector",
+    "model_or_deficit_mass_vector",
+    "unit_conversion_certificate",
+    "predeclared_comparison_metric",
+    "reproducible_comparison_run_output"
+  ],
+  "certified_non_claims": [
+    "no empirical gravity result supplied",
+    "no authenticated gravity payload supplied",
+    "no coordinate or row binding certificate supplied",
+    "no baseline gravity vector supplied",
+    "no model or deficit-mass vector supplied",
+    "no unit conversion certificate supplied",
+    "no predeclared comparison metric supplied",
+    "no reproducible comparison run output supplied",
+    "no model-favored result",
+    "no baseline-favored result",
+    "no anomaly detection result",
+    "no DFM-MKC validation",
+    "no Lambda-CDM failure",
+    "no dark matter resolution",
+    "no dark energy resolution",
+    "no physical discovery claim",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs NP claim",
+    "no Clay-problem claim"
+  ],
+  "next_admissible_object": "AUTHENTICATED_GRAVITY_PAYLOAD_OR_COMPLETE_GRAVITY_BASELINE_VS_MODEL_COMPARISON_RUN_OUTPUT",
+  "weakest_sufficient_next_input": "AuthenticatedGravityPayload"
+}
