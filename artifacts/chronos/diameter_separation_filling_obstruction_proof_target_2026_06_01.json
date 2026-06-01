@@ -1,0 +1,43 @@
+{
+  "artifact": "DIAMETER_SEPARATION_FILLING_OBSTRUCTION_PROOF_TARGET_2026_06_01",
+  "object": "DIAMETER_SEPARATION_FILLING_OBSTRUCTION_PROOF_TARGET",
+  "status": "TARGET_OPEN_OBSTRUCTION_PROOF_NOT_SUPPLIED",
+  "decision": "PASS",
+  "proof_supplied": false,
+  "diameter_separation_filling_obstruction_closed": false,
+  "depends_on": [
+    "R2_ADMISSIBILITY_GATED_POSITIVE_INVARIANT",
+    "R2_CONDITIONAL_THEOREM_TARGET_REDUCTION",
+    "DIAMETER_FILLING_COMPATIBILITY_SUFFICIENCY"
+  ],
+  "required_inputs": [
+    "diameter_separation_domain",
+    "filling_operation_definition",
+    "separation_invariant_definition",
+    "positive_invariant_binding",
+    "diameter_bound_binding",
+    "obstruction_statement",
+    "lean_checked_obstruction_proof_or_explicit_missing_lemma"
+  ],
+  "missing_inputs": [
+    "diameter_separation_domain",
+    "filling_operation_definition",
+    "separation_invariant_definition",
+    "positive_invariant_binding",
+    "diameter_bound_binding",
+    "obstruction_statement",
+    "lean_checked_obstruction_proof_or_explicit_missing_lemma"
+  ],
+  "certified_non_claims": [
+    "no diameter separation filling obstruction proof supplied",
+    "no R2 theorem closure",
+    "no FourBridgesSourceSolved theorem closure",
+    "no unrestricted non-factorization theorem",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs N claim",
+    "no Clay-problem claim"
+  ],
+  "next_admissible_object": "DIAMETER_SEPARATION_FILLING_OBSTRUCTION_PROOF_OR_EXPLICIT_MISSING_LEMMA",
+  "weakest_sufficient_next_input": "LeanCheckedDiameterSeparationFillingObstructionProofOrExplicitMissingLemma"
+}
