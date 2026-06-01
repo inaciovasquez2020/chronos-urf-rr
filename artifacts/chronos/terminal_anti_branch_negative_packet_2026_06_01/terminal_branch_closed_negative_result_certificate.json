@@ -1,0 +1,22 @@
+{
+  "boundary": [
+    "terminal certificate validation only",
+    "no physical anti-gravity mechanism identified",
+    "no new gravity claim",
+    "no GR failure claim",
+    "no dark matter replacement claim",
+    "no Lambda-CDM failure claim",
+    "no quantum gravity claim",
+    "no Clay problem claim",
+    "no repository modification"
+  ],
+  "decision": "PASS",
+  "final_report_validation_decision": "PASS_BRANCH_CLOSED_NEGATIVE_RESULT",
+  "final_report_validation_reason": "FORMAL_NEGATIVE_RESULT_PACKET_SUPPLIED",
+  "input_final_report_validation": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/input_final_report_validation/publication_ready_case_report_or_branch_closed_validation.json",
+  "object": "TERMINAL_ANTI_BRANCH_STATUS_CERTIFICATE",
+  "reason": "TERMINAL_BRANCH_CLOSED_NEGATIVE_RESULT",
+  "route": "branch_closed_negative_result",
+  "terminal_certificate_output": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/terminal_certificate/terminal_branch_closed_negative_result_certificate.json",
+  "timestamp_utc": "2026-05-30T22:50:54.359172+00:00"
+}

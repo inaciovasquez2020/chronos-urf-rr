@@ -1,0 +1,67 @@
+{
+  "archive": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/terminal_anti_branch_certificate_packet_archive/terminal_anti_branch_negative_packet_20260530T230006Z.tar.gz",
+  "archive_members": [
+    "input_final_report_validation/formal_negative_result_packet/formal_negative_result_packet.json",
+    "input_final_report_validation/publication_ready_case_report_or_branch_closed_validation.json",
+    "results/terminal_anti_branch_status_certificate_result.json",
+    "terminal_anti_branch_certificate_packet_audit/terminal_anti_branch_certificate_packet_audit.json",
+    "terminal_certificate/terminal_branch_closed_negative_result_certificate.json"
+  ],
+  "archive_sha256": "b931a7442d5ace28b2658bf70151276211e61b5f20d2d8fa2abd248551e1ed52",
+  "boundary": [
+    "archive extraction audit only",
+    "sandbox packet preservation only",
+    "terminal branch closed negative result only",
+    "no physical anti-gravity mechanism identified",
+    "no new gravity claim",
+    "no repository modification",
+    "no git add",
+    "no git commit",
+    "no git push"
+  ],
+  "decision": "PASS",
+  "failed_checks": [],
+  "file_checks": [
+    {
+      "bytes": 743,
+      "extracted_sha256": "aa23fbedf39a3eb2e4f646a52c4807d4c4ea4b0b8e4b3aaf16a7855171c8dc66",
+      "relative_path": "results/terminal_anti_branch_status_certificate_result.json",
+      "sha256_match": true,
+      "source_sha256": "aa23fbedf39a3eb2e4f646a52c4807d4c4ea4b0b8e4b3aaf16a7855171c8dc66"
+    },
+    {
+      "bytes": 1177,
+      "extracted_sha256": "a0ec460ff68d7ab0c1f283c8c169c73e43786149e3b13355c91bfaaed81befcb",
+      "relative_path": "terminal_certificate/terminal_branch_closed_negative_result_certificate.json",
+      "sha256_match": true,
+      "source_sha256": "a0ec460ff68d7ab0c1f283c8c169c73e43786149e3b13355c91bfaaed81befcb"
+    },
+    {
+      "bytes": 722,
+      "extracted_sha256": "046551bb91c916ee5ee8fdc461a8bfa41131e0801c992ba5056bb71ae44b4a10",
+      "relative_path": "input_final_report_validation/publication_ready_case_report_or_branch_closed_validation.json",
+      "sha256_match": true,
+      "source_sha256": "046551bb91c916ee5ee8fdc461a8bfa41131e0801c992ba5056bb71ae44b4a10"
+    },
+    {
+      "bytes": 1011,
+      "extracted_sha256": "218d4c1ffaf837039df1237fd02aa30bc777ff057d0c66bb89ec54da7c442b69",
+      "relative_path": "input_final_report_validation/formal_negative_result_packet/formal_negative_result_packet.json",
+      "sha256_match": true,
+      "source_sha256": "218d4c1ffaf837039df1237fd02aa30bc777ff057d0c66bb89ec54da7c442b69"
+    },
+    {
+      "bytes": 1696,
+      "extracted_sha256": "38cbcf47f6ceee85db0130bc4429c3ed567e58c377a79616bf5392cb05665ae4",
+      "relative_path": "terminal_anti_branch_certificate_packet_audit/terminal_anti_branch_certificate_packet_audit.json",
+      "sha256_match": true,
+      "source_sha256": "38cbcf47f6ceee85db0130bc4429c3ed567e58c377a79616bf5392cb05665ae4"
+    }
+  ],
+  "missing_members": [],
+  "next_admissible_object_after_june_1_2026": "OPTIONAL_REPOSITORY_STAGED_TERMINAL_NEGATIVE_BRANCH_CERTIFICATE_PACKET",
+  "object": "TERMINAL_ANTI_BRANCH_CERTIFICATE_PACKET_ARCHIVE_EXTRACTION_AUDIT",
+  "reason": "PORTABLE_ARCHIVE_EXTRACTS_AND_MATCHES_SOURCE_PACKET",
+  "timestamp_utc": "2026-05-30T23:00:41.922596+00:00",
+  "unexpected_members": []
+}

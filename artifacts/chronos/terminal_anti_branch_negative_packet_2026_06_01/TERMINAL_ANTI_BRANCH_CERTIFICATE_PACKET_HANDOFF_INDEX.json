@@ -1,0 +1,37 @@
+{
+  "archive_sha256": "b931a7442d5ace28b2658bf70151276211e61b5f20d2d8fa2abd248551e1ed52",
+  "boundary": [
+    "handoff index only",
+    "sandbox terminal negative branch packet only",
+    "no physical anti-gravity mechanism identified",
+    "no new gravity claim",
+    "no GR failure claim",
+    "no dark matter replacement claim",
+    "no Lambda-CDM failure claim",
+    "no quantum gravity claim",
+    "no Clay problem claim",
+    "no repository modification",
+    "no git add",
+    "no git commit",
+    "no git push"
+  ],
+  "checked_objects": {
+    "archive_extraction_audit": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/terminal_anti_branch_certificate_packet_archive_extraction_audit/terminal_anti_branch_certificate_packet_archive_extraction_audit.json",
+    "archive_manifest": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/terminal_anti_branch_certificate_packet_archive/TERMINAL_ANTI_BRANCH_CERTIFICATE_PACKET_ARCHIVE_MANIFEST.json",
+    "certificate": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/terminal_certificate/terminal_branch_closed_negative_result_certificate.json",
+    "final_validation": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/input_final_report_validation/publication_ready_case_report_or_branch_closed_validation.json",
+    "formal_negative_result_packet": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/input_final_report_validation/formal_negative_result_packet/formal_negative_result_packet.json",
+    "freeze_manifest": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/terminal_anti_branch_certificate_packet_freeze/TERMINAL_ANTI_BRANCH_CERTIFICATE_PACKET_FREEZE_MANIFEST.json",
+    "packet_audit": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/terminal_anti_branch_certificate_packet_audit/terminal_anti_branch_certificate_packet_audit.json",
+    "result": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/results/terminal_anti_branch_status_certificate_result.json"
+  },
+  "decision": "PASS",
+  "failed_checks": [],
+  "freeze_collection_sha256": "a27e7a6da39cbc8a2b9acb52e6edb53ecadcae8164c5eb3691e14356d1a2541b",
+  "next_admissible_object_after_june_1_2026": "OPTIONAL_REPOSITORY_STAGED_TERMINAL_NEGATIVE_BRANCH_CERTIFICATE_PACKET",
+  "object": "TERMINAL_ANTI_BRANCH_CERTIFICATE_PACKET_HANDOFF_INDEX",
+  "reason": "SANDBOX_TERMINAL_NEGATIVE_BRANCH_PACKET_READY_FOR_OPTIONAL_REPOSITORY_STAGING_AFTER_JUNE_1_2026",
+  "route": "branch_closed_negative_result",
+  "terminal_status": "TERMINAL_BRANCH_CLOSED_NEGATIVE_RESULT",
+  "timestamp_utc": "2026-05-30T23:01:18.342137+00:00"
+}

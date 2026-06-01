@@ -1,0 +1,14 @@
+{
+  "object": "PUBLICATION_READY_CASE_REPORT_OR_BRANCH_CLOSED_VALIDATION",
+  "decision": "PASS_BRANCH_CLOSED_NEGATIVE_RESULT",
+  "reason": "FORMAL_NEGATIVE_RESULT_PACKET_SUPPLIED",
+  "formal_negative_result_packet": "/Users/inaciof.vasquez/research_sandbox/anti_terminal_branch_status_certificate_gate_20260530T224549Z/input_final_report_validation/formal_negative_result_packet/formal_negative_result_packet.json",
+  "boundary": [
+    "branch-closed negative validation only",
+    "terminal certificate may issue only as negative branch-closed certificate",
+    "no publication-ready positive anomaly report",
+    "no anti-gravity mechanism identified",
+    "no new gravity claim",
+    "no repository modification"
+  ]
+}
