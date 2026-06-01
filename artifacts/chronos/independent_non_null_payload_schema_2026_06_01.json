@@ -1,0 +1,39 @@
+{
+  "claim_boundaries": [
+    "schema only",
+    "no independent predictive DFM-MKC model supplied",
+    "no external gravity payload result supplied",
+    "no empirical gravity result",
+    "no anomaly detection claim",
+    "no model-favored result claim",
+    "no DFM-MKC validation",
+    "no Lambda-CDM failure",
+    "no dark matter or dark energy resolution",
+    "no physical discovery",
+    "no Chronos-RR closure",
+    "no H4.1 or FGL closure",
+    "no P vs NP closure",
+    "no Clay problem closure"
+  ],
+  "corrections_applied": [
+    "Route A non-null vector now requires at least one finite nonzero value",
+    "Route A all-zero stub replaced by a nonzero smoke-test stub",
+    "Route A independence certificate hash is required",
+    "Route B row values and comparison metric values must be finite",
+    "Route B row units must match payload unit",
+    "Latitude and longitude bounds are validated",
+    "SHA-256 fields require lowercase 64-character hex digests",
+    "ISO-8601 timestamp fields are validated",
+    "schema_version stamping is required",
+    "payload serialization, deserialization, canonical JSON, and required_input_supplied validation hooks are supplied"
+  ],
+  "decision": "PASS",
+  "next_admissible_object": "INDEPENDENT_NON_NULL_PREDICTIVE_MODEL_VECTOR_OR_EXTERNAL_GRAVITY_PAYLOAD_RESULT",
+  "object": "INDEPENDENT_NON_NULL_PAYLOAD_SCHEMA",
+  "python_schema": "schemas/chronos/independent_non_null_payload_schema.py",
+  "required_input_supplied": false,
+  "schema_version": "2026-06-01.v1",
+  "status": "SCHEMA_CLOSED_PAYLOAD_RESULT_NOT_SUPPLIED",
+  "typescript_schema": "schemas/chronos/independent_non_null_payload_schema.ts",
+  "weakest_sufficient_next_input": "IndependentNonNullPredictiveModelVectorOrExternalGravityPayloadResult"
+}
