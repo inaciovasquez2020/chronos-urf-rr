@@ -1,0 +1,74 @@
+{
+  "artifact": "GRAVITY_BASELINE_VS_MODEL_COMPARISON_RESULT_INTERPRETATION_2026_06_01",
+  "certified_non_claims": [
+    "comparison result interpretation only",
+    "null comparator residual recorded only",
+    "no empirical gravity result claim",
+    "no anomaly detection claim",
+    "no model-favored result claim",
+    "no baseline-favored result claim",
+    "no DFM-MKC validation",
+    "no Lambda-CDM failure",
+    "no dark matter resolution",
+    "no dark energy resolution",
+    "no physical discovery claim",
+    "no Chronos-RR closure",
+    "no H4.1/FGL closure",
+    "no P vs NP claim",
+    "no Clay-problem claim"
+  ],
+  "decision": "PASS",
+  "depends_on": [
+    "AUTHENTICATED_GRAVITY_PAYLOAD_2026_06_01",
+    "COORDINATE_OR_ROW_BINDING_CERTIFICATE_2026_06_01",
+    "BASELINE_GRAVITY_VECTOR_2026_06_01",
+    "MODEL_OR_DEFICIT_MASS_VECTOR_2026_06_01",
+    "UNIT_CONVERSION_CERTIFICATE_2026_06_01",
+    "PREDECLARED_COMPARISON_METRIC_2026_06_01",
+    "REPRODUCIBLE_COMPARISON_RUN_OUTPUT_2026_06_01"
+  ],
+  "interpretation": {
+    "empirical_claim": "none",
+    "favored_result": "none",
+    "kind": "null-comparator metric interpretation",
+    "metric_direction": "lower_is_better",
+    "primary_metric_unit": "meter liquid-water-equivalent thickness",
+    "primary_metric_value": 0.43265461462247096,
+    "reason_no_empirical_claim": "The comparison vector is an aligned zero null vector, not a physical DFM-MKC model or derived deficit-mass field, and no external acceptance threshold is supplied.",
+    "result_class": "null_comparator_residual_recorded",
+    "statement": "The run measures the distance between the authenticated sampled GRACE/GRACE-FO baseline vector and an aligned zero-valued null comparator."
+  },
+  "model_classification": {
+    "model_kind": "aligned_zero_null_vector",
+    "model_or_deficit_mass_vector_sha256": "fbdadfc49edbe2da54bd8d9106e70852b42e99c28e89bc32ab199e6432ee9040",
+    "not_deficit_mass_derivation": true,
+    "not_physical_model": true
+  },
+  "next_admissible_object": "NON_NULL_PHYSICAL_MODEL_VECTOR_OR_DEFICIT_MASS_DERIVATION",
+  "object": "GRAVITY_BASELINE_VS_MODEL_COMPARISON_RESULT_INTERPRETATION",
+  "remaining_missing_input_count": 0,
+  "remaining_missing_inputs": [],
+  "resolved_object": "gravity_baseline_vs_model_comparison_result_interpretation",
+  "source_payload": {
+    "byte_count": 45289360,
+    "dataset_short_name": "TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4",
+    "granule_filename": "GRCTellus.JPL.200204_202603.GLO.RL06.3M.MSCNv04CRI.nc",
+    "payload_bytes_committed_to_git": false,
+    "sha256": "6554527f30e77923eae9f9793bcb315577551ad86ed763aa8a86110df463fd29"
+  },
+  "source_run_output": {
+    "artifact": "REPRODUCIBLE_COMPARISON_RUN_OUTPUT_2026_06_01",
+    "canonical_mae": 0.08186448984837538,
+    "canonical_max_abs_error": 11.243071784000001,
+    "canonical_mean_signed_error": -0.01570926816873157,
+    "canonical_rmse": 0.43265461462247096,
+    "canonical_unit": "meter liquid-water-equivalent thickness",
+    "metric_id": "canonical_rmse_between_aligned_vectors_v1",
+    "primary_metric": "canonical_rmse",
+    "run_output_sha256": "b7f6818a3a1aee1e96a9c2f2acf5467bac33de389a5a3a60e83d1c5a8a8f984e",
+    "status": "REPRODUCIBLE_COMPARISON_RUN_OUTPUT_SUPPLIED_NO_EMPIRICAL_INTERPRETATION",
+    "vector_length": 4096
+  },
+  "status": "NULL_COMPARATOR_RESULT_INTERPRETED_NO_EMPIRICAL_OR_PHYSICAL_CLAIM",
+  "weakest_sufficient_next_input": "NonNullPhysicalModelVectorOrDeficitMassDerivation"
+}
