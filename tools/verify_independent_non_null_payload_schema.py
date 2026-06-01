@@ -2,6 +2,7 @@
 import importlib.util
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 ART = Path("artifacts/chronos/independent_non_null_payload_schema_2026_06_01.json")
@@ -41,6 +42,7 @@ for required in [
 spec = importlib.util.spec_from_file_location("independent_non_null_payload_schema", PY_SCHEMA)
 mod = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
+sys.modules[spec.name] = mod
 spec.loader.exec_module(mod)
 
 route_a = mod.make_route_a_stub()
