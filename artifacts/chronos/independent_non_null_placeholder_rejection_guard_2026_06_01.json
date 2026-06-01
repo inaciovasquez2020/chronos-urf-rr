@@ -1,0 +1,34 @@
+{
+  "object": "INDEPENDENT_NON_NULL_PLACEHOLDER_REJECTION_GUARD",
+  "status": "PLACEHOLDER_REJECTION_GUARD_SUPPLIED_PAYLOAD_RESULT_NOT_SUPPLIED",
+  "decision": "PASS",
+  "schema": "schemas/chronos/independent_non_null_payload_schema.py",
+  "runner": "tools/intake_independent_non_null_payload_result.py",
+  "route_a_template": "templates/chronos/independent_non_null_predictive_model_vector_route_a_template_2026_06_01.json",
+  "route_b_template": "templates/chronos/external_gravity_payload_result_route_b_template_2026_06_01.json",
+  "required_input_supplied": false,
+  "guarded_rejections": [
+    "Route A template placeholders must not validate as a real payload",
+    "Route B template placeholders must not validate as a real payload",
+    "Route A all-zero vectors must not validate as real non-null predictive vectors",
+    "Route B row-unit mismatch must not validate as an external gravity payload result"
+  ],
+  "claim_boundaries": [
+    "placeholder rejection guard only",
+    "no independent predictive DFM-MKC model supplied",
+    "no external gravity payload result supplied",
+    "no empirical gravity result",
+    "no anomaly detection claim",
+    "no model-favored result claim",
+    "no DFM-MKC validation",
+    "no Lambda-CDM failure",
+    "no dark matter or dark energy resolution",
+    "no physical discovery",
+    "no Chronos-RR closure",
+    "no H4.1 or FGL closure",
+    "no P vs NP closure",
+    "no Clay problem closure"
+  ],
+  "next_admissible_object": "INDEPENDENT_NON_NULL_PREDICTIVE_MODEL_VECTOR_OR_EXTERNAL_GRAVITY_PAYLOAD_RESULT",
+  "weakest_sufficient_next_input": "IndependentNonNullPredictiveModelVectorOrExternalGravityPayloadResult"
+}
