@@ -1,0 +1,37 @@
+{
+  "artifact": "MAIN_CI_INDEPENDENT_AUDIT_GATE_2026_06_06",
+  "boundary": "Verification gate only. No theorem closure or scientific closure claim.",
+  "branch": "main",
+  "claims": {
+    "adds_verification_gate": true,
+    "asserts_chronos_rr_closure": false,
+    "asserts_clay_problem_closure": false,
+    "asserts_h41_fgl_closure": false,
+    "asserts_new_theorem": false,
+    "asserts_p_vs_np_closure": false,
+    "records_ci_and_audit_status": true
+  },
+  "head_sha": "828d23d1489458fd120fa1b9670c95bb72349a42",
+  "latest_independent_audit": {
+    "conclusion": "success",
+    "createdAt": "2026-06-05T22:51:35Z",
+    "databaseId": 27044236253,
+    "headSha": "828d23d1489458fd120fa1b9670c95bb72349a42",
+    "status": "completed",
+    "url": "https://github.com/inaciovasquez2020/chronos-urf-rr/actions/runs/27044236253"
+  },
+  "latest_main_ci": {
+    "conclusion": "success",
+    "createdAt": "2026-06-04T12:20:41Z",
+    "databaseId": 26951328522,
+    "headSha": "828d23d1489458fd120fa1b9670c95bb72349a42",
+    "status": "completed",
+    "url": "https://github.com/inaciovasquez2020/chronos-urf-rr/actions/runs/26951328522"
+  },
+  "repository": "chronos-urf-rr",
+  "required_checks": [
+    "latest_main_ci_success",
+    "latest_independent_audit_success"
+  ],
+  "status": "AUDIT_BACKED_GATE_RECORDED_ONLY"
+}
