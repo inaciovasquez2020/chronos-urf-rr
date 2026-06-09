@@ -1,0 +1,51 @@
+{
+  "id": "QK_DINI_SHELL_COMPARABILITY_TARGET_2026_06_09",
+  "object": "QKDiniShellComparability",
+  "date": "2026-06-09",
+  "status": "TARGET_ONLY",
+  "route": "Q_k / Dini / Lyapunov",
+  "depends_on": [
+    "QKDiniPrimaryScientificClosureRoute",
+    "QKDiniUniformCoefficientBounds"
+  ],
+  "blocked_by": [
+    {
+      "object": "QKDiniUniformCoefficientBounds",
+      "status": "MISSING_BLOCKER"
+    }
+  ],
+  "target_statement_shape": {
+    "name": "qk_dini_shell_comparability",
+    "input": [
+      "QKDiniUniformCoefficientBounds"
+    ],
+    "output": [
+      "shell comparability estimate",
+      "admissible shell ordering for RA1n shell-sum"
+    ],
+    "conditional_on": [
+      "uniform coefficient bounds"
+    ]
+  },
+  "downstream_targets": [
+    "QKDiniRA1nShellSumClosure",
+    "QKDiniToIntendedScientificDescentSystemBridge",
+    "IntendedScientificDescentSystemInstance_witness",
+    "final_scientific_closure"
+  ],
+  "claim_guard": {
+    "shell_comparability_proved": false,
+    "uniform_coefficient_bounds_available": false,
+    "may_be_used_as_theorem_input": false,
+    "final_theorem_closure_claim_allowed": false,
+    "final_scientific_closure_claim_allowed": false
+  },
+  "boundary": [
+    "This record does not prove QKDiniShellComparability.",
+    "This record does not prove QKDiniUniformCoefficientBounds.",
+    "This record does not supply QKDiniRA1nShellSumClosure.",
+    "This record does not supply IntendedScientificDescentSystemInstance_witness.",
+    "This record does not claim final theorem closure.",
+    "This record does not claim final scientific closure."
+  ]
+}
