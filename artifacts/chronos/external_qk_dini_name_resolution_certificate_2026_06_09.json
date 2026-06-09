@@ -1,0 +1,33 @@
+{
+  "id": "EXTERNAL_QK_DINI_NAME_RESOLUTION_CERTIFICATE_2026_06_09",
+  "object": "ExternalQKDiniNameResolutionCertificate",
+  "status": "EXTERNAL_NAME_RESOLUTION_CERTIFICATE_ONLY",
+  "repository_name": "QKDini",
+  "exact_external_name_status": "EXACT_EXTERNAL_NAME_UNRESOLVED",
+  "candidate_external_anchor": "q-generalized Dini function",
+  "candidate_source_id": "DOI:10.1155/2022/8496249",
+  "candidate_source_kind": "published_formula_candidate_anchor",
+  "closed_formal_objects": [
+    "ExternalQKDiniNameResolutionCertificateData",
+    "ExternalQKDiniNameResolutionCertificate",
+    "externalQKDiniNameResolutionCertificate_repository_name",
+    "externalQKDiniNameResolutionCertificate_exact_name_unresolved",
+    "externalQKDiniNameResolutionCertificate_candidate_anchor"
+  ],
+  "minimal_missing_object": "ExternallyDerivedScientificQKDiniSourceObjectPayloadValue",
+  "boundary": [
+    "NAME_RESOLUTION_ONLY",
+    "EXACT_QKDINI_EXTERNAL_NAME_UNRESOLVED",
+    "CANDIDATE_ANCHOR_ONLY_Q_GENERALIZED_DINI_FUNCTION",
+    "NO_EXTERNAL_QK_DINI_PAYLOAD_VALUE",
+    "NO_SOURCE_PAYLOAD_SUPPLIED",
+    "NO_PROVEN_SCIENTIFIC_DERIVATION",
+    "NO_ANALYTIC_DINI_ESTIMATE_PROOF",
+    "NO_FINAL_THEOREM_CLOSURE",
+    "NO_FINAL_SCIENTIFIC_CLOSURE",
+    "NO_CHRONOS_RR_CLOSURE",
+    "NO_H4_1_FGL_CLOSURE",
+    "NO_P_VS_NP_CLAIM",
+    "NO_CLAY_CLAIM"
+  ]
+}
