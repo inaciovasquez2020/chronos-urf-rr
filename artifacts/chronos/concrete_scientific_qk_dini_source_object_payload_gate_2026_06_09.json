@@ -1,0 +1,27 @@
+{
+  "id": "CONCRETE_SCIENTIFIC_QK_DINI_SOURCE_OBJECT_PAYLOAD_GATE_2026_06_09",
+  "object": "ConcreteScientificQKDiniSourceObjectPayloadGate",
+  "status": "PAYLOAD_GATE_ONLY_NO_CONCRETE_SCIENTIFIC_SOURCE_SUPPLIED",
+  "closed_formal_objects": [
+    "ConcreteScientificQKDiniSourceObjectPayload",
+    "ConcreteScientificQKDiniSourceObject",
+    "concreteScientificQKDiniSourceObject_has_source_object",
+    "concreteScientificQKDiniSourceObject_extracts_coefficient_family",
+    "concreteScientificQKDiniSourceObject_extracts_uniform_bounds"
+  ],
+  "minimal_missing_object": "ConcreteScientificQKDiniSourceObjectPayloadValue",
+  "conditional": true,
+  "boundary": [
+    "PAYLOAD_GATE_ONLY",
+    "NO_CONCRETE_SCIENTIFIC_QK_DINI_SOURCE_OBJECT_PAYLOAD_VALUE",
+    "NO_SOURCE_PAYLOAD_SUPPLIED",
+    "NO_PROVEN_SCIENTIFIC_DERIVATION",
+    "NO_ANALYTIC_DINI_ESTIMATE_PROOF",
+    "NO_FINAL_THEOREM_CLOSURE",
+    "NO_FINAL_SCIENTIFIC_CLOSURE",
+    "NO_CHRONOS_RR_CLOSURE",
+    "NO_H4_1_FGL_CLOSURE",
+    "NO_P_VS_NP_CLAIM",
+    "NO_CLAY_CLAIM"
+  ]
+}
