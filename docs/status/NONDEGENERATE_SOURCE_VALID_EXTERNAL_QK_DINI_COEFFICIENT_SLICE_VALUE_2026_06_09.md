@@ -1,0 +1,38 @@
+# NONDEGENERATE_SOURCE_VALID_EXTERNAL_QK_DINI_COEFFICIENT_SLICE_VALUE_2026_06_09
+
+STATUS: SLICE_VALUE_ONLY_NO_ANALYTIC_DINI_ESTIMATE_CLOSURE
+
+CLOSED_OBJECT: NondegenerateSourceValidExternalQKDiniCoefficientSliceValue
+
+SOURCE_ID: DOI:10.1155/2022/8496249
+
+PARAMETER_SLICE:
+- a = 1
+- b = 1
+- nu = 0
+- c = 1/16
+- q = 1/2
+- k = 1
+
+ENCODED_PROOFS:
+- c != 0
+- |c| < 4
+- 0 < q < 1
+- k = nu + (b + 1) / 2
+- denominator_nonzero
+- theorem1_coefficient_condition
+- theorem2_first_coefficient_condition
+- theorem2_second_coefficient_condition
+
+BOUNDARY:
+- NONDEGENERATE_SLICE_VALUE_ONLY
+- SOURCE_RESTRICTION_NUMERIC_CERTIFICATE_ONLY
+- NO_UNCONDITIONAL_ANALYTIC_DINI_ESTIMATE_PROOF
+- NO_FINAL_ANALYTIC_RESULT
+- NO_CHRONOS_RR_CLOSURE
+- NO_H4_1_FGL_CLOSURE
+- NO_P_VS_NP_CLAIM
+- NO_CLAY_CLAIM
+
+MINIMAL_MISSING_OBJECT: AnalyticDiniEstimateBindingLemma_OR_STOP
+NEXT_ADMISSIBLE_OBJECT: AnalyticDiniEstimateBindingLemma_OR_STOP
