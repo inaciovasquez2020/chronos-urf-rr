@@ -1,0 +1,27 @@
+{
+  "id": "EXTERNAL_SOURCE_THEOREM_CERTIFICATE_PAYLOAD_REQUIRED_2026_06_09",
+  "status": "CONDITIONAL_EXTERNAL_THEOREM_CERTIFICATE_PAYLOAD_REQUIRED",
+  "closed_object": "ExternalSourceTheoremCertificate",
+  "closed_transport": "externalSourceTheoremCertificate_to_genuineAnalyticDiniEstimate",
+  "closed_canonical_certificate": "El_Qadeem_2022_Certificate",
+  "closed_canonical_transport": "genuineAnalyticDiniEstimate_from_El_Qadeem_2022",
+  "sorry_count": 0,
+  "axiom_count": 0,
+  "payload_required": "GenuineAnalyticDiniEstimate",
+  "source_doi": "10.1155/2022/8496249",
+  "boundary": [
+    "SORRY_COUNT_0",
+    "AXIOM_COUNT_0",
+    "EXTERNAL_PAYLOAD_REQUIRED",
+    "CONDITIONAL_EXTERNAL_THEOREM_INTERFACE_ONLY",
+    "NO_INTERNAL_ANALYTIC_PROOF",
+    "NO_CONVERGENCE_PROOF",
+    "NO_SUMMABILITY_PROOF",
+    "NO_RATIO_BOUND_PROOF",
+    "NO_FINAL_ANALYTIC_RESULT",
+    "NO_P_VS_NP_CLAIM",
+    "NO_CLAY_CLAIM"
+  ],
+  "minimal_missing_object": "EXTERNAL_GENUINE_ANALYTIC_DINI_ESTIMATE_PAYLOAD",
+  "next_admissible_object": "STOP_OR_EXTERNAL_GENUINE_ANALYTIC_DINI_ESTIMATE_PAYLOAD"
+}
