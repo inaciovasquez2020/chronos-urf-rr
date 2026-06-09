@@ -1,0 +1,46 @@
+{
+  "id": "PARAMETER_RESTRICTED_EXTERNAL_QK_DINI_COEFFICIENT_BOUND_2026_06_09",
+  "object": "ParameterRestrictedExternalQKDiniCoefficientBoundTheorem",
+  "status": "CONDITIONAL_PARAMETER_RESTRICTED_BOUND_THEOREM_ONLY",
+  "source_id": "DOI:10.1155/2022/8496249",
+  "coefficient_symbol": "zeta_n",
+  "analytic_codomain": "Real",
+  "q_pochhammer_encoding": "qPochhammerReal(q,r,n)=prod_{j in range n}(1-q^(r+j))",
+  "parameter_restrictions": [
+    "a_ne_zero",
+    "0 < q",
+    "q < 1",
+    "0 < k",
+    "0 <= B",
+    "denominator_nonzero",
+    "coefficient_abs_bound"
+  ],
+  "closed_formal_objects": [
+    "qPochhammerReal",
+    "externalQKDiniNumerator",
+    "externalQKDiniDenominator",
+    "externalQKDiniCoefficient",
+    "ParameterRestrictedExternalQKDiniCoefficientSlice",
+    "externalQKDiniCoefficient_zero_eq_one",
+    "parameterRestrictedExternalQKDiniCoefficient_nonzero_witness",
+    "parameterRestrictedExternalQKDiniCoefficient_denominator_nonzero",
+    "parameterRestrictedExternalQKDiniCoefficientBoundTheorem"
+  ],
+  "minimal_missing_object": "ConcreteParameterRestrictedExternalQKDiniCoefficientSliceValue",
+  "boundary": [
+    "CONDITIONAL_PARAMETER_RESTRICTED_BOUND_ONLY",
+    "REAL_SCALAR_ENCODING_ONLY",
+    "DENOMINATOR_NONZERO_REQUIRES_PARAMETER_RESTRICTION_FIELD",
+    "UNIFORM_BOUND_REQUIRES_PARAMETER_RESTRICTION_FIELD",
+    "NO_CONCRETE_PARAMETER_SLICE_VALUE",
+    "NO_FULL_COMPLEX_Q_CALCULUS_ENCODING",
+    "NO_EXTERNAL_QK_DINI_PAYLOAD_VALUE",
+    "NO_UNCONDITIONAL_ANALYTIC_DINI_ESTIMATE_PROOF",
+    "NO_FINAL_THEOREM_CLOSURE",
+    "NO_FINAL_SCIENTIFIC_CLOSURE",
+    "NO_CHRONOS_RR_CLOSURE",
+    "NO_H4_1_FGL_CLOSURE",
+    "NO_P_VS_NP_CLAIM",
+    "NO_CLAY_CLAIM"
+  ]
+}
