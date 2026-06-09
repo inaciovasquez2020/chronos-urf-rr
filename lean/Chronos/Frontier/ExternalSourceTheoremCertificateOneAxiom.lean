@@ -35,7 +35,7 @@ noncomputable def El_Qadeem_2022_Certificate
     source_doi :=
       "10.1155/2022/8496249"
     theorem_label :=
-      "Theorems 2-3: ratio lower bounds, q-generalized Dini function"
+      "Theorems 1 and 2: ratio lower bounds, q-generalized Dini function"
     full_reference :=
       "El-Qadeem, A.H., Mamon, M.A., Elshazly, I.S.: On the Partial Sums of the q-Generalized Dini Function. Journal of Mathematics, 2022, Article ID 8496249. DOI: 10.1155/2022/8496249"
     parameter_valid := S
