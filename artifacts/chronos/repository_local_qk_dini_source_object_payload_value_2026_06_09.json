@@ -1,0 +1,30 @@
+{
+  "id": "REPOSITORY_LOCAL_QK_DINI_SOURCE_OBJECT_PAYLOAD_VALUE_2026_06_09",
+  "object": "RepositoryLocalQKDiniSourceObjectPayloadValue",
+  "status": "REPOSITORY_LOCAL_PAYLOAD_VALUE_ONLY_NO_SCIENTIFIC_DERIVATION_CLAIM",
+  "supersedes_unfilled_object": "ConcreteScientificQKDiniSourceObjectPayloadValue",
+  "closed_formal_objects": [
+    "RepositoryLocalQKDiniAdmissibility",
+    "RepositoryLocalQKDiniSourceObjectPayload",
+    "RepositoryLocalQKDiniSourceObject",
+    "RepositoryLocalQKDiniSourceObjectPayloadValue",
+    "RepositoryLocalQKDiniSourceObjectPayloadValue.toCoefficientFamily",
+    "RepositoryLocalQKDiniSourceObjectPayloadValue.toUniformCoefficientBounds",
+    "repositoryLocalQKDiniSourceObjectPayloadValue_nonzero",
+    "repositoryLocalQKDiniSourceObjectPayloadValue_uniform_bound"
+  ],
+  "minimal_missing_object": "ExternallyDerivedScientificQKDiniSourceObjectPayloadValue",
+  "boundary": [
+    "RENAMED_REPOSITORY_LOCAL_NOT_SCIENTIFIC",
+    "NO_SCIENTIFIC_DERIVATION_CLAIM_INSTANTIATED",
+    "NO_EXTERNAL_QK_DINI_SOURCE_PAYLOAD",
+    "NO_PROVEN_SCIENTIFIC_DERIVATION",
+    "NO_ANALYTIC_DINI_ESTIMATE_PROOF",
+    "NO_FINAL_THEOREM_CLOSURE",
+    "NO_FINAL_SCIENTIFIC_CLOSURE",
+    "NO_CHRONOS_RR_CLOSURE",
+    "NO_H4_1_FGL_CLOSURE",
+    "NO_P_VS_NP_CLAIM",
+    "NO_CLAY_CLAIM"
+  ]
+}
