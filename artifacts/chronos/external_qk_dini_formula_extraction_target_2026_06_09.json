@@ -1,0 +1,34 @@
+{
+  "id": "EXTERNAL_QK_DINI_FORMULA_EXTRACTION_TARGET_2026_06_09",
+  "object": "ExternalQKDiniFormulaExtractionTarget",
+  "status": "FORMULA_TRANSCRIPTION_TARGET_ONLY",
+  "source_id": "DOI:10.1155/2022/8496249",
+  "source_title": "On the Partial Sums of the q-Generalized Dini Function",
+  "source_formula_name": "normalized q-generalized Dini function",
+  "normalized_series_formula": "psi^a_{nu,b,c}(z;q) = z + sum_{n>=1} zeta_n z^(n+1)",
+  "coefficient_symbol": "zeta_n",
+  "closed_formal_objects": [
+    "ExternalQKDiniFormulaExtractionTargetData",
+    "ExternalQKDiniFormulaExtractionTarget",
+    "externalQKDiniFormulaExtractionTarget_source_id",
+    "externalQKDiniFormulaExtractionTarget_series_formula_recorded",
+    "externalQKDiniFormulaExtractionTarget_status"
+  ],
+  "minimal_missing_object": "FormalizedExternalQKDiniCoefficientExtractionRule",
+  "boundary": [
+    "FORMULA_TRANSCRIPTION_TARGET_ONLY",
+    "NO_FORMAL_COMPLEX_Q_CALCULUS_ENCODING",
+    "NO_FORMAL_ZETA_N_COEFFICIENT_RULE_AS_NAT",
+    "NO_NONZERO_COEFFICIENT_PROOF_FROM_SOURCE",
+    "NO_UNIFORM_BOUND_PROOF_FROM_SOURCE",
+    "NO_EXTERNAL_QK_DINI_PAYLOAD_VALUE",
+    "NO_PROVEN_SCIENTIFIC_DERIVATION",
+    "NO_ANALYTIC_DINI_ESTIMATE_PROOF",
+    "NO_FINAL_THEOREM_CLOSURE",
+    "NO_FINAL_SCIENTIFIC_CLOSURE",
+    "NO_CHRONOS_RR_CLOSURE",
+    "NO_H4_1_FGL_CLOSURE",
+    "NO_P_VS_NP_CLAIM",
+    "NO_CLAY_CLAIM"
+  ]
+}

@@ -1,0 +1,17 @@
+from __future__ import annotations
+
+import subprocess
+import sys
+from pathlib import Path
+
+
+def test_external_qk_dini_formula_extraction_target_verifier() -> None:
+    root = Path(__file__).resolve().parents[1]
+    result = subprocess.run(
+        [sys.executable, "tools/verify_external_qk_dini_formula_extraction_target.py"],
+        cwd=root,
+        check=True,
+        text=True,
+        capture_output=True,
+    )
+    assert "EXTERNAL_QK_DINI_FORMULA_EXTRACTION_TARGET_OK" in result.stdout
