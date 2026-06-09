@@ -418,3 +418,4 @@ import Chronos.Frontier.ParameterRestrictedExternalQKDiniCoefficientBound
 
 import Chronos.Frontier.ConcreteParameterRestrictedExternalQKDiniCoefficientSliceValue
 import Chronos.Frontier.NondegenerateSourceValidExternalQKDiniCoefficientSliceValue
+import Chronos.Frontier.AnalyticDiniEstimateBindingLemma

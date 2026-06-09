@@ -1,0 +1,20 @@
+{
+  "id": "ANALYTIC_DINI_ESTIMATE_BINDING_LEMMA_REPOSITORY_LOCAL_ENVELOPE_2026_06_09",
+  "status": "REPOSITORY_LOCAL_ENVELOPE_ONLY_NO_ANALYTIC_CLOSURE",
+  "closed_object": "analyticDiniEstimateBindingLemma",
+  "depends_on": [
+    "NondegenerateSourceValidExternalQKDiniCoefficientSliceValue",
+    "RepositoryLocalUniformCoefficientBoundWitness"
+  ],
+  "boundary": [
+    "REPOSITORY_LOCAL_ENVELOPE_ONLY",
+    "NO_GENUINE_ANALYTIC_DINI_ESTIMATE",
+    "NO_CONVERGENCE_CLAIM",
+    "NO_SUMMABILITY_CLAIM",
+    "NO_FINAL_ANALYTIC_RESULT",
+    "NO_P_VS_NP_CLAIM",
+    "NO_CLAY_CLAIM"
+  ],
+  "minimal_remaining_missing_object": "GENUINE_ANALYTIC_DINI_ESTIMATE_PROOF_OR_STOP",
+  "next_admissible_object": "STOP_OR_GENUINE_ANALYTIC_DINI_ESTIMATE_PROOF"
+}
