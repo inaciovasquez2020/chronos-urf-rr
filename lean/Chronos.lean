@@ -399,3 +399,5 @@ import Chronos.Frontier.MasconUnitEquivalenceCertificate
 import Chronos.Frontier.QKDiniUniformCoefficientBounds
 
 import Chronos.Frontier.ConcreteQKDiniCoefficientFamilyBoundWitness
+
+import Chronos.Frontier.NonzeroConcreteQKDiniCoefficientFamily
