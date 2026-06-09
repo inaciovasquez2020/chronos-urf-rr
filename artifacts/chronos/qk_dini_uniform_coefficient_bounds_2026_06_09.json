@@ -1,0 +1,18 @@
+{
+  "id": "QKDINI_UNIFORM_COEFFICIENT_BOUNDS_2026_06_09",
+  "object": "QKDiniUniformCoefficientBounds",
+  "status": "UNIFORM_COEFFICIENT_BOUNDS_INTERFACE_ONLY",
+  "closed_formal_object": "qkDiniUniformCoefficientBounds_boundary",
+  "minimal_missing_object": "ConcreteQKDiniCoefficientFamilyBoundWitness",
+  "boundary": [
+    "INTERFACE_ONLY",
+    "NO_CONCRETE_QK_DINI_COEFFICIENT_FAMILY_BOUND_WITNESS",
+    "NO_ANALYTIC_DINI_ESTIMATE_PROOF",
+    "NO_FINAL_THEOREM_CLOSURE",
+    "NO_FINAL_SCIENTIFIC_CLOSURE",
+    "NO_CHRONOS_RR_CLOSURE",
+    "NO_H4_1_FGL_CLOSURE",
+    "NO_P_VS_NP_CLAIM",
+    "NO_CLAY_CLAIM"
+  ]
+}
