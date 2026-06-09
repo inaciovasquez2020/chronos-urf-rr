@@ -1,0 +1,25 @@
+{
+  "id": "NONZERO_CONCRETE_QK_DINI_COEFFICIENT_FAMILY_2026_06_09",
+  "object": "NonzeroConcreteQKDiniCoefficientFamily",
+  "status": "NONZERO_CONCRETE_CONSTANT_ONE_FAMILY_BOUND_WITNESS_ONLY",
+  "closed_formal_objects": [
+    "nonzeroConcreteQKDiniCoefficientFamily_nonzero",
+    "NonzeroConcreteQKDiniCoefficientFamilyBoundWitness",
+    "nonzeroConcreteQKDiniCoefficientFamily_uniform_bound"
+  ],
+  "coefficient_rule": "coefficient i n = 1",
+  "uniform_bound": 1,
+  "minimal_missing_object": "ScientificallyDerivedQKDiniCoefficientFamily",
+  "boundary": [
+    "NONZERO_CONSTANT_ONE_FORMAL_FAMILY_ONLY",
+    "NO_SCIENTIFICALLY_DERIVED_QK_DINI_COEFFICIENT_FAMILY",
+    "NO_QK_DINI_SOURCE_OBJECT_DERIVATION",
+    "NO_ANALYTIC_DINI_ESTIMATE_PROOF",
+    "NO_FINAL_THEOREM_CLOSURE",
+    "NO_FINAL_SCIENTIFIC_CLOSURE",
+    "NO_CHRONOS_RR_CLOSURE",
+    "NO_H4_1_FGL_CLOSURE",
+    "NO_P_VS_NP_CLAIM",
+    "NO_CLAY_CLAIM"
+  ]
+}
