@@ -413,3 +413,5 @@ import Chronos.Frontier.ExternalQKDiniNameResolutionCertificate
 import Chronos.Frontier.ExternalQKDiniFormulaExtractionTarget
 
 import Chronos.Frontier.ExternalQKDiniCoefficientExtractionRule
+
+import Chronos.Frontier.ParameterRestrictedExternalQKDiniCoefficientBound
