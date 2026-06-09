@@ -1,0 +1,19 @@
+{
+  "id": "QK_DINI_RATIO_LOWER_BOUND_THEOREM_INTERFACE_NO_SORRY_2026_06_09",
+  "status": "CONDITIONAL_EXTERNAL_THEOREM_INTERFACE_ONLY",
+  "closed_object": "QKDiniRatioLowerBoundTheoremInterface",
+  "closed_transport": "genuineAnalyticDiniEstimate_from_source_theorem",
+  "sorry_count": 0,
+  "boundary": [
+    "CONDITIONAL_EXTERNAL_THEOREM_INTERFACE_ONLY",
+    "NO_INTERNAL_ANALYTIC_PROOF",
+    "NO_CONVERGENCE_PROOF",
+    "NO_SUMMABILITY_PROOF",
+    "NO_RATIO_BOUND_PROOF",
+    "NO_FINAL_ANALYTIC_RESULT",
+    "NO_P_VS_NP_CLAIM",
+    "NO_CLAY_CLAIM"
+  ],
+  "minimal_missing_object": "ExternalSourceTheoremCertificate",
+  "next_admissible_object": "ExternalSourceTheoremCertificate_OR_STOP"
+}
