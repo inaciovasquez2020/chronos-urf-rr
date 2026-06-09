@@ -411,3 +411,5 @@ import Chronos.Frontier.RepositoryLocalQKDiniSourceObjectPayloadValue
 import Chronos.Frontier.ExternalQKDiniNameResolutionCertificate
 
 import Chronos.Frontier.ExternalQKDiniFormulaExtractionTarget
+
+import Chronos.Frontier.ExternalQKDiniCoefficientExtractionRule

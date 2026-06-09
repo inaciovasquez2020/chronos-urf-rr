@@ -1,0 +1,37 @@
+{
+  "id": "EXTERNAL_QK_DINI_COEFFICIENT_EXTRACTION_RULE_2026_06_09",
+  "object": "ExternalQKDiniCoefficientExtractionRule",
+  "status": "COEFFICIENT_EXTRACTION_RULE_RECORDED_ONLY",
+  "source_id": "DOI:10.1155/2022/8496249",
+  "source_formula_name": "normalized q-generalized Dini function",
+  "coefficient_symbol": "zeta_n",
+  "extracted_rule": "zeta_n = ((-c)^n * (a + 2*n)) / (a * 4^n * (q;q)_n * (q^k;q)_n)",
+  "native_codomain_decision": "parameterized analytic scalar coefficient; not intrinsically Nat",
+  "nat_codomain_status": "NO_NAT_RULE_WITHOUT_DISCRETIZATION_OR_ABSOLUTE_VALUE_ENCODING",
+  "nonzero_witness_status": "MISSING_PARAMETER_ASSUMPTIONS_FOR_NONZERO_SOURCE_WITNESS",
+  "uniform_bound_status": "MISSING_PARAMETER_RESTRICTED_UNIFORM_BOUND_THEOREM",
+  "closed_formal_objects": [
+    "ExternalQKDiniCoefficientExtractionRuleData",
+    "ExternalQKDiniCoefficientExtractionRule",
+    "externalQKDiniCoefficientExtractionRule_source_id",
+    "externalQKDiniCoefficientExtractionRule_symbol",
+    "externalQKDiniCoefficientExtractionRule_nat_obstruction",
+    "externalQKDiniCoefficientExtractionRule_uniform_bound_missing"
+  ],
+  "minimal_missing_object": "ParameterRestrictedExternalQKDiniCoefficientBoundTheorem",
+  "boundary": [
+    "COEFFICIENT_EXTRACTION_RULE_RECORDED_ONLY",
+    "NO_FORMAL_COMPLEX_Q_CALCULUS_ENCODING",
+    "NO_NAT_RULE_WITHOUT_DISCRETIZATION_OR_ABSOLUTE_VALUE_ENCODING",
+    "NO_NONZERO_COEFFICIENT_PROOF_FROM_SOURCE",
+    "NO_UNIFORM_BOUND_PROOF_FROM_SOURCE",
+    "NO_EXTERNAL_QK_DINI_PAYLOAD_VALUE",
+    "NO_ANALYTIC_DINI_ESTIMATE_PROOF",
+    "NO_FINAL_THEOREM_CLOSURE",
+    "NO_FINAL_SCIENTIFIC_CLOSURE",
+    "NO_CHRONOS_RR_CLOSURE",
+    "NO_H4_1_FGL_CLOSURE",
+    "NO_P_VS_NP_CLAIM",
+    "NO_CLAY_CLAIM"
+  ]
+}
