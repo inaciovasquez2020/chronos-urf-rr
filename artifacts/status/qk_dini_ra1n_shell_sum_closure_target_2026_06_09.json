@@ -1,0 +1,41 @@
+{
+  "id": "QK_DINI_RA1N_SHELL_SUM_CLOSURE_TARGET_2026_06_09",
+  "object": "QKDiniRA1nShellSumClosure",
+  "date": "2026-06-09",
+  "status": "TARGET_ONLY",
+  "route": "Q_k / Dini / Lyapunov",
+  "depends_on": [
+    "QKDiniPrimaryScientificClosureRoute",
+    "QKDiniUniformCoefficientBounds",
+    "QKDiniShellComparability"
+  ],
+  "blocked_by": [
+    {
+      "object": "QKDiniUniformCoefficientBounds",
+      "status": "MISSING_BLOCKER"
+    },
+    {
+      "object": "QKDiniShellComparability",
+      "status": "TARGET_ONLY"
+    }
+  ],
+  "downstream_targets": [
+    "QKDiniToIntendedScientificDescentSystemBridge",
+    "IntendedScientificDescentSystemInstance_witness"
+  ],
+  "claim_guard": {
+    "ra1n_shell_sum_closure_proved": false,
+    "conditional_only": true,
+    "final_scientific_closure_claim_allowed": false,
+    "may_be_used_as_theorem_input": false
+  },
+  "boundary": [
+    "This record does not prove RA1n shell-sum closure.",
+    "This record does not prove QKDiniUniformCoefficientBounds.",
+    "This record does not prove QKDiniShellComparability.",
+    "This record does not supply QKDiniToIntendedScientificDescentSystemBridge.",
+    "This record does not supply IntendedScientificDescentSystemInstance_witness.",
+    "This record does not claim final theorem closure.",
+    "This record does not claim final scientific closure."
+  ]
+}

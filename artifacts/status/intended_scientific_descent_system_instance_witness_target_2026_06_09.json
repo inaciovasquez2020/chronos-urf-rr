@@ -1,0 +1,30 @@
+{
+  "id": "INTENDED_SCIENTIFIC_DESCENT_SYSTEM_INSTANCE_WITNESS_TARGET_2026_06_09",
+  "object": "IntendedScientificDescentSystemInstance_witness",
+  "date": "2026-06-09",
+  "status": "TARGET_ONLY",
+  "route": "Q_k / Dini / Lyapunov",
+  "depends_on": [
+    "QKDiniToIntendedScientificDescentSystemBridge"
+  ],
+  "downstream_targets": [
+    "terminal_correctness",
+    "interpretation_bridge",
+    "final_scientific_closure"
+  ],
+  "claim_guard": {
+    "witness_supplied": false,
+    "terminal_correctness_proved": false,
+    "interpretation_bridge_proved": false,
+    "final_theorem_closure_claim_allowed": false,
+    "final_scientific_closure_claim_allowed": false,
+    "may_be_used_as_theorem_input": false
+  },
+  "boundary": [
+    "This record does not supply IntendedScientificDescentSystemInstance_witness.",
+    "This record does not prove terminal_correctness.",
+    "This record does not prove interpretation_bridge.",
+    "This record does not claim final theorem closure.",
+    "This record does not claim final scientific closure."
+  ]
+}

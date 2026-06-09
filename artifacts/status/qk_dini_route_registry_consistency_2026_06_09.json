@@ -1,0 +1,78 @@
+{
+  "id": "QK_DINI_ROUTE_REGISTRY_CONSISTENCY_2026_06_09",
+  "object": "QKDiniRouteRegistryConsistency",
+  "date": "2026-06-09",
+  "status": "REGISTRY_GUARD_ONLY",
+  "route": "Q_k / Dini / Lyapunov",
+  "corrected_chain": [
+    {
+      "object": "QKDiniPrimaryScientificClosureRoute",
+      "expected_status": "PRIMARY_ROUTE_FROZEN",
+      "artifact": "artifacts/status/qk_dini_primary_scientific_closure_route_2026_06_09.json"
+    },
+    {
+      "object": "QKDiniUniformCoefficientBounds",
+      "expected_status": "MISSING_BLOCKER",
+      "artifact": "artifacts/status/qk_dini_uniform_coefficient_bounds_blocker_2026_06_09.json"
+    },
+    {
+      "object": "QKDiniShellComparability",
+      "expected_status": "TARGET_ONLY",
+      "artifact": "artifacts/status/qk_dini_shell_comparability_target_2026_06_09.json"
+    },
+    {
+      "object": "QKDiniRA1nShellSumClosure",
+      "expected_status": "TARGET_ONLY",
+      "artifact": "artifacts/status/qk_dini_ra1n_shell_sum_closure_target_2026_06_09.json"
+    },
+    {
+      "object": "QKDiniToIntendedScientificDescentSystemBridge",
+      "expected_status": "TARGET_ONLY",
+      "artifact": "artifacts/status/qk_dini_to_intended_scientific_descent_system_bridge_target_2026_06_09.json"
+    },
+    {
+      "object": "IntendedScientificDescentSystemInstance_witness",
+      "expected_status": "TARGET_ONLY",
+      "artifact": "artifacts/status/intended_scientific_descent_system_instance_witness_target_2026_06_09.json"
+    },
+    {
+      "object": "intended_scientific_terminal_correctness",
+      "expected_status": "TARGET_ONLY",
+      "artifact": "artifacts/status/intended_scientific_terminal_correctness_target_2026_06_09.json"
+    },
+    {
+      "object": "intended_scientific_interpretation_bridge",
+      "expected_status": "TARGET_ONLY",
+      "artifact": "artifacts/status/intended_scientific_interpretation_bridge_target_2026_06_09.json"
+    },
+    {
+      "object": "final_scientific_closure",
+      "expected_status": "TARGET_ONLY",
+      "artifact": "artifacts/status/final_scientific_closure_target_2026_06_09.json"
+    }
+  ],
+  "claim_guard": {
+    "registry_consistency_checked": true,
+    "qk_dini_uniform_coefficient_bounds_proved": false,
+    "qk_dini_shell_comparability_proved": false,
+    "qk_dini_ra1n_shell_sum_closure_proved": false,
+    "qk_dini_to_intended_scientific_descent_system_bridge_proved": false,
+    "intended_scientific_descent_system_witness_supplied": false,
+    "terminal_correctness_proved": false,
+    "interpretation_bridge_proved": false,
+    "final_scientific_closure_proved": false,
+    "final_scientific_closure_claim_allowed": false
+  },
+  "boundary": [
+    "This record does not prove QKDiniUniformCoefficientBounds.",
+    "This record does not prove QKDiniShellComparability.",
+    "This record does not prove QKDiniRA1nShellSumClosure.",
+    "This record does not prove QKDiniToIntendedScientificDescentSystemBridge.",
+    "This record does not supply IntendedScientificDescentSystemInstance_witness.",
+    "This record does not prove intended_scientific_terminal_correctness.",
+    "This record does not prove intended_scientific_interpretation_bridge.",
+    "This record does not prove final_scientific_closure.",
+    "This record does not claim final theorem closure.",
+    "This record does not claim final scientific closure."
+  ]
+}

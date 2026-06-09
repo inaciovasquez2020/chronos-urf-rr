@@ -1,0 +1,49 @@
+{
+  "id": "QK_DINI_PRIMARY_SCIENTIFIC_CLOSURE_ROUTE_2026_06_09",
+  "object": "QKDiniPrimaryScientificClosureRoute",
+  "date": "2026-06-09",
+  "status": "PRIMARY_ROUTE_FROZEN",
+  "route_status": "PRIMARY_ROUTE_FROZEN",
+  "claim_status": "NOT_FINAL_SCIENTIFIC_CLOSURE",
+  "ordered_chain": [
+    "QKDiniUniformCoefficientBounds",
+    "QKDiniShellComparability",
+    "QKDiniRA1nShellSumClosure",
+    "QKDiniToIntendedScientificDescentSystemBridge",
+    "IntendedScientificDescentSystemInstance_witness",
+    "intended_scientific_terminal_correctness",
+    "intended_scientific_interpretation_bridge",
+    "final_scientific_closure"
+  ],
+  "route": {
+    "name": "Q_k / Dini / Lyapunov",
+    "role": "primary scientific closure route",
+    "selected": true,
+    "frozen": true
+  },
+  "claim_guard": {
+    "route_selected": true,
+    "route_frozen": true,
+    "qk_dini_uniform_coefficient_bounds_proved": false,
+    "qk_dini_shell_comparability_proved": false,
+    "qk_dini_ra1n_shell_sum_closure_proved": false,
+    "qk_dini_to_intended_scientific_descent_system_bridge_proved": false,
+    "intended_scientific_descent_system_witness_supplied": false,
+    "terminal_correctness_proved": false,
+    "interpretation_bridge_proved": false,
+    "final_theorem_closure_claim_allowed": false,
+    "final_scientific_closure_claim_allowed": false,
+    "may_be_used_as_closed_program_status": false
+  },
+  "boundary": [
+    "This does not prove QKDiniUniformCoefficientBounds.",
+    "This does not prove QKDiniShellComparability.",
+    "This does not prove QKDiniRA1nShellSumClosure.",
+    "This does not prove QKDiniToIntendedScientificDescentSystemBridge.",
+    "This does not supply IntendedScientificDescentSystemInstance_witness.",
+    "This does not prove intended_scientific_terminal_correctness.",
+    "This does not prove intended_scientific_interpretation_bridge.",
+    "This does not claim final theorem closure.",
+    "This does not claim final scientific closure."
+  ]
+}

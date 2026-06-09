@@ -1,0 +1,27 @@
+{
+  "id": "INTENDED_SCIENTIFIC_INTERPRETATION_BRIDGE_TARGET_2026_06_09",
+  "object": "intended_scientific_interpretation_bridge",
+  "alias": "interpretation_bridge",
+  "date": "2026-06-09",
+  "status": "TARGET_ONLY",
+  "route": "Q_k / Dini / Lyapunov",
+  "depends_on": [
+    "IntendedScientificDescentSystemInstance_witness"
+  ],
+  "required_before": [
+    "IntendedScientificDescentSystemInstance_witness",
+    "final_theorem_closure",
+    "final_scientific_closure"
+  ],
+  "claim_guard": {
+    "interpretation_bridge_proved": false,
+    "final_theorem_closure_claim_allowed": false,
+    "final_scientific_closure_claim_allowed": false
+  },
+  "boundary": [
+    "This record does not prove intended_scientific_interpretation_bridge.",
+    "This record does not supply IntendedScientificDescentSystemInstance_witness.",
+    "This record does not claim final theorem closure.",
+    "This record does not claim final scientific closure."
+  ]
+}
