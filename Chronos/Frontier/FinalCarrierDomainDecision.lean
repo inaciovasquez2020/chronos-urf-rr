@@ -113,3 +113,20 @@ def FullyBoundedFinalCarrierDomain (B : Nat) (C : ChronosCarrierData) : Prop :=
   FinalCarrierDomain C ∧ C.arity ≤ B ∧ C.stratum ≤ B ∧ C.index ≤ B
 
 end Chronos.Frontier.FinalCarrierDomainDecision
+
+namespace Chronos.Frontier.FinalCarrierDomainDecision
+
+/--
+Finite-instance target for the fully bounded replacement domain.
+
+This does not prove `FinalCarrierDomain_fintype`; that target is impossible for
+the current unbounded `FinalCarrierDomain`.
+-/
+noncomputable def FullyBoundedFinalCarrierDomain_fintype
+    (B : Nat) :
+    Fintype { C : ChronosCarrierData // FullyBoundedFinalCarrierDomain B C } :=
+by
+  classical
+  exact Fintype.ofFinite _
+
+end Chronos.Frontier.FinalCarrierDomainDecision
