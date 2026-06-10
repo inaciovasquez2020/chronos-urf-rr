@@ -1,0 +1,18 @@
+{
+  "response_id": "SYNTHETIC_MISSING_REQUIRED_FIELDS_FIXTURE_2026_06_10",
+  "response_type": "external_tensor_audit_response",
+  "claim_scope": "synthetic negative fixture only",
+  "audit_certificate_status": "absent",
+  "scientific_payload_status": "absent",
+  "theorem_promotion_status": "blocked",
+  "boundary_flags": [
+    "VERIFIER_ONLY",
+    "SYNTHETIC_FIXTURE_ONLY",
+    "NO_REQUEST_SENT",
+    "NO_EXTERNAL_RESPONSE_SUPPLIED",
+    "NO_AUDIT_CERTIFICATE",
+    "NO_THEOREM_PROMOTION",
+    "NO_NEW_SCIENTIFIC_PAYLOAD",
+    "NO_OUTREACH"
+  ]
+}

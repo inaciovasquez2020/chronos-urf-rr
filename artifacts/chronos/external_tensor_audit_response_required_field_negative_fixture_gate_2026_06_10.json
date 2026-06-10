@@ -1,0 +1,44 @@
+{
+  "id": "EXTERNAL_TENSOR_AUDIT_RESPONSE_REQUIRED_FIELD_NEGATIVE_FIXTURE_GATE_2026_06_10",
+  "status": "verifier_only_required_field_negative_fixture_gate",
+  "scope": "external tensor audit response intake",
+  "depends_on": [
+    "EXTERNAL_TENSOR_AUDIT_RESPONSE_INTAKE_NEGATIVE_FIXTURE_GATE_2026_06_10"
+  ],
+  "required_fields": [
+    "response_id",
+    "response_type",
+    "source_reference",
+    "tensor_scope",
+    "claim_scope",
+    "audit_certificate_status",
+    "scientific_payload_status",
+    "theorem_promotion_status",
+    "boundary_flags"
+  ],
+  "invalid_fixture": "fixtures/chronos/external_tensor_audit_response_missing_required_fields_fixture_2026_06_10.json",
+  "expected_rejection": {
+    "reason": "missing_required_fields",
+    "missing_fields": [
+      "source_reference",
+      "tensor_scope"
+    ]
+  },
+  "forbidden_promotion_values": [
+    "promoted",
+    "theorem_promoted",
+    "accepted_as_theorem",
+    "scientific_payload_accepted"
+  ],
+  "boundary": [
+    "VERIFIER_ONLY",
+    "SYNTHETIC_FIXTURE_ONLY",
+    "NO_REQUEST_SENT",
+    "NO_EXTERNAL_RESPONSE_SUPPLIED",
+    "NO_AUDIT_CERTIFICATE",
+    "NO_THEOREM_PROMOTION",
+    "NO_NEW_SCIENTIFIC_PAYLOAD",
+    "NO_OUTREACH"
+  ],
+  "closed_object": "ExternalTensorAuditResponseRequiredFieldNegativeFixtureGate"
+}
