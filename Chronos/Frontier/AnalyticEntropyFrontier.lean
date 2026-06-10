@@ -36,31 +36,36 @@ def UniversalSemanticFiberEntropyGap
     Prop :=
   OriginalAnalyticUnitObservationEntropyGap P K
 
-axiom AnalyticLogKernelPositivity_FRONTIER_OPEN :
-  forall K : AnalyticLogEntropyKernel,
-    AnalyticLogBasedShannonEntropyPositivity K
+theorem AnalyticLogKernelPositivity_FRONTIER_OPEN
+    (K : AnalyticLogEntropyKernel)
+    (hK : K.log_kernel_positive) :
+    AnalyticLogBasedShannonEntropyPositivity K :=
+  hK
 
 theorem FiniteDistributionEntropyPositive_FRONTIER_OPEN :
   forall {Omega : Type u}
     (P : AnalyticProbabilitySpace Omega)
     (K : AnalyticLogEntropyKernel),
+    K.log_kernel_positive ->
     FullFiniteDistributionShannonEntropyInequality P K := by
-  intro Omega P K _h_norm _h_two
-  exact AnalyticLogKernelPositivity_FRONTIER_OPEN K
+  intro Omega P K hK _h_norm _h_two
+  exact AnalyticLogKernelPositivity_FRONTIER_OPEN K hK
 
 theorem analytic_unit_observation_entropy_gap_from_frontiers
     {Omega : Type u}
     (P : AnalyticProbabilitySpace Omega)
-    (K : AnalyticLogEntropyKernel) :
+    (K : AnalyticLogEntropyKernel)
+    (hK : K.log_kernel_positive) :
     OriginalAnalyticUnitObservationEntropyGap P K :=
-  FiniteDistributionEntropyPositive_FRONTIER_OPEN P K
+  FiniteDistributionEntropyPositive_FRONTIER_OPEN P K hK
 
 theorem universal_semantic_fiber_entropy_gap_from_frontiers
     {Omega : Type u}
     (P : AnalyticProbabilitySpace Omega)
-    (K : AnalyticLogEntropyKernel) :
+    (K : AnalyticLogEntropyKernel)
+    (hK : K.log_kernel_positive) :
     UniversalSemanticFiberEntropyGap P K :=
-  analytic_unit_observation_entropy_gap_from_frontiers P K
+  analytic_unit_observation_entropy_gap_from_frontiers P K hK
 
 def AnalyticRealLogInfrastructure_FRONTIER_OPEN : Prop := True
 def RealValuedFiniteEntropySum_FRONTIER_OPEN : Prop := True
