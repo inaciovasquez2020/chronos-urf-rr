@@ -1,4 +1,4 @@
-import chronos.Frontier.RegisteredNFDomination
+import Chronos.Frontier.RegisteredNFDomination
 
 namespace Chronos.Frontier.CarrierRegistryExhaustivenessBridge
 
