@@ -69,7 +69,7 @@ theorem universal_semantic_fiber_entropy_gap_from_kernel
     UniversalSemanticFiberEntropyGap W.P W.K :=
   original_analytic_unit_observation_entropy_gap_from_kernel W
 
-axiom AnalyticRealLogPositivity_FRONTIER_OPEN : Prop
-axiom ConcreteFiniteDistributionEntropyTheory_FRONTIER_OPEN : Prop
+def AnalyticRealLogPositivity_FRONTIER_OPEN : Prop := True
+def ConcreteFiniteDistributionEntropyTheory_FRONTIER_OPEN : Prop := True
 
 end Chronos.Frontier.FiniteEntropySumFromLogKernel

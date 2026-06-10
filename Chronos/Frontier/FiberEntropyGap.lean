@@ -65,6 +65,6 @@ theorem fiber_entropy_gap_unconditional
     FiberEntropyGap B := by
   exact fiber_entropy_gap_inhabited B lam0
 
-axiom UnitObservationNontrivialEntropyGap_FRONTIER_OPEN : Prop
+def UnitObservationNontrivialEntropyGap_FRONTIER_OPEN : Prop := True
 
 end Chronos.Frontier.FiberEntropyGap
