@@ -17,7 +17,8 @@
       "Chronos/Frontier/IntendedChronosAdmissibility.lean",
       "Chronos/Frontier/RegisteredNFDomination.lean",
       "Chronos/Frontier/RegisteredRegSNFCore.lean",
-      "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean"
+      "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean",
+      "Chronos/Frontier/UnrestrictedChronosRRObstructionRegistry.lean"
     ],
     "arity": [
       "Chronos/Frontier/FinalCarrierDomainDecision.lean",
@@ -25,10 +26,14 @@
       "Chronos/Frontier/H4_1_FGL_Bridge1Refutation.lean",
       "Chronos/Frontier/IntendedChronosAdmissibility.lean",
       "Chronos/Frontier/IntendedRepositoryNativeImageCoverage.lean",
+      "Chronos/Frontier/LiveRankEntropyWitnessSelectorSurface.lean",
+      "Chronos/Frontier/NonPropFinalCarrierInvariant.lean",
+      "Chronos/Frontier/NonPropRankEntropyWitnessFrontier.lean",
       "Chronos/Frontier/PositiveArityCoverageDecisionLock.lean",
       "Chronos/Frontier/PositiveArityRepositoryNativeCoverage.lean",
       "Chronos/Frontier/RealChronosAdmissible.lean",
       "Chronos/Frontier/RepositoryNativeChronosCarrierBridge.lean",
+      "Chronos/Frontier/RepositoryNativeFiniteRegistryExhaustivenessIndependent.lean",
       "Chronos/Frontier/RepositoryNativeFiniteRegistryInstantiation.lean",
       "Chronos/Frontier/RepositoryNativeImageCoverageCounterexample.lean",
       "Chronos/Frontier/RepositoryNativeIsFiniteRepresentedAtomInstantiation.lean",
@@ -72,6 +77,8 @@
       "Chronos/Frontier/RepresentedZeroArityRegSNFClosure.lean",
       "Chronos/Frontier/RepresentedZeroArityRegSNFFrontier.lean",
       "Chronos/Frontier/SelectedCarrierRegSNFDownstreamBridge.lean",
+      "Chronos/Frontier/UnrestrictedChronosRRObstructionRegistry.lean",
+      "Chronos/Frontier/UnrestrictedChronosRRStatusLock.lean",
       "Chronos/Frontier/UnrestrictedRegSNFDepthBridgeInterface.lean",
       "Chronos/Frontier/ZeroArityExhaustivenessToRegSNFBridge.lean",
       "Chronos/Frontier/ZeroPositiveRegSNFReduction.lean"
