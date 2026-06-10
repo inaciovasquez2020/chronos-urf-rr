@@ -1,0 +1,13 @@
+{
+  "status": "BLOCKED_SOURCE_ERRATUM_REQUIRED",
+  "source_id": "DOI:10.1155/2022/8496249",
+  "blocked_object": "EXTERNAL_GENUINE_ANALYTIC_DINI_ESTIMATE_PAYLOAD",
+  "minimal_missing_lemma": "CorrectedExternalQKDiniRatioLowerBoundTheorem1",
+  "reason": "printed beta_1 lower-bound constant exceeds 1 for every nondegenerate c != 0 under positive source parameters, while psi/psi_m tends to 1 at z = 0",
+  "boundary": [
+    "no GenuineAnalyticDiniEstimate extracted from printed Theorem 1 as-is",
+    "no final analytic result",
+    "no P vs NP claim",
+    "no Clay claim"
+  ]
+}
