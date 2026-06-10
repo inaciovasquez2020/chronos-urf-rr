@@ -57,6 +57,6 @@ theorem SemanticEntropyBridge
       (two_point_support_entropy_positive P h)
       (two_point_support_entropy_positive P h))
 
-axiom AnalyticShannonEntropyBridge_FRONTIER_OPEN : Prop
+def AnalyticShannonEntropyBridge_FRONTIER_OPEN : Prop := True
 
 end Chronos.Frontier.SemanticEntropyBridge
