@@ -1,0 +1,41 @@
+{
+  "object": "ExternalGenuineAnalyticDiniEstimatePayload_Theorem1_Theorem2",
+  "status": "EXTERNAL_PAYLOAD_CERTIFICATE_ARTIFACT_ONLY",
+  "source_title": "On the Partial Sums of the q-Generalized Dini Function",
+  "source_authors": [
+    "A. H. El-Qadeem",
+    "M. A. Mamon",
+    "I. S. Elshazly"
+  ],
+  "source_journal": "Journal of Mathematics",
+  "source_year": 2022,
+  "source_article_id": "8496249",
+  "source_doi": "10.1155/2022/8496249",
+  "function_ratio_source_theorem": "Theorem 1",
+  "derivative_ratio_source_theorem": "Theorem 2",
+  "source_equation_refs": [
+    "(11)",
+    "(12)",
+    "(19)-(22)",
+    "(35)-(39)"
+  ],
+  "lean_certificate_module": "Chronos.Frontier.ExternalSourceTheoremCertificateOneAxiom",
+  "lean_certificate_object": "El_Qadeem_2022_Certificate",
+  "payload_required": "GenuineAnalyticDiniEstimate",
+  "public_lean_payload_found": false,
+  "internal_analytic_proof_supplied": false,
+  "theorem_level_closure": false,
+  "minimal_missing_object": "EXTERNAL_GENUINE_ANALYTIC_DINI_ESTIMATE_PAYLOAD",
+  "next_admissible_object": "STOP_OR_EXTERNAL_GENUINE_ANALYTIC_DINI_ESTIMATE_PAYLOAD",
+  "boundary": [
+    "external mathematical payload certificate only",
+    "no public Lean payload found",
+    "no internal analytic proof",
+    "no convergence proof",
+    "no summability proof",
+    "no ratio-bound proof",
+    "no final analytic result",
+    "no P vs NP claim",
+    "no Clay claim"
+  ]
+}
