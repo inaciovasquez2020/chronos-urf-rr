@@ -1,0 +1,20 @@
+{
+  "response_id": "SYNTHETIC_MISSING_REQUIRED_FIELD_RESPONSE_FIXTURE_2026_06_10",
+  "auditor_identity": {
+    "kind": "synthetic_fixture",
+    "name": "synthetic-missing-required-field-fixture"
+  },
+  "audit_target": "EXTERNAL_TENSOR_AUDIT_RESPONSE_INTAKE_SCHEMA",
+  "verdict": "VALID",
+  "defects_found": [],
+  "corrections_required": [],
+  "boundary_statement": [
+    "SYNTHETIC_FIXTURE_ONLY",
+    "NO_RESPONSE_SUPPLIED",
+    "NO_AUDIT_CERTIFICATE",
+    "NO_THEOREM_PROMOTION",
+    "NO_NEW_SCIENTIFIC_PAYLOAD",
+    "NO_OUTREACH"
+  ],
+  "attachments": []
+}
