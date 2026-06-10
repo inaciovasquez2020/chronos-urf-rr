@@ -1,0 +1,21 @@
+{
+  "response_id": "SYNTHETIC_INVALID_FORBIDDEN_SIGNAL_RESPONSE_FIXTURE_2026_06_10",
+  "auditor_identity": {
+    "kind": "synthetic_fixture",
+    "name": "synthetic-negative-fixture"
+  },
+  "audit_target": "EXTERNAL_TENSOR_AUDIT_RESPONSE_INTAKE_SCHEMA",
+  "checked_identity": "ROUTE_B_EXTERNAL_TENSOR_AUDIT",
+  "verdict": "VALID",
+  "defects_found": [],
+  "corrections_required": [],
+  "boundary_statement": [
+    "SYNTHETIC_FIXTURE_ONLY",
+    "RESPONSE_SUPPLIED",
+    "NO_AUDIT_CERTIFICATE",
+    "NO_THEOREM_PROMOTION",
+    "NO_NEW_SCIENTIFIC_PAYLOAD",
+    "NO_OUTREACH"
+  ],
+  "attachments": []
+}

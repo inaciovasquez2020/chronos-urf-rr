@@ -1,0 +1,23 @@
+{
+  "id": "EXTERNAL_TENSOR_AUDIT_RESPONSE_INTAKE_NEGATIVE_FIXTURE_GATE_2026_06_10",
+  "date": "2026-06-10",
+  "repository": "chronos-urf-rr",
+  "status": "VERIFIER_ONLY",
+  "object": "EXTERNAL_TENSOR_AUDIT_RESPONSE_INTAKE_NEGATIVE_FIXTURE_GATE",
+  "schema": "schemas/chronos/external_tensor_audit_response_intake_schema_2026_06_10.json",
+  "fixture": "fixtures/chronos/external_tensor_audit_response_invalid_forbidden_signal_fixture_2026_06_10.json",
+  "route": "ROUTE_B_EXTERNAL_TENSOR_AUDIT",
+  "expected_rejection_reason": "FORBIDDEN_SIGNAL_PRESENT",
+  "closed_object": "EXTERNAL_TENSOR_AUDIT_RESPONSE_INTAKE_NEGATIVE_FIXTURE_GATE",
+  "boundary": [
+    "VERIFIER_ONLY",
+    "SYNTHETIC_FIXTURE_ONLY",
+    "NO_REQUEST_SENT",
+    "NO_EXTERNAL_RESPONSE_SUPPLIED",
+    "NO_AUDIT_CERTIFICATE",
+    "NO_THEOREM_PROMOTION",
+    "NO_NEW_SCIENTIFIC_PAYLOAD",
+    "NO_OUTREACH"
+  ],
+  "next_admissible_object": "STOP_OR_SCAN_NEXT_UNCONDITIONAL_BOUNDED_TARGET"
+}
