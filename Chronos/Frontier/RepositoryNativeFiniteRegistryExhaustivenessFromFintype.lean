@@ -1,4 +1,5 @@
 import Chronos.Frontier.RepositoryNativeFiniteRegistryExhaustivenessBridge
+import Chronos.Frontier.PositiveArityRepositoryNativeCoverage
 
 /-
 Fintype reduction for repository-native finite-registry exhaustiveness.
@@ -27,10 +28,13 @@ theorem RepositoryNativeFiniteRegistryExhaustiveness_from_fintype
 axiom FinalCarrierDomain_fintype :
   Fintype { c : ChronosCarrierData // FinalCarrierDomain c }
 
-axiom FinalCarrierDomain_repository_native_generated :
+theorem FinalCarrierDomain_repository_native_generated :
   ∀ c : ChronosCarrierData,
     FinalCarrierDomain c →
-    RepositoryNativeGenerated c
+    RepositoryNativeGenerated c := by
+  intro c hc
+  exact positive_arity_repository_native_image_covers c (by
+    simpa [FinalCarrierDomain] using hc)
 
 noncomputable theorem RepositoryNativeFiniteRegistryExhaustiveness_from_fintype_axioms
     [DecidableEq ChronosCarrierData] :
