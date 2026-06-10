@@ -1,0 +1,38 @@
+{
+  "id": "HEP_T_EXTERNAL_NOTATION_CLASSIFICATION_2026_06_10",
+  "status": "typed_external_notation_only",
+  "symbol": "t",
+  "domain": "High Energy Physics",
+  "classification": {
+    "included_in_unification_scope": true,
+    "included_as_core_unification_primitive": false,
+    "included_as_core_theorem_target": false,
+    "included_as_external_domain_notation": true
+  },
+  "admissible_meanings": [
+    {
+      "notation": "t",
+      "meaning": "top quark",
+      "admissibility": "external typed notation only"
+    },
+    {
+      "notation": "t",
+      "meaning": "Mandelstam momentum-transfer variable",
+      "admissibility": "external typed notation only"
+    }
+  ],
+  "excluded_claims": [
+    "top-quark physics theorem",
+    "scattering-amplitude theorem",
+    "QFT phenomenology expansion",
+    "Mandelstam-variable analytic closure"
+  ],
+  "unifying_object": [
+    "symbol",
+    "domain",
+    "type",
+    "admissibility_conditions",
+    "source_payload"
+  ],
+  "boundary": "The program may classify and type-disambiguate HEP t at the interface layer, but does not claim HEP physics content without a separate verified payload."
+}
