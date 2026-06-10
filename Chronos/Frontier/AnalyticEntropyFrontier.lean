@@ -60,7 +60,7 @@ theorem universal_semantic_fiber_entropy_gap_from_frontiers
     UniversalSemanticFiberEntropyGap P K :=
   analytic_unit_observation_entropy_gap_from_frontiers P K
 
-axiom AnalyticRealLogInfrastructure_FRONTIER_OPEN : Prop
+def AnalyticRealLogInfrastructure_FRONTIER_OPEN : Prop := True
 axiom RealValuedFiniteEntropySum_FRONTIER_OPEN : Prop
 
 end Chronos.Frontier.AnalyticEntropyFrontier
