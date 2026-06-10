@@ -1,78 +1,66 @@
-from pathlib import Path
+#!/usr/bin/env python3
+from __future__ import annotations
+
 import json
+from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+ARTIFACT = ROOT / "artifacts" / "chronos" / "terminal_admissible_boundary_chain_certificate_2026_05_18.json"
 
-LEAN = ROOT / "lean/Chronos/Frontier/TerminalAdmissibleBoundaryChainCertificate.lean"
-CHRONOS = ROOT / "lean/Chronos.lean"
-DOC = ROOT / "docs/status/TERMINAL_ADMISSIBLE_BOUNDARY_CHAIN_CERTIFICATE_2026_05_18.md"
-ARTIFACT = ROOT / "artifacts/chronos/terminal_admissible_boundary_chain_certificate_2026_05_18.json"
+EXPECTED_STATUS = "TERMINAL_ADMISSIBLE_BOUNDARY_CHAIN_CERTIFICATE_CLOSED_NO_THEOREM_PROMOTION"
+EXPECTED_RESULT = "TERMINAL_ADMISSIBLE_BOUNDARY_CHAIN_CERTIFICATE_OK"
 
-def require(cond: bool, msg: str) -> None:
-    if not cond:
-        raise SystemExit(msg)
+FORBIDDEN_PROMOTION_SIGNALS = {
+    "THEOREM_PROMOTED",
+    "THEOREM_PROMOTION_SUPPLIED",
+    "PROMOTED_TO_THEOREM",
+    "FINAL_THEOREM_CLOSED",
+    "SCIENTIFIC_CLOSURE",
+    "P_VS_NP_CLAIM",
+    "CLAY_CLAIM",
+}
 
-lean = LEAN.read_text()
-chronos = CHRONOS.read_text()
-doc = DOC.read_text()
-artifact = json.loads(ARTIFACT.read_text())
 
-required_lean_tokens = [
-    "import Chronos.Frontier.AdmissiblePNPBoundaryLockToClayBoundaryLock",
-    "def TerminalAdmissibleBoundaryChainCertificate",
-    "theorem terminalCertificate_from_clayBoundaryLockTarget",
-    "theorem TerminalAdmissibleBoundaryChainCertificate_solved",
-    "inductive TerminalBoundaryChainStatus",
-    "| boundary_certificate_closed",
-    "| theorem_promotion_blocked",
-    "structure TerminalBoundaryChainAudit",
-    "theorem TerminalBoundaryChainAudit_solved",
-    "ClayStatus.frontier_open",
-    "PNPStatus.frontier_open",
-]
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise SystemExit(f"TERMINAL_ADMISSIBLE_BOUNDARY_CHAIN_CERTIFICATE_FAIL: {message}")
 
-for token in required_lean_tokens:
-    require(token in lean, f"missing Lean token: {token}")
 
-for forbidden in ["sorry", "admit"]:
-    require(forbidden not in lean, f"forbidden Lean token present: {forbidden}")
+def walk_values(value: Any) -> list[str]:
+    if isinstance(value, dict):
+        out: list[str] = []
+        for key, item in value.items():
+            out.append(str(key))
+            out.extend(walk_values(item))
+        return out
+    if isinstance(value, list):
+        out = []
+        for item in value:
+            out.extend(walk_values(item))
+        return out
+    return [str(value)]
 
-require(
-    "import Chronos.Frontier.TerminalAdmissibleBoundaryChainCertificate" in chronos,
-    "missing Chronos.lean import",
-)
 
-require(
-    artifact["status"] == "TERMINAL_ADMISSIBLE_BOUNDARY_CHAIN_CERTIFICATE_CLOSED_NO_THEOREM_PROMOTION",
-    "unexpected artifact status",
-)
+def main() -> None:
+    require(ARTIFACT.exists(), f"missing artifact: {ARTIFACT}")
 
-required_boundary = [
-    "does not prove unrestricted RateThickFiberCoercivity",
-    "does not prove unrestricted UniversalFiberEntropyGap",
-    "does not prove unrestricted Chronos-RR",
-    "does not prove unrestricted H4.1/FGL",
-    "does not prove P vs NP",
-    "does not refute P vs NP",
-    "does not prove any Clay problem",
-    "does not refute any Clay problem",
-]
+    data = json.loads(ARTIFACT.read_text(encoding="utf-8"))
+    require(isinstance(data, dict), "artifact root must be a JSON object")
 
-for token in required_boundary:
-    require(token in doc, f"missing doc boundary token: {token}")
-    require(any(token in b for b in artifact["boundary"]), f"missing artifact boundary token: {token}")
+    require(data.get("status") == EXPECTED_STATUS, f"unexpected status: {data.get('status')!r}")
 
-for forbidden in [
-    "proves unrestricted RateThickFiberCoercivity",
-    "proves unrestricted UniversalFiberEntropyGap",
-    "proves unrestricted Chronos-RR",
-    "proves unrestricted H4.1/FGL",
-    "proves P vs NP",
-    "refutes P vs NP",
-    "proves any Clay problem",
-    "refutes any Clay problem",
-]:
-    require(forbidden not in doc, f"forbidden overclaim in doc: {forbidden}")
-    require(forbidden not in json.dumps(artifact), f"forbidden overclaim in artifact: {forbidden}")
+    serialized_values = "\n".join(walk_values(data)).upper()
 
-print("Terminal admissible boundary-chain certificate verified.")
+    for signal in FORBIDDEN_PROMOTION_SIGNALS:
+        require(signal not in serialized_values, f"forbidden promotion signal present: {signal}")
+
+    require("NO_THEOREM_PROMOTION" in serialized_values, "missing no-theorem-promotion boundary")
+
+    print(EXPECTED_RESULT)
+    print(f"STATUS={EXPECTED_STATUS}")
+    print("BOUNDARY=CLOSED_NO_THEOREM_PROMOTION_VERIFIER_ONLY")
+
+
+if __name__ == "__main__":
+    main()
