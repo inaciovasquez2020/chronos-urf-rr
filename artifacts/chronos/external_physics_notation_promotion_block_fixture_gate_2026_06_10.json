@@ -1,0 +1,39 @@
+{
+  "id": "EXTERNAL_PHYSICS_NOTATION_PROMOTION_BLOCK_FIXTURE_GATE_2026_06_10",
+  "status": "verifier_only_promotion_block_fixture_gate",
+  "scope": "external mathematical-physics notation theorem-promotion prevention",
+  "depends_on": [
+    "EXTERNAL_PHYSICS_NOTATION_SEMANTIC_DRIFT_AUDIT_2026_06_10"
+  ],
+  "invalid_fixture": "fixtures/chronos/external_physics_notation_forbidden_promotion_fixture_2026_06_10.json",
+  "expected_rejection": {
+    "reason": "payload_free_theorem_promotion",
+    "blocked_field": "theorem_promotion_status",
+    "blocked_value": "promoted"
+  },
+  "required_gate_conditions": [
+    "requires_symbol",
+    "requires_domain",
+    "requires_typed_meaning",
+    "requires_admissibility_condition",
+    "requires_source_payload_for_theorem_promotion",
+    "forbids_payload_free_theorem_promotion"
+  ],
+  "forbidden_promotion_values": [
+    "promoted",
+    "theorem_promoted",
+    "accepted_as_theorem",
+    "scientific_payload_accepted"
+  ],
+  "boundary": [
+    "VERIFIER_ONLY",
+    "SYNTHETIC_FIXTURE_ONLY",
+    "NO_REQUEST_SENT",
+    "NO_EXTERNAL_RESPONSE_SUPPLIED",
+    "NO_AUDIT_CERTIFICATE",
+    "NO_THEOREM_PROMOTION",
+    "NO_NEW_SCIENTIFIC_PAYLOAD",
+    "NO_OUTREACH"
+  ],
+  "closed_object": "ExternalPhysicsNotationPromotionBlockFixtureGate"
+}

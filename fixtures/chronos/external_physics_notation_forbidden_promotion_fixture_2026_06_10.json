@@ -1,0 +1,21 @@
+{
+  "fixture_id": "SYNTHETIC_EXTERNAL_PHYSICS_NOTATION_FORBIDDEN_PROMOTION_FIXTURE_2026_06_10",
+  "symbol": "t",
+  "domain": "High Energy Physics",
+  "typed_meaning": "top quark",
+  "admissibility": "external typed notation only",
+  "source_payload_status": "absent",
+  "audit_certificate_status": "absent",
+  "scientific_payload_status": "absent",
+  "theorem_promotion_status": "promoted",
+  "boundary_flags": [
+    "VERIFIER_ONLY",
+    "SYNTHETIC_FIXTURE_ONLY",
+    "NO_REQUEST_SENT",
+    "NO_EXTERNAL_RESPONSE_SUPPLIED",
+    "NO_AUDIT_CERTIFICATE",
+    "NO_THEOREM_PROMOTION",
+    "NO_NEW_SCIENTIFIC_PAYLOAD",
+    "NO_OUTREACH"
+  ]
+}
