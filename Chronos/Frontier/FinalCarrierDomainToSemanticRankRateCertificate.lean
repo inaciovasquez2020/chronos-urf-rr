@@ -36,3 +36,19 @@ theorem FinalCarrierDomain_to_native_SemanticRankRateCertificate_exists :
       ∃ n : Nat, SemanticRankRateCertificate ChronosNativeCarrierFamily n := by
   intro c hc
   exact FinalCarrierDomain_to_RepositoryNativeSemanticRankRateDomain c hc
+
+/--
+Fully bounded replacement surface for the repository-native semantic rank-rate
+exhaustiveness bridge.
+
+This is bounded through `FullyBoundedFinalCarrierDomain`; it does not remove the
+unbounded `FinalCarrierDomain_repository_native_semantic_rank_rate_exhaustiveness`
+axiom.
+-/
+theorem FullyBoundedFinalCarrierDomain_repository_native_semantic_rank_rate_exhaustiveness
+    (B : Nat) :
+    ∀ c : ChronosCarrierData,
+      FullyBoundedFinalCarrierDomain B c →
+      RepositoryNativeSemanticRankRateDomain c := by
+  intro c hc
+  exact FinalCarrierDomain_to_RepositoryNativeSemanticRankRateDomain c hc.1
