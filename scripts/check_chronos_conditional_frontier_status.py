@@ -19,10 +19,33 @@ def lean_files():
         if ".lake" not in p.parts and ".git" not in p.parts
     ]
 
+def strip_lean_comments(text: str) -> str:
+    out: list[str] = []
+    i = 0
+    depth = 0
+    while i < len(text):
+        if depth == 0 and text.startswith("--", i):
+            j = text.find("\n", i)
+            if j == -1:
+                break
+            out.append("\n")
+            i = j + 1
+        elif text.startswith("/-", i):
+            depth += 1
+            i += 2
+        elif depth > 0 and text.startswith("-/", i):
+            depth -= 1
+            i += 2
+        else:
+            out.append("\n" if depth > 0 and text[i] == "\n" else (text[i] if depth == 0 else " "))
+            i += 1
+    return "".join(out)
+
 def counts() -> dict[str, int]:
     out = {k: 0 for k in PATTERNS}
     for p in lean_files():
-        for line in p.read_text(encoding="utf-8", errors="ignore").splitlines():
+        text = strip_lean_comments(p.read_text(encoding="utf-8", errors="ignore"))
+        for line in text.splitlines():
             for name, rx in PATTERNS.items():
                 if rx.search(line):
                     out[name] += 1
