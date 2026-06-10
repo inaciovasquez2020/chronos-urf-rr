@@ -146,3 +146,17 @@ theorem FullyBoundedFinalCarrierDomain_repository_native_generated
     simpa [FinalCarrierDomain] using hC.1)
 
 end Chronos.Frontier.FinalCarrierDomainDecision
+
+namespace Chronos.Frontier.FinalCarrierDomainDecision
+
+/--
+Repository-native exhaustiveness theorem for the fully bounded replacement domain.
+-/
+theorem FullyBoundedFinalCarrierDomain_repository_native_exhaustiveness
+    (B : Nat) :
+    ∀ C : ChronosCarrierData,
+      FullyBoundedFinalCarrierDomain B C →
+      RepositoryNativeGenerated C :=
+  FullyBoundedFinalCarrierDomain_repository_native_generated B
+
+end Chronos.Frontier.FinalCarrierDomainDecision
