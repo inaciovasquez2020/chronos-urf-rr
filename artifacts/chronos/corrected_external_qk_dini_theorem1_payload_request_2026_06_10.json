@@ -1,0 +1,16 @@
+{
+  "status": "PAYLOAD_REQUIRED",
+  "object": "CorrectedExternalQKDiniRatioLowerBoundTheorem1PayloadRequest",
+  "depends_on": [
+    "SOURCE_ERRATUM_REQUIRED_EXTERNAL_QK_DINI_THEOREM1_2026_06_10",
+    "CorrectedExternalQKDiniRatioLowerBoundTheorem1"
+  ],
+  "minimal_missing_object": "payload : GenuineAnalyticDiniEstimate",
+  "closed_transport_surface": "CorrectedExternalQKDiniRatioLowerBoundTheorem1",
+  "boundary": [
+    "no new axiom",
+    "no repository-native analytic proof",
+    "no extraction from printed Theorem 1 as-is",
+    "transport closes only after GenuineAnalyticDiniEstimate is supplied"
+  ]
+}
