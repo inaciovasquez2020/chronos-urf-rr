@@ -40,11 +40,13 @@ axiom AnalyticLogKernelPositivity_FRONTIER_OPEN :
   forall K : AnalyticLogEntropyKernel,
     AnalyticLogBasedShannonEntropyPositivity K
 
-axiom FiniteDistributionEntropyPositive_FRONTIER_OPEN :
+theorem FiniteDistributionEntropyPositive_FRONTIER_OPEN :
   forall {Omega : Type u}
     (P : AnalyticProbabilitySpace Omega)
     (K : AnalyticLogEntropyKernel),
-    FullFiniteDistributionShannonEntropyInequality P K
+    FullFiniteDistributionShannonEntropyInequality P K := by
+  intro Omega P K _h_norm _h_two
+  exact AnalyticLogKernelPositivity_FRONTIER_OPEN K
 
 theorem analytic_unit_observation_entropy_gap_from_frontiers
     {Omega : Type u}
