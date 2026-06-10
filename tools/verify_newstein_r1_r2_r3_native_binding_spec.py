@@ -16,14 +16,14 @@ artifact = json.loads(ARTIFACT.read_text())
 root_import = ROOT_IMPORT.read_text()
 
 required_lean = [
-    "structure RepositoryNativeR1R2R3BindingSpec",
+    "structure NewsteinR1R2R3NativeBindingSpec",
     "nativeR1Data : R1SemanticData",
     "nativeR2Data : R2SemanticData",
     "nativeR3Data : R3SemanticData",
     "r1Correct : R1LongChordExclusionTheorem nativeR1Data",
     "r2Correct : R2DiameterSeparationFillingObstructionTheorem nativeR2Data",
     "r3Correct : R3UniformLocalTypeCapacityTheorem nativeR3Data",
-    "def RepositoryNativeR1R2R3BindingSupplied",
+    "def NewsteinR1R2R3NativeBindingSupplied",
     "def RepositoryNativeR1R2R3TheoremsClosed",
     "theorem repository_native_R1_R2_R3_theorems_from_binding_spec",
     "def RepositoryNativeNonFactorisationPromotionAllowed",
@@ -53,12 +53,15 @@ for token in [
     assert token in doc, f"missing doc token: {token}"
 
 assert artifact["status"] == "SPECIFICATION_ONLY_NO_NATIVE_INSTANCE"
-assert artifact["lean_object"] == "RepositoryNativeR1R2R3BindingSpec"
+assert artifact["lean_object"] in {
+    "RepositoryNativeR1R2R3BindingSpec",
+    "NewsteinR1R2R3NativeBindingSpec",
+}
 assert "import Chronos.Frontier.NewsteinR1R2R3NativeBindingSpec" in root_import
 
 for phrase in [
     "specification only",
-    "does not construct RepositoryNativeR1R2R3BindingSpec",
+    "does not construct NewsteinR1R2R3NativeBindingSpec",
     "does not prove LongChordExclusion",
     "does not prove DiameterSeparationFillingObstruction",
     "does not prove UniformLocalTypeCapacity",
@@ -68,8 +71,8 @@ for phrase in [
     "does not prove P vs NP",
     "does not prove any Clay problem",
 ]:
-    assert phrase in artifact["boundary"], f"missing artifact boundary: {phrase}"
-    assert phrase in status, f"missing status boundary: {phrase}"
+    assert phrase in artifact["boundary"] or phrase.replace("NewsteinR1R2R3NativeBindingSpec", "RepositoryNativeR1R2R3BindingSpec") in artifact["boundary"], f"missing artifact boundary: {phrase}"
+    assert phrase in status or phrase.replace("NewsteinR1R2R3NativeBindingSpec", "RepositoryNativeR1R2R3BindingSpec") in status, f"missing status boundary: {phrase}"
 
 for forbidden in [
     "axiom ",

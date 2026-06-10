@@ -31,6 +31,37 @@ theorem zero_arity_excluded_from_final_carrier_domain
   intro hC
   exact hC.2 h0
 
+
+/--
+The current selected final carrier domain is arity-unbounded.
+Therefore `FinalCarrierDomain_fintype` cannot be derived from the
+current definition without replacing the domain by a bounded one.
+-/
+theorem final_carrier_domain_unbounded_arity :
+    ∀ B : Nat, ∃ C : ChronosCarrierData, FinalCarrierDomain C ∧ B < C.arity := by
+  intro B
+  let C : ChronosCarrierData := { arity := B.succ, stratum := 0, index := 0 }
+  refine ⟨C, ?_, ?_⟩
+  · unfold FinalCarrierDomain PositiveArityCarrier
+    constructor
+    · exact
+        Chronos.Frontier.IntendedChronosAdmissibility.every_intended_is_admissible
+          C
+          (by
+            unfold Chronos.Frontier.IntendedChronosAdmissibility.IntendedChronosCarrier
+            constructor
+            · simp [C]
+            · simp [C])
+    · simp [C]
+  · simp [C]
+
+theorem not_final_carrier_domain_uniform_arity_bound :
+    ¬ ∃ B : Nat, ∀ C : ChronosCarrierData, FinalCarrierDomain C → C.arity ≤ B := by
+  intro h
+  rcases h with ⟨B, hB⟩
+  rcases final_carrier_domain_unbounded_arity B with ⟨C, hC, hlt⟩
+  exact (Nat.not_le_of_gt hlt) (hB C hC)
+
 /--
 Abstract Carrier Registry Exhaustiveness is not required for the selected
 positive-arity carrier-domain closure.

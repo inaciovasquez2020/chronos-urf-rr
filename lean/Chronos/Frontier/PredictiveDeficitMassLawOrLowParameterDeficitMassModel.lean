@@ -7,7 +7,7 @@ deriving DecidableEq, Repr
 
 def lowParameterDeficitMassModelBound : Nat := 8
 
-structure PredictiveDeficitMassLawOrLowParameterDeficitMassModel where
+structure UniquePredictiveDeficitMassLawOrLowParameterDeficitMassModel where
   route : PredictiveDeficitMassRoute
   parameterCount : Nat
   holdoutGalaxyCount : Nat
@@ -16,7 +16,7 @@ structure PredictiveDeficitMassLawOrLowParameterDeficitMassModel where
 deriving Repr
 
 def admissiblePredictiveDeficitMassTarget
-    (M : PredictiveDeficitMassLawOrLowParameterDeficitMassModel) : Prop :=
+    (M : UniquePredictiveDeficitMassLawOrLowParameterDeficitMassModel) : Prop :=
   M.nonAccountingConstraint = true ∧
   M.boundaryGuard = true ∧
   0 < M.holdoutGalaxyCount ∧
@@ -24,25 +24,25 @@ def admissiblePredictiveDeficitMassTarget
     M.parameterCount ≤ lowParameterDeficitMassModelBound)
 
 theorem admissiblePredictiveDeficitMassTarget_has_boundary_guard
-    {M : PredictiveDeficitMassLawOrLowParameterDeficitMassModel}
+    {M : UniquePredictiveDeficitMassLawOrLowParameterDeficitMassModel}
     (h : admissiblePredictiveDeficitMassTarget M) :
     M.boundaryGuard = true :=
   h.2.1
 
 theorem admissiblePredictiveDeficitMassTarget_has_nonaccounting_constraint
-    {M : PredictiveDeficitMassLawOrLowParameterDeficitMassModel}
+    {M : UniquePredictiveDeficitMassLawOrLowParameterDeficitMassModel}
     (h : admissiblePredictiveDeficitMassTarget M) :
     M.nonAccountingConstraint = true :=
   h.1
 
 theorem admissiblePredictiveDeficitMassTarget_has_holdout
-    {M : PredictiveDeficitMassLawOrLowParameterDeficitMassModel}
+    {M : UniquePredictiveDeficitMassLawOrLowParameterDeficitMassModel}
     (h : admissiblePredictiveDeficitMassTarget M) :
     0 < M.holdoutGalaxyCount :=
   h.2.2.1
 
 theorem lowParameterDeficitMassModel_target_witness :
-    ∃ M : PredictiveDeficitMassLawOrLowParameterDeficitMassModel,
+    ∃ M : UniquePredictiveDeficitMassLawOrLowParameterDeficitMassModel,
       admissiblePredictiveDeficitMassTarget M := by
   refine ⟨
     { route := PredictiveDeficitMassRoute.lowParameterDeficitMassModel

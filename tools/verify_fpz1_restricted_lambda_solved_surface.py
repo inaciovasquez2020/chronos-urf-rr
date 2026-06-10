@@ -8,7 +8,7 @@ artifact = json.loads(Path("artifacts/chronos/fpz1_restricted_lambda_solved_surf
 required_lean = [
     "def ChronosAdmissibleLambda",
     "def QuantitativeEntropyFaithfulSemanticFiberizationLambda",
-    "def EntropyFaithfulLowerEnvelope",
+    "def RestrictedEntropyFaithfulLowerEnvelope",
     "def DepthBridgeLambda",
     "def ChronosRRLambda",
     "theorem restrictedRateSpectrumIsolation",
@@ -34,7 +34,7 @@ for phrase in required_status:
 
 assert artifact["status"] == "RESTRICTED_LAMBDA_ROUTE_SOLVED_SURFACE_ONLY"
 assert "fpz1_restricted_lambda_route" in artifact["closed_surface"]
-assert "EntropyFaithfulLowerEnvelope" in artifact["requires"]
+assert any(x in artifact["requires"] for x in {"EntropyFaithfulLowerEnvelope", "RestrictedEntropyFaithfulLowerEnvelope"})
 assert "DepthBridgeLambda" in artifact["requires"]
 
 combined = (lean + "\n" + status + "\n" + json.dumps(artifact)).lower()

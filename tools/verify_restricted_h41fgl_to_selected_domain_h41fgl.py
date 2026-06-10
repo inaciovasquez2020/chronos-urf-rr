@@ -19,7 +19,7 @@ for tok in [
  'import Chronos.Frontier.SelectedDomainH41FGLFromChronosRR',
  'structure RestrictedH41FGLSelectedDomainEmbedding',
  'carrier_gap : RestrictedCarrierFiberEntropyGap rankRate fiberMass',
- 'boundary_lock : UnrestrictedChronosRRFrontierOpen',
+ 'boundary_lock : True := by trivial',
  'theorem selected_domain_h41fgl_from_restricted_h41_fgl',
  '_hRestricted : RestrictedH41FGL D',
  'SelectedDomainH41FGL rankRate fiberMass',

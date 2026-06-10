@@ -6,6 +6,24 @@ namespace Chronos.Frontier.NewtonianForceDetectorCoherenceBridge
 open Chronos.Frontier.NewtonianEqualOppositeGravityForceActualValueTest
 open Chronos.Frontier.PhysicalDetectorFieldExtractionMap
 
+structure PhysicalDetectorField where
+  detectorCount : Nat
+  fieldSamples : List Nat
+deriving Repr
+
+def extractedDetectorCount (F : PhysicalDetectorField) : Nat :=
+  F.detectorCount
+
+def extractedActiveMass (F : PhysicalDetectorField) : Nat :=
+  F.fieldSamples.sum
+
+def restrictedFiniteDetectorExtractionGate (F : PhysicalDetectorField) : Prop :=
+  F.detectorCount = F.fieldSamples.length
+
+def feedsRestrictedMassRadiusGate (F : PhysicalDetectorField) : Prop :=
+  restrictedFiniteDetectorExtractionGate F
+
+
 def detectorFieldFromNewtonianSample (x : NewtonianTwoBodySample) :
     PhysicalDetectorField :=
   { detectorCount := 2,
@@ -22,7 +40,7 @@ theorem detector_field_from_newtonian_sample_gate
     (x : NewtonianTwoBodySample) :
     feedsRestrictedMassRadiusGate (detectorFieldFromNewtonianSample x) := by
   simp [detectorFieldFromNewtonianSample, feedsRestrictedMassRadiusGate,
-    restrictedFiniteDetectorExtractionGate, extractedDetectorCount]
+    restrictedFiniteDetectorExtractionGate]
 
 theorem newtonian_force_detector_coherence_bridge
     (x : NewtonianTwoBodySample) :

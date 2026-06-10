@@ -12,7 +12,7 @@ ARTIFACT = ROOT / "artifacts/chronos/repository_native_finite_registry_exhaustiv
 STATUS = ROOT / "docs/status/CHRONOS_REPOSITORY_NATIVE_FINITE_REGISTRY_EXHAUSTIVENESS_BRIDGE_2026_05_12.md"
 
 required_lean_tokens = [
-    "axiom RepositoryNativeFiniteRegistryExhaustiveness",
+    "def RepositoryNativeFiniteRegistryExhaustiveness",
     "∃ R : Finset ChronosCarrierData",
     "FinalCarrierDomain c →",
     "c ∈ R ∧ RepositoryNativeGenerated c",

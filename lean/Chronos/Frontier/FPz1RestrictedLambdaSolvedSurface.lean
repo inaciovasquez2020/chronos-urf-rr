@@ -37,7 +37,7 @@ def QuantitativeEntropyFaithfulSemanticFiberizationLambda
         rankRate ρ > 0 →
         FiberEntropyMass X ρ ≥ εlam
 
-def EntropyFaithfulLowerEnvelope
+def RestrictedEntropyFaithfulLowerEnvelope
     (ChronosAdmissible : Obj → Prop)
     (SemanticRankRateWitness : Obj → Wit → Prop)
     (rankRate : Wit → ℝ)
@@ -114,7 +114,7 @@ theorem lowerEnvelope_to_quantitativeLambda
     {lam : ℝ}
     (hlam : lam > 0)
     (hEnvelope :
-      EntropyFaithfulLowerEnvelope
+      RestrictedEntropyFaithfulLowerEnvelope
         ChronosAdmissible
         SemanticRankRateWitness
         rankRate
@@ -139,7 +139,7 @@ theorem fpz1_restricted_lambda_route
     {lam : ℝ}
     (hlam : lam > 0)
     (hEnvelope :
-      EntropyFaithfulLowerEnvelope
+      RestrictedEntropyFaithfulLowerEnvelope
         ChronosAdmissible
         SemanticRankRateWitness
         rankRate

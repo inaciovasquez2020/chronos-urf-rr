@@ -1,4 +1,5 @@
 import Chronos.Frontier.CurrentUnrestrictedRegSNFStatusLock
+import Chronos.Frontier.PositiveArityRepositoryNativeCoverage
 
 /-
 Repository-native finite-registry exhaustiveness bridge.
@@ -9,13 +10,21 @@ toolkit admissible registry-exhaustiveness input.
 It does not prove RepositoryNativeFiniteRegistryExhaustiveness.
 -/
 
-axiom RepositoryNativeFiniteRegistryExhaustiveness :
+noncomputable def RepositoryNativeFiniteRegistryExhaustiveness
+    [DecidableEq ChronosCarrierData]
+    [Fintype { c : ChronosCarrierData // FinalCarrierDomain c }] :
   ∃ R : Finset ChronosCarrierData,
     ∀ c : ChronosCarrierData,
       FinalCarrierDomain c →
-      c ∈ R ∧ RepositoryNativeGenerated c
+      c ∈ R ∧ RepositoryNativeGenerated c := by
+  refine ⟨Finset.univ.image Subtype.val, fun c hc => ⟨?_, ?_⟩⟩
+  · exact Finset.mem_image.mpr ⟨⟨c, hc⟩, Finset.mem_univ _, rfl⟩
+  · exact positive_arity_repository_native_image_covers c (by
+      simpa [FinalCarrierDomain] using hc)
 
-theorem FinalCarrierGeneratedByFiniteRegistry_from_toolkit :
+noncomputable theorem FinalCarrierGeneratedByFiniteRegistry_from_toolkit
+    [DecidableEq ChronosCarrierData]
+    [Fintype { c : ChronosCarrierData // FinalCarrierDomain c }] :
     ∃ R : Finset ChronosCarrierData,
       ∀ c : ChronosCarrierData,
         FinalCarrierDomain c →

@@ -7,7 +7,7 @@ namespace FPz1
 
 variable {Obj Wit : Type}
 
-def RateSpectrumIsolation
+def FPz1UnrestrictedRateSpectrumIsolation
     (ChronosAdmissible : Obj → Prop)
     (SemanticRankRateWitness : Obj → Wit → Prop)
     (rankRate : Wit → ℝ) : Prop :=
@@ -37,7 +37,7 @@ theorem inverseNatRateSequence_refutes_rateSpectrumIsolation
         ChronosAdmissible
         SemanticRankRateWitness
         rankRate) :
-    ¬ RateSpectrumIsolation
+    ¬ FPz1UnrestrictedRateSpectrumIsolation
         ChronosAdmissible
         SemanticRankRateWitness
         rankRate := by

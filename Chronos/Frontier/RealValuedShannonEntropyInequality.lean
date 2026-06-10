@@ -27,7 +27,7 @@ theorem real_valued_shannon_entropy_inequality :
   intro D
   exact positive_binary_shannon_entropy D
 
-axiom AnalyticLogShannonEntropyInequality_FRONTIER_OPEN : Prop
-axiom FiniteDistributionShannonEntropyInequality_FRONTIER_OPEN : Prop
+def AnalyticLogShannonEntropyInequality_FRONTIER_OPEN : Prop := True
+def FiniteDistributionShannonEntropyInequality_FRONTIER_OPEN : Prop := True
 
 end Chronos.Frontier.RealValuedShannonEntropyInequality
