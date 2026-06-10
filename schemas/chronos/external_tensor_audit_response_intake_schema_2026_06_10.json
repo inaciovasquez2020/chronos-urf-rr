@@ -1,0 +1,41 @@
+{
+  "id": "EXTERNAL_TENSOR_AUDIT_RESPONSE_INTAKE_SCHEMA",
+  "date": "2026-06-10",
+  "repository": "chronos-urf-rr",
+  "kind": "audit_response_intake_schema",
+  "route": "ROUTE_B_EXTERNAL_TENSOR_AUDIT",
+  "required_fields": [
+    "response_id",
+    "auditor_identity",
+    "audit_target",
+    "checked_identity",
+    "verdict",
+    "defects_found",
+    "corrections_required",
+    "boundary_statement",
+    "attachments"
+  ],
+  "allowed_verdicts": [
+    "VALID",
+    "VALID_WITH_CORRECTIONS",
+    "INVALID",
+    "INSUFFICIENT_INFORMATION"
+  ],
+  "required_boundary_tokens": [
+    "NO_RESPONSE_SUPPLIED",
+    "NO_AUDIT_CERTIFICATE",
+    "NO_THEOREM_PROMOTION",
+    "NO_NEW_SCIENTIFIC_PAYLOAD",
+    "NO_OUTREACH"
+  ],
+  "forbidden_signals": [
+    "REQUEST_SENT",
+    "RESPONSE_SUPPLIED",
+    "AUDIT_CERTIFICATE_SUPPLIED",
+    "POSITIVE_AUDIT_CERTIFICATE",
+    "THEOREM_PROMOTION",
+    "SCIENTIFIC_CLOSURE",
+    "P_VS_NP_CLAIM",
+    "CLAY_CLAIM"
+  ]
+}
