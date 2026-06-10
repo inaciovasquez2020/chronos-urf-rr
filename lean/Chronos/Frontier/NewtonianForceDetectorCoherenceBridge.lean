@@ -40,7 +40,7 @@ theorem detector_field_from_newtonian_sample_gate
     (x : NewtonianTwoBodySample) :
     feedsRestrictedMassRadiusGate (detectorFieldFromNewtonianSample x) := by
   simp [detectorFieldFromNewtonianSample, feedsRestrictedMassRadiusGate,
-    restrictedFiniteDetectorExtractionGate, extractedDetectorCount]
+    restrictedFiniteDetectorExtractionGate]
 
 theorem newtonian_force_detector_coherence_bridge
     (x : NewtonianTwoBodySample) :

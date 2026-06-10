@@ -1,5 +1,7 @@
 import Mathlib.Logic.Basic
 
+set_option linter.dupNamespace false
+
 namespace Chronos.Frontier.RateThickFiberEntropyRouteFrontierIndex
 
 def FRONTIER_OPEN : Prop := True
