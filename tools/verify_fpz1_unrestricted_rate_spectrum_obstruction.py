@@ -6,10 +6,10 @@ status = Path("docs/status/CHRONOS_FPZ1_UNRESTRICTED_RATE_SPECTRUM_OBSTRUCTION_2
 artifact = json.loads(Path("artifacts/chronos/fpz1_unrestricted_rate_spectrum_obstruction_2026_05_16.json").read_text())
 
 required_lean = [
-    "def RateSpectrumIsolation",
+    "def FPz1UnrestrictedRateSpectrumIsolation",
     "def InverseNatRateSequence",
     "theorem inverseNatRateSequence_refutes_rateSpectrumIsolation",
-    "¬ RateSpectrumIsolation",
+    "¬ FPz1UnrestrictedRateSpectrumIsolation",
 ]
 
 for phrase in required_lean:
@@ -18,7 +18,7 @@ for phrase in required_lean:
 required_status = [
     "UNRESTRICTED_RATE_SPECTRUM_OBSTRUCTION_ONLY",
     "does not construct concrete Chronos admissible objects",
-    "unrestricted RateSpectrumIsolation",
+    "unrestricted FPz1UnrestrictedRateSpectrumIsolation",
     "unrestricted UniversalFiberEntropyGap",
     "unrestricted Chronos-RR",
     "unrestricted H4.1/FGL",
@@ -27,7 +27,7 @@ required_status = [
 ]
 
 for phrase in required_status:
-    assert phrase in status, phrase
+    assert phrase in status or phrase.replace("FPz1UnrestrictedRateSpectrumIsolation", "RateSpectrumIsolation") in status, phrase
 
 assert artifact["status"] == "UNRESTRICTED_RATE_SPECTRUM_OBSTRUCTION_ONLY"
 assert "inverseNatRateSequence_refutes_rateSpectrumIsolation" in artifact["proved"]

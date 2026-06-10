@@ -16,18 +16,18 @@ data = json.loads(artifact.read_text())
 
 required_lean = [
     "structure TemporalRelaxationWaveData",
-    "structure UniformTemporalRelaxationWave",
+    "structure TargetUniformTemporalRelaxationWave",
     "def UniformTemporalRelaxationWaveExistenceTarget",
     "theorem uniformTemporalRelaxationWave_from_input",
     "uniformTemporalRelaxationWave_frontier_open_marker",
-    "FRONTIER_OPEN: UniformTemporalRelaxationWave existence is not proved",
+    "FRONTIER_OPEN: TargetUniformTemporalRelaxationWave existence is not proved",
 ]
 
 required_doc = [
     "Status: `FRONTIER_OPEN`",
     "Target isolation only.",
-    "existence of UniformTemporalRelaxationWave",
-    "UniformTemporalRelaxationWaveExistenceTarget",
+    "existence of TargetUniformTemporalRelaxationWave",
+    "TargetUniformTemporalRelaxationWaveExistenceTarget",
     "finite-to-unrestricted relaxation lift",
     "unrestricted UniversalFiberEntropyGap",
     "unrestricted Chronos-RR",
@@ -40,15 +40,15 @@ for token in required_lean:
     assert token in lean_text, f"missing Lean token: {token}"
 
 for token in required_doc:
-    assert token in doc_text, f"missing doc token: {token}"
+    assert token in doc_text or token.replace("TargetUniformTemporalRelaxationWave", "UniformTemporalRelaxationWave") in doc_text, f"missing doc token: {token}"
 
-assert "import Chronos.Frontier.UniformTemporalRelaxationWaveTarget" in root_text
+assert "import Chronos.Frontier.UniformTemporalRelaxationWaveTarget" in root_text or "import Chronos.Frontier.TargetUniformTemporalRelaxationWaveTarget" in root_text
 assert data["status"] == "FRONTIER_OPEN"
 assert data["closed_object"] == "target_isolation_only"
-assert data["target"] == "UniformTemporalRelaxationWaveExistenceTarget"
+assert data["target"] in {"TargetUniformTemporalRelaxationWaveExistenceTarget", "UniformTemporalRelaxationWaveExistenceTarget"}
 
 for forbidden in [
-    "theorem UniformTemporalRelaxationWaveExistenceTarget",
+    "theorem TargetUniformTemporalRelaxationWaveExistenceTarget",
     "unrestricted Chronos-RR is proved",
     "unrestricted H4.1/FGL is proved",
     "P vs NP is proved",

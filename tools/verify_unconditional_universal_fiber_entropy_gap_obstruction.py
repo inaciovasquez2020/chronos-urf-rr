@@ -15,12 +15,12 @@ root_import = ROOT_IMPORT.read_text()
 
 required = [
     "structure ArbitraryFiberMassData",
-    "def FiberMassUniformFloor",
-    "def zeroFiberMassData",
-    "theorem zeroFiberMassData_no_uniform_floor",
+    "def UnconditionalFiberMassUniformFloor",
+    "def unconditionalZeroFiberMassData",
+    "theorem unconditionalZeroFiberMassData_no_uniform_floor",
     "theorem no_uniform_floor_of_arbitrarily_small",
     "theorem unconditional_universal_fiber_entropy_gap_obstructed",
-    "¬ FiberMassUniformFloor",
+    "¬ UnconditionalFiberMassUniformFloor",
 ]
 
 for token in required:

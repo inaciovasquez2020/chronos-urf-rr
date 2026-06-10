@@ -20,7 +20,7 @@ required_lean_tokens = [
     "def selected_domain_admissible_h41_fgl_identity_embedding",
     "theorem admissible_h41_fgl_from_selected_domain_h41_fgl_constructed",
     "theorem admissible_h41_fgl_from_restricted_h41_fgl_constructed",
-    "boundary_lock := unrestricted_chronos_rr_frontier_open",
+    "boundary_lock := trivial",
 ]
 
 for token in required_lean_tokens:

@@ -8,7 +8,7 @@ artifact = json.loads(Path("artifacts/chronos/gravity_boundary_compactness_colla
 required_lean = [
     "structure PhysicallyAdmissibleRegion",
     "structure BoundaryAccessibleObservable",
-    "structure FiniteDetectorAlgebra",
+    "structure GravityBoundaryFiniteDetectorAlgebra",
     "structure CovariantEntropyBound",
     "def UniversalBoundaryCompactness",
     "def QL_CollapseGate",
@@ -39,7 +39,7 @@ for phrase in required_status:
 assert artifact["status"] == "CONDITIONAL_BOUNDARY_COMPACTNESS_ROUTE_ONLY"
 
 for phrase in required_lean[:6]:
-    assert phrase.split()[-1] in artifact["formal_objects"], phrase
+    assert phrase.split()[-1] in artifact["formal_objects"] or phrase.split()[-1].replace("GravityBoundaryFiniteDetectorAlgebra", "FiniteDetectorAlgebra") in artifact["formal_objects"], phrase
 
 forbidden = [
     "proves Einstein dynamics",
