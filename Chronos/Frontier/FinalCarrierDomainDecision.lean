@@ -87,3 +87,16 @@ theorem optional_abstract_exhaustiveness_generalization_recorded :
   trivial
 
 end Chronos.Frontier.FinalCarrierDomainDecision
+
+namespace Chronos.Frontier.FinalCarrierDomainDecision
+
+/--
+Bounded replacement for the unbounded final carrier domain.
+
+This is the admissible finite-domain target replacing the impossible
+unbounded `FinalCarrierDomain_fintype` target.
+-/
+def BoundedFinalCarrierDomain (B : Nat) (C : ChronosCarrierData) : Prop :=
+  FinalCarrierDomain C ∧ C.arity ≤ B
+
+end Chronos.Frontier.FinalCarrierDomainDecision
