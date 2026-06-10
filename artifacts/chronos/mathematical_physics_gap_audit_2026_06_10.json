@@ -1,0 +1,74 @@
+{
+  "id": "MATHEMATICAL_PHYSICS_GAP_AUDIT_2026_06_10",
+  "status": "frontier_gap_audit_only",
+  "scope": "mathematical physics",
+  "toolkit_fit": {
+    "included": [
+      "external notation and semantic-drift audit",
+      "external theorem certificate intake",
+      "frontier boundary classification",
+      "proof-gap intake schema",
+      "assumption inventory"
+    ],
+    "excluded": [
+      "new physics theorem proof",
+      "QFT phenomenology expansion",
+      "Yang-Mills mass-gap proof",
+      "cosmic-censorship proof",
+      "scattering-amplitude theorem"
+    ]
+  },
+  "gaps": [
+    {
+      "name": "Physics notation and semantic-drift gap",
+      "fit": "core-fit",
+      "admissible_target": "ExternalPhysicsNotationSemanticDriftAudit",
+      "basis": "physics autoformalization exposes notational collapse and abstraction elevation risks",
+      "source": "https://arxiv.org/abs/2604.23002"
+    },
+    {
+      "name": "Constructive QFT formal-certificate gap",
+      "fit": "external-certificate-fit",
+      "admissible_target": "ConstructiveQFTExternalCertificateIntake",
+      "basis": "Lean formalization of free bosonic Euclidean QFT demonstrates external theorem-certificate intake surface",
+      "source": "https://arxiv.org/abs/2603.15770"
+    },
+    {
+      "name": "Yang-Mills mass-gap boundary gap",
+      "fit": "frontier-boundary-fit",
+      "admissible_target": "YangMillsMassGapBoundaryClassification",
+      "basis": "official open frontier: no proof of quantum Yang-Mills mass gap is known",
+      "source": "https://www.claymath.org/millennium/yang-mills-the-maths-gap/"
+    },
+    {
+      "name": "Spectral-gap decidability boundary gap",
+      "fit": "classifier-fit",
+      "admissible_target": "SpectralGapDecidabilityBoundaryAudit",
+      "basis": "general spectral-gap problem is undecidable for specified quantum many-body Hamiltonian families",
+      "source": "https://arxiv.org/abs/1502.04135"
+    },
+    {
+      "name": "GR regularity and determinism boundary gap",
+      "fit": "boundary-schema-fit",
+      "admissible_target": "GRRegularityClassBoundarySchema",
+      "basis": "Strong Cosmic Censorship depends on PDE, global hyperbolicity, extendibility, regularity class, and genericity choices",
+      "source": "https://arxiv.org/abs/2501.13180"
+    },
+    {
+      "name": "Quantum-information proof-gap intake gap",
+      "fit": "proof-gap-intake-fit",
+      "admissible_target": "QuantumInfoFormalProofGapIntake",
+      "basis": "Generalized Quantum Stein's Lemma had an identified proof gap and later Lean formalization/correction route",
+      "source": "https://arxiv.org/abs/2510.08672"
+    },
+    {
+      "name": "Probabilistic Euclidean QFT foundation gap",
+      "fit": "external-source-map-fit",
+      "admissible_target": "ProbabilisticQFTExternalSourceMap",
+      "basis": "active program seeks unified probabilistic foundation for Euclidean QFT and non-perturbative analysis",
+      "source": "https://probabilistic-qft.org/"
+    }
+  ],
+  "best_next_object": "MATHEMATICAL_PHYSICS_GAP_AUDIT_2026_06_10",
+  "boundary": "This artifact classifies mathematical-physics gaps against the toolkit. It introduces no new physics theorem, no scientific payload, and no theorem promotion."
+}
