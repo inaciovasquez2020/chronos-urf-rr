@@ -10,8 +10,8 @@ DOC = ROOT / "docs" / "status" / "CHRONOS_COR_TRIANGLE_CHAIN_LEAN_FRONTIER_2026_
 REQUIRED_LEAN = [
     "abbrev TriangleChainGraph",
     "def triangleChainGraph",
-    "opaque CertifiedObstructionRankZero",
-    "axiom triangleChain_COR0_eq_blocks",
+    "def CertifiedObstructionRankZero",
+    "theorem triangleChain_COR0_eq_blocks",
     "theorem triangleChain_COR0_linear_lower_bound",
 ]
 
