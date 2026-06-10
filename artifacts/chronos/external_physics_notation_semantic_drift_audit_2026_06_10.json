@@ -1,0 +1,110 @@
+{
+  "id": "EXTERNAL_PHYSICS_NOTATION_SEMANTIC_DRIFT_AUDIT_2026_06_10",
+  "status": "notation_semantic_drift_audit_only",
+  "scope": "external mathematical-physics notation",
+  "depends_on": [
+    "HEP_T_EXTERNAL_NOTATION_CLASSIFICATION_2026_06_10",
+    "MATHEMATICAL_PHYSICS_GAP_AUDIT_2026_06_10"
+  ],
+  "audit_classes": [
+    {
+      "class": "symbol_collision",
+      "description": "same glyph or token reused with incompatible domain meanings",
+      "required_record": [
+        "symbol",
+        "domain",
+        "typed_meaning",
+        "source_payload"
+      ]
+    },
+    {
+      "class": "type_drift",
+      "description": "notation moves between object types without an explicit typed bridge",
+      "required_record": [
+        "source_type",
+        "target_type",
+        "admissibility_condition"
+      ]
+    },
+    {
+      "class": "domain_drift",
+      "description": "notation imported from one physics domain into another without a domain tag",
+      "required_record": [
+        "source_domain",
+        "target_domain",
+        "domain_boundary"
+      ]
+    },
+    {
+      "class": "theorem_promotion_drift",
+      "description": "external notation or source text is promoted into a theorem claim without a verified payload",
+      "required_record": [
+        "external_claim",
+        "verified_payload_status",
+        "promotion_status"
+      ]
+    },
+    {
+      "class": "abstraction_elevation",
+      "description": "concrete physics notation is generalized beyond its source assumptions",
+      "required_record": [
+        "source_assumptions",
+        "generalized_form",
+        "missing_bridge"
+      ]
+    }
+  ],
+  "canonical_cases": [
+    {
+      "symbol": "t",
+      "domain": "High Energy Physics",
+      "typed_meaning": "top quark",
+      "admissibility": "external typed notation only",
+      "core_unification_primitive": false,
+      "core_theorem_target": false
+    },
+    {
+      "symbol": "t",
+      "domain": "scattering theory",
+      "typed_meaning": "Mandelstam momentum-transfer variable",
+      "admissibility": "external typed notation only",
+      "core_unification_primitive": false,
+      "core_theorem_target": false
+    },
+    {
+      "symbol": "t",
+      "domain": "GR/PDE evolution",
+      "typed_meaning": "time or evolution parameter",
+      "admissibility": "typed internal or external notation according to source payload",
+      "core_unification_primitive": false,
+      "core_theorem_target": false
+    }
+  ],
+  "admissibility_gate": {
+    "requires_symbol": true,
+    "requires_domain": true,
+    "requires_typed_meaning": true,
+    "requires_admissibility_condition": true,
+    "requires_source_payload_for_theorem_promotion": true,
+    "forbids_untyped_symbol_reuse": true,
+    "forbids_domain_free_import": true,
+    "forbids_payload_free_theorem_promotion": true
+  },
+  "included_outputs": [
+    "notation drift classification",
+    "typed-domain notation record",
+    "source-payload requirement",
+    "promotion boundary"
+  ],
+  "excluded_outputs": [
+    "new physics theorem",
+    "new mathematical-physics proof",
+    "QFT phenomenology expansion",
+    "scattering-amplitude theorem",
+    "top-quark theorem",
+    "Yang-Mills mass-gap proof",
+    "cosmic-censorship proof"
+  ],
+  "closed_object": "ExternalPhysicsNotationSemanticDriftAudit",
+  "boundary": "This audit closes only the semantic-drift control surface for external physics notation. It introduces no new physics theorem, no scientific payload, and no theorem promotion."
+}
