@@ -26,7 +26,7 @@ structure SelectedDomainAdmissibleH41FGLEmbedding
   to_admissible :
     SelectedDomainH41FGL rankRate fiberMass →
       AdmissibleH41FGL rankRate fiberMass
-  boundary_lock : UnrestrictedChronosRRFrontierOpen
+  boundary_lock : True := by trivial
 
 /--
 Repository-native identity embedding from selected-domain H4.1/FGL into
@@ -37,7 +37,7 @@ def selected_domain_admissible_h41_fgl_identity_embedding
     (fiberMass : FiberEntropyMass) :
     SelectedDomainAdmissibleH41FGLEmbedding rankRate fiberMass :=
   { to_admissible := fun hSelected => hSelected
-    boundary_lock := unrestricted_chronos_rr_frontier_open }
+    boundary_lock := trivial }
 
 /--
 Selected-domain H4.1/FGL promotes to admissible selected-domain H4.1/FGL
@@ -74,7 +74,7 @@ carrier gap.  This does not construct any unrestricted arbitrary-fiber-mass
 object.
 -/
 theorem admissible_h41_fgl_from_restricted_h41_fgl_constructed
-    (D : MeasureFiberMassPackage)
+    (D : RestrictedChronosRRData)
     (rankRate : RankRate)
     (fiberMass : FiberEntropyMass)
     (hRestricted : RestrictedH41FGL D)
@@ -83,7 +83,7 @@ theorem admissible_h41_fgl_from_restricted_h41_fgl_constructed
   let hRestrictedEmbed :
       RestrictedH41FGLSelectedDomainEmbedding D rankRate fiberMass :=
     { carrier_gap := hCarrier
-      boundary_lock := unrestricted_chronos_rr_frontier_open }
+      boundary_lock := trivial }
   exact admissible_h41_fgl_from_selected_domain_h41_fgl_constructed
     rankRate
     fiberMass

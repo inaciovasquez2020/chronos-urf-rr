@@ -15,7 +15,7 @@ route can be promoted.
 It does not construct the native objects.
 It does not prove R1, R2, R3, NON_FACTORISATION, Chronos-RR, or H4.1/FGL.
 -/
-structure RepositoryNativeR1R2R3BindingSpec where
+structure NewsteinR1R2R3NativeBindingSpec where
   nativeR1Data : R1SemanticData
   nativeR2Data : R2SemanticData
   nativeR3Data : R3SemanticData
@@ -45,8 +45,8 @@ structure RepositoryNativeR1R2R3BindingSpec where
   r3Correct : R3UniformLocalTypeCapacityTheorem nativeR3Data
 
 /-- The native binding is supplied exactly when all registry-matching specs are present. -/
-def RepositoryNativeR1R2R3BindingSupplied
-    (S : RepositoryNativeR1R2R3BindingSpec) : Prop :=
+def NewsteinR1R2R3NativeBindingSupplied
+    (S : NewsteinR1R2R3NativeBindingSpec) : Prop :=
   S.nativeWTrivSpec ∧
   S.nativePhi2TrivSpec ∧
   S.nativeBoundaryOperatorSpec ∧
@@ -69,13 +69,13 @@ If a repository-native binding spec is supplied, then the R1/R2/R3 semantic theo
 targets are closed for the native data.
 -/
 def RepositoryNativeR1R2R3TheoremsClosed
-    (S : RepositoryNativeR1R2R3BindingSpec) : Prop :=
+    (S : NewsteinR1R2R3NativeBindingSpec) : Prop :=
   R1LongChordExclusionTheorem S.nativeR1Data ∧
   R2DiameterSeparationFillingObstructionTheorem S.nativeR2Data ∧
   R3UniformLocalTypeCapacityTheorem S.nativeR3Data
 
 theorem repository_native_R1_R2_R3_theorems_from_binding_spec
-    (S : RepositoryNativeR1R2R3BindingSpec) :
+    (S : NewsteinR1R2R3NativeBindingSpec) :
     RepositoryNativeR1R2R3TheoremsClosed S := by
   exact ⟨S.r1Correct, S.r2Correct, S.r3Correct⟩
 
@@ -84,13 +84,13 @@ Native non-factorisation promotion is allowed only from a supplied native bindin
 and the native R1/R2/R3 theorem closures.
 -/
 def RepositoryNativeNonFactorisationPromotionAllowed
-    (S : RepositoryNativeR1R2R3BindingSpec) : Prop :=
-  RepositoryNativeR1R2R3BindingSupplied S ∧
+    (S : NewsteinR1R2R3NativeBindingSpec) : Prop :=
+  NewsteinR1R2R3NativeBindingSupplied S ∧
   RepositoryNativeR1R2R3TheoremsClosed S
 
 theorem repository_native_nonfactorisation_promotion_from_binding_spec
-    (S : RepositoryNativeR1R2R3BindingSpec)
-    (hSupplied : RepositoryNativeR1R2R3BindingSupplied S) :
+    (S : NewsteinR1R2R3NativeBindingSpec)
+    (hSupplied : NewsteinR1R2R3NativeBindingSupplied S) :
     RepositoryNativeNonFactorisationPromotionAllowed S := by
   exact ⟨hSupplied, repository_native_R1_R2_R3_theorems_from_binding_spec S⟩
 
@@ -98,32 +98,32 @@ theorem repository_native_nonfactorisation_promotion_from_binding_spec
 Chronos-RR promotion is still blocked unless the repository-native binding is supplied.
 -/
 def RepositoryNativeChronosRRPromotionAllowed
-    (S : RepositoryNativeR1R2R3BindingSpec) : Prop :=
+    (S : NewsteinR1R2R3NativeBindingSpec) : Prop :=
   RepositoryNativeNonFactorisationPromotionAllowed S
 
 /--
 H4.1/FGL promotion is still blocked unless the repository-native binding is supplied.
 -/
 def RepositoryNativeH41FGLPromotionAllowed
-    (S : RepositoryNativeR1R2R3BindingSpec) : Prop :=
+    (S : NewsteinR1R2R3NativeBindingSpec) : Prop :=
   RepositoryNativeNonFactorisationPromotionAllowed S
 
 theorem no_repository_native_promotion_without_binding_supplied
-    (S : RepositoryNativeR1R2R3BindingSpec)
-    (hMissing : ¬ RepositoryNativeR1R2R3BindingSupplied S) :
+    (S : NewsteinR1R2R3NativeBindingSpec)
+    (hMissing : ¬ NewsteinR1R2R3NativeBindingSupplied S) :
     ¬ RepositoryNativeNonFactorisationPromotionAllowed S := by
   intro hAllowed
   exact hMissing hAllowed.1
 
 theorem no_repository_native_chronos_rr_promotion_without_binding_supplied
-    (S : RepositoryNativeR1R2R3BindingSpec)
-    (hMissing : ¬ RepositoryNativeR1R2R3BindingSupplied S) :
+    (S : NewsteinR1R2R3NativeBindingSpec)
+    (hMissing : ¬ NewsteinR1R2R3NativeBindingSupplied S) :
     ¬ RepositoryNativeChronosRRPromotionAllowed S := by
   exact no_repository_native_promotion_without_binding_supplied S hMissing
 
 theorem no_repository_native_h41_fgl_promotion_without_binding_supplied
-    (S : RepositoryNativeR1R2R3BindingSpec)
-    (hMissing : ¬ RepositoryNativeR1R2R3BindingSupplied S) :
+    (S : NewsteinR1R2R3NativeBindingSpec)
+    (hMissing : ¬ NewsteinR1R2R3NativeBindingSupplied S) :
     ¬ RepositoryNativeH41FGLPromotionAllowed S := by
   exact no_repository_native_promotion_without_binding_supplied S hMissing
 

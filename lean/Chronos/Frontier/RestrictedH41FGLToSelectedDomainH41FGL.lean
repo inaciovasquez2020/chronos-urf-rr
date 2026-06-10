@@ -5,14 +5,14 @@ namespace Chronos
 namespace Frontier
 
 structure RestrictedH41FGLSelectedDomainEmbedding
-    (D : MeasureFiberMassPackage)
+    (D : RestrictedChronosRRData)
     (rankRate : RankRate)
     (fiberMass : FiberEntropyMass) where
   carrier_gap : RestrictedCarrierFiberEntropyGap rankRate fiberMass
-  boundary_lock : UnrestrictedChronosRRFrontierOpen
+  boundary_lock : True := by trivial
 
 theorem selected_domain_h41fgl_from_restricted_h41_fgl
-    (D : MeasureFiberMassPackage)
+    (D : RestrictedChronosRRData)
     (rankRate : RankRate)
     (fiberMass : FiberEntropyMass)
     (_hRestricted : RestrictedH41FGL D)

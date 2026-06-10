@@ -8,7 +8,7 @@ structure TemporalRelaxationWaveData where
   entropy : Carrier → Nat
   mass : Carrier → Nat
 
-structure UniformTemporalRelaxationWave
+structure TargetUniformTemporalRelaxationWave
     (D : TemporalRelaxationWaveData) : Prop where
   entropy_nonincrease :
     ∀ x : D.Carrier, D.entropy (D.step x) ≤ D.entropy x
@@ -18,7 +18,7 @@ structure UniformTemporalRelaxationWave
     ∃ n : Nat, n ≠ 0 ∧ ∀ x : D.Carrier, n ≤ D.mass x
 
 def UniformTemporalRelaxationWaveExistenceTarget : Prop :=
-  ∀ D : TemporalRelaxationWaveData, UniformTemporalRelaxationWave D
+  ∀ D : TemporalRelaxationWaveData, TargetUniformTemporalRelaxationWave D
 
 theorem uniformTemporalRelaxationWave_from_input
     (h : UniformTemporalRelaxationWaveExistenceTarget) :
@@ -26,7 +26,7 @@ theorem uniformTemporalRelaxationWave_from_input
   h
 
 def uniformTemporalRelaxationWave_frontier_open_marker : String :=
-  "FRONTIER_OPEN: UniformTemporalRelaxationWave existence is not proved"
+  "FRONTIER_OPEN: TargetUniformTemporalRelaxationWave existence is not proved"
 
 end Frontier
 end Chronos

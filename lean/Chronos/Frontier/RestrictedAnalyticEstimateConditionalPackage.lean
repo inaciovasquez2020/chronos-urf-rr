@@ -29,24 +29,24 @@ theorem restricted_concentration_monotonicity
   rw [D.derivativeIdentity t]
   exact D.fluxNonnegative t
 
-def RestrictedContinuationNormControl
+def RestrictedAnalyticEstimateContinuationNormControl
   (D : RestrictedAnalyticEstimateData) : Prop :=
   ∀ t, D.Q t < D.Qstar → D.N t < ⊤
 
 theorem restricted_continuation_norm_control
   (D : RestrictedAnalyticEstimateData) :
-  RestrictedContinuationNormControl D := by
+  RestrictedAnalyticEstimateContinuationNormControl D := by
   intro t hQ
   exact lt_of_le_of_lt (D.bootstrapBound t hQ) D.finiteC
 
-structure ConcreteAnalyticEinsteinMatterEstimatePackage where
+structure RestrictedConcreteAnalyticEinsteinMatterEstimatePackage where
   data : RestrictedAnalyticEstimateData
   concentrationMonotonicity : RestrictedConcentrationMonotonicity data
-  continuationNormControl : RestrictedContinuationNormControl data
+  continuationNormControl : RestrictedAnalyticEstimateContinuationNormControl data
 
 def concrete_analytic_einstein_matter_estimate_package_from_flux_and_bootstrap
   (D : RestrictedAnalyticEstimateData) :
-  ConcreteAnalyticEinsteinMatterEstimatePackage where
+  RestrictedConcreteAnalyticEinsteinMatterEstimatePackage where
     data := D
     concentrationMonotonicity := restricted_concentration_monotonicity D
     continuationNormControl := restricted_continuation_norm_control D
@@ -71,7 +71,7 @@ def numericalRestrictedAnalyticEstimateData :
       simp
 
 def numericalConcreteAnalyticEinsteinMatterEstimatePackage :
-  ConcreteAnalyticEinsteinMatterEstimatePackage :=
+  RestrictedConcreteAnalyticEinsteinMatterEstimatePackage :=
   concrete_analytic_einstein_matter_estimate_package_from_flux_and_bootstrap
     numericalRestrictedAnalyticEstimateData
 
@@ -80,7 +80,7 @@ example :
   numericalConcreteAnalyticEinsteinMatterEstimatePackage.concentrationMonotonicity
 
 example :
-  RestrictedContinuationNormControl numericalRestrictedAnalyticEstimateData :=
+  RestrictedAnalyticEstimateContinuationNormControl numericalRestrictedAnalyticEstimateData :=
   numericalConcreteAnalyticEinsteinMatterEstimatePackage.continuationNormControl
 
 example :

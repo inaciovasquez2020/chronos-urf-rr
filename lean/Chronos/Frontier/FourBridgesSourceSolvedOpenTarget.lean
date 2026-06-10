@@ -18,23 +18,23 @@ structure OpenProofTarget where
   boundary : String
 deriving Repr, BEq
 
-def LongChordExclusionProofTarget : OpenProofTarget :=
-  { name := "LongChordExclusionProofTarget",
+def FourBridgesLongChordExclusionProofTarget : OpenProofTarget :=
+  { name := "FourBridgesLongChordExclusionProofTarget",
     status := "OPEN",
     boundary := "R1 bridge target only; no theorem-level R1 promotion" }
 
-def DiameterSeparationFillingObstructionProofTarget : OpenProofTarget :=
-  { name := "DiameterSeparationFillingObstructionProofTarget",
+def FourBridgesDiameterSeparationFillingObstructionProofTarget : OpenProofTarget :=
+  { name := "FourBridgesDiameterSeparationFillingObstructionProofTarget",
     status := "OPEN",
     boundary := "R2 bridge target only; no theorem-level R2 promotion" }
 
-def UniformLocalTypeCapacityProofTarget : OpenProofTarget :=
-  { name := "UniformLocalTypeCapacityProofTarget",
+def FourBridgesUniformLocalTypeCapacityProofTarget : OpenProofTarget :=
+  { name := "FourBridgesUniformLocalTypeCapacityProofTarget",
     status := "OPEN",
     boundary := "R3 bridge target only; no theorem-level R3 promotion" }
 
-def NonFactorisationBridgeProofTarget : OpenProofTarget :=
-  { name := "NonFactorisationBridgeProofTarget",
+def FourBridgesNonFactorisationBridgeProofTarget : OpenProofTarget :=
+  { name := "FourBridgesNonFactorisationBridgeProofTarget",
     status := "OPEN",
     boundary := "NON_FACTORISATION bridge target only; no theorem-level promotion" }
 
@@ -49,24 +49,24 @@ structure FourBridgesSourceSolved where
   r4 : OpenProofTarget
 
 def FourBridgesSourceSolvedOpenTarget : FourBridgesSourceSolved :=
-  { r1 := LongChordExclusionProofTarget,
-    r2 := DiameterSeparationFillingObstructionProofTarget,
-    r3 := UniformLocalTypeCapacityProofTarget,
-    r4 := NonFactorisationBridgeProofTarget }
+  { r1 := FourBridgesLongChordExclusionProofTarget,
+    r2 := FourBridgesDiameterSeparationFillingObstructionProofTarget,
+    r3 := FourBridgesUniformLocalTypeCapacityProofTarget,
+    r4 := FourBridgesNonFactorisationBridgeProofTarget }
 
 /- One theorem stub per bridge. -/
 
 def solve_R1_bridge_theorem_stub : OpenProofTarget :=
-  LongChordExclusionProofTarget
+  FourBridgesLongChordExclusionProofTarget
 
 def solve_R2_bridge_theorem_stub : OpenProofTarget :=
-  DiameterSeparationFillingObstructionProofTarget
+  FourBridgesDiameterSeparationFillingObstructionProofTarget
 
 def solve_R3_bridge_theorem_stub : OpenProofTarget :=
-  UniformLocalTypeCapacityProofTarget
+  FourBridgesUniformLocalTypeCapacityProofTarget
 
 def solve_NON_FACTORISATION_bridge_theorem_stub : OpenProofTarget :=
-  NonFactorisationBridgeProofTarget
+  FourBridgesNonFactorisationBridgeProofTarget
 
 /-- Counterexample-search harness descriptor. -/
 structure CounterexampleSearchHarness where
@@ -108,7 +108,7 @@ def non_factorisation_counterexample_search_harness : CounterexampleSearchHarnes
 /-
 Exactly one bridge is acted on first: R1 is refuted only as an unrestricted
 native-promotion route.  This does not refute the restricted/safe R1 route and
-does not prove or refute the opaque LongChordExclusionProofTarget itself.
+does not prove or refute the opaque FourBridgesLongChordExclusionProofTarget itself.
 -/
 
 structure R1NativeCandidate where

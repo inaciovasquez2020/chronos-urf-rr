@@ -9,7 +9,7 @@ theorem concreteDeficitMassParameterVector_length :
   rfl
 
 def concreteLowParameterDeficitMassModelTarget :
-    PredictiveDeficitMassLawOrLowParameterDeficitMassModel :=
+    UniquePredictiveDeficitMassLawOrLowParameterDeficitMassModel :=
   { route := PredictiveDeficitMassRoute.lowParameterDeficitMassModel
     parameterCount := concreteDeficitMassParameterVector.length
     holdoutGalaxyCount := 1
@@ -28,7 +28,7 @@ theorem concreteLowParameterDeficitMassModelTarget_admissible :
     decide
 
 structure ConcretePredictiveDeficitMassLawOrConcreteLowParameterDeficitMassModel where
-  target : PredictiveDeficitMassLawOrLowParameterDeficitMassModel
+  target : UniquePredictiveDeficitMassLawOrLowParameterDeficitMassModel
   admissible : admissiblePredictiveDeficitMassTarget target
   empiricalValidationClaimGuard : Bool
   physicalReplacementClaimGuard : Bool

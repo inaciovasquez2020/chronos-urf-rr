@@ -36,7 +36,7 @@ Finite detector algebra assumption.
 For every admissible region, boundary-accessible observations are represented
 through a finite detector alphabet.
 -/
-structure FiniteDetectorAlgebra
+structure GravityBoundaryFiniteDetectorAlgebra
     (R : PhysicallyAdmissibleRegion.{u, v}) where
   DetectorAlphabet : Type w
   finite_detector_alphabet : Prop
@@ -73,7 +73,7 @@ theorem finite_detector_algebra_implies_universal_boundary_compactness
     (_hR₂ : R.finite_energy_matter)
     (_hR₃ : R.backreaction_controlled)
     (_hR₄ : R.diffeomorphism_invariant_description)
-    (_A : FiniteDetectorAlgebra.{u, v, w} R) :
+    (_A : GravityBoundaryFiniteDetectorAlgebra.{u, v, w} R) :
     UniversalBoundaryCompactness R := by
   intro ε hε
   exact ⟨ε, True.intro⟩
@@ -126,7 +126,7 @@ theorem finite_detector_algebra_implies_QL_CollapseGate
     (hR₂ : R.finite_energy_matter)
     (hR₃ : R.backreaction_controlled)
     (hR₄ : R.diffeomorphism_invariant_description)
-    (A : FiniteDetectorAlgebra.{u, v, w} R) :
+    (A : GravityBoundaryFiniteDetectorAlgebra.{u, v, w} R) :
     QL_CollapseGate R := by
   exact universal_boundary_compactness_implies_QL_CollapseGate R
     hR₁ hR₂ hR₃ hR₄

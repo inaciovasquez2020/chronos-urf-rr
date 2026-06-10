@@ -1,4 +1,5 @@
 import Chronos.Frontier.FiniteSupportFiberMassUniformFloor
+import Chronos.Frontier.UnconditionalUniversalFiberEntropyGapObstruction
 
 namespace Chronos
 namespace Frontier
@@ -39,7 +40,7 @@ Boundary witness: the unrestricted arbitrary-fiber-mass obstruction remains
 available after the finite-support restricted construction.
 -/
 theorem finite_support_restricted_chronos_rr_preserves_unconditional_ufeg_obstruction :
-    ∃ D : ArbitraryFiberMassData, ¬ FiberMassUniformFloor D :=
+    ∃ D : ArbitraryFiberMassData, ¬ UnconditionalFiberMassUniformFloor D :=
   unconditional_universal_fiber_entropy_gap_obstructed
 
 end Frontier
