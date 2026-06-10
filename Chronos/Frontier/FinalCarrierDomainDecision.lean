@@ -100,3 +100,16 @@ def BoundedFinalCarrierDomain (B : Nat) (C : ChronosCarrierData) : Prop :=
   FinalCarrierDomain C ∧ C.arity ≤ B
 
 end Chronos.Frontier.FinalCarrierDomainDecision
+
+namespace Chronos.Frontier.FinalCarrierDomainDecision
+
+/--
+Fully bounded finite replacement target for the unbounded final carrier domain.
+
+Unlike `BoundedFinalCarrierDomain`, this bounds every native Nat coordinate
+of `ChronosCarrierData`.
+-/
+def FullyBoundedFinalCarrierDomain (B : Nat) (C : ChronosCarrierData) : Prop :=
+  FinalCarrierDomain C ∧ C.arity ≤ B ∧ C.stratum ≤ B ∧ C.index ≤ B
+
+end Chronos.Frontier.FinalCarrierDomainDecision
