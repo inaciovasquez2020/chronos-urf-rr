@@ -13,6 +13,9 @@ structure ExternalSourceTheoremCertificate where
   source_id : String
   source_doi : String
   theorem_label : String
+  function_ratio_source_theorem : String
+  derivative_ratio_source_theorem : String
+  source_equation_refs : List String
   full_reference : String
   parameter_valid :
     NondegenerateSourceValidExternalQKDiniCoefficientSlice
@@ -36,6 +39,9 @@ noncomputable def El_Qadeem_2022_Certificate
       "10.1155/2022/8496249"
     theorem_label :=
       "Theorems 1 and 2: ratio lower bounds, q-generalized Dini function"
+    function_ratio_source_theorem := "Theorem 1"
+    derivative_ratio_source_theorem := "Theorem 2"
+    source_equation_refs := ["(11)", "(12)", "(19)-(22)", "(35)-(39)"]
     full_reference :=
       "El-Qadeem, A.H., Mamon, M.A., Elshazly, I.S.: On the Partial Sums of the q-Generalized Dini Function. Journal of Mathematics, 2022, Article ID 8496249. DOI: 10.1155/2022/8496249"
     parameter_valid := S
