@@ -130,3 +130,19 @@ by
   exact Fintype.ofFinite _
 
 end Chronos.Frontier.FinalCarrierDomainDecision
+
+namespace Chronos.Frontier.FinalCarrierDomainDecision
+
+/--
+Repository-native generation theorem for the fully bounded replacement domain.
+-/
+theorem FullyBoundedFinalCarrierDomain_repository_native_generated
+    (B : Nat) :
+    ∀ C : ChronosCarrierData,
+      FullyBoundedFinalCarrierDomain B C →
+      RepositoryNativeGenerated C := by
+  intro C hC
+  exact positive_arity_repository_native_image_covers C (by
+    simpa [FinalCarrierDomain] using hC.1)
+
+end Chronos.Frontier.FinalCarrierDomainDecision
