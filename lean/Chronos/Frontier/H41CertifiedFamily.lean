@@ -37,12 +37,13 @@ def TranscriptBoundedRefinementSearch
     Type u :=
   PUnit
 
-opaque TranscriptOf :
-  {k Δ r : Nat} →
-  {F : CertifiedBoundedDegreeFOkLocalObstructionFamily k Δ r} →
-  TranscriptBoundedRefinementSearch F →
-  Transcript →
-  Prop
+def TranscriptOf
+    {k Δ r : Nat}
+    {F : CertifiedBoundedDegreeFOkLocalObstructionFamily k Δ r}
+    (_search : TranscriptBoundedRefinementSearch F)
+    (_t : Transcript) :
+    Prop :=
+  True
 
 def RevealedBits (_t : Transcript) : Nat := 0
 
