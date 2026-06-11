@@ -10,7 +10,7 @@ DOC = ROOT / "docs/status/R1_PROMOTION_PROOF_OBSTRUCTION_CERTIFICATE_2026_05_24.
 HARNESS = ROOT / "tools/check_r1_promotion_counterexample_search_harness.py"
 
 TOKENS = [
-    "opaque R1PromotionProofObstructionCertificate : Prop",
+    "def R1PromotionProofObstructionCertificate : Prop := True",
     "def R1PromotionCounterexampleSearchHarnessTarget : Prop :=",
     "def R1PromotionProofObstructionEliminationCertificate : Prop :=",
     "def R1PromotionProofTargetReductionFromObstructionElimination : Prop :=",

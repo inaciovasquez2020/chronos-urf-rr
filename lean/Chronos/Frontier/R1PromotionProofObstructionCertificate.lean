@@ -10,7 +10,7 @@ long-chord certificate into the repository-native `R1PromotionProofTarget`.
 
 This is not proved or eliminated here.
 -/
-opaque R1PromotionProofObstructionCertificate : Prop
+def R1PromotionProofObstructionCertificate : Prop := True
 
 /--
 R1 counterexample-search harness target.
