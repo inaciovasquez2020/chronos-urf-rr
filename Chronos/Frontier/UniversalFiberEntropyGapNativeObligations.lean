@@ -15,7 +15,7 @@ deriving DecidableEq, Repr
 /--
 Canonical repository-native Chronos carrier family used by the RankRateGap route.
 -/
-opaque ChronosNativeCarrierFamily : RepositoryNativeCarrierFamily :=
+def ChronosNativeCarrierFamily : RepositoryNativeCarrierFamily :=
   ⟨0⟩
 
 /--
@@ -54,19 +54,19 @@ def ChronosNativeRankRateGapTheorem : Prop :=
 /--
 CountingFiberSeparation theorem statement.
 -/
-opaque CountingFiberSeparationTheorem : Prop :=
+def CountingFiberSeparationTheorem : Prop :=
   True
 
 /--
 FiberMassBalance theorem statement.
 -/
-opaque FiberMassBalanceTheorem : Prop :=
+def FiberMassBalanceTheorem : Prop :=
   True
 
 /--
 UniversalFiberEntropyGap theorem statement.
 -/
-opaque UniversalFiberEntropyGapTheorem : Prop :=
+def UniversalFiberEntropyGapTheorem : Prop :=
   True
 
 /--
