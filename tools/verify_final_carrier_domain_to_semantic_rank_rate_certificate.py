@@ -21,7 +21,7 @@ root_text = root.read_text()
 data = json.loads(artifact.read_text())
 
 required_lean = [
-    "axiom FinalCarrierDomain_repository_native_semantic_rank_rate_exhaustiveness",
+    "theorem FinalCarrierDomain_repository_native_semantic_rank_rate_exhaustiveness",
     "RepositoryNativeSemanticRankRateExhaustiveness",
     "theorem FinalCarrierDomain_to_RepositoryNativeSemanticRankRateDomain",
     "theorem FinalCarrierDomain_to_native_SemanticRankRateCertificate_exists",

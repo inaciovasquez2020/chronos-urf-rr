@@ -28,7 +28,7 @@ required_lean_tokens = [
     "RepositoryNativeGenerated c",
     "Finset.univ.image Subtype.val",
     "Finset.mem_image.mpr ⟨⟨c, hc⟩, Finset.mem_univ _, rfl⟩",
-    "axiom FinalCarrierDomain_fintype",
+    "noncomputable def FinalCarrierDomain_fintype",
     "theorem FinalCarrierDomain_repository_native_generated",
     "theorem RepositoryNativeFiniteRegistryExhaustiveness_from_fintype_axioms",
 ]
