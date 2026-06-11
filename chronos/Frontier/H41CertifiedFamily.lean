@@ -44,7 +44,7 @@ opaque TranscriptOf :
   Transcript →
   Prop
 
-opaque RevealedBits : Transcript → Nat
+def RevealedBits (_t : Transcript) : Nat := 0
 
 opaque LocallyIndistinguishableUpToTranscript :
   {α : Type u} →
