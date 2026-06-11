@@ -11,10 +11,11 @@ Status: conditional bridge only.
 This is the weakest sufficient axiom for deriving the encoded
 ChronosNativeRankRateGapTheorem from the current native obligation surface.
 -/
-axiom rank_rate_to_fiber_entropy_native
+theorem rank_rate_to_fiber_entropy_native
     (n : Nat)
     (h : CertifiedRankRateLowerBound ChronosNativeCarrierFamily n) :
-    CertifiedFiberEntropyLowerBound ChronosNativeCarrierFamily n
+    CertifiedFiberEntropyLowerBound ChronosNativeCarrierFamily n :=
+  ⟨h.rankRateCertificate⟩
 
 /--
 Axiomatic RankRateGap surface for the canonical Chronos native carrier family.
