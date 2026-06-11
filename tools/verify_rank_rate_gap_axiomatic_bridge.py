@@ -14,7 +14,7 @@ for path in [lean, root, doc, artifact]:
 lean_text = lean.read_text()
 for token in [
     "import Chronos.Frontier.UniversalFiberEntropyGapNativeObligations",
-    "axiom rank_rate_to_fiber_entropy_native",
+    "theorem rank_rate_to_fiber_entropy_native",
     "CertifiedRankRateLowerBound ChronosNativeCarrierFamily n",
     "CertifiedFiberEntropyLowerBound ChronosNativeCarrierFamily n",
     "theorem ChronosNativeRankRateGapTheorem_axiomatic",
