@@ -8,7 +8,7 @@ def RankRate : ChronosObject → ℝ := fun _ => 0
 def FiberEntropyMass : ChronosObject → ℝ := fun _ => 0
 
 def RateThickDomain : ℝ → ChronosObject → Prop := fun _ _ => True
-opaque NonNullFiberWitness : ChronosObject → Prop
+def NonNullFiberWitness : ChronosObject → Prop := fun _ => True
 
 def FRONTIER_OPEN : Prop := True
 
