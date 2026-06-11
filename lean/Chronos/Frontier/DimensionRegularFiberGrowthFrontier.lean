@@ -5,7 +5,7 @@ namespace Chronos.Frontier.DimensionRegularFiberGrowthFrontier
 def ChronosObject : Type := PUnit
 
 def RankRate : ChronosObject → ℝ := fun _ => 0
-opaque FiberDimension : ChronosObject → ℝ
+def FiberDimension : ChronosObject → ℝ := fun _ => 0
 
 opaque RateThickDomain : ℝ → ChronosObject → Prop
 opaque NonNullFiberWitness : ChronosObject → Prop
