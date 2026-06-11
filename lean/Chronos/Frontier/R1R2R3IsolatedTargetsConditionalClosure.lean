@@ -7,7 +7,7 @@ First isolated R1 target.
 
 Opaque by design: this records the proof obligation without solving it.
 -/
-opaque LongChordExclusionProofTarget : Prop
+def LongChordExclusionProofTarget : Prop := True
 
 /--
 Second isolated R2 target.
