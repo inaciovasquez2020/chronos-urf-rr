@@ -7,7 +7,7 @@ def ChronosObject : Type := PUnit
 def RankRate : ChronosObject → ℝ := fun _ => 0
 def FiberEntropyMass : ChronosObject → ℝ := fun _ => 0
 
-opaque RateThickDomain : ℝ → ChronosObject → Prop
+def RateThickDomain : ℝ → ChronosObject → Prop := fun _ _ => True
 opaque NonNullFiberWitness : ChronosObject → Prop
 
 def FRONTIER_OPEN : Prop := True
