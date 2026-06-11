@@ -1,0 +1,38 @@
+{
+  "name": "RESTRICTED_CONTINUATION_NORM_CONTROL_PROOF",
+  "status": "PROOF_OBLIGATION_SURFACE_ONLY_NO_CONTINUATION_NORM_CONTROL_PROOF",
+  "previous_object": "RESTRICTED_CONCENTRATION_MONOTONICITY_PROOF",
+  "uses": [
+    "RESTRICTED_CONCENTRATION_MONOTONICITY_PROOF"
+  ],
+  "objects": [
+    "restrictedConcentrationData",
+    "continuationNorm",
+    "continuationTimeInterval",
+    "bootstrapNormBound",
+    "continuationThreshold"
+  ],
+  "obligations": [
+    "restrictedConcentrationMonotonicityAvailable",
+    "continuationNormDefined",
+    "continuationIntervalControlled",
+    "bootstrapNormBoundPropagates",
+    "concentrationControlsContinuationNorm",
+    "thresholdNotReached",
+    "continuationCriterionApplies"
+  ],
+  "conclusion": "restricted continuation norm-control proof obligation slot is conditionally recorded",
+  "boundary": [
+    "proof-obligation surface only",
+    "no unconditional restricted continuation norm control theorem",
+    "no package compatibility proof",
+    "no target-interface compatibility proof",
+    "no concrete analytic Einstein-matter estimate package proof",
+    "no gravity closure",
+    "no Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ],
+  "next_admissible_object": "PACKAGE_COMPATIBILITY_PROOF"
+}
