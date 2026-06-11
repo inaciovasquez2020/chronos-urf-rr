@@ -184,6 +184,7 @@ import Chronos.Frontier.LocalBalanceLawDQDTDerivation
 import Chronos.Frontier.RestrictedConcentrationMonotonicityProof
 import Chronos.Frontier.RestrictedContinuationNormControlProof
 import Chronos.Frontier.PackageCompatibilityProof
+import Chronos.Frontier.TargetInterfaceCompatibilityProof
 
 import Chronos.Frontier.ConcreteAnalyticEinsteinMatterEstimatePackageCloseoutStack
 import Chronos.Frontier.RestrictedAnalyticEstimateConditionalPackage

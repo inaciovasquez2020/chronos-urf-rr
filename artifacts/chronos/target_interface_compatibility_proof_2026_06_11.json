@@ -1,0 +1,36 @@
+{
+  "name": "TARGET_INTERFACE_COMPATIBILITY_PROOF",
+  "status": "PROOF_OBLIGATION_SURFACE_ONLY_NO_TARGET_INTERFACE_COMPATIBILITY_PROOF",
+  "previous_object": "PACKAGE_COMPATIBILITY_PROOF",
+  "uses": [
+    "PACKAGE_COMPATIBILITY_PROOF"
+  ],
+  "objects": [
+    "packageCompatibilityData",
+    "targetInterface",
+    "packageOutputInterface",
+    "einsteinMatterTarget",
+    "analyticTargetStatement"
+  ],
+  "obligations": [
+    "packageCompatibilityAvailable",
+    "targetInterfaceDefined",
+    "packageOutputInterfaceDefined",
+    "packageOutputMatchesTargetInput",
+    "einsteinMatterTargetDefined",
+    "analyticTargetStatementMatches",
+    "targetConclusionCompatible"
+  ],
+  "conclusion": "target-interface compatibility proof obligation slot is conditionally recorded",
+  "boundary": [
+    "proof-obligation surface only",
+    "no unconditional target-interface compatibility theorem",
+    "no concrete analytic Einstein-matter estimate package proof",
+    "no gravity closure",
+    "no Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ],
+  "next_admissible_object": "CONCRETE_ANALYTIC_EINSTEIN_MATTER_ESTIMATE_PACKAGE_PROOF"
+}
