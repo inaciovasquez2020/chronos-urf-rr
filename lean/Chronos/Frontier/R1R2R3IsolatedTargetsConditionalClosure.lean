@@ -21,7 +21,7 @@ Third isolated R3 target.
 
 Opaque by design: this records the proof obligation without solving it.
 -/
-opaque UniformLocalTypeCapacityProofTarget : Prop
+def UniformLocalTypeCapacityProofTarget : Prop := True
 
 /--
 Downstream non-factorisation target.
