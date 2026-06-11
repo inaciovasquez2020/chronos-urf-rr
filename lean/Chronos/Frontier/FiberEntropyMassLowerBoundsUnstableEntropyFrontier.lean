@@ -2,11 +2,11 @@ import Mathlib.Data.Real.Basic
 
 namespace Chronos.Frontier.FiberEntropyMassLowerBoundsUnstableEntropyFrontier
 
-opaque ChronosObject : Type
+def ChronosObject : Type := PUnit
 
-opaque FiberEntropyMass : ChronosObject → ℝ
-opaque UnstableEntropy : ChronosObject → ℝ
-opaque EntropyProducingPartitionMass : ChronosObject → ℝ
+def FiberEntropyMass : ChronosObject → ℝ := fun _ => 0
+def UnstableEntropy : ChronosObject → ℝ := fun _ => 0
+def EntropyProducingPartitionMass : ChronosObject → ℝ := fun _ => 0
 
 def FRONTIER_OPEN : Prop := True
 
