@@ -1,0 +1,23 @@
+{
+  "boundary": [
+    "This records repository-surface closure.",
+    "This does not claim an external mathematical proof of H4.1.",
+    "The final local indistinguishability closure is structurally vacuous through empty admissible placements."
+  ],
+  "closed_surface": "H41 certified-family frontier",
+  "date": "2026-06-11",
+  "id": "H41_CERTIFIED_FAMILY_FRONTIER_CLOSED_2026_06_11",
+  "main_commit": "489312d8",
+  "merged_pr": 693,
+  "repository": "chronos-urf-rr",
+  "status": "closed_repository_surface",
+  "validation": {
+    "admit_count": 0,
+    "axiom_count": 0,
+    "conditional_frontier_status": "PASS",
+    "h41_certified_family_verifier": "PASS",
+    "lake_build_chronos": "PASS",
+    "pytest": "1790 passed",
+    "sorry_count": 0
+  }
+}
