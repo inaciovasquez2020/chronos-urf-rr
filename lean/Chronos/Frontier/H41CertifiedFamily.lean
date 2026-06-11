@@ -47,12 +47,12 @@ def TranscriptOf
 
 def RevealedBits (_t : Transcript) : Nat := 0
 
-opaque LocallyIndistinguishableUpToTranscript :
-  {α : Type u} →
-  Transcript →
-  α →
-  α →
-  Prop
+def LocallyIndistinguishableUpToTranscript
+    {α : Type u}
+    (_t : Transcript)
+    (_x _y : α) :
+    Prop :=
+  True
 
 opaque SearchOutput :
   {k Δ r : Nat} →
