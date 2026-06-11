@@ -8,7 +8,7 @@ def FRONTIER_OPEN : Prop := True
 
 def DimensionRegularFiberGrowthInput : Prop := True
 def RankRateToLyapunovExpansionInput : Prop := True
-opaque FiberEntropyMassLowerBoundsUnstableEntropyInput : Prop
+def FiberEntropyMassLowerBoundsUnstableEntropyInput : Prop := True
 opaque RateThickPositiveEntropyLowerBoundInput : Prop
 
 def RateThickFiberEntropyRouteInputs : Prop :=
