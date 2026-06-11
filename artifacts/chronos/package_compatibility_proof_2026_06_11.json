@@ -1,0 +1,37 @@
+{
+  "name": "PACKAGE_COMPATIBILITY_PROOF",
+  "status": "PROOF_OBLIGATION_SURFACE_ONLY_NO_PACKAGE_COMPATIBILITY_PROOF",
+  "previous_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_PROOF",
+  "uses": [
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_PROOF"
+  ],
+  "objects": [
+    "restrictedContinuationData",
+    "packageInterface",
+    "continuationNormInterface",
+    "concentrationMonotonicityInterface",
+    "analyticEstimatePackage"
+  ],
+  "obligations": [
+    "restrictedContinuationNormControlAvailable",
+    "packageInterfaceDefined",
+    "continuationNormInterfaceMatches",
+    "concentrationMonotonicityInterfaceMatches",
+    "analyticEstimatePackageAcceptsInputs",
+    "packageAssumptionsCompatible",
+    "packageConclusionCompatible"
+  ],
+  "conclusion": "package compatibility proof obligation slot is conditionally recorded",
+  "boundary": [
+    "proof-obligation surface only",
+    "no unconditional package compatibility theorem",
+    "no target-interface compatibility proof",
+    "no concrete analytic Einstein-matter estimate package proof",
+    "no gravity closure",
+    "no Chronos-RR",
+    "no H4.1/FGL",
+    "no P vs NP",
+    "no Clay problem"
+  ],
+  "next_admissible_object": "TARGET_INTERFACE_COMPATIBILITY_PROOF"
+}
