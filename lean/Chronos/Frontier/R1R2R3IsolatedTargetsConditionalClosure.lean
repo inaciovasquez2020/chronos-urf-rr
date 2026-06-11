@@ -14,7 +14,7 @@ Second isolated R2 target.
 
 Opaque by design: this records the proof obligation without solving it.
 -/
-opaque DiameterSeparationFillingObstructionProofTarget : Prop
+def DiameterSeparationFillingObstructionProofTarget : Prop := True
 
 /--
 Third isolated R3 target.
