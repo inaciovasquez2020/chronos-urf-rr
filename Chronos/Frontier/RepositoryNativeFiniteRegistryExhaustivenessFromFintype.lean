@@ -25,8 +25,10 @@ theorem RepositoryNativeFiniteRegistryExhaustiveness_from_fintype
   refine ⟨Finset.univ.image Subtype.val, fun c hc => ⟨?_, hGen c hc⟩⟩
   exact Finset.mem_image.mpr ⟨⟨c, hc⟩, Finset.mem_univ _, rfl⟩
 
-axiom FinalCarrierDomain_fintype :
-  Fintype { c : ChronosCarrierData // FinalCarrierDomain c }
+noncomputable def FinalCarrierDomain_fintype :
+  Fintype { c : ChronosCarrierData // FinalCarrierDomain c } := by
+  classical
+  infer_instance
 
 theorem FinalCarrierDomain_repository_native_generated :
   ∀ c : ChronosCarrierData,

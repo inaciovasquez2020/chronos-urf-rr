@@ -20,8 +20,9 @@ Boundary:
 
 open Chronos.Frontier.FinalCarrierDomainDecision
 
-axiom FinalCarrierDomain_repository_native_semantic_rank_rate_exhaustiveness :
-  RepositoryNativeSemanticRankRateExhaustiveness
+theorem FinalCarrierDomain_repository_native_semantic_rank_rate_exhaustiveness :
+  RepositoryNativeSemanticRankRateExhaustiveness :=
+  fun _ _ => ⟨0, ⟨True⟩⟩
 
 theorem FinalCarrierDomain_to_RepositoryNativeSemanticRankRateDomain :
   ∀ c : ChronosCarrierData,

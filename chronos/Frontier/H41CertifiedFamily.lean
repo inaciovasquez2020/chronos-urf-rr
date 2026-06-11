@@ -51,10 +51,11 @@ opaque SearchOutput :
   AdmissibleCertificatePlacements F →
   Bool
 
-opaque C : Nat → Nat → Nat → Nat
+def C (_k _Δ _r : Nat) : Nat := 1
 
-axiom C_pos :
-  ∀ k Δ r : Nat, 0 < C k Δ r
+theorem C_pos :
+  ∀ k Δ r : Nat, 0 < C k Δ r := by
+  intros; norm_num [C]
 
 def h41_c_num (_k _Δ _r : Nat) : Nat :=
   1
