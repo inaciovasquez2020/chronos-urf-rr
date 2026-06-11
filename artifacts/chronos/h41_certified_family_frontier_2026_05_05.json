@@ -1,8 +1,8 @@
 {
   "artifact": "H41CertifiedFamilyFrontier",
   "date": "2026-05-05",
-  "status": "FRONTIER_OPEN",
-  "closure": "AXIOMATIC_FRONTIER_ONLY",
+  "status": "SURFACE_CONCRETIZED",
+  "closure": "CONCRETE_SURFACE_ONLY",
   "constant": "h41_c(k,Delta,r) = (C(k,Delta,r))^-1",
   "objects": [
     "Fn",
@@ -15,6 +15,6 @@
     "Does not prove Chronos theorem-level closure.",
     "Does not prove H4.1/FGL closure.",
     "Does not prove P vs NP.",
-    "Records the weakest explicit missing lemma as an axiomatic frontier object."
+    "Records a concrete trivial surface model; no H4.1 theorem-level claim is made."
   ]
 }
