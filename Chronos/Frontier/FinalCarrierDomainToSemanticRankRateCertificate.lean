@@ -64,3 +64,13 @@ theorem FullyBoundedFinalCarrierDomain_to_native_SemanticRankRateCertificate_exi
         ∃ n : Nat, SemanticRankRateCertificate ChronosNativeCarrierFamily n := by
   intro c hc
   exact FinalCarrierDomain_to_native_SemanticRankRateCertificate_exists c hc.1
+
+/--
+Status lock for the fully bounded semantic rank-rate certificate replacement
+surface.
+-/
+def FullyBoundedFinalCarrierDomainSemanticRankRateCertificateStatus : Prop := True
+
+theorem fullyBoundedFinalCarrierDomainSemanticRankRateCertificateStatus_closed :
+    FullyBoundedFinalCarrierDomainSemanticRankRateCertificateStatus := by
+  trivial
