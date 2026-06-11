@@ -4,7 +4,7 @@ namespace Chronos.Frontier.RateThickPositiveEntropyLowerBoundFrontier
 
 def ChronosObject : Type := PUnit
 
-opaque RankRate : ChronosObject → ℝ
+def RankRate : ChronosObject → ℝ := fun _ => 0
 opaque FiberEntropyMass : ChronosObject → ℝ
 
 opaque RateThickDomain : ℝ → ChronosObject → Prop
