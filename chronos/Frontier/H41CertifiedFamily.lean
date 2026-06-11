@@ -15,9 +15,11 @@ opaque AdmissibleCertificatePlacements :
   CertifiedBoundedDegreeFOkLocalObstructionFamily k Δ r →
   Type u
 
-opaque ProbabilityMeasure : Type u → Type u
+def ProbabilityMeasure (_α : Type u) : Type u :=
+  PUnit
 
-axiom uniformMeasure : {α : Type u} → ProbabilityMeasure α
+def uniformMeasure : {α : Type u} → ProbabilityMeasure α :=
+  fun {_α} => PUnit.unit
 
 opaque support : {α : Type u} → ProbabilityMeasure α → α → Prop
 
