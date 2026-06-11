@@ -54,12 +54,13 @@ def LocallyIndistinguishableUpToTranscript
     Prop :=
   True
 
-opaque SearchOutput :
-  {k Δ r : Nat} →
-  {F : CertifiedBoundedDegreeFOkLocalObstructionFamily k Δ r} →
-  TranscriptBoundedRefinementSearch F →
-  AdmissibleCertificatePlacements F →
-  Bool
+def SearchOutput
+    {k Δ r : Nat}
+    {F : CertifiedBoundedDegreeFOkLocalObstructionFamily k Δ r}
+    (_search : TranscriptBoundedRefinementSearch F)
+    (_placements : AdmissibleCertificatePlacements F) :
+    Bool :=
+  false
 
 def C (_k _Δ _r : Nat) : Nat := 1
 
