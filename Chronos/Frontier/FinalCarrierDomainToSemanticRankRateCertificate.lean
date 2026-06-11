@@ -52,3 +52,15 @@ theorem FullyBoundedFinalCarrierDomain_repository_native_semantic_rank_rate_exha
       RepositoryNativeSemanticRankRateDomain c := by
   intro c hc
   exact FinalCarrierDomain_to_RepositoryNativeSemanticRankRateDomain c hc.1
+
+/--
+Fully bounded replacement surface for the native semantic rank-rate certificate
+existence bridge.
+-/
+theorem FullyBoundedFinalCarrierDomain_to_native_SemanticRankRateCertificate_exists
+    (B : Nat) :
+    ∀ c : ChronosCarrierData,
+      FullyBoundedFinalCarrierDomain B c →
+        ∃ n : Nat, SemanticRankRateCertificate ChronosNativeCarrierFamily n := by
+  intro c hc
+  exact FinalCarrierDomain_to_native_SemanticRankRateCertificate_exists c hc.1
