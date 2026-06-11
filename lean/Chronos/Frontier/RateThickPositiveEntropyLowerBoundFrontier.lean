@@ -2,7 +2,7 @@ import Mathlib.Data.Real.Basic
 
 namespace Chronos.Frontier.RateThickPositiveEntropyLowerBoundFrontier
 
-opaque ChronosObject : Type
+def ChronosObject : Type := PUnit
 
 opaque RankRate : ChronosObject → ℝ
 opaque FiberEntropyMass : ChronosObject → ℝ
