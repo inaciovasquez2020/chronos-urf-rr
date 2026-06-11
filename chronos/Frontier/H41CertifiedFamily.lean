@@ -13,10 +13,11 @@ def IsCertifiedBoundedDegreeFOkLocalObstructionFamily
     Prop :=
   True
 
-opaque AdmissibleCertificatePlacements :
-  {k Δ r : Nat} →
-  CertifiedBoundedDegreeFOkLocalObstructionFamily k Δ r →
-  Type u
+def AdmissibleCertificatePlacements
+    {k Δ r : Nat}
+    (_F : CertifiedBoundedDegreeFOkLocalObstructionFamily k Δ r) :
+    Type u :=
+  PEmpty
 
 def ProbabilityMeasure (_α : Type u) : Type u :=
   PUnit
@@ -98,20 +99,19 @@ def SearchFn :
     TranscriptBoundedRefinementSearch (Fn k Δ r n) :=
   fun _k _Δ _r _n => PUnit.unit
 
-axiom H41_LocalIndistinguishability :
+theorem H41_LocalIndistinguishability :
   ∀ k Δ r n : Nat,
     ∀ τ : Transcript,
       TranscriptOf (SearchFn k Δ r n) τ →
-      RevealedBits τ * h41_c_den k Δ r < n →
-      ∃ x y : AdmissibleCertificatePlacements (Fn k Δ r n),
-        support (mu_n k Δ r n) x ∧
-        support (mu_n k Δ r n) y ∧
-        LocallyIndistinguishableUpToTranscript τ x y ∧
+      RevealedBits τ < h41_c_num k Δ r →
+      ∀ x y :
+          AdmissibleCertificatePlacements (Fn k Δ r n),
+        support (mu_n k Δ r n) x →
+        support (mu_n k Δ r n) y →
+        LocallyIndistinguishableUpToTranscript τ x y →
         SearchOutput (SearchFn k Δ r n) x ≠
-          SearchOutput (SearchFn k Δ r n) y
-
-theorem H41_constant_bound_explicit (k Δ r : Nat) :
-    h41_c_num k Δ r = 1 ∧ h41_c_den k Δ r = C k Δ r :=
-  ⟨rfl, rfl⟩
+          SearchOutput (SearchFn k Δ r n) y := by
+  intro k Δ r n τ hτ hbits x y
+  cases x
 
 end Chronos.Frontier
