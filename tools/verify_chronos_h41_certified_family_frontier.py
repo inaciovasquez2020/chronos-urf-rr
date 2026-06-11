@@ -7,7 +7,7 @@ DOC = ROOT / "docs" / "status" / "CHRONOS_H41_CERTIFIED_FAMILY_FRONTIER_2026_05_
 ART = ROOT / "artifacts" / "chronos" / "h41_certified_family_frontier_2026_05_05.json"
 
 required_lean = [
-    "opaque CertifiedBoundedDegreeFOkLocalObstructionFamily",
+    "def CertifiedBoundedDegreeFOkLocalObstructionFamily",
     "noncomputable def Fn",
     "theorem Fn_certified",
     "noncomputable def mu_n",
