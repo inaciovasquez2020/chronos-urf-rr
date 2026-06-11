@@ -29,7 +29,7 @@ def uniformMeasure : {α : Type u} → ProbabilityMeasure α :=
 
 def support {α : Type u} (_μ : ProbabilityMeasure α) (_x : α) : Prop := True
 
-opaque Transcript : Type u
+def Transcript : Type u := PUnit
 
 def TranscriptBoundedRefinementSearch
     {k Δ r : Nat}
