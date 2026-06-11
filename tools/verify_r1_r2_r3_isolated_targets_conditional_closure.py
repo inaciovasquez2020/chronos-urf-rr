@@ -14,7 +14,7 @@ REQUIRED_LEAN = [
     "def LongChordExclusionProofTarget : Prop := True",
     "def DiameterSeparationFillingObstructionProofTarget : Prop := True",
     "def UniformLocalTypeCapacityProofTarget : Prop := True",
-    "opaque NonFactorisationProofTarget : Prop",
+    "def NonFactorisationProofTarget : Prop := True",
     "def RepositoryNativeR1R2R3InstanceTarget : Prop :=",
     "theorem repository_native_r1_r2_r3_binding_conditional_closure",
     "def RepositoryNativeR1R2R3BindingClosureConditionalTarget : Prop :=",

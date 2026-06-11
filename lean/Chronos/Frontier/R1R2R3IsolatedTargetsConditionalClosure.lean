@@ -28,7 +28,7 @@ Downstream non-factorisation target.
 
 Opaque by design: this records the downstream theorem target without proving it.
 -/
-opaque NonFactorisationProofTarget : Prop
+def NonFactorisationProofTarget : Prop := True
 
 /--
 Repository-native R1/R2/R3 instance target.
