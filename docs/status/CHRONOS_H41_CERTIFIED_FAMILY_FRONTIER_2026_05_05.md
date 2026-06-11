@@ -1,8 +1,8 @@
 # Chronos H4.1 Certified Family Frontier
 
-Status: FRONTIER_OPEN
+Status: SURFACE_CONCRETIZED
 
-Closure: AXIOMATIC_FRONTIER_ONLY
+Closure: CONCRETE_SURFACE_ONLY
 
 ## Added Lean object
 
@@ -33,4 +33,4 @@ This does not prove H4.1/FGL closure.
 
 This does not prove P vs NP.
 
-This records the weakest explicit missing lemma as an axiomatic frontier object.
+This records a concrete trivial surface model; no H4.1 theorem-level claim is made.

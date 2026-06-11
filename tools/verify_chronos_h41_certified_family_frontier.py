@@ -17,8 +17,8 @@ required_lean = [
 ]
 
 required_doc = [
-    "Status: FRONTIER_OPEN",
-    "Closure: AXIOMATIC_FRONTIER_ONLY",
+    "Status: SURFACE_CONCRETIZED",
+    "Closure: CONCRETE_SURFACE_ONLY",
     "This does not prove H4.1.",
     "This does not prove Chronos theorem-level closure.",
     "This does not prove H4.1/FGL closure.",
@@ -41,11 +41,11 @@ for token in required_doc:
     if token not in doc_text:
         raise SystemExit(f"missing doc token: {token}")
 
-if artifact.get("status") != "FRONTIER_OPEN":
-    raise SystemExit("artifact status must remain FRONTIER_OPEN")
+if artifact.get("status") != "SURFACE_CONCRETIZED":
+    raise SystemExit("artifact status must remain SURFACE_CONCRETIZED")
 
-if artifact.get("closure") != "AXIOMATIC_FRONTIER_ONLY":
-    raise SystemExit("artifact closure must remain AXIOMATIC_FRONTIER_ONLY")
+if artifact.get("closure") != "CONCRETE_SURFACE_ONLY":
+    raise SystemExit("artifact closure must remain CONCRETE_SURFACE_ONLY")
 
 for forbidden in [
     "H4.1 proved",
@@ -56,4 +56,8 @@ for forbidden in [
     if forbidden in lean_text or forbidden in doc_text or forbidden in json.dumps(artifact):
         raise SystemExit(f"forbidden overclaim token present: {forbidden}")
 
-print("Chronos H4.1 certified family frontier verified: AXIOMATIC_FRONTIER_ONLY")
+for forbidden_surface in ["opaque ", "axiom "]:
+    if forbidden_surface in lean_text:
+        raise SystemExit(f"forbidden Lean frontier token present: {forbidden_surface}")
+
+print("Chronos H4.1 certified family frontier verified: CONCRETE_SURFACE_ONLY")
