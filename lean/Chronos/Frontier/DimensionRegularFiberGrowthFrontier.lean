@@ -2,7 +2,7 @@ import Mathlib.Data.Real.Basic
 
 namespace Chronos.Frontier.DimensionRegularFiberGrowthFrontier
 
-opaque ChronosObject : Type
+def ChronosObject : Type := PUnit
 
 opaque RankRate : ChronosObject → ℝ
 opaque FiberDimension : ChronosObject → ℝ
