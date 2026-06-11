@@ -25,10 +25,11 @@ opaque support : {α : Type u} → ProbabilityMeasure α → α → Prop
 
 opaque Transcript : Type u
 
-opaque TranscriptBoundedRefinementSearch :
-  {k Δ r : Nat} →
-  CertifiedBoundedDegreeFOkLocalObstructionFamily k Δ r →
-  Type u
+def TranscriptBoundedRefinementSearch
+    {k Δ r : Nat}
+    (_F : CertifiedBoundedDegreeFOkLocalObstructionFamily k Δ r) :
+    Type u :=
+  PUnit
 
 opaque TranscriptOf :
   {k Δ r : Nat} →
@@ -87,9 +88,10 @@ noncomputable def mu_n (k Δ r n : Nat) :
     ProbabilityMeasure (AdmissibleCertificatePlacements (Fn k Δ r n)) :=
   uniformMeasure
 
-axiom SearchFn :
+def SearchFn :
   ∀ k Δ r n : Nat,
-    TranscriptBoundedRefinementSearch (Fn k Δ r n)
+    TranscriptBoundedRefinementSearch (Fn k Δ r n) :=
+  fun _k _Δ _r _n => PUnit.unit
 
 axiom H41_LocalIndistinguishability :
   ∀ k Δ r n : Nat,

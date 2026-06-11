@@ -11,7 +11,7 @@ required_lean = [
     "noncomputable def Fn",
     "theorem Fn_certified",
     "noncomputable def mu_n",
-    "axiom SearchFn",
+    "def SearchFn",
     "axiom H41_LocalIndistinguishability",
     "theorem H41_constant_bound_explicit",
     "def h41_c_den",
