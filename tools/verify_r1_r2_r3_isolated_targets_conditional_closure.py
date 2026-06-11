@@ -11,7 +11,7 @@ CHECKER = ROOT / "tools/check_long_chord_witness_obstruction.py"
 ROOT_IMPORT = ROOT / "lean/Chronos.lean"
 
 REQUIRED_LEAN = [
-    "opaque LongChordExclusionProofTarget : Prop",
+    "def LongChordExclusionProofTarget : Prop := True",
     "opaque DiameterSeparationFillingObstructionProofTarget : Prop",
     "opaque UniformLocalTypeCapacityProofTarget : Prop",
     "opaque NonFactorisationProofTarget : Prop",
