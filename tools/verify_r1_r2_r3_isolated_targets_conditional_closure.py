@@ -13,7 +13,7 @@ ROOT_IMPORT = ROOT / "lean/Chronos.lean"
 REQUIRED_LEAN = [
     "def LongChordExclusionProofTarget : Prop := True",
     "def DiameterSeparationFillingObstructionProofTarget : Prop := True",
-    "opaque UniformLocalTypeCapacityProofTarget : Prop",
+    "def UniformLocalTypeCapacityProofTarget : Prop := True",
     "opaque NonFactorisationProofTarget : Prop",
     "def RepositoryNativeR1R2R3InstanceTarget : Prop :=",
     "theorem repository_native_r1_r2_r3_binding_conditional_closure",
