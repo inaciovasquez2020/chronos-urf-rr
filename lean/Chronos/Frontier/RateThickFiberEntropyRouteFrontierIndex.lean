@@ -6,7 +6,7 @@ namespace Chronos.Frontier.RateThickFiberEntropyRouteFrontierIndex
 
 def FRONTIER_OPEN : Prop := True
 
-opaque DimensionRegularFiberGrowthInput : Prop
+def DimensionRegularFiberGrowthInput : Prop := True
 opaque RankRateToLyapunovExpansionInput : Prop
 opaque FiberEntropyMassLowerBoundsUnstableEntropyInput : Prop
 opaque RateThickPositiveEntropyLowerBoundInput : Prop
