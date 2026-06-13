@@ -1,0 +1,46 @@
+import Chronos.Frontier.RestrictedContinuationNormControlPDEComponentInputConstructions
+
+structure RestrictedContinuationNormControlComponentAnalyticEstimatesHypotheses where
+  inputSurface : RestrictedContinuationNormControlAnalyticEstimateInputSurfaceHypotheses
+  bridgeAnalyticEstimate : inputSurface.estimateProofBridgeAvailable
+  derivativeIdentityAnalyticEstimate : inputSurface.data.derivativeIdentityInput
+  fluxNonnegativityAnalyticEstimate : inputSurface.data.fluxNonnegativityInput
+  bootstrapBoundsAnalyticEstimate : inputSurface.data.bootstrapBoundsInput
+
+def RestrictedContinuationNormControlComponentAnalyticEstimatesComponentInputHypotheses
+    (h : RestrictedContinuationNormControlComponentAnalyticEstimatesHypotheses) :
+    RestrictedContinuationNormControlPDEComponentInputConstructionsHypotheses :=
+  { inputSurface := h.inputSurface
+    bridgeComponentConstruction := h.bridgeAnalyticEstimate
+    derivativeIdentityComponentConstruction := h.derivativeIdentityAnalyticEstimate
+    fluxNonnegativityComponentConstruction := h.fluxNonnegativityAnalyticEstimate
+    bootstrapBoundsComponentConstruction := h.bootstrapBoundsAnalyticEstimate }
+
+def RestrictedContinuationNormControlComponentAnalyticEstimatesClosed
+    (h : RestrictedContinuationNormControlComponentAnalyticEstimatesHypotheses) : Prop :=
+  RestrictedContinuationNormControlPDEComponentInputConstructionsClosed
+    (RestrictedContinuationNormControlComponentAnalyticEstimatesComponentInputHypotheses h)
+
+theorem RestrictedContinuationNormControlComponentAnalyticEstimates
+    (h : RestrictedContinuationNormControlComponentAnalyticEstimatesHypotheses) :
+    RestrictedContinuationNormControlComponentAnalyticEstimatesClosed h := by
+  exact RestrictedContinuationNormControlPDEComponentInputConstructions
+    (RestrictedContinuationNormControlComponentAnalyticEstimatesComponentInputHypotheses h)
+
+theorem RestrictedContinuationNormControlAnalyticEstimateFromComponentAnalyticEstimates
+    (h : RestrictedContinuationNormControlComponentAnalyticEstimatesHypotheses) :
+    RestrictedContinuationNormControlAnalyticEstimateDerivationFromPDEInputsClosed
+      (RestrictedContinuationNormControlPDEInputPackageConstructionPackage
+        (RestrictedContinuationNormControlPDEComponentInputConstructionsPackageHypotheses
+          (RestrictedContinuationNormControlComponentAnalyticEstimatesComponentInputHypotheses h))) := by
+  exact RestrictedContinuationNormControlAnalyticEstimateFromPDEComponentInputs
+    (RestrictedContinuationNormControlComponentAnalyticEstimatesComponentInputHypotheses h)
+
+def RestrictedContinuationNormControlComponentAnalyticEstimatesStatus : String :=
+  "CONDITIONAL_COMPONENT_ANALYTIC_ESTIMATES"
+
+def RestrictedContinuationNormControlComponentAnalyticEstimatesPreviousObject : String :=
+  "RESTRICTED_CONTINUATION_NORM_CONTROL_PDE_COMPONENT_INPUT_CONSTRUCTIONS"
+
+def RestrictedContinuationNormControlComponentAnalyticEstimatesRemainingObject : String :=
+  "RESTRICTED_CONTINUATION_NORM_CONTROL_DERIVATIVE_FLUX_BOOTSTRAP_ANALYTIC_ESTIMATE_PROOFS"
