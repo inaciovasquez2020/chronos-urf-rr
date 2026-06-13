@@ -1,0 +1,47 @@
+import Chronos.Frontier.RestrictedContinuationNormControlComponentAnalyticEstimates
+
+structure RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsHypotheses where
+  inputSurface : RestrictedContinuationNormControlAnalyticEstimateInputSurfaceHypotheses
+  bridgeAnalyticEstimateProof : inputSurface.estimateProofBridgeAvailable
+  derivativeIdentityAnalyticEstimateProof : inputSurface.data.derivativeIdentityInput
+  fluxNonnegativityAnalyticEstimateProof : inputSurface.data.fluxNonnegativityInput
+  bootstrapBoundsAnalyticEstimateProof : inputSurface.data.bootstrapBoundsInput
+
+def RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsComponentHypotheses
+    (h : RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsHypotheses) :
+    RestrictedContinuationNormControlComponentAnalyticEstimatesHypotheses :=
+  { inputSurface := h.inputSurface
+    bridgeAnalyticEstimate := h.bridgeAnalyticEstimateProof
+    derivativeIdentityAnalyticEstimate := h.derivativeIdentityAnalyticEstimateProof
+    fluxNonnegativityAnalyticEstimate := h.fluxNonnegativityAnalyticEstimateProof
+    bootstrapBoundsAnalyticEstimate := h.bootstrapBoundsAnalyticEstimateProof }
+
+def RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsClosed
+    (h : RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsHypotheses) : Prop :=
+  RestrictedContinuationNormControlComponentAnalyticEstimatesClosed
+    (RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsComponentHypotheses h)
+
+theorem RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofs
+    (h : RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsHypotheses) :
+    RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsClosed h := by
+  exact RestrictedContinuationNormControlComponentAnalyticEstimates
+    (RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsComponentHypotheses h)
+
+theorem RestrictedContinuationNormControlAnalyticEstimateFromDerivativeFluxBootstrapProofs
+    (h : RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsHypotheses) :
+    RestrictedContinuationNormControlAnalyticEstimateDerivationFromPDEInputsClosed
+      (RestrictedContinuationNormControlPDEInputPackageConstructionPackage
+        (RestrictedContinuationNormControlPDEComponentInputConstructionsPackageHypotheses
+          (RestrictedContinuationNormControlComponentAnalyticEstimatesComponentInputHypotheses
+            (RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsComponentHypotheses h)))) := by
+  exact RestrictedContinuationNormControlAnalyticEstimateFromComponentAnalyticEstimates
+    (RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsComponentHypotheses h)
+
+def RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsStatus : String :=
+  "CONDITIONAL_DERIVATIVE_FLUX_BOOTSTRAP_ANALYTIC_ESTIMATE_PROOFS"
+
+def RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsPreviousObject : String :=
+  "RESTRICTED_CONTINUATION_NORM_CONTROL_COMPONENT_ANALYTIC_ESTIMATES"
+
+def RestrictedContinuationNormControlDerivativeFluxBootstrapAnalyticEstimateProofsRemainingObject : String :=
+  "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_PDE_ESTIMATE_PAYLOAD"
