@@ -1,0 +1,38 @@
+{
+  "name": "RESTRICTED_CONTINUATION_NORM_CONTROL_ESTIMATE_PROOF_BRIDGE",
+  "status": "PROOF_BRIDGE_SURFACE_ONLY_CONTINUATION_ESTIMATE_NOT_ANALYTICALLY_PROVED",
+  "previous_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_ESTIMATE_OBLIGATION_SURFACE",
+  "lean_module": "Chronos.Frontier.RestrictedContinuationNormControlEstimateProofBridge",
+  "uses": [
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_ESTIMATE_OBLIGATION_SURFACE",
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_PROOF"
+  ],
+  "bridge_obligation": "RestrictedContinuationNormControlEstimateObligation estimateData -> restrictedContinuationNormControlProofSurface",
+  "closed_surface_objects": [
+    "RestrictedContinuationNormControlEstimateProofBridgeData",
+    "RestrictedContinuationNormControlEstimateProofBridgeObligation",
+    "RestrictedContinuationNormControlEstimateProofBridgeHypotheses",
+    "RestrictedContinuationNormControlEstimateProofBridgeClosed",
+    "RestrictedContinuationNormControlEstimateProofBridge"
+  ],
+  "hypotheses": [
+    "estimateObligationSurfaceAvailable",
+    "restrictedContinuationNormControlProofAvailable",
+    "proofBridgeStated"
+  ],
+  "conclusion": "restricted continuation norm-control estimate obligation is bridged into the proof surface; the analytic continuation estimate is not proved",
+  "boundary": [
+    "proof bridge surface only",
+    "continuation estimate is not analytically proved",
+    "does not prove restricted continuation norm-control estimate from PDE",
+    "does not prove derivativeIdentity",
+    "does not prove flux nonnegativity",
+    "does not prove bootstrap bounds",
+    "does not prove unrestricted gravity closure",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ],
+  "next_admissible_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_INPUT_SURFACE"
+}
