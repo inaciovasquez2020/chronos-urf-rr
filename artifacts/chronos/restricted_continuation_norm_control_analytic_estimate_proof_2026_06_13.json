@@ -1,0 +1,31 @@
+{
+  "name": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_PROOF",
+  "status": "CONDITIONAL_PROOF_OBJECT_ANALYTIC_ESTIMATE_INPUT_REQUIRED",
+  "previous_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_INPUT_SURFACE",
+  "lean_module": "Chronos.Frontier.RestrictedContinuationNormControlAnalyticEstimateProof",
+  "uses": [
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_INPUT_SURFACE",
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_ESTIMATE_PROOF_BRIDGE",
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_ESTIMATE_OBLIGATION_SURFACE",
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_PROOF"
+  ],
+  "closed_surface_objects": [
+    "RestrictedContinuationNormControlAnalyticEstimateProofHypotheses",
+    "RestrictedContinuationNormControlAnalyticEstimateProofClosed",
+    "RestrictedContinuationNormControlAnalyticEstimateProof"
+  ],
+  "status_boundary": [
+    "conditional proof object only",
+    "analytic estimate input is required",
+    "derivative identity is not derived",
+    "flux nonnegativity is not derived",
+    "bootstrap bounds are not derived",
+    "PDE continuation estimate is not derived",
+    "unrestricted gravity closure is not derived",
+    "Chronos-RR is not derived",
+    "H4.1/FGL is not derived",
+    "P vs NP is not derived",
+    "Clay problem closure is not derived"
+  ],
+  "remaining_missing_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_DERIVATION_FROM_PDE_INPUTS"
+}

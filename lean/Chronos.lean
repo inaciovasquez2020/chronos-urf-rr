@@ -430,3 +430,4 @@ import Chronos.Frontier.AnalyticDiniEstimateBindingLemma
 import Chronos.Frontier.GenuineAnalyticDiniEstimateProofOrStop
 import Chronos.Frontier.QKDiniRatioLowerBoundTheoremInterfaceNoSorry
 import Chronos.Frontier.ExternalSourceTheoremCertificateOneAxiom
+import Chronos.Frontier.RestrictedContinuationNormControlAnalyticEstimateProof
