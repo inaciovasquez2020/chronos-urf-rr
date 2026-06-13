@@ -1,0 +1,42 @@
+import Chronos.Frontier.RestrictedContinuationNormControlAnalyticEstimateDerivationFromPDEInputs
+
+structure RestrictedContinuationNormControlPDEInputPackageConstructionHypotheses where
+  inputSurface : RestrictedContinuationNormControlAnalyticEstimateInputSurfaceHypotheses
+  bridgeFromPDEConstruction : inputSurface.estimateProofBridgeAvailable
+  derivativeIdentityFromPDEConstruction : inputSurface.data.derivativeIdentityInput
+  fluxNonnegativityFromPDEConstruction : inputSurface.data.fluxNonnegativityInput
+  bootstrapBoundsFromPDEConstruction : inputSurface.data.bootstrapBoundsInput
+
+def RestrictedContinuationNormControlPDEInputPackageConstructionClosed
+    (_h : RestrictedContinuationNormControlPDEInputPackageConstructionHypotheses) : Prop :=
+  Nonempty RestrictedContinuationNormControlPDEInputPackage
+
+def RestrictedContinuationNormControlPDEInputPackageConstructionPackage
+    (h : RestrictedContinuationNormControlPDEInputPackageConstructionHypotheses) :
+    RestrictedContinuationNormControlPDEInputPackage :=
+  { inputSurface := h.inputSurface
+    bridgeAvailable := h.bridgeFromPDEConstruction
+    derivativeIdentityDerivedFromPDE := h.derivativeIdentityFromPDEConstruction
+    fluxNonnegativityDerivedFromPDE := h.fluxNonnegativityFromPDEConstruction
+    bootstrapBoundsDerivedFromPDE := h.bootstrapBoundsFromPDEConstruction }
+
+theorem RestrictedContinuationNormControlPDEInputPackageConstruction
+    (h : RestrictedContinuationNormControlPDEInputPackageConstructionHypotheses) :
+    RestrictedContinuationNormControlPDEInputPackageConstructionClosed h := by
+  exact ⟨RestrictedContinuationNormControlPDEInputPackageConstructionPackage h⟩
+
+theorem RestrictedContinuationNormControlAnalyticEstimateFromConstructedPDEInputPackage
+    (h : RestrictedContinuationNormControlPDEInputPackageConstructionHypotheses) :
+    RestrictedContinuationNormControlAnalyticEstimateDerivationFromPDEInputsClosed
+      (RestrictedContinuationNormControlPDEInputPackageConstructionPackage h) := by
+  exact RestrictedContinuationNormControlAnalyticEstimateDerivationFromPDEInputs
+    (RestrictedContinuationNormControlPDEInputPackageConstructionPackage h)
+
+def RestrictedContinuationNormControlPDEInputPackageConstructionStatus : String :=
+  "CONDITIONAL_PDE_INPUT_PACKAGE_CONSTRUCTION"
+
+def RestrictedContinuationNormControlPDEInputPackageConstructionPreviousObject : String :=
+  "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_DERIVATION_FROM_PDE_INPUTS"
+
+def RestrictedContinuationNormControlPDEInputPackageConstructionRemainingObject : String :=
+  "RESTRICTED_CONTINUATION_NORM_CONTROL_PDE_COMPONENT_INPUT_CONSTRUCTIONS"
