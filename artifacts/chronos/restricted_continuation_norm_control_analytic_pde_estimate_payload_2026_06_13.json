@@ -1,0 +1,32 @@
+{
+  "name": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_PDE_ESTIMATE_PAYLOAD",
+  "status": "CONDITIONAL_ANALYTIC_PDE_ESTIMATE_PAYLOAD",
+  "previous_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_DERIVATIVE_FLUX_BOOTSTRAP_ANALYTIC_ESTIMATE_PROOFS",
+  "lean_module": "Chronos.Frontier.RestrictedContinuationNormControlAnalyticPDEEstimatePayload",
+  "closed_surface_objects": [
+    "RestrictedContinuationNormControlAnalyticPDEEstimatePayload",
+    "RestrictedContinuationNormControlAnalyticPDEEstimatePayloadProofHypotheses",
+    "RestrictedContinuationNormControlAnalyticPDEEstimatePayloadClosed",
+    "RestrictedContinuationNormControlAnalyticPDEEstimatePayloadClosure",
+    "RestrictedContinuationNormControlAnalyticEstimateFromAnalyticPDEEstimatePayload"
+  ],
+  "required_payload_fields": [
+    "bridgePayload",
+    "derivativeIdentityPayload",
+    "fluxNonnegativityPayload",
+    "bootstrapBoundsPayload"
+  ],
+  "status_boundary": [
+    "conditional analytic PDE estimate payload surface only",
+    "payload construction is required",
+    "derivative identity payload is not derived from PDE equations",
+    "flux nonnegativity payload is not derived from PDE equations",
+    "bootstrap bounds payload is not derived from PDE equations",
+    "unrestricted gravity closure is not derived",
+    "Chronos-RR is not derived",
+    "H4.1/FGL is not derived",
+    "P vs NP is not derived",
+    "Clay problem closure is not derived"
+  ],
+  "remaining_missing_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_PDE_ESTIMATE_PAYLOAD_CONSTRUCTION"
+}
