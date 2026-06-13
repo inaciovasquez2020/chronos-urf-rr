@@ -1,0 +1,31 @@
+{
+  "name": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_DERIVATION_FROM_PDE_INPUTS",
+  "status": "CONDITIONAL_DERIVATION_FROM_PDE_INPUT_PACKAGE",
+  "previous_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_PROOF",
+  "lean_module": "Chronos.Frontier.RestrictedContinuationNormControlAnalyticEstimateDerivationFromPDEInputs",
+  "closed_surface_objects": [
+    "RestrictedContinuationNormControlPDEInputPackage",
+    "RestrictedContinuationNormControlAnalyticEstimateDerivationFromPDEInputsClosed",
+    "RestrictedContinuationNormControlAnalyticEstimateDerivationFromPDEInputs"
+  ],
+  "required_package_fields": [
+    "proofHypotheses",
+    "bridgeAvailable",
+    "derivativeIdentityDerivedFromPDE",
+    "fluxNonnegativityDerivedFromPDE",
+    "bootstrapBoundsDerivedFromPDE"
+  ],
+  "status_boundary": [
+    "conditional derivation only",
+    "PDE input package is required",
+    "derivative identity construction from PDE is not proved",
+    "flux nonnegativity construction from PDE is not proved",
+    "bootstrap bounds construction from PDE is not proved",
+    "unrestricted gravity closure is not derived",
+    "Chronos-RR is not derived",
+    "H4.1/FGL is not derived",
+    "P vs NP is not derived",
+    "Clay problem closure is not derived"
+  ],
+  "remaining_missing_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_PDE_INPUT_PACKAGE_CONSTRUCTION"
+}
