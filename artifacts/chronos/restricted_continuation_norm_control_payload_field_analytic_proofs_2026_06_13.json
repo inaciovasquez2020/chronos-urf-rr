@@ -1,0 +1,33 @@
+{
+  "name": "RESTRICTED_CONTINUATION_NORM_CONTROL_PAYLOAD_FIELD_ANALYTIC_PROOFS",
+  "status": "CONDITIONAL_PAYLOAD_FIELD_ANALYTIC_PROOFS",
+  "previous_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_PDE_ESTIMATE_PAYLOAD_CONSTRUCTION",
+  "lean_module": "Chronos.Frontier.RestrictedContinuationNormControlPayloadFieldAnalyticProofs",
+  "closed_surface_objects": [
+    "RestrictedContinuationNormControlPayloadFieldAnalyticProofsHypotheses",
+    "RestrictedContinuationNormControlPayloadFieldAnalyticProofsPayloadConstructionHypotheses",
+    "RestrictedContinuationNormControlPayloadFieldAnalyticProofsClosed",
+    "RestrictedContinuationNormControlPayloadFieldAnalyticProofs",
+    "RestrictedContinuationNormControlAnalyticEstimateFromPayloadFieldAnalyticProofs"
+  ],
+  "required_field_proofs": [
+    "bridgeFieldAnalyticProof",
+    "derivativeIdentityFieldAnalyticProof",
+    "fluxNonnegativityFieldAnalyticProof",
+    "bootstrapBoundsFieldAnalyticProof"
+  ],
+  "status_boundary": [
+    "conditional payload field analytic proofs surface only",
+    "payload field proof payloads are required",
+    "bridge field analytic proof is not derived",
+    "derivative identity field analytic proof is not derived",
+    "flux nonnegativity field analytic proof is not derived",
+    "bootstrap bounds field analytic proof is not derived",
+    "unrestricted gravity closure is not derived",
+    "Chronos-RR is not derived",
+    "H4.1/FGL is not derived",
+    "P vs NP is not derived",
+    "Clay problem closure is not derived"
+  ],
+  "remaining_missing_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_PAYLOAD_FIELD_PROOF_PAYLOADS"
+}
