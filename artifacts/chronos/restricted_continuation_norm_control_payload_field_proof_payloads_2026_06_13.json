@@ -1,0 +1,31 @@
+{
+  "name": "RESTRICTED_CONTINUATION_NORM_CONTROL_PAYLOAD_FIELD_PROOF_PAYLOADS",
+  "status": "CONDITIONAL_PAYLOAD_FIELD_PROOF_PAYLOADS",
+  "previous_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_PAYLOAD_FIELD_ANALYTIC_PROOFS",
+  "lean_module": "Chronos.Frontier.RestrictedContinuationNormControlPayloadFieldProofPayloads",
+  "closed_surface_objects": [
+    "RestrictedContinuationNormControlPayloadFieldProofPayloadsHypotheses",
+    "RestrictedContinuationNormControlPayloadFieldProofPayloadsAnalyticProofHypotheses",
+    "RestrictedContinuationNormControlPayloadFieldProofPayloadsClosed",
+    "RestrictedContinuationNormControlPayloadFieldProofPayloads",
+    "RestrictedContinuationNormControlAnalyticEstimateFromPayloadFieldProofPayloads"
+  ],
+  "required_payloads": [
+    "bridgeProofPayload",
+    "derivativeIdentityProofPayload",
+    "fluxNonnegativityProofPayload",
+    "bootstrapBoundsProofPayload"
+  ],
+  "status_boundary": [
+    "conditional payload field proof payload surface only",
+    "no derivative identity proof is derived from PDE equations",
+    "no flux nonnegativity proof is derived from PDE equations",
+    "no bootstrap bounds proof is derived from PDE equations",
+    "unrestricted gravity closure is not derived",
+    "Chronos-RR is not derived",
+    "H4.1/FGL is not derived",
+    "P vs NP is not derived",
+    "Clay problem closure is not derived"
+  ],
+  "stop_boundary": "STOP_AFTER_THIS_COMMIT_NO_ADMISSIBLE_NEXT_STEP_WITHOUT_NEW_ANALYTIC_INPUT"
+}
