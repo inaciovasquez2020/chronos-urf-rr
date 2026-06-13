@@ -1,0 +1,32 @@
+{
+  "name": "RESTRICTED_CONTINUATION_NORM_CONTROL_PDE_COMPONENT_INPUT_CONSTRUCTIONS",
+  "status": "CONDITIONAL_PDE_COMPONENT_INPUT_CONSTRUCTIONS",
+  "previous_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_PDE_INPUT_PACKAGE_CONSTRUCTION",
+  "lean_module": "Chronos.Frontier.RestrictedContinuationNormControlPDEComponentInputConstructions",
+  "closed_surface_objects": [
+    "RestrictedContinuationNormControlPDEComponentInputConstructionsHypotheses",
+    "RestrictedContinuationNormControlPDEComponentInputConstructionsPackageHypotheses",
+    "RestrictedContinuationNormControlPDEComponentInputConstructionsClosed",
+    "RestrictedContinuationNormControlPDEComponentInputConstructions",
+    "RestrictedContinuationNormControlAnalyticEstimateFromPDEComponentInputs"
+  ],
+  "required_component_inputs": [
+    "bridgeComponentConstruction",
+    "derivativeIdentityComponentConstruction",
+    "fluxNonnegativityComponentConstruction",
+    "bootstrapBoundsComponentConstruction"
+  ],
+  "status_boundary": [
+    "conditional component-input construction surface only",
+    "component analytic estimates are required",
+    "derivative identity analytic construction is not derived",
+    "flux nonnegativity analytic construction is not derived",
+    "bootstrap bounds analytic construction is not derived",
+    "unrestricted gravity closure is not derived",
+    "Chronos-RR is not derived",
+    "H4.1/FGL is not derived",
+    "P vs NP is not derived",
+    "Clay problem closure is not derived"
+  ],
+  "remaining_missing_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_COMPONENT_ANALYTIC_ESTIMATES"
+}
