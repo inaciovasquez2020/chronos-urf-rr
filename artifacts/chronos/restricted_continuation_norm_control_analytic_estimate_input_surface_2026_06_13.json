@@ -1,0 +1,38 @@
+{
+  "name": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_INPUT_SURFACE",
+  "status": "INPUT_SURFACE_ONLY_ANALYTIC_ESTIMATE_NOT_PROVED",
+  "previous_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_ESTIMATE_PROOF_BRIDGE",
+  "lean_module": "Chronos.Frontier.RestrictedContinuationNormControlAnalyticEstimateInputSurface",
+  "uses": [
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_ESTIMATE_PROOF_BRIDGE",
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_ESTIMATE_OBLIGATION_SURFACE",
+    "RESTRICTED_CONTINUATION_NORM_CONTROL_PROOF"
+  ],
+  "input_obligation": "derivativeIdentityInput -> fluxNonnegativityInput -> bootstrapBoundsInput -> analyticEstimateInput",
+  "closed_surface_objects": [
+    "RestrictedContinuationNormControlAnalyticEstimateInputData",
+    "RestrictedContinuationNormControlAnalyticEstimateInputObligation",
+    "RestrictedContinuationNormControlAnalyticEstimateInputSurfaceHypotheses",
+    "RestrictedContinuationNormControlAnalyticEstimateInputSurfaceClosed",
+    "RestrictedContinuationNormControlAnalyticEstimateInputSurface"
+  ],
+  "hypotheses": [
+    "estimateProofBridgeAvailable",
+    "analyticEstimateInputStated"
+  ],
+  "conclusion": "restricted continuation norm-control analytic estimate input is named and bounded; the analytic estimate is not proved",
+  "boundary": [
+    "input surface only",
+    "analytic estimate is not proved",
+    "does not prove restricted continuation norm-control estimate from PDE",
+    "does not prove derivativeIdentity",
+    "does not prove flux nonnegativity",
+    "does not prove bootstrap bounds",
+    "does not prove unrestricted gravity closure",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove P vs NP",
+    "does not prove any Clay problem"
+  ],
+  "next_admissible_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_PROOF"
+}
