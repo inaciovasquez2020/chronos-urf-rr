@@ -1,3 +1,4 @@
+import Chronos.Frontier.DerivativeIdentityObligationSurface
 import Chronos.Frontier.PartitionedBudgetPhysicalDetectorGateBound
 import Chronos.Frontier.RestrictedPhysicalDetectorFieldExtractionMap
 import Chronos.Frontier.FiniteDetectorCoherenceForcesAtomicMassRepresentation
