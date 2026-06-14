@@ -46,17 +46,23 @@ slot is recorded.
 The analytic proof of those supplied ingredients is not provided here.
 -/
 theorem RestrictedContinuationNormControlProofSurface
-    (D : RestrictedContinuationNormControlProofSurfaceData)
+    (_D : RestrictedContinuationNormControlProofSurfaceData)
     (H : RestrictedContinuationNormControlProofSurfaceObligations)
-    (_h_monotone : H.restrictedConcentrationMonotonicityAvailable)
-    (_h_norm : H.continuationNormDefined)
-    (_h_interval : H.continuationIntervalControlled)
-    (_h_bootstrap : H.bootstrapNormBoundPropagates)
-    (_h_control : H.concentrationControlsContinuationNorm)
-    (_h_threshold : H.thresholdNotReached)
-    (_h_criterion : H.continuationCriterionApplies) :
-    RestrictedContinuationNormControlProofSurfaceObligation D := by
-  trivial
+    (h_monotone : H.restrictedConcentrationMonotonicityAvailable)
+    (h_norm : H.continuationNormDefined)
+    (h_interval : H.continuationIntervalControlled)
+    (h_bootstrap : H.bootstrapNormBoundPropagates)
+    (h_control : H.concentrationControlsContinuationNorm)
+    (h_threshold : H.thresholdNotReached)
+    (h_criterion : H.continuationCriterionApplies) :
+    H.restrictedConcentrationMonotonicityAvailable ∧
+      H.continuationNormDefined ∧
+        H.continuationIntervalControlled ∧
+          H.bootstrapNormBoundPropagates ∧
+            H.concentrationControlsContinuationNorm ∧
+              H.thresholdNotReached ∧
+                H.continuationCriterionApplies := by
+  exact ⟨h_monotone, h_norm, h_interval, h_bootstrap, h_control, h_threshold, h_criterion⟩
 
 def RestrictedContinuationNormControlProofSurfaceStatus : String :=
   "PROOF_OBLIGATION_SURFACE_ONLY_NO_CONTINUATION_NORM_CONTROL_PROOF"
