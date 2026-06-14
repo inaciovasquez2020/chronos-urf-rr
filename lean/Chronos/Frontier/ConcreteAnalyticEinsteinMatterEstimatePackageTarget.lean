@@ -88,6 +88,23 @@ def RESTRICTED_CONTINUATION_NORM_CONTROL
     D.bootstrapInequalitiesB t s →
     D.finiteContinuationNorm t s
 
+theorem restricted_continuation_norm_control_of_finite_continuation_norm_estimate
+    {D : ConcreteAnalyticEinsteinMatterEstimateDatum}
+    (h :
+      ∀ t : D.Time,
+      ∀ s : D.State,
+        D.evolvesOnConcreteSeed s →
+        D.localWellposedEvolution s →
+        D.initialBootstrap s →
+        D.leTime D.zeroTime t →
+        D.leTime t D.finalTime →
+        D.belowTriggerTime t →
+        D.bootstrapInequalitiesB t s →
+        D.finiteContinuationNorm t s) :
+    RESTRICTED_CONTINUATION_NORM_CONTROL D := by
+  intro t s hs hwell hinit ht0 htT hbelow hboot
+  exact h t s hs hwell hinit ht0 htT hbelow hboot
+
 def ConcreteAnalyticEinsteinMatterEstimatePackage
     (D : ConcreteAnalyticEinsteinMatterEstimateDatum) : Prop :=
   ∀ s : D.State,
