@@ -1,0 +1,55 @@
+{
+  "artifact": "restricted_continuation_energy_inequality_discharge_lemma",
+  "date": "2026-06-15",
+  "solves": "RESTRICTED_CONTINUATION_ENERGY_INEQUALITY_DISCHARGE_LEMMA",
+  "predecessor": "RESTRICTED_CONTINUATION_ENERGY_IDENTITY_DISCHARGE_LEMMA",
+  "type": "conditional_discharge_lemma",
+  "lemma_statement": {
+    "name": "restricted_continuation_energy_inequality_discharge_lemma",
+    "claim": "On the restricted-continuation region, the restricted energy inequality is certified whenever the explicitly listed energy identity, boundary-flux sign/coercivity, source-estimate, and no-positive-remainder hypotheses are supplied.",
+    "domain": "restricted continuation region",
+    "boundary": "partial Sigma_R",
+    "inequality_object": "restricted_continuation_energy_inequality"
+  },
+  "required_inputs": [
+    {
+      "name": "restricted_continuation_energy_identity",
+      "role": "supplies the certified restricted energy identity"
+    },
+    {
+      "name": "restricted_continuation_boundary_flux_sign_control_exists",
+      "role": "supplies the sign control needed to place the boundary flux term on the dissipative side"
+    },
+    {
+      "name": "restricted_continuation_boundary_flux_coercivity_exists",
+      "role": "supplies the quantitative coercive boundary control used in the inequality"
+    },
+    {
+      "name": "restricted_source_pairing_upper_bound_available",
+      "role": "bounds the source/interior forcing term by admissible energy quantities"
+    },
+    {
+      "name": "energy_identity_remainders_are_nonpositive_or_absent",
+      "role": "ensures every non-certified remainder is either absent or has the correct sign"
+    },
+    {
+      "name": "energy_inequality_orientation_convention_compatible",
+      "role": "ensures the inequality direction matches the restricted energy identity and boundary orientation conventions"
+    }
+  ],
+  "discharged_obligations": [
+    "Separates the energy inequality from the energy identity.",
+    "Separates the energy inequality from boundary flux sign control and coercivity.",
+    "Certifies the exact assumptions under which the restricted-continuation energy inequality is available.",
+    "Promotes the energy inequality from an undischarged target obligation to a conditional discharge lemma."
+  ],
+  "non_claims": [
+    "Does not prove source-term absorption.",
+    "Does not prove Gronwall control.",
+    "Does not prove continuation or contradiction.",
+    "Does not prove uniform restricted continuation bounds.",
+    "Does not prove full RR closure."
+  ],
+  "next_missing_object": "RESTRICTED_CONTINUATION_SOURCE_TERM_ABSORPTION_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
