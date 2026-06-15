@@ -1,0 +1,64 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_RR_ROUTE_CLOSURE_GATE",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_RR_ROUTE_CLOSURE_GATE",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_NORM_CONTROL_THEOREM_CLOSURE_PAYLOAD",
+  "status": "GATE_SURFACE_ONLY_RR_ROUTE_CLOSURE_NOT_PROVED",
+  "gate_statement": {
+    "name": "restricted_continuation_rr_route_closure_gate",
+    "required_inputs": [
+      "restricted_continuation_norm_control_theorem_payload_is_declared",
+      "payload_has_no_unclassified_boundary_flux_term",
+      "payload_has_no_unclassified_interior_error_term",
+      "restricted_continuation_route_chain_has_verified_artifact_successors",
+      "full_rr_closure_boundary_remains_declared"
+    ],
+    "gate_checks": [
+      {
+        "check": "route_chain_assembled",
+        "role": "records that the RunAll restricted-continuation route has an explicit successor chain through norm-control payload closure"
+      },
+      {
+        "check": "boundary_flux_classified",
+        "role": "records that boundary flux is classified through the selected boundary-sign branch path"
+      },
+      {
+        "check": "energy_to_norm_path_classified",
+        "role": "records that the energy inequality route has a declared transfer path into norm control"
+      },
+      {
+        "check": "full_rr_boundary_preserved",
+        "role": "prevents the gate from being misread as full RR theorem closure"
+      }
+    ],
+    "intended_conclusion": [
+      "the_runall_rr_restricted_continuation_route_closure_gate_is_declared",
+      "the_route_has_a_verified_documented_successor_chain_to_norm_control_payload",
+      "the_gate_preserves_the_not_full_rr_closure_boundary",
+      "formal_restricted_continuation_rr_theorem_proof_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the RR restricted-continuation route closure gate after the norm-control theorem closure payload.",
+      "Assembles the documented RunAll route chain into a verifier-visible gate surface.",
+      "Keeps the distinction between route-gate closure and full RR theorem proof explicit."
+    ],
+    "negative": [
+      "Does not prove the norm-control theorem.",
+      "Does not prove the formal restricted-continuation theorem.",
+      "Does not prove the full RR theorem.",
+      "Does not discharge all analytic assumptions in Lean.",
+      "Does not claim full RR closure.",
+      "Does not claim final scientific closure."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_rr_route_closure_gate.py",
+    "tests/test_restricted_continuation_rr_route_closure_gate.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_FORMAL_RR_THEOREM_PROOF",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
