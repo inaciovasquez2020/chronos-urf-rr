@@ -1,0 +1,48 @@
+{
+  "artifact": "R1_LONG_CHORD_EXCLUSION_REDUCTION_CHAIN",
+  "date": "2026-06-15",
+  "status": "conditional_reduction_chain",
+  "target": {
+    "name": "R1 Long-Chord Exclusion Lemma",
+    "informal_statement": "For each long-chord edge e_i with i in {1,2}, and for every trivial witness w in W^triv, e_i is not in supp(w).",
+    "formal_shape": "∀ i ∈ {1,2}, ∀ w ∈ W^triv, e_i ∉ supp(w)"
+  },
+  "components": [
+    {
+      "id": "R1a",
+      "name": "Trivial 2-face boundary exclusion",
+      "artifact": "artifacts/chronos/r1a_trivial_two_face_boundary_statement_surface_2026_06_15.json",
+      "verifier": "tools/verify_r1a_trivial_two_face_boundary_statement_surface.py",
+      "role": "generator_absence_surface",
+      "required_for_r1": true
+    },
+    {
+      "id": "R1b",
+      "name": "F2 linear-combination no-new-long-chord reduction",
+      "artifact": "artifacts/chronos/r1b_f2_linear_combination_no_new_long_chord_reduction_2026_06_15.json",
+      "verifier": "tools/verify_r1b_f2_linear_combination_no_new_long_chord_reduction.py",
+      "role": "algebraic_closure_reduction",
+      "required_for_r1": true
+    },
+    {
+      "id": "R1c",
+      "name": "Maximal-separation exclusion reduction",
+      "artifact": "artifacts/chronos/r1c_maximal_separation_exclusion_reduction_2026_06_15.json",
+      "verifier": "tools/verify_r1c_maximal_separation_exclusion_reduction.py",
+      "role": "geometric_exclusion_reduction",
+      "required_for_r1": true
+    }
+  ],
+  "combination_rule": {
+    "if_all_components_hold": "R1 reduces to the conjunction of R1a, R1b, and R1c plus the repository-native bridge identifying W^triv as generated over F2 by the trivial 2-face boundaries under the maximal-separation hypotheses.",
+    "does_not_claim": [
+      "unconditional R1 theorem closure",
+      "R2 theorem closure",
+      "R3 theorem closure",
+      "full FGL closure",
+      "scientific closure"
+    ]
+  },
+  "weakest_remaining_missing_object": "repo-native formal bridge from the R1a/R1b/R1c reduction chain to the exact W^triv support statement used by the FGL frontier",
+  "boundary": "BOUNDARY := ¬ R1_solved"
+}
