@@ -1,0 +1,27 @@
+{
+  "artifact": "R1_CONCRETE_NEWSTEIN_FGL_GEOMETRY_SOURCE_OBJECT_TARGET",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "status": "boundary_source_object",
+  "first_concrete_source_object": "R1ConcreteNewsteinFGLGeometrySourceObject",
+  "feeds_existing_declaration": "R1NativeGeometryInputObject",
+  "existing_declaration_source": "lean/Chronos/Frontier/R1NativeGeometryInputObject.lean",
+  "lean_surface": "lean/Chronos/Frontier/R1ConcreteNewsteinFGLGeometrySourceObject.lean",
+  "next_missing_object": "native construction map from concrete Newstein/FGL geometry source object to R1NativeGeometryInputObject",
+  "boundary": "NO_CONCRETE_NEWSTEIN_FGL_GEOMETRY_TO_R1_NATIVE_GEOMETRY_INPUT_OBJECT_MAP",
+  "non_claims": [
+    "does not construct R1NativeGeometryInputObject from Newstein/FGL geometry",
+    "does not prove Newstein/FGL geometry satisfies R1TheoremProofInputs",
+    "does not close R1"
+  ],
+  "required_existing_declarations": [
+    "R1NativeGeometryInputObject"
+  ],
+  "required_lean_declarations": [
+    "R1ConcreteNewsteinFGLGeometrySourceObject",
+    "r1_concrete_newstein_fgl_geometry_source_object_to_native_geometry_input_object",
+    "r1_native_geometry_input_object_to_concrete_newstein_fgl_geometry_source_object"
+  ],
+  "verifier": "tools/verify_r1_concrete_newstein_fgl_geometry_source_object.py",
+  "test": "tests/test_r1_concrete_newstein_fgl_geometry_source_object.py"
+}
