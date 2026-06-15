@@ -1,0 +1,63 @@
+{
+  "name": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_PDE_TO_DERIVATIVE_IDENTITY_LEMMA_TARGET",
+  "status": "RUNALL_CONDITIONAL_DERIVATIVE_IDENTITY_LEMMA_TARGET",
+  "target": "RESTRICTED_CONTINUATION_PDE_TO_DERIVATIVE_IDENTITY_LEMMA",
+  "extends": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_NORM_CONTROL_PDE_OBLIGATION_DERIVATION_LEDGER",
+  "previous_verified_artifact": "artifacts/chronos/restricted_continuation_norm_control_pde_obligation_derivation_ledger_2026_06_14.json",
+  "weakest_missing_object": "RESTRICTED_CONTINUATION_ENERGY_DIFFERENTIATION_AND_INTEGRATION_BY_PARTS_LEMMA",
+  "runall_target_manifest": {
+    "TARGET": "RESTRICTED_CONTINUATION_PDE_TO_DERIVATIVE_IDENTITY_LEMMA",
+    "TARGET_KIND": "derivative-identity-lemma-target-artifact",
+    "SOURCE_OBJECT": "DERIVATION_OF_PACKAGE_OBLIGATIONS_FROM_RESTRICTED_CONTINUATION_PDE",
+    "TARGETED_CHECK": "python3 tools/verify_restricted_continuation_norm_control_pde_to_derivative_identity_lemma_target.py",
+    "COMMIT_RULE": "Commit only if the targeted verifier and targeted pytest pass."
+  },
+  "lemma_statement_surface": {
+    "input_equation": "partial_t u = L_R(t, x, D) u + N_R(t, x, u, D u) + F_R(t, x)",
+    "energy": "E_R(t) = ||u(t)||_{H^s(Sigma_R)}^2 + lower_order_control_terms_R(t)",
+    "target_identity": "d/dt E_R(t) + Flux_R(t) <= Source_R(t)",
+    "region": "restricted continuation cylinder I × Sigma_R",
+    "boundary_convention": "outward normal on boundary of Sigma_R",
+    "shared_input_surface": "the same restricted continuation input surface used by the concrete analytic input package"
+  },
+  "required_derivation_components": [
+    {
+      "object": "ENERGY_DIFFERENTIABILITY_LEMMA",
+      "role": "justify differentiating E_R(t)",
+      "status": "missing"
+    },
+    {
+      "object": "PDE_SUBSTITUTION_LEMMA",
+      "role": "substitute partial_t u from the restricted evolution equation into d/dt E_R(t)",
+      "status": "missing"
+    },
+    {
+      "object": "RESTRICTED_INTEGRATION_BY_PARTS_LEMMA",
+      "role": "move spatial derivatives and isolate boundary flux terms on Sigma_R",
+      "status": "missing"
+    },
+    {
+      "object": "LOWER_ORDER_TERM_ABSORPTION_LEMMA",
+      "role": "bound lower-order nonlinear and source contributions by Source_R(t)",
+      "status": "missing"
+    },
+    {
+      "object": "DERIVATIVE_IDENTITY_ASSEMBLY_LEMMA",
+      "role": "assemble the previous components into d/dt E_R(t) + Flux_R(t) <= Source_R(t)",
+      "status": "missing"
+    }
+  ],
+  "first_admissible_subtarget": "RESTRICTED_CONTINUATION_ENERGY_DIFFERENTIATION_AND_INTEGRATION_BY_PARTS_LEMMA",
+  "boundary": [
+    "this artifact records the derivative identity lemma target only",
+    "this artifact does not prove energy differentiability",
+    "this artifact does not prove PDE substitution",
+    "this artifact does not prove restricted integration by parts",
+    "this artifact does not prove lower-order term absorption",
+    "this artifact does not prove the derivative identity",
+    "this artifact does not prove the analytic estimate",
+    "this artifact does not prove full RR closure",
+    "this artifact does not prove Clay problem closure"
+  ],
+  "finish_condition": "Replace this target artifact with checked derivation components proving the derivative identity for the same restricted continuation input surface."
+}
