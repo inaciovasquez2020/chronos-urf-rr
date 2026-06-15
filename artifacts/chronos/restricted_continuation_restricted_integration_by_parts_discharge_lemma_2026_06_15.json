@@ -1,0 +1,56 @@
+{
+  "artifact": "restricted_continuation_restricted_integration_by_parts_discharge_lemma",
+  "date": "2026-06-15",
+  "solves": "RESTRICTED_CONTINUATION_RESTRICTED_INTEGRATION_BY_PARTS_DISCHARGE_LEMMA",
+  "predecessor": "RESTRICTED_CONTINUATION_BOUNDARY_FLUX_COERCIVITY_DISCHARGE_LEMMA",
+  "type": "conditional_discharge_lemma",
+  "lemma_statement": {
+    "name": "restricted_continuation_restricted_integration_by_parts_discharge_lemma",
+    "claim": "On the restricted-continuation region, the restricted integration-by-parts identity is certified whenever the explicitly listed interior regularity, trace existence, normal-trace existence, boundary-flux pairing, and orientation compatibility hypotheses are supplied.",
+    "domain": "restricted continuation region",
+    "boundary": "partial Sigma_R",
+    "identity_object": "restricted_continuation_integration_by_parts_identity"
+  },
+  "required_inputs": [
+    {
+      "name": "state_spatial_regularitiy_on_restricted_region",
+      "role": "supplies the interior spatial regularity required for integration by parts"
+    },
+    {
+      "name": "restricted_continuation_boundary_trace_exists",
+      "role": "supplies the scalar boundary trace on partial Sigma_R"
+    },
+    {
+      "name": "restricted_continuation_normal_trace_exists",
+      "role": "supplies the normal trace on partial Sigma_R"
+    },
+    {
+      "name": "restricted_continuation_boundary_flux_pairing_exists",
+      "role": "supplies the certified boundary flux pairing term"
+    },
+    {
+      "name": "restricted_boundary_orientation_matches_divergence_theorem",
+      "role": "ensures the boundary term has the same orientation as the restricted divergence theorem"
+    },
+    {
+      "name": "interior_boundary_decomposition_has_no_uncontrolled_remainder",
+      "role": "ensures the restricted region produces only certified interior and partial Sigma_R boundary terms"
+    }
+  ],
+  "discharged_obligations": [
+    "Separates restricted integration by parts from boundary trace existence.",
+    "Separates restricted integration by parts from normal trace existence.",
+    "Separates restricted integration by parts from boundary flux pairing and coercivity.",
+    "Certifies the exact assumptions under which the restricted-continuation integration-by-parts identity is available.",
+    "Promotes restricted integration by parts from an undischarged target obligation to a conditional discharge lemma."
+  ],
+  "non_claims": [
+    "Does not prove the energy identity.",
+    "Does not prove the energy inequality.",
+    "Does not prove source-term absorption.",
+    "Does not prove continuation or contradiction.",
+    "Does not prove full RR closure."
+  ],
+  "next_missing_object": "RESTRICTED_CONTINUATION_ENERGY_IDENTITY_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
