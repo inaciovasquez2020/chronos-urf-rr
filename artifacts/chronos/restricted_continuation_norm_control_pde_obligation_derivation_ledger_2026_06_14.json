@@ -1,0 +1,57 @@
+{
+  "name": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_NORM_CONTROL_PDE_OBLIGATION_DERIVATION_LEDGER",
+  "status": "RUNALL_CONDITIONAL_PDE_OBLIGATION_DERIVATION_LEDGER",
+  "target": "DERIVATION_OF_PACKAGE_OBLIGATIONS_FROM_RESTRICTED_CONTINUATION_PDE",
+  "extends": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_NORM_CONTROL_CONCRETE_ANALYTIC_INPUT_PACKAGE",
+  "previous_verified_artifact": "artifacts/chronos/restricted_continuation_norm_control_concrete_analytic_input_package_2026_06_14.json",
+  "weakest_missing_object": "RESTRICTED_CONTINUATION_PDE_TO_DERIVATIVE_IDENTITY_LEMMA",
+  "runall_target_manifest": {
+    "TARGET": "DERIVATION_OF_PACKAGE_OBLIGATIONS_FROM_RESTRICTED_CONTINUATION_PDE",
+    "TARGET_KIND": "derivation-ledger-artifact",
+    "SOURCE_OBJECT": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_NORM_CONTROL_CONCRETE_ANALYTIC_INPUT_PACKAGE",
+    "TARGETED_CHECK": "python3 tools/verify_restricted_continuation_norm_control_pde_obligation_derivation_ledger.py",
+    "COMMIT_RULE": "Commit only if the targeted verifier and targeted pytest pass."
+  },
+  "derivation_order": [
+    {
+      "step": 1,
+      "object": "RESTRICTED_CONTINUATION_PDE_TO_DERIVATIVE_IDENTITY_LEMMA",
+      "input": "partial_t u = L_R(t, x, D) u + N_R(t, x, u, D u) + F_R(t, x)",
+      "output": "d/dt E_R(t) + Flux_R(t) <= Source_R(t)",
+      "status": "missing"
+    },
+    {
+      "step": 2,
+      "object": "RESTRICTED_CONTINUATION_FLUX_NONNEGATIVITY_LEMMA",
+      "input": "Flux_R(t) with outward normal sign convention on Sigma_R",
+      "output": "Flux_R(t) >= 0",
+      "status": "missing"
+    },
+    {
+      "step": 3,
+      "object": "RESTRICTED_CONTINUATION_BOOTSTRAP_CLOSURE_LEMMA",
+      "input": "N_R(t) <= B_R, coefficient bound K_R, and integrable source bound S_R",
+      "output": "sup_{t in I} N_R(t) <= C_R(N_R(t0), source_bound, bootstrap_bound)",
+      "status": "missing"
+    },
+    {
+      "step": 4,
+      "object": "RESTRICTED_CONTINUATION_ESTIMATE_BRIDGE_AVAILABILITY_LEMMA",
+      "input": "derivative identity, flux nonnegativity, and bootstrap closure for one shared input surface",
+      "output": "estimateProofBridgeAvailable",
+      "status": "missing"
+    }
+  ],
+  "first_admissible_subtarget": "RESTRICTED_CONTINUATION_PDE_TO_DERIVATIVE_IDENTITY_LEMMA",
+  "boundary": [
+    "this artifact records the derivation ledger only",
+    "this artifact does not prove the derivative identity",
+    "this artifact does not prove flux nonnegativity",
+    "this artifact does not prove bootstrap closure",
+    "this artifact does not prove bridge availability",
+    "this artifact does not prove the analytic estimate",
+    "this artifact does not prove full RR closure",
+    "this artifact does not prove Clay problem closure"
+  ],
+  "finish_condition": "Replace each missing derivation-ledger entry with a checked lemma or verifier-backed derivation for the same restricted continuation input surface."
+}
