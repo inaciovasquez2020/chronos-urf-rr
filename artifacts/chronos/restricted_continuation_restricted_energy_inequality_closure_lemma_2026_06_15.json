@@ -1,0 +1,65 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_RESTRICTED_ENERGY_INEQUALITY_CLOSURE_LEMMA",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_RESTRICTED_ENERGY_INEQUALITY_CLOSURE_LEMMA",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_BOUNDARY_TERM_DISCHARGE_IN_RESTRICTED_ENERGY_INEQUALITY",
+  "status": "LEMMA_SURFACE_ONLY_RESTRICTED_ENERGY_INEQUALITY_CLOSURE_NOT_PROVED",
+  "lemma_statement": {
+    "name": "restricted_continuation_restricted_energy_inequality_closure",
+    "required_inputs": [
+      "restricted_energy_identity_after_integration_by_parts",
+      "boundary_term_discharge_in_restricted_energy_inequality",
+      "interior_error_terms_are_declared_controlled",
+      "coercive_energy_terms_are_declared_positive_or_absorbable",
+      "restricted_continuation_energy_functional_is_well_defined"
+    ],
+    "closure_steps": [
+      {
+        "step": "boundary_discharge",
+        "role": "remove_or_absorb_all_uncontrolled_boundary_flux_terms"
+      },
+      {
+        "step": "interior_term_collection",
+        "role": "collect_remaining_interior_error_terms into declared controlled quantities"
+      },
+      {
+        "step": "coercive_term_alignment",
+        "role": "align positive or absorbable terms with the restricted energy functional"
+      },
+      {
+        "step": "closed_inequality_form",
+        "role": "produce a restricted energy inequality with no unclassified boundary or interior contribution"
+      }
+    ],
+    "intended_conclusion": [
+      "the_restricted_energy_inequality_is_closed_at_the_formal_target_level",
+      "all_boundary_terms_are_classified_as_discharged",
+      "all_interior_error_terms_are_classified_as_controlled_or_absorbable",
+      "energy_to_norm_control_transfer_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the restricted energy inequality closure lemma target after boundary-term discharge.",
+      "Separates boundary discharge from interior term collection and coercive term alignment.",
+      "Makes explicit that the next blocker is transferring the closed restricted energy inequality into norm control."
+    ],
+    "negative": [
+      "Does not prove the restricted energy identity after integration by parts.",
+      "Does not prove boundary-term discharge.",
+      "Does not prove interior error control.",
+      "Does not prove coercivity or absorption.",
+      "Does not prove the energy-to-norm transfer.",
+      "Does not close the restricted continuation norm-control theorem.",
+      "Does not close the full RR restricted-continuation theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_restricted_energy_inequality_closure_lemma.py",
+    "tests/test_restricted_continuation_restricted_energy_inequality_closure_lemma.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_ENERGY_TO_NORM_CONTROL_TRANSFER_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
