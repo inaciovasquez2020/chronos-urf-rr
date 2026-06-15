@@ -1,0 +1,66 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_REGULARITY_AND_DIFFERENTIATION_GROUP_DISCHARGE_GATE",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_REGULARITY_AND_DIFFERENTIATION_GROUP_DISCHARGE_GATE",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_ENERGY_DENSITY_DIFFERENTIABILITY_DISCHARGE_LEMMA",
+  "status": "GATE_SURFACE_ONLY_REGULARITY_AND_DIFFERENTIATION_GROUP_NOT_DISCHARGED",
+  "gate_statement": {
+    "name": "restricted_continuation_regularity_and_differentiation_group_discharge_gate",
+    "assumption_group": "regularity_and_differentiation",
+    "required_inputs": [
+      "time_regular_energy_discharge_lemma_target_is_declared",
+      "spatial_regularity_integration_by_parts_discharge_lemma_target_is_declared",
+      "energy_density_differentiability_discharge_lemma_target_is_declared",
+      "regularity_and_differentiation_ledger_group_is_visible",
+      "no_regularitiy_or_differentiation_assumption_is_marked_as_discharged_without_proof"
+    ],
+    "gate_checks": [
+      {
+        "check": "time_regular_energy_obligation_visible",
+        "role": "records the time-regular energy discharge target as one required component of the group"
+      },
+      {
+        "check": "spatial_regular_ibp_obligation_visible",
+        "role": "records the spatial regularity integration-by-parts discharge target as one required component of the group"
+      },
+      {
+        "check": "energy_density_differentiability_obligation_visible",
+        "role": "records the energy-density differentiability discharge target as one required component of the group"
+      },
+      {
+        "check": "undischarged_group_boundary_preserved",
+        "role": "prevents the group gate from being misread as actual analytic assumption discharge"
+      }
+    ],
+    "intended_conclusion": [
+      "the_regularity_and_differentiation_group_discharge_gate_is_declared",
+      "all_three_regularity_and_differentiation_discharge_targets_are_visible",
+      "the_regularitiy_and_differentiation_group_remains_not_discharged_without_proof",
+      "trace_and_boundary_flux_discharge_target_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the group-level gate after the three regularity-and-differentiation discharge targets.",
+      "Assembles time regularity, spatial regularity for integration by parts, and energy-density differentiability into one visible gate surface.",
+      "Makes explicit that the next analytic assumption group is trace and boundary flux."
+    ],
+    "negative": [
+      "Does not discharge the regularity-and-differentiation assumption group.",
+      "Does not prove time-regular energy.",
+      "Does not prove spatial regularity for integration by parts.",
+      "Does not prove energy-density differentiability.",
+      "Does not prove trace existence or boundary flux pairing.",
+      "Does not prove the formal restricted-continuation theorem.",
+      "Does not close the full RR theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_regularity_and_differentiation_group_discharge_gate.py",
+    "tests/test_restricted_continuation_regularity_and_differentiation_group_discharge_gate.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_TRACE_AND_BOUNDARY_FLUX_DISCHARGE_TARGET",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
