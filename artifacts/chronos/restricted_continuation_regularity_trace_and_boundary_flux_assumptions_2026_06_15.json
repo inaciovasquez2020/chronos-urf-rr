@@ -1,0 +1,45 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_REGULARITY_TRACE_AND_BOUNDARY_FLUX_ASSUMPTIONS",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_REGULARITY_TRACE_AND_BOUNDARY_FLUX_ASSUMPTIONS",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_ENERGY_DIFFERENTIATION_AND_INTEGRATION_BY_PARTS_LEMMA_TARGET",
+  "status": "ASSUMPTION_SURFACE_ONLY_TRACE_AND_BOUNDARY_FLUX_NOT_PROVED",
+  "claim": {
+    "positive": [
+      "Records the exact regularity, trace, and boundary-flux assumptions required after the energy differentiation and integration-by-parts lemma target.",
+      "Separates interior differentiability assumptions from boundary trace/flux assumptions.",
+      "Makes the next RR restricted-continuation blocker explicit and verifier-visible."
+    ],
+    "negative": [
+      "Does not prove the regularity theorem.",
+      "Does not prove trace existence.",
+      "Does not prove boundary flux cancellation, sign, coercivity, or vanishing.",
+      "Does not close the full RR restricted-continuation theorem."
+    ]
+  },
+  "required_assumptions": {
+    "regularity": [
+      "solution_has_time_regular_energy",
+      "solution_has_spatial_regularity_for_integration_by_parts",
+      "energy_density_is_differentiable_along_restricted_continuation"
+    ],
+    "trace": [
+      "boundary_trace_exists_on_restricted_continuation_domain",
+      "normal_trace_exists_for_flux_field",
+      "trace_pairing_is_well_defined"
+    ],
+    "boundary_flux": [
+      "boundary_flux_term_is_defined",
+      "boundary_flux_term_has_declared_sign_or_cancellation_condition",
+      "boundary_flux_term_is_compatible_with_restricted_domain"
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_regularity_trace_and_boundary_flux_assumptions.py",
+    "tests/test_restricted_continuation_regularity_trace_and_boundary_flux_assumptions.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_TRACE_FLUX_CONTROL_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
