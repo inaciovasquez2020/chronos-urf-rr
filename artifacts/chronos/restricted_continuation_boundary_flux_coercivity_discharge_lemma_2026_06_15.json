@@ -1,0 +1,51 @@
+{
+  "artifact": "restricted_continuation_boundary_flux_coercivity_discharge_lemma",
+  "date": "2026-06-15",
+  "solves": "RESTRICTED_CONTINUATION_BOUNDARY_FLUX_COERCIVITY_DISCHARGE_LEMMA",
+  "predecessor": "RESTRICTED_CONTINUATION_BOUNDARY_FLUX_SIGN_CONTROL_DISCHARGE_LEMMA",
+  "type": "conditional_discharge_lemma",
+  "lemma_statement": {
+    "name": "restricted_continuation_boundary_flux_coercivity_discharge_lemma",
+    "claim": "On the restricted-continuation boundary portion partial Sigma_R, the sign-controlled boundary flux pairing supplies the required coercive boundary control whenever the explicitly listed coercivity constant, trace-norm compatibility, and restricted-boundary support hypotheses are supplied.",
+    "domain": "restricted continuation region",
+    "boundary": "partial Sigma_R",
+    "controlled_object": "restricted_continuation_boundary_flux_pairing",
+    "coercivity_object": "restricted_continuation_boundary_flux_coercivity"
+  },
+  "required_inputs": [
+    {
+      "name": "restricted_continuation_boundary_flux_sign_control_exists",
+      "role": "supplies the already certified sign control for the boundary flux pairing"
+    },
+    {
+      "name": "boundary_flux_coercivity_constant_positive",
+      "role": "supplies the positive constant needed for coercive boundary control"
+    },
+    {
+      "name": "boundary_trace_norm_matches_energy_boundary_norm",
+      "role": "identifies the trace norm controlled by the flux with the boundary norm used in the energy estimate"
+    },
+    {
+      "name": "coercive_flux_lower_bound_available",
+      "role": "supplies the lower-bound inequality converting sign control into quantitative coercivity"
+    },
+    {
+      "name": "restricted_boundary_support_contains_only_coercive_faces",
+      "role": "ensures every contributing restricted-boundary face satisfies the coercivity hypothesis"
+    }
+  ],
+  "discharged_obligations": [
+    "Separates boundary flux coercivity from boundary flux sign control.",
+    "Certifies the exact assumptions under which the restricted-continuation boundary flux pairing gives quantitative coercive control.",
+    "Promotes boundary flux coercivity from an undischarged target obligation to a conditional discharge lemma."
+  ],
+  "non_claims": [
+    "Does not prove restricted integration by parts.",
+    "Does not prove the energy inequality.",
+    "Does not prove continuation or contradiction.",
+    "Does not prove source-term absorption.",
+    "Does not prove full RR closure."
+  ],
+  "next_missing_object": "RESTRICTED_CONTINUATION_RESTRICTED_INTEGRATION_BY_PARTS_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
