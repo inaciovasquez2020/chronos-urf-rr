@@ -1,0 +1,58 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_BOUNDARY_TERM_DISCHARGE_IN_RESTRICTED_ENERGY_INEQUALITY",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_BOUNDARY_TERM_DISCHARGE_IN_RESTRICTED_ENERGY_INEQUALITY",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_BOUNDARY_SIGN_BRANCH_ENERGY_INEQUALITY_INSERTION_LEMMA",
+  "status": "DISCHARGE_SURFACE_ONLY_BOUNDARY_TERM_DISCHARGE_NOT_PROVED",
+  "discharge_statement": {
+    "name": "restricted_continuation_boundary_term_discharge_in_restricted_energy_inequality",
+    "selected_branch": "boundary_sign",
+    "required_inputs": [
+      "restricted_energy_identity_after_integration_by_parts",
+      "boundary_sign_branch_energy_inequality_insertion",
+      "signed_flux_nonpositive_or_absorbable_payload",
+      "restricted_boundary_orientation_compatible_with_flux_sign_convention",
+      "boundary_flux_pairing_well_defined_on_restricted_boundary"
+    ],
+    "discharge_modes": [
+      {
+        "mode": "dropped",
+        "input": "nonpositive_boundary_flux_inserted_into_upper_energy_bound",
+        "discharge_rule": "delete_the_nonpositive_boundary_term_from_the_upper_bound"
+      },
+      {
+        "mode": "absorbed",
+        "input": "absorbable_boundary_flux_inserted_into_controlled_energy_side",
+        "discharge_rule": "absorb_the_boundary_term_into_declared_controlled_energy_terms"
+      }
+    ],
+    "intended_conclusion": [
+      "the_boundary_flux_term_is_discharged_in_the_restricted_energy_inequality",
+      "no_uncontrolled_boundary_flux_contribution_remains",
+      "the_restricted_energy_inequality_may_next_be_closed_by_assembling_remaining_interior_and_control_terms"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the boundary-term discharge target after inserting the selected boundary-sign branch into the restricted energy inequality.",
+      "Separates discharge by deletion of a nonpositive boundary term from discharge by absorption into controlled terms.",
+      "Makes explicit that the next remaining object is restricted energy inequality closure after boundary discharge."
+    ],
+    "negative": [
+      "Does not prove the restricted energy identity after integration by parts.",
+      "Does not prove signed flux is nonpositive.",
+      "Does not prove signed flux is absorbable.",
+      "Does not prove the boundary discharge rule.",
+      "Does not close the restricted energy inequality.",
+      "Does not close the full RR restricted-continuation theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_boundary_term_discharge_in_restricted_energy_inequality.py",
+    "tests/test_restricted_continuation_boundary_term_discharge_in_restricted_energy_inequality.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_RESTRICTED_ENERGY_INEQUALITY_CLOSURE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
