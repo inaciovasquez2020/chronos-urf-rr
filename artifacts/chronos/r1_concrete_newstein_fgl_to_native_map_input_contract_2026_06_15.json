@@ -1,0 +1,45 @@
+{
+  "artifact": "R1_CONCRETE_NEWSTEIN_FGL_TO_NATIVE_MAP_INPUT_CONTRACT",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "status": "input_contract",
+  "contract_declaration": "R1ConcreteNewsteinFGLToNativeMapInputContract",
+  "source_declaration": "R1ConcreteNewsteinFGLGeometrySourceObject",
+  "map_target_declaration": "R1ConcreteNewsteinFGLToNativeGeometryInputObjectMapTarget",
+  "lean_surface": "lean/Chronos/Frontier/R1ConcreteNewsteinFGLToNativeMapInputContract.lean",
+  "next_missing_object": "non-vacuous discharge of the input contract fields for concrete Newstein/FGL geometry",
+  "boundary": "NO_DISCHARGED_INPUT_CONTRACT_FOR_NATIVE_CONSTRUCTION_MAP",
+  "required_existing_declarations": [
+    "R1ConcreteNewsteinFGLGeometrySourceObject",
+    "R1ConcreteNewsteinFGLToNativeGeometryInputObjectMapTarget"
+  ],
+  "required_contract_fields": [
+    "source",
+    "r1LongChordExclusion",
+    "r1DiameterSeparationFillingObstruction",
+    "r1UniformLocalTypeCapacity",
+    "r1SourceToNativeCompatibility",
+    "longChordExclusionEvidence",
+    "diameterSeparationFillingObstructionEvidence",
+    "uniformLocalTypeCapacityEvidence",
+    "sourceToNativeCompatibilityEvidence"
+  ],
+  "required_lean_declarations": [
+    "R1ConcreteNewsteinFGLToNativeMapInputContract",
+    "r1_concrete_newstein_fgl_to_native_map_input_contract_boundary"
+  ],
+  "non_claims": [
+    "does not define the construction map",
+    "does not construct R1NativeGeometryInputObject from concrete Newstein/FGL geometry",
+    "does not discharge the contract fields",
+    "does not prove Newstein/FGL geometry satisfies R1TheoremProofInputs",
+    "does not close R1"
+  ],
+  "forbidden_lean_fragments": [
+    "def r1_concrete_newstein_fgl_to_native_geometry_input_object\n",
+    "theorem r1_concrete_newstein_fgl_to_native_geometry_input_object\n",
+    ": R1NativeGeometryInputObject :="
+  ],
+  "verifier": "tools/verify_r1_concrete_newstein_fgl_to_native_map_input_contract.py",
+  "test": "tests/test_r1_concrete_newstein_fgl_to_native_map_input_contract.py"
+}
