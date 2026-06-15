@@ -1,0 +1,71 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_SPATIAL_REGULARITY_INTEGRATION_BY_PARTS_DISCHARGE_LEMMA",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_SPATIAL_REGULARITY_INTEGRATION_BY_PARTS_DISCHARGE_LEMMA",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_TIME_REGULAR_ENERGY_DISCHARGE_LEMMA",
+  "status": "LEMMA_SURFACE_ONLY_SPATIAL_REGULARITY_INTEGRATION_BY_PARTS_NOT_PROVED",
+  "lemma_statement": {
+    "name": "restricted_continuation_spatial_regularity_integration_by_parts_discharge",
+    "assumption_group": "regularity_and_differentiation",
+    "targeted_assumption": "solution_has_spatial_regularity_for_integration_by_parts",
+    "required_inputs": [
+      "restricted_continuation_domain_is_declared",
+      "solution_spatial_regular_representative_is_available",
+      "weak_gradient_or_flux_field_is_defined",
+      "integration_by_parts_pairing_is_well_defined",
+      "boundary_trace_or_flux_pairing_interface_is_declared"
+    ],
+    "discharge_obligations": [
+      {
+        "obligation": "restricted_domain_spatial_structure",
+        "role": "identify the spatial domain and boundary structure on which integration by parts is applied"
+      },
+      {
+        "obligation": "solution_spatial_regular_representative",
+        "role": "supply a representative or weak-spatial-regular payload for the restricted-continuation solution"
+      },
+      {
+        "obligation": "weak_gradient_flux_admissibility",
+        "role": "justify that the weak gradient or flux field is admissible in the integration-by-parts formula"
+      },
+      {
+        "obligation": "boundary_pairing_interface",
+        "role": "connect the spatial integration-by-parts step to the declared trace and boundary-flux pairing interface"
+      },
+      {
+        "obligation": "ledger_status_update_guard",
+        "role": "prevent the spatial-regularity assumption from being marked discharged until the analytic payload is proved or certified"
+      }
+    ],
+    "intended_conclusion": [
+      "the_spatial_regularity_integration_by_parts_discharge_lemma_target_is_declared",
+      "the_spatial_regularity_assumption_has_a_dedicated_discharge_surface",
+      "no_spatial_regularity_assumption_is_marked_as_discharged_without_proof",
+      "energy_density_differentiability_discharge_lemma_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the spatial-regularity integration-by-parts discharge lemma target after the time-regular energy discharge lemma.",
+      "Separates domain structure, spatial representative, weak-gradient or flux admissibility, and boundary pairing interface.",
+      "Makes explicit that the next regularity blocker is energy-density differentiability along restricted continuation."
+    ],
+    "negative": [
+      "Does not prove spatial regularity for integration by parts.",
+      "Does not prove existence of a spatially regular representative.",
+      "Does not prove weak-gradient or flux admissibility.",
+      "Does not prove boundary trace or flux pairing.",
+      "Does not discharge the regularity-and-differentiation assumption group.",
+      "Does not prove the formal restricted-continuation theorem.",
+      "Does not close the full RR theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_spatial_regularitiy_integration_by_parts_discharge_lemma.py",
+    "tests/test_restricted_continuation_spatial_regularitiy_integration_by_parts_discharge_lemma.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_ENERGY_DENSITY_DIFFERENTIABILITY_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
