@@ -1,0 +1,51 @@
+{
+  "artifact": "restricted_continuation_trace_pairing_discharge_lemma",
+  "date": "2026-06-15",
+  "solves": "RESTRICTED_CONTINUATION_TRACE_PAIRING_DISCHARGE_LEMMA",
+  "predecessor": "RESTRICTED_CONTINUATION_NORMAL_TRACE_EXISTENCE_DISCHARGE_LEMMA",
+  "type": "conditional_discharge_lemma",
+  "lemma_statement": {
+    "name": "restricted_continuation_trace_pairing_discharge_lemma",
+    "claim": "On the restricted-continuation boundary portion partial Sigma_R, the scalar boundary trace and normal trace admit a certified trace pairing whenever the explicitly listed trace-space compatibility, duality, and boundary-measure hypotheses are supplied.",
+    "domain": "restricted continuation region",
+    "boundary": "partial Sigma_R",
+    "pairing_object": "restricted_continuation_trace_pairing"
+  },
+  "required_inputs": [
+    {
+      "name": "restricted_continuation_boundary_trace_exists",
+      "role": "supplies the scalar boundary trace object on partial Sigma_R"
+    },
+    {
+      "name": "restricted_continuation_normal_trace_exists",
+      "role": "supplies the normal trace object on partial Sigma_R"
+    },
+    {
+      "name": "boundary_trace_space_duality_compatible",
+      "role": "places the scalar boundary trace and normal trace in dual-compatible trace spaces"
+    },
+    {
+      "name": "trace_pairing_operator_available",
+      "role": "supplies the pairing map between the certified trace spaces"
+    },
+    {
+      "name": "boundary_measure_orientation_compatible",
+      "role": "ensures the pairing is taken over the same oriented boundary portion partial Sigma_R"
+    }
+  ],
+  "discharged_obligations": [
+    "Separates trace pairing from boundary trace existence.",
+    "Separates trace pairing from normal trace existence.",
+    "Certifies the exact assumptions under which the restricted-continuation trace pairing is well-defined.",
+    "Promotes trace pairing from an undischarged target obligation to a conditional discharge lemma."
+  ],
+  "non_claims": [
+    "Does not prove boundary flux pairing.",
+    "Does not prove integration by parts.",
+    "Does not identify the trace pairing with the physical boundary flux term.",
+    "Does not prove flux sign control.",
+    "Does not prove full RR closure."
+  ],
+  "next_missing_object": "RESTRICTED_CONTINUATION_BOUNDARY_FLUX_PAIRING_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
