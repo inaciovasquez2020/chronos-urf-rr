@@ -1,0 +1,64 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_NORM_CONTROL_CLOSURE_ASSEMBLY_LEMMA",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_CLOSURE_ASSEMBLY_LEMMA",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_ENERGY_TO_NORM_CONTROL_TRANSFER_LEMMA",
+  "status": "LEMMA_SURFACE_ONLY_NORM_CONTROL_CLOSURE_ASSEMBLY_NOT_PROVED",
+  "lemma_statement": {
+    "name": "restricted_continuation_norm_control_closure_assembly",
+    "required_inputs": [
+      "closed_restricted_energy_inequality_transfers_to_declared_norm_control",
+      "norm_control_estimate_has_no_unclassified_boundary_flux_term",
+      "norm_control_estimate_has_no_unclassified_interior_error_term",
+      "restricted_continuation_energy_functional_is_well_defined",
+      "declared_norm_control_quantity_is_well_defined"
+    ],
+    "assembly_steps": [
+      {
+        "step": "import_energy_to_norm_transfer",
+        "role": "use the energy-to-norm transfer lemma as the main norm-control estimate input"
+      },
+      {
+        "step": "boundary_cleanliness_check",
+        "role": "confirm no unclassified boundary flux term remains in the assembled norm-control estimate"
+      },
+      {
+        "step": "interior_cleanliness_check",
+        "role": "confirm no unclassified interior error term remains in the assembled norm-control estimate"
+      },
+      {
+        "step": "closure_statement_packaging",
+        "role": "package the assembled estimate as the restricted continuation norm-control closure target"
+      }
+    ],
+    "intended_conclusion": [
+      "the_restricted_continuation_norm_control_closure_statement_is_assembled_at_the_formal_target_level",
+      "the_assembled_norm_control_statement_has_no_unclassified_boundary_flux_term",
+      "the_assembled_norm_control_statement_has_no_unclassified_interior_error_term",
+      "restricted_continuation_norm_control_theorem_closure_payload_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the norm-control closure assembly lemma target after the energy-to-norm transfer lemma.",
+      "Separates energy-to-norm import, boundary cleanliness, interior cleanliness, and closure-statement packaging.",
+      "Makes explicit that the next blocker is a theorem-level norm-control closure payload."
+    ],
+    "negative": [
+      "Does not prove the energy-to-norm transfer lemma.",
+      "Does not prove boundary cleanliness.",
+      "Does not prove interior error cleanliness.",
+      "Does not prove the assembled norm-control theorem.",
+      "Does not close the restricted continuation norm-control theorem.",
+      "Does not close the full RR restricted-continuation theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_norm_control_closure_assembly_lemma.py",
+    "tests/test_restricted_continuation_norm_control_closure_assembly_lemma.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_THEOREM_CLOSURE_PAYLOAD",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
