@@ -1,0 +1,109 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_ANALYTIC_ASSUMPTION_DISCHARGE_LEDGER",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_ANALYTIC_ASSUMPTION_DISCHARGE_LEDGER",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_FORMAL_RR_THEOREM_PROOF_TARGET",
+  "status": "LEDGER_SURFACE_ONLY_ANALYTIC_ASSUMPTIONS_NOT_DISCHARGED",
+  "ledger_statement": {
+    "name": "restricted_continuation_analytic_assumption_discharge_ledger",
+    "required_assumption_groups": [
+      {
+        "group": "regularity_and_differentiation",
+        "assumptions": [
+          "solution_has_time_regular_energy",
+          "solution_has_spatial_regularity_for_integration_by_parts",
+          "energy_density_is_differentiable_along_restricted_continuation"
+        ],
+        "discharge_status": "declared_not_discharged"
+      },
+      {
+        "group": "trace_and_boundary_flux",
+        "assumptions": [
+          "boundary_trace_exists_on_restricted_continuation_domain",
+          "normal_trace_exists_for_flux_field",
+          "trace_pairing_is_well_defined",
+          "boundary_flux_pairing_well_defined_on_restricted_boundary"
+        ],
+        "discharge_status": "declared_not_discharged"
+      },
+      {
+        "group": "boundary_sign_and_orientation",
+        "assumptions": [
+          "restricted_boundary_orientation_compatible_with_flux_sign_convention",
+          "declared_boundary_sign_condition",
+          "signed_flux_nonpositive_or_absorbable_payload"
+        ],
+        "discharge_status": "declared_not_discharged"
+      },
+      {
+        "group": "energy_inequality_closure",
+        "assumptions": [
+          "restricted_energy_identity_after_integration_by_parts",
+          "interior_error_terms_are_controlled_or_absorbable",
+          "coercive_energy_terms_are_positive_or_absorbable",
+          "boundary_term_discharge_in_restricted_energy_inequality"
+        ],
+        "discharge_status": "declared_not_discharged"
+      },
+      {
+        "group": "energy_to_norm_transfer",
+        "assumptions": [
+          "restricted_continuation_energy_functional_is_well_defined",
+          "declared_norm_control_quantity_is_well_defined",
+          "energy_functional_controls_declared_norm",
+          "closed_restricted_energy_inequality_transfers_to_declared_norm_control"
+        ],
+        "discharge_status": "declared_not_discharged"
+      }
+    ],
+    "ledger_checks": [
+      {
+        "check": "all_route_assumption_groups_named",
+        "role": "collects the analytic assumptions still used by the formal RR theorem proof target"
+      },
+      {
+        "check": "each_group_has_discharge_status",
+        "role": "prevents silent promotion from declared assumption to proved theorem"
+      },
+      {
+        "check": "undischarged_status_preserved",
+        "role": "keeps the route honest about remaining analytic proof obligations"
+      },
+      {
+        "check": "next_discharge_target_selected",
+        "role": "identifies the first assumption group to convert into a discharge target"
+      }
+    ],
+    "intended_conclusion": [
+      "the_analytic_assumption_discharge_ledger_is_declared",
+      "all_major_undischarged_analytic_assumption_groups_are_visible",
+      "no_analytic_assumption_is_marked_as_discharged_without_proof",
+      "regularity_and_differentiation_discharge_target_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the analytic assumption discharge ledger after the formal RR theorem proof target.",
+      "Groups the remaining assumptions into regularity, trace/flux, boundary sign, energy inequality, and energy-to-norm transfer obligations.",
+      "Makes explicit that the next blocker is the first concrete analytic discharge target."
+    ],
+    "negative": [
+      "Does not discharge any analytic assumption.",
+      "Does not prove regularity or differentiation.",
+      "Does not prove trace existence or boundary flux pairing.",
+      "Does not prove the boundary sign condition.",
+      "Does not prove the restricted energy inequality.",
+      "Does not prove the energy-to-norm transfer.",
+      "Does not prove the formal restricted-continuation theorem.",
+      "Does not close the full RR theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_analytic_assumption_discharge_ledger.py",
+    "tests/test_restricted_continuation_analytic_assumption_discharge_ledger.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_REGULARITY_AND_DIFFERENTIATION_DISCHARGE_TARGET",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
