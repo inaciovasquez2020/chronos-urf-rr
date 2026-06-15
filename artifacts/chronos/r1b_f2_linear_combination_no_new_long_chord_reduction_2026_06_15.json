@@ -1,0 +1,81 @@
+{
+  "artifact": "R1B_F2_LINEAR_COMBINATION_NO_NEW_LONG_CHORD_REDUCTION",
+  "repository": "chronos-urf-rr",
+  "frontier_item": "R1",
+  "substep": "R1b",
+  "date": "2026-06-15",
+  "status": "ALGEBRAIC_REDUCTION_PROVED_CONDITIONAL_ON_R1A_GENERATOR_ABSENCE",
+  "target": "R1bF2LinearCombinationNoNewLongChord",
+  "exact_statement": {
+    "name": "R1b F2-linear combination no-new-long-chord reduction",
+    "formal_surface": "For every repository-native admissible finite-patch FGL instance I, long-chord edge e_i, finite family of trivial 2-face boundaries b_j = partial tau_j, and F2 coefficients a_j, if e_i is absent from supp(b_j) for every j, then e_i is absent from supp(sum_j a_j b_j).",
+    "quantifiers": [
+      "forall repository_native_admissible_finite_patch_fgl_instance I",
+      "forall long_chord_edge e_i with i in {1,2}",
+      "forall finite family of trivial 2-face boundaries b_j = partial tau_j",
+      "forall F2 coefficient family a_j"
+    ],
+    "hypotheses": [
+      "FiniteBoundaryFamily(I,b_j)",
+      "F2CoefficientFamily(a_j)",
+      "for every j, e_i notin supp(b_j)",
+      "sum_j a_j b_j is computed over F2"
+    ],
+    "conclusion": "e_i notin supp(sum_j a_j b_j)",
+    "algebraic_core": "xor_j (a_j AND indicator(e_i in supp(b_j))) = 0 whenever every indicator(e_i in supp(b_j)) = 0",
+    "r1_dependency_role": "This discharges the algebraic cancellation part of R1b once R1a supplies generator-level absence for each trivial 2-face boundary. It does not prove the geometric generator-level absence itself."
+  },
+  "proof_certificate": {
+    "field": "F2",
+    "edge_coordinate_model": "Each boundary is evaluated at the coordinate e_i as a bit in {0,1}.",
+    "generator_absence_assumption": "for every generator b_j, indicator(e_i in supp(b_j)) = 0",
+    "coefficient_rule": "each F2 coefficient a_j is a bit in {0,1}",
+    "sum_coordinate_rule": "indicator(e_i in supp(sum_j a_j b_j)) = xor_j (a_j AND indicator(e_i in supp(b_j)))",
+    "derivation": [
+      "By generator_absence_assumption, every indicator(e_i in supp(b_j)) is 0.",
+      "For every coefficient a_j in F2, a_j AND 0 = 0.",
+      "The xor of a finite family of zeros is 0.",
+      "Therefore indicator(e_i in supp(sum_j a_j b_j)) = 0.",
+      "Therefore e_i is absent from the support of every F2-linear combination of such generators."
+    ],
+    "machine_checked_boolean_identity": true
+  },
+  "discharged_subclaim": {
+    "name": "R1b algebraic closure from R1a generator absence",
+    "logical_form": "If every trivial 2-face boundary excludes e_i, then every F2-linear combination of trivial 2-face boundaries excludes e_i.",
+    "discharged": true,
+    "conditional_on": [
+      "R1a generator-level absence for each trivial 2-face boundary",
+      "repository-native definition that W^triv is generated over F2 by trivial 2-face boundaries"
+    ]
+  },
+  "remaining_for_r1": {
+    "r1a": "OPEN: prove every trivial 2-face boundary excludes both long-chord edges.",
+    "r1c": "OPEN: prove maximal-separation geometry forbids any trivial witness boundary from traversing a diameter-spanning long chord.",
+    "generation_bridge": "OPEN generation bridge unless already present in the repo: prove W^triv is exactly the F2 span of trivial 2-face boundaries used by R1a/R1b."
+  },
+  "boundary": {
+    "evidence_class": "algebraic_reduction_certificate_only",
+    "proof_claims": {
+      "proves_r1b_algebraic_reduction_from_r1a": true,
+      "proves_r1a": false,
+      "proves_r1c": false,
+      "proves_r1": false,
+      "proves_r2": false,
+      "proves_r3": false,
+      "proves_fgl": false,
+      "proves_chronos_rr": false,
+      "proves_p_vs_np": false,
+      "proves_any_clay_problem": false
+    },
+    "required_non_claims": [
+      "does not prove R1a",
+      "does not prove R1c",
+      "does not prove combined R1 Long-Chord Exclusion Lemma",
+      "does not prove FGL",
+      "does not prove Chronos-RR",
+      "does not prove P vs NP",
+      "does not prove any Clay problem"
+    ]
+  }
+}

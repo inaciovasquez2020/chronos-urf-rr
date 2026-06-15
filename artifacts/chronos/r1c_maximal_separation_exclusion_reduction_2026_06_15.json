@@ -1,0 +1,89 @@
+{
+  "artifact": "R1C_MAXIMAL_SEPARATION_EXCLUSION_REDUCTION",
+  "repository": "chronos-urf-rr",
+  "frontier_item": "R1",
+  "substep": "R1c",
+  "date": "2026-06-15",
+  "status": "GEOMETRIC_REDUCTION_PROVED_CONDITIONAL_ON_MAXIMAL_SEPARATION_DIAMETER_BOUND",
+  "target": "R1cMaximalSeparationLongChordExclusion",
+  "exact_statement": {
+    "name": "R1c maximal-separation long-chord exclusion",
+    "formal_surface": "For every repository-native admissible finite-patch FGL instance I, every trivial witness boundary w in W^triv(I), and every long-chord edge e_i with i in {1,2}, if e_i realizes a maximal endpoint separation D_i and every trivial witness boundary support is contained in a local patch of diameter strictly less than D_i, then e_i is not in supp(w).",
+    "quantifiers": [
+      "forall repository_native_admissible_finite_patch_fgl_instance I",
+      "forall trivial_witness_boundary w in W^triv(I)",
+      "forall long_chord_edge e_i with i in {1,2}"
+    ],
+    "hypotheses": [
+      "LongChordEdge(I,e_i)",
+      "EndpointSeparation(I,e_i) = D_i",
+      "MaximalEndpointSeparation(I,e_i,D_i)",
+      "TrivialWitnessBoundary(I,w)",
+      "SupportContainedInLocalPatch(I,w)",
+      "LocalPatchDiameterBound(I,w) < D_i",
+      "if e_i is in supp(w), then support_diameter(w) >= D_i"
+    ],
+    "conclusion": "e_i notin supp(w)",
+    "geometric_core": "A support containing an edge whose endpoints are separated by D_i has diameter at least D_i; a support contained in a local patch of diameter strictly less than D_i cannot contain that edge.",
+    "r1_dependency_role": "This discharges the maximal-separation contradiction pattern needed by R1c once the repository supplies the local-patch diameter bound and the support-diameter bridge for trivial witness boundaries."
+  },
+  "proof_certificate": {
+    "order_type": "strict_diameter_inequality",
+    "long_chord_separation": "D_i",
+    "local_patch_bound": "delta_w",
+    "assumption": "delta_w < D_i",
+    "support_edge_diameter_bridge": "e_i in supp(w) implies D_i <= support_diameter(w) <= delta_w",
+    "contradiction": "D_i <= delta_w and delta_w < D_i",
+    "derivation": [
+      "Assume for contradiction that e_i is in supp(w).",
+      "By the support-edge diameter bridge, support_diameter(w) is at least D_i.",
+      "By local containment, support_diameter(w) is at most delta_w.",
+      "By the maximal-separation local-patch bound, delta_w < D_i.",
+      "Therefore D_i <= delta_w < D_i, impossible in a strict order.",
+      "Hence e_i is not in supp(w)."
+    ],
+    "machine_checked_strict_order_contradiction": true
+  },
+  "discharged_subclaim": {
+    "name": "R1c geometric exclusion from maximal-separation diameter bound",
+    "logical_form": "If every trivial witness boundary is contained in a local patch whose diameter is strictly smaller than the long-chord endpoint separation, then no such boundary can contain the long-chord edge.",
+    "discharged": true,
+    "conditional_on": [
+      "repository-native support-diameter bridge: containing e_i forces support diameter at least EndpointSeparation(e_i)",
+      "repository-native local-patch containment: trivial witness boundary support diameter is bounded by its local patch diameter",
+      "repository-native maximal-separation estimate: local patch diameter bound is strictly less than each long-chord endpoint separation"
+    ]
+  },
+  "remaining_for_r1": {
+    "r1a": "OPEN unless separately proved: every trivial 2-face boundary excludes both long-chord edges.",
+    "r1b": "CONDITIONAL algebraic reduction only: F2 linear combinations preserve absence once generator absence is supplied.",
+    "r1c_inputs": "OPEN unless already present in the repo: support-diameter bridge, local-patch containment, and strict maximal-separation diameter estimate.",
+    "generation_bridge": "OPEN generation bridge unless already present in the repo: W^triv is exactly the F2 span of the trivial 2-face boundaries used by R1a/R1b."
+  },
+  "boundary": {
+    "evidence_class": "geometric_reduction_certificate_only",
+    "proof_claims": {
+      "proves_r1c_geometric_reduction_from_diameter_bound": true,
+      "proves_r1a": false,
+      "proves_r1b_full": false,
+      "proves_r1c": false,
+      "proves_r1": false,
+      "proves_r2": false,
+      "proves_r3": false,
+      "proves_fgl": false,
+      "proves_chronos_rr": false,
+      "proves_p_vs_np": false,
+      "proves_any_clay_problem": false
+    },
+    "required_non_claims": [
+      "does not prove R1a",
+      "does not prove full R1b",
+      "does not prove R1c without the diameter inputs",
+      "does not prove combined R1 Long-Chord Exclusion Lemma",
+      "does not prove FGL",
+      "does not prove Chronos-RR",
+      "does not prove P vs NP",
+      "does not prove any Clay problem"
+    ]
+  }
+}
