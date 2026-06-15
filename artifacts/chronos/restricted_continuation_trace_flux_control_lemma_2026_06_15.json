@@ -1,0 +1,51 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_TRACE_FLUX_CONTROL_LEMMA",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_TRACE_FLUX_CONTROL_LEMMA",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_REGULARITY_TRACE_AND_BOUNDARY_FLUX_ASSUMPTIONS",
+  "status": "LEMMA_TARGET_ONLY_TRACE_FLUX_CONTROL_NOT_PROVED",
+  "lemma_statement": {
+    "name": "restricted_continuation_trace_flux_control",
+    "input_assumptions": [
+      "boundary_trace_exists_on_restricted_continuation_domain",
+      "normal_trace_exists_for_flux_field",
+      "trace_pairing_is_well_defined",
+      "boundary_flux_term_is_defined",
+      "boundary_flux_term_has_declared_sign_or_cancellation_condition",
+      "boundary_flux_term_is_compatible_with_restricted_domain"
+    ],
+    "conclusion": [
+      "boundary_flux_is_controlled_by_declared_trace_norms",
+      "controlled_boundary_flux_can_be_inserted_into_the_restricted_energy_inequality",
+      "no_uncontrolled_boundary_term_remains_after_integration_by_parts"
+    ]
+  },
+  "control_modes": {
+    "vanishing": "boundary_flux_term_equals_zero_on_the_restricted_boundary",
+    "sign": "boundary_flux_term_has_nonpositive_or_absorbable_sign",
+    "trace_norm_bound": "boundary_flux_term_is_bounded_by_trace_norms_already_declared_in_the_energy_route"
+  },
+  "claim": {
+    "positive": [
+      "Records the trace-flux control lemma needed after the regularity, trace, and boundary-flux assumption surface.",
+      "Separates the three admissible control modes: vanishing, sign, and trace-norm boundedness.",
+      "Makes explicit that the restricted energy inequality may proceed only after one declared trace-flux control mode is supplied."
+    ],
+    "negative": [
+      "Does not prove trace compactness.",
+      "Does not prove boundary trace existence.",
+      "Does not prove a sign condition.",
+      "Does not prove boundary flux vanishing.",
+      "Does not prove a quantitative trace inequality.",
+      "Does not close the full RR restricted-continuation theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_trace_flux_control_lemma.py",
+    "tests/test_restricted_continuation_trace_flux_control_lemma.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_TRACE_INEQUALITY_OR_BOUNDARY_SIGN_WITNESS",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
