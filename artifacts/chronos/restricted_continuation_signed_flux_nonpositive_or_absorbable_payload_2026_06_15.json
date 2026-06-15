@@ -1,0 +1,59 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_SIGNED_FLUX_NONPOSITIVE_OR_ABSORBABLE_PAYLOAD",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_SIGNED_FLUX_NONPOSITIVE_OR_ABSORBABLE_PAYLOAD",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_BOUNDARY_ORIENTATION_COMPATIBILITY_LEMMA",
+  "status": "PAYLOAD_SURFACE_ONLY_SIGNED_FLUX_NONPOSITIVE_OR_ABSORBABLE_NOT_PROVED",
+  "payload_statement": {
+    "name": "restricted_continuation_signed_flux_nonpositive_or_absorbable_payload",
+    "selected_branch": "boundary_sign",
+    "required_inputs": [
+      "oriented_boundary_flux_term",
+      "restricted_boundary_orientation_compatible_with_flux_sign_convention",
+      "declared_boundary_sign_condition",
+      "boundary_flux_pairing_well_defined_on_restricted_boundary"
+    ],
+    "signed_flux_alternatives": [
+      {
+        "mode": "nonpositive",
+        "condition": "oriented_boundary_flux_term_is_less_than_or_equal_to_zero_on_the_restricted_boundary",
+        "intended_effect": "boundary_flux_can_be_dropped_from_the_upper_energy_bound"
+      },
+      {
+        "mode": "absorbable",
+        "condition": "oriented_boundary_flux_term_is_bounded_by_terms_absorbable_into_the_restricted_energy_inequality",
+        "intended_effect": "boundary_flux_can_be_moved_into_the_controlled_side_of_the_energy_estimate"
+      }
+    ],
+    "intended_conclusion": [
+      "one_signed_flux_control_mode_is_declared",
+      "the_selected_boundary_sign_branch_has_a_signed_flux_control_payload",
+      "the_boundary_flux_term_is_no_longer_an_unclassified_positive_boundary_contribution",
+      "boundary_sign_branch_insertion_into_the_restricted_energy_inequality_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the signed-flux payload required after boundary orientation compatibility.",
+      "Separates the two admissible signed-flux control modes: nonpositive and absorbable.",
+      "Makes explicit that the boundary-sign branch still requires insertion into the restricted energy inequality."
+    ],
+    "negative": [
+      "Does not prove signed flux is nonpositive.",
+      "Does not prove signed flux is absorbable.",
+      "Does not prove the boundary flux pairing exists.",
+      "Does not prove the restricted energy inequality insertion step.",
+      "Does not prove a quantitative trace inequality.",
+      "Does not close the restricted energy inequality.",
+      "Does not close the full RR restricted-continuation theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_signed_flux_nonpositive_or_absorbable_payload.py",
+    "tests/test_restricted_continuation_signed_flux_nonpositive_or_absorbable_payload.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_BOUNDARY_SIGN_BRANCH_ENERGY_INEQUALITY_INSERTION_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
