@@ -1,0 +1,63 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_REGULARITY_AND_DIFFERENTIATION_DISCHARGE_TARGET",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_REGULARITY_AND_DIFFERENTIATION_DISCHARGE_TARGET",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_ANALYTIC_ASSUMPTION_DISCHARGE_LEDGER",
+  "status": "DISCHARGE_TARGET_ONLY_REGULARITY_AND_DIFFERENTIATION_NOT_PROVED",
+  "target_statement": {
+    "name": "restricted_continuation_regularity_and_differentiation_discharge_target",
+    "assumption_group": "regularity_and_differentiation",
+    "targeted_assumptions": [
+      "solution_has_time_regular_energy",
+      "solution_has_spatial_regularity_for_integration_by_parts",
+      "energy_density_is_differentiable_along_restricted_continuation"
+    ],
+    "discharge_obligations": [
+      {
+        "obligation": "time_regular_energy",
+        "role": "prove or supply a certified payload that the restricted-continuation energy is time-regular enough for differentiation"
+      },
+      {
+        "obligation": "spatial_regular_integration_by_parts",
+        "role": "prove or supply a certified payload that the solution has the spatial regularity required for integration by parts"
+      },
+      {
+        "obligation": "energy_density_differentiability",
+        "role": "prove or supply a certified payload that the energy density is differentiable along the restricted-continuation route"
+      },
+      {
+        "obligation": "discharge_status_update",
+        "role": "convert the regularity-and-differentiation ledger group from declared_not_discharged to a proof-targeted discharge surface only after payloads exist"
+      }
+    ],
+    "intended_conclusion": [
+      "the_regularitiy_and_differentiation_discharge_target_is_declared",
+      "the_first_analytic_assumption_group_has_a_concrete_discharge_target",
+      "no_regularitiy_or_differentiation_assumption_is_marked_as_discharged_without_proof",
+      "time_regular_energy_discharge_lemma_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the first analytic assumption discharge target after the discharge ledger.",
+      "Selects the regularity-and-differentiation group as the first analytic group to attack.",
+      "Separates time regularity, spatial regularity for integration by parts, and energy-density differentiability as distinct obligations."
+    ],
+    "negative": [
+      "Does not prove time-regular energy.",
+      "Does not prove spatial regularity for integration by parts.",
+      "Does not prove energy-density differentiability.",
+      "Does not discharge the regularity-and-differentiation assumption group.",
+      "Does not prove the formal restricted-continuation theorem.",
+      "Does not close the full RR theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_regularitiy_and_differentiation_discharge_target.py",
+    "tests/test_restricted_continuation_regularitiy_and_differentiation_discharge_target.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_TIME_REGULAR_ENERGY_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
