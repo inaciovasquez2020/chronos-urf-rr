@@ -1,0 +1,64 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_NORM_CONTROL_THEOREM_CLOSURE_PAYLOAD",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_THEOREM_CLOSURE_PAYLOAD",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_NORM_CONTROL_CLOSURE_ASSEMBLY_LEMMA",
+  "status": "PAYLOAD_SURFACE_ONLY_NORM_CONTROL_THEOREM_CLOSURE_NOT_PROVED",
+  "payload_statement": {
+    "name": "restricted_continuation_norm_control_theorem_closure_payload",
+    "required_inputs": [
+      "restricted_continuation_norm_control_closure_statement_is_assembled",
+      "assembled_norm_control_statement_has_no_unclassified_boundary_flux_term",
+      "assembled_norm_control_statement_has_no_unclassified_interior_error_term",
+      "declared_norm_control_quantity_is_well_defined",
+      "restricted_continuation_energy_functional_is_well_defined"
+    ],
+    "closure_payload_components": [
+      {
+        "component": "assembled_norm_control_estimate",
+        "role": "imports the assembled restricted continuation norm-control estimate"
+      },
+      {
+        "component": "boundary_cleanliness_certificate",
+        "role": "records that no unclassified boundary flux term remains"
+      },
+      {
+        "component": "interior_cleanliness_certificate",
+        "role": "records that no unclassified interior error term remains"
+      },
+      {
+        "component": "theorem_payload_packaging",
+        "role": "packages the norm-control closure as a theorem-level payload surface"
+      }
+    ],
+    "intended_conclusion": [
+      "the_restricted_continuation_norm_control_theorem_payload_is_declared",
+      "the_payload_has_no_unclassified_boundary_flux_term",
+      "the_payload_has_no_unclassified_interior_error_term",
+      "rr_restricted_continuation_route_closure_gate_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the theorem-level norm-control closure payload after the norm-control closure assembly lemma.",
+      "Separates assembled estimate import, boundary cleanliness, interior cleanliness, and theorem payload packaging.",
+      "Makes explicit that the next blocker is the RR restricted-continuation route closure gate."
+    ],
+    "negative": [
+      "Does not prove the assembled norm-control theorem.",
+      "Does not prove boundary cleanliness.",
+      "Does not prove interior error cleanliness.",
+      "Does not prove the full restricted continuation theorem.",
+      "Does not close the RR restricted-continuation route.",
+      "Does not close the full RR theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_norm_control_theorem_closure_payload.py",
+    "tests/test_restricted_continuation_norm_control_theorem_closure_payload.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_RR_ROUTE_CLOSURE_GATE",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
