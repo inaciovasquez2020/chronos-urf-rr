@@ -1,0 +1,65 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_TIME_REGULAR_ENERGY_DISCHARGE_LEMMA",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_TIME_REGULAR_ENERGY_DISCHARGE_LEMMA",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_REGULARITY_AND_DIFFERENTIATION_DISCHARGE_TARGET",
+  "status": "LEMMA_SURFACE_ONLY_TIME_REGULAR_ENERGY_NOT_PROVED",
+  "lemma_statement": {
+    "name": "restricted_continuation_time_regular_energy_discharge",
+    "assumption_group": "regularity_and_differentiation",
+    "targeted_assumption": "solution_has_time_regular_energy",
+    "required_inputs": [
+      "restricted_continuation_energy_functional_is_well_defined",
+      "restricted_continuation_time_parameter_is_declared",
+      "energy_along_restricted_continuation_is_defined_for_the_target_time_interval",
+      "time_regular_representative_or_weak_derivative_payload_is_available"
+    ],
+    "discharge_obligations": [
+      {
+        "obligation": "energy_time_domain",
+        "role": "identify the time interval on which the restricted-continuation energy is evaluated"
+      },
+      {
+        "obligation": "energy_time_regular_representative",
+        "role": "supply a representative or weak-time-regular payload for the energy functional"
+      },
+      {
+        "obligation": "energy_derivative_admissibility",
+        "role": "justify that the energy may be differentiated or used in the declared weak derivative sense"
+      },
+      {
+        "obligation": "ledger_status_update_guard",
+        "role": "prevent the time-regular-energy assumption from being marked discharged until the analytic payload is proved or certified"
+      }
+    ],
+    "intended_conclusion": [
+      "the_time_regular_energy_discharge_lemma_target_is_declared",
+      "the_time_regular_energy_assumption_has_a_dedicated_discharge_surface",
+      "no_time_regular_energy_assumption_is_marked_as_discharged_without_proof",
+      "spatial_regular_integration_by_parts_discharge_lemma_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the time-regular-energy discharge lemma target after the regularity-and-differentiation discharge target.",
+      "Separates time-domain declaration, time-regular representative, derivative admissibility, and ledger-update guarding.",
+      "Makes explicit that the next regularity blocker is spatial regularity for integration by parts."
+    ],
+    "negative": [
+      "Does not prove time-regular energy.",
+      "Does not prove existence of a time-regular representative.",
+      "Does not prove energy derivative admissibility.",
+      "Does not discharge the regularity-and-differentiation assumption group.",
+      "Does not prove the formal restricted-continuation theorem.",
+      "Does not close the full RR theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_time_regular_energy_discharge_lemma.py",
+    "tests/test_restricted_continuation_time_regular_energy_discharge_lemma.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_SPATIAL_REGULARITY_INTEGRATION_BY_PARTS_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
