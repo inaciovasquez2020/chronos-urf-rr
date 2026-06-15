@@ -1,0 +1,69 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_TRACE_AND_BOUNDARY_FLUX_DISCHARGE_TARGET",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_TRACE_AND_BOUNDARY_FLUX_DISCHARGE_TARGET",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_REGULARITY_AND_DIFFERENTIATION_GROUP_DISCHARGE_GATE",
+  "status": "DISCHARGE_TARGET_ONLY_TRACE_AND_BOUNDARY_FLUX_NOT_PROVED",
+  "target_statement": {
+    "name": "restricted_continuation_trace_and_boundary_flux_discharge_target",
+    "assumption_group": "trace_and_boundary_flux",
+    "targeted_assumptions": [
+      "boundary_trace_exists_on_restricted_continuation_domain",
+      "normal_trace_exists_for_flux_field",
+      "trace_pairing_is_well_defined",
+      "boundary_flux_pairing_well_defined_on_restricted_boundary"
+    ],
+    "discharge_obligations": [
+      {
+        "obligation": "boundary_trace_existence",
+        "role": "prove or supply a certified payload that the restricted-continuation boundary trace exists"
+      },
+      {
+        "obligation": "normal_trace_existence",
+        "role": "prove or supply a certified payload that the normal trace exists for the boundary flux field"
+      },
+      {
+        "obligation": "trace_pairing_well_defined",
+        "role": "prove or supply a certified payload that the trace pairing used by the route is well defined"
+      },
+      {
+        "obligation": "boundary_flux_pairing_well_defined",
+        "role": "prove or supply a certified payload that the boundary flux pairing is well defined on the restricted boundary"
+      },
+      {
+        "obligation": "discharge_status_update_guard",
+        "role": "prevent the trace-and-boundary-flux ledger group from being marked discharged until all trace and flux payloads are proved or certified"
+      }
+    ],
+    "intended_conclusion": [
+      "the_trace_and_boundary_flux_discharge_target_is_declared",
+      "the_second_analytic_assumption_group_has_a_concrete_discharge_target",
+      "no_trace_or_boundary_flux_assumption_is_marked_as_discharged_without_proof",
+      "boundary_trace_existence_discharge_lemma_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the trace-and-boundary-flux discharge target after the regularity-and-differentiation group gate.",
+      "Selects the trace-and-boundary-flux group as the next analytic group to attack.",
+      "Separates boundary trace existence, normal trace existence, trace pairing, and boundary flux pairing as distinct obligations."
+    ],
+    "negative": [
+      "Does not prove boundary trace existence.",
+      "Does not prove normal trace existence.",
+      "Does not prove trace pairing well-definedness.",
+      "Does not prove boundary flux pairing well-definedness.",
+      "Does not discharge the trace-and-boundary-flux assumption group.",
+      "Does not prove the formal restricted-continuation theorem.",
+      "Does not close the full RR theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_trace_and_boundary_flux_discharge_target.py",
+    "tests/test_restricted_continuation_trace_and_boundary_flux_discharge_target.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_BOUNDARY_TRACE_EXISTENCE_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
