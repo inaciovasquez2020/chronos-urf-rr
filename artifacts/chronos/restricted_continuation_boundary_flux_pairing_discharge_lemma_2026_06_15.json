@@ -1,0 +1,52 @@
+{
+  "artifact": "restricted_continuation_boundary_flux_pairing_discharge_lemma",
+  "date": "2026-06-15",
+  "solves": "RESTRICTED_CONTINUATION_BOUNDARY_FLUX_PAIRING_DISCHARGE_LEMMA",
+  "predecessor": "RESTRICTED_CONTINUATION_TRACE_PAIRING_DISCHARGE_LEMMA",
+  "type": "conditional_discharge_lemma",
+  "lemma_statement": {
+    "name": "restricted_continuation_boundary_flux_pairing_discharge_lemma",
+    "claim": "On the restricted-continuation boundary portion partial Sigma_R, the certified trace pairing identifies with the boundary flux pairing whenever the explicitly listed flux-identification, orientation, and sign-convention compatibility hypotheses are supplied.",
+    "domain": "restricted continuation region",
+    "boundary": "partial Sigma_R",
+    "pairing_object": "restricted_continuation_boundary_flux_pairing"
+  },
+  "required_inputs": [
+    {
+      "name": "restricted_continuation_trace_pairing_exists",
+      "role": "supplies the already certified trace pairing over partial Sigma_R"
+    },
+    {
+      "name": "flux_field_matches_normal_trace_payload",
+      "role": "identifies the normal trace object with the restricted-continuation flux payload"
+    },
+    {
+      "name": "boundary_orientation_flux_convention_compatible",
+      "role": "ensures the trace pairing and flux pairing use the same outward-normal orientation convention"
+    },
+    {
+      "name": "boundary_flux_pairing_operator_available",
+      "role": "supplies the boundary flux pairing map on the certified trace/normal-trace spaces"
+    },
+    {
+      "name": "restricted_boundary_measure_support_compatible",
+      "role": "ensures the pairing is supported exactly on the restricted boundary portion partial Sigma_R"
+    }
+  ],
+  "discharged_obligations": [
+    "Separates boundary flux pairing from scalar boundary trace existence.",
+    "Separates boundary flux pairing from normal trace existence.",
+    "Separates boundary flux pairing from bare trace pairing.",
+    "Certifies the exact assumptions under which the restricted-continuation boundary flux pairing is well-defined.",
+    "Promotes boundary flux pairing from an undischarged target obligation to a conditional discharge lemma."
+  ],
+  "non_claims": [
+    "Does not prove flux sign control.",
+    "Does not prove flux coercivity.",
+    "Does not prove restricted integration by parts.",
+    "Does not prove the energy inequality.",
+    "Does not prove full RR closure."
+  ],
+  "next_missing_object": "RESTRICTED_CONTINUATION_BOUNDARY_FLUX_SIGN_CONTROL_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
