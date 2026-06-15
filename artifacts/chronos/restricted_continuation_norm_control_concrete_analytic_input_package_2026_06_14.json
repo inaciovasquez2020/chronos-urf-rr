@@ -1,0 +1,61 @@
+{
+  "name": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_NORM_CONTROL_CONCRETE_ANALYTIC_INPUT_PACKAGE",
+  "status": "RUNALL_CONDITIONAL_CONCRETE_ANALYTIC_INPUT_PACKAGE_DEFINED",
+  "target": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_PROOF",
+  "extends": "RUNALL_VERIFIED_CONCRETE_RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_INPUT_DATA",
+  "weakest_missing_object": "DERIVATION_OF_PACKAGE_OBLIGATIONS_FROM_RESTRICTED_CONTINUATION_PDE",
+  "previous_verified_artifact": "artifacts/chronos/restricted_continuation_norm_control_concrete_analytic_input_data_2026_06_14.json",
+  "runall_target_manifest": {
+    "TARGET": "RESTRICTED_CONTINUATION_NORM_CONTROL_CONCRETE_ANALYTIC_INPUT_PACKAGE",
+    "TARGET_KIND": "boundary-artifact",
+    "SOURCE_OBJECT": "CONCRETE_RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_INPUT_DATA",
+    "TARGETED_CHECK": "python3 tools/verify_restricted_continuation_norm_control_concrete_analytic_input_package.py",
+    "COMMIT_RULE": "Commit only if the targeted verifier and targeted pytest pass."
+  },
+  "concrete_pde_or_evolution_equations": {
+    "domain": "restricted continuation cylinder I × Sigma_R with time interval I and restricted spatial region Sigma_R",
+    "state": "u : I × Sigma_R -> V",
+    "evolution_equation": "partial_t u = L_R(t, x, D) u + N_R(t, x, u, D u) + F_R(t, x)",
+    "initial_slice": "u(t0, x) = u0(x)",
+    "boundary_or_restriction_condition": "u is evaluated only on the restricted continuation region Sigma_R and all boundary flux terms are assigned the outward normal convention",
+    "derivative_identity_obligation": "derive d/dt E_R(t) + Flux_R(t) <= Source_R(t) from the restricted evolution equation"
+  },
+  "energy_or_norm_functional": {
+    "name": "E_R(t)",
+    "definition": "E_R(t) = ||u(t)||_{H^s(Sigma_R)}^2 + lower_order_control_terms_R(t)",
+    "controlled_norm": "N_R(t) = sqrt(E_R(t))",
+    "finite_energy_regime": "E_R(t0) < infinity and all lower_order_control_terms_R(t) are finite on I",
+    "analytic_estimate_target": "sup_{t in I} N_R(t) <= C_R(N_R(t0), source_bound, bootstrap_bound)"
+  },
+  "flux_sign_convention": {
+    "flux_term": "Flux_R(t)",
+    "sign": "Flux_R(t) >= 0",
+    "normal_orientation": "outward normal on the boundary of Sigma_R",
+    "nonnegative_flux_obligation": "prove Flux_R(t) is nonnegative in the restricted continuation regime"
+  },
+  "bootstrap_regime": {
+    "bootstrap_bound": "N_R(t) <= B_R on I",
+    "source_bound": "Source_R(t) <= S_R(t) with integral_I S_R(t) dt finite",
+    "coefficient_bound": "restricted coefficients of L_R and N_R are bounded by K_R on I × Sigma_R",
+    "closure_obligation": "prove the analytic estimate improves or preserves the bootstrap bound on I"
+  },
+  "bridge_availability": {
+    "estimate_proof_bridge_available": "the concrete package supplies the fields needed by RestrictedContinuationNormControlAnalyticEstimateInputSurface",
+    "required_payloads_after_this_package": [
+      "bridgeProofPayload",
+      "derivativeIdentityProofPayload",
+      "fluxNonnegativityProofPayload",
+      "bootstrapBoundsProofPayload"
+    ]
+  },
+  "boundary": [
+    "this artifact defines the concrete analytic input package shape",
+    "this artifact does not derive the derivative identity from the PDE",
+    "this artifact does not prove flux nonnegativity",
+    "this artifact does not prove bootstrap closure",
+    "this artifact does not prove the analytic estimate",
+    "this artifact does not prove full RR closure",
+    "this artifact does not prove Clay problem closure"
+  ],
+  "finish_condition": "Replace this conditional package with checked derivations of derivative identity, flux nonnegativity, bootstrap closure, and bridge availability for the same restricted continuation input surface."
+}
