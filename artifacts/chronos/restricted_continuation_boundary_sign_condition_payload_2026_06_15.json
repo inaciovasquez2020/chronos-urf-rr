@@ -1,0 +1,51 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_BOUNDARY_SIGN_CONDITION_PAYLOAD",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_BOUNDARY_SIGN_CONDITION_PAYLOAD",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_SELECTED_TRACE_FLUX_WITNESS_BRANCH",
+  "status": "PAYLOAD_SURFACE_ONLY_BOUNDARY_SIGN_CONDITION_NOT_PROVED",
+  "payload_statement": {
+    "name": "restricted_continuation_boundary_sign_condition_payload",
+    "selected_branch": "boundary_sign",
+    "required_inputs": [
+      "oriented_boundary_flux_term",
+      "restricted_boundary_orientation",
+      "declared_boundary_sign_condition",
+      "boundary_flux_pairing_well_defined_on_restricted_boundary"
+    ],
+    "declared_sign_payload": {
+      "condition": "oriented_boundary_flux_term_is_nonpositive_or_absorbable_on_the_restricted_boundary",
+      "scope": "restricted_continuation_boundary_only",
+      "role": "prevents_the_selected_boundary_sign_branch_from_contributing_uncontrolled_positive_energy"
+    },
+    "intended_conclusion": [
+      "the_boundary_sign_condition_payload_is_declared",
+      "the_selected_trace_flux_witness_branch_has_a_sign_condition_input",
+      "orientation_compatibility_is_now_the_next_required_boundary_flux_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the boundary sign condition payload required by the selected trace-flux witness branch.",
+      "Identifies the sign condition as nonpositive or absorbable oriented boundary flux on the restricted boundary.",
+      "Separates sign-condition declaration from orientation compatibility and from proof of signed flux control."
+    ],
+    "negative": [
+      "Does not prove the boundary sign condition.",
+      "Does not prove restricted boundary orientation compatibility.",
+      "Does not prove the boundary flux pairing exists.",
+      "Does not prove signed flux is nonpositive or absorbable.",
+      "Does not prove a trace inequality.",
+      "Does not close the restricted energy inequality.",
+      "Does not close the full RR restricted-continuation theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_boundary_sign_condition_payload.py",
+    "tests/test_restricted_continuation_boundary_sign_condition_payload.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_BOUNDARY_ORIENTATION_COMPATIBILITY_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
