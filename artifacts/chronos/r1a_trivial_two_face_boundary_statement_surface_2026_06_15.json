@@ -1,0 +1,72 @@
+{
+  "artifact": "R1A_TRIVIAL_TWO_FACE_BOUNDARY_STATEMENT_SURFACE",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "frontier_item": "R1",
+  "substep": "R1a",
+  "status": "STATEMENT_SURFACE_ONLY_NO_THEOREM_CLOSURE",
+  "target": "R1aTrivialTwoFaceBoundaryLongChordExclusion",
+  "exact_statement": {
+    "name": "R1a trivial 2-face boundary long-chord exclusion",
+    "formal_surface": "For every repository-native admissible finite-patch FGL instance I, every trivial 2-face tau in Phi_2^triv(I), and every long-chord edge e_i with i in {1,2}, e_i is not in supp(partial tau).",
+    "quantifiers": [
+      "forall repository_native_admissible_finite_patch_fgl_instance I",
+      "forall trivial_2_face tau in Phi_2^triv(I)",
+      "forall i in {1,2}"
+    ],
+    "hypotheses": [
+      "TrivialTwoFace(I,tau)",
+      "LongChordEdge(I,e_i)",
+      "BoundarySupport(I,partial tau) is defined"
+    ],
+    "conclusion": "e_i notin supp(partial tau)",
+    "r1_dependency_role": "R1a supplies the generator-level exclusion input needed before R1b can assert closure under F2-linear combinations."
+  },
+  "weakest_missing_input": {
+    "name": "TrivialTwoFaceBoundaryLongChordAbsence",
+    "logical_form": "For every repository-native admissible finite-patch FGL instance I, trivial 2-face tau in Phi_2^triv(I), and long-chord edge e_i, TrivialTwoFace(I,tau) and LongChordEdge(I,e_i) imply e_i notin supp(partial tau).",
+    "why_weakest": "This is exactly the R1a generator-level statement. It does not assert R1b linear-combination closure, R1c maximal-separation geometry, or the combined R1 Long-Chord Exclusion Lemma.",
+    "strictly_does_not_include": [
+      "R1b linear-combination closure",
+      "R1c maximal-separation exclusion",
+      "combined R1 Long-Chord Exclusion Lemma",
+      "R2 Diameter-Separation Filling Obstruction",
+      "R3 Uniform Local-Type Capacity Lemma",
+      "FGL theorem closure",
+      "Chronos-RR theorem closure",
+      "P vs NP",
+      "any Clay problem"
+    ]
+  },
+  "combination_boundary": {
+    "after_this_surface": "R1a remains a statement surface until the generator-level absence lemma is proved in the repository-native FGL model.",
+    "r1b_required_after_r1a": "Linear combinations of trivial face boundaries cannot create either long chord by F2 cancellation.",
+    "r1c_required_after_r1b": "Maximal-separation geometry forbids any trivial witness boundary from traversing a diameter-spanning long chord.",
+    "r1_combination_required": "R1 requires R1a, R1b, and R1c; this artifact supplies none of those proofs."
+  },
+  "boundary": {
+    "evidence_class": "statement_surface_only",
+    "proof_claims": {
+      "proves_r1a": false,
+      "proves_r1b": false,
+      "proves_r1c": false,
+      "proves_r1": false,
+      "proves_r2": false,
+      "proves_r3": false,
+      "proves_fgl": false,
+      "proves_chronos_rr": false,
+      "proves_p_vs_np": false,
+      "proves_any_clay_problem": false
+    },
+    "required_non_claims": [
+      "does not prove R1a",
+      "does not prove R1b",
+      "does not prove R1c",
+      "does not prove Long-Chord Exclusion Lemma",
+      "does not prove FGL",
+      "does not prove Chronos-RR",
+      "does not prove P vs NP",
+      "does not prove any Clay problem"
+    ]
+  }
+}
