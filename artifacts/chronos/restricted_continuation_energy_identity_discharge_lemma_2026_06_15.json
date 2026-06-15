@@ -1,0 +1,55 @@
+{
+  "artifact": "restricted_continuation_energy_identity_discharge_lemma",
+  "date": "2026-06-15",
+  "solves": "RESTRICTED_CONTINUATION_ENERGY_IDENTITY_DISCHARGE_LEMMA",
+  "predecessor": "RESTRICTED_CONTINUATION_RESTRICTED_INTEGRATION_BY_PARTS_DISCHARGE_LEMMA",
+  "type": "conditional_discharge_lemma",
+  "lemma_statement": {
+    "name": "restricted_continuation_energy_identity_discharge_lemma",
+    "claim": "On the restricted-continuation region, the restricted energy identity is certified whenever the explicitly listed energy differentiability, restricted integration-by-parts, source-pairing, boundary-flux, and no-remainder hypotheses are supplied.",
+    "domain": "restricted continuation region",
+    "boundary": "partial Sigma_R",
+    "identity_object": "restricted_continuation_energy_identity"
+  },
+  "required_inputs": [
+    {
+      "name": "restricted_energy_functional_is_differentiable",
+      "role": "supplies the time derivative of the restricted energy functional"
+    },
+    {
+      "name": "state_time_regularitiy_for_energy_derivative",
+      "role": "places the restricted-continuation state in the time-regularity class required to differentiate energy"
+    },
+    {
+      "name": "restricted_continuation_integration_by_parts_identity",
+      "role": "supplies the certified restricted integration-by-parts identity"
+    },
+    {
+      "name": "restricted_source_pairing_exists",
+      "role": "supplies the source/interior forcing pairing in the energy balance"
+    },
+    {
+      "name": "restricted_boundary_flux_pairing_exists",
+      "role": "supplies the certified boundary flux pairing term over partial Sigma_R"
+    },
+    {
+      "name": "energy_identity_has_no_uncontrolled_remainder",
+      "role": "ensures the restricted energy identity contains only certified interior, source, and boundary terms"
+    }
+  ],
+  "discharged_obligations": [
+    "Separates the energy identity from restricted integration by parts.",
+    "Separates the energy identity from boundary flux coercivity.",
+    "Certifies the exact assumptions under which the restricted-continuation energy identity is available.",
+    "Promotes the energy identity from an undischarged target obligation to a conditional discharge lemma."
+  ],
+  "non_claims": [
+    "Does not prove the energy inequality.",
+    "Does not prove source-term absorption.",
+    "Does not prove Gronwall control.",
+    "Does not prove continuation or contradiction.",
+    "Does not prove full RR closure."
+  ],
+  "next_missing_object": "RESTRICTED_CONTINUATION_ENERGY_INEQUALITY_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
