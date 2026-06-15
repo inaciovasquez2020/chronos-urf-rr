@@ -1,0 +1,50 @@
+{
+  "artifact": "restricted_continuation_normal_trace_existence_discharge_lemma",
+  "date": "2026-06-15",
+  "solves": "RESTRICTED_CONTINUATION_NORMAL_TRACE_EXISTENCE_DISCHARGE_LEMMA",
+  "predecessor": "RESTRICTED_CONTINUATION_BOUNDARY_TRACE_EXISTENCE_DISCHARGE_LEMMA",
+  "type": "conditional_discharge_lemma",
+  "lemma_statement": {
+    "name": "restricted_continuation_normal_trace_existence_discharge_lemma",
+    "claim": "On the restricted-continuation boundary portion partial Sigma_R, the normal trace of the restricted-continuation flux object exists as a certified normal-trace object whenever the explicitly listed flux-regularity, divergence-domain, and boundary-geometry hypotheses are supplied.",
+    "domain": "restricted continuation region",
+    "boundary": "partial Sigma_R",
+    "normal_trace_object": "restricted_continuation_normal_trace"
+  },
+  "required_inputs": [
+    {
+      "name": "restricted_continuation_region_lipschitz_boundary",
+      "role": "provides a normal-trace-admissible boundary chart structure for partial Sigma_R"
+    },
+    {
+      "name": "flux_field_in_divergence_trace_domain",
+      "role": "places the restricted-continuation flux field in the domain of the normal trace operator"
+    },
+    {
+      "name": "divergence_regularitiy_on_restricted_region",
+      "role": "supplies the divergence-side regularity required for a certified normal trace"
+    },
+    {
+      "name": "normal_trace_operator_available_on_restricted_region",
+      "role": "supplies the bounded normal trace map from the divergence-domain flux space to the boundary dual trace space"
+    },
+    {
+      "name": "restriction_compatible_with_normal_boundary_chart",
+      "role": "ensures the restricted-continuation cutoff/restriction does not destroy normal-trace admissibility"
+    }
+  ],
+  "discharged_obligations": [
+    "Separates normal trace existence from scalar boundary trace existence.",
+    "Certifies the exact assumptions under which the restricted-continuation normal trace exists.",
+    "Promotes normal trace existence from an undischarged target obligation to a conditional discharge lemma."
+  ],
+  "non_claims": [
+    "Does not prove trace pairing.",
+    "Does not prove boundary flux pairing.",
+    "Does not prove integration by parts.",
+    "Does not identify the normal trace with a physical flux pairing.",
+    "Does not prove full RR closure."
+  ],
+  "next_missing_object": "RESTRICTED_CONTINUATION_TRACE_PAIRING_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
