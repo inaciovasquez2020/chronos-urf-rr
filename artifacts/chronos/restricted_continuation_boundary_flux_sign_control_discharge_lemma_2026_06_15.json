@@ -1,0 +1,51 @@
+{
+  "artifact": "restricted_continuation_boundary_flux_sign_control_discharge_lemma",
+  "date": "2026-06-15",
+  "solves": "RESTRICTED_CONTINUATION_BOUNDARY_FLUX_SIGN_CONTROL_DISCHARGE_LEMMA",
+  "predecessor": "RESTRICTED_CONTINUATION_BOUNDARY_FLUX_PAIRING_DISCHARGE_LEMMA",
+  "type": "conditional_discharge_lemma",
+  "lemma_statement": {
+    "name": "restricted_continuation_boundary_flux_sign_control_discharge_lemma",
+    "claim": "On the restricted-continuation boundary portion partial Sigma_R, the certified boundary flux pairing has the required sign control whenever the explicitly listed outward-orientation, flux-sign, and restricted-boundary compatibility hypotheses are supplied.",
+    "domain": "restricted continuation region",
+    "boundary": "partial Sigma_R",
+    "controlled_object": "restricted_continuation_boundary_flux_pairing",
+    "sign_control_object": "restricted_continuation_boundary_flux_sign_control"
+  },
+  "required_inputs": [
+    {
+      "name": "restricted_continuation_boundary_flux_pairing_exists",
+      "role": "supplies the certified boundary flux pairing over partial Sigma_R"
+    },
+    {
+      "name": "outward_normal_orientation_matches_energy_identity",
+      "role": "ensures the sign convention in the boundary pairing matches the energy identity convention"
+    },
+    {
+      "name": "flux_payload_has_boundary_dissipativity_sign",
+      "role": "supplies the sign condition needed to control the boundary flux contribution"
+    },
+    {
+      "name": "restricted_boundary_support_excludes_uncontrolled_faces",
+      "role": "ensures no uncontrolled boundary portion contributes to the sign-controlled flux term"
+    },
+    {
+      "name": "boundary_flux_sign_control_operator_available",
+      "role": "supplies the certified map from flux-pairing data to the required sign-control statement"
+    }
+  ],
+  "discharged_obligations": [
+    "Separates boundary flux sign control from boundary flux pairing existence.",
+    "Certifies the exact assumptions under which the restricted-continuation boundary flux pairing has the required sign.",
+    "Promotes boundary flux sign control from an undischarged target obligation to a conditional discharge lemma."
+  ],
+  "non_claims": [
+    "Does not prove flux coercivity.",
+    "Does not prove restricted integration by parts.",
+    "Does not prove the energy inequality.",
+    "Does not prove continuation or contradiction.",
+    "Does not prove full RR closure."
+  ],
+  "next_missing_object": "RESTRICTED_CONTINUATION_BOUNDARY_FLUX_COERCIVITY_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
