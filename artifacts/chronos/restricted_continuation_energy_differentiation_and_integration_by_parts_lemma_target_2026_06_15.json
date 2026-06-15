@@ -1,0 +1,65 @@
+{
+  "name": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_ENERGY_DIFFERENTIATION_AND_INTEGRATION_BY_PARTS_LEMMA_TARGET",
+  "status": "RUNALL_CONDITIONAL_ENERGY_DIFFERENTIATION_AND_INTEGRATION_BY_PARTS_LEMMA_TARGET",
+  "target": "RESTRICTED_CONTINUATION_ENERGY_DIFFERENTIATION_AND_INTEGRATION_BY_PARTS_LEMMA",
+  "extends": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_PDE_TO_DERIVATIVE_IDENTITY_LEMMA_TARGET",
+  "previous_verified_artifact": "artifacts/chronos/restricted_continuation_norm_control_pde_to_derivative_identity_lemma_target_2026_06_15.json",
+  "weakest_missing_object": "RESTRICTED_CONTINUATION_REGULARITY_TRACE_AND_BOUNDARY_FLUX_ASSUMPTIONS",
+  "runall_target_manifest": {
+    "TARGET": "RESTRICTED_CONTINUATION_ENERGY_DIFFERENTIATION_AND_INTEGRATION_BY_PARTS_LEMMA",
+    "TARGET_KIND": "energy-differentiation-integration-by-parts-lemma-target-artifact",
+    "SOURCE_OBJECT": "RESTRICTED_CONTINUATION_PDE_TO_DERIVATIVE_IDENTITY_LEMMA",
+    "TARGETED_CHECK": "python3 tools/verify_restricted_continuation_energy_differentiation_and_integration_by_parts_lemma_target.py",
+    "COMMIT_RULE": "Commit only if the targeted verifier and targeted pytest pass."
+  },
+  "lemma_statement_surface": {
+    "input_region": "restricted continuation cylinder I × Sigma_R",
+    "state_regularization": "u has enough time regularity to differentiate E_R(t) and enough spatial regularity for boundary traces on partial Sigma_R",
+    "energy_functional": "E_R(t) = ||u(t)||_{H^s(Sigma_R)}^2 + lower_order_control_terms_R(t)",
+    "differentiation_target": "d/dt E_R(t) equals the paired time derivative of u plus differentiated lower-order control terms",
+    "integration_by_parts_target": "spatial derivative terms from L_R are transformed into interior coercive terms plus boundary flux Flux_R(t)",
+    "shared_boundary_convention": "outward normal on boundary of Sigma_R",
+    "output_for_derivative_identity": "the differentiated energy identity and restricted integration-by-parts formula are available for PDE substitution"
+  },
+  "required_assumption_blocks": [
+    {
+      "object": "RESTRICTED_CONTINUATION_TIME_REGULARITY_BLOCK",
+      "role": "justify differentiating E_R(t)",
+      "status": "missing"
+    },
+    {
+      "object": "RESTRICTED_CONTINUATION_SPATIAL_REGULARITY_BLOCK",
+      "role": "justify H^s spatial derivatives and lower-order control terms",
+      "status": "missing"
+    },
+    {
+      "object": "RESTRICTED_CONTINUATION_TRACE_BLOCK",
+      "role": "justify boundary traces on partial Sigma_R",
+      "status": "missing"
+    },
+    {
+      "object": "RESTRICTED_CONTINUATION_OPERATOR_SYMMETRY_OR_DIVERGENCE_BLOCK",
+      "role": "justify integration by parts for the principal spatial operator L_R",
+      "status": "missing"
+    },
+    {
+      "object": "RESTRICTED_CONTINUATION_BOUNDARY_FLUX_DEFINITION_BLOCK",
+      "role": "define the boundary flux term with the outward-normal convention",
+      "status": "missing"
+    }
+  ],
+  "first_admissible_subtarget": "RESTRICTED_CONTINUATION_REGULARITY_TRACE_AND_BOUNDARY_FLUX_ASSUMPTIONS",
+  "boundary": [
+    "this artifact records the energy differentiation and integration-by-parts lemma target only",
+    "this artifact does not prove time regularity",
+    "this artifact does not prove spatial regularity",
+    "this artifact does not prove boundary trace existence",
+    "this artifact does not prove integration by parts",
+    "this artifact does not prove boundary flux identification",
+    "this artifact does not prove the derivative identity",
+    "this artifact does not prove the analytic estimate",
+    "this artifact does not prove full RR closure",
+    "this artifact does not prove Clay problem closure"
+  ],
+  "finish_condition": "Replace this target artifact with checked assumptions and derivations for time regularity, spatial regularity, trace existence, restricted integration by parts, and boundary flux identification on the same restricted continuation region."
+}
