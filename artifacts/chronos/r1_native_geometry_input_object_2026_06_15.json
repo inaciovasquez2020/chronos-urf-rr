@@ -1,0 +1,17 @@
+{
+  "artifact": "R1_NATIVE_GEOMETRY_INPUT_OBJECT_TARGET",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "status": "boundary_target",
+  "source_bridge": "lean/Chronos/Frontier/R1NativeInputBridge.lean",
+  "requires_existing_declaration": "R1TheoremProofInputs",
+  "next_missing_object": "native construction of R1TheoremProofInputs from concrete Newstein/FGL geometry",
+  "boundary": "NO_NATIVE_CONCRETE_NEWSTEIN_FGL_TO_R1_PROOF_INPUTS_CONSTRUCTION",
+  "non_claims": [
+    "does not construct R1TheoremProofInputs",
+    "does not prove Newstein/FGL geometry satisfies R1TheoremProofInputs",
+    "does not close R1"
+  ],
+  "verifier": "tools/verify_r1_native_geometry_input_object.py",
+  "test": "tests/test_r1_native_geometry_input_object.py"
+}
