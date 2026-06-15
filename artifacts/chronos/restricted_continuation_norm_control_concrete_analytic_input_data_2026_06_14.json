@@ -1,0 +1,48 @@
+{
+  "name": "RUNALL_VERIFIED_CONCRETE_RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_INPUT_DATA",
+  "status": "RUNALL_CONDITIONAL_CONCRETE_ANALYTIC_INPUT_DATA_BOUNDARY",
+  "target": "RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_ESTIMATE_PROOF",
+  "weakest_missing_object": "CONCRETE_RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_INPUT_DATA",
+  "previous_verified_boundary": "STOP_AFTER_THIS_COMMIT_NO_ADMISSIBLE_NEXT_STEP_WITHOUT_NEW_ANALYTIC_INPUT",
+  "source_objects": [
+    "lean/Chronos/Frontier/RestrictedContinuationNormControlAnalyticEstimateInputSurface.lean",
+    "lean/Chronos/Frontier/RestrictedContinuationNormControlPayloadFieldProofPayloads.lean",
+    "artifacts/chronos/restricted_continuation_norm_control_payload_field_proof_payloads_2026_06_13.json"
+  ],
+  "runall_target_manifest": {
+    "TARGET": "CONCRETE_RESTRICTED_CONTINUATION_NORM_CONTROL_ANALYTIC_INPUT_DATA",
+    "TARGET_KIND": "boundary-artifact",
+    "SOURCE_OBJECT": "RestrictedContinuationNormControlAnalyticEstimateInputData",
+    "TARGETED_CHECK": "python3 tools/verify_restricted_continuation_norm_control_concrete_analytic_input_data.py",
+    "COMMIT_RULE": "Commit only if the targeted verifier and targeted pytest pass."
+  },
+  "concrete_input_data_required_fields": [
+    "restricted_continuation_pde_or_evolution_equations",
+    "energy_or_norm_functional",
+    "flux_term_and_sign_convention",
+    "bootstrap_regime_and_bounds",
+    "analytic_estimate_target",
+    "estimate_proof_bridge_availability"
+  ],
+  "current_abstract_prop_fields_requiring_concrete_content": [
+    "derivativeIdentityInput",
+    "fluxNonnegativityInput",
+    "bootstrapBoundsInput",
+    "analyticEstimateInput"
+  ],
+  "required_future_payloads": [
+    "bridgeProofPayload",
+    "derivativeIdentityProofPayload",
+    "fluxNonnegativityProofPayload",
+    "bootstrapBoundsProofPayload"
+  ],
+  "boundary": [
+    "this artifact does not prove the analytic estimate",
+    "this artifact does not prove derivative identity from PDE equations",
+    "this artifact does not prove flux nonnegativity from PDE equations",
+    "this artifact does not prove bootstrap bounds",
+    "this artifact does not prove full RR closure",
+    "this artifact does not prove Clay problem closure"
+  ],
+  "finish_condition": "Replace this boundary with a concrete analytic input-data object and update the verifier to require the concrete PDE/evolution equations, energy or norm functional, flux sign convention, bootstrap bounds, analytic estimate target, and bridge availability proof."
+}
