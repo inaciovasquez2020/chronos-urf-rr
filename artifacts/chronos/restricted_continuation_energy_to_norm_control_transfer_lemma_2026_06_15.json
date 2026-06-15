@@ -1,0 +1,65 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_ENERGY_TO_NORM_CONTROL_TRANSFER_LEMMA",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_ENERGY_TO_NORM_CONTROL_TRANSFER_LEMMA",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_RESTRICTED_ENERGY_INEQUALITY_CLOSURE_LEMMA",
+  "status": "LEMMA_SURFACE_ONLY_ENERGY_TO_NORM_CONTROL_TRANSFER_NOT_PROVED",
+  "lemma_statement": {
+    "name": "restricted_continuation_energy_to_norm_control_transfer",
+    "required_inputs": [
+      "restricted_energy_inequality_is_closed",
+      "restricted_continuation_energy_functional_is_well_defined",
+      "energy_functional_controls_declared_norm",
+      "coercive_energy_terms_are_positive_or_absorbable",
+      "all_boundary_terms_are_discharged",
+      "all_interior_error_terms_are_controlled_or_absorbable"
+    ],
+    "transfer_steps": [
+      {
+        "step": "energy_control_extraction",
+        "role": "extract the controlled energy bound from the closed restricted energy inequality"
+      },
+      {
+        "step": "coercive_norm_comparison",
+        "role": "compare the restricted energy functional to the declared norm-control quantity"
+      },
+      {
+        "step": "controlled_term_absorption",
+        "role": "absorb all declared controlled terms into the norm-control estimate"
+      },
+      {
+        "step": "norm_control_form",
+        "role": "produce a restricted continuation norm-control statement with no unclassified energy, boundary, or interior term"
+      }
+    ],
+    "intended_conclusion": [
+      "the_closed_restricted_energy_inequality_transfers_to_declared_norm_control",
+      "the_norm_control_estimate_has_no_unclassified_boundary_flux_term",
+      "the_norm_control_estimate_has_no_unclassified_interior_error_term",
+      "restricted_continuation_norm_control_closure_assembly_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the energy-to-norm control transfer lemma target after restricted energy inequality closure.",
+      "Separates closed energy control from coercive norm comparison and controlled-term absorption.",
+      "Makes explicit that the next blocker is assembling the restricted continuation norm-control closure statement."
+    ],
+    "negative": [
+      "Does not prove the closed restricted energy inequality.",
+      "Does not prove the energy functional controls the declared norm.",
+      "Does not prove coercive norm comparison.",
+      "Does not prove controlled-term absorption.",
+      "Does not prove the restricted continuation norm-control theorem.",
+      "Does not close the full RR restricted-continuation theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_energy_to_norm_control_transfer_lemma.py",
+    "tests/test_restricted_continuation_energy_to_norm_control_transfer_lemma.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_NORM_CONTROL_CLOSURE_ASSEMBLY_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
