@@ -1,0 +1,54 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_SELECTED_TRACE_FLUX_WITNESS_BRANCH",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_SELECTED_TRACE_FLUX_WITNESS_BRANCH",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_TRACE_INEQUALITY_OR_BOUNDARY_SIGN_WITNESS",
+  "status": "SELECTED_BRANCH_SURFACE_ONLY_BOUNDARY_SIGN_PAYLOAD_NOT_PROVED",
+  "selected_branch": {
+    "branch": "boundary_sign",
+    "reason": "The restricted continuation route proceeds by selecting the boundary-sign alternative rather than the quantitative trace-inequality alternative.",
+    "required_payload": [
+      "oriented_boundary_flux_term",
+      "declared_boundary_sign_condition",
+      "restricted_boundary_orientation_compatibility",
+      "signed_flux_nonpositive_or_absorbable_payload"
+    ],
+    "intended_conclusion": [
+      "boundary_flux_term_does_not_create_uncontrolled_positive_energy",
+      "selected_branch_supplies_the_input_route_for_trace_flux_control",
+      "restricted_energy_inequality_has_no_positive_uncontrolled_boundary_flux_from_the_selected_route"
+    ]
+  },
+  "unselected_branch": {
+    "branch": "trace_inequality",
+    "status": "not_selected_for_this_route",
+    "not_used_payload": [
+      "finite_trace_constant",
+      "boundary_flux_abs_bound_by_trace_norm",
+      "trace_norm_absorbable_in_restricted_energy_inequality"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Selects the boundary-sign branch as the route for the trace-flux witness alternative.",
+      "Records the exact payload still required by the selected branch.",
+      "Prevents the route from remaining ambiguous between trace inequality and boundary sign."
+    ],
+    "negative": [
+      "Does not prove the boundary sign condition.",
+      "Does not prove orientation compatibility.",
+      "Does not prove signed flux is nonpositive or absorbable.",
+      "Does not prove a quantitative trace inequality.",
+      "Does not close the restricted energy inequality.",
+      "Does not close the full RR restricted-continuation theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_selected_trace_flux_witness_branch.py",
+    "tests/test_restricted_continuation_selected_trace_flux_witness_branch.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_BOUNDARY_SIGN_CONDITION_PAYLOAD",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
