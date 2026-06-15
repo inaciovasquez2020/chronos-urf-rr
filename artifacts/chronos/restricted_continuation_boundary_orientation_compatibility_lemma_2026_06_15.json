@@ -1,0 +1,51 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_BOUNDARY_ORIENTATION_COMPATIBILITY_LEMMA",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_BOUNDARY_ORIENTATION_COMPATIBILITY_LEMMA",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_BOUNDARY_SIGN_CONDITION_PAYLOAD",
+  "status": "LEMMA_SURFACE_ONLY_BOUNDARY_ORIENTATION_COMPATIBILITY_NOT_PROVED",
+  "lemma_statement": {
+    "name": "restricted_continuation_boundary_orientation_compatibility",
+    "selected_branch": "boundary_sign",
+    "required_inputs": [
+      "restricted_boundary_orientation",
+      "oriented_boundary_flux_term",
+      "declared_boundary_sign_condition",
+      "boundary_flux_pairing_well_defined_on_restricted_boundary"
+    ],
+    "compatibility_payload": [
+      "restricted_boundary_orientation_matches_the_flux_sign_convention",
+      "no_orientation_reversal_changes_the_declared_boundary_sign_condition",
+      "oriented_boundary_flux_term_is_interpreted_with_the_selected_restricted_boundary_orientation"
+    ],
+    "intended_conclusion": [
+      "the_boundary_sign_condition_uses_the_same_orientation_as_the_restricted_flux_pairing",
+      "the_selected_boundary_sign_branch_has_orientation-compatible_input",
+      "signed_flux_nonpositive_or_absorbable_payload_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the boundary orientation compatibility lemma required after the boundary sign condition payload.",
+      "Fixes the orientation convention used by the selected boundary-sign branch.",
+      "Makes explicit that the sign condition cannot be used unless the restricted boundary orientation and flux sign convention agree."
+    ],
+    "negative": [
+      "Does not prove restricted boundary orientation compatibility.",
+      "Does not prove the boundary sign condition.",
+      "Does not prove the boundary flux pairing exists.",
+      "Does not prove signed flux is nonpositive or absorbable.",
+      "Does not prove a trace inequality.",
+      "Does not close the restricted energy inequality.",
+      "Does not close the full RR restricted-continuation theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_boundary_orientation_compatibility_lemma.py",
+    "tests/test_restricted_continuation_boundary_orientation_compatibility_lemma.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_SIGNED_FLUX_NONPOSITIVE_OR_ABSORBABLE_PAYLOAD",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
