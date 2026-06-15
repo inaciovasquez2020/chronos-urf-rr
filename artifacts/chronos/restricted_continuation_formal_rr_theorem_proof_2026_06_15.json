@@ -1,0 +1,66 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_FORMAL_RR_THEOREM_PROOF_TARGET",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_FORMAL_RR_THEOREM_PROOF",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_RR_ROUTE_CLOSURE_GATE",
+  "status": "THEOREM_PROOF_TARGET_ONLY_FORMAL_RR_THEOREM_NOT_PROVED",
+  "proof_target_statement": {
+    "name": "restricted_continuation_formal_rr_theorem_proof",
+    "required_inputs": [
+      "restricted_continuation_rr_route_closure_gate_is_declared",
+      "restricted_continuation_norm_control_theorem_payload_is_declared",
+      "restricted_energy_identity_after_integration_by_parts",
+      "boundary_flux_terms_are_classified_and_discharged",
+      "interior_error_terms_are_controlled_or_absorbable",
+      "energy_to_norm_control_transfer_is_available",
+      "all_analytic_assumptions_used_by_the_route_are_declared"
+    ],
+    "formal_proof_obligations": [
+      {
+        "obligation": "route_gate_to_theorem_statement",
+        "role": "convert the verified route gate into a formal theorem statement surface"
+      },
+      {
+        "obligation": "analytic_assumption_inventory",
+        "role": "list every analytic assumption still used by the restricted-continuation route"
+      },
+      {
+        "obligation": "lean_formalization_boundary",
+        "role": "separate Lean-proved components from declared analytic assumptions"
+      },
+      {
+        "obligation": "full_rr_boundary_preservation",
+        "role": "prevent the formal theorem proof target from being misread as full RR closure"
+      }
+    ],
+    "intended_conclusion": [
+      "the_formal_rr_theorem_proof_target_is_declared",
+      "the_route_gate_has_a_theorem_level_proof_target",
+      "all_remaining_analytic_assumption_discharge_requirements_are_made_explicit",
+      "analytic_assumption_discharge_ledger_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the formal RR theorem proof target after the restricted-continuation route closure gate.",
+      "Separates theorem-target declaration from actual proof of the theorem.",
+      "Makes explicit that analytic assumption discharge is the next blocker before any formal RR theorem proof can be claimed."
+    ],
+    "negative": [
+      "Does not prove the formal restricted-continuation theorem.",
+      "Does not prove the norm-control theorem.",
+      "Does not discharge all analytic assumptions in Lean.",
+      "Does not close the RR restricted-continuation theorem.",
+      "Does not close the full RR theorem.",
+      "Does not claim final scientific closure."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_formal_rr_theorem_proof.py",
+    "tests/test_restricted_continuation_formal_rr_theorem_proof.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_ANALYTIC_ASSUMPTION_DISCHARGE_LEDGER",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
