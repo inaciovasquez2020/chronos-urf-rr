@@ -1,0 +1,67 @@
+{
+  "id": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_ENERGY_DENSITY_DIFFERENTIABILITY_DISCHARGE_LEMMA",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "run_surface": "RunAll RR restricted continuation route",
+  "solves_missing_object": "RESTRICTED_CONTINUATION_ENERGY_DENSITY_DIFFERENTIABILITY_DISCHARGE_LEMMA",
+  "predecessor_object": "RUNALL_VERIFIED_RESTRICTED_CONTINUATION_SPATIAL_REGULARITY_INTEGRATION_BY_PARTS_DISCHARGE_LEMMA",
+  "status": "LEMMA_SURFACE_ONLY_ENERGY_DENSITY_DIFFERENTIABILITY_NOT_PROVED",
+  "lemma_statement": {
+    "name": "restricted_continuation_energy_density_differentiability_discharge",
+    "assumption_group": "regularity_and_differentiation",
+    "targeted_assumption": "energy_density_is_differentiable_along_restricted_continuation",
+    "required_inputs": [
+      "restricted_continuation_energy_density_is_declared",
+      "restricted_continuation_time_regular_energy_discharge_surface_exists",
+      "restricted_continuation_spatial_regular_integration_by_parts_surface_exists",
+      "energy_density_chain_rule_or_weak_derivative_payload_is_available",
+      "energy_density_derivative_pairing_is_well_defined"
+    ],
+    "discharge_obligations": [
+      {
+        "obligation": "energy_density_definition",
+        "role": "identify the energy density whose differentiability is required along the restricted-continuation route"
+      },
+      {
+        "obligation": "chain_rule_or_weak_derivative_payload",
+        "role": "supply a chain-rule, weak-derivative, or certified differentiability payload for the declared energy density"
+      },
+      {
+        "obligation": "derivative_pairing_admissibility",
+        "role": "justify that the differentiated energy density pairs with the terms used in the restricted energy identity"
+      },
+      {
+        "obligation": "regularity_group_status_guard",
+        "role": "prevent the regularity-and-differentiation group from being marked discharged until all three regularity payloads are proved or certified"
+      }
+    ],
+    "intended_conclusion": [
+      "the_energy_density_differentiability_discharge_lemma_target_is_declared",
+      "the_energy_density_differentiability_assumption_has_a_dedicated_discharge_surface",
+      "no_energy_density_differentiability_assumption_is_marked_as_discharged_without_proof",
+      "regularity_and_differentiation_group_discharge_gate_is_now_the_next_required_check"
+    ]
+  },
+  "claim": {
+    "positive": [
+      "Records the energy-density differentiability discharge lemma target after the spatial regularity integration-by-parts discharge lemma.",
+      "Separates energy-density definition, chain-rule or weak-derivative payload, derivative pairing admissibility, and regularity-group status guarding.",
+      "Makes explicit that the next blocker is a group-level discharge gate for regularity and differentiation."
+    ],
+    "negative": [
+      "Does not prove energy-density differentiability.",
+      "Does not prove a chain rule.",
+      "Does not prove weak derivative admissibility.",
+      "Does not prove derivative pairing admissibility.",
+      "Does not discharge the regularity-and-differentiation assumption group.",
+      "Does not prove the formal restricted-continuation theorem.",
+      "Does not close the full RR theorem."
+    ]
+  },
+  "verified_by": [
+    "tools/verify_restricted_continuation_energy_density_differentiability_discharge_lemma.py",
+    "tests/test_restricted_continuation_energy_density_differentiability_discharge_lemma.py"
+  ],
+  "current_weakest_missing_object": "RESTRICTED_CONTINUATION_REGULARITY_AND_DIFFERENTIATION_GROUP_DISCHARGE_GATE",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
