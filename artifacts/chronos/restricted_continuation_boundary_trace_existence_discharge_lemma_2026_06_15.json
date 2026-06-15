@@ -1,0 +1,46 @@
+{
+  "artifact": "restricted_continuation_boundary_trace_existence_discharge_lemma",
+  "date": "2026-06-15",
+  "solves": "RESTRICTED_CONTINUATION_BOUNDARY_TRACE_EXISTENCE_DISCHARGE_LEMMA",
+  "predecessor": "RESTRICTED_CONTINUATION_TRACE_AND_BOUNDARY_FLUX_DISCHARGE_TARGET",
+  "type": "conditional_discharge_lemma",
+  "lemma_statement": {
+    "name": "restricted_continuation_boundary_trace_existence_discharge_lemma",
+    "claim": "On the restricted-continuation boundary portion partial Sigma_R, the boundary trace of the restricted-continuation state exists as a certified trace object whenever the explicitly listed trace-domain, regularity, and boundary-geometry hypotheses are supplied.",
+    "domain": "restricted continuation region",
+    "boundary": "partial Sigma_R",
+    "trace_object": "restricted_continuation_boundary_trace"
+  },
+  "required_inputs": [
+    {
+      "name": "restricted_continuation_region_lipschitz_boundary",
+      "role": "provides a trace-admissible boundary chart structure for partial Sigma_R"
+    },
+    {
+      "name": "state_spatial_regularitiy_on_restricted_region",
+      "role": "places the restricted-continuation state in the trace domain required by the boundary trace operator"
+    },
+    {
+      "name": "trace_operator_available_on_restricted_region",
+      "role": "supplies the bounded trace map from the interior regularity space to the boundary trace space"
+    },
+    {
+      "name": "restriction_compatible_with_boundary_chart",
+      "role": "ensures the restricted-continuation cutoff/restriction does not destroy trace admissibility"
+    }
+  ],
+  "discharged_obligations": [
+    "Separates boundary trace existence from normal trace existence.",
+    "Certifies the exact assumptions under which the restricted-continuation boundary trace exists.",
+    "Promotes boundary trace existence from an undischarged target obligation to a conditional discharge lemma."
+  ],
+  "non_claims": [
+    "Does not prove normal trace existence.",
+    "Does not prove trace pairing.",
+    "Does not prove boundary flux pairing.",
+    "Does not prove integration by parts.",
+    "Does not prove full RR closure."
+  ],
+  "next_missing_object": "RESTRICTED_CONTINUATION_NORMAL_TRACE_EXISTENCE_DISCHARGE_LEMMA",
+  "boundary": "NOT_FULL_RR_CLOSURE"
+}
