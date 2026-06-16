@@ -1,0 +1,38 @@
+{
+  "artifact": "R1_LONG_CHORD_EXCLUSION_DISCHARGE_TARGET",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "status": "field_discharge_target",
+  "target_field": "r1LongChordExclusion",
+  "parent_contract": "R1ConcreteNewsteinFGLToNativeMapInputContract",
+  "parent_contract_file": "lean/Chronos/Frontier/R1ConcreteNewsteinFGLToNativeMapInputContract.lean",
+  "lean_surface": "lean/Chronos/Frontier/R1LongChordExclusionDischargeTarget.lean",
+  "next_missing_object": "non-vacuous proof of long-chord exclusion for the concrete Newstein/FGL source object",
+  "boundary": "NO_DISCHARGED_R1_LONG_CHORD_EXCLUSION_FOR_CONCRETE_NEWSTEIN_FGL_SOURCE_OBJECT",
+  "required_existing_declarations": [
+    "R1ConcreteNewsteinFGLToNativeMapInputContract",
+    "r1LongChordExclusion"
+  ],
+  "required_lean_declarations": [
+    "R1LongChordExclusionDischargeTarget",
+    "r1_long_chord_exclusion_discharge_target_boundary"
+  ],
+  "required_contract_fields": [
+    "source",
+    "r1LongChordExclusion",
+    "longChordExclusionEvidence"
+  ],
+  "non_claims": [
+    "does not discharge r1LongChordExclusion",
+    "does not define the native construction map",
+    "does not construct R1NativeGeometryInputObject from concrete Newstein/FGL geometry",
+    "does not close R1"
+  ],
+  "forbidden_lean_fragments": [
+    "theorem r1_long_chord_exclusion_discharge",
+    "def r1_concrete_newstein_fgl_to_native_geometry_input_object",
+    ": R1NativeGeometryInputObject :="
+  ],
+  "verifier": "tools/verify_r1_long_chord_exclusion_discharge_target.py",
+  "test": "tests/test_r1_long_chord_exclusion_discharge_target.py"
+}
