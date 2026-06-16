@@ -1,37 +1,59 @@
 import Chronos.Frontier.R1NativeGeometryInputObject
+import Chronos.Frontier.R1ConcreteSemanticDataInstance
 
 namespace Chronos
 namespace Frontier
 
 /--
-Boundary marker for the first concrete Newstein/FGL geometry source object.
+Concrete Newstein/FGL source object for the restricted safe R1 semantic data.
 
-This is only a source-object surface over the existing
-`R1NativeGeometryInputObject` target. It does not construct that target from
-concrete Newstein/FGL geometry.
+This source object no longer aliases the full native geometry input package.
+It carries only the remaining source assumptions needed after the concrete safe
+R1b bridge has been supplied by `R1ConcreteNativeSafeSemanticData_R1b`.
 -/
-abbrev R1ConcreteNewsteinFGLGeometrySourceObject (D : R1SemanticData) :=
-  R1NativeGeometryInputObject D
+structure R1ConcreteNewsteinFGLGeometrySourceObject where
+  R1a_trivialFaceBoundariesAvoidLongChords :
+    ∀ face, R1ConcreteNativeSafeSemanticData.TrivFace face →
+      ¬ R1ConcreteNativeSafeSemanticData.FaceBoundarySupport
+          face R1ConcreteNativeSafeSemanticData.e1 ∧
+      ¬ R1ConcreteNativeSafeSemanticData.FaceBoundarySupport
+          face R1ConcreteNativeSafeSemanticData.e2
+  R1c_maximalSeparationForbidsTrivialLongChord : Prop
+  R1c_supplied : R1c_maximalSeparationForbidsTrivialLongChord
 
 /--
-The current concrete Newstein/FGL geometry source-object surface feeds the
-existing native R1 geometry input object.
+The concrete safe Newstein/FGL source object feeds the native R1 geometry input
+object for `R1ConcreteNativeSafeSemanticData`.
+
+The R1b input is discharged by `R1ConcreteNativeSafeSemanticData_R1b`; R1c is
+kept as an explicit source field and is not solved here.
 -/
 def r1_concrete_newstein_fgl_geometry_source_object_to_native_geometry_input_object
-    {D : R1SemanticData}
-    (x : R1ConcreteNewsteinFGLGeometrySourceObject D) :
-    R1NativeGeometryInputObject D :=
-  x
+    (x : R1ConcreteNewsteinFGLGeometrySourceObject) :
+    R1NativeGeometryInputObject R1ConcreteNativeSafeSemanticData where
+  R1a_trivialFaceBoundariesAvoidLongChords :=
+    x.R1a_trivialFaceBoundariesAvoidLongChords
+  R1b_trivialWordSupportComesFromTrivialFaces :=
+    R1ConcreteNativeSafeSemanticData_R1b
+  R1c_maximalSeparationForbidsTrivialLongChord :=
+    x.R1c_maximalSeparationForbidsTrivialLongChord
+  R1c_supplied :=
+    x.R1c_supplied
 
 /--
-The existing native R1 geometry input object is the current repository-local
-source-object surface for the concrete Newstein/FGL geometry target.
+The native safe R1 geometry input object restricts back to the concrete
+Newstein/FGL source-object surface by forgetting the already-discharged R1b
+field.
 -/
 def r1_native_geometry_input_object_to_concrete_newstein_fgl_geometry_source_object
-    {D : R1SemanticData}
-    (x : R1NativeGeometryInputObject D) :
-    R1ConcreteNewsteinFGLGeometrySourceObject D :=
-  x
+    (x : R1NativeGeometryInputObject R1ConcreteNativeSafeSemanticData) :
+    R1ConcreteNewsteinFGLGeometrySourceObject where
+  R1a_trivialFaceBoundariesAvoidLongChords :=
+    x.R1a_trivialFaceBoundariesAvoidLongChords
+  R1c_maximalSeparationForbidsTrivialLongChord :=
+    x.R1c_maximalSeparationForbidsTrivialLongChord
+  R1c_supplied :=
+    x.R1c_supplied
 
 end Frontier
 end Chronos
