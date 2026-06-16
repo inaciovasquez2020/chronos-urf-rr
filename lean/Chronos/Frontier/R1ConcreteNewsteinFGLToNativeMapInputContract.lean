@@ -1,5 +1,8 @@
 import Chronos.Frontier.R1ConcreteNewsteinFGLToNativeGeometryInputObjectMapTarget
 
+namespace Chronos
+namespace Frontier
+
 /--
 Weakest current input contract for a future native construction map from the
 concrete Newstein/FGL source object to the native R1 geometry input object.
@@ -7,8 +10,8 @@ concrete Newstein/FGL source object to the native R1 geometry input object.
 This contract is intentionally non-vacuous: it requires evidence fields for the
 named geometric ingredients before any construction map may be introduced.
 -/
-structure R1ConcreteNewsteinFGLToNativeMapInputContract : Type where
-  source : R1ConcreteNewsteinFGLGeometrySourceObject
+structure R1ConcreteNewsteinFGLToNativeMapInputContract (D : R1SemanticData) : Type where
+  source : R1ConcreteNewsteinFGLGeometrySourceObject D
   r1LongChordExclusion : Prop
   r1DiameterSeparationFillingObstruction : Prop
   r1UniformLocalTypeCapacity : Prop
@@ -24,3 +27,6 @@ concrete Newstein/FGL geometry.
 -/
 def r1_concrete_newstein_fgl_to_native_map_input_contract_boundary : String :=
   "NO_DISCHARGED_INPUT_CONTRACT_FOR_NATIVE_CONSTRUCTION_MAP"
+
+end Frontier
+end Chronos
