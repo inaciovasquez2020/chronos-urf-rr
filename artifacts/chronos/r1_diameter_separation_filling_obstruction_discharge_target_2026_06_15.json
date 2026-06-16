@@ -1,0 +1,38 @@
+{
+  "artifact": "R1_DIAMETER_SEPARATION_FILLING_OBSTRUCTION_DISCHARGE_TARGET",
+  "date": "2026-06-15",
+  "repository": "chronos-urf-rr",
+  "status": "field_discharge_target",
+  "target_field": "r1DiameterSeparationFillingObstruction",
+  "parent_contract": "R1ConcreteNewsteinFGLToNativeMapInputContract",
+  "parent_contract_file": "lean/Chronos/Frontier/R1ConcreteNewsteinFGLToNativeMapInputContract.lean",
+  "lean_surface": "lean/Chronos/Frontier/R1DiameterSeparationFillingObstructionDischargeTarget.lean",
+  "next_missing_object": "non-vacuous proof of diameter-separation filling obstruction for the concrete Newstein/FGL source object",
+  "boundary": "NO_DISCHARGED_R1_DIAMETER_SEPARATION_FILLING_OBSTRUCTION_FOR_CONCRETE_NEWSTEIN_FGL_SOURCE_OBJECT",
+  "required_existing_declarations": [
+    "R1ConcreteNewsteinFGLToNativeMapInputContract",
+    "r1DiameterSeparationFillingObstruction"
+  ],
+  "required_lean_declarations": [
+    "R1DiameterSeparationFillingObstructionDischargeTarget",
+    "r1_diameter_separation_filling_obstruction_discharge_target_boundary"
+  ],
+  "required_contract_fields": [
+    "source",
+    "r1DiameterSeparationFillingObstruction",
+    "diameterSeparationFillingObstructionEvidence"
+  ],
+  "non_claims": [
+    "does not discharge r1DiameterSeparationFillingObstruction",
+    "does not define the native construction map",
+    "does not construct R1NativeGeometryInputObject from concrete Newstein/FGL geometry",
+    "does not close R1"
+  ],
+  "forbidden_lean_fragments": [
+    "theorem r1_diameter_separation_filling_obstruction_discharge",
+    "def r1_concrete_newstein_fgl_to_native_geometry_input_object",
+    ": R1NativeGeometryInputObject :="
+  ],
+  "verifier": "tools/verify_r1_diameter_separation_filling_obstruction_discharge_target.py",
+  "test": "tests/test_r1_diameter_separation_filling_obstruction_discharge_target.py"
+}
