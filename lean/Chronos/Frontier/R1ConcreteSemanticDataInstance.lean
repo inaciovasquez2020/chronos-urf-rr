@@ -50,8 +50,16 @@ def R1ConcreteNativeSafeSemanticData : R1SemanticData where
   e2 := R1ConcreteNativeSafeObject
   TrivWord := R1LongChordSafeNativeAdmissible
   TrivFace := R1LongChordSafeNativeAdmissible
-  WordSupport := fun w e => R1LongChordSafeNativeAdmissible w ∧ w = e
-  FaceBoundarySupport := fun f e => R1LongChordSafeNativeAdmissible f ∧ f = e
+  WordSupport := fun w e =>
+    R1LongChordSafeNativeAdmissible w ∧
+      w = e ∧
+        e ≠ R1ConcreteNativeSafeObject ∧
+          e ≠ R1ConcreteNativeSafeObject
+  FaceBoundarySupport := fun f e =>
+    R1LongChordSafeNativeAdmissible f ∧
+      f = e ∧
+        e ≠ R1ConcreteNativeSafeObject ∧
+          e ≠ R1ConcreteNativeSafeObject
 
 /--
 For the concrete safe semantic instance, trivial word support comes from a
@@ -66,6 +74,23 @@ theorem R1ConcreteNativeSafeSemanticData_R1b :
             R1ConcreteNativeSafeSemanticData.FaceBoundarySupport face edge := by
   intro word edge hword hsupport
   exact ⟨word, hword, hsupport⟩
+
+/--
+For the concrete safe semantic instance, the distinguished endpoints are
+excluded from face-boundary support.
+-/
+theorem R1ConcreteNativeSafeSemanticData_R1a :
+    ∀ face, R1ConcreteNativeSafeSemanticData.TrivFace face →
+      ¬ R1ConcreteNativeSafeSemanticData.FaceBoundarySupport
+          face R1ConcreteNativeSafeSemanticData.e1 ∧
+      ¬ R1ConcreteNativeSafeSemanticData.FaceBoundarySupport
+          face R1ConcreteNativeSafeSemanticData.e2 := by
+  intro face _hface
+  constructor
+  · intro hsupport
+    exact hsupport.2.2.1 rfl
+  · intro hsupport
+    exact hsupport.2.2.2 rfl
 
 end Frontier
 end Chronos

@@ -12,12 +12,6 @@ It carries only the remaining source assumptions needed after the concrete safe
 R1b bridge has been supplied by `R1ConcreteNativeSafeSemanticData_R1b`.
 -/
 structure R1ConcreteNewsteinFGLGeometrySourceObject where
-  R1a_trivialFaceBoundariesAvoidLongChords :
-    ∀ face, R1ConcreteNativeSafeSemanticData.TrivFace face →
-      ¬ R1ConcreteNativeSafeSemanticData.FaceBoundarySupport
-          face R1ConcreteNativeSafeSemanticData.e1 ∧
-      ¬ R1ConcreteNativeSafeSemanticData.FaceBoundarySupport
-          face R1ConcreteNativeSafeSemanticData.e2
   R1c_maximalSeparationForbidsTrivialLongChord : Prop
   R1c_supplied : R1c_maximalSeparationForbidsTrivialLongChord
 
@@ -32,7 +26,7 @@ def r1_concrete_newstein_fgl_geometry_source_object_to_native_geometry_input_obj
     (x : R1ConcreteNewsteinFGLGeometrySourceObject) :
     R1NativeGeometryInputObject R1ConcreteNativeSafeSemanticData where
   R1a_trivialFaceBoundariesAvoidLongChords :=
-    x.R1a_trivialFaceBoundariesAvoidLongChords
+    R1ConcreteNativeSafeSemanticData_R1a
   R1b_trivialWordSupportComesFromTrivialFaces :=
     R1ConcreteNativeSafeSemanticData_R1b
   R1c_maximalSeparationForbidsTrivialLongChord :=
@@ -48,8 +42,6 @@ field.
 def r1_native_geometry_input_object_to_concrete_newstein_fgl_geometry_source_object
     (x : R1NativeGeometryInputObject R1ConcreteNativeSafeSemanticData) :
     R1ConcreteNewsteinFGLGeometrySourceObject where
-  R1a_trivialFaceBoundariesAvoidLongChords :=
-    x.R1a_trivialFaceBoundariesAvoidLongChords
   R1c_maximalSeparationForbidsTrivialLongChord :=
     x.R1c_maximalSeparationForbidsTrivialLongChord
   R1c_supplied :=
