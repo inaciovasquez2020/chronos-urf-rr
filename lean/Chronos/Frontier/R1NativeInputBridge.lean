@@ -11,12 +11,12 @@ This is not native geometric closure. It isolates the remaining native task:
 construct `R1TheoremProofInputs D` from the repository's concrete geometric
 Newstein/FGL data.
 -/
-theorem R1ExactWtrivSupportBridgeInputs_from_semantic_inputs
+def R1ExactWtrivSupportBridgeInputs_from_semantic_inputs
     (D : R1SemanticData)
     (H : R1TheoremProofInputs D) :
     R1ExactWtrivSupportBridgeInputs D where
   r1a_trivialFacesAvoidLongChords :=
-    H.R1a_trivialFacesAvoidLongChords
+    H.R1a_trivialFaceBoundariesAvoidLongChords
   r1b_wtrivGeneratedByTrivialFaces :=
     R1WtrivSupportGenerationBridge_from_semantic_inputs D H
   r1c_maximalSeparationForbidsTrivialLongChord :=

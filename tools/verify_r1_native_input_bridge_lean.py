@@ -9,7 +9,7 @@ text = LEAN_FILE.read_text()
 root_imports = ROOT_IMPORT.read_text()
 
 required = [
-    "theorem R1ExactWtrivSupportBridgeInputs_from_semantic_inputs",
+    "def R1ExactWtrivSupportBridgeInputs_from_semantic_inputs",
     "theorem R1_exactWtriv_support_statement_from_semantic_inputs",
     "R1ExactWtrivSupportBridgeInputs D where",
     "R1LongChordExclusionTheorem D",
