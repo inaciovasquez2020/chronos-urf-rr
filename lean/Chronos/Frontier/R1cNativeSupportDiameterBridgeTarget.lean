@@ -43,10 +43,11 @@ def r1c_native_interface_from_support_diameter_bridge_target
     (B : R1cNativeSupportDiameterBridgeTarget)
     (maximalEndpointSeparation : Prop)
     (maximalSeparationExcludesTrivialLongChord :
-      B.endpointSeparationEqualsDiameter →
-        maximalEndpointSeparation →
-          B.supportDiameterBridge →
-            R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord) :
+      {sourceObject : R1ConcreteNewsteinFGLGeometrySourceObject} →
+        B.endpointSeparationEqualsDiameter →
+          maximalEndpointSeparation →
+            B.supportDiameterBridge →
+              R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord sourceObject) :
     R1cNativeNewsteinFGLInterfaceTarget where
   endpointSeparationEqualsDiameter :=
     B.endpointSeparationEqualsDiameter

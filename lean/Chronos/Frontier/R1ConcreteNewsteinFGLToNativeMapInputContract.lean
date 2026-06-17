@@ -11,7 +11,7 @@ This contract is intentionally non-vacuous: it requires evidence fields for the
 named geometric ingredients before any construction map may be introduced.
 -/
 structure R1ConcreteNewsteinFGLToNativeMapInputContract (D : R1SemanticData) : Type where
-  source : R1ConcreteNewsteinFGLGeometrySourceObject D
+  source : R1ConcreteNewsteinFGLGeometrySourceObject
   r1LongChordExclusion : Prop
   r1DiameterSeparationFillingObstruction : Prop
   r1UniformLocalTypeCapacity : Prop

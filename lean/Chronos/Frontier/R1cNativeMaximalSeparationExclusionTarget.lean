@@ -22,7 +22,7 @@ structure R1cNativeMaximalSeparationExclusionTarget where
       maximalEndpointSeparation →
         supportDiameterBridge →
           noTrivialLongChordAcrossMaximalDiameter →
-            R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord
+            R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord sourceObject
 
 /--
 The final R1c exclusion is supplied once the maximal-separation target receives
@@ -30,12 +30,13 @@ endpoint-diameter equality, maximal endpoint separation, the support-diameter
 bridge, and the explicit no-trivial-long-chord exclusion input.
 -/
 theorem R1c_final_exclusion_from_native_maximal_separation_target
+    (sourceObject : R1ConcreteNewsteinFGLGeometrySourceObject)
     (T : R1cNativeMaximalSeparationExclusionTarget)
     (hEndpoint : T.endpointSeparationEqualsDiameter)
     (hMaximal : T.maximalEndpointSeparation)
     (hSupportDiameter : T.supportDiameterBridge)
     (hNoTrivial : T.noTrivialLongChordAcrossMaximalDiameter) :
-    R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord :=
+    R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord sourceObject :=
   T.finalR1cExclusion hEndpoint hMaximal hSupportDiameter hNoTrivial
 
 /--
@@ -54,8 +55,9 @@ def r1c_native_interface_from_maximal_separation_exclusion_target
   supportDiameterBridge :=
     T.supportDiameterBridge
   maximalSeparationExcludesTrivialLongChord := by
-    intro hEndpoint hMaximal hSupportDiameter
+    intro sourceObject hEndpoint hMaximal hSupportDiameter
     exact T.finalR1cExclusion
+      (sourceObject := sourceObject)
       hEndpoint hMaximal hSupportDiameter hNoTrivial
 
 end Frontier
