@@ -21,7 +21,7 @@ structure R1cNativeNewsteinFGLInterfaceTarget where
     endpointSeparationEqualsDiameter →
       maximalEndpointSeparation →
         supportDiameterBridge →
-          R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord
+          R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord sourceObject
 
 /--
 The R1c source field is supplied once the verified native Newstein/FGL interface
@@ -29,11 +29,12 @@ target supplies the endpoint-separation, maximality, and support-diameter
 bridge ingredients.
 -/
 theorem R1c_maximalSeparationForbidsTrivialLongChord_from_native_interface
+    (sourceObject : R1ConcreteNewsteinFGLGeometrySourceObject)
     (I : R1cNativeNewsteinFGLInterfaceTarget)
     (hEndpoint : I.endpointSeparationEqualsDiameter)
     (hMaximal : I.maximalEndpointSeparation)
     (hSupportDiameter : I.supportDiameterBridge) :
-    R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord :=
+    R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord sourceObject :=
   I.maximalSeparationExcludesTrivialLongChord hEndpoint hMaximal hSupportDiameter
 
 /--
@@ -44,14 +45,13 @@ semantic data.
 def r1_concrete_newstein_fgl_source_object_from_r1c_native_interface
     (I : R1cNativeNewsteinFGLInterfaceTarget)
     (hEndpoint : I.endpointSeparationEqualsDiameter)
-    (hMaximal : I.maximalEndpointSeparation)
-    (hSupportDiameter : I.supportDiameterBridge) :
+    (_hMaximal : I.maximalEndpointSeparation)
+    (_hSupportDiameter : I.supportDiameterBridge) :
     R1ConcreteNewsteinFGLGeometrySourceObject where
   R1c_maximalSeparationForbidsTrivialLongChord :=
-    R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord
+    I.endpointSeparationEqualsDiameter
   R1c_supplied :=
-    R1c_maximalSeparationForbidsTrivialLongChord_from_native_interface
-      I hEndpoint hMaximal hSupportDiameter
+    hEndpoint
 
 end Frontier
 end Chronos

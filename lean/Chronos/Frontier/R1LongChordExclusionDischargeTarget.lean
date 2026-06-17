@@ -12,7 +12,7 @@ source object, a named proposition, and evidence for that proposition. It does
 not supply such evidence for any concrete source object.
 -/
 structure R1LongChordExclusionDischargeTarget (D : R1SemanticData) : Type where
-  source : R1ConcreteNewsteinFGLGeometrySourceObject D
+  source : R1ConcreteNewsteinFGLGeometrySourceObject
   r1LongChordExclusion : Prop
   longChordExclusionEvidence : r1LongChordExclusion
 

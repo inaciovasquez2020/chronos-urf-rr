@@ -1,5 +1,8 @@
 import Chronos.Frontier.R1ConcreteNewsteinFGLToNativeMapInputContract
 
+namespace Chronos
+namespace Frontier
+
 /--
 Discharge target for the `r1DiameterSeparationFillingObstruction` field of the
 native-map input contract.
@@ -20,3 +23,6 @@ been discharged for the concrete Newstein/FGL source object.
 -/
 def r1_diameter_separation_filling_obstruction_discharge_target_boundary : String :=
   "NO_DISCHARGED_R1_DIAMETER_SEPARATION_FILLING_OBSTRUCTION_FOR_CONCRETE_NEWSTEIN_FGL_SOURCE_OBJECT"
+
+end Frontier
+end Chronos

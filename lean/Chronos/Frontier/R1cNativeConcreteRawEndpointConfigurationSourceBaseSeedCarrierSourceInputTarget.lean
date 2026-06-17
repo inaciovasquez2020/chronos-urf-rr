@@ -34,7 +34,7 @@ structure R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceIn
     concreteRawEndpointConfigurationSourceBaseSeedCarrier →
       rawEndpointConfigurationSourceBaseSeedCarrier
   rawEndpointConfigurationSourceBaseSeed : Prop
-  rawEndpointConfigurationSourceBaseSeedCarrierRule :
+  rawEndpointConfigurationSourceBaseSeedRule :
     rawEndpointConfigurationSourceBaseSeedCarrier →
       rawEndpointConfigurationSourceBaseSeed
   rawEndpointConfigurationSourceBase : Prop
@@ -122,8 +122,8 @@ def r1c_concrete_raw_endpoint_configuration_source_base_seed_carrier_source_targ
     T.concreteRawEndpointConfigurationSourceBaseSeedCarrierRule
   rawEndpointConfigurationSourceBaseSeedCarrier :=
     T.rawEndpointConfigurationSourceBaseSeedCarrier
-  rawEndpointConfigurationSourceBaseSeedCarrierRule :=
-    T.rawEndpointConfigurationSourceBaseSeedCarrierRule
+  rawEndpointConfigurationSourceBaseSeedRule :=
+    T.rawEndpointConfigurationSourceBaseSeedRule
   rawEndpointConfigurationSourceBaseSeed :=
     T.rawEndpointConfigurationSourceBaseSeed
   rawEndpointConfigurationSourceBaseSeedCarrierRule :=

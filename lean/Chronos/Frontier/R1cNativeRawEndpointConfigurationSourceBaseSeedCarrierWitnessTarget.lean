@@ -22,7 +22,7 @@ structure R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget wh
     concreteRawEndpointConfigurationSourceBaseSeedCarrier →
       rawEndpointConfigurationSourceBaseSeedCarrier
   rawEndpointConfigurationSourceBaseSeed : Prop
-  rawEndpointConfigurationSourceBaseSeedCarrierRule :
+  rawEndpointConfigurationSourceBaseSeedRule :
     rawEndpointConfigurationSourceBaseSeedCarrier →
       rawEndpointConfigurationSourceBaseSeed
   rawEndpointConfigurationSourceBase : Prop
@@ -102,8 +102,8 @@ def r1c_raw_endpoint_configuration_source_base_seed_witness_target_from_carrier
     T.rawEndpointConfigurationSourceBaseSeed
   rawEndpointConfigurationSourceBaseSeedCarrierWitness :=
     R1c_rawEndpointConfigurationSourceBaseSeedCarrier_from_witness_target T
-  rawEndpointConfigurationSourceBaseSeedCarrierRule :=
-    T.rawEndpointConfigurationSourceBaseSeedCarrierRule
+  rawEndpointConfigurationSourceBaseSeedRule :=
+    T.rawEndpointConfigurationSourceBaseSeedRule
   rawEndpointConfigurationSourceBase :=
     T.rawEndpointConfigurationSourceBase
   rawEndpointConfigurationSourceBaseRule :=

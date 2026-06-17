@@ -36,11 +36,12 @@ def r1c_maximal_separation_exclusion_target_from_no_trivial_long_chord_target
     (maximalEndpointSeparation : Prop)
     (supportDiameterBridge : Prop)
     (finalR1cExclusion :
-      endpointSeparationEqualsDiameter →
-        maximalEndpointSeparation →
-          supportDiameterBridge →
-            T.noTrivialLongChordAcrossMaximalDiameter →
-              R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord) :
+      {sourceObject : R1ConcreteNewsteinFGLGeometrySourceObject} →
+        endpointSeparationEqualsDiameter →
+          maximalEndpointSeparation →
+            supportDiameterBridge →
+              T.noTrivialLongChordAcrossMaximalDiameter →
+                R1ConcreteNewsteinFGLGeometrySourceObject.R1c_maximalSeparationForbidsTrivialLongChord sourceObject) :
     R1cNativeMaximalSeparationExclusionTarget where
   endpointSeparationEqualsDiameter :=
     endpointSeparationEqualsDiameter
