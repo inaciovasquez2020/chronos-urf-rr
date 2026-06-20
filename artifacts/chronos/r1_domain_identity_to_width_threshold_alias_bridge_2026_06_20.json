@@ -1,0 +1,32 @@
+{
+  "artifact": "R1_DOMAIN_IDENTITY_TO_WIDTH_THRESHOLD_ALIAS_BRIDGE",
+  "status": "LOCAL_BRIDGE_SURFACE_ONLY",
+  "source_surface": {
+    "lean_file": "lean/Chronos/Frontier/R1DomainIdentitySurface.lean",
+    "candidate_domain": "CandidateChord",
+    "marked_boundary_domain": "MarkedBoundaryChord",
+    "identity_theorem": "markedBoundaryChord_candidateChord_domain_identity"
+  },
+  "target_surface": {
+    "artifact_file": "artifacts/chronos/r1_width_threshold_alias_surface_2026_06_20.json",
+    "artifact": "R1_WIDTH_THRESHOLD_ALIAS_SURFACE",
+    "alias_surface": "w(P,L) := LongChordThreshold(I)"
+  },
+  "bridge_claim": {
+    "discharged_precondition": "DOMAIN_IDENTITY(MarkedBoundaryChord(P,M), CandidateChord(I,c))",
+    "discharge_method": "local Lean rfl identity surface",
+    "bridge_result": "the first alias precondition is locally discharged for the placeholder predicates defined in R1DomainIdentitySurface.lean"
+  },
+  "does_not_prove": [
+    "native CandidateChord semantics",
+    "native MarkedBoundaryChord semantics",
+    "cross(gamma,L) equals SkeletonDistance_I(endpoints(c))",
+    "w(P,L) equals LongChordThreshold(I) unconditionally",
+    "native R1/R2/R3 instance",
+    "unrestricted Chronos-RR"
+  ],
+  "boundary": "BOUNDARY := \u00ac unrestricted_Chronos_RR",
+  "next_actions": [
+    "Bridge the obstruction-measure identity: cross(gamma,L) = SkeletonDistance_I(endpoints(c))."
+  ]
+}
