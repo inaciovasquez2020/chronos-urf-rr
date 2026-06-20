@@ -1,0 +1,22 @@
+{
+  "artifact": "NATIVE_ENDPOINT_EXTRACTION_SELECTED_SEMANTIC_SOURCE_TARGET",
+  "base_commit": "7fdf9f21f29ca1dd0a4d51b5f5997cecb63bf48d",
+  "boundary": "BOUNDARY := \u00ac native_endpoint_extraction_semantics",
+  "claim": "Select exactly one existing Lean endpoint target file as the next bounded semantic source without modifying native semantics.",
+  "does_not_modify": [
+    "lean/Chronos/Frontier/R1cNativeEndpointConfigurationWitnessTarget.lean"
+  ],
+  "does_not_prove": [
+    "native endpoint extraction semantics",
+    "native SkeletonDistance_I(endpoints(c)) semantics",
+    "native cross(gamma,L) semantics",
+    "native obstruction measure semantics",
+    "native R1/R2/R3",
+    "unrestricted Chronos-RR"
+  ],
+  "selected_semantic_source": "lean/Chronos/Frontier/R1cNativeEndpointConfigurationWitnessTarget.lean",
+  "selected_source_sha256": "db4619ad57ac26624cf691adc1e886c36b07cc1a505d4bd4f738d3862b365bbf",
+  "source_presence_artifact": "artifacts/chronos/native_endpoint_extraction_source_presence_target_status_2026_06_20.json",
+  "status": "TARGET_SELECTION_ONLY",
+  "target": "bounded native endpoint extraction semantics source inspection"
+}
