@@ -1,0 +1,36 @@
+{
+  "artifact": "R1_WIDTH_THRESHOLD_ALIAS_SURFACE",
+  "status": "CONDITIONAL_ALIAS_SURFACE_ONLY",
+  "target": "R1LongChordWidthThresholdAlias",
+  "repository_native_objects": {
+    "candidate_chord_domain": "CandidateChord(I,c)",
+    "threshold_object": "LongChordThreshold(I)",
+    "distance_object": "SkeletonDistance_I(endpoints(c))",
+    "long_chord_predicate": "SkeletonDistance_I(endpoints(c)) >= LongChordThreshold(I)"
+  },
+  "external_notation": {
+    "width_notation": "w(P,L)",
+    "marked_boundary_chord_domain": "MarkedBoundaryChord(P,M)"
+  },
+  "conditional_alias": {
+    "allowed_only_if": [
+      "MarkedBoundaryChord(P,M) and CandidateChord(I,c) quantify over the identical finite chord domain",
+      "cross(gamma,L) and SkeletonDistance_I(endpoints(c)) compute the identical finite obstruction measure on that domain",
+      "w(P,L) and LongChordThreshold(I) are both bounds for that same obstruction measure"
+    ],
+    "alias_surface": "w(P,L) := LongChordThreshold(I)"
+  },
+  "weakest_missing_assumption": "DOMAIN_IDENTITY(MarkedBoundaryChord(P,M), CandidateChord(I,c))",
+  "does_not_prove": [
+    "domain identity",
+    "general LongChordExclusion",
+    "native R1/R2/R3 instance",
+    "unrestricted Chronos-RR",
+    "P vs NP",
+    "any Clay problem"
+  ],
+  "boundary": "BOUNDARY := \u00ac unrestricted_Chronos_RR",
+  "next_actions": [
+    "Verify DOMAIN_IDENTITY(MarkedBoundaryChord(P,M), CandidateChord(I,c)) against the repository-native R1 packet."
+  ]
+}
