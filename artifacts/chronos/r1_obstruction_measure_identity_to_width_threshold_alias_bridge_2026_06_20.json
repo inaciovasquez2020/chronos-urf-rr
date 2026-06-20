@@ -1,0 +1,32 @@
+{
+  "artifact": "R1_OBSTRUCTION_MEASURE_IDENTITY_TO_WIDTH_THRESHOLD_ALIAS_BRIDGE",
+  "status": "LOCAL_BRIDGE_SURFACE_ONLY",
+  "source_surface": {
+    "lean_file": "lean/Chronos/Frontier/R1ObstructionMeasureIdentitySurface.lean",
+    "external_measure": "Cross",
+    "native_measure": "SkeletonDistanceEndpoints",
+    "identity_theorem": "cross_skeletonDistanceEndpoints_obstruction_measure_identity"
+  },
+  "target_surface": {
+    "artifact_file": "artifacts/chronos/r1_width_threshold_alias_surface_2026_06_20.json",
+    "artifact": "R1_WIDTH_THRESHOLD_ALIAS_SURFACE",
+    "required_precondition": "cross(gamma,L) and SkeletonDistance_I(endpoints(c)) compute the identical finite obstruction measure on that domain"
+  },
+  "bridge_claim": {
+    "discharged_precondition": "OBSTRUCTION_MEASURE_IDENTITY(cross(gamma,L), SkeletonDistance_I(endpoints(c)))",
+    "discharge_method": "local Lean rfl identity surface",
+    "bridge_result": "the second alias precondition is locally discharged for the placeholder measures defined in R1ObstructionMeasureIdentitySurface.lean"
+  },
+  "does_not_prove": [
+    "native cross(gamma,L) semantics",
+    "native SkeletonDistance_I(endpoints(c)) semantics",
+    "native endpoint extraction semantics",
+    "w(P,L) equals LongChordThreshold(I) unconditionally",
+    "native R1/R2/R3 instance",
+    "unrestricted Chronos-RR"
+  ],
+  "boundary": "BOUNDARY := \u00ac unrestricted_Chronos_RR",
+  "next_actions": [
+    "Bridge the bound identity: w(P,L) and LongChordThreshold(I) are bounds for the same local obstruction measure."
+  ]
+}
