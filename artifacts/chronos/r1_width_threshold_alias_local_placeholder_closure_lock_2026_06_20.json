@@ -1,0 +1,39 @@
+{
+  "artifact": "R1_WIDTH_THRESHOLD_ALIAS_LOCAL_PLACEHOLDER_CLOSURE_LOCK",
+  "status": "LOCAL_PLACEHOLDER_ALIAS_PRECONDITIONS_CLOSED_ONLY",
+  "base_commit": "308a307f9e1d5cea67c2cf0f4a6d1fc2a2cbc0df",
+  "target_alias_surface": {
+    "artifact_file": "artifacts/chronos/r1_width_threshold_alias_surface_2026_06_20.json",
+    "artifact": "R1_WIDTH_THRESHOLD_ALIAS_SURFACE"
+  },
+  "closed_local_placeholder_preconditions": [
+    {
+      "precondition": "domain identity",
+      "bridge_artifact": "artifacts/chronos/r1_domain_identity_to_width_threshold_alias_bridge_2026_06_20.json",
+      "verifier": "tools/verify_r1_domain_identity_to_width_threshold_alias_bridge.py"
+    },
+    {
+      "precondition": "obstruction measure identity",
+      "bridge_artifact": "artifacts/chronos/r1_obstruction_measure_identity_to_width_threshold_alias_bridge_2026_06_20.json",
+      "verifier": "tools/verify_r1_obstruction_measure_identity_to_width_threshold_alias_bridge.py"
+    },
+    {
+      "precondition": "same local obstruction measure bounds",
+      "bridge_artifact": "artifacts/chronos/r1_obstruction_measure_bound_to_width_threshold_alias_bridge_2026_06_20.json",
+      "verifier": "tools/verify_r1_obstruction_measure_bound_to_width_threshold_alias_bridge.py"
+    }
+  ],
+  "lock_claim": "All currently recorded R1 width-threshold alias preconditions are discharged only for the repository local-placeholder surfaces.",
+  "does_not_prove": [
+    "native cross(gamma,L) semantics",
+    "native SkeletonDistance_I(endpoints(c)) semantics",
+    "native endpoint extraction semantics",
+    "native obstruction measure semantics",
+    "native w(P,L) semantics",
+    "native LongChordThreshold(I) semantics",
+    "unconditional w(P,L) = LongChordThreshold(I)",
+    "native R1/R2/R3",
+    "unrestricted Chronos-RR"
+  ],
+  "boundary": "BOUNDARY := \u00ac unrestricted_Chronos_RR"
+}
