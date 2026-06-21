@@ -1,0 +1,34 @@
+{
+  "id": "classifier_bounded_closure_reference_downstream_adoption",
+  "date": "2026-06-21",
+  "status": "DOWNSTREAM_ADOPTION_SURFACE_ONLY",
+  "source_project": {
+    "name": "theorem-closure-classifier",
+    "surface": "BOUNDED_CLOSURE_PROOF_PATTERN_REFERENCE",
+    "criterion_artifact": "independent_project_usefulness_criterion_2026_06_21"
+  },
+  "downstream_project": {
+    "name": "chronos-urf-rr",
+    "repository_role": "separate formalization target",
+    "adoption_use": "bounded closure proof-pattern reference for frontier/status artifacts, verifiers, and regression tests"
+  },
+  "relation_to_existing_downstream_evidence": {
+    "first_downstream_project": "CSLIB-FMT",
+    "separate_from_first_downstream_project": true,
+    "minimum_project_count_target": 2
+  },
+  "evidence_shape": {
+    "names_adopted_classifier_surface": true,
+    "has_downstream_artifact": true,
+    "has_downstream_verifier": true,
+    "has_downstream_regression_test": true,
+    "records_weakest_gap_boundary": true
+  },
+  "boundary": [
+    "This artifact records a downstream adoption surface only.",
+    "It does not assert that the classifier independent-project usefulness criterion is fully satisfied.",
+    "It records chronos-urf-rr as one downstream project separate from CSLIB-FMT.",
+    "It does not prove external acceptance, theorem completeness, or general mathematical usefulness."
+  ],
+  "weakest_gap": "theorem-closure-classifier must aggregate both downstream adoption surfaces before its independent-project usefulness criterion can be upgraded from criterion/candidate evidence to satisfied status"
+}
