@@ -1,0 +1,24 @@
+{
+  "status": "R1_NATIVE_MAP_CONDITIONAL_CONTRACT_CONSTRUCTOR_STATUS",
+  "date": "2026-06-22",
+  "input_head": "dc451809",
+  "constructor": "r1_concrete_newstein_fgl_to_native_map_input_contract_from_aligned_discharge_targets",
+  "aligned_input_shape": "R1ConcreteNewsteinFGLToNativeMapAlignedDischargeTargets",
+  "constructor_status": "conditional_constructor_only",
+  "full_native_map_input_contract_discharged": false,
+  "unconditional_non_factorization_theorem_proved": false,
+  "requires_existing_evidence_targets": [
+    "R1LongChordExclusionDischargeTarget",
+    "R1DiameterSeparationFillingObstructionDischargeTarget",
+    "R1UniformLocalTypeCapacityDischargeTarget",
+    "R1SourceToNativeCompatibilityDischargeTarget"
+  ],
+  "preserved_target_projections": [
+    "r1_native_map_input_contract_from_aligned_targets_long_chord_eq",
+    "r1_native_map_input_contract_from_aligned_targets_diameter_eq",
+    "r1_native_map_input_contract_from_aligned_targets_uniform_eq",
+    "r1_native_map_input_contract_from_aligned_targets_compatibility_eq"
+  ],
+  "boundary": "conditional assembly exists only after all four evidence-bearing discharge targets are supplied",
+  "next_bounded_improvement": "connect the conditional constructor status back into the main decomposition status without changing the missing-evidence boundary"
+}
