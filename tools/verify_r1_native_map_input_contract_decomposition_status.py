@@ -31,7 +31,7 @@ tools = "\n".join(path.read_text() for path in tool_files)
 
 required_artifact = {
     "status": "R1_NATIVE_MAP_INPUT_CONTRACT_DECOMPOSITION_STATUS",
-    "input_head": "4cd9a0c5",
+    "input_head": "a60847f6",
     "unconditional_non_factorization_theorem_proved": False,
     "full_native_map_input_contract_discharged": False,
     "boundary": "no full native-map input contract; no unconditional non-factorization theorem",
@@ -51,6 +51,7 @@ required_tokens = [
     "R1_DIAMETER_SEPARATION_DISCHARGE_TARGET_MISSING_EVIDENCE_BOUNDARY_OK",
     "R1_UNIFORM_LOCAL_TYPE_CAPACITY_DISCHARGE_TARGET_MISSING_EVIDENCE_BOUNDARY_OK",
     "diameterSeparationFillingObstructionEvidence : r1DiameterSeparationFillingObstruction",
+    "uniformLocalTypeCapacityEvidence : r1UniformLocalTypeCapacity",
     "R1_SOURCE_TO_NATIVE_COMPATIBILITY_MISSING_EVIDENCE_BOUNDARY_OK",
     "No full native-map input contract is proved.",
     "No unconditional non-factorization theorem is proved.",
@@ -69,7 +70,7 @@ statuses = {field["field"]: field["status"] for field in fields}
 expected_statuses = {
     "r1LongChordExclusion": "wired_evidence_path",
     "r1DiameterSeparationFillingObstruction": "discharge_target_interface_present_missing_evidence",
-    "r1UniformLocalTypeCapacity": "missing_evidence_boundary_locked",
+    "r1UniformLocalTypeCapacity": "discharge_target_interface_present_missing_evidence",
     "r1SourceToNativeCompatibility": "discharge_target_interface_present_missing_evidence",
 }
 if statuses != expected_statuses:
