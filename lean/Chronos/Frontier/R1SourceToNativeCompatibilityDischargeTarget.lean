@@ -16,6 +16,25 @@ structure R1SourceToNativeCompatibilityDischargeTarget : Type where
   r1SourceToNativeCompatibility : Prop
   sourceToNativeCompatibilityEvidence : r1SourceToNativeCompatibility
 
+
+/--
+Invariant shape for the future source-to-native compatibility evidence.
+
+This names the compatibility proposition that a future proof must discharge,
+without supplying evidence for that proposition.
+-/
+structure R1SourceToNativeCompatibilityInvariantShape (D : R1SemanticData) : Type where
+  source : R1ConcreteNewsteinFGLGeometrySourceObject
+  sourceToNativeCompatibilityInvariant : Prop
+
+/--
+The proposition carried by a source-to-native compatibility invariant shape.
+This is only the target proposition; it is not evidence for the target.
+-/
+def r1_source_to_native_compatibility_invariant_shape_target
+    (x : R1SourceToNativeCompatibilityInvariantShape D) : Prop :=
+  x.sourceToNativeCompatibilityInvariant
+
 /--
 The active boundary is that source-to-native compatibility has not yet been
 discharged for the concrete Newstein/FGL source object.
