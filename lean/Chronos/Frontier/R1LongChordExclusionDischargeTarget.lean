@@ -16,6 +16,21 @@ structure R1LongChordExclusionDischargeTarget (D : R1SemanticData) : Type where
   r1LongChordExclusion : Prop
   longChordExclusionEvidence : r1LongChordExclusion
 
+
+/--
+The concrete Newstein/FGL source object supplies a concrete long-chord discharge
+target by taking the already-proved semantic long-chord theorem as the named
+target proposition.
+-/
+def r1_concrete_newstein_fgl_source_long_chord_discharge_target
+    (x : R1ConcreteNewsteinFGLGeometrySourceObject) :
+    R1LongChordExclusionDischargeTarget R1ConcreteNativeSafeSemanticData where
+  source := x
+  r1LongChordExclusion :=
+    R1LongChordExclusionTheorem R1ConcreteNativeSafeSemanticData
+  longChordExclusionEvidence :=
+    r1_concrete_native_safe_long_chord_exclusion_from_concrete_newstein_fgl_source x
+
 /--
 The active boundary is that long-chord exclusion has not yet been discharged for
 the concrete Newstein/FGL source object.
