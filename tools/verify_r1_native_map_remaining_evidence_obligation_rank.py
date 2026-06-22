@@ -12,6 +12,7 @@ required_paths = [
     Path("lean/Chronos/Frontier/R1SourceToNativeCompatibilityDischargeTarget.lean"),
     Path("lean/Chronos/Frontier/R1DiameterSeparationFillingObstructionDischargeTarget.lean"),
     Path("lean/Chronos/Frontier/R1UniformLocalTypeCapacityDischargeTarget.lean"),
+    Path("tools/verify_r1_source_to_native_compatibility_invariant_shape.py"),
 ]
 
 for path in required_paths:
@@ -24,8 +25,8 @@ doc = doc_path.read_text()
 
 if artifact.get("status") != "R1_NATIVE_MAP_REMAINING_EVIDENCE_OBLIGATION_RANK":
     raise SystemExit("MISSING_OBJECT := status")
-if artifact.get("input_head") != "d35645cb":
-    raise SystemExit("MISSING_OBJECT := input_head_d35645cb")
+if artifact.get("input_head") != "e14a3781":
+    raise SystemExit("MISSING_OBJECT := input_head_e14a3781")
 if artifact.get("full_native_map_input_contract_discharged") is not False:
     raise SystemExit("BOUNDARY := unexpected_full_contract_discharge")
 if artifact.get("unconditional_non_factorization_theorem_proved") is not False:
@@ -66,6 +67,14 @@ for item, (rank, field, target, evidence) in zip(ranked, expected):
     if item.get("missing_evidence") != evidence:
         raise SystemExit(f"MISSING_OBJECT := {evidence}")
 
+source_item = ranked[0]
+if source_item.get("status") != "invariant_shape_present_missing_evidence":
+    raise SystemExit("MISSING_OBJECT := source_compatibility_invariant_shape_status")
+if source_item.get("invariant_shape") != "R1SourceToNativeCompatibilityInvariantShape":
+    raise SystemExit("MISSING_OBJECT := R1SourceToNativeCompatibilityInvariantShape")
+if source_item.get("invariant_target") != "r1_source_to_native_compatibility_invariant_shape_target":
+    raise SystemExit("MISSING_OBJECT := r1_source_to_native_compatibility_invariant_shape_target")
+
 decomposition_statuses = {
     field["field"]: field["status"]
     for field in decomposition.get("native_map_input_contract_fields", [])
@@ -78,9 +87,11 @@ required_doc_tokens = [
     "The full native-map input contract is not discharged.",
     "The unconditional non-factorization theorem is not proved.",
     "sourceToNativeCompatibilityEvidence",
+    "R1SourceToNativeCompatibilityInvariantShape",
+    "r1_source_to_native_compatibility_invariant_shape_target",
     "diameterSeparationFillingObstructionEvidence",
     "uniformLocalTypeCapacityEvidence",
-    "Introduce a source-to-native compatibility evidence shape",
+    "Connect the source-to-native compatibility invariant-shape target",
 ]
 
 missing_doc = [token for token in required_doc_tokens if token not in doc]

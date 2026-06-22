@@ -1,7 +1,7 @@
 {
   "status": "R1_NATIVE_MAP_REMAINING_EVIDENCE_OBLIGATION_RANK",
   "date": "2026-06-22",
-  "input_head": "d35645cb",
+  "input_head": "e14a3781",
   "full_native_map_input_contract_discharged": false,
   "unconditional_non_factorization_theorem_proved": false,
   "ranked_remaining_evidence_obligations": [
@@ -10,7 +10,10 @@
       "field": "r1SourceToNativeCompatibility",
       "target_interface": "R1SourceToNativeCompatibilityDischargeTarget",
       "missing_evidence": "sourceToNativeCompatibilityEvidence",
-      "reason_for_rank": "This is the glue obligation needed to transport concrete Newstein/FGL source data into the native-map input contract shape."
+      "reason_for_rank": "This is the glue obligation needed to transport concrete Newstein/FGL source data into the native-map input contract shape; its invariant shape is now named, but the evidence inhabiting that invariant is still missing.",
+      "status": "invariant_shape_present_missing_evidence",
+      "invariant_shape": "R1SourceToNativeCompatibilityInvariantShape",
+      "invariant_target": "r1_source_to_native_compatibility_invariant_shape_target"
     },
     {
       "rank": 2,
@@ -28,5 +31,5 @@
     }
   ],
   "boundary": "all three remaining evidence obligations are ranked only; no missing evidence is supplied",
-  "next_bounded_improvement": "introduce a source-to-native compatibility evidence shape that names the required compatibility invariant without proving it"
+  "next_bounded_improvement": "connect the source-to-native compatibility invariant-shape target to the source-to-native discharge-target proposition, without supplying evidence"
 }
