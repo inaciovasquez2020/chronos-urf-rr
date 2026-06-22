@@ -1,0 +1,32 @@
+{
+  "status": "R1_NATIVE_MAP_REMAINING_EVIDENCE_OBLIGATION_RANK",
+  "date": "2026-06-22",
+  "input_head": "d35645cb",
+  "full_native_map_input_contract_discharged": false,
+  "unconditional_non_factorization_theorem_proved": false,
+  "ranked_remaining_evidence_obligations": [
+    {
+      "rank": 1,
+      "field": "r1SourceToNativeCompatibility",
+      "target_interface": "R1SourceToNativeCompatibilityDischargeTarget",
+      "missing_evidence": "sourceToNativeCompatibilityEvidence",
+      "reason_for_rank": "This is the glue obligation needed to transport concrete Newstein/FGL source data into the native-map input contract shape."
+    },
+    {
+      "rank": 2,
+      "field": "r1DiameterSeparationFillingObstruction",
+      "target_interface": "R1DiameterSeparationFillingObstructionDischargeTarget",
+      "missing_evidence": "diameterSeparationFillingObstructionEvidence",
+      "reason_for_rank": "This is a geometric obstruction obligation and remains unproved even though its discharge-target interface exists."
+    },
+    {
+      "rank": 3,
+      "field": "r1UniformLocalTypeCapacity",
+      "target_interface": "R1UniformLocalTypeCapacityDischargeTarget",
+      "missing_evidence": "uniformLocalTypeCapacityEvidence",
+      "reason_for_rank": "This is a capacity-bound obligation and remains unproved even though its discharge-target interface exists."
+    }
+  ],
+  "boundary": "all three remaining evidence obligations are ranked only; no missing evidence is supplied",
+  "next_bounded_improvement": "introduce a source-to-native compatibility evidence shape that names the required compatibility invariant without proving it"
+}
