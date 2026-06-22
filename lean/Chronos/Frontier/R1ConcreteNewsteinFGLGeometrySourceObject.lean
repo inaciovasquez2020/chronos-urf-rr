@@ -49,3 +49,13 @@ def r1_native_geometry_input_object_to_concrete_newstein_fgl_geometry_source_obj
 
 end Frontier
 end Chronos
+
+namespace Chronos
+namespace Frontier
+
+/-- The concrete Newstein/FGL source object supplies the R1 long-chord theorem route for the already-restricted concrete safe semantic instance. This does not construct a concrete external source object. -/
+theorem r1_concrete_native_safe_long_chord_exclusion_from_concrete_newstein_fgl_source (x : R1ConcreteNewsteinFGLGeometrySourceObject) : R1LongChordExclusionTheorem R1ConcreteNativeSafeSemanticData :=
+  R1_LongChordExclusion_from_semantic_inputs R1ConcreteNativeSafeSemanticData (r1_concrete_newstein_fgl_geometry_source_object_to_native_geometry_input_object x)
+
+end Frontier
+end Chronos
