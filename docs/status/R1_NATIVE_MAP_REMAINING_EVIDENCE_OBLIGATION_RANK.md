@@ -4,7 +4,7 @@ Status: `R1_NATIVE_MAP_REMAINING_EVIDENCE_OBLIGATION_RANK`
 
 Date: 2026-06-22
 
-Input head: `e14a3781`
+Input head: `a1b631db`
 
 ## Boundary
 
@@ -25,11 +25,20 @@ any missing evidence.
 
    Invariant target: `r1_source_to_native_compatibility_invariant_shape_target`.
 
+   Evidence shape: `R1SourceToNativeCompatibilityEvidenceShape`.
+
+   Conditional discharge bridge:
+   `r1_source_to_native_compatibility_discharge_target_from_evidence_shape`.
+
+   Target projection:
+   `r1_source_to_native_compatibility_from_evidence_shape_target_eq`.
+
    Missing evidence field: `sourceToNativeCompatibilityEvidence`.
 
    Reason: this is the glue obligation needed to transport concrete
    Newstein/FGL source data into the native-map input contract shape. Its
-   invariant shape is now named, but evidence inhabiting that invariant is still
+   invariant shape and conditional evidence-shape-to-discharge-target bridge are
+   now named, but an inhabitant of the compatibility evidence shape is still
    missing.
 
 2. `r1DiameterSeparationFillingObstruction`
@@ -52,5 +61,6 @@ any missing evidence.
 
 ## Next bounded improvement
 
-Connect the source-to-native compatibility invariant-shape target to the
-source-to-native discharge-target proposition, without supplying evidence.
+Introduce a missing-inhabitant boundary lock for
+`R1SourceToNativeCompatibilityEvidenceShape`, without constructing an
+inhabitant.

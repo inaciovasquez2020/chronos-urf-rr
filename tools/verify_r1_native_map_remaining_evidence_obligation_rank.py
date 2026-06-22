@@ -13,6 +13,7 @@ required_paths = [
     Path("lean/Chronos/Frontier/R1DiameterSeparationFillingObstructionDischargeTarget.lean"),
     Path("lean/Chronos/Frontier/R1UniformLocalTypeCapacityDischargeTarget.lean"),
     Path("tools/verify_r1_source_to_native_compatibility_invariant_shape.py"),
+    Path("tools/verify_r1_source_to_native_compatibility_evidence_shape.py"),
 ]
 
 for path in required_paths:
@@ -25,8 +26,8 @@ doc = doc_path.read_text()
 
 if artifact.get("status") != "R1_NATIVE_MAP_REMAINING_EVIDENCE_OBLIGATION_RANK":
     raise SystemExit("MISSING_OBJECT := status")
-if artifact.get("input_head") != "e14a3781":
-    raise SystemExit("MISSING_OBJECT := input_head_e14a3781")
+if artifact.get("input_head") != "a1b631db":
+    raise SystemExit("MISSING_OBJECT := input_head_a1b631db")
 if artifact.get("full_native_map_input_contract_discharged") is not False:
     raise SystemExit("BOUNDARY := unexpected_full_contract_discharge")
 if artifact.get("unconditional_non_factorization_theorem_proved") is not False:
@@ -68,12 +69,18 @@ for item, (rank, field, target, evidence) in zip(ranked, expected):
         raise SystemExit(f"MISSING_OBJECT := {evidence}")
 
 source_item = ranked[0]
-if source_item.get("status") != "invariant_shape_present_missing_evidence":
-    raise SystemExit("MISSING_OBJECT := source_compatibility_invariant_shape_status")
+if source_item.get("status") != "evidence_shape_present_missing_inhabitant":
+    raise SystemExit("MISSING_OBJECT := source_compatibility_evidence_shape_status")
 if source_item.get("invariant_shape") != "R1SourceToNativeCompatibilityInvariantShape":
     raise SystemExit("MISSING_OBJECT := R1SourceToNativeCompatibilityInvariantShape")
 if source_item.get("invariant_target") != "r1_source_to_native_compatibility_invariant_shape_target":
     raise SystemExit("MISSING_OBJECT := r1_source_to_native_compatibility_invariant_shape_target")
+if source_item.get("evidence_shape") != "R1SourceToNativeCompatibilityEvidenceShape":
+    raise SystemExit("MISSING_OBJECT := R1SourceToNativeCompatibilityEvidenceShape")
+if source_item.get("conditional_discharge_bridge") != "r1_source_to_native_compatibility_discharge_target_from_evidence_shape":
+    raise SystemExit("MISSING_OBJECT := r1_source_to_native_compatibility_discharge_target_from_evidence_shape")
+if source_item.get("target_projection") != "r1_source_to_native_compatibility_from_evidence_shape_target_eq":
+    raise SystemExit("MISSING_OBJECT := r1_source_to_native_compatibility_from_evidence_shape_target_eq")
 
 decomposition_statuses = {
     field["field"]: field["status"]
@@ -89,9 +96,12 @@ required_doc_tokens = [
     "sourceToNativeCompatibilityEvidence",
     "R1SourceToNativeCompatibilityInvariantShape",
     "r1_source_to_native_compatibility_invariant_shape_target",
+    "R1SourceToNativeCompatibilityEvidenceShape",
+    "r1_source_to_native_compatibility_discharge_target_from_evidence_shape",
+    "r1_source_to_native_compatibility_from_evidence_shape_target_eq",
     "diameterSeparationFillingObstructionEvidence",
     "uniformLocalTypeCapacityEvidence",
-    "Connect the source-to-native compatibility invariant-shape target",
+    "Introduce a missing-inhabitant boundary lock",
 ]
 
 missing_doc = [token for token in required_doc_tokens if token not in doc]
