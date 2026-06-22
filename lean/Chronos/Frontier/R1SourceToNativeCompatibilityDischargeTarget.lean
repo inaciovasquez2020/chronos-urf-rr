@@ -35,6 +35,33 @@ def r1_source_to_native_compatibility_invariant_shape_target
     (x : R1SourceToNativeCompatibilityInvariantShape D) : Prop :=
   x.sourceToNativeCompatibilityInvariant
 
+
+/--
+A source-to-native compatibility discharge target determines the corresponding
+invariant-shape target proposition.
+
+This is only a proposition-level bridge; it does not supply evidence for source
+compatibility.
+-/
+def r1_source_to_native_compatibility_discharge_target_invariant_shape
+    (D : R1SemanticData)
+    (x : R1SourceToNativeCompatibilityDischargeTarget) :
+    R1SourceToNativeCompatibilityInvariantShape D where
+  source := x.source
+  sourceToNativeCompatibilityInvariant := x.r1SourceToNativeCompatibility
+
+/--
+The invariant-shape target proposition extracted from a discharge target is
+definitionally the discharge-target proposition.
+-/
+theorem r1_source_to_native_compatibility_discharge_target_invariant_shape_target_eq
+    (D : R1SemanticData)
+    (x : R1SourceToNativeCompatibilityDischargeTarget) :
+    r1_source_to_native_compatibility_invariant_shape_target
+      (r1_source_to_native_compatibility_discharge_target_invariant_shape D x) =
+      x.r1SourceToNativeCompatibility := by
+  rfl
+
 /--
 The active boundary is that source-to-native compatibility has not yet been
 discharged for the concrete Newstein/FGL source object.
