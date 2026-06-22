@@ -1,7 +1,7 @@
 {
   "status": "R1_NATIVE_MAP_INPUT_CONTRACT_DECOMPOSITION_STATUS",
   "date": "2026-06-22",
-  "input_head": "aa12399d",
+  "input_head": "b03a3481",
   "unconditional_non_factorization_theorem_proved": false,
   "full_native_map_input_contract_discharged": false,
   "native_map_input_contract_fields": [
@@ -23,16 +23,18 @@
     },
     {
       "field": "r1SourceToNativeCompatibility",
-      "status": "missing_evidence_boundary_locked",
-      "boundary_verifier": "tools/verify_r1_source_to_native_compatibility_missing_evidence_boundary.py"
+      "status": "discharge_target_interface_present_missing_evidence",
+      "boundary_verifier": "tools/verify_r1_source_to_native_compatibility_missing_evidence_boundary.py",
+      "target_interface": "R1SourceToNativeCompatibilityDischargeTarget",
+      "target_file": "lean/Chronos/Frontier/R1SourceToNativeCompatibilityDischargeTarget.lean"
     }
   ],
   "weakest_points_ranked": [
-    "source-to-native compatibility evidence",
+    "source-to-native compatibility evidence for the existing discharge target interface",
     "diameter-separation filling-obstruction evidence",
     "uniform local-type capacity evidence",
     "full native-map input-contract constructor"
   ],
   "boundary": "no full native-map input contract; no unconditional non-factorization theorem",
-  "next_bounded_improvement": "choose one missing evidence field and replace its missing-evidence boundary with the weakest concrete discharge target interface, without claiming evidence"
+  "next_bounded_improvement": "expose either diameter-separation or uniform-capacity with the same discharge-target interface status shape, without claiming evidence"
 }

@@ -9,6 +9,7 @@ source_files = {
     "input_contract": Path("lean/Chronos/Frontier/R1ConcreteNewsteinFGLToNativeMapInputContract.lean"),
     "diameter_target": Path("lean/Chronos/Frontier/R1DiameterSeparationFillingObstructionDischargeTarget.lean"),
     "uniform_target": Path("lean/Chronos/Frontier/R1UniformLocalTypeCapacityDischargeTarget.lean"),
+    "compatibility_target": Path("lean/Chronos/Frontier/R1SourceToNativeCompatibilityDischargeTarget.lean"),
 }
 
 tool_files = [
@@ -30,7 +31,7 @@ tools = "\n".join(path.read_text() for path in tool_files)
 
 required_artifact = {
     "status": "R1_NATIVE_MAP_INPUT_CONTRACT_DECOMPOSITION_STATUS",
-    "input_head": "aa12399d",
+    "input_head": "b03a3481",
     "unconditional_non_factorization_theorem_proved": False,
     "full_native_map_input_contract_discharged": False,
     "boundary": "no full native-map input contract; no unconditional non-factorization theorem",
@@ -68,7 +69,7 @@ expected_statuses = {
     "r1LongChordExclusion": "wired_evidence_path",
     "r1DiameterSeparationFillingObstruction": "missing_evidence_boundary_locked",
     "r1UniformLocalTypeCapacity": "missing_evidence_boundary_locked",
-    "r1SourceToNativeCompatibility": "missing_evidence_boundary_locked",
+    "r1SourceToNativeCompatibility": "discharge_target_interface_present_missing_evidence",
 }
 if statuses != expected_statuses:
     raise SystemExit("MISSING_OBJECT := exact_field_status_partition")
