@@ -1,0 +1,15 @@
+{
+  "status": "R1_SOURCE_TO_NATIVE_COMPATIBILITY_EVIDENCE_SHAPE_MISSING_INHABITANT_BOUNDARY",
+  "date": "2026-06-22",
+  "input_head": "63f2aa95",
+  "evidence_shape": "R1SourceToNativeCompatibilityEvidenceShape",
+  "invariant_shape": "R1SourceToNativeCompatibilityInvariantShape",
+  "target": "r1_source_to_native_compatibility_invariant_shape_target",
+  "conditional_discharge_bridge": "r1_source_to_native_compatibility_discharge_target_from_evidence_shape",
+  "missing_object": "inhabitant_of_R1SourceToNativeCompatibilityEvidenceShape",
+  "supplies_evidence": false,
+  "full_native_map_input_contract_discharged": false,
+  "unconditional_non_factorization_theorem_proved": false,
+  "boundary": "the evidence shape is named, but no inhabitant of the compatibility evidence shape is supplied",
+  "next_bounded_improvement": "connect this missing-inhabitant boundary back into the remaining-evidence obligation rank"
+}
