@@ -1,7 +1,7 @@
 {
   "status": "R1_NATIVE_MAP_INPUT_CONTRACT_DECOMPOSITION_STATUS",
   "date": "2026-06-22",
-  "input_head": "a60847f6",
+  "input_head": "8c486dfb",
   "unconditional_non_factorization_theorem_proved": false,
   "full_native_map_input_contract_discharged": false,
   "native_map_input_contract_fields": [
@@ -40,5 +40,12 @@
     "full native-map input-contract constructor"
   ],
   "boundary": "no full native-map input contract; no unconditional non-factorization theorem",
-  "next_bounded_improvement": "rank the three remaining evidence obligations now that all four native-map input-contract fields have explicit status entries"
+  "next_bounded_improvement": "make a source-to-native compatibility evidence-shape status that records the named invariant target and the missing inhabitant, without proving it",
+  "conditional_constructor_status": {
+    "status_artifact": "artifacts/chronos/r1_native_map_conditional_contract_constructor_status_2026_06_22.json",
+    "constructor": "r1_concrete_newstein_fgl_to_native_map_input_contract_from_aligned_discharge_targets",
+    "aligned_input_shape": "R1ConcreteNewsteinFGLToNativeMapAlignedDischargeTargets",
+    "status": "conditional_constructor_only",
+    "does_not_discharge_missing_evidence": true
+  }
 }

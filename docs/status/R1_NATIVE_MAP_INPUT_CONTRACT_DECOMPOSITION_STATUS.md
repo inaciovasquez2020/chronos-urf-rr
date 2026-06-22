@@ -4,7 +4,7 @@ Status: `R1_NATIVE_MAP_INPUT_CONTRACT_DECOMPOSITION_STATUS`
 
 Date: 2026-06-22
 
-Input head: `a60847f6`
+Input head: `8c486dfb`
 
 ## What is closed
 
@@ -15,6 +15,21 @@ The R1 long-chord field now has a positive wired path:
 - extraction of the long-chord component from the native-map input contract.
 
 This is a field-level contract decomposition only.
+
+## Conditional constructor
+
+The repository now has a conditional constructor:
+
+`r1_concrete_newstein_fgl_to_native_map_input_contract_from_aligned_discharge_targets`
+
+with aligned input shape:
+
+`R1ConcreteNewsteinFGLToNativeMapAlignedDischargeTargets`
+
+This constructor assembles a full native-map input contract only after all four
+evidence-bearing discharge targets have already been supplied and aligned. It
+does not discharge the missing evidence fields.
+
 
 ## What is still missing
 

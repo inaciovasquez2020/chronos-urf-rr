@@ -10,6 +10,7 @@ source_files = {
     "diameter_target": Path("lean/Chronos/Frontier/R1DiameterSeparationFillingObstructionDischargeTarget.lean"),
     "uniform_target": Path("lean/Chronos/Frontier/R1UniformLocalTypeCapacityDischargeTarget.lean"),
     "compatibility_target": Path("lean/Chronos/Frontier/R1SourceToNativeCompatibilityDischargeTarget.lean"),
+    "conditional_constructor": Path("lean/Chronos/Frontier/R1ConcreteNewsteinFGLToNativeMapInputContractFromTargets.lean"),
 }
 
 tool_files = [
@@ -18,6 +19,7 @@ tool_files = [
     Path("tools/verify_r1_diameter_separation_discharge_target_missing_evidence_boundary.py"),
     Path("tools/verify_r1_uniform_local_type_capacity_discharge_target_missing_evidence_boundary.py"),
     Path("tools/verify_r1_source_to_native_compatibility_missing_evidence_boundary.py"),
+    Path("tools/verify_r1_native_map_conditional_contract_constructor_status.py"),
 ]
 
 for path in [ART, DOC, *source_files.values(), *tool_files]:
@@ -31,7 +33,7 @@ tools = "\n".join(path.read_text() for path in tool_files)
 
 required_artifact = {
     "status": "R1_NATIVE_MAP_INPUT_CONTRACT_DECOMPOSITION_STATUS",
-    "input_head": "a60847f6",
+    "input_head": "8c486dfb",
     "unconditional_non_factorization_theorem_proved": False,
     "full_native_map_input_contract_discharged": False,
     "boundary": "no full native-map input contract; no unconditional non-factorization theorem",
@@ -55,6 +57,11 @@ required_tokens = [
     "R1_SOURCE_TO_NATIVE_COMPATIBILITY_MISSING_EVIDENCE_BOUNDARY_OK",
     "No full native-map input contract is proved.",
     "No unconditional non-factorization theorem is proved.",
+    "R1ConcreteNewsteinFGLToNativeMapAlignedDischargeTargets",
+    "r1_concrete_newstein_fgl_to_native_map_input_contract_from_aligned_discharge_targets",
+    "conditional_constructor_only",
+    "does_not_discharge_missing_evidence",
+    "R1_NATIVE_MAP_CONDITIONAL_CONTRACT_CONSTRUCTOR_STATUS_OK",
 ]
 
 haystack = "\n".join([json.dumps(artifact, sort_keys=True), doc, lean, tools])
@@ -75,6 +82,14 @@ expected_statuses = {
 }
 if statuses != expected_statuses:
     raise SystemExit("MISSING_OBJECT := exact_field_status_partition")
+
+conditional = artifact.get("conditional_constructor_status", {})
+if conditional.get("status") != "conditional_constructor_only":
+    raise SystemExit("MISSING_OBJECT := conditional_constructor_only")
+if conditional.get("does_not_discharge_missing_evidence") is not True:
+    raise SystemExit("BOUNDARY := conditional_constructor_claims_missing_evidence_discharge")
+if conditional.get("constructor") != "r1_concrete_newstein_fgl_to_native_map_input_contract_from_aligned_discharge_targets":
+    raise SystemExit("MISSING_OBJECT := conditional_constructor_name")
 
 for forbidden in [
     "\"full_native_map_input_contract_discharged\": true",
