@@ -62,6 +62,40 @@ theorem r1_source_to_native_compatibility_discharge_target_invariant_shape_targe
       x.r1SourceToNativeCompatibility := by
   rfl
 
+
+/--
+Evidence shape for the future source-to-native compatibility proof.
+
+This is conditional data only: it packages an invariant shape together with an
+inhabitant of its target proposition. It does not construct such an inhabitant.
+-/
+structure R1SourceToNativeCompatibilityEvidenceShape (D : R1SemanticData) : Type where
+  invariant : R1SourceToNativeCompatibilityInvariantShape D
+  compatibilityEvidence :
+    r1_source_to_native_compatibility_invariant_shape_target invariant
+
+/--
+A compatibility evidence shape conditionally supplies the corresponding
+source-to-native compatibility discharge target.
+-/
+def r1_source_to_native_compatibility_discharge_target_from_evidence_shape
+    (x : R1SourceToNativeCompatibilityEvidenceShape D) :
+    R1SourceToNativeCompatibilityDischargeTarget where
+  source := x.invariant.source
+  r1SourceToNativeCompatibility :=
+    r1_source_to_native_compatibility_invariant_shape_target x.invariant
+  sourceToNativeCompatibilityEvidence := x.compatibilityEvidence
+
+/--
+The discharge target obtained from an evidence shape has exactly the evidence
+shape's invariant target proposition.
+-/
+theorem r1_source_to_native_compatibility_from_evidence_shape_target_eq
+    (x : R1SourceToNativeCompatibilityEvidenceShape D) :
+    (r1_source_to_native_compatibility_discharge_target_from_evidence_shape x).r1SourceToNativeCompatibility =
+      r1_source_to_native_compatibility_invariant_shape_target x.invariant := by
+  rfl
+
 /--
 The active boundary is that source-to-native compatibility has not yet been
 discharged for the concrete Newstein/FGL source object.
