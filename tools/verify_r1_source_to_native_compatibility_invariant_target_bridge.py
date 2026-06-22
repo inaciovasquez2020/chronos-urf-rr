@@ -26,8 +26,11 @@ if missing:
     raise SystemExit("MISSING_OBJECT := " + missing[0])
 
 bridge_start = text.index("def r1_source_to_native_compatibility_discharge_target_invariant_shape")
-boundary_start = text.index("def r1_source_to_native_compatibility_discharge_target_boundary")
-bridge_block = text[bridge_start:boundary_start]
+if "structure R1SourceToNativeCompatibilityEvidenceShape" in text:
+    bridge_end = text.index("structure R1SourceToNativeCompatibilityEvidenceShape")
+else:
+    bridge_end = text.index("def r1_source_to_native_compatibility_discharge_target_boundary")
+bridge_block = text[bridge_start:bridge_end]
 
 for forbidden in [
     "sourceToNativeCompatibilityEvidence :=",
