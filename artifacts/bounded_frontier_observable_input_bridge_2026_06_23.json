@@ -1,0 +1,54 @@
+{
+  "id": "bounded_frontier_observable_input_bridge_2026_06_23",
+  "status": "BRIDGE_INPUTS_ONLY",
+  "selected_frontier_observable_target": {
+    "name": "finite_radial_signal_travel_time_bound",
+    "observable_kind": "time_of_flight",
+    "measured_quantity": "delta_t_seconds",
+    "input_units": {
+      "radius_meters": "m",
+      "signal_speed_meters_per_second": "m/s",
+      "delta_t_seconds": "s"
+    },
+    "narrow_analogy": "same bounded shape as V/I: fixed finite inputs -> computed scalar -> tolerance check"
+  },
+  "existing_pattern_source": {
+    "source_repository": "urf-templates",
+    "source_artifact": "examples/non_urf_scientific_claim_demo/artifacts/non_urf/ohms_law_fixed_observation_bound_2026_06_15.json",
+    "pattern": "finite observations only; compute scalar; compare against declared bound; state non-claims"
+  },
+  "frontier_mapping": {
+    "formal_input_surface": "finite radial signal observation input surface",
+    "observable_map": "delta_t_expected := radius_meters / signal_speed_meters_per_second",
+    "check": "abs(delta_t_seconds - delta_t_expected) / delta_t_expected <= relative_tolerance",
+    "relative_tolerance": 0.005
+  },
+  "observations": [
+    {
+      "label": "toy_fixed_input_1",
+      "radius_meters": 299792458.0,
+      "signal_speed_meters_per_second": 299792458.0,
+      "delta_t_seconds": 1.0
+    },
+    {
+      "label": "toy_fixed_input_2",
+      "radius_meters": 599584916.0,
+      "signal_speed_meters_per_second": 299792458.0,
+      "delta_t_seconds": 2.0
+    }
+  ],
+  "what_this_does": [
+    "records one narrow frontier-observable-style input bridge",
+    "checks finite positive input values",
+    "checks that declared time-of-flight observations match radius divided by signal speed within a fixed tolerance",
+    "copies the bounded-observable pattern, not the physical authority, of the Ohm's Law fixed-observation demo"
+  ],
+  "what_this_does_not_claim": [
+    "does not claim quantum gravity closure",
+    "does not claim empirical prediction discharge",
+    "does not claim scientific validation",
+    "does not claim a completed physics theory",
+    "does not claim mainstream acceptance",
+    "does not claim that compilation proves physical truth"
+  ]
+}
