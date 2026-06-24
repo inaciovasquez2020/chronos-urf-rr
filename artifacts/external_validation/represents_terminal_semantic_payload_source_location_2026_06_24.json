@@ -1,0 +1,37 @@
+{
+  "target": "REPRESENTS_TERMINAL_SEMANTIC_PAYLOAD_SOURCE_LOCATION",
+  "status": "candidate_located_not_realized",
+  "date": "2026-06-24",
+  "branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "literal_relation_search": {
+    "represents_terminal": "absent_from_non_status_source_tree",
+    "RepresentsTerminal": "absent_from_non_status_source_tree",
+    "representsTerminal": "absent_from_non_status_source_tree"
+  },
+  "candidate_source_locations": [
+    {
+      "file": "lean/Chronos/Frontier/R1R2R3SemanticTheoremProofTargets.lean",
+      "object": "R1SemanticData",
+      "role": "repository_native_semantic_payload_shape_for_word_edge_face_support"
+    },
+    {
+      "file": "lean/Chronos/Frontier/R1ConcreteSemanticDataInstance.lean",
+      "object": "R1ConcreteNativeSafeSemanticData",
+      "role": "concrete_safe_semantic_payload_instance"
+    },
+    {
+      "file": "lean/Chronos/Frontier/TerminalAdmissibleBoundaryChainCertificate.lean",
+      "object": "TerminalAdmissibleBoundaryChainCertificate",
+      "role": "terminal_boundary_chain_certificate_surface"
+    }
+  ],
+  "weakest_missing_object": "REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD_REALIZATION",
+  "boundary": [
+    "BOUNDARY := not represents_terminal_definition_found",
+    "BOUNDARY := not REPRESENTS_TERMINAL_SEMANTIC_PAYLOAD_SOURCE_realized",
+    "BOUNDARY := not REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD_REALIZATION_proved",
+    "BOUNDARY := not DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved_nonconditionally",
+    "BOUNDARY := not unrestricted_terminal_closure_proved_nonconditionally",
+    "BOUNDARY := not final_closure_claim_proved"
+  ]
+}
