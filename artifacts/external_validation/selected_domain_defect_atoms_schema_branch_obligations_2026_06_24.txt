@@ -1,0 +1,60 @@
+artifacts/external_validation/selected_domain_defect_atom_requirement_schema_2026_06_24.json
+artifacts/external_validation/selected_domain_defect_basis_2026_06_24.json
+artifacts/external_validation/selected_domain_defect_basis_branch_merge_readiness_2026_06_24.json
+artifacts/external_validation/selected_domain_defect_input_target_2026_06_24.json
+artifacts/external_validation/selected_domain_defect_obligation_matrix_2026_06_24.json
+artifacts/external_validation/selected_domain_defect_semantic_spec_2026_06_24.json
+docs/status/SELECTED_DOMAIN_DEFECT_ATOM_REQUIREMENT_SCHEMA_2026_06_24.md
+docs/status/SELECTED_DOMAIN_DEFECT_BASIS_2026_06_24.md
+docs/status/SELECTED_DOMAIN_DEFECT_BASIS_BRANCH_MERGE_READINESS_2026_06_24.md
+docs/status/SELECTED_DOMAIN_DEFECT_INPUT_TARGET_2026_06_24.md
+docs/status/SELECTED_DOMAIN_DEFECT_OBLIGATION_MATRIX_2026_06_24.md
+docs/status/SELECTED_DOMAIN_DEFECT_SEMANTIC_SPEC_2026_06_24.md
+tests/test_selected_domain_defect_atom_requirement_schema_2026_06_24.py
+tests/test_selected_domain_defect_basis_2026_06_24.py
+tests/test_selected_domain_defect_basis_branch_merge_readiness_2026_06_24.py
+tests/test_selected_domain_defect_input_target_2026_06_24.py
+tests/test_selected_domain_defect_obligation_matrix_2026_06_24.py
+tests/test_selected_domain_defect_semantic_spec_2026_06_24.py
+tools/verify_selected_domain_defect_atom_requirement_schema_2026_06_24.py
+tools/verify_selected_domain_defect_basis_2026_06_24.py
+tools/verify_selected_domain_defect_basis_branch_merge_readiness_2026_06_24.py
+tools/verify_selected_domain_defect_input_target_2026_06_24.py
+tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py
+tools/verify_selected_domain_defect_semantic_spec_2026_06_24.py
+docs/selected-domain-defect-atom-schema-2026-06-24:artifacts/external_validation/selected_domain_defect_atom_requirement_schema_2026_06_24.json:13:    "terminal_cardinality_defect",
+docs/selected-domain-defect-atom-schema-2026-06-24:artifacts/external_validation/selected_domain_defect_obligation_matrix_2026_06_24.json:8:      "atom_class": "terminal_cardinality_defect",
+docs/selected-domain-defect-atom-schema-2026-06-24:docs/status/SELECTED_DOMAIN_DEFECT_ATOM_REQUIREMENT_SCHEMA_2026_06_24.md:17:terminal_cardinality_defect
+docs/selected-domain-defect-atom-schema-2026-06-24:docs/status/SELECTED_DOMAIN_DEFECT_OBLIGATION_MATRIX_2026_06_24.md:14:| `terminal_cardinality_defect` | `terminal_cardinality` | `terminal_cardinality_of_defect_atoms` | missing |
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_atom_requirement_schema_2026_06_24.py:20:        "terminal_cardinality_defect",
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:23:assert rows["terminal_cardinality_defect"]["obligation"] == "terminal_cardinality"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:24:assert rows["terminal_cardinality_defect"]["required_theorem_shape"] == "terminal_cardinality_of_defect_atoms"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:25:assert rows["terminal_cardinality_defect"]["status"] == "missing"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:39:assert "terminal_cardinality_defect" in doc
+docs/selected-domain-defect-atom-schema-2026-06-24:artifacts/external_validation/selected_domain_defect_atom_requirement_schema_2026_06_24.json:14:    "selected_domain_reentry_defect",
+docs/selected-domain-defect-atom-schema-2026-06-24:artifacts/external_validation/selected_domain_defect_obligation_matrix_2026_06_24.json:14:      "atom_class": "selected_domain_reentry_defect",
+docs/selected-domain-defect-atom-schema-2026-06-24:docs/status/SELECTED_DOMAIN_DEFECT_ATOM_REQUIREMENT_SCHEMA_2026_06_24.md:18:selected_domain_reentry_defect
+docs/selected-domain-defect-atom-schema-2026-06-24:docs/status/SELECTED_DOMAIN_DEFECT_OBLIGATION_MATRIX_2026_06_24.md:15:| `selected_domain_reentry_defect` | `zero_implies_selected_domain_reentry` | `zero_defects_imply_selected_domain_reentry` | missing |
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_atom_requirement_schema_2026_06_24.py:21:        "selected_domain_reentry_defect",
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:27:assert rows["selected_domain_reentry_defect"]["obligation"] == "zero_implies_selected_domain_reentry"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:28:assert rows["selected_domain_reentry_defect"]["required_theorem_shape"] == "zero_defects_imply_selected_domain_reentry"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:29:assert rows["selected_domain_reentry_defect"]["status"] == "missing"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:40:assert "selected_domain_reentry_defect" in doc
+docs/selected-domain-defect-atom-schema-2026-06-24:artifacts/external_validation/selected_domain_defect_atom_requirement_schema_2026_06_24.json:15:    "repair_step_compatibility_defect",
+docs/selected-domain-defect-atom-schema-2026-06-24:artifacts/external_validation/selected_domain_defect_obligation_matrix_2026_06_24.json:20:      "atom_class": "repair_step_compatibility_defect",
+docs/selected-domain-defect-atom-schema-2026-06-24:docs/status/SELECTED_DOMAIN_DEFECT_ATOM_REQUIREMENT_SCHEMA_2026_06_24.md:19:repair_step_compatibility_defect
+docs/selected-domain-defect-atom-schema-2026-06-24:docs/status/SELECTED_DOMAIN_DEFECT_OBLIGATION_MATRIX_2026_06_24.md:16:| `repair_step_compatibility_defect` | `repair_step_compatibility` | `repair_step_decreases_or_preserves_defect_atoms` | missing |
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_atom_requirement_schema_2026_06_24.py:22:        "repair_step_compatibility_defect",
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:31:assert rows["repair_step_compatibility_defect"]["obligation"] == "repair_step_compatibility"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:32:assert rows["repair_step_compatibility_defect"]["required_theorem_shape"] == "repair_step_decreases_or_preserves_defect_atoms"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:33:assert rows["repair_step_compatibility_defect"]["status"] == "missing"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:41:assert "repair_step_compatibility_defect" in doc
+docs/selected-domain-defect-atom-schema-2026-06-24:artifacts/external_validation/selected_domain_defect_atom_requirement_schema_2026_06_24.json:16:    "normalization_transfer_defect"
+docs/selected-domain-defect-atom-schema-2026-06-24:artifacts/external_validation/selected_domain_defect_obligation_matrix_2026_06_24.json:26:      "atom_class": "normalization_transfer_defect",
+docs/selected-domain-defect-atom-schema-2026-06-24:docs/status/SELECTED_DOMAIN_DEFECT_ATOM_REQUIREMENT_SCHEMA_2026_06_24.md:20:normalization_transfer_defect
+docs/selected-domain-defect-atom-schema-2026-06-24:docs/status/SELECTED_DOMAIN_DEFECT_OBLIGATION_MATRIX_2026_06_24.md:17:| `normalization_transfer_defect` | `normalization_transfer` | `defect_atoms_transfer_through_terminal_normalization` | missing |
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_atom_requirement_schema_2026_06_24.py:23:        "normalization_transfer_defect",
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:35:assert rows["normalization_transfer_defect"]["obligation"] == "normalization_transfer"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:36:assert rows["normalization_transfer_defect"]["required_theorem_shape"] == "defect_atoms_transfer_through_terminal_normalization"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:37:assert rows["normalization_transfer_defect"]["status"] == "missing"
+docs/selected-domain-defect-atom-schema-2026-06-24:tools/verify_selected_domain_defect_obligation_matrix_2026_06_24.py:42:assert "normalization_transfer_defect" in doc
