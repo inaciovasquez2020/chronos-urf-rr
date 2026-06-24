@@ -1,0 +1,58 @@
+{
+  "status_id": "SELECTED_DOMAIN_DEFECT_INPUT_TARGET_2026_06_24",
+  "created_at": "2026-06-24",
+  "parent_status": "UNRESTRICTED_WITNESS_CARRIER_INPUT_TARGET_2026_06_24",
+  "executable_simulation": false,
+  "definitions": {
+    "SelectedDomainDefect": {
+      "kind": "input_carrier",
+      "role": "finite atom type measuring why an unrestricted terminal witness is not selected-domain representable"
+    },
+    "defect_atoms": {
+      "type": "W_unrestricted -> Finset SelectedDomainDefect",
+      "role": "finite selected-domain defect support"
+    },
+    "selected_domain_defect": {
+      "definition": "selected_domain_defect(w) := (defect_atoms(w)).card",
+      "type": "W_unrestricted -> Nat"
+    }
+  },
+  "blocked_proof_targets": {
+    "defect_zero_implies_selected_domain_representable": {
+      "statement": "forall w, terminal_unrestricted(w) -> selected_domain_defect(w) = 0 -> selected_domain_representable(w)",
+      "status": "blocked",
+      "first_missing_object": "SelectedDomainDefect_zero_completeness_spec"
+    },
+    "defect_positive_has_terminal_repair": {
+      "statement": "forall w, terminal_unrestricted(w) -> selected_domain_defect(w) != 0 -> exists d in defect_atoms(w), repairable_selected_domain_defect(w,d)",
+      "status": "blocked",
+      "first_missing_object": "SelectedDomainDefect_positive_repair_spec"
+    }
+  },
+  "weakest_missing_object": {
+    "name": "SELECTED_DOMAIN_DEFECT_SEMANTIC_SPEC",
+    "statement": "finite defect atoms are complete for selected-domain representability at zero and repairable whenever nonzero",
+    "components": [
+      "SelectedDomainDefect_zero_completeness_spec",
+      "SelectedDomainDefect_positive_repair_spec"
+    ]
+  },
+  "boundaries": [
+    "BOUNDARY := not defect_zero_implies_selected_domain_representable_proved",
+    "BOUNDARY := not defect_positive_has_terminal_repair_proved",
+    "BOUNDARY := not SELECTED_DOMAIN_DEFECT_BASIS_proved",
+    "BOUNDARY := not unrestricted_terminal_closure_proved"
+  ],
+  "claim_boundary": {
+    "does_claim": [
+      "bounded selected-domain defect input target",
+      "records formal names for SelectedDomainDefect, defect_atoms, and selected_domain_defect"
+    ],
+    "does_not_claim": [
+      "defect_zero_implies_selected_domain_representable proved",
+      "defect_positive_has_terminal_repair proved",
+      "SELECTED_DOMAIN_DEFECT_BASIS proved",
+      "unrestricted terminal closure"
+    ]
+  }
+}
