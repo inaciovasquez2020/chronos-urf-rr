@@ -1,0 +1,33 @@
+# SELECTED_DOMAIN_FINAL_CONDITIONAL_CLOSURE_BRIDGE_2026_06_24
+
+## Status
+
+`SELECTED_DOMAIN_FINAL_CONDITIONAL_CLOSURE_BRIDGE_2026_06_24_OK`
+
+This layer adds a bounded final bridge interface from:
+
+```text
+SelectedDomainRepairDescentZeroDefectReentryNormalizationFinalClosureOblivionClosureTargetPrefix
+SelectedDomainDefectAtomsConstructionTarget
+to the existing conditional closure theorem surface.
+Lean file
+lean/Chronos/Frontier/SelectedDomainFinalConditionalClosureBridge.lean
+New bridge interface
+SelectedDomainFinalConditionalClosureBridge
+Constructed conditional bundle
+SelectedDomainDefectSemanticComponentTargets
+Conditional closure surface
+unrestricted_oblivion_atom_closure_statement_from_final_bridge
+This surface is conditional on the final bridge interface.
+Defect-atoms surfaces preserved through bridge
+defect_atoms_construction_statement_from_final_bridge
+terminal_cardinality_of_defect_atoms_from_final_bridge
+zero_defects_imply_selected_domain_reentry_from_final_bridge
+repair_step_decreases_or_preserves_defect_atoms_from_final_bridge
+defect_atoms_transfer_through_terminal_normalization_from_final_bridge
+Boundary preserved
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+This does not prove unconditional unrestricted Oblivion Atom closure.
+This does not claim that unrestricted Oblivion Atom closure is solved unconditionally.
+Weakest remaining point
+unconditional_unrestricted_oblivion_atom_closure_solved
