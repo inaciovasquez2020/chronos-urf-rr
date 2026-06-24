@@ -1,0 +1,40 @@
+# SELECTED_DOMAIN_DEFECT_TERMINAL_CLOSURE_ASSUMPTION_DISCHARGE_2026_06_24
+
+## Status
+
+`component_discharge_constructs_stack_assumptions`
+
+This lowers the previous conditional stack from one assumption bundle to a named
+component-discharge package.
+
+## Component package
+
+```text
+SelectedDomainDefectTerminalClosureComponentDischarge
+Constructed package
+SelectedDomainDefectTerminalClosureStackAssumptions
+Constructor:
+terminal_closure_stack_assumptions_from_component_discharge
+Proved theorem names
+repair_descent_theorem_from_component_discharge
+zero_defect_selected_domain_reentry_from_component_discharge
+unrestricted_terminal_normalization_from_component_discharge
+final_closure_from_component_discharge
+unrestricted_oblivion_atom_closure_from_component_discharge
+Remaining semantic fields
+repair_descent_discharge
+zero_defect_selected_domain_reentry_discharge
+unrestricted_terminal_normalization_discharge
+final_closure_discharge
+unrestricted_oblivion_atom_closure_discharge
+Boundary
+BOUNDARY := conditional_on_SelectedDomainDefectTerminalClosureComponentDischarge
+BOUNDARY := not semantic_component_discharges_constructed
+BOUNDARY := not defect_atoms_constructed
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+Not claimed
+semantic component discharges constructed
+defect_atoms constructed
+unconditional unrestricted Oblivion Atom closure solved
+Verifier token
+SELECTED_DOMAIN_DEFECT_TERMINAL_CLOSURE_ASSUMPTION_DISCHARGE_2026_06_24_OK
