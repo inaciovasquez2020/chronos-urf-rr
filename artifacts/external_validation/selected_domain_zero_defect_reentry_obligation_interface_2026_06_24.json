@@ -1,0 +1,38 @@
+{
+  "artifact": "SELECTED_DOMAIN_ZERO_DEFECT_REENTRY_OBLIGATION_INTERFACE_2026_06_24",
+  "date": "2026-06-24",
+  "repo": "chronos-urf-rr",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "input_head": "b9b852a5",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainZeroDefectReentryObligationInterface.lean",
+  "purpose": "Refine exactly one semantic target, SelectedDomainZeroDefectReentryComponentTarget, into a bounded obligation interface dependent on the repair-descent statement.",
+  "refined_semantic_target": "SelectedDomainZeroDefectReentryComponentTarget",
+  "obligation_interface": "SelectedDomainZeroDefectReentryObligationInterface",
+  "dependent_stack_prefix": "SelectedDomainRepairDescentZeroDefectReentryTargetPrefix",
+  "bridges": [
+    "selected_domain_zero_defect_reentry_component_target_from_obligation_interface",
+    "selected_domain_zero_defect_reentry_component_from_target_prefix",
+    "selected_domain_repair_descent_zero_defect_reentry_prefix_from_obligation_interfaces"
+  ],
+  "theorem_surfaces": [
+    "zero_defect_selected_domain_reentry_statement_from_obligation_interface",
+    "zero_defect_selected_domain_reentry_statement_from_target_prefix"
+  ],
+  "already_refined_semantic_targets": [
+    "SelectedDomainRepairDescentComponentTarget",
+    "SelectedDomainZeroDefectReentryComponentTarget"
+  ],
+  "unchanged_semantic_targets": [
+    "SelectedDomainUnrestrictedTerminalNormalizationComponentTarget",
+    "SelectedDomainFinalClosureComponentTarget",
+    "SelectedDomainUnrestrictedOblivionClosureComponentTarget"
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not unrestricted_terminal_normalization_component_target_refined",
+    "BOUNDARY := not final_closure_component_target_refined",
+    "BOUNDARY := not unrestricted_oblivion_closure_component_target_refined",
+    "BOUNDARY := not defect_atoms_constructed",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "status": "zero_defect_reentry_obligation_interface_verified"
+}
