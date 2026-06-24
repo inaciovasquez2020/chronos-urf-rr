@@ -1,0 +1,29 @@
+# SELECTED_DOMAIN_UNCONDITIONAL_CLOSURE_SOLVED_FROM_CONSTRUCTOR_TARGET_2026_06_24
+
+## Status
+
+`SELECTED_DOMAIN_UNCONDITIONAL_CLOSURE_SOLVED_FROM_CONSTRUCTOR_TARGET_2026_06_24_OK`
+
+This layer adds the strongest bounded bridge from:
+
+```text
+selected_domain_unconditional_closure_constructor_target_constructed
+to the selected-domain unrestricted Oblivion closure theorem surface.
+Lean file
+lean/Chronos/Frontier/SelectedDomainUnconditionalClosureSolvedFromConstructorTarget.lean
+New solved-target surface
+SelectedDomainUnconditionalUnrestrictedOblivionAtomClosureSolvedFromConstructorTarget
+Required input
+constructor_target : SelectedDomainUnconditionalClosureConstructorTarget
+Theorem surfaces
+defect_atoms_construction_statement_from_solved_surface
+unrestricted_oblivion_atom_closure_statement_from_solved_surface
+selected_domain_unconditional_unrestricted_oblivion_atom_closure_solved_if_constructor_target_constructed
+Boundary preserved
+BOUNDARY := not selected_domain_unconditional_closure_constructor_target_constructed
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+This does not construct SelectedDomainUnconditionalClosureConstructorTarget.
+This does not prove unconditional unrestricted Oblivion Atom closure.
+This proves only the conditional bridge: if the constructor target is supplied, then the selected-domain closure surface follows.
+Weakest remaining point
+selected_domain_unconditional_closure_constructor_target_constructed
