@@ -1,0 +1,50 @@
+{
+  "status_id": "UNRESTRICTED_WITNESS_CARRIER_INPUT_TARGET_2026_06_24",
+  "created_at": "2026-06-24",
+  "parent_status": "SELECTED_DOMAIN_DEFECT_BASIS_2026_06_24",
+  "target": "create unrestricted witness carrier interface needed before SelectedDomainDefect can be formalized",
+  "executable_simulation": false,
+  "carrier_surface": {
+    "carrier": "W_unrestricted",
+    "terminal_predicate": "terminal_unrestricted",
+    "selected_domain_representability_predicate": "selected_domain_representable",
+    "normalization_relation": "normalization_relation",
+    "discharge_equivalence": "discharge_equivalent",
+    "discharge_predicate": "discharged_unrestricted"
+  },
+  "required_next_object": {
+    "name": "SelectedDomainDefect",
+    "depends_on": [
+      "W_unrestricted",
+      "terminal_unrestricted",
+      "selected_domain_representable",
+      "normalization_relation",
+      "discharge_equivalent",
+      "discharged_unrestricted"
+    ]
+  },
+  "weakest_missing_object": {
+    "name": "SELECTED_DOMAIN_DEFECT_BASIS",
+    "statement": "exists defect_atoms : W_unrestricted -> Finset SelectedDomainDefect, forall w : W_unrestricted, terminal_unrestricted(w) -> selected_domain_defect(w) = (defect_atoms(w)).card and (selected_domain_defect(w) = 0 -> selected_domain_representable(w)) and (selected_domain_defect(w) != 0 -> exists d in defect_atoms(w), repairable_selected_domain_defect(w,d))"
+  },
+  "boundaries": [
+    "BOUNDARY := not SelectedDomainDefect_defined",
+    "BOUNDARY := not defect_atoms_defined",
+    "BOUNDARY := not selected_domain_defect_defined",
+    "BOUNDARY := not SELECTED_DOMAIN_DEFECT_BASIS_proved",
+    "BOUNDARY := not unrestricted_terminal_closure_proved"
+  ],
+  "claim_boundary": {
+    "does_claim": [
+      "bounded unrestricted witness carrier input target",
+      "names the carrier predicates needed for the selected-domain defect basis"
+    ],
+    "does_not_claim": [
+      "SelectedDomainDefect defined",
+      "defect_atoms defined",
+      "selected_domain_defect defined",
+      "SELECTED_DOMAIN_DEFECT_BASIS proved",
+      "unrestricted terminal closure"
+    ]
+  }
+}
