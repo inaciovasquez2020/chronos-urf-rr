@@ -1,0 +1,53 @@
+{
+  "status_id": "DEFECT_REPAIR_NORMALIZATION_TARGET_2026_06_24",
+  "created_at": "2026-06-24",
+  "parent_status": "SELECTED_DOMAIN_DEFECT_SEMANTIC_SPEC_2026_06_24",
+  "executable_simulation": false,
+  "repair_descent_spec": {
+    "name": "defect_repair_decreases_selected_domain_defect",
+    "statement": "forall w d, terminal_unrestricted(w) -> d in defect_atoms(w) -> repairable_selected_domain_defect(w,d) -> exists w', terminal_unrestricted(w') and normalization_step(w,w') and discharge_equivalent(w',w) and selected_domain_defect(w') < selected_domain_defect(w)",
+    "status": "closed_conditionally_by_repair_descent_spec"
+  },
+  "derived_targets": {
+    "UNRESTRICTED_TERMINAL_NORMALIZATION_STEP_RULE": {
+      "status": "closed_conditionally",
+      "uses": [
+        "defect_positive_has_terminal_repair",
+        "defect_repair_decreases_selected_domain_defect"
+      ]
+    },
+    "UNRESTRICTED_TERMINAL_NORMALIZATION_RELATION_TOTAL": {
+      "status": "blocked",
+      "first_missing_object": "UNRESTRICTED_TERMINAL_NORMALIZATION_BASE_SELECTED"
+    },
+    "UNRESTRICTED_TERMINAL_NORMAL_FORM_CONSTRUCTOR": {
+      "status": "unreachable_until_normalization_relation_total"
+    },
+    "unrestricted_terminal_closure": {
+      "status": "blocked"
+    }
+  },
+  "weakest_missing_object": {
+    "name": "UNRESTRICTED_TERMINAL_NORMALIZATION_BASE_SELECTED",
+    "statement": "forall w, terminal_unrestricted(w) -> selected_domain_defect(w) = 0 -> exists nf : W_T, selected_domain(nf) and terminal_T(nf) and represents_terminal(nf,w) and normalization_relation(w,nf)",
+    "role": "base case needed for well-founded induction on selected_domain_defect"
+  },
+  "boundaries": [
+    "BOUNDARY := not UNRESTRICTED_TERMINAL_NORMALIZATION_BASE_SELECTED_proved",
+    "BOUNDARY := not UNRESTRICTED_TERMINAL_NORMALIZATION_RELATION_TOTAL_proved",
+    "BOUNDARY := not UNRESTRICTED_TERMINAL_NORMAL_FORM_CONSTRUCTOR_defined",
+    "BOUNDARY := not unrestricted_terminal_closure_proved"
+  ],
+  "claim_boundary": {
+    "does_claim": [
+      "bounded repair-descent target",
+      "normalization step rule closed conditionally by repair descent spec"
+    ],
+    "does_not_claim": [
+      "unrestricted terminal normalization relation total",
+      "unrestricted terminal normal form constructor",
+      "unrestricted terminal closure",
+      "final proof of terminal_closure"
+    ]
+  }
+}
