@@ -1,4 +1,5 @@
 import Chronos.Frontier.R1ConcreteNewsteinFGLToNativeMapInputContract
+import Chronos.Frontier.FourBridgesRegistryIntegration
 
 namespace Chronos
 namespace Frontier
@@ -94,6 +95,32 @@ theorem r1_source_to_native_compatibility_from_evidence_shape_target_eq
     (x : R1SourceToNativeCompatibilityEvidenceShape D) :
     (r1_source_to_native_compatibility_discharge_target_from_evidence_shape x).r1SourceToNativeCompatibility =
       r1_source_to_native_compatibility_invariant_shape_target x.invariant := by
+  rfl
+
+/--
+An external Four Bridges source conditionally supplies a source-to-native
+compatibility discharge target for the concrete Newstein/FGL source object by
+using the repository-native R1/R2/R3 instance target supplied by the bridge
+package.
+
+This does not install an active bridge registry instance and does not prove an
+unconditional native source-to-native compatibility theorem.
+-/
+def r1_source_to_native_compatibility_discharge_target_from_4bS
+    (x : R1ConcreteNewsteinFGLGeometrySourceObject)
+    (bridges : FourBridgesSource) :
+    R1SourceToNativeCompatibilityDischargeTarget where
+  source := x
+  r1SourceToNativeCompatibility :=
+    RepositoryNativeR1R2R3InstanceTarget
+  sourceToNativeCompatibilityEvidence :=
+    RepositoryNativeR1R2R3InstanceTarget_from_4bS bridges
+
+theorem r1_source_to_native_compatibility_discharge_target_from_4bS_target_eq
+    (x : R1ConcreteNewsteinFGLGeometrySourceObject)
+    (bridges : FourBridgesSource) :
+    (r1_source_to_native_compatibility_discharge_target_from_4bS x bridges).r1SourceToNativeCompatibility =
+      RepositoryNativeR1R2R3InstanceTarget := by
   rfl
 
 /--
