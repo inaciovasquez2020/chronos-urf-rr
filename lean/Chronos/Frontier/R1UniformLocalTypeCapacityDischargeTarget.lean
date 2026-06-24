@@ -34,7 +34,7 @@ def r1_uniform_local_type_capacity_discharge_target_from_4bS
   uniformLocalTypeCapacityEvidence :=
     R3_from_4bS bridges
 
-theorem r1_uniform_local_type_capacity_discharge_target_from_4bS_target_eq
+theorem r1_uniform_target_from_4bS_eq
     (x : R1ConcreteNewsteinFGLGeometrySourceObject)
     (bridges : FourBridgesSource) :
     (r1_uniform_local_type_capacity_discharge_target_from_4bS x bridges).r1UniformLocalTypeCapacity =

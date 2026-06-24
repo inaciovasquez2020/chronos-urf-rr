@@ -35,7 +35,7 @@ def r1_diameter_separation_filling_obstruction_discharge_target_from_finite_data
   diameterSeparationFillingObstructionEvidence :=
     r2_native_target_from_finite_data_promotion_assumption hR2
 
-theorem r1_diameter_separation_filling_obstruction_discharge_target_from_finite_data_promotion_assumption_target_eq
+theorem r1_diameter_target_from_finite_data_promotion_assumption_eq
     (x : R1ConcreteNewsteinFGLGeometrySourceObject)
     (hR2 : R2FiniteDataToGeneralProofPromotionAssumption) :
     (r1_diameter_separation_filling_obstruction_discharge_target_from_finite_data_promotion_assumption x hR2).r1DiameterSeparationFillingObstruction =
@@ -60,7 +60,7 @@ def r1_diameter_separation_filling_obstruction_discharge_target_from_4bS
   diameterSeparationFillingObstructionEvidence :=
     R2_from_4bS bridges
 
-theorem r1_diameter_separation_filling_obstruction_discharge_target_from_4bS_target_eq
+theorem r1_diameter_target_from_4bS_eq
     (x : R1ConcreteNewsteinFGLGeometrySourceObject)
     (bridges : FourBridgesSource) :
     (r1_diameter_separation_filling_obstruction_discharge_target_from_4bS x bridges).r1DiameterSeparationFillingObstruction =
