@@ -1,0 +1,35 @@
+# REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD_REALIZATION_DECOMPOSITION
+
+Status: `partial_decomposition_recorded_not_realized`.
+
+The repository-native discharge-field realization surface decomposes through:
+
+```text
+file := lean/Chronos/Frontier/R1ConcreteNewsteinFGLToNativeMapInputContract.lean
+object := R1ConcreteNewsteinFGLToNativeMapInputContract
+The full contract has four evidence-bearing fields:
+r1LongChordExclusion
+r1DiameterSeparationFillingObstruction
+r1UniformLocalTypeCapacity
+r1SourceToNativeCompatibility
+One field is already realized for the concrete safe semantic instance:
+file := lean/Chronos/Frontier/R1LongChordExclusionDischargeTarget.lean
+object := r1_concrete_newstein_fgl_source_long_chord_discharge_target
+field := r1LongChordExclusion
+status := realized_for_R1ConcreteNativeSafeSemanticData
+Three fields remain unrealized:
+field := r1DiameterSeparationFillingObstruction
+boundary := NO_DISCHARGED_R1_DIAMETER_SEPARATION_FILLING_OBSTRUCTION_FOR_CONCRETE_NEWSTEIN_FGL_SOURCE_OBJECT
+field := r1UniformLocalTypeCapacity
+boundary := NO_DISCHARGED_R1_UNIFORM_LOCAL_TYPE_CAPACITY_FOR_CONCRETE_NEWSTEIN_FGL_SOURCE_OBJECT
+field := r1SourceToNativeCompatibility
+boundary := NO_DISCHARGED_R1_SOURCE_TO_NATIVE_COMPATIBILITY_FOR_CONCRETE_NEWSTEIN_FGL_SOURCE_OBJECT
+Weakest missing object:
+R1DiameterSeparationFillingObstructionDischargeTarget evidence for concrete Newstein/FGL source object
+BOUNDARY := not REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD_REALIZATION_proved
+BOUNDARY := not R1DiameterSeparationFillingObstructionDischargeTarget_evidence_supplied
+BOUNDARY := not R1UniformLocalTypeCapacityDischargeTarget_evidence_supplied
+BOUNDARY := not R1SourceToNativeCompatibilityDischargeTarget_evidence_supplied
+BOUNDARY := not DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved_nonconditionally
+BOUNDARY := not unrestricted_terminal_closure_proved_nonconditionally
+BOUNDARY := not final_closure_claim_proved
