@@ -1,0 +1,35 @@
+{
+  "artifact": "SELECTED_DOMAIN_UNCONDITIONAL_CLOSURE_CONSTRUCTOR_OBLIGATION_MATRIX_2026_06_24",
+  "date": "2026-06-24",
+  "repo": "chronos-urf-rr",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "input_head": "b38c151f",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainUnconditionalClosureConstructorObligationMatrix.lean",
+  "purpose": "Add a constructor-obligation matrix for SelectedDomainUnconditionalClosureConstructorTarget and split the remaining construction into semantic_prefix_constructor_target and defect_atoms_constructor_target.",
+  "obligation_matrix": "SelectedDomainUnconditionalClosureConstructorObligationMatrix",
+  "split_obligations": [
+    "semantic_prefix_constructor_target",
+    "defect_atoms_constructor_target"
+  ],
+  "constructed_targets": [
+    "SelectedDomainUnconditionalClosureConstructorTarget",
+    "SelectedDomainUnconditionalClosureConstructionInput",
+    "SelectedDomainFinalConditionalClosureBridge",
+    "SelectedDomainDefectSemanticComponentTargets",
+    "SelectedDomainUnconditionalUnrestrictedOblivionAtomClosureSolvedFromConstructorTarget"
+  ],
+  "theorem_surfaces": [
+    "defect_atoms_construction_statement_from_obligation_matrix",
+    "terminal_cardinality_of_defect_atoms_from_obligation_matrix",
+    "zero_defects_imply_selected_domain_reentry_from_obligation_matrix",
+    "repair_step_decreases_or_preserves_defect_atoms_from_obligation_matrix",
+    "defect_atoms_transfer_through_terminal_normalization_from_obligation_matrix",
+    "selected_domain_unconditional_unrestricted_oblivion_atom_closure_solved_from_obligation_matrix"
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not selected_domain_unconditional_closure_constructor_obligation_matrix_constructed",
+    "BOUNDARY := not selected_domain_unconditional_closure_constructor_target_constructed_without_matrix",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "status": "unconditional_closure_constructor_obligation_matrix_verified"
+}

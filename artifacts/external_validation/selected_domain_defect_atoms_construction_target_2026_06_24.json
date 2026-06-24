@@ -1,0 +1,30 @@
+{
+  "artifact": "SELECTED_DOMAIN_DEFECT_ATOMS_CONSTRUCTION_TARGET_2026_06_24",
+  "date": "2026-06-24",
+  "repo": "chronos-urf-rr",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "input_head": "54098552",
+  "schema_branch": "docs/selected-domain-defect-atom-schema-2026-06-24",
+  "schema_branch_head": "8bbeca9b",
+  "schema_record": "artifacts/external_validation/selected_domain_defect_atoms_schema_branch_obligations_2026_06_24.txt",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainDefectAtomsConstructionTarget.lean",
+  "purpose": "Add a bounded defect_atoms construction target/interface and connect it to the already-recorded defect atom schema branch obligation matrix.",
+  "construction_target": "SelectedDomainDefectAtomsConstructionTarget",
+  "schema_obligation_connections": [
+    "terminal_cardinality_defect -> terminal_cardinality_of_defect_atoms",
+    "selected_domain_reentry_defect -> zero_defects_imply_selected_domain_reentry",
+    "repair_step_compatibility_defect -> repair_step_decreases_or_preserves_defect_atoms",
+    "normalization_transfer_defect -> defect_atoms_transfer_through_terminal_normalization"
+  ],
+  "theorem_surfaces": [
+    "defect_atoms_construction_statement_from_target",
+    "terminal_cardinality_of_defect_atoms_from_construction_target",
+    "zero_defects_imply_selected_domain_reentry_from_construction_target",
+    "repair_step_decreases_or_preserves_defect_atoms_from_construction_target",
+    "defect_atoms_transfer_through_terminal_normalization_from_construction_target"
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "status": "defect_atoms_construction_target_verified"
+}

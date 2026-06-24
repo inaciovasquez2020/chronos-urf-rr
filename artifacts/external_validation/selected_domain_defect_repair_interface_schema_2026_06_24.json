@@ -1,0 +1,66 @@
+{
+  "target": "SELECTED_DOMAIN_DEFECT_REPAIR_INTERFACE_SCHEMA_2026_06_24",
+  "status": "repair_interface_schema_recorded_not_constructed",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "base_branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "context_target": "SELECTED_DOMAIN_DEFECT_BASIS",
+  "missing_interface": {
+    "name": "SelectedDomainDefectRepairStep",
+    "purpose": "specify the certified repair move needed after defect atoms are counted but before selected-domain reentry can be claimed"
+  },
+  "interface_fields": [
+    {
+      "field": "source_witness",
+      "shape": "W_unrestricted",
+      "role": "unrestricted witness before repair"
+    },
+    {
+      "field": "target_witness",
+      "shape": "W_unrestricted",
+      "role": "unrestricted witness after repair"
+    },
+    {
+      "field": "repaired_atom",
+      "shape": "SelectedDomainDefect",
+      "role": "defect atom addressed by this repair step"
+    },
+    {
+      "field": "residual_atoms",
+      "shape": "Finset SelectedDomainDefect",
+      "role": "declared remaining defects after repair"
+    },
+    {
+      "field": "repair_certificate",
+      "shape": "RepairCertificate source_witness target_witness repaired_atom residual_atoms",
+      "role": "evidence that the repair step is admissible"
+    }
+  ],
+  "required_obligations": [
+    "repair_preserves_unrestricted_admissibility",
+    "repair_removes_or_accounts_for_repaired_atom",
+    "repair_does_not_create_untracked_defects",
+    "repair_is_terminal_normalization_compatible",
+    "finite_repair_descent_measure_available"
+  ],
+  "not_claimed": [
+    "SelectedDomainDefectRepairStep implemented in Lean",
+    "RepairCertificate implemented in Lean",
+    "repair function constructed",
+    "defect_atoms constructed",
+    "repair descent theorem proved",
+    "zero-defect selected-domain reentry proved",
+    "unrestricted terminal normalization closed",
+    "final closure claim"
+  ],
+  "boundary": [
+    "BOUNDARY := not SelectedDomainDefectRepairStep_implemented",
+    "BOUNDARY := not RepairCertificate_implemented",
+    "BOUNDARY := not repair_function_constructed",
+    "BOUNDARY := not defect_atoms_constructed",
+    "BOUNDARY := not repair_descent_theorem_proved",
+    "BOUNDARY := not zero_defect_selected_domain_reentry_proved",
+    "BOUNDARY := not unrestricted_terminal_normalization_closed",
+    "BOUNDARY := not final_closure_claim_proved"
+  ],
+  "verifier_token": "SELECTED_DOMAIN_DEFECT_REPAIR_INTERFACE_SCHEMA_2026_06_24_OK"
+}

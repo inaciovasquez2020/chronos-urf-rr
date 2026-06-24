@@ -1,0 +1,37 @@
+# SELECTED_DOMAIN_DEFECT_TERMINAL_CLOSURE_STACK_CONDITIONAL_PROOF_2026_06_24
+
+## Status
+
+`conditional_stack_proved_from_explicit_assumptions`
+
+This proves the requested stack in Lean from an explicit assumption package:
+
+```text
+SelectedDomainDefectTerminalClosureStackAssumptions
+Proved theorem names
+repair_descent_theorem
+zero_defect_selected_domain_reentry
+unrestricted_terminal_normalization
+final_closure
+unrestricted_oblivion_atom_closure
+Proof chain
+repair_descent_theorem
+repair_descent_theorem -> zero_defect_selected_domain_reentry
+zero_defect_selected_domain_reentry -> unrestricted_terminal_normalization
+unrestricted_terminal_normalization -> final_closure
+final_closure -> unrestricted_oblivion_atom_closure
+Boundary
+BOUNDARY := conditional_on_SelectedDomainDefectTerminalClosureStackAssumptions
+BOUNDARY := not semantic_assumptions_constructed
+BOUNDARY := not defect_atoms_constructed
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+Not claimed
+semantic assumptions constructed
+defect_atoms constructed
+unconditional repair descent theorem proved
+unconditional zero-defect reentry theorem proved
+unconditional unrestricted terminal normalization proved
+unconditional final closure proved
+unconditional unrestricted Oblivion Atom closure solved
+Verifier token
+SELECTED_DOMAIN_DEFECT_TERMINAL_CLOSURE_STACK_CONDITIONAL_PROOF_2026_06_24_OK

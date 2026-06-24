@@ -1,0 +1,25 @@
+from pathlib import Path
+lean = Path("lean/Chronos/Frontier/SelectedDomainFinalClosureObligationInterface.lean").read_text()
+artifact = Path("artifacts/external_validation/selected_domain_final_closure_obligation_interface_2026_06_24.json").read_text()
+doc = Path("docs/status/SELECTED_DOMAIN_FINAL_CLOSURE_OBLIGATION_INTERFACE_2026_06_24.md").read_text()
+assert "SelectedDomainFinalClosureObligationInterface" in lean and "SelectedDomainFinalClosureObligationInterface" in artifact and "SelectedDomainFinalClosureObligationInterface" in doc
+assert "SelectedDomainFinalClosureComponentTarget" in lean and "SelectedDomainFinalClosureComponentTarget" in artifact and "SelectedDomainFinalClosureComponentTarget" in doc
+assert "SelectedDomainRepairDescentZeroDefectReentryNormalizationFinalClosureTargetPrefix" in lean and "SelectedDomainRepairDescentZeroDefectReentryNormalizationFinalClosureTargetPrefix" in artifact and "SelectedDomainRepairDescentZeroDefectReentryNormalizationFinalClosureTargetPrefix" in doc
+assert "selected_domain_final_closure_component_target_from_obligation_interface" in lean and "selected_domain_final_closure_component_target_from_obligation_interface" in artifact and "selected_domain_final_closure_component_target_from_obligation_interface" in doc
+assert "selected_domain_final_closure_component_from_target_prefix" in lean and "selected_domain_final_closure_component_from_target_prefix" in artifact and "selected_domain_final_closure_component_from_target_prefix" in doc
+assert "selected_domain_repair_descent_zero_defect_reentry_normalization_final_closure_prefix_from_obligation_interfaces" in lean and "selected_domain_repair_descent_zero_defect_reentry_normalization_final_closure_prefix_from_obligation_interfaces" in artifact and "selected_domain_repair_descent_zero_defect_reentry_normalization_final_closure_prefix_from_obligation_interfaces" in doc
+assert "final_closure_statement_from_obligation_interface" in lean and "final_closure_statement_from_obligation_interface" in artifact and "final_closure_statement_from_obligation_interface" in doc
+assert "final_closure_statement_from_target_prefix" in lean and "final_closure_statement_from_target_prefix" in artifact and "final_closure_statement_from_target_prefix" in doc
+assert "final_closure_obligation_statement" in lean and "final_closure_obligation_statement" in doc
+assert "final_closure_obligation_discharge" in lean and "final_closure_obligation_discharge" in doc
+assert "SelectedDomainRepairDescentZeroDefectReentryNormalizationTargetPrefix" in lean
+assert "selected_domain_unrestricted_terminal_normalization_component_from_target_prefix" in lean
+assert "SelectedDomainUnrestrictedOblivionClosureComponentTarget" in artifact
+assert "BOUNDARY := not unrestricted_oblivion_closure_component_target_refined" in artifact and "BOUNDARY := not unrestricted_oblivion_closure_component_target_refined" in doc
+assert "BOUNDARY := not defect_atoms_constructed" in artifact and "BOUNDARY := not defect_atoms_constructed" in doc
+assert "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved" in artifact and "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved" in doc
+assert "does not refine unrestricted Oblivion closure" in doc
+assert "does not construct defect_atoms" in doc
+assert "does not solve unconditional unrestricted Oblivion Atom closure" in doc
+assert "SELECTED_DOMAIN_FINAL_CLOSURE_OBLIGATION_INTERFACE_2026_06_24_OK" in doc
+print("SELECTED_DOMAIN_FINAL_CLOSURE_OBLIGATION_INTERFACE_2026_06_24_OK")

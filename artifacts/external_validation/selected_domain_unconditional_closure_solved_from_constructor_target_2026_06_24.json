@@ -1,0 +1,21 @@
+{
+  "artifact": "SELECTED_DOMAIN_UNCONDITIONAL_CLOSURE_SOLVED_FROM_CONSTRUCTOR_TARGET_2026_06_24",
+  "date": "2026-06-24",
+  "repo": "chronos-urf-rr",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "input_head": "281da9a3",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainUnconditionalClosureSolvedFromConstructorTarget.lean",
+  "purpose": "Add the strongest bounded bridge from selected_domain_unconditional_closure_constructor_target_constructed to the selected-domain unrestricted Oblivion closure theorem surface, without claiming the constructor target is unconditionally constructed.",
+  "solved_surface": "SelectedDomainUnconditionalUnrestrictedOblivionAtomClosureSolvedFromConstructorTarget",
+  "required_input": "constructor_target : SelectedDomainUnconditionalClosureConstructorTarget",
+  "theorem_surfaces": [
+    "defect_atoms_construction_statement_from_solved_surface",
+    "unrestricted_oblivion_atom_closure_statement_from_solved_surface",
+    "selected_domain_unconditional_unrestricted_oblivion_atom_closure_solved_if_constructor_target_constructed"
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not selected_domain_unconditional_closure_constructor_target_constructed",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "status": "unconditional_closure_solved_from_constructor_target_verified"
+}

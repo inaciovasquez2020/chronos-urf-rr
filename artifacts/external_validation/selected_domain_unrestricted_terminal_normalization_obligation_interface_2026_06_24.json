@@ -1,0 +1,37 @@
+{
+  "artifact": "SELECTED_DOMAIN_UNRESTRICTED_TERMINAL_NORMALIZATION_OBLIGATION_INTERFACE_2026_06_24",
+  "date": "2026-06-24",
+  "repo": "chronos-urf-rr",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "input_head": "16592125",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainUnrestrictedTerminalNormalizationObligationInterface.lean",
+  "purpose": "Refine exactly one semantic target, SelectedDomainUnrestrictedTerminalNormalizationComponentTarget, into a bounded obligation interface dependent on the zero-defect reentry statement.",
+  "refined_semantic_target": "SelectedDomainUnrestrictedTerminalNormalizationComponentTarget",
+  "obligation_interface": "SelectedDomainUnrestrictedTerminalNormalizationObligationInterface",
+  "dependent_stack_prefix": "SelectedDomainRepairDescentZeroDefectReentryNormalizationTargetPrefix",
+  "bridges": [
+    "selected_domain_unrestricted_terminal_normalization_component_target_from_obligation_interface",
+    "selected_domain_unrestricted_terminal_normalization_component_from_target_prefix",
+    "selected_domain_repair_descent_zero_defect_reentry_normalization_prefix_from_obligation_interfaces"
+  ],
+  "theorem_surfaces": [
+    "unrestricted_terminal_normalization_statement_from_obligation_interface",
+    "unrestricted_terminal_normalization_statement_from_target_prefix"
+  ],
+  "already_refined_semantic_targets": [
+    "SelectedDomainRepairDescentComponentTarget",
+    "SelectedDomainZeroDefectReentryComponentTarget",
+    "SelectedDomainUnrestrictedTerminalNormalizationComponentTarget"
+  ],
+  "unchanged_semantic_targets": [
+    "SelectedDomainFinalClosureComponentTarget",
+    "SelectedDomainUnrestrictedOblivionClosureComponentTarget"
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not final_closure_component_target_refined",
+    "BOUNDARY := not unrestricted_oblivion_closure_component_target_refined",
+    "BOUNDARY := not defect_atoms_constructed",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "status": "unrestricted_terminal_normalization_obligation_interface_verified"
+}

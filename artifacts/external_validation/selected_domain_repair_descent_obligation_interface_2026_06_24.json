@@ -1,0 +1,31 @@
+{
+  "artifact": "SELECTED_DOMAIN_REPAIR_DESCENT_OBLIGATION_INTERFACE_2026_06_24",
+  "date": "2026-06-24",
+  "repo": "chronos-urf-rr",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "input_head": "1de76d56",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainRepairDescentObligationInterface.lean",
+  "purpose": "Refine exactly one semantic target, SelectedDomainRepairDescentComponentTarget, into a bounded obligation interface.",
+  "refined_semantic_target": "SelectedDomainRepairDescentComponentTarget",
+  "obligation_interface": "SelectedDomainRepairDescentObligationInterface",
+  "bridge": "selected_domain_repair_descent_component_target_from_obligation_interface",
+  "theorem_surfaces": [
+    "repair_descent_component_statement_from_obligation_interface",
+    "repair_descent_obligation_statement_from_interface"
+  ],
+  "unchanged_semantic_targets": [
+    "SelectedDomainZeroDefectReentryComponentTarget",
+    "SelectedDomainUnrestrictedTerminalNormalizationComponentTarget",
+    "SelectedDomainFinalClosureComponentTarget",
+    "SelectedDomainUnrestrictedOblivionClosureComponentTarget"
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not zero_defect_reentry_component_target_refined",
+    "BOUNDARY := not unrestricted_terminal_normalization_component_target_refined",
+    "BOUNDARY := not final_closure_component_target_refined",
+    "BOUNDARY := not unrestricted_oblivion_closure_component_target_refined",
+    "BOUNDARY := not defect_atoms_constructed",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "status": "repair_descent_obligation_interface_verified"
+}
