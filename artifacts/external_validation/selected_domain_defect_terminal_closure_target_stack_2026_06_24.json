@@ -1,0 +1,60 @@
+{
+  "target": "SELECTED_DOMAIN_DEFECT_TERMINAL_CLOSURE_TARGET_STACK_2026_06_24",
+  "status": "requested_terminal_closure_stack_recorded_not_proved",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "depends_on": "SELECTED_DOMAIN_DEFECT_REPAIR_INTERFACE_SCHEMA_2026_06_24",
+  "requested_stack": [
+    {
+      "order": 1,
+      "target": "repair_descent_theorem",
+      "role": "prove repair steps terminate or strictly reduce tracked selected-domain defect burden"
+    },
+    {
+      "order": 2,
+      "target": "zero_defect_selected_domain_reentry",
+      "role": "prove zero remaining selected-domain defects is sufficient to re-enter the selected-domain layer"
+    },
+    {
+      "order": 3,
+      "target": "unrestricted_terminal_normalization",
+      "role": "transfer the repaired unrestricted witness into the terminal normalization interface"
+    },
+    {
+      "order": 4,
+      "target": "final_closure",
+      "role": "close the terminal selected-domain/unrestricted bridge only after the prior targets are supplied"
+    }
+  ],
+  "formal_statement_targets": [
+    "repair_descent_theorem",
+    "zero_defect_selected_domain_reentry",
+    "unrestricted_terminal_normalization",
+    "final_closure"
+  ],
+  "dependency_edges": [
+    "repair_descent_theorem -> zero_defect_selected_domain_reentry",
+    "zero_defect_selected_domain_reentry -> unrestricted_terminal_normalization",
+    "unrestricted_terminal_normalization -> final_closure"
+  ],
+  "allowed_next_formalization": [
+    "create statement surface for repair_descent_theorem",
+    "create statement surface for zero_defect_selected_domain_reentry",
+    "create statement surface for unrestricted_terminal_normalization",
+    "create statement surface for final_closure"
+  ],
+  "not_claimed": [
+    "repair_descent_theorem proved",
+    "zero_defect_selected_domain_reentry proved",
+    "unrestricted_terminal_normalization proved",
+    "final_closure proved",
+    "unrestricted Oblivion Atom closure solved"
+  ],
+  "boundary": [
+    "BOUNDARY := not repair_descent_theorem_proved",
+    "BOUNDARY := not zero_defect_selected_domain_reentry_proved",
+    "BOUNDARY := not unrestricted_terminal_normalization_proved",
+    "BOUNDARY := not final_closure_proved",
+    "BOUNDARY := not unrestricted_oblivion_atom_closure_solved"
+  ],
+  "verifier_token": "SELECTED_DOMAIN_DEFECT_TERMINAL_CLOSURE_TARGET_STACK_2026_06_24_OK"
+}
