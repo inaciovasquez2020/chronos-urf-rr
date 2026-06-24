@@ -1,0 +1,44 @@
+# SELECTED_DOMAIN_DEFECT_SEMANTIC_COMPONENT_TARGETS_2026_06_24
+
+## Status
+
+`SELECTED_DOMAIN_DEFECT_SEMANTIC_COMPONENT_TARGETS_2026_06_24_OK`
+
+This layer lowers the current bottleneck from the single package:
+
+```text
+SelectedDomainDefectTerminalClosureComponentDischarge
+to five named dependent semantic component target structures.
+Lean file
+lean/Chronos/Frontier/SelectedDomainDefectSemanticComponentTargets.lean
+Named semantic component targets
+SelectedDomainRepairDescentComponentTarget
+SelectedDomainZeroDefectReentryComponentTarget
+SelectedDomainUnrestrictedTerminalNormalizationComponentTarget
+SelectedDomainFinalClosureComponentTarget
+SelectedDomainUnrestrictedOblivionClosureComponentTarget
+Bundle
+SelectedDomainDefectSemanticComponentTargets
+Bridge
+selected_domain_defect_terminal_closure_component_discharge_from_semantic_targets
+This bridge constructs:
+SelectedDomainDefectTerminalClosureComponentDischarge
+from the named dependent semantic component targets.
+Conditional theorem surfaces
+repair_descent_statement_from_semantic_component_targets
+zero_defect_selected_domain_reentry_statement_from_semantic_component_targets
+unrestricted_terminal_normalization_statement_from_semantic_component_targets
+final_closure_statement_from_semantic_component_targets
+unrestricted_oblivion_atom_closure_statement_from_semantic_component_targets
+Boundary preserved
+BOUNDARY := not semantic_component_targets_constructed
+BOUNDARY := not defect_atoms_constructed
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+This does not claim that the semantic targets are unconditionally constructed.
+This does not construct defect_atoms.
+This does not solve unconditional unrestricted Oblivion Atom closure.
+Weakest remaining point
+semantic_component_targets_constructed
+The next admissible improvement is to refine exactly one of the five semantic component targets into a smaller theorem-obligation interface.
+
+This layer does not construct `defect_atoms`.
