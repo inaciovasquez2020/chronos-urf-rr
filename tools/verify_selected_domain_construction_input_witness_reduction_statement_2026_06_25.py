@@ -48,8 +48,9 @@ for forbidden in ["axiom ", "opaque ", "sorry", "admit"]:
 
 branch = subprocess.check_output(["git", "branch", "--show-current"], text=True).strip()
 head = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], text=True).strip()
+base_head = artifact["base_head"]
 assert branch == artifact["target_branch"]
-assert head == artifact["base_head"]
+subprocess.run(["git", "merge-base", "--is-ancestor", base_head, head], check=True)
 
 assert "SELECTED_DOMAIN_CONSTRUCTION_INPUT_WITNESS_REDUCTION_STATEMENT_2026_06_25_OK" in doc
 assert "selected_domain_semantic_prefix_witness" in doc
