@@ -1,0 +1,57 @@
+{
+  "id": "SELECTED_DOMAIN_DEFECT_ATOMS_CONSTRUCTOR_TARGET_WITNESS_2026_06_25",
+  "target_branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "base_head": "9f172612",
+  "lean_target": "Chronos.Frontier.SelectedDomainDefectAtomsConstructorTargetWitness",
+  "constructed_object": "defect_atoms_constructor_target",
+  "constructed_type": "SelectedDomainDefectAtomsConstructionTarget",
+  "source_file": "lean/Chronos/Frontier/SelectedDomainDefectAtomsConstructionTarget.lean",
+  "fields": [
+    {
+      "field": "defect_atoms_construction_statement",
+      "type": "Prop"
+    },
+    {
+      "field": "defect_atoms_construction_discharge",
+      "type": "defect_atoms_construction_statement"
+    },
+    {
+      "field": "terminal_cardinality_defect_statement",
+      "type": "Prop"
+    },
+    {
+      "field": "terminal_cardinality_of_defect_atoms",
+      "type": "defect_atoms_construction_statement \u2192 terminal_cardinality_defect_statement"
+    },
+    {
+      "field": "selected_domain_reentry_defect_statement",
+      "type": "Prop"
+    },
+    {
+      "field": "zero_defects_imply_selected_domain_reentry",
+      "type": "defect_atoms_construction_statement \u2192 selected_domain_reentry_defect_statement"
+    },
+    {
+      "field": "repair_step_compatibility_defect_statement",
+      "type": "Prop"
+    },
+    {
+      "field": "repair_step_decreases_or_preserves_defect_atoms",
+      "type": "defect_atoms_construction_statement \u2192 repair_step_compatibility_defect_statement"
+    },
+    {
+      "field": "normalization_transfer_defect_statement",
+      "type": "Prop"
+    },
+    {
+      "field": "defect_atoms_transfer_through_terminal_normalization",
+      "type": "defect_atoms_construction_statement \u2192 normalization_transfer_defect_statement"
+    }
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved",
+    "BOUNDARY := not selected_domain_unconditional_closure_constructor_obligation_matrix_constructed"
+  ],
+  "next_weakest_object": "selected_domain_unconditional_closure_constructor_obligation_matrix_constructed",
+  "status": "defect_atoms_constructor_target_witness_constructed"
+}
