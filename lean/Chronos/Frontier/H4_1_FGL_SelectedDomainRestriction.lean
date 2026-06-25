@@ -165,6 +165,7 @@ realizability. It does not prove terminality, representation, or normalization. 
 structure SelectedDomainDefectRepairTargetField (w : W_unrestricted) where
   repaired : W_unrestricted
   repaired_realizable : selected_domain_realizable repaired
+  repaired_terminal : terminal_unrestricted repaired
 
 def selected_domain (_nf : W_T) : Prop :=
   True
