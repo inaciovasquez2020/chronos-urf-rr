@@ -77,5 +77,17 @@ theorem selected_domain_final_conditional_closure_bridge_witness_discharge :
   (selected_domain_final_bridge_witness_iff_semantic_prefix_witness).mpr
     selected_domain_semantic_prefix_witness_statement_discharge
 
+/--
+Small component-level discharge for the selected-domain semantic-prefix witness.
+
+Boundary note: this proves the unrestricted-oblivion component statement
+inside the constructed selected-domain prefix witness; it is not an
+independent unrestricted Oblivion Atom closure theorem.
+-/
+theorem selected_domain_semantic_prefix_unrestricted_oblivion_component_statement_discharge :
+    (selected_domain_unrestricted_oblivion_closure_component_from_target_prefix
+      selected_domain_semantic_prefix_witness).unrestricted_oblivion_atom_closure_statement := by
+  trivial
+
 end Frontier
 end Chronos
