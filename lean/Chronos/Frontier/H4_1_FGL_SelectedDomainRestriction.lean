@@ -127,6 +127,15 @@ theorem h4_1_fgl_selected_domain_restriction_boundary :
     True := by
   trivial
 
+
+/-- First explicit data field for the selected-domain repair target.
+
+This only names the repaired unrestricted object supplied by a future repair
+witness. It does not prove realizability, terminality, representation, or
+normalization. -/
+structure SelectedDomainDefectRepairTargetField (w : W_unrestricted) where
+  repaired : W_unrestricted
+
 end Frontier
 end Chronos
 
