@@ -128,13 +128,6 @@ theorem h4_1_fgl_selected_domain_restriction_boundary :
   trivial
 
 
-/-- First explicit data field for the selected-domain repair target.
-
-This only names the repaired unrestricted object supplied by a future repair
-witness. It does not prove realizability, terminality, representation, or
-normalization. -/
-structure SelectedDomainDefectRepairTargetField (w : W_unrestricted) where
-  repaired : W_unrestricted
 
 end Frontier
 end Chronos
@@ -164,6 +157,14 @@ def selected_domain_representable (_w : W_unrestricted) : Prop :=
 
 def selected_domain_realizable (_w : W_unrestricted) : Prop :=
   True
+
+/-- First explicit data field package for the selected-domain repair target.
+
+This names the repaired unrestricted object and records only its selected-domain
+realizability. It does not prove terminality, representation, or normalization. -/
+structure SelectedDomainDefectRepairTargetField (w : W_unrestricted) where
+  repaired : W_unrestricted
+  repaired_realizable : selected_domain_realizable repaired
 
 def selected_domain (_nf : W_T) : Prop :=
   True
