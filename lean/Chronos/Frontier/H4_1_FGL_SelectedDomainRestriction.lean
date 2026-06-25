@@ -193,6 +193,23 @@ def SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_BOUNDARY : Prop :=
           represents_terminal nf w
         ∧ normalization_relation w nf
 
+
+/-- A field-package witness is enough to expose the proposition-valued repair
+target boundary.
+
+This is conditional on the package provider; it does not construct such a
+provider. -/
+theorem selected_domain_defect_repair_target_from_field_package
+    (h : ∀ w : W_unrestricted,
+      terminal_unrestricted w →
+      selected_domain_representable w →
+      SelectedDomainDefectRepairTargetField w) :
+    SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_BOUNDARY := by
+  intro w hw hsel
+  let pkg := h w hw hsel
+  exact ⟨pkg.repaired, pkg.repaired_realizable, pkg.repaired_terminal, pkg.nf,
+    pkg.nf_represents_original, pkg.original_normalizes_to_nf⟩
+
 end Frontier
 end Chronos
 
