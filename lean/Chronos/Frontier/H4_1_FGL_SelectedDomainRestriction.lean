@@ -166,6 +166,7 @@ structure SelectedDomainDefectRepairTargetField (w : W_unrestricted) where
   repaired : W_unrestricted
   repaired_realizable : selected_domain_realizable repaired
   repaired_terminal : terminal_unrestricted repaired
+  nf : W_T
 
 def selected_domain (_nf : W_T) : Prop :=
   True
