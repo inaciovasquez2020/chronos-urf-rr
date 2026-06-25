@@ -1,0 +1,29 @@
+{
+  "artifact": "SELECTED_DOMAIN_VOCABULARY_BOUNDARY_2026_06_25",
+  "boundary": "SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_BOUNDARY",
+  "build_status": "passed",
+  "created_at_utc": "2026-06-25T21:11:11.274856+00:00",
+  "head": "72d43469f8dd1a0c805ecf547e228ea062239f01",
+  "introduced_vocabulary": [
+    "W_unrestricted",
+    "W_T",
+    "terminal_unrestricted",
+    "selected_domain_representable",
+    "selected_domain_realizable",
+    "selected_domain",
+    "terminal_T",
+    "represents_terminal",
+    "normalization_relation"
+  ],
+  "lean_target": "Chronos.Frontier.H4_1_FGL_SelectedDomainRestriction",
+  "non_claims": [
+    "does not prove repair",
+    "does not prove normalization",
+    "does not prove terminal closure",
+    "does not prove selected representability",
+    "does not prove SELECTED_REPRESENTABLE_HAS_TERMINAL_NORMAL_FORM"
+  ],
+  "repository": "chronos-urf-rr",
+  "source_file": "lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean",
+  "source_sha256": "9fc42f977339ae4f967e2f6c2fa37a8d851dca75eae911533ee15636618e57fb"
+}
