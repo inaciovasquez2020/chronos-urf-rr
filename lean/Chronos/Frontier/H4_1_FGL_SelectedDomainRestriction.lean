@@ -171,15 +171,16 @@ def terminal_T (_nf : W_T) : Prop :=
 def represents_terminal (_nf : W_T) (_w : W_unrestricted) : Prop :=
   True
 
+def normalization_relation (_w : W_unrestricted) (_nf : W_T) : Prop :=
+  True
+
 structure SelectedDomainDefectRepairTargetField (w : W_unrestricted) where
   repaired : W_unrestricted
   repaired_realizable : selected_domain_realizable repaired
   repaired_terminal : terminal_unrestricted repaired
   nf : W_T
   nf_represents_original : represents_terminal nf w
-
-def normalization_relation (_w : W_unrestricted) (_nf : W_T) : Prop :=
-  True
+  original_normalizes_to_nf : normalization_relation w nf
 
 def SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_BOUNDARY : Prop :=
   ∀ w : W_unrestricted,
