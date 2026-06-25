@@ -162,12 +162,6 @@ def selected_domain_realizable (_w : W_unrestricted) : Prop :=
 
 This names the repaired unrestricted object and records only its selected-domain
 realizability. It does not prove terminality, representation, or normalization. -/
-structure SelectedDomainDefectRepairTargetField (w : W_unrestricted) where
-  repaired : W_unrestricted
-  repaired_realizable : selected_domain_realizable repaired
-  repaired_terminal : terminal_unrestricted repaired
-  nf : W_T
-
 def selected_domain (_nf : W_T) : Prop :=
   True
 
@@ -176,6 +170,13 @@ def terminal_T (_nf : W_T) : Prop :=
 
 def represents_terminal (_nf : W_T) (_w : W_unrestricted) : Prop :=
   True
+
+structure SelectedDomainDefectRepairTargetField (w : W_unrestricted) where
+  repaired : W_unrestricted
+  repaired_realizable : selected_domain_realizable repaired
+  repaired_terminal : terminal_unrestricted repaired
+  nf : W_T
+  nf_represents_original : represents_terminal nf w
 
 def normalization_relation (_w : W_unrestricted) (_nf : W_T) : Prop :=
   True
