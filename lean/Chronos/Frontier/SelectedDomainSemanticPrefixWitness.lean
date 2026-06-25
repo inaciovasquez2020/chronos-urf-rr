@@ -89,5 +89,20 @@ theorem selected_domain_semantic_prefix_unrestricted_oblivion_component_statemen
       selected_domain_semantic_prefix_witness).unrestricted_oblivion_atom_closure_statement := by
   trivial
 
+/--
+Existential component-level selected-domain theorem.
+
+This packages the constructed semantic-prefix witness together with its
+unrestricted-oblivion component statement. It remains below the global
+unrestricted Oblivion Atom closure boundary.
+-/
+theorem selected_domain_semantic_prefix_unrestricted_oblivion_component_statement_exists :
+    ∃ targetPrefix :
+        SelectedDomainRepairDescentZeroDefectReentryNormalizationFinalClosureOblivionClosureTargetPrefix,
+      (selected_domain_unrestricted_oblivion_closure_component_from_target_prefix
+        targetPrefix).unrestricted_oblivion_atom_closure_statement :=
+  ⟨selected_domain_semantic_prefix_witness,
+    selected_domain_semantic_prefix_unrestricted_oblivion_component_statement_discharge⟩
+
 end Frontier
 end Chronos
