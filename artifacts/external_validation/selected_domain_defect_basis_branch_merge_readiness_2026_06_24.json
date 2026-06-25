@@ -1,0 +1,22 @@
+{
+  "target": "SELECTED_DOMAIN_DEFECT_BASIS_BRANCH_MERGE_READINESS_2026_06_24",
+  "status": "merge_ready_after_local_validation",
+  "date": "2026-06-24",
+  "branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "validated_head_before_readiness_commit": "07b88c70",
+  "validation": [
+    "lake build Chronos",
+    "python3 -m pytest -q",
+    "git diff --check"
+  ],
+  "guard_fix": [
+    "renamed forbidden diameter helper theorem prefixes",
+    "renamed forbidden uniform helper theorem prefix"
+  ],
+  "merge_boundary": [
+    "CONDITIONAL_ON_FourBridgesSource_OR_ACTIVE_URF11BridgeRegistry",
+    "NO_ACTIVE_URF11BridgeRegistry_INSTANCE_DECLARED",
+    "NO_UNCONDITIONAL_NATIVE_R2_R3_SOURCE_COMPATIBILITY_CLOSURE",
+    "NO_FINAL_CLOSURE_CLAIM"
+  ]
+}

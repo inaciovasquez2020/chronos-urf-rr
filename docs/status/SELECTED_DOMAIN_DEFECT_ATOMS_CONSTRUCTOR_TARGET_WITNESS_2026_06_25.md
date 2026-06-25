@@ -1,0 +1,18 @@
+# SELECTED_DOMAIN_DEFECT_ATOMS_CONSTRUCTOR_TARGET_WITNESS_2026_06_25
+
+## Status
+
+`SELECTED_DOMAIN_DEFECT_ATOMS_CONSTRUCTOR_TARGET_WITNESS_2026_06_25_OK`
+
+## Constructed object
+
+```text
+defect_atoms_constructor_target
+Constructed type
+SelectedDomainDefectAtomsConstructionTarget
+Preserved boundaries
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+BOUNDARY := not selected_domain_unconditional_closure_constructor_obligation_matrix_constructed
+Next weakest object
+selected_domain_unconditional_closure_constructor_obligation_matrix_constructed
+This layer constructs only the defect-atoms constructor target witness. It does not assert unconditional unrestricted Oblivion Atom closure.

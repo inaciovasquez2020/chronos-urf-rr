@@ -1,0 +1,39 @@
+# SELECTED_DOMAIN_UNRESTRICTED_OBLIVION_CLOSURE_OBLIGATION_INTERFACE_2026_06_24
+
+## Status
+
+`SELECTED_DOMAIN_UNRESTRICTED_OBLIVION_CLOSURE_OBLIGATION_INTERFACE_2026_06_24_OK`
+
+This layer refines exactly one semantic component target:
+
+```text
+SelectedDomainUnrestrictedOblivionClosureComponentTarget
+The target is dependent on the final-closure statement, matching the existing dependent semantic component target stack.
+Lean file
+lean/Chronos/Frontier/SelectedDomainUnrestrictedOblivionClosureObligationInterface.lean
+New bounded obligation interface
+SelectedDomainUnrestrictedOblivionClosureObligationInterface
+Fields:
+unrestricted_oblivion_atom_closure_obligation_statement
+unrestricted_oblivion_atom_closure_obligation_discharge
+Bridge over the existing dependent prefix
+selected_domain_unrestricted_oblivion_closure_component_target_from_obligation_interface
+selected_domain_unrestricted_oblivion_closure_component_from_target_prefix
+selected_domain_repair_descent_zero_defect_reentry_normalization_final_closure_oblivion_closure_prefix_from_obligation_interfaces
+Dependent stack prefix
+SelectedDomainRepairDescentZeroDefectReentryNormalizationFinalClosureOblivionClosureTargetPrefix
+This prefix contains the existing repair-descent + zero-defect reentry + terminal-normalization + final-closure dependent prefix and adds:
+SelectedDomainUnrestrictedOblivionClosureObligationInterface
+It bridges to:
+SelectedDomainUnrestrictedOblivionClosureComponentTarget
+over the prefix final-closure statement.
+Theorem surfaces
+unrestricted_oblivion_atom_closure_statement_from_obligation_interface
+unrestricted_oblivion_atom_closure_statement_from_target_prefix
+Boundary preserved
+BOUNDARY := not defect_atoms_constructed
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+This does not construct defect_atoms.
+This does not solve unconditional unrestricted Oblivion Atom closure.
+Weakest remaining point
+defect_atoms_constructed

@@ -1,0 +1,37 @@
+# SELECTED_DOMAIN_DEFECT_ATOMS_CONSTRUCTION_TARGET_2026_06_24
+
+## Status
+
+`SELECTED_DOMAIN_DEFECT_ATOMS_CONSTRUCTION_TARGET_2026_06_24_OK`
+
+This layer adds a bounded construction target/interface for:
+
+```text
+defect_atoms
+It connects the target to the already-recorded defect atom schema branch:
+docs/selected-domain-defect-atom-schema-2026-06-24
+at:
+8bbeca9b
+Lean file
+lean/Chronos/Frontier/SelectedDomainDefectAtomsConstructionTarget.lean
+Schema record
+artifacts/external_validation/selected_domain_defect_atoms_schema_branch_obligations_2026_06_24.txt
+New bounded construction target
+SelectedDomainDefectAtomsConstructionTarget
+Connected schema obligations
+terminal_cardinality_defect -> terminal_cardinality_of_defect_atoms
+selected_domain_reentry_defect -> zero_defects_imply_selected_domain_reentry
+repair_step_compatibility_defect -> repair_step_decreases_or_preserves_defect_atoms
+normalization_transfer_defect -> defect_atoms_transfer_through_terminal_normalization
+Theorem surfaces
+defect_atoms_construction_statement_from_target
+terminal_cardinality_of_defect_atoms_from_construction_target
+zero_defects_imply_selected_domain_reentry_from_construction_target
+repair_step_decreases_or_preserves_defect_atoms_from_construction_target
+defect_atoms_transfer_through_terminal_normalization_from_construction_target
+Boundary preserved
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+This does not solve unconditional unrestricted Oblivion Atom closure.
+This does not claim that the unrestricted closure theorem is proved.
+Weakest remaining point
+unconditional_unrestricted_oblivion_atom_closure_solved

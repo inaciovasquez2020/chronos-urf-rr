@@ -1,0 +1,29 @@
+{
+  "artifact": "SELECTED_DOMAIN_UNCONDITIONAL_CLOSURE_CONSTRUCTION_INPUT_2026_06_24",
+  "date": "2026-06-24",
+  "repo": "chronos-urf-rr",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "input_head": "a3dea496",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainUnconditionalClosureConstructionInput.lean",
+  "purpose": "Continue toward unconditional closure by naming the exact remaining unconditional construction input needed to instantiate the final conditional closure bridge.",
+  "construction_input": "SelectedDomainUnconditionalClosureConstructionInput",
+  "required_field": "final_conditional_closure_bridge : SelectedDomainFinalConditionalClosureBridge",
+  "exposed_targets": [
+    "SelectedDomainFinalConditionalClosureBridge",
+    "SelectedDomainDefectSemanticComponentTargets",
+    "SelectedDomainDefectAtomsConstructionTarget"
+  ],
+  "theorem_surfaces": [
+    "defect_atoms_construction_statement_from_unconditional_construction_input",
+    "terminal_cardinality_of_defect_atoms_from_unconditional_construction_input",
+    "zero_defects_imply_selected_domain_reentry_from_unconditional_construction_input",
+    "repair_step_decreases_or_preserves_defect_atoms_from_unconditional_construction_input",
+    "defect_atoms_transfer_through_terminal_normalization_from_unconditional_construction_input",
+    "unrestricted_oblivion_atom_closure_statement_from_unconditional_construction_input"
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not selected_domain_unconditional_closure_construction_input_constructed",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "status": "unconditional_closure_construction_input_verified"
+}

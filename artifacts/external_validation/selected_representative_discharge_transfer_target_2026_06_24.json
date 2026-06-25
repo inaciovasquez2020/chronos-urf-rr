@@ -1,0 +1,55 @@
+{
+  "status_id": "SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER_TARGET_2026_06_24",
+  "created_at": "2026-06-24",
+  "parent_status": "SELECTED_REPRESENTABLE_WITNESS_SPEC_TARGET_2026_06_24",
+  "executable_simulation": false,
+  "transfer_spec": {
+    "name": "SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER",
+    "statement": "forall w nf, terminal_unrestricted(w) -> selected_domain(nf) -> terminal_T(nf) -> represents_terminal(nf,w) -> discharged_T(nf) -> discharged_unrestricted(w)",
+    "status": "introduced_as_required_transfer_spec"
+  },
+  "derived_targets": {
+    "A7k_TERMINAL_CLOSURE_selected_applied_to_nf": {
+      "status": "available",
+      "uses": [
+        "selected_domain(nf)",
+        "terminal_T(nf)",
+        "A7k_TERMINAL_CLOSURE_selected"
+      ]
+    },
+    "discharged_T_nf_to_discharged_unrestricted_w": {
+      "status": "closed_conditionally_by_SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER"
+    },
+    "unrestricted_terminal_closure": {
+      "status": "conditional",
+      "condition": "SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER is accepted as a transfer spec"
+    }
+  },
+  "boundary": {
+    "final_closure_claim": "stopped",
+    "reason": "unrestricted terminal closure is conditional unless the transfer spec is proved from non-transfer assumptions"
+  },
+  "weakest_missing_object": {
+    "name": "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE",
+    "statement": "represents_terminal(nf,w) preserves discharge semantics from selected-domain terminal witnesses to unrestricted terminal witnesses",
+    "role": "non-conditional proof source for SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER"
+  },
+  "boundaries": [
+    "BOUNDARY := not DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved",
+    "BOUNDARY := not SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER_proved_nonconditionally",
+    "BOUNDARY := not unrestricted_terminal_closure_proved_nonconditionally"
+  ],
+  "claim_boundary": {
+    "does_claim": [
+      "bounded selected representative discharge transfer target",
+      "unrestricted terminal closure derived conditionally under transfer spec",
+      "final closure claim stopped at conditional boundary"
+    ],
+    "does_not_claim": [
+      "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE proved",
+      "SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER proved nonconditionally",
+      "unrestricted terminal closure proved nonconditionally",
+      "final proof of terminal_closure"
+    ]
+  }
+}

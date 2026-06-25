@@ -1,0 +1,59 @@
+{
+  "status_id": "SELECTED_REPRESENTABLE_WITNESS_SPEC_TARGET_2026_06_24",
+  "created_at": "2026-06-24",
+  "parent_status": "UNRESTRICTED_TERMINAL_NORMALIZATION_BASE_SELECTED_TARGET_2026_06_24",
+  "executable_simulation": false,
+  "semantic_spec": {
+    "name": "selected_domain_representable_witness_spec",
+    "statement": "forall w, selected_domain_representable(w) -> exists nf : W_T, selected_domain(nf) and terminal_T(nf) and represents_terminal(nf,w) and normalization_relation(w,nf)",
+    "status": "introduced_as_required_semantic_expansion"
+  },
+  "derived_targets": {
+    "SELECTED_REPRESENTABLE_HAS_TERMINAL_NORMAL_FORM": {
+      "status": "closed_conditionally_by_selected_domain_representable_witness_spec"
+    },
+    "UNRESTRICTED_TERMINAL_NORMALIZATION_BASE_SELECTED": {
+      "status": "closed_conditionally",
+      "uses": [
+        "defect_zero_implies_selected_domain_representable",
+        "selected_domain_representable_witness_spec"
+      ]
+    },
+    "UNRESTRICTED_TERMINAL_NORMALIZATION_RELATION_TOTAL": {
+      "status": "closed_conditionally_by_well_founded_induction",
+      "uses": [
+        "UNRESTRICTED_TERMINAL_NORMALIZATION_STEP_RULE",
+        "UNRESTRICTED_TERMINAL_NORMALIZATION_BASE_SELECTED",
+        "selected_domain_defect : W_unrestricted -> Nat"
+      ]
+    },
+    "UNRESTRICTED_TERMINAL_NORMAL_FORM_CONSTRUCTOR": {
+      "status": "closed_conditionally_by_choice_from_relation_total"
+    },
+    "unrestricted_terminal_closure": {
+      "status": "blocked"
+    }
+  },
+  "weakest_missing_object": {
+    "name": "SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER",
+    "statement": "forall w nf, terminal_unrestricted(w) -> selected_domain(nf) -> terminal_T(nf) -> represents_terminal(nf,w) -> discharged_T(nf) -> discharged_unrestricted(w)",
+    "role": "transfers selected-domain discharge back to the original unrestricted terminal witness"
+  },
+  "boundaries": [
+    "BOUNDARY := not SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER_proved",
+    "BOUNDARY := not unrestricted_terminal_closure_proved"
+  ],
+  "claim_boundary": {
+    "does_claim": [
+      "bounded selected-representable witness spec target",
+      "normalization base selected closed conditionally by semantic expansion",
+      "normalization relation total closed conditionally by well-founded induction",
+      "normal form constructor closed conditionally by choice from relation total"
+    ],
+    "does_not_claim": [
+      "SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER proved",
+      "unrestricted terminal closure",
+      "final proof of terminal_closure"
+    ]
+  }
+}

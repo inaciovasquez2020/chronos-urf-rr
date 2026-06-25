@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "artifact": "REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_DEFINITIONAL_ALIGNMENT_TARGET_2026_06_24",
+  "created_utc": "2026-06-24T10:29:18Z",
+  "branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "parent_commit": "adcf7405",
+  "parent_target": "REPRESENTS_TERMINAL_PRESERVES_DISCHARGE_SEMANTICS_RULE_TARGET_2026_06_24",
+  "alignment_target": {
+    "name": "REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_DEFINITIONAL_ALIGNMENT",
+    "statement": "show that the repository definition of represents_terminal includes or implies equality of selected and unrestricted discharge semantics",
+    "status": "target"
+  },
+  "required_alignment_fields": [
+    "selected representative terminal semantics",
+    "unrestricted terminal witness semantics",
+    "discharge semantics equality",
+    "representation relation compatibility"
+  ],
+  "closes_if_proved": [
+    "REPRESENTS_TERMINAL_PRESERVES_DISCHARGE_SEMANTICS_RULE",
+    "DISCHARGE_SEMANTICS_CONGRUENCE_UNDER_REPRESENTS_TERMINAL",
+    "REPRESENTS_TERMINAL_DISCHARGE_COMPATIBILITY_PROOF",
+    "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved_nonconditionally"
+  ],
+  "weakest_missing_object": {
+    "name": "REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD",
+    "statement": "a concrete field, lemma, or definitional clause inside represents_terminal that records discharge_semantics_selected(nf) = discharge_semantics_unrestricted(w)",
+    "role": "turns definitional alignment into a directly usable proof input"
+  },
+  "nonclaims": [
+    "does not prove REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_DEFINITIONAL_ALIGNMENT",
+    "does not prove REPRESENTS_TERMINAL_PRESERVES_DISCHARGE_SEMANTICS_RULE",
+    "does not prove DISCHARGE_SEMANTICS_CONGRUENCE_UNDER_REPRESENTS_TERMINAL",
+    "does not prove DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE nonconditionally",
+    "does not prove unrestricted_terminal_closure nonconditionally",
+    "does not claim final closure"
+  ],
+  "boundaries": [
+    "BOUNDARY := not REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD_proved",
+    "BOUNDARY := not REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_DEFINITIONAL_ALIGNMENT_proved",
+    "BOUNDARY := not REPRESENTS_TERMINAL_PRESERVES_DISCHARGE_SEMANTICS_RULE_proved",
+    "BOUNDARY := not DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved_nonconditionally",
+    "BOUNDARY := not unrestricted_terminal_closure_proved_nonconditionally",
+    "BOUNDARY := not final_closure_claim_proved"
+  ]
+}

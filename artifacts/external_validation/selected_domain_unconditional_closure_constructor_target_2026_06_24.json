@@ -1,0 +1,32 @@
+{
+  "artifact": "SELECTED_DOMAIN_UNCONDITIONAL_CLOSURE_CONSTRUCTOR_TARGET_2026_06_24",
+  "date": "2026-06-24",
+  "repo": "chronos-urf-rr",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "input_head": "ed321f47",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainUnconditionalClosureConstructorTarget.lean",
+  "purpose": "Add a bounded constructor-target interface for SelectedDomainUnconditionalClosureConstructionInput and split its construction into the five-component semantic prefix plus defect-atoms target.",
+  "constructor_target": "SelectedDomainUnconditionalClosureConstructorTarget",
+  "split_fields": [
+    "semantic_prefix_constructor_target : SelectedDomainRepairDescentZeroDefectReentryNormalizationFinalClosureOblivionClosureTargetPrefix",
+    "defect_atoms_constructor_target : SelectedDomainDefectAtomsConstructionTarget"
+  ],
+  "constructed_inputs": [
+    "SelectedDomainFinalConditionalClosureBridge",
+    "SelectedDomainUnconditionalClosureConstructionInput",
+    "SelectedDomainDefectSemanticComponentTargets"
+  ],
+  "theorem_surfaces": [
+    "defect_atoms_construction_statement_from_constructor_target",
+    "terminal_cardinality_of_defect_atoms_from_constructor_target",
+    "zero_defects_imply_selected_domain_reentry_from_constructor_target",
+    "repair_step_decreases_or_preserves_defect_atoms_from_constructor_target",
+    "defect_atoms_transfer_through_terminal_normalization_from_constructor_target",
+    "unrestricted_oblivion_atom_closure_statement_from_constructor_target"
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not selected_domain_unconditional_closure_constructor_target_constructed",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "status": "unconditional_closure_constructor_target_verified"
+}

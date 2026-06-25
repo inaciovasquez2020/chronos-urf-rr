@@ -1,0 +1,27 @@
+{
+  "artifact": "SELECTED_DOMAIN_FINAL_CONDITIONAL_CLOSURE_BRIDGE_2026_06_24",
+  "date": "2026-06-24",
+  "repo": "chronos-urf-rr",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "input_head": "ad3f2b9f",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainFinalConditionalClosureBridge.lean",
+  "purpose": "Add a bounded final bridge interface from the five-component semantic prefix plus SelectedDomainDefectAtomsConstructionTarget to the existing conditional closure theorem surface.",
+  "bridge_interface": "SelectedDomainFinalConditionalClosureBridge",
+  "inputs": [
+    "SelectedDomainRepairDescentZeroDefectReentryNormalizationFinalClosureOblivionClosureTargetPrefix",
+    "SelectedDomainDefectAtomsConstructionTarget"
+  ],
+  "constructed_bundle": "SelectedDomainDefectSemanticComponentTargets",
+  "conditional_closure_surface": "unrestricted_oblivion_atom_closure_statement_from_final_bridge",
+  "defect_atoms_surfaces": [
+    "defect_atoms_construction_statement_from_final_bridge",
+    "terminal_cardinality_of_defect_atoms_from_final_bridge",
+    "zero_defects_imply_selected_domain_reentry_from_final_bridge",
+    "repair_step_decreases_or_preserves_defect_atoms_from_final_bridge",
+    "defect_atoms_transfer_through_terminal_normalization_from_final_bridge"
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "status": "final_conditional_closure_bridge_verified"
+}

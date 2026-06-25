@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "artifact": "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_SPEC_SURFACE_2026_06_24",
+  "created_utc": "2026-06-24T10:12:45Z",
+  "branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "parent_commit": "be16f4ac",
+  "parent_target": "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_TARGET_2026_06_24",
+  "spec_surface": {
+    "name": "REPRESENTS_TERMINAL_DISCHARGE_COMPATIBILITY",
+    "statement": "forall w nf, terminal_unrestricted(w) -> selected_domain(nf) -> terminal_T(nf) -> represents_terminal(nf,w) -> discharge_semantics_selected(nf) = discharge_semantics_unrestricted(w)",
+    "role": "defines the precise condition under which represents_terminal(nf,w) preserves discharge semantics"
+  },
+  "derived_target": {
+    "name": "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE",
+    "status": "closed_conditionally_by_REPRESENTS_TERMINAL_DISCHARGE_COMPATIBILITY",
+    "not_status": "proved_nonconditionally"
+  },
+  "blocked_upgrades": [
+    "SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER_nonconditional",
+    "unrestricted_terminal_closure_nonconditional",
+    "final_closure_claim"
+  ],
+  "weakest_missing_object": {
+    "name": "REPRESENTS_TERMINAL_DISCHARGE_COMPATIBILITY_PROOF",
+    "statement": "prove that the repository's represents_terminal relation satisfies REPRESENTS_TERMINAL_DISCHARGE_COMPATIBILITY",
+    "role": "upgrades the conditional spec surface into the nonconditional semantic invariance bridge"
+  },
+  "nonclaims": [
+    "does not prove REPRESENTS_TERMINAL_DISCHARGE_COMPATIBILITY",
+    "does not prove DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE nonconditionally",
+    "does not prove SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER nonconditionally",
+    "does not prove unrestricted_terminal_closure nonconditionally",
+    "does not claim final closure"
+  ],
+  "boundaries": [
+    "BOUNDARY := not REPRESENTS_TERMINAL_DISCHARGE_COMPATIBILITY_PROOF_proved",
+    "BOUNDARY := not DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved_nonconditionally",
+    "BOUNDARY := not SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER_proved_nonconditionally",
+    "BOUNDARY := not unrestricted_terminal_closure_proved_nonconditionally",
+    "BOUNDARY := not final_closure_claim_proved"
+  ]
+}

@@ -1,0 +1,30 @@
+from pathlib import Path
+lean = Path("lean/Chronos/Frontier/SelectedDomainZeroDefectReentryObligationInterface.lean").read_text()
+artifact = Path("artifacts/external_validation/selected_domain_zero_defect_reentry_obligation_interface_2026_06_24.json").read_text()
+doc = Path("docs/status/SELECTED_DOMAIN_ZERO_DEFECT_REENTRY_OBLIGATION_INTERFACE_2026_06_24.md").read_text()
+assert "SelectedDomainZeroDefectReentryObligationInterface" in lean and "SelectedDomainZeroDefectReentryObligationInterface" in artifact and "SelectedDomainZeroDefectReentryObligationInterface" in doc
+assert "SelectedDomainZeroDefectReentryComponentTarget" in lean and "SelectedDomainZeroDefectReentryComponentTarget" in artifact and "SelectedDomainZeroDefectReentryComponentTarget" in doc
+assert "SelectedDomainRepairDescentZeroDefectReentryTargetPrefix" in lean and "SelectedDomainRepairDescentZeroDefectReentryTargetPrefix" in artifact and "SelectedDomainRepairDescentZeroDefectReentryTargetPrefix" in doc
+assert "selected_domain_zero_defect_reentry_component_target_from_obligation_interface" in lean and "selected_domain_zero_defect_reentry_component_target_from_obligation_interface" in artifact and "selected_domain_zero_defect_reentry_component_target_from_obligation_interface" in doc
+assert "selected_domain_zero_defect_reentry_component_from_target_prefix" in lean and "selected_domain_zero_defect_reentry_component_from_target_prefix" in artifact and "selected_domain_zero_defect_reentry_component_from_target_prefix" in doc
+assert "selected_domain_repair_descent_zero_defect_reentry_prefix_from_obligation_interfaces" in lean and "selected_domain_repair_descent_zero_defect_reentry_prefix_from_obligation_interfaces" in artifact and "selected_domain_repair_descent_zero_defect_reentry_prefix_from_obligation_interfaces" in doc
+assert "zero_defect_selected_domain_reentry_statement_from_obligation_interface" in lean and "zero_defect_selected_domain_reentry_statement_from_obligation_interface" in artifact and "zero_defect_selected_domain_reentry_statement_from_obligation_interface" in doc
+assert "zero_defect_selected_domain_reentry_statement_from_target_prefix" in lean and "zero_defect_selected_domain_reentry_statement_from_target_prefix" in artifact and "zero_defect_selected_domain_reentry_statement_from_target_prefix" in doc
+assert "zero_defect_selected_domain_reentry_obligation_statement" in lean and "zero_defect_selected_domain_reentry_obligation_statement" in doc
+assert "zero_defect_selected_domain_reentry_obligation_discharge" in lean and "zero_defect_selected_domain_reentry_obligation_discharge" in doc
+assert "SelectedDomainRepairDescentComponentTarget" in lean and "SelectedDomainRepairDescentComponentTarget" in artifact and "SelectedDomainRepairDescentComponentTarget" in doc
+assert "SelectedDomainUnrestrictedTerminalNormalizationComponentTarget" in artifact
+assert "SelectedDomainFinalClosureComponentTarget" in artifact
+assert "SelectedDomainUnrestrictedOblivionClosureComponentTarget" in artifact
+assert "BOUNDARY := not unrestricted_terminal_normalization_component_target_refined" in artifact and "BOUNDARY := not unrestricted_terminal_normalization_component_target_refined" in doc
+assert "BOUNDARY := not final_closure_component_target_refined" in artifact and "BOUNDARY := not final_closure_component_target_refined" in doc
+assert "BOUNDARY := not unrestricted_oblivion_closure_component_target_refined" in artifact and "BOUNDARY := not unrestricted_oblivion_closure_component_target_refined" in doc
+assert "BOUNDARY := not defect_atoms_constructed" in artifact and "BOUNDARY := not defect_atoms_constructed" in doc
+assert "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved" in artifact and "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved" in doc
+assert "does not refine terminal normalization" in doc
+assert "does not refine final closure" in doc
+assert "does not refine unrestricted Oblivion closure" in doc
+assert "does not construct defect_atoms" in doc
+assert "does not solve unconditional unrestricted Oblivion Atom closure" in doc
+assert "SELECTED_DOMAIN_ZERO_DEFECT_REENTRY_OBLIGATION_INTERFACE_2026_06_24_OK" in doc
+print("SELECTED_DOMAIN_ZERO_DEFECT_REENTRY_OBLIGATION_INTERFACE_2026_06_24_OK")

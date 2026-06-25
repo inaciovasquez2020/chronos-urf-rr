@@ -1,0 +1,49 @@
+{
+  "status_id": "SELECTED_DOMAIN_DEFECT_BASIS_2026_06_24",
+  "created_at": "2026-06-24",
+  "simulation_mode": "internal_symbolic_pass",
+  "executable_simulation": false,
+  "target": "H4.1/FGL_SELECTED_DOMAIN_CLOSURE -> A7k_TERMINAL_CLOSURE",
+  "current_solve_percent": {
+    "full_solve_estimate": 0.73,
+    "previous_estimate": 0.72,
+    "delta": 0.01,
+    "basis": "The selected-domain terminal-closure chain is closed; unrestricted terminal closure is blocked at the selected-domain defect basis."
+  },
+  "closed_selected_layer": {
+    "name": "A7k_TERMINAL_CLOSURE_selected",
+    "status": "closed",
+    "components": [
+      "H41_VALID_STEP_CLASSIFIER",
+      "H41_STEP_NORMAL_FORM",
+      "H41_STEP_GENERATOR_COVERAGE",
+      "H41_CERTIFICATE_STEPS_ARE_TERMINAL_REALIZABLE",
+      "CERTIFICATE_STEP_SOUNDNESS",
+      "CERTIFICATE_SOUNDNESS",
+      "XpT_discharge_reflects",
+      "A7k_terminal_bridge_selected"
+    ]
+  },
+  "blocked_unrestricted_layer": {
+    "name": "unrestricted_terminal_closure",
+    "status": "blocked",
+    "first_blocker": "SELECTED_DOMAIN_DEFECT_BASIS"
+  },
+  "weakest_missing_object": {
+    "name": "SELECTED_DOMAIN_DEFECT_BASIS",
+    "role": "finite obstruction basis counted by selected_domain_defect before total unrestricted-to-selected normalization can be proved"
+  },
+  "boundaries": [
+    "BOUNDARY := not SELECTED_DOMAIN_DEFECT_BASIS_defined",
+    "BOUNDARY := not selected_domain_defect_defined",
+    "BOUNDARY := not UNRESTRICTED_TERMINAL_NORMALIZATION_RELATION_TOTAL_proved",
+    "BOUNDARY := not unrestricted_terminal_closure_proved"
+  ],
+  "next_actions": [
+    "Define SelectedDomainDefect.",
+    "Define defect_atoms : W_unrestricted -> Finset SelectedDomainDefect.",
+    "Define selected_domain_defect(w) := (defect_atoms w).card.",
+    "Prove defect_zero_implies_selected_domain_representable.",
+    "Prove defect_positive_has_terminal_repair."
+  ]
+}

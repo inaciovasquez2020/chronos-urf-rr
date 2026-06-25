@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "artifact": "REPRESENTS_TERMINAL_DISCHARGE_COMPATIBILITY_PROOF_TARGET_2026_06_24",
+  "created_utc": "2026-06-24T10:16:52Z",
+  "branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "parent_commit": "3b696cd6",
+  "parent_target": "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_SPEC_SURFACE_2026_06_24",
+  "proof_target": {
+    "name": "REPRESENTS_TERMINAL_DISCHARGE_COMPATIBILITY_PROOF",
+    "statement": "prove that represents_terminal(nf,w), under terminal_unrestricted(w), selected_domain(nf), and terminal_T(nf), preserves discharge semantics: discharge_semantics_selected(nf) = discharge_semantics_unrestricted(w)",
+    "status": "target"
+  },
+  "bounded_proof_obligations": [
+    {
+      "name": "REPRESENTS_TERMINAL_DOMAIN_ALIGNMENT",
+      "statement": "represents_terminal(nf,w) aligns selected terminal representatives with unrestricted terminal witnesses"
+    },
+    {
+      "name": "DISCHARGE_SEMANTICS_CONGRUENCE_UNDER_REPRESENTS_TERMINAL",
+      "statement": "discharge semantics are invariant under represents_terminal(nf,w)"
+    },
+    {
+      "name": "SELECTED_UNRESTRICTED_TERMINAL_DISCHARGE_EQUIVALENCE",
+      "statement": "selected terminal discharge and unrestricted terminal discharge denote the same semantic condition under representation"
+    }
+  ],
+  "derived_if_proved": [
+    "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved_nonconditionally",
+    "SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER_proved_nonconditionally",
+    "unrestricted_terminal_closure_proved_nonconditionally"
+  ],
+  "weakest_missing_object": {
+    "name": "DISCHARGE_SEMANTICS_CONGRUENCE_UNDER_REPRESENTS_TERMINAL",
+    "statement": "prove discharge_semantics_selected(nf) = discharge_semantics_unrestricted(w) from represents_terminal(nf,w) and the terminal hypotheses",
+    "role": "central congruence lemma needed to turn the compatibility spec into a proof"
+  },
+  "nonclaims": [
+    "does not prove REPRESENTS_TERMINAL_DISCHARGE_COMPATIBILITY_PROOF",
+    "does not prove DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE nonconditionally",
+    "does not prove SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER nonconditionally",
+    "does not prove unrestricted_terminal_closure nonconditionally",
+    "does not claim final closure"
+  ],
+  "boundaries": [
+    "BOUNDARY := not DISCHARGE_SEMANTICS_CONGRUENCE_UNDER_REPRESENTS_TERMINAL_proved",
+    "BOUNDARY := not REPRESENTS_TERMINAL_DISCHARGE_COMPATIBILITY_PROOF_proved",
+    "BOUNDARY := not DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved_nonconditionally",
+    "BOUNDARY := not unrestricted_terminal_closure_proved_nonconditionally",
+    "BOUNDARY := not final_closure_claim_proved"
+  ]
+}

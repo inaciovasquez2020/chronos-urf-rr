@@ -1,0 +1,46 @@
+# SELECTED_DOMAIN_ZERO_DEFECT_REENTRY_OBLIGATION_INTERFACE_2026_06_24
+
+## Status
+
+`SELECTED_DOMAIN_ZERO_DEFECT_REENTRY_OBLIGATION_INTERFACE_2026_06_24_OK`
+
+This layer refines exactly one semantic component target:
+
+```text
+SelectedDomainZeroDefectReentryComponentTarget
+The target is dependent on the repair-descent statement, matching the existing dependent semantic component target stack.
+Lean file
+lean/Chronos/Frontier/SelectedDomainZeroDefectReentryObligationInterface.lean
+New bounded obligation interface
+SelectedDomainZeroDefectReentryObligationInterface
+Fields:
+zero_defect_selected_domain_reentry_obligation_statement
+zero_defect_selected_domain_reentry_obligation_discharge
+Bridge into the existing dependent semantic component target stack
+selected_domain_zero_defect_reentry_component_target_from_obligation_interface
+selected_domain_zero_defect_reentry_component_from_target_prefix
+selected_domain_repair_descent_zero_defect_reentry_prefix_from_obligation_interfaces
+Dependent stack prefix
+SelectedDomainRepairDescentZeroDefectReentryTargetPrefix
+This prefix contains:
+SelectedDomainRepairDescentComponentTarget
+SelectedDomainZeroDefectReentryObligationInterface
+and bridges to:
+SelectedDomainZeroDefectReentryComponentTarget
+over the prefix repair-descent statement.
+Theorem surfaces
+zero_defect_selected_domain_reentry_statement_from_obligation_interface
+zero_defect_selected_domain_reentry_statement_from_target_prefix
+Boundary preserved
+BOUNDARY := not unrestricted_terminal_normalization_component_target_refined
+BOUNDARY := not final_closure_component_target_refined
+BOUNDARY := not unrestricted_oblivion_closure_component_target_refined
+BOUNDARY := not defect_atoms_constructed
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+This does not refine terminal normalization.
+This does not refine final closure.
+This does not refine unrestricted Oblivion closure.
+This does not construct defect_atoms.
+This does not solve unconditional unrestricted Oblivion Atom closure.
+Weakest remaining point
+unrestricted_terminal_normalization_component_target_refined

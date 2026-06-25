@@ -1,4 +1,6 @@
 import Chronos.Frontier.R1ConcreteNewsteinFGLToNativeMapInputContract
+import Chronos.Frontier.R1R2R3FiniteDataPromotionAssumptions
+import Chronos.Frontier.FourBridgesRegistryIntegration
 
 namespace Chronos
 namespace Frontier
@@ -16,6 +18,54 @@ structure R1DiameterSeparationFillingObstructionDischargeTarget : Type where
   source : R1ConcreteNewsteinFGLGeometrySourceObject
   r1DiameterSeparationFillingObstruction : Prop
   diameterSeparationFillingObstructionEvidence : r1DiameterSeparationFillingObstruction
+
+/--
+A finite-data promotion assumption conditionally supplies the diameter-separation
+filling-obstruction discharge target for the concrete Newstein/FGL source object.
+
+This does not prove the promotion assumption.
+-/
+def r1_diameter_separation_filling_obstruction_discharge_target_from_finite_data_promotion_assumption
+    (x : R1ConcreteNewsteinFGLGeometrySourceObject)
+    (hR2 : R2FiniteDataToGeneralProofPromotionAssumption) :
+    R1DiameterSeparationFillingObstructionDischargeTarget where
+  source := x
+  r1DiameterSeparationFillingObstruction :=
+    DiameterSeparationFillingObstructionProofTarget
+  diameterSeparationFillingObstructionEvidence :=
+    r2_native_target_from_finite_data_promotion_assumption hR2
+
+theorem r1_diameter_target_from_finite_data_promotion_assumption_eq
+    (x : R1ConcreteNewsteinFGLGeometrySourceObject)
+    (hR2 : R2FiniteDataToGeneralProofPromotionAssumption) :
+    (r1_diameter_separation_filling_obstruction_discharge_target_from_finite_data_promotion_assumption x hR2).r1DiameterSeparationFillingObstruction =
+      DiameterSeparationFillingObstructionProofTarget := by
+  rfl
+
+/--
+An external Four Bridges source conditionally supplies the diameter-separation
+filling-obstruction discharge target for the concrete Newstein/FGL source
+object.
+
+This does not install an active bridge registry instance and does not prove
+unconditional native R2 closure.
+-/
+def r1_diameter_separation_filling_obstruction_discharge_target_from_4bS
+    (x : R1ConcreteNewsteinFGLGeometrySourceObject)
+    (bridges : FourBridgesSource) :
+    R1DiameterSeparationFillingObstructionDischargeTarget where
+  source := x
+  r1DiameterSeparationFillingObstruction :=
+    DiameterSeparationFillingObstructionProofTarget
+  diameterSeparationFillingObstructionEvidence :=
+    R2_from_4bS bridges
+
+theorem r1_diameter_target_from_4bS_eq
+    (x : R1ConcreteNewsteinFGLGeometrySourceObject)
+    (bridges : FourBridgesSource) :
+    (r1_diameter_separation_filling_obstruction_discharge_target_from_4bS x bridges).r1DiameterSeparationFillingObstruction =
+      DiameterSeparationFillingObstructionProofTarget := by
+  rfl
 
 /--
 The active boundary is that diameter-separation filling obstruction has not yet

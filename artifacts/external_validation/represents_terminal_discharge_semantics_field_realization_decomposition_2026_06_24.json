@@ -1,0 +1,43 @@
+{
+  "target": "REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD_REALIZATION_DECOMPOSITION",
+  "status": "partial_decomposition_recorded_not_realized",
+  "date": "2026-06-24",
+  "branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "source_files": [
+    "lean/Chronos/Frontier/R1ConcreteNewsteinFGLToNativeMapInputContract.lean",
+    "lean/Chronos/Frontier/R1ConcreteNewsteinFGLToNativeMapInputContractFromTargets.lean",
+    "lean/Chronos/Frontier/R1LongChordExclusionDischargeTarget.lean",
+    "lean/Chronos/Frontier/R1DiameterSeparationFillingObstructionDischargeTarget.lean",
+    "lean/Chronos/Frontier/R1UniformLocalTypeCapacityDischargeTarget.lean",
+    "lean/Chronos/Frontier/R1SourceToNativeCompatibilityDischargeTarget.lean"
+  ],
+  "realized_component": {
+    "field": "r1LongChordExclusion",
+    "object": "r1_concrete_newstein_fgl_source_long_chord_discharge_target",
+    "status": "realized_for_R1ConcreteNativeSafeSemanticData"
+  },
+  "unrealized_components": [
+    {
+      "field": "r1DiameterSeparationFillingObstruction",
+      "boundary": "NO_DISCHARGED_R1_DIAMETER_SEPARATION_FILLING_OBSTRUCTION_FOR_CONCRETE_NEWSTEIN_FGL_SOURCE_OBJECT"
+    },
+    {
+      "field": "r1UniformLocalTypeCapacity",
+      "boundary": "NO_DISCHARGED_R1_UNIFORM_LOCAL_TYPE_CAPACITY_FOR_CONCRETE_NEWSTEIN_FGL_SOURCE_OBJECT"
+    },
+    {
+      "field": "r1SourceToNativeCompatibility",
+      "boundary": "NO_DISCHARGED_R1_SOURCE_TO_NATIVE_COMPATIBILITY_FOR_CONCRETE_NEWSTEIN_FGL_SOURCE_OBJECT"
+    }
+  ],
+  "weakest_missing_object": "R1DiameterSeparationFillingObstructionDischargeTarget evidence for concrete Newstein/FGL source object",
+  "boundaries": [
+    "BOUNDARY := not REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD_REALIZATION_proved",
+    "BOUNDARY := not R1DiameterSeparationFillingObstructionDischargeTarget_evidence_supplied",
+    "BOUNDARY := not R1UniformLocalTypeCapacityDischargeTarget_evidence_supplied",
+    "BOUNDARY := not R1SourceToNativeCompatibilityDischargeTarget_evidence_supplied",
+    "BOUNDARY := not DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved_nonconditionally",
+    "BOUNDARY := not unrestricted_terminal_closure_proved_nonconditionally",
+    "BOUNDARY := not final_closure_claim_proved"
+  ]
+}

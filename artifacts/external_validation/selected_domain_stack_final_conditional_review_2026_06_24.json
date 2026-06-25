@@ -1,0 +1,24 @@
+{
+  "id": "SELECTED_DOMAIN_STACK_FINAL_CONDITIONAL_REVIEW_2026_06_24",
+  "target_branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "merge_commit": "603dc138",
+  "source_branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "source_head": "e03cc74f",
+  "conditional_selected_domain_stack": "merged",
+  "unconditional_oblivion_closure": "not solved",
+  "boundary": "preserved",
+  "main_decision": "do not merge to main yet",
+  "validated_post_merge_surfaces": [
+    "Chronos.Frontier.SelectedDomainUnconditionalClosureConstructorObligationMatrix",
+    "Chronos",
+    "tools/verify_selected_domain_defect_repair_interface_merge_readiness_2026_06_24.py",
+    "tests/test_selected_domain_defect_repair_interface_merge_readiness_2026_06_24.py"
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not selected_domain_unconditional_closure_constructor_obligation_matrix_constructed",
+    "BOUNDARY := not selected_domain_unconditional_closure_constructor_target_constructed_without_matrix",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "weakest_missing_object": "selected_domain_unconditional_closure_constructor_obligation_matrix_constructed",
+  "status": "final_conditional_selected_domain_stack_review_recorded"
+}

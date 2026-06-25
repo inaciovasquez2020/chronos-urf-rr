@@ -1,0 +1,40 @@
+from pathlib import Path
+
+lean = Path("lean/Chronos/Frontier/SelectedDomainDefectSemanticComponentTargets.lean").read_text()
+artifact = Path("artifacts/external_validation/selected_domain_defect_semantic_component_targets_2026_06_24.json").read_text()
+doc = Path("docs/status/SELECTED_DOMAIN_DEFECT_SEMANTIC_COMPONENT_TARGETS_2026_06_24.md").read_text()
+
+assert "SelectedDomainRepairDescentComponentTarget" in lean and "SelectedDomainRepairDescentComponentTarget" in artifact and "SelectedDomainRepairDescentComponentTarget" in doc
+assert "SelectedDomainZeroDefectReentryComponentTarget" in lean and "SelectedDomainZeroDefectReentryComponentTarget" in artifact and "SelectedDomainZeroDefectReentryComponentTarget" in doc
+assert "SelectedDomainUnrestrictedTerminalNormalizationComponentTarget" in lean and "SelectedDomainUnrestrictedTerminalNormalizationComponentTarget" in artifact and "SelectedDomainUnrestrictedTerminalNormalizationComponentTarget" in doc
+assert "SelectedDomainFinalClosureComponentTarget" in lean and "SelectedDomainFinalClosureComponentTarget" in artifact and "SelectedDomainFinalClosureComponentTarget" in doc
+assert "SelectedDomainUnrestrictedOblivionClosureComponentTarget" in lean and "SelectedDomainUnrestrictedOblivionClosureComponentTarget" in artifact and "SelectedDomainUnrestrictedOblivionClosureComponentTarget" in doc
+assert "SelectedDomainDefectSemanticComponentTargets" in lean and "SelectedDomainDefectSemanticComponentTargets" in artifact and "SelectedDomainDefectSemanticComponentTargets" in doc
+assert "selected_domain_defect_terminal_closure_component_discharge_from_semantic_targets" in lean and "selected_domain_defect_terminal_closure_component_discharge_from_semantic_targets" in artifact and "selected_domain_defect_terminal_closure_component_discharge_from_semantic_targets" in doc
+assert "repair_descent_statement_from_semantic_component_targets" in lean and "repair_descent_statement_from_semantic_component_targets" in artifact and "repair_descent_statement_from_semantic_component_targets" in doc
+assert "zero_defect_selected_domain_reentry_statement_from_semantic_component_targets" in lean and "zero_defect_selected_domain_reentry_statement_from_semantic_component_targets" in artifact and "zero_defect_selected_domain_reentry_statement_from_semantic_component_targets" in doc
+assert "unrestricted_terminal_normalization_statement_from_semantic_component_targets" in lean and "unrestricted_terminal_normalization_statement_from_semantic_component_targets" in artifact and "unrestricted_terminal_normalization_statement_from_semantic_component_targets" in doc
+assert "final_closure_statement_from_semantic_component_targets" in lean and "final_closure_statement_from_semantic_component_targets" in artifact and "final_closure_statement_from_semantic_component_targets" in doc
+assert "unrestricted_oblivion_atom_closure_statement_from_semantic_component_targets" in lean and "unrestricted_oblivion_atom_closure_statement_from_semantic_component_targets" in artifact and "unrestricted_oblivion_atom_closure_statement_from_semantic_component_targets" in doc
+
+assert "repair_descent_statement" in lean
+assert "zero_defect_selected_domain_reentry_statement" in lean
+assert "unrestricted_terminal_normalization_statement" in lean
+assert "final_closure_statement" in lean
+assert "unrestricted_oblivion_atom_closure_statement" in lean
+assert "repair_descent_discharge" in lean
+assert "zero_defect_selected_domain_reentry_discharge" in lean
+assert "unrestricted_terminal_normalization_discharge" in lean
+assert "final_closure_discharge" in lean
+assert "unrestricted_oblivion_atom_closure_discharge" in lean
+
+assert "BOUNDARY := not semantic_component_targets_constructed" in artifact and "BOUNDARY := not semantic_component_targets_constructed" in doc
+assert "BOUNDARY := not defect_atoms_constructed" in artifact and "BOUNDARY := not defect_atoms_constructed" in doc
+assert "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved" in artifact and "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved" in doc
+
+assert "does not claim that the semantic targets are unconditionally constructed" in doc
+assert "does not construct `defect_atoms`" in doc
+assert "does not solve unconditional unrestricted Oblivion Atom closure" in doc
+assert "SELECTED_DOMAIN_DEFECT_SEMANTIC_COMPONENT_TARGETS_2026_06_24_OK" in doc
+
+print("SELECTED_DOMAIN_DEFECT_SEMANTIC_COMPONENT_TARGETS_2026_06_24_OK")

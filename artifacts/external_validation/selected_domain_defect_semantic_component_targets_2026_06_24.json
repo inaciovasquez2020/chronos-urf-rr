@@ -1,0 +1,31 @@
+{
+  "artifact": "SELECTED_DOMAIN_DEFECT_SEMANTIC_COMPONENT_TARGETS_2026_06_24",
+  "date": "2026-06-24",
+  "repo": "chronos-urf-rr",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "input_head": "65b3906c",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainDefectSemanticComponentTargets.lean",
+  "purpose": "Lower SelectedDomainDefectTerminalClosureComponentDischarge to named dependent semantic component target structures without claiming unconditional semantic construction.",
+  "semantic_component_targets": [
+    "SelectedDomainRepairDescentComponentTarget",
+    "SelectedDomainZeroDefectReentryComponentTarget",
+    "SelectedDomainUnrestrictedTerminalNormalizationComponentTarget",
+    "SelectedDomainFinalClosureComponentTarget",
+    "SelectedDomainUnrestrictedOblivionClosureComponentTarget"
+  ],
+  "bundle": "SelectedDomainDefectSemanticComponentTargets",
+  "bridge": "selected_domain_defect_terminal_closure_component_discharge_from_semantic_targets",
+  "conditional_theorem_surfaces": [
+    "repair_descent_statement_from_semantic_component_targets",
+    "zero_defect_selected_domain_reentry_statement_from_semantic_component_targets",
+    "unrestricted_terminal_normalization_statement_from_semantic_component_targets",
+    "final_closure_statement_from_semantic_component_targets",
+    "unrestricted_oblivion_atom_closure_statement_from_semantic_component_targets"
+  ],
+  "preserved_boundaries": [
+    "BOUNDARY := not semantic_component_targets_constructed",
+    "BOUNDARY := not defect_atoms_constructed",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "status": "conditional_semantic_component_target_decomposition_verified"
+}

@@ -95,6 +95,17 @@ theorem R2_from_4bS
     DiameterSeparationFillingObstructionProofTarget :=
   bridges.r2 R2FinishedTheorem_proved
 
+theorem R2FiniteDataToGeneralProofPromotionAssumption_from_4bS
+    (bridges : FourBridgesSource) :
+    R2FiniteDataToGeneralProofPromotionAssumption := by
+  intro _finiteR2
+  exact R2_from_4bS bridges
+
+theorem R2PromotionProofTarget_from_4bS
+    (bridges : FourBridgesSource) :
+    R2PromotionProofTarget :=
+  R2FiniteDataToGeneralProofPromotionAssumption_from_4bS bridges
+
 theorem R3_from_4bS
     (bridges : FourBridgesSource) :
     UniformLocalTypeCapacityProofTarget :=

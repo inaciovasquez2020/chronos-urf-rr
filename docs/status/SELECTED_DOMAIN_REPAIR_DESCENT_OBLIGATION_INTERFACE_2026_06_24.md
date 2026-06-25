@@ -1,0 +1,38 @@
+# SELECTED_DOMAIN_REPAIR_DESCENT_OBLIGATION_INTERFACE_2026_06_24
+
+## Status
+
+`SELECTED_DOMAIN_REPAIR_DESCENT_OBLIGATION_INTERFACE_2026_06_24_OK`
+
+This layer refines exactly one semantic component target:
+
+```text
+SelectedDomainRepairDescentComponentTarget
+It does not refine the other four semantic component targets.
+Lean file
+lean/Chronos/Frontier/SelectedDomainRepairDescentObligationInterface.lean
+New bounded obligation interface
+SelectedDomainRepairDescentObligationInterface
+Fields:
+repair_descent_obligation_statement
+repair_descent_obligation_discharge
+Bridge
+selected_domain_repair_descent_component_target_from_obligation_interface
+This bridge constructs:
+SelectedDomainRepairDescentComponentTarget
+from the bounded repair-descent obligation interface.
+Theorem surfaces
+repair_descent_component_statement_from_obligation_interface
+repair_descent_obligation_statement_from_interface
+Boundary preserved
+BOUNDARY := not zero_defect_reentry_component_target_refined
+BOUNDARY := not unrestricted_terminal_normalization_component_target_refined
+BOUNDARY := not final_closure_component_target_refined
+BOUNDARY := not unrestricted_oblivion_closure_component_target_refined
+BOUNDARY := not defect_atoms_constructed
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+This does not construct defect_atoms.
+This does not solve unconditional unrestricted Oblivion Atom closure.
+This does not claim construction of the remaining four semantic component targets.
+Weakest remaining point
+zero_defect_reentry_component_target_refined

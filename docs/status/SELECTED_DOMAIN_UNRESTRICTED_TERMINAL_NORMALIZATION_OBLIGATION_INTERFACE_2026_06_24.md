@@ -1,0 +1,43 @@
+# SELECTED_DOMAIN_UNRESTRICTED_TERMINAL_NORMALIZATION_OBLIGATION_INTERFACE_2026_06_24
+
+## Status
+
+`SELECTED_DOMAIN_UNRESTRICTED_TERMINAL_NORMALIZATION_OBLIGATION_INTERFACE_2026_06_24_OK`
+
+This layer refines exactly one semantic component target:
+
+```text
+SelectedDomainUnrestrictedTerminalNormalizationComponentTarget
+The target is dependent on the zero-defect selected-domain reentry statement, matching the existing dependent semantic component target stack.
+Lean file
+lean/Chronos/Frontier/SelectedDomainUnrestrictedTerminalNormalizationObligationInterface.lean
+New bounded obligation interface
+SelectedDomainUnrestrictedTerminalNormalizationObligationInterface
+Fields:
+unrestricted_terminal_normalization_obligation_statement
+unrestricted_terminal_normalization_obligation_discharge
+Bridge over the existing dependent prefix
+selected_domain_unrestricted_terminal_normalization_component_target_from_obligation_interface
+selected_domain_unrestricted_terminal_normalization_component_from_target_prefix
+selected_domain_repair_descent_zero_defect_reentry_normalization_prefix_from_obligation_interfaces
+Dependent stack prefix
+SelectedDomainRepairDescentZeroDefectReentryNormalizationTargetPrefix
+This prefix contains the existing repair-descent + zero-defect reentry dependent prefix and adds:
+SelectedDomainUnrestrictedTerminalNormalizationObligationInterface
+It bridges to:
+SelectedDomainUnrestrictedTerminalNormalizationComponentTarget
+over the prefix zero-defect reentry statement.
+Theorem surfaces
+unrestricted_terminal_normalization_statement_from_obligation_interface
+unrestricted_terminal_normalization_statement_from_target_prefix
+Boundary preserved
+BOUNDARY := not final_closure_component_target_refined
+BOUNDARY := not unrestricted_oblivion_closure_component_target_refined
+BOUNDARY := not defect_atoms_constructed
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+This does not refine final closure.
+This does not refine unrestricted Oblivion closure.
+This does not construct defect_atoms.
+This does not solve unconditional unrestricted Oblivion Atom closure.
+Weakest remaining point
+final_closure_component_target_refined

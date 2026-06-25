@@ -1,0 +1,27 @@
+{
+  "status_id": "UNRESTRICTED_TERMINAL_NORMALIZATION_BASE_SELECTED_TARGET_2026_06_24",
+  "created_at": "2026-06-24",
+  "parent_status": "DEFECT_REPAIR_NORMALIZATION_TARGET_2026_06_24",
+  "executable_simulation": false,
+  "target": {
+    "name": "UNRESTRICTED_TERMINAL_NORMALIZATION_BASE_SELECTED",
+    "statement": "forall w, terminal_unrestricted(w) -> selected_domain_defect(w) = 0 -> exists nf : W_T, selected_domain(nf) and terminal_T(nf) and represents_terminal(nf,w) and normalization_relation(w,nf)",
+    "status": "blocked"
+  },
+  "first_usable_input": {
+    "name": "defect_zero_implies_selected_domain_representable",
+    "statement": "forall w, terminal_unrestricted(w) -> selected_domain_defect(w) = 0 -> selected_domain_representable(w)",
+    "status": "available_from_SELECTED_DOMAIN_DEFECT_SEMANTIC_SPEC"
+  },
+  "weakest_missing_object": {
+    "name": "SELECTED_REPRESENTABLE_HAS_TERMINAL_NORMAL_FORM",
+    "statement": "forall w, terminal_unrestricted(w) -> selected_domain_representable(w) -> exists nf : W_T, selected_domain(nf) and terminal_T(nf) and represents_terminal(nf,w) and normalization_relation(w,nf)",
+    "role": "expands selected_domain_representable into the concrete selected terminal normal form needed for the base case"
+  },
+  "boundaries": [
+    "BOUNDARY := not SELECTED_REPRESENTABLE_HAS_TERMINAL_NORMAL_FORM_proved",
+    "BOUNDARY := not UNRESTRICTED_TERMINAL_NORMALIZATION_BASE_SELECTED_proved",
+    "BOUNDARY := not UNRESTRICTED_TERMINAL_NORMALIZATION_RELATION_TOTAL_proved",
+    "BOUNDARY := not unrestricted_terminal_closure_proved"
+  ]
+}

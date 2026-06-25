@@ -1,0 +1,38 @@
+{
+  "target": "SELECTED_DOMAIN_DEFECT_TERMINAL_CLOSURE_ASSUMPTION_DISCHARGE_2026_06_24",
+  "status": "component_discharge_constructs_stack_assumptions",
+  "branch": "docs/selected-domain-defect-repair-interface-2026-06-24",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainDefectTerminalClosureAssumptionDischarge.lean",
+  "imports": [
+    "Chronos.Frontier.SelectedDomainDefectTerminalClosureStack"
+  ],
+  "component_package": "SelectedDomainDefectTerminalClosureComponentDischarge",
+  "constructed_package": "SelectedDomainDefectTerminalClosureStackAssumptions",
+  "constructor": "terminal_closure_stack_assumptions_from_component_discharge",
+  "proved_theorems": [
+    "repair_descent_theorem_from_component_discharge",
+    "zero_defect_selected_domain_reentry_from_component_discharge",
+    "unrestricted_terminal_normalization_from_component_discharge",
+    "final_closure_from_component_discharge",
+    "unrestricted_oblivion_atom_closure_from_component_discharge"
+  ],
+  "remaining_semantic_fields": [
+    "repair_descent_discharge",
+    "zero_defect_selected_domain_reentry_discharge",
+    "unrestricted_terminal_normalization_discharge",
+    "final_closure_discharge",
+    "unrestricted_oblivion_atom_closure_discharge"
+  ],
+  "not_claimed": [
+    "semantic component discharges constructed",
+    "defect_atoms constructed",
+    "unconditional unrestricted Oblivion Atom closure solved"
+  ],
+  "boundary": [
+    "BOUNDARY := conditional_on_SelectedDomainDefectTerminalClosureComponentDischarge",
+    "BOUNDARY := not semantic_component_discharges_constructed",
+    "BOUNDARY := not defect_atoms_constructed",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "verifier_token": "SELECTED_DOMAIN_DEFECT_TERMINAL_CLOSURE_ASSUMPTION_DISCHARGE_2026_06_24_OK"
+}

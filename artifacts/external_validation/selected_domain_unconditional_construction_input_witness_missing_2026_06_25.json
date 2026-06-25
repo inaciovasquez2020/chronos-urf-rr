@@ -1,0 +1,20 @@
+{
+  "id": "SELECTED_DOMAIN_UNCONDITIONAL_CONSTRUCTION_INPUT_WITNESS_MISSING_2026_06_25",
+  "target_branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "base_head": "453d3fdd",
+  "status": "blocked_missing_nullary_unconditional_construction_input_witness",
+  "failed_candidate": "selected_domain_unconditional_closure_constructor_obligation_matrix_constructed",
+  "missing_objects": [
+    "nullary witness for SelectedDomainRepairDescentZeroDefectReentryNormalizationFinalClosureOblivionClosureTargetPrefix",
+    "nullary witness for SelectedDomainFinalConditionalClosureBridge",
+    "nullary witness for SelectedDomainUnconditionalClosureConstructionInput"
+  ],
+  "weakest_missing_object": "selected_domain_unconditional_closure_construction_input_witness",
+  "blocked_reason": "SelectedDomainSemanticPrefixConstructorTargetWitness constructs a matrix only from input : SelectedDomainUnconditionalClosureConstructionInput; no nullary input witness exists in lean/Chronos/Frontier.",
+  "preserved_boundaries": [
+    "BOUNDARY := not selected_domain_unconditional_closure_construction_input_witness",
+    "BOUNDARY := not selected_domain_unconditional_closure_constructor_obligation_matrix_constructed",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ],
+  "next_safe_target": "construct or import a nullary SelectedDomainUnconditionalClosureConstructionInput witness before assembling the constructor obligation matrix"
+}

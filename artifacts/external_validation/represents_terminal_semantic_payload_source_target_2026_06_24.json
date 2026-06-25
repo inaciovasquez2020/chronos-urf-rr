@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "artifact": "REPRESENTS_TERMINAL_SEMANTIC_PAYLOAD_SOURCE_TARGET_2026_06_24",
+  "created_utc": "2026-06-24T10:43:05Z",
+  "branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "parent_commit": "18e22c41",
+  "parent_target": "REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD_REALIZATION_TARGET_2026_06_24",
+  "source_target": {
+    "name": "REPRESENTS_TERMINAL_SEMANTIC_PAYLOAD_SOURCE",
+    "statement": "identify the existing repository object or add one minimal clause that supplies discharge_semantics_selected(nf) = discharge_semantics_unrestricted(w) for represents_terminal(nf,w)",
+    "status": "target"
+  },
+  "admissible_source_forms": [
+    "existing represents_terminal structure field",
+    "existing lemma about represents_terminal semantic equality",
+    "new minimal definitional clause on represents_terminal",
+    "adapter lemma from representation semantics to discharge semantics equality"
+  ],
+  "required_payload": {
+    "relation": "represents_terminal(nf,w)",
+    "selected_payload": "discharge_semantics_selected(nf)",
+    "unrestricted_payload": "discharge_semantics_unrestricted(w)",
+    "required_equality": "discharge_semantics_selected(nf) = discharge_semantics_unrestricted(w)"
+  },
+  "closes_if_identified": [
+    "REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD_REALIZATION",
+    "REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD",
+    "REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_DEFINITIONAL_ALIGNMENT",
+    "REPRESENTS_TERMINAL_PRESERVES_DISCHARGE_SEMANTICS_RULE",
+    "DISCHARGE_SEMANTICS_CONGRUENCE_UNDER_REPRESENTS_TERMINAL",
+    "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved_nonconditionally"
+  ],
+  "weakest_missing_object": {
+    "name": "REPRESENTS_TERMINAL_SEMANTIC_PAYLOAD_SOURCE_LOCATION",
+    "statement": "locate the concrete repo file/object where represents_terminal is defined or where its semantic payload can be minimally extended",
+    "role": "turns the payload-source target into a concrete implementation step"
+  },
+  "nonclaims": [
+    "does not identify REPRESENTS_TERMINAL_SEMANTIC_PAYLOAD_SOURCE",
+    "does not realize REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD_REALIZATION",
+    "does not prove REPRESENTS_TERMINAL_PRESERVES_DISCHARGE_SEMANTICS_RULE",
+    "does not prove DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE nonconditionally",
+    "does not prove unrestricted_terminal_closure nonconditionally",
+    "does not claim final closure"
+  ],
+  "boundaries": [
+    "BOUNDARY := not REPRESENTS_TERMINAL_SEMANTIC_PAYLOAD_SOURCE_LOCATION_identified",
+    "BOUNDARY := not REPRESENTS_TERMINAL_SEMANTIC_PAYLOAD_SOURCE_identified",
+    "BOUNDARY := not REPRESENTS_TERMINAL_DISCHARGE_SEMANTICS_FIELD_REALIZATION_proved",
+    "BOUNDARY := not DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved_nonconditionally",
+    "BOUNDARY := not unrestricted_terminal_closure_proved_nonconditionally",
+    "BOUNDARY := not final_closure_claim_proved"
+  ]
+}

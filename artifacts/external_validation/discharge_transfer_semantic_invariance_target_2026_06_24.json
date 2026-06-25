@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "artifact": "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_TARGET_2026_06_24",
+  "created_utc": "2026-06-24T10:04:35Z",
+  "branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "parent_commit": "37c9a9a0",
+  "parent_target": "SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER_TARGET_2026_06_24",
+  "current_boundary": {
+    "unrestricted_terminal_closure": "conditional",
+    "final_closure_claim": "stopped"
+  },
+  "target": {
+    "name": "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE",
+    "statement": "forall w nf, terminal_unrestricted(w) -> selected_domain(nf) -> terminal_T(nf) -> represents_terminal(nf,w) -> discharge_semantics_selected(nf) = discharge_semantics_unrestricted(w)",
+    "status": "target"
+  },
+  "weakest_missing_object": {
+    "name": "DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE",
+    "statement": "represents_terminal(nf,w) preserves discharge semantics from selected-domain terminal witnesses to unrestricted terminal witnesses"
+  },
+  "boundaries": [
+    "BOUNDARY := not DISCHARGE_TRANSFER_SEMANTIC_INVARIANCE_proved",
+    "BOUNDARY := not SELECTED_REPRESENTATIVE_DISCHARGE_TRANSFER_proved_nonconditionally",
+    "BOUNDARY := not unrestricted_terminal_closure_proved_nonconditionally",
+    "BOUNDARY := not final_closure_claim_proved"
+  ]
+}

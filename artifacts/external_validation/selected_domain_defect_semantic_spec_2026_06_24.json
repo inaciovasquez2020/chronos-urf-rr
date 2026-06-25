@@ -1,0 +1,61 @@
+{
+  "status_id": "SELECTED_DOMAIN_DEFECT_SEMANTIC_SPEC_2026_06_24",
+  "created_at": "2026-06-24",
+  "parent_status": "SELECTED_DOMAIN_DEFECT_INPUT_TARGET_2026_06_24",
+  "executable_simulation": false,
+  "semantic_specs": {
+    "SelectedDomainDefect_zero_completeness_spec": {
+      "statement": "forall w, terminal_unrestricted(w) -> selected_domain_defect(w) = 0 -> selected_domain_representable(w)",
+      "role": "zero defect implies selected-domain representability"
+    },
+    "SelectedDomainDefect_positive_repair_spec": {
+      "statement": "forall w, terminal_unrestricted(w) -> selected_domain_defect(w) != 0 -> exists d in defect_atoms(w), repairable_selected_domain_defect(w,d)",
+      "role": "positive defect exposes a repairable selected-domain defect atom"
+    }
+  },
+  "derived_targets": {
+    "defect_zero_implies_selected_domain_representable": {
+      "status": "closed_by_spec",
+      "uses": "SelectedDomainDefect_zero_completeness_spec"
+    },
+    "defect_positive_has_terminal_repair": {
+      "status": "closed_by_spec",
+      "uses": "SelectedDomainDefect_positive_repair_spec"
+    },
+    "SELECTED_DOMAIN_DEFECT_BASIS": {
+      "status": "closed_conditionally_by_semantic_specs",
+      "uses": [
+        "SelectedDomainDefect",
+        "defect_atoms",
+        "selected_domain_defect(w) := (defect_atoms(w)).card",
+        "SelectedDomainDefect_zero_completeness_spec",
+        "SelectedDomainDefect_positive_repair_spec"
+      ]
+    }
+  },
+  "remaining_blocker": {
+    "name": "defect_repair_decreases_selected_domain_defect",
+    "statement": "repairing a selected-domain defect atom strictly decreases selected_domain_defect while preserving terminality and discharge equivalence",
+    "blocks": "UNRESTRICTED_TERMINAL_NORMALIZATION_RELATION_TOTAL"
+  },
+  "boundaries": [
+    "BOUNDARY := not defect_repair_decreases_selected_domain_defect_proved",
+    "BOUNDARY := not UNRESTRICTED_TERMINAL_NORMALIZATION_STEP_RULE_proved",
+    "BOUNDARY := not UNRESTRICTED_TERMINAL_NORMALIZATION_RELATION_TOTAL_proved",
+    "BOUNDARY := not unrestricted_terminal_closure_proved"
+  ],
+  "claim_boundary": {
+    "does_claim": [
+      "bounded semantic spec surface for selected-domain defect atoms",
+      "defect_zero_implies_selected_domain_representable closed by spec",
+      "defect_positive_has_terminal_repair closed by spec",
+      "SELECTED_DOMAIN_DEFECT_BASIS conditionally closed by semantic specs"
+    ],
+    "does_not_claim": [
+      "defect repair decreases selected_domain_defect",
+      "unrestricted terminal normalization",
+      "unrestricted terminal closure",
+      "final proof of terminal_closure"
+    ]
+  }
+}
