@@ -181,3 +181,26 @@ def SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_BOUNDARY : Prop :=
 
 end Frontier
 end Chronos
+
+namespace Chronos
+namespace Frontier
+
+/--
+Stateable theorem-surface target for the first repair bridge.
+
+This is only a proposition-valued target. It does not prove repair,
+normalization, terminal closure, or `SELECTED_REPRESENTABLE_HAS_TERMINAL_NORMAL_FORM`.
+-/
+def SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_TARGET : Prop :=
+  ∀ w : W_unrestricted,
+    terminal_unrestricted w →
+    selected_domain_representable w →
+    ∃ w' : W_unrestricted,
+        selected_domain_realizable w'
+      ∧ terminal_unrestricted w'
+      ∧ ∃ nf : W_T,
+          represents_terminal nf w
+        ∧ normalization_relation w nf
+
+end Frontier
+end Chronos
