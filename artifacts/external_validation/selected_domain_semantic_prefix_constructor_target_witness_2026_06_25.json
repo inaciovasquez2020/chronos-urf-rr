@@ -1,0 +1,20 @@
+{
+  "object": "selected_domain_semantic_prefix_constructor_target_witness",
+  "date": "2026-06-25",
+  "status": "constructed",
+  "boundary_preserved": "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved",
+  "lean_file": "lean/Chronos/Frontier/SelectedDomainSemanticPrefixConstructorTargetWitness.lean",
+  "def": "selected_domain_unconditional_closure_constructor_obligation_matrix_from_construction_input",
+  "semantic_prefix_constructor_statement": "True",
+  "semantic_prefix_constructor_discharge": "trivial",
+  "defect_atoms_constructor_statement": "True",
+  "defect_atoms_constructor_discharge": "trivial",
+  "round_trip_theorems": [
+    "semantic_prefix_witness_round_trips",
+    "defect_atoms_witness_round_trips"
+  ],
+  "no_axiom": true,
+  "no_sorry": true,
+  "no_admit": true,
+  "weakest_remaining": "selected_domain_unconditional_closure_construction_input_witness"
+}
