@@ -1,0 +1,40 @@
+{
+  "artifact": "SELECTED_DOMAIN_REPAIR_THEOREM_SURFACE_MAIN_MERGE_ROLLUP_2026_06_25",
+  "branch": "main",
+  "created_at_utc": "2026-06-25T22:03:37.084907+00:00",
+  "head": "5fec26c8a46858d62baca2b55defc5b2b98e7a38",
+  "lean_target": "Chronos.Frontier.H4_1_FGL_SelectedDomainRestriction",
+  "merge_subject": "merge selected domain repair theorem surface",
+  "merged_branch": "internal/selected-domain-repair-theorem-surface-20260625",
+  "non_claims": [
+    "does not push main",
+    "does not prove a new Lean theorem",
+    "does not construct a field-package provider",
+    "does not prove selected-domain representability",
+    "does not prove normalization independently of the package"
+  ],
+  "repository": "chronos-urf-rr",
+  "validated_markers": [
+    "SELECTED_DOMAIN_REPAIR_FIELD_PACKAGE_BRIDGE_ROLLUP_2026_06_25_OK",
+    "SELECTED_DOMAIN_REPAIR_FIELD_PACKAGE_BRIDGE_2026_06_25_OK",
+    "Build completed successfully"
+  ],
+  "validated_paths": [
+    "lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean",
+    "artifacts/external_validation/selected_domain_defect_repair_theorem_surface_2026_06_25.json",
+    "artifacts/external_validation/selected_domain_repair_field_package_bridge_2026_06_25.json",
+    "artifacts/external_validation/selected_domain_repair_field_package_bridge_rollup_2026_06_25.json",
+    "docs/status/SELECTED_DOMAIN_REPAIR_FIELD_PACKAGE_BRIDGE_2026_06_25.md",
+    "tools/verify_selected_domain_repair_field_package_bridge_2026_06_25.py",
+    "tools/verify_selected_domain_repair_field_package_bridge_rollup_2026_06_25.py",
+    "tests/test_selected_domain_repair_field_package_bridge_2026_06_25.py",
+    "tests/test_selected_domain_repair_field_package_bridge_rollup_2026_06_25.py"
+  ],
+  "validation_commands": [
+    "python3 -m pytest tests/test_selected_domain_repair_field_package_bridge_rollup_2026_06_25.py",
+    "python3 tools/verify_selected_domain_repair_field_package_bridge_rollup_2026_06_25.py",
+    "python3 -m pytest tests/test_selected_domain_repair_field_package_bridge_2026_06_25.py",
+    "python3 tools/verify_selected_domain_repair_field_package_bridge_2026_06_25.py",
+    "lake build Chronos.Frontier.H4_1_FGL_SelectedDomainRestriction"
+  ]
+}
