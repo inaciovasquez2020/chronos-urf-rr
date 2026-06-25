@@ -127,6 +127,8 @@ theorem h4_1_fgl_selected_domain_restriction_boundary :
     True := by
   trivial
 
+
+
 end Frontier
 end Chronos
 
@@ -156,6 +158,10 @@ def selected_domain_representable (_w : W_unrestricted) : Prop :=
 def selected_domain_realizable (_w : W_unrestricted) : Prop :=
   True
 
+/-- First explicit data field package for the selected-domain repair target.
+
+This names the repaired unrestricted object and records only its selected-domain
+realizability. It does not prove terminality, representation, or normalization. -/
 def selected_domain (_nf : W_T) : Prop :=
   True
 
@@ -168,7 +174,55 @@ def represents_terminal (_nf : W_T) (_w : W_unrestricted) : Prop :=
 def normalization_relation (_w : W_unrestricted) (_nf : W_T) : Prop :=
   True
 
+structure SelectedDomainDefectRepairTargetField (w : W_unrestricted) where
+  repaired : W_unrestricted
+  repaired_realizable : selected_domain_realizable repaired
+  repaired_terminal : terminal_unrestricted repaired
+  nf : W_T
+  nf_represents_original : represents_terminal nf w
+  original_normalizes_to_nf : normalization_relation w nf
+
 def SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_BOUNDARY : Prop :=
+  ∀ w : W_unrestricted,
+    terminal_unrestricted w →
+    selected_domain_representable w →
+    ∃ w' : W_unrestricted,
+        selected_domain_realizable w'
+      ∧ terminal_unrestricted w'
+      ∧ ∃ nf : W_T,
+          represents_terminal nf w
+        ∧ normalization_relation w nf
+
+
+/-- A field-package witness is enough to expose the proposition-valued repair
+target boundary.
+
+This is conditional on the package provider; it does not construct such a
+provider. -/
+theorem selected_domain_defect_repair_target_from_field_package
+    (h : ∀ w : W_unrestricted,
+      terminal_unrestricted w →
+      selected_domain_representable w →
+      SelectedDomainDefectRepairTargetField w) :
+    SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_BOUNDARY := by
+  intro w hw hsel
+  let pkg := h w hw hsel
+  exact ⟨pkg.repaired, pkg.repaired_realizable, pkg.repaired_terminal, pkg.nf,
+    pkg.nf_represents_original, pkg.original_normalizes_to_nf⟩
+
+end Frontier
+end Chronos
+
+namespace Chronos
+namespace Frontier
+
+/--
+Stateable theorem-surface target for the first repair bridge.
+
+This is only a proposition-valued target. It does not prove repair,
+normalization, terminal closure, or `SELECTED_REPRESENTABLE_HAS_TERMINAL_NORMAL_FORM`.
+-/
+def SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_TARGET : Prop :=
   ∀ w : W_unrestricted,
     terminal_unrestricted w →
     selected_domain_representable w →

@@ -1,0 +1,21 @@
+{
+  "artifact": "SELECTED_DOMAIN_DEFECT_REPAIR_THEOREM_SURFACE_2026_06_25",
+  "base_commit": "ad56b9b8",
+  "branch": "internal/selected-domain-repair-theorem-surface-20260625",
+  "build_status": "passed",
+  "created_at_utc": "2026-06-25T21:13:40.940307+00:00",
+  "depends_on_boundary": "SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_BOUNDARY",
+  "head": "ad56b9b86331262282153ab2d4545616a52aa64e",
+  "lean_target": "Chronos.Frontier.H4_1_FGL_SelectedDomainRestriction",
+  "non_claims": [
+    "does not prove repair",
+    "does not prove normalization",
+    "does not prove terminal closure",
+    "does not prove selected representability",
+    "does not attempt SELECTED_REPRESENTABLE_HAS_TERMINAL_NORMAL_FORM"
+  ],
+  "repository": "chronos-urf-rr",
+  "source_file": "lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean",
+  "source_sha256": "70e23afccd85e53c41666cb9314e6cf10c6c0472c9f6d6fb36f6e12c28213146",
+  "theorem_surface_target": "SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_TARGET"
+}

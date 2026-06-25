@@ -1,0 +1,68 @@
+{
+  "artifact": "SELECTED_DOMAIN_REPAIR_FIELD_PACKAGE_BRIDGE_ROLLUP_2026_06_25",
+  "branch": "internal/selected-domain-repair-theorem-surface-20260625",
+  "commits": [
+    {
+      "commit": "ca298ce2185379eed7e4db658fcaa2b9af583798",
+      "short": "ca298ce2",
+      "subject": "lean: expose selected domain repair target from field package",
+      "validated_object": "Lean theorem selected_domain_defect_repair_target_from_field_package exposes SelectedDomainDefectRepairTargetField provider as SELECTED_DOMAIN_DEFECT_REPAIR_TO_REALIZABLE_NORMALIZATION_BOUNDARY",
+      "validation": [
+        "lake build Chronos.Frontier.H4_1_FGL_SelectedDomainRestriction"
+      ]
+    },
+    {
+      "commit": "8ddd5c8fd16f8f8f64941dd00dcdd476f9528e75",
+      "short": "8ddd5c8f",
+      "subject": "docs: record selected domain repair field package bridge",
+      "validated_object": "artifact artifacts/external_validation/selected_domain_repair_field_package_bridge_2026_06_25.json records field-package bridge and non-claims",
+      "validation": [
+        "lake build Chronos.Frontier.H4_1_FGL_SelectedDomainRestriction"
+      ]
+    },
+    {
+      "commit": "2b1003abbb024022709bd9c405b6db9ab3533027",
+      "short": "2b1003ab",
+      "subject": "tools: verify selected domain repair field package bridge",
+      "validated_object": "verifier tools/verify_selected_domain_repair_field_package_bridge_2026_06_25.py checks artifact/source consistency",
+      "validation": [
+        "python3 tools/verify_selected_domain_repair_field_package_bridge_2026_06_25.py",
+        "lake build Chronos.Frontier.H4_1_FGL_SelectedDomainRestriction"
+      ]
+    },
+    {
+      "commit": "86ec2e49bd8467efa2384f48558f24770e96e88b",
+      "short": "86ec2e49",
+      "subject": "tests: cover selected domain repair field package bridge verifier",
+      "validated_object": "targeted pytest tests/test_selected_domain_repair_field_package_bridge_2026_06_25.py covers verifier marker",
+      "validation": [
+        "python3 -m pytest tests/test_selected_domain_repair_field_package_bridge_2026_06_25.py",
+        "python3 tools/verify_selected_domain_repair_field_package_bridge_2026_06_25.py",
+        "lake build Chronos.Frontier.H4_1_FGL_SelectedDomainRestriction"
+      ]
+    },
+    {
+      "commit": "f24dd3133dc411169371565c89408c963a440635",
+      "short": "f24dd313",
+      "subject": "docs: add selected domain repair field package status",
+      "validated_object": "status doc docs/status/SELECTED_DOMAIN_REPAIR_FIELD_PACKAGE_BRIDGE_2026_06_25.md links artifact, verifier, pytest, and Lean target",
+      "validation": [
+        "python3 -m pytest tests/test_selected_domain_repair_field_package_bridge_2026_06_25.py",
+        "python3 tools/verify_selected_domain_repair_field_package_bridge_2026_06_25.py",
+        "lake build Chronos.Frontier.H4_1_FGL_SelectedDomainRestriction"
+      ]
+    }
+  ],
+  "created_at_utc": "2026-06-25T21:51:55.583477+00:00",
+  "head": "f24dd3133dc411169371565c89408c963a440635",
+  "lean_target": "Chronos.Frontier.H4_1_FGL_SelectedDomainRestriction",
+  "non_claims": [
+    "does not push branch",
+    "does not add a new Lean theorem",
+    "does not construct a field-package provider",
+    "does not prove selected-domain representability",
+    "does not prove normalization independently of the package"
+  ],
+  "range": "ca298ce2..f24dd313 inclusive",
+  "repository": "chronos-urf-rr"
+}
