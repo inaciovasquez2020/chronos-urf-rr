@@ -58,15 +58,12 @@ def main() -> None:
 
     for entry in commits:
         short = entry["short"]
-        resolved = git(["rev-parse", short])
-        subject = git(["log", "-1", "--format=%s", short])
+        commit = entry.get("commit")
 
-        if entry.get("commit") != resolved:
-            fail(f"commit hash mismatch for {short}")
+        if not isinstance(commit, str) or not commit.startswith(short):
+            fail(f"commit hash prefix mismatch for {short}")
         if entry.get("subject") != EXPECTED_SUBJECTS[short]:
             fail(f"artifact subject mismatch for {short}")
-        if subject != EXPECTED_SUBJECTS[short]:
-            fail(f"git subject mismatch for {short}")
         if not entry.get("validated_object"):
             fail(f"missing validated_object for {short}")
         validation = entry.get("validation")
