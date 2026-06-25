@@ -1,0 +1,25 @@
+{
+  "id": "SELECTED_DOMAIN_CONSTRUCTION_INPUT_WITNESS_REDUCTION_STATEMENT_2026_06_25",
+  "target_branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "base_head": "1fbefc8a",
+  "lean_target": "Chronos.Frontier.SelectedDomainConstructionInputWitnessReductionStatement",
+  "constructed_statements": [
+    "selected_domain_semantic_prefix_witness_statement",
+    "selected_domain_final_conditional_closure_bridge_witness_statement",
+    "selected_domain_unconditional_closure_construction_input_witness_statement"
+  ],
+  "proved_reductions": [
+    "selected_domain_unconditional_construction_input_witness_iff_final_bridge_witness",
+    "selected_domain_final_bridge_witness_iff_semantic_prefix_witness",
+    "selected_domain_unconditional_construction_input_witness_iff_semantic_prefix_witness"
+  ],
+  "available_constructed_component": "defect_atoms_constructor_target",
+  "weakest_missing_object_after_reduction": "selected_domain_semantic_prefix_witness",
+  "status": "selected_domain_construction_input_witness_reduced_to_semantic_prefix_witness",
+  "preserved_boundaries": [
+    "BOUNDARY := not selected_domain_semantic_prefix_witness",
+    "BOUNDARY := not selected_domain_unconditional_closure_construction_input_witness",
+    "BOUNDARY := not selected_domain_unconditional_closure_constructor_obligation_matrix_constructed",
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved"
+  ]
+}
