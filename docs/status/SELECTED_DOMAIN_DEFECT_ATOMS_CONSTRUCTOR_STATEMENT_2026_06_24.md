@@ -1,0 +1,18 @@
+# SELECTED_DOMAIN_DEFECT_ATOMS_CONSTRUCTOR_STATEMENT_2026_06_24
+
+## Status
+
+`SELECTED_DOMAIN_DEFECT_ATOMS_CONSTRUCTOR_STATEMENT_2026_06_24_OK`
+
+## Constructed statement
+
+```text
+defect_atoms_constructor_statement
+Constructed discharge
+defect_atoms_constructor_discharge
+Preserved boundaries
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+BOUNDARY := not selected_domain_unconditional_closure_constructor_obligation_matrix_constructed
+Next weakest object
+selected_domain_unconditional_closure_constructor_obligation_matrix_constructed
+This layer constructs only the defect-atoms constructor statement and its local discharge. It does not assert unconditional unrestricted Oblivion Atom closure.

@@ -1,0 +1,13 @@
+{
+  "id": "SELECTED_DOMAIN_DEFECT_ATOMS_CONSTRUCTOR_STATEMENT_2026_06_24",
+  "target_branch": "docs/selected-domain-defect-basis-2026-06-24",
+  "lean_target": "Chronos.Frontier.SelectedDomainDefectAtomsConstructorStatement",
+  "constructed_statement": "defect_atoms_constructor_statement",
+  "constructed_discharge": "defect_atoms_constructor_discharge",
+  "preserved_boundaries": [
+    "BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved",
+    "BOUNDARY := not selected_domain_unconditional_closure_constructor_obligation_matrix_constructed"
+  ],
+  "next_weakest_object": "selected_domain_unconditional_closure_constructor_obligation_matrix_constructed",
+  "status": "defect_atoms_constructor_statement_constructed"
+}
