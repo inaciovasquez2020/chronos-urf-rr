@@ -71,5 +71,11 @@ theorem selected_domain_unconditional_closure_construction_input_witness_dischar
   (selected_domain_unconditional_construction_input_witness_iff_semantic_prefix_witness).mpr
     selected_domain_semantic_prefix_witness_statement_discharge
 
+
+theorem selected_domain_final_conditional_closure_bridge_witness_discharge :
+    selected_domain_final_conditional_closure_bridge_witness_statement :=
+  (selected_domain_final_bridge_witness_iff_semantic_prefix_witness).mpr
+    selected_domain_semantic_prefix_witness_statement_discharge
+
 end Frontier
 end Chronos
