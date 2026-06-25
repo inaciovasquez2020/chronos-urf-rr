@@ -1,0 +1,26 @@
+# SELECTED_DOMAIN_UNCONDITIONAL_CONSTRUCTION_INPUT_WITNESS_MISSING_2026_06_25
+
+## Status
+
+`SELECTED_DOMAIN_UNCONDITIONAL_CONSTRUCTION_INPUT_WITNESS_MISSING_2026_06_25_OK`
+
+## Blocked candidate
+
+```text
+selected_domain_unconditional_closure_constructor_obligation_matrix_constructed
+Missing objects
+nullary witness for SelectedDomainRepairDescentZeroDefectReentryNormalizationFinalClosureOblivionClosureTargetPrefix
+nullary witness for SelectedDomainFinalConditionalClosureBridge
+nullary witness for SelectedDomainUnconditionalClosureConstructionInput
+Weakest missing object
+selected_domain_unconditional_closure_construction_input_witness
+Reason
+SelectedDomainSemanticPrefixConstructorTargetWitness.lean constructs a matrix only from:
+input : SelectedDomainUnconditionalClosureConstructionInput
+It does not provide a nullary semantic-prefix witness, final conditional closure bridge, or unconditional construction input witness.
+Preserved boundaries
+BOUNDARY := not selected_domain_unconditional_closure_construction_input_witness
+BOUNDARY := not selected_domain_unconditional_closure_constructor_obligation_matrix_constructed
+BOUNDARY := not unconditional_unrestricted_oblivion_atom_closure_solved
+Next safe target
+construct or import a nullary SelectedDomainUnconditionalClosureConstructionInput witness before assembling the constructor obligation matrix
