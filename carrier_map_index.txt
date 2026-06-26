@@ -1,0 +1,458 @@
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:17:structure H4_1_FGL_SelectedFinalCarrierInstance
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:18:    (S : H4_1_FGL_SemanticFinalCarrier.{u, v}) where
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:27:    ∀ z : S.Carrier,
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:34:namespace H4_1_FGL_SelectedFinalCarrierInstance
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:41:    {S : H4_1_FGL_SemanticFinalCarrier.{u, v}}
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:42:    (I : H4_1_FGL_SelectedFinalCarrierInstance S)
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:43:    (x : S.Carrier) : S.Observation :=
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:58:    {S : H4_1_FGL_SemanticFinalCarrier.{u, v}}
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:59:    (I : H4_1_FGL_SelectedFinalCarrierInstance S) :
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:84:    {S : H4_1_FGL_SemanticFinalCarrier.{u, v}}
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:85:    (I : H4_1_FGL_SelectedFinalCarrierInstance S) :
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:89:end H4_1_FGL_SelectedFinalCarrierInstance
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:94:def H4_1_FGL_SelectedFinalCarrierInstancePredicate
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:95:    (S : H4_1_FGL_SemanticFinalCarrier.{u, v}) : Prop :=
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:96:  Nonempty (H4_1_FGL_SelectedFinalCarrierInstance S)
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:104:theorem H4_1_FGL_SelectedFinalCarrierSeparatingObservableExistence :
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:105:    ∀ S : H4_1_FGL_SemanticFinalCarrier.{u, v},
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:106:      H4_1_FGL_SelectedFinalCarrierInstancePredicate S →
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:110:  exact H4_1_FGL_SelectedFinalCarrierInstance.has_separating_observable I
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:116:structure H4_1_FGL_SelectedFinalCarrierInstanceWithPoint
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:117:    (S : H4_1_FGL_SemanticFinalCarrier.{u, v}) where
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:118:  separation : H4_1_FGL_SelectedFinalCarrierInstance S
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:119:  selected_witness : S.Carrier
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:127:theorem H4_1_FGL_SelectedFinalCarrierInstanceWithPoint_implies_missing_witness
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:128:    {S : H4_1_FGL_SemanticFinalCarrier.{u, v}}
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:129:    (I : H4_1_FGL_SelectedFinalCarrierInstanceWithPoint S) :
+lean/Chronos/Frontier/H4_1_FGL_SelectedSeparatingObservableExistence.lean:136:      (H4_1_FGL_SelectedFinalCarrierInstance.toSeparatingObservable I.separation)
+lean/Chronos/Frontier/H4_1_FGL_ObservationExtractionWitnessInterface.lean:17:def H4_1_FGL_FinalCarrierObservationExtractionTarget : Prop :=
+lean/Chronos/Frontier/H4_1_FGL_ObservationExtractionWitnessInterface.lean:34:    H4_1_FGL_FinalCarrierObservationExtractionTarget := by
+lean/Chronos/Frontier/H4_1_FGL_ObservationExtractionWitnessInterface.lean:50:    H4_1_FGL_FinalCarrierObservationExtractionTarget := by
+lean/Chronos/Frontier/FiniteSupportRestrictedUFEGToRestrictedH41FGL.lean:11:  Carrier : Type
+lean/Chronos/Frontier/FiniteSupportRestrictedUFEGToRestrictedH41FGL.lean:19:  Carrier := D.Carrier
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:15:structure H4_1_FGL_SemanticFinalCarrier where
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:16:  Carrier : Type u
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:18:  FinalHypothesis : Carrier → Prop
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:19:  FinalGapLeft : Carrier → Prop
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:20:  FinalGapRight : Carrier → Prop
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:21:  SoundnessPredicate : Carrier → Prop
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:32:    (S : H4_1_FGL_SemanticFinalCarrier.{u, v}) where
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:33:  observe : S.Carrier → S.Observation
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:35:    ∀ x y : S.Carrier,
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:40:    ∀ x : S.Carrier,
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:50:    (S : H4_1_FGL_SemanticFinalCarrier.{u, v}) where
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:51:  toObservation : S.Carrier → S.Observation
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:53:    ∀ x y : S.Carrier,
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:58:    ∀ x : S.Carrier,
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:67:    (S : H4_1_FGL_SemanticFinalCarrier.{u, v})
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:82:  S : H4_1_FGL_SemanticFinalCarrier.{u, v}
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:83:  selected_witness : S.Carrier
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:92:    (S : H4_1_FGL_SemanticFinalCarrier.{u, v})
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:93:    (selected_witness : S.Carrier)
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:113:    ∃ x : P.S.Carrier, P.S.FinalHypothesis x,
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:117:    ∀ x y : P.S.Carrier,
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:122:    ∀ x : P.S.Carrier,
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:153:    (S : H4_1_FGL_SemanticFinalCarrier.{u, v})
+lean/Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean:154:    (selected_witness : S.Carrier)
+lean/Chronos/Frontier/RateThickRankRateNonNullWitnessTheorem.lean:15:  ∀ p : S.Carrier,
+lean/Chronos/Frontier/CarrierRankSoundness.lean:5:def CarrierRankSoundness (sys : DynamicalSystem) : Prop :=
+lean/Chronos/Frontier/CarrierRankSoundness.lean:13:    (h_sound : CarrierRankSoundness sys)
+lean/Chronos/Frontier/CarrierRankSoundness.lean:24:    (h_sound : CarrierRankSoundness sys)
+lean/Chronos/Frontier/RestrictedH41FGLToSelectedDomainH41FGL.lean:11:  carrier_gap : RestrictedCarrierFiberEntropyGap rankRate fiberMass
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:20:  Carrier : Type u
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:21:  RateThickDomain : Carrier → Prop
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:22:  FiberEntropyMass : Carrier → Real
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:23:  RankRateNonNull : Carrier → Prop
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:30:    ∀ p : S.Carrier,
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:39:  ∀ p : S.Carrier,
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:47:  ∀ p : S.Carrier,
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:82:  ∀ p : S.Carrier,
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:96:    (Step : S.Carrier → S.Carrier → Prop) : Prop :=
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:97:  ∀ p q : S.Carrier,
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:107:    (Step : S.Carrier → S.Carrier → Prop) :
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:117:    (path : Fin (T + 1) → S.Carrier) : Prop :=
+lean/Chronos/Frontier/RateThickFiberCoercivityTheorem.lean:127:    (path : Fin (T + 1) → S.Carrier) :
+lean/Chronos/Frontier/MeaningfulExternalH41FGLToyClosure.lean:37:def NonPropFinalCarrierInvariant
+lean/Chronos/Frontier/MeaningfulExternalH41FGLToyClosure.lean:44:    NonPropFinalCarrierInvariant I :=
+lean/Chronos/Frontier/MeaningfulExternalH41FGLToyClosure.lean:49:  NonPropFinalCarrierInvariant I
+lean/Chronos/Frontier/MeaningfulExternalH41FGLToyClosure.lean:111:  ExternalCarrier : Type
+lean/Chronos/Frontier/MeaningfulExternalH41FGLToyClosure.lean:112:  interpret : Witness I → ExternalCarrier
+lean/Chronos/Frontier/MeaningfulExternalH41FGLToyClosure.lean:113:  external_property : ExternalCarrier → Prop
+lean/Chronos/Frontier/MeaningfulExternalH41FGLToyClosure.lean:161:    ¬ ∃ f : A.M.ExternalCarrier → Witness I, InjectiveMap f
+lean/Chronos/Frontier/MeaningfulExternalH41FGLToyClosure.lean:167:    ∃ x : N.A.M.ExternalCarrier, ¬ N.A.M.external_property x
+lean/Chronos/Frontier/MeaningfulExternalH41FGLToyClosure.lean:180:  ExternalCarrier := Bool
+lean/Chronos/Frontier/MeaningfulExternalH41FGLToyClosure.lean:227:      { ExternalCarrier := Witness I
+lean/Chronos/Frontier/FiberMassBalanceFromNonPropInvariant.lean:11:  carrier : CarrierData
+lean/Chronos/Frontier/FiberMassBalanceFromNonPropInvariant.lean:19:    (I : NonPropFinalCarrierInvariant) : Prop :=
+lean/Chronos/Frontier/FiberMassBalanceFromNonPropInvariant.lean:20:  ∀ c : CarrierData,
+lean/Chronos/Frontier/FiberMassBalanceFromNonPropInvariant.lean:27:    (I : NonPropFinalCarrierInvariant) :
+lean/Chronos/Frontier/FiberMassBalanceFromNonPropInvariant.lean:43:    (I : NonPropFinalCarrierInvariant) :
+lean/Chronos/Frontier/CountingFiberSeparationFromFiberLarge.lean:10:  carrier : CarrierData
+lean/Chronos/Frontier/CountingFiberSeparationFromFiberLarge.lean:19:    (I : NonPropFinalCarrierInvariant) : Prop :=
+lean/Chronos/Frontier/CountingFiberSeparationFromFiberLarge.lean:20:  ∀ c : CarrierData,
+lean/Chronos/Frontier/CountingFiberSeparationFromFiberLarge.lean:27:    (I : NonPropFinalCarrierInvariant)
+lean/Chronos/Frontier/CountingFiberSeparationFromFiberLarge.lean:47:    (I : NonPropFinalCarrierInvariant) :
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:3:inductive GravityActiveCarrierBindingStatus where
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:8:structure GravityActiveCarrierBindingData where
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:10:  GravityCarrier : Type
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:13:  carrierOf : EinsteinMatterState → GravityCarrier
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:14:  observableOf : GravityCarrier → CertificateSurface
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:15:  entropyMass : GravityCarrier → Nat
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:16:  dynamicsCompatibleWithCarrier :
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:21:      ∃ c : GravityCarrier, c = carrierOf s ∧ observableOf c = observableOf (carrierOf s)
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:23:def EinsteinMatterEvolutionActsOnCarrier
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:24:    (D : GravityActiveCarrierBindingData) : Prop :=
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:29:def GravityCarrierEntropyMass
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:30:    (D : GravityActiveCarrierBindingData) : D.GravityCarrier → Nat :=
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:33:def CertificateSurfaceFactorsThroughActiveCarrier
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:34:    (D : GravityActiveCarrierBindingData) : Prop :=
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:36:    ∃ c : D.GravityCarrier,
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:39:def GravityActiveCarrierBindingTheoremTarget
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:40:    (D : GravityActiveCarrierBindingData) : Prop :=
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:41:  EinsteinMatterEvolutionActsOnCarrier D →
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:42:    CertificateSurfaceFactorsThroughActiveCarrier D
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:44:def GravityActiveCarrierBindingBoundary :
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:45:    GravityActiveCarrierBindingStatus × GravityActiveCarrierBindingStatus :=
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:46:  (GravityActiveCarrierBindingStatus.CONDITIONAL,
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:47:   GravityActiveCarrierBindingStatus.ACTIVE_BINDING_THEOREM_TARGET_ONLY)
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:50:    (D : GravityActiveCarrierBindingData) :
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:51:    EinsteinMatterEvolutionActsOnCarrier D := by
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:52:  exact D.dynamicsCompatibleWithCarrier
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:54:theorem certificateSurfaceFactorsThroughActiveCarrier_conditional
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:55:    (D : GravityActiveCarrierBindingData)
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:56:    (hFactor : CertificateSurfaceFactorsThroughActiveCarrier D) :
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:57:    GravityActiveCarrierBindingTheoremTarget D := by
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:62:    (D : GravityActiveCarrierBindingData) :
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:63:    CertificateSurfaceFactorsThroughActiveCarrier D := by
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:67:    (D : GravityActiveCarrierBindingData) :
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:68:    GravityActiveCarrierBindingTheoremTarget D := by
+lean/Chronos/Frontier/GravityActiveCarrierBindingTheoremTarget.lean:69:  exact certificateSurfaceFactorsThroughActiveCarrier_conditional
+lean/Chronos/Frontier/SelectedDomainChronosRRFromUniversalGap.lean:1:import Chronos.Frontier.SelectedDomainUniversalGapFromRestrictedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:1:import Chronos.Frontier.R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:15:structure R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget where
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:17:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSource : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:18:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:19:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceWitness :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:20:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSource
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:21:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:22:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSource →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:23:      concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:24:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSource : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:25:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:26:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:27:      concreteRawEndpointConfigurationSourceBaseSeedCarrierSource
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:28:  concreteRawEndpointConfigurationSourceBaseSeedCarrier : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:29:  concreteRawEndpointConfigurationSourceBaseSeedCarrierRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:30:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSource →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:31:      concreteRawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:32:  rawEndpointConfigurationSourceBaseSeedCarrier : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:33:  rawEndpointConfigurationSourceBaseSeedCarrierRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:34:    concreteRawEndpointConfigurationSourceBaseSeedCarrier →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:35:      rawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:38:    rawEndpointConfigurationSourceBaseSeedCarrier →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:96:theorem R1c_concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput_from_target
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:97:    (T : R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget) :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:98:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:99:  T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputRule
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:100:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceWitness
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:107:    (T : R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget) :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:108:    R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget where
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:111:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:112:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:113:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSource :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:114:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSource
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:115:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputWitness :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:116:    R1c_concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput_from_target T
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:117:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceRule :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:118:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceRule
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:119:  concreteRawEndpointConfigurationSourceBaseSeedCarrier :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:120:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:121:  concreteRawEndpointConfigurationSourceBaseSeedCarrierRule :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:122:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierRule
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:123:  rawEndpointConfigurationSourceBaseSeedCarrier :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:124:    T.rawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:129:  rawEndpointConfigurationSourceBaseSeedCarrierRule :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget.lean:130:    T.rawEndpointConfigurationSourceBaseSeedCarrierRule
+lean/Chronos/Frontier/ConditionalQLCollapseGate_Objects.lean:32:  Carrier : Type
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:1:import Chronos.Frontier.R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:15:structure R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget where
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:17:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:18:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSource : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:19:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputWitness :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:20:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:21:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:22:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:23:      concreteRawEndpointConfigurationSourceBaseSeedCarrierSource
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:24:  concreteRawEndpointConfigurationSourceBaseSeedCarrier : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:25:  concreteRawEndpointConfigurationSourceBaseSeedCarrierRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:26:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSource →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:27:      concreteRawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:28:  rawEndpointConfigurationSourceBaseSeedCarrier : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:29:  rawEndpointConfigurationSourceBaseSeedCarrierRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:30:    concreteRawEndpointConfigurationSourceBaseSeedCarrier →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:31:      rawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:34:    rawEndpointConfigurationSourceBaseSeedCarrier →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:92:theorem R1c_concreteRawEndpointConfigurationSourceBaseSeedCarrierSource_from_target
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:93:    (T : R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget) :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:94:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSource :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:95:  T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceRule
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:96:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputWitness
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:103:    (T : R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget) :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:104:    R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget where
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:107:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSource :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:108:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSource
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:109:  concreteRawEndpointConfigurationSourceBaseSeedCarrier :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:110:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:111:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceWitness :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:112:    R1c_concreteRawEndpointConfigurationSourceBaseSeedCarrierSource_from_target T
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:113:  concreteRawEndpointConfigurationSourceBaseSeedCarrierRule :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:114:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierRule
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:115:  rawEndpointConfigurationSourceBaseSeedCarrier :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:116:    T.rawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:121:  rawEndpointConfigurationSourceBaseSeedCarrierRule :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceTarget.lean:122:    T.rawEndpointConfigurationSourceBaseSeedCarrierRule
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:10:structure RestrictedCarrierState where
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:16:def RankRate := RestrictedCarrierState → Nat
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:21:def FiberEntropyMass := RestrictedCarrierState → Nat
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:24:CarrierRankSoundness says positive rank-rate is certified on the restricted
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:27:def CarrierRankSoundness (rankRate : RankRate) : Prop :=
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:28:  ∀ X : RestrictedCarrierState, 0 < rankRate X → 0 < rankRate X
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:37:  ∀ X : RestrictedCarrierState, 0 < rankRate X → 0 < fiberMass X
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:40:RestrictedCarrierFiberEntropyGap is the solved restricted target.
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:43:positive-mass conclusion over `RestrictedCarrierState`.
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:45:def RestrictedCarrierFiberEntropyGap
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:48:  ∀ X : RestrictedCarrierState, 0 < rankRate X → 0 < fiberMass X
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:57:    (_hsound : CarrierRankSoundness rankRate)
+lean/Chronos/Frontier/RestrictedCarrierRankToEntropyGap.lean:59:    RestrictedCarrierFiberEntropyGap rankRate fiberMass := by
+lean/Chronos/Frontier/SimplexEntropyCoercivityAxiom.lean:50:  Carrier := Fin m → Real
+lean/Chronos/Frontier/CountingWithEntropyMassToFiberMassBalance.lean:13:    (I : NonPropFinalCarrierInvariant) : Prop :=
+lean/Chronos/Frontier/CountingWithEntropyMassToFiberMassBalance.lean:14:  ∀ c : CarrierData,
+lean/Chronos/Frontier/CountingWithEntropyMassToFiberMassBalance.lean:22:    (I : NonPropFinalCarrierInvariant)
+lean/Chronos/Frontier/CountingWithEntropyMassToFiberMassBalance.lean:30:    (I : NonPropFinalCarrierInvariant)
+lean/Chronos/Frontier/CountingWithEntropyMassToFiberMassBalance.lean:50:    (I : NonPropFinalCarrierInvariant)
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:5:abbrev FiniteWitnessCarrier (n : Nat) := Fin n
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:8:    (P : FiniteWitnessCarrier n → Prop) where
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:9:  witness : FiniteWitnessCarrier n
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:14:    Nonempty (FiniteWitnessCarrier n) := by
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:18:    {n : Nat} {P : FiniteWitnessCarrier n → Prop}
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:20:    ∃ i : FiniteWitnessCarrier n, P i := by
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:24:    {n : Nat} {P : FiniteWitnessCarrier n → Prop}
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:25:    (h : ∃ i : FiniteWitnessCarrier n, P i) :
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:31:    {n : Nat} {P : FiniteWitnessCarrier n → Prop} :
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:33:      ∃ i : FiniteWitnessCarrier n, P i := by
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:43:    {P Q : FiniteWitnessCarrier n → Prop}
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:44:    (hPQ : ∀ i : FiniteWitnessCarrier n, P i → Q i)
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:51:    {P Q : FiniteWitnessCarrier n → Prop}
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:52:    (hPQ : ∀ i : FiniteWitnessCarrier n, P i → Q i)
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:60:    {P Q : FiniteWitnessCarrier n → Prop}
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:61:    (hPQ : ∀ i : FiniteWitnessCarrier n, P i → Q i)
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:62:    (h : ∃ i : FiniteWitnessCarrier n, P i) :
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:63:    ∃ i : FiniteWitnessCarrier n, Q i := by
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:70:      (fun _ : FiniteWitnessCarrier n => True) :=
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:77:        (fun _ : FiniteWitnessCarrier n => True)) := by
+lean/Chronos/Frontier/FiniteWitnessTheoremCluster.lean:82:    ∃ _ : FiniteWitnessCarrier n, True := by
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:12:def H4_1_FGL_ArbitrarySemanticFinalCarrierCounterexample :
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:13:    H4_1_FGL_SemanticFinalCarrier :=
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:15:  Carrier := Unit,
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:31:    ¬ (∀ S : H4_1_FGL_SemanticFinalCarrier.{0, 0},
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:34:  rcases h H4_1_FGL_ArbitrarySemanticFinalCarrierCounterexample with ⟨W⟩
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:45:    ¬ (∀ S : H4_1_FGL_SemanticFinalCarrier.{0, 0},
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:46:        H4_1_FGL_SelectedFinalCarrierInstancePredicate S) := by
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:51:          H4_1_FGL_ArbitrarySemanticFinalCarrierCounterexample) :=
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:52:    H4_1_FGL_SelectedFinalCarrierSeparatingObservableExistence
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:53:      H4_1_FGL_ArbitrarySemanticFinalCarrierCounterexample
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:54:      (h H4_1_FGL_ArbitrarySemanticFinalCarrierCounterexample)
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:69:  S : H4_1_FGL_SemanticFinalCarrier.{u, v}
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:70:  separation : H4_1_FGL_SelectedFinalCarrierInstance S
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:71:  selected_witness : S.Carrier
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:82:    H4_1_FGL_SelectedFinalCarrierInstanceWithPoint D.S :=
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:96:    H4_1_FGL_SelectedFinalCarrierInstance.has_separating_observable
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:107:    H4_1_FGL_SelectedFinalCarrierInstanceWithPoint_implies_missing_witness
+lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean:147:  H4_1_FGL_SemanticFinalCarrier.{0, 0}
+lean/Chronos/Frontier/ChronosRRConditionalFromUniversalGap.lean:11:  carrier : CarrierData
+lean/Chronos/Frontier/ChronosRRConditionalFromUniversalGap.lean:20:    (I : NonPropFinalCarrierInvariant) : Prop :=
+lean/Chronos/Frontier/ChronosRRConditionalFromUniversalGap.lean:21:  ∀ c : CarrierData,
+lean/Chronos/Frontier/ChronosRRConditionalFromUniversalGap.lean:28:    (I : NonPropFinalCarrierInvariant)
+lean/Chronos/Frontier/ChronosRRConditionalFromUniversalGap.lean:48:    (I : NonPropFinalCarrierInvariant) :
+lean/Chronos/Frontier/CountingToMassUnderNonPropInvariant.lean:13:    (I : NonPropFinalCarrierInvariant)
+lean/Chronos/Frontier/CountingToMassUnderNonPropInvariant.lean:19:    (I : NonPropFinalCarrierInvariant)
+lean/Chronos/Frontier/CountingToMassUnderNonPropInvariant.lean:32:  "Typed repository bridge under NonPropFinalCarrierInvariant only; the counting premise is not information-exact and is not used to reconstruct entropyMass; no standalone CountingFiberSeparationToFiberMassBalance, unrestricted UniversalFiberEntropyGap, Chronos-RR, H4.1/FGL, P vs NP, or Clay closure"
+lean/Chronos/Frontier/ConcreteAnalyticEinsteinMatterEstimatePackageBridge.lean:20:  targetCarrier : Type
+lean/Chronos/Frontier/SelectedDomainH41FGLToAdmissibleH41FGL.lean:81:    (hCarrier : RestrictedCarrierFiberEntropyGap rankRate fiberMass) :
+lean/Chronos/Frontier/SelectedDomainH41FGLToAdmissibleH41FGL.lean:85:    { carrier_gap := hCarrier
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedWitnessTarget.lean:16:  rawEndpointConfigurationSourceBaseSeedCarrier : Prop
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedWitnessTarget.lean:18:  rawEndpointConfigurationSourceBaseSeedCarrierWitness :
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedWitnessTarget.lean:19:    rawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedWitnessTarget.lean:21:    rawEndpointConfigurationSourceBaseSeedCarrier →
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedWitnessTarget.lean:81:    T.rawEndpointConfigurationSourceBaseSeedCarrierWitness
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:1:import Chronos.Frontier.R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:6:structure R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget where
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:8:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceSeed : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:9:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSource : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:10:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceSeedWitness :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:11:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceSeed
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:12:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:13:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceSeed →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:14:      concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSource
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:15:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:16:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:17:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSource →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:18:      concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:19:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSource : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:20:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:21:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:22:      concreteRawEndpointConfigurationSourceBaseSeedCarrierSource
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:23:  concreteRawEndpointConfigurationSourceBaseSeedCarrier : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:24:  concreteRawEndpointConfigurationSourceBaseSeedCarrierRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:25:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSource →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:26:      concreteRawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:27:  rawEndpointConfigurationSourceBaseSeedCarrier : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:28:  rawEndpointConfigurationSourceBaseSeedCarrierRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:29:    concreteRawEndpointConfigurationSourceBaseSeedCarrier →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:30:      rawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:33:    rawEndpointConfigurationSourceBaseSeedCarrier →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:87:theorem R1c_concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSource_from_target
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:88:    (T : R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget) :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:89:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSource :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:90:  T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceRule
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:91:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceSeedWitness
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:94:    (T : R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget) :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:95:    R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputTarget where
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:98:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSource :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:99:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSource
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:100:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:101:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInput
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:102:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceWitness :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:103:    R1c_concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSource_from_target T
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:104:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputRule :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:105:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputRule
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:106:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSource :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:107:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSource
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:108:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceRule :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:109:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceRule
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:110:  concreteRawEndpointConfigurationSourceBaseSeedCarrier :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:111:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:112:  concreteRawEndpointConfigurationSourceBaseSeedCarrierRule :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:113:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierRule
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:114:  rawEndpointConfigurationSourceBaseSeedCarrier :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:115:    T.rawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:120:  rawEndpointConfigurationSourceBaseSeedCarrierRule :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean:121:    T.rawEndpointConfigurationSourceBaseSeedCarrierRule
+lean/Chronos/Frontier/SelectedDomainUniversalGapFromRestrictedCarrier.lean:1:import Chronos.Frontier.RestrictedCarrierRankToEntropyGap
+lean/Chronos/Frontier/SelectedDomainUniversalGapFromRestrictedCarrier.lean:15:  RestrictedCarrierFiberEntropyGap rankRate fiberMass
+lean/Chronos/Frontier/SelectedDomainUniversalGapFromRestrictedCarrier.lean:24:    (hgap : RestrictedCarrierFiberEntropyGap rankRate fiberMass) :
+lean/Chronos/Frontier/ArbitraryConcreteTargetRegistryComputation.lean:11:  Carrier : Type
+lean/Chronos/Frontier/ArbitraryConcreteTargetRegistryComputation.lean:12:  arity : Carrier → Nat
+lean/Chronos/Frontier/ArbitraryConcreteTargetRegistryComputation.lean:13:  semanticRank : Carrier → Nat
+lean/Chronos/Frontier/ArbitraryConcreteTargetRegistryComputation.lean:21:  finiteCarrier : Fintype toConcreteTargetRegistry.Carrier
+lean/Chronos/Frontier/ArbitraryConcreteTargetRegistryComputation.lean:22:  decidableCarrierEq : DecidableEq toConcreteTargetRegistry.Carrier
+lean/Chronos/Frontier/ArbitraryConcreteTargetRegistryComputation.lean:24:attribute [instance] FiniteConcreteTargetRegistry.finiteCarrier
+lean/Chronos/Frontier/ArbitraryConcreteTargetRegistryComputation.lean:25:attribute [instance] FiniteConcreteTargetRegistry.decidableCarrierEq
+lean/Chronos/Frontier/ArbitraryConcreteTargetRegistryComputation.lean:34:  computedRank : R.Carrier → Nat
+lean/Chronos/Frontier/ArbitraryConcreteTargetRegistryComputation.lean:35:  agreesWithRegistry : ∀ x : R.Carrier, computedRank x = R.semanticRank x
+lean/Chronos/Frontier/UniformTemporalRelaxationWaveTarget.lean:5:  Carrier : Type
+lean/Chronos/Frontier/UniformTemporalRelaxationWaveTarget.lean:6:  step : Carrier → Carrier
+lean/Chronos/Frontier/UniformTemporalRelaxationWaveTarget.lean:7:  sink : Carrier
+lean/Chronos/Frontier/UniformTemporalRelaxationWaveTarget.lean:8:  entropy : Carrier → Nat
+lean/Chronos/Frontier/UniformTemporalRelaxationWaveTarget.lean:9:  mass : Carrier → Nat
+lean/Chronos/Frontier/UniformTemporalRelaxationWaveTarget.lean:14:    ∀ x : D.Carrier, D.entropy (D.step x) ≤ D.entropy x
+lean/Chronos/Frontier/UniformTemporalRelaxationWaveTarget.lean:18:    ∃ n : Nat, n ≠ 0 ∧ ∀ x : D.Carrier, n ≤ D.mass x
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:1:import Chronos.Frontier.R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:15:structure R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget where
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:17:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSource : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:18:  concreteRawEndpointConfigurationSourceBaseSeedCarrier : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:19:  concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceWitness :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:20:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSource
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:21:  concreteRawEndpointConfigurationSourceBaseSeedCarrierRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:22:    concreteRawEndpointConfigurationSourceBaseSeedCarrierSource →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:23:      concreteRawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:24:  rawEndpointConfigurationSourceBaseSeedCarrier : Prop
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:25:  rawEndpointConfigurationSourceBaseSeedCarrierRule :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:26:    concreteRawEndpointConfigurationSourceBaseSeedCarrier →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:27:      rawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:30:    rawEndpointConfigurationSourceBaseSeedCarrier →
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:88:theorem R1c_concreteRawEndpointConfigurationSourceBaseSeedCarrier_from_target
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:89:    (T : R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget) :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:90:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrier :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:91:  T.concreteRawEndpointConfigurationSourceBaseSeedCarrierRule
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:92:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierSourceWitness
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:99:    (T : R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget) :
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:100:    R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget where
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:103:  concreteRawEndpointConfigurationSourceBaseSeedCarrier :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:104:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:105:  rawEndpointConfigurationSourceBaseSeedCarrier :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:106:    T.rawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:107:  concreteRawEndpointConfigurationSourceBaseSeedCarrierWitness :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:108:    R1c_concreteRawEndpointConfigurationSourceBaseSeedCarrier_from_target T
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:113:  rawEndpointConfigurationSourceBaseSeedCarrierRule :=
+lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierTarget.lean:114:    T.rawEndpointConfigurationSourceBaseSeedCarrierRule
+lean/Chronos/Frontier/UniversalFiberEntropyGapFromCountingAndMass.lean:12:  carrier : CarrierData
+lean/Chronos/Frontier/UniversalFiberEntropyGapFromCountingAndMass.lean:22:    (I : NonPropFinalCarrierInvariant) : Prop :=
+lean/Chronos/Frontier/UniversalFiberEntropyGapFromCountingAndMass.lean:23:  ∀ c : CarrierData,
+lean/Chronos/Frontier/UniversalFiberEntropyGapFromCountingAndMass.lean:30:    (I : NonPropFinalCarrierInvariant)
+lean/Chronos/Frontier/UniversalFiberEntropyGapFromCountingAndMass.lean:53:    (I : NonPropFinalCarrierInvariant) :
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:10:structure SharedCarrier where
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:19:  C : SharedCarrier
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:22:  C : SharedCarrier
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:25:  C : SharedCarrier
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:31:structure CanonicalCarrier where
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:32:  base : SharedCarrier
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:37:structure CarrierHom (A B : SharedCarrier) where
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:44:abbrev CarrierIso (A B : SharedCarrier) := CarrierHom A B
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:50:@[simp] def extractSharedCarrier (S : NewsteinR1R2R3NativeBindingSpec) : SharedCarrier :=
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:56:def canonicalCarrierFromBinding
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:57:  (S : NewsteinR1R2R3NativeBindingSpec) : CanonicalCarrier :=
+lean/Chronos/Frontier/CanonicalSharedCarrier.lean:58:{ base := extractSharedCarrier S }
+lean/Chronos/Frontier/SharedNativeCarrierR1R2R3.lean:12:structure SharedCarrier where
+lean/Chronos/Frontier/SharedNativeCarrierR1R2R3.lean:20:  carrier : SharedCarrier
+lean/Chronos/Frontier/SharedNativeCarrierR1R2R3.lean:26:  carrier : SharedCarrier
+lean/Chronos/Frontier/SharedNativeCarrierR1R2R3.lean:32:  carrier : SharedCarrier
+lean/Chronos/Frontier/SharedNativeCarrierR1R2R3.lean:38:  C : SharedCarrier
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:5:structure CarrierData where
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:17:structure NonPropFinalCarrierInvariant where
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:18:  rank : CarrierData → Nat
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:19:  fiberSize : CarrierData → Nat
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:20:  entropyMass : CarrierData → Rat
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:21:  arity : CarrierData → Nat
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:22:  stratum : CarrierData → Rat
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:25:    ∀ c : CarrierData, 0 < rank c
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:28:    ∀ c : CarrierData, rank c ≤ fiberSize c
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:31:    ∀ c : CarrierData, (rank c : Rat) ≤ entropyMass c
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:34:    ∀ c : CarrierData, arity c = c.arity
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:37:    ∀ c : CarrierData, stratum c = c.stratum
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:40:    (I : NonPropFinalCarrierInvariant) : Prop :=
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:41:  ∀ c : CarrierData,
+lean/Chronos/Frontier/FiberLargeFromNonPropCore.lean:51:    (I : NonPropFinalCarrierInvariant) :
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:15:structure R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget where
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:17:  concreteRawEndpointConfigurationSourceBaseSeedCarrier : Prop
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:18:  rawEndpointConfigurationSourceBaseSeedCarrier : Prop
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:19:  concreteRawEndpointConfigurationSourceBaseSeedCarrierWitness :
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:20:    concreteRawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:21:  rawEndpointConfigurationSourceBaseSeedCarrierRule :
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:22:    concreteRawEndpointConfigurationSourceBaseSeedCarrier →
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:23:      rawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:26:    rawEndpointConfigurationSourceBaseSeedCarrier →
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:84:theorem R1c_rawEndpointConfigurationSourceBaseSeedCarrier_from_witness_target
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:85:    (T : R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget) :
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:86:    T.rawEndpointConfigurationSourceBaseSeedCarrier :=
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:87:  T.rawEndpointConfigurationSourceBaseSeedCarrierRule
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:88:    T.concreteRawEndpointConfigurationSourceBaseSeedCarrierWitness
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:95:    (T : R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget) :
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:99:  rawEndpointConfigurationSourceBaseSeedCarrier :=
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:100:    T.rawEndpointConfigurationSourceBaseSeedCarrier
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:103:  rawEndpointConfigurationSourceBaseSeedCarrierWitness :=
+lean/Chronos/Frontier/R1cNativeRawEndpointConfigurationSourceBaseSeedCarrierWitnessTarget.lean:104:    R1c_rawEndpointConfigurationSourceBaseSeedCarrier_from_witness_target T
+lean/Chronos/Frontier/RestrictedChronosRRToRestrictedH41FGL.lean:11:  Carrier : Type
+lean/Chronos/Frontier/ActiveGravityCarrierBinding.lean:13:structure ActiveGravityCarrierBindingInput where
+lean/Chronos/Frontier/ActiveGravityCarrierBinding.lean:17:  dynamicsActsOnCarrier : Prop
+lean/Chronos/Frontier/ActiveGravityCarrierBinding.lean:18:  certificateSurfaceFactorsThroughCarrier : Prop
+lean/Chronos/Frontier/ActiveGravityCarrierBinding.lean:20:def ActiveGravityCarrierBinding : BindingStatus × BindingStatus :=
+lean/Chronos/Frontier/ActiveGravityCarrierBinding.lean:23:def ActiveGravityCarrierBindingBoundary : Prop :=
+lean/Chronos/Frontier/ActiveGravityCarrierBinding.lean:24:  ActiveGravityCarrierBinding =
+lean/Chronos/Frontier/ActiveGravityCarrierBinding.lean:28:    ActiveGravityCarrierBindingBoundary := by
+lean/Chronos/Frontier/LakeNativeNonPropInvariantConstruction.lean:10:def canonicalNonPropFinalCarrierInvariant :
+lean/Chronos/Frontier/LakeNativeNonPropInvariantConstruction.lean:11:    NonPropFinalCarrierInvariant :=
+lean/Chronos/Frontier/LakeNativeNonPropInvariantConstruction.lean:36:  ∃ I : NonPropFinalCarrierInvariant,
+lean/Chronos/Frontier/LakeNativeNonPropInvariantConstruction.lean:42:    ⟨canonicalNonPropFinalCarrierInvariant,
+lean/Chronos/Frontier/LakeNativeNonPropInvariantConstruction.lean:44:        canonicalNonPropFinalCarrierInvariant⟩
+lean/Chronos/Frontier/RateThickFiberEntropyGapTheorem.lean:18:  ∀ p : S.Carrier,

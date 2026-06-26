@@ -15,7 +15,7 @@
    "type": "git",
    "subDir": null,
    "scope": "",
-   "rev": "593cbb7a7d97a82c2d7400e175def511f2ca5588",
+   "rev": "857e9547724229a8753f205ec0a103f862562eb9",
    "name": "urf_core",
    "manifestFile": "lake-manifest.json",
    "inputRev": "main",
