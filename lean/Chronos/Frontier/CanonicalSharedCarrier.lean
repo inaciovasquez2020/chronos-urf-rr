@@ -48,7 +48,7 @@ Conjecture: existence of canonical carrier.
 (Not proven.)
 -/
 axiom canonical_existence :
-  ∃ (C : CanonicalCarrier), True
+  Nonempty CanonicalCarrier
 
 /--
 Conjecture: uniqueness up to isomorphism.
