@@ -1,0 +1,13 @@
+{
+  "id": "ROOT_R1_INTERFACE_BOUNDARY_2026_06_26",
+  "status": "BOUNDARY_CONFIRMED",
+  "root_r1_interface": "R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget",
+  "lean_file": "lean/Chronos/Frontier/R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget.lean",
+  "overarching_boundary": "BOUNDARY := not NewsteinR1R2R3NativeBindingSupplied",
+  "root_boundary": "BOUNDARY := not exists T : R1cNativeConcreteRawEndpointConfigurationSourceBaseSeedCarrierSourceInputSourceTarget, True",
+  "claim_boundary": [
+    "does not construct the root R1 interface",
+    "does not construct NewsteinR1R2R3NativeBindingSupplied",
+    "does not close repository-native R1/R2/R3 promotion"
+  ]
+}
