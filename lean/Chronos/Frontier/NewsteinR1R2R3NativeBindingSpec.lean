@@ -62,7 +62,10 @@ def NewsteinR1R2R3NativeBindingSupplied
   S.nativeCapacityFunctionSpec ∧
   S.r1MatchesOpenInputsRegistry ∧
   S.r2MatchesOpenInputsRegistry ∧
-  S.r3MatchesOpenInputsRegistry
+  S.r3MatchesOpenInputsRegistry ∧
+  R1LongChordExclusionTheorem S.nativeR1Data ∧
+  R2DiameterSeparationFillingObstructionTheorem S.nativeR2Data ∧
+  R3UniformLocalTypeCapacityTheorem S.nativeR3Data
 
 /--
 If a repository-native binding spec is supplied, then the R1/R2/R3 semantic theorem
