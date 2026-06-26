@@ -1,8 +1,11 @@
+import Chronos.Frontier.NewsteinR1R2R3NativeBindingSpec
 namespace Chronos.Frontier
 
-structure CanonicalWitnessInput where
-  r1w : Unit
-  r2w : Unit
-  r3w : Unit
+universe u
+
+structure CanonicalWitnessInput (α : Type u) where
+  r1w : R1SemanticData
+  r2w : R2SemanticData
+  r3w : R3SemanticData
 
 end Chronos.Frontier
