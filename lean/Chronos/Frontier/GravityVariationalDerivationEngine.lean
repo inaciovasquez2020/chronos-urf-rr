@@ -84,6 +84,13 @@ theorem LeviCivitaConnection_ricciScalar_eq_tensor_contraction
     LC.ricciScalar X Y Z = RicciScalarFromTensor LC.riemann X Y Z :=
   rfl
 
+theorem LeviCivitaConnection_ricciScalar_eq_RicciScalar
+    {G : GRGeometry}
+    (LC : LeviCivitaConnection G)
+    (X Y Z : VectorField) :
+    LC.ricciScalar X Y Z = RicciScalar LC.nabla X Y Z :=
+  rfl
+
 theorem RicciScalarFromTensor_fromConnection_eq_RicciScalar
     (nabla : Connection)
     (X Y Z : VectorField) :
