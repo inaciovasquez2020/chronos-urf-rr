@@ -50,6 +50,11 @@ def RicciScalar
   (X Y Z : VectorField) : Real :=
   observe (Riemann nabla X Y Z)
 
+def RicciScalarFromTensor
+    (R : RiemannTensor)
+    (X Y Z : VectorField) : Real :=
+  observe (R.eval X Y Z)
+
 
 def Ricci
     (G : GRGeometry)
