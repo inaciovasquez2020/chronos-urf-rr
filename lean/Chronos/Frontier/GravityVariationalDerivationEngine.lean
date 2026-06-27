@@ -55,6 +55,12 @@ def LeviCivitaConnection.riemann
     (LC : LeviCivitaConnection G) : RiemannTensor :=
   RiemannTensor.fromConnection LC.nabla
 
+theorem LeviCivitaConnection_riemann_eq_fromConnection
+    {G : GRGeometry}
+    (LC : LeviCivitaConnection G) :
+    LC.riemann = RiemannTensor.fromConnection LC.nabla :=
+  rfl
+
 def RicciScalar
   (nabla : Connection)
   (X Y Z : VectorField) : Real :=
