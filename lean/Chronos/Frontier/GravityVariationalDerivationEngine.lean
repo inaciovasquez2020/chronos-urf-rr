@@ -55,6 +55,13 @@ def RicciScalarFromTensor
     (X Y Z : VectorField) : Real :=
   observe (R.eval X Y Z)
 
+theorem RicciScalarFromTensor_fromConnection_eq_RicciScalar
+    (nabla : Connection)
+    (X Y Z : VectorField) :
+    RicciScalarFromTensor (RiemannTensor.fromConnection nabla) X Y Z =
+      RicciScalar nabla X Y Z :=
+  rfl
+
 
 def Ricci
     (G : GRGeometry)
