@@ -23,16 +23,6 @@ def einsteinEmergence
   variationalDerivative G g = 0
 
 /-- FIX: Ricci is now a proper function --/
-def Ricci
-    (G : GRGeometry)
-    (_x _y : G.Manifold) : Real :=
-  0
-
-def EinsteinTensor
-    (G : GRGeometry)
-    (x y : G.Manifold) : Real :=
-  Ricci G x y
-
 structure VectorField where
   f : Real -> Real
 
@@ -53,6 +43,19 @@ def RicciScalar
   (nabla : Connection)
   (X Y Z : VectorField) : Real :=
   observe (Riemann nabla X Y Z)
+
+
+def Ricci
+    (G : GRGeometry)
+    (x y : G.Manifold) : Real :=
+  let nabla : Connection := { cov := fun _ V => V }
+  let K : VectorField := { f := fun _ => G.Metric x y }
+  RicciScalar nabla K K K
+
+def EinsteinTensor
+    (G : GRGeometry)
+    (x y : G.Manifold) : Real :=
+  Ricci G x y
 
 structure MatterField (G : GRGeometry) where
   density : G.Manifold → G.Manifold → Real
