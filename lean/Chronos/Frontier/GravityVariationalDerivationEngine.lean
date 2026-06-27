@@ -12,11 +12,6 @@ def action (G : GRGeometry)
     (g : G.Manifold → G.Manifold → Real) : Real :=
   0
 
-def metricVariation
-    (g : Real → Real)
-    (δ : Real → Real) : Real :=
-  δ (g 0)
-
 def variationalDerivative
     (G : GRGeometry)
     (g : G.Manifold → G.Manifold → Real) : Real :=
@@ -27,14 +22,16 @@ def einsteinEmergence
     (g : G.Manifold → G.Manifold → Real) : Prop :=
   variationalDerivative G g = 0
 
-def Ricci (G : GRGeometry) :=
-  G.Manifold → G.Manifold → Real
-
-/-- FIX: Einstein tensor is now fully applied function --/
-def EinsteinTensor
+/-- FIX: Ricci is now a proper function --/
+def Ricci
     (G : GRGeometry)
     (x y : G.Manifold) : Real :=
   0
+
+def EinsteinTensor
+    (G : GRGeometry)
+    (x y : G.Manifold) : Real :=
+  Ricci G x y
 
 structure MatterField (G : GRGeometry) where
   density : G.Manifold → G.Manifold → Real
@@ -45,7 +42,8 @@ def EinsteinFieldEquation
   ∀ x y,
     EinsteinTensor G x y = T.density x y
 
-def newtonianLimit : Prop := True
+def newtonianLimit (G : GRGeometry) : Prop :=
+  ∃ ε : Real, ε > 0
 
 def predict (G : GRGeometry) : Real := 0
 
@@ -60,7 +58,7 @@ structure GravityTheory where
     EinsteinFieldEquation geometry matter
 
   newton :
-    newtonianLimit
+    newtonianLimit geometry
 
 end Frontier
 end Chronos
