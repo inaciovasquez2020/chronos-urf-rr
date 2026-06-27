@@ -33,6 +33,27 @@ def EinsteinTensor
     (x y : G.Manifold) : Real :=
   Ricci G x y
 
+structure VectorField where
+  f : Real -> Real
+
+def observe (X : VectorField) : Real :=
+  X.f 0
+
+structure Connection where
+  cov : VectorField -> VectorField -> VectorField
+
+def LieBracket (X Y : VectorField) : VectorField :=
+  { f := fun x => X.f x - Y.f x }
+
+def Riemann (nabla : Connection)
+  (X Y Z : VectorField) : VectorField :=
+  { f := fun _ => observe (nabla.cov X (nabla.cov Y Z)) }
+
+def RicciScalar
+  (nabla : Connection)
+  (X Y Z : VectorField) : Real :=
+  observe (Riemann nabla X Y Z)
+
 structure MatterField (G : GRGeometry) where
   density : G.Manifold → G.Manifold → Real
 
