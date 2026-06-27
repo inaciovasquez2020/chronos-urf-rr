@@ -42,6 +42,9 @@ def Riemann (nabla : Connection)
   (X Y Z : VectorField) : VectorField :=
   { f := fun _ => observe (nabla.cov X (nabla.cov Y Z)) }
 
+def RiemannTensor.fromConnection (nabla : Connection) : RiemannTensor :=
+  { eval := fun X Y Z => Riemann nabla X Y Z }
+
 def RicciScalar
   (nabla : Connection)
   (X Y Z : VectorField) : Real :=
