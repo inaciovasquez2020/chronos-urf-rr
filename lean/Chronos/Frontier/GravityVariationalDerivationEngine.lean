@@ -73,6 +73,12 @@ theorem stationarity_to_field_equation
     einsteinEmergence G G.Metric → EinsteinFieldEquation G T :=
   fun _ => h
 
+/-- Boundary: stationarity alone does not provide matter coupling equality. -/
+def stationarity_alone_field_equation_boundary
+    (G : GRGeometry)
+    (T : MatterField G) : Prop :=
+  einsteinEmergence G G.Metric → EinsteinFieldEquation G T
+
 def newtonianLimit (_G : GRGeometry) : Prop :=
   ∃ ε : Real, ε > 0
 
