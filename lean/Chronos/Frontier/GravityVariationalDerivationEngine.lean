@@ -9,7 +9,7 @@ structure GRGeometry where
   Connection : Manifold → Manifold → Manifold → Real
 
 def action (G : GRGeometry)
-    (g : G.Manifold → G.Manifold → Real) : Real :=
+    (_g : G.Manifold → G.Manifold → Real) : Real :=
   0
 
 def variationalDerivative
@@ -25,7 +25,7 @@ def einsteinEmergence
 /-- FIX: Ricci is now a proper function --/
 def Ricci
     (G : GRGeometry)
-    (x y : G.Manifold) : Real :=
+    (_x _y : G.Manifold) : Real :=
   0
 
 def EinsteinTensor
@@ -63,10 +63,10 @@ def EinsteinFieldEquation
   ∀ x y,
     EinsteinTensor G x y = T.density x y
 
-def newtonianLimit (G : GRGeometry) : Prop :=
+def newtonianLimit (_G : GRGeometry) : Prop :=
   ∃ ε : Real, ε > 0
 
-def predict (G : GRGeometry) : Real := 0
+def predict (_G : GRGeometry) : Real := 0
 
 structure GravityTheory where
   geometry : GRGeometry
