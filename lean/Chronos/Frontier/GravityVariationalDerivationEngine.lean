@@ -52,10 +52,10 @@ def Ricci
   let K : VectorField := { f := fun _ => G.Metric x y }
   RicciScalar nabla K K K
 
-def EinsteinTensor
+noncomputable def EinsteinTensor
     (G : GRGeometry)
     (x y : G.Manifold) : Real :=
-  Ricci G x y
+  Ricci G x y - (1 / 2 : Real) * G.Metric x y * Ricci G x y
 
 structure MatterField (G : GRGeometry) where
   density : G.Manifold → G.Manifold → Real
