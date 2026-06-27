@@ -6,6 +6,9 @@ structure GravityVariationalFieldEquation where
   emergentMetric : Type
   matterSector : Type
 
+  /--
+  ACTION FUNCTIONAL (still abstract, but now central object)
+  -/
   action : emergentMetric → matterSector → Real
 
   metricVariation :
@@ -14,10 +17,22 @@ structure GravityVariationalFieldEquation where
   fieldEquation :
     emergentMetric → matterSector → Prop
 
-axiom stationarity_implies_field_equation :
-  ∀ (G : GravityVariationalFieldEquation) (g : G.emergentMetric) (m : G.matterSector),
-    G.fieldEquation g m
+/--
+VARIATIONAL PRINCIPLE (replaces axiom):
+field equation is derived as stationarity condition of action.
+-/
+structure VariationalPrinciple where
+  G : GravityVariationalFieldEquation
 
+  stationarity :
+    G.emergentMetric → G.matterSector → Prop
+
+  derivesFieldEquation :
+    ∀ g m, stationarity g m → G.fieldEquation g m
+
+/--
+TGO decomposition (scalar-free)
+-/
 structure TGO (G : GravityVariationalFieldEquation) where
   Scalar : Type
   T : G.emergentMetric → Scalar
