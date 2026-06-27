@@ -35,6 +35,11 @@ structure Connection where
 structure RiemannTensor where
   eval : VectorField -> VectorField -> VectorField -> VectorField
 
+structure LeviCivitaConnection (G : GRGeometry) where
+  nabla : Connection
+  compatible : Prop
+  torsionFree : Prop
+
 def LieBracket (X Y : VectorField) : VectorField :=
   { f := fun x => X.f x - Y.f x }
 
