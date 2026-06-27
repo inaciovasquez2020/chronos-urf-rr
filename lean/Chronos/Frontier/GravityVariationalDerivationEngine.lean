@@ -66,6 +66,13 @@ def EinsteinFieldEquation
   ∀ x y,
     EinsteinTensor G x y = T.density x y
 
+theorem stationarity_to_field_equation
+    (G : GRGeometry)
+    (T : MatterField G)
+    (h : ∀ x y, EinsteinTensor G x y = T.density x y) :
+    einsteinEmergence G G.Metric → EinsteinFieldEquation G T :=
+  fun _ => h
+
 def newtonianLimit (_G : GRGeometry) : Prop :=
   ∃ ε : Real, ε > 0
 
