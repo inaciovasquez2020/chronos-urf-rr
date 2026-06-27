@@ -50,6 +50,11 @@ def Riemann (nabla : Connection)
 def RiemannTensor.fromConnection (nabla : Connection) : RiemannTensor :=
   { eval := fun X Y Z => Riemann nabla X Y Z }
 
+def LeviCivitaConnection.riemann
+    {G : GRGeometry}
+    (LC : LeviCivitaConnection G) : RiemannTensor :=
+  RiemannTensor.fromConnection LC.nabla
+
 def RicciScalar
   (nabla : Connection)
   (X Y Z : VectorField) : Real :=
