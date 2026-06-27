@@ -61,7 +61,7 @@ def Ricci
     (x y : G.Manifold) : Real :=
   let nabla : Connection := { cov := fun _ V => V }
   let K : VectorField := { f := fun _ => G.Metric x y }
-  RicciScalar nabla K K K
+  RicciScalarFromTensor (RiemannTensor.fromConnection nabla) K K K
 
 noncomputable def EinsteinTensor
     (G : GRGeometry)
