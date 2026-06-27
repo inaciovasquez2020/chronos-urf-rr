@@ -32,6 +32,9 @@ def observe (X : VectorField) : Real :=
 structure Connection where
   cov : VectorField -> VectorField -> VectorField
 
+structure RiemannTensor where
+  eval : VectorField -> VectorField -> VectorField -> VectorField
+
 def LieBracket (X Y : VectorField) : VectorField :=
   { f := fun x => X.f x - Y.f x }
 
