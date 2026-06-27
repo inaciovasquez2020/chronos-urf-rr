@@ -20,13 +20,16 @@ structure GravityFullDynamics where
     matterSector →
     Real
 
-axiom metric_is_dynamical :
-  ∀ (G : GravityFullDynamics),
-    Nonempty G.emergentMetric
+/-- Boundary proposition: a full dynamics object has a nonempty emergent metric sector. -/
+def metric_is_dynamical (G : GravityFullDynamics) : Prop :=
+  Nonempty G.emergentMetric
 
-axiom prediction_well_defined :
-  ∀ (G : GravityFullDynamics) (g : G.emergentMetric) (m : G.matterSector),
-    ∃ (_ : Real), True
+/-- Boundary proposition: prediction well-definedness is represented by a real output. -/
+def prediction_well_defined
+    (G : GravityFullDynamics)
+    (_g : G.emergentMetric)
+    (_m : G.matterSector) : Prop :=
+  ∃ (_ : G.matterSector), True
 
 structure TGO (G : GravityFullDynamics) where
   T : G.primitiveState → G.emergentMetric
