@@ -71,6 +71,12 @@ def RicciScalarFromTensor
     (X Y Z : VectorField) : Real :=
   observe (R.eval X Y Z)
 
+def LeviCivitaConnection.ricciScalar
+    {G : GRGeometry}
+    (LC : LeviCivitaConnection G)
+    (X Y Z : VectorField) : Real :=
+  RicciScalarFromTensor LC.riemann X Y Z
+
 theorem RicciScalarFromTensor_fromConnection_eq_RicciScalar
     (nabla : Connection)
     (X Y Z : VectorField) :
