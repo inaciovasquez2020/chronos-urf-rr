@@ -1,0 +1,24 @@
+{
+  "artifact": "ANALYTIC_GREEN_KERNEL_ESTIMATE_INPUT_SURFACE_2026_06_28",
+  "date": "2026-06-28",
+  "repository": "chronos-urf-rr",
+  "pull_request": 799,
+  "merge_commit": "742be0d2",
+  "lean_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "validated_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "status": "analytic_estimate_input_surface",
+  "claims": {
+    "certified_uniform_analytic_green_kernel_estimate_input_surface_added": true,
+    "certified_estimate_inputs_bridge_to_tail_criterion_package": true,
+    "certified_estimate_inputs_bridge_to_all_finite_jet_nonlocality": true,
+    "certified_estimate_inputs_bridge_to_construction_assumptions": true,
+    "green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "opaque AnalyticGreenKernelTailConstructionAssumptions",
+  "boundary_after": "CertifiedUniformAnalyticGreenKernelEstimateInputSurface",
+  "remaining_boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
