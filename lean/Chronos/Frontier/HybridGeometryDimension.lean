@@ -24,5 +24,11 @@ theorem HybridGeometryDimension.same_dimension_refl
     H.same_dimension x x :=
   rfl
 
+theorem HybridGeometryDimension.same_dimension_symm
+    (H : HybridGeometryDimension)
+    {x y : H.Space} :
+    H.same_dimension x y → H.same_dimension y x :=
+  Eq.symm
+
 end Frontier
 end Chronos
