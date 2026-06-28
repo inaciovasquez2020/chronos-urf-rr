@@ -311,4 +311,22 @@ structure AnalyticGreenKernelTailConstructionAssumptions
   constructedPackage :
     AnalyticGreenKernelTailCriterionPackage I x P Q hdet
 
+
+/--
+The analytic construction-assumption surface yields all finite-jet spectral
+nonlocality by exposing its constructed uniform criterion package.
+-/
+def analytic_green_kernel_tail_construction_assumptions_to_all_finite_jet_nonabsorption
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : AnalyticGreenKernelTailConstructionAssumptions I x P Q hdet) :
+    AllFiniteJetSpectralNonlocality I x P Q hdet :=
+  analytic_green_kernel_tail_package_to_all_finite_jet_nonabsorption
+    I x P Q hdet A.constructedPackage
+
 end Chronos.Frontier
