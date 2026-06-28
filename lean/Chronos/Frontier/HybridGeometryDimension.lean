@@ -30,5 +30,13 @@ theorem HybridGeometryDimension.same_dimension_symm
     H.same_dimension x y → H.same_dimension y x :=
   Eq.symm
 
+theorem HybridGeometryDimension.same_dimension_trans
+    (H : HybridGeometryDimension)
+    {x y z : H.Space} :
+    H.same_dimension x y →
+    H.same_dimension y z →
+    H.same_dimension x z :=
+  Eq.trans
+
 end Frontier
 end Chronos
