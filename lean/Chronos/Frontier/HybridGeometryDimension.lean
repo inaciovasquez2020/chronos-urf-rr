@@ -32,6 +32,11 @@ def HybridGeometryDimension.toDimensionUniverse
   known_dimension_space := True
   unknown_dimension_space := False
 
+def DimensionUniverse.dimension_jump
+    (U : DimensionUniverse)
+    (x y : U.Space) : Int :=
+  U.dimension y - U.dimension x
+
 def HybridGeometryDimension.nonnegative_separation
     (H : HybridGeometryDimension) : Prop :=
   ∀ x y : H.Space, 0 ≤ H.separation x y
