@@ -1,0 +1,22 @@
+{
+  "artifact": "FINITE_JET_EXCLUSION_ESTIMATE_COMPONENT_SURFACE_2026_06_28",
+  "repository": "chronos-urf-rr",
+  "pr": 803,
+  "merge_commit": "a103bd22",
+  "lean_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "source_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "status": "finite_jet_exclusion_component_surface",
+  "claims": {
+    "finite_jet_exclusion_estimate_component_surface_added": true,
+    "finite_jet_exclusion_estimate_component_isolated": true,
+    "finite_jet_exclusion_estimate_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "CertifiedUniformSingleGreenKernelTailEstimateComponentCompletionSurface",
+  "boundary_after": "CertifiedUniformFiniteJetExclusionEstimateComponentSurface",
+  "remaining_boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
