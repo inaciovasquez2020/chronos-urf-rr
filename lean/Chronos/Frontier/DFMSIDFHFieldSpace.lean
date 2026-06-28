@@ -293,6 +293,89 @@ def analytic_green_kernel_tail_package_to_all_finite_jet_nonabsorption
 
 
 
+
+/--
+Single-component Green-kernel spectral tail estimate surface.
+
+This isolates one bounded internal estimate component: proving the component tail
+bound is enough to supply the spectral-tail side of the pointwise analytic
+Green-kernel estimate input. It does not prove the finite-jet exclusion estimate
+and does not prove the full Green-kernel estimate package.
+-/
+structure SingleGreenKernelTailEstimateComponentSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A) where
+  componentTailBound : Prop
+  componentTailBoundProved : componentTailBound
+  componentTailBoundImpliesSpectralTailEstimate :
+    componentTailBound →
+    Prop
+
+
+/--
+The single-component Green-kernel tail estimate surface exposes a spectral-tail
+estimate proposition for the pointwise analytic Green-kernel estimate input.
+-/
+def single_green_kernel_tail_estimate_component_surface_to_spectral_tail_estimate
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A)
+    (C : SingleGreenKernelTailEstimateComponentSurface I x P Q hdet A W) :
+    Prop :=
+  C.componentTailBoundImpliesSpectralTailEstimate C.componentTailBoundProved
+
+
+/--
+Completion surface for a single Green-kernel tail estimate component.
+
+This keeps the proved spectral-tail component separate from the still-external
+finite-jet exclusion and obstruction estimates needed to form a full pointwise
+analytic Green-kernel estimate input.
+-/
+structure SingleGreenKernelTailEstimateComponentCompletionSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A) where
+  tailComponent :
+    SingleGreenKernelTailEstimateComponentSurface I x P Q hdet A W
+  finiteJetTailExclusionEstimate : Prop
+  estimatesObstructFiniteJetEquivalence :
+    single_green_kernel_tail_estimate_component_surface_to_spectral_tail_estimate
+      I x P Q hdet A W tailComponent →
+    finiteJetTailExclusionEstimate →
+    ¬ I.FiniteJetEquivalent x P Q hdet A W
+
 /--
 Pointwise analytic Green-kernel estimate input surface.
 
@@ -321,6 +404,60 @@ structure AnalyticGreenKernelEstimateInputSurface
     finiteJetTailExclusionEstimate →
     ¬ I.FiniteJetEquivalent x P Q hdet A W
 
+
+
+/--
+A completed single Green-kernel tail estimate component supplies the pointwise
+analytic Green-kernel estimate input surface.
+-/
+def single_green_kernel_tail_estimate_component_completion_surface_to_estimate_input
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A)
+    (C : SingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet A W) :
+    AnalyticGreenKernelEstimateInputSurface I x P Q hdet A W where
+  spectralTailEstimate :=
+    single_green_kernel_tail_estimate_component_surface_to_spectral_tail_estimate
+      I x P Q hdet A W C.tailComponent
+  finiteJetTailExclusionEstimate :=
+    C.finiteJetTailExclusionEstimate
+  estimatesObstructFiniteJetEquivalence :=
+    C.estimatesObstructFiniteJetEquivalence
+
+
+/--
+Uniform completion surface for the single Green-kernel tail estimate component.
+
+This supplies the completed pointwise single-component estimate input at every
+finite-jet test surface, while keeping the actual Green-kernel estimate proof
+boundary external.
+-/
+structure UniformSingleGreenKernelTailEstimateComponentCompletionSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q) where
+  completionAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      SingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet A W
 
 /--
 A pointwise analytic Green-kernel estimate input surface yields the corresponding
@@ -372,6 +509,68 @@ structure UniformAnalyticGreenKernelEstimateInputSurface
       AnalyticGreenKernelEstimateInputSurface I x P Q hdet A W
 
 
+
+
+/--
+Certified uniform completion surface for the single Green-kernel tail estimate
+component.
+
+This adds the proof witnesses needed to promote the uniform single-component
+completion surface to the certified uniform analytic estimate input surface.
+-/
+structure CertifiedUniformSingleGreenKernelTailEstimateComponentCompletionSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q) where
+  completionAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      SingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet A W
+  spectralTailEstimateAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      single_green_kernel_tail_estimate_component_surface_to_spectral_tail_estimate
+        I x P Q hdet A W (completionAt A W).tailComponent
+  finiteJetTailExclusionEstimateAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      (completionAt A W).finiteJetTailExclusionEstimate
+
+/--
+A uniform single-tail-component completion surface supplies the uniform analytic
+Green-kernel estimate input surface.
+-/
+def uniform_single_green_kernel_tail_estimate_component_completion_surface_to_uniform_estimate_input
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (U : UniformSingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet) :
+    UniformAnalyticGreenKernelEstimateInputSurface I x P Q hdet where
+  estimateAt :=
+    fun A W =>
+      single_green_kernel_tail_estimate_component_completion_surface_to_estimate_input
+        I x P Q hdet A W (U.completionAt A W)
+
 /--
 Certified uniform analytic Green-kernel estimate input surface.
 
@@ -413,6 +612,32 @@ structure CertifiedUniformAnalyticGreenKernelEstimateInputSurface
         A,
       (estimateAt A W).finiteJetTailExclusionEstimate
 
+
+
+/--
+A certified uniform single-tail-component completion surface supplies the
+certified uniform analytic Green-kernel estimate input surface.
+-/
+def certified_uniform_single_green_kernel_tail_estimate_component_completion_surface_to_certified_uniform_estimate_input
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformSingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet) :
+    CertifiedUniformAnalyticGreenKernelEstimateInputSurface I x P Q hdet where
+  estimateAt :=
+    fun A W =>
+      single_green_kernel_tail_estimate_component_completion_surface_to_estimate_input
+        I x P Q hdet A W (C.completionAt A W)
+  spectralTailEstimateAt :=
+    fun A W =>
+      C.spectralTailEstimateAt A W
+  finiteJetTailExclusionEstimateAt :=
+    fun A W =>
+      C.finiteJetTailExclusionEstimateAt A W
 
 /--
 A certified uniform analytic Green-kernel estimate input surface yields the
@@ -480,6 +705,27 @@ structure AnalyticGreenKernelTailConstructionAssumptions
 
 
 
+
+/--
+A certified uniform single-tail-component completion surface yields all
+finite-jet spectral nonlocality through the certified analytic estimate input
+surface.
+-/
+def certified_uniform_single_green_kernel_tail_estimate_component_completion_surface_to_all_finite_jet_nonabsorption
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformSingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet) :
+    AllFiniteJetSpectralNonlocality I x P Q hdet :=
+  certified_uniform_analytic_green_kernel_estimate_input_surface_to_all_finite_jet_nonabsorption
+    I x P Q hdet
+    (certified_uniform_single_green_kernel_tail_estimate_component_completion_surface_to_certified_uniform_estimate_input
+      I x P Q hdet C)
+
 /--
 A certified uniform analytic Green-kernel estimate input surface supplies the
 analytic construction-assumption package by constructing its uniform tail
@@ -498,6 +744,27 @@ def certified_uniform_analytic_green_kernel_estimate_input_surface_to_constructi
   constructedPackage :=
     certified_uniform_analytic_green_kernel_estimate_input_surface_to_tail_criterion_package
       I x P Q hdet C
+
+
+/--
+A certified uniform single-tail-component completion surface supplies the
+analytic construction-assumption package through the certified analytic estimate
+input surface.
+-/
+def certified_uniform_single_green_kernel_tail_estimate_component_completion_surface_to_construction_assumptions
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformSingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet) :
+    AnalyticGreenKernelTailConstructionAssumptions I x P Q hdet :=
+  certified_uniform_analytic_green_kernel_estimate_input_surface_to_construction_assumptions
+    I x P Q hdet
+    (certified_uniform_single_green_kernel_tail_estimate_component_completion_surface_to_certified_uniform_estimate_input
+      I x P Q hdet C)
 
 /--
 The analytic construction-assumption surface yields all finite-jet spectral
