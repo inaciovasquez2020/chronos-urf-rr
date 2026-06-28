@@ -5,6 +5,7 @@ namespace Frontier
 
 structure GRGeometry where
   Manifold : Type
+  dimension : Nat
   Metric : Manifold → Manifold → Real
   Connection : Manifold → Manifold → Manifold → Real
 
