@@ -509,6 +509,26 @@ structure UniformAnalyticGreenKernelEstimateInputSurface
       AnalyticGreenKernelEstimateInputSurface I x P Q hdet A W
 
 
+
+/--
+A uniform single-tail-component completion surface supplies the uniform analytic
+Green-kernel estimate input surface.
+-/
+def uniform_single_green_kernel_tail_estimate_component_completion_surface_to_uniform_estimate_input
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (U : UniformSingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet) :
+    UniformAnalyticGreenKernelEstimateInputSurface I x P Q hdet where
+  estimateAt :=
+    fun A W =>
+      single_green_kernel_tail_estimate_component_completion_surface_to_estimate_input
+        I x P Q hdet A W (U.completionAt A W)
+
 /--
 Certified uniform analytic Green-kernel estimate input surface.
 
