@@ -345,6 +345,37 @@ def single_green_kernel_tail_estimate_component_surface_to_spectral_tail_estimat
     Prop :=
   C.componentTailBoundImpliesSpectralTailEstimate C.componentTailBoundProved
 
+
+/--
+Completion surface for a single Green-kernel tail estimate component.
+
+This keeps the proved spectral-tail component separate from the still-external
+finite-jet exclusion and obstruction estimates needed to form a full pointwise
+analytic Green-kernel estimate input.
+-/
+structure SingleGreenKernelTailEstimateComponentCompletionSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A) where
+  tailComponent :
+    SingleGreenKernelTailEstimateComponentSurface I x P Q hdet A W
+  finiteJetTailExclusionEstimate : Prop
+  estimatesObstructFiniteJetEquivalence :
+    single_green_kernel_tail_estimate_component_surface_to_spectral_tail_estimate
+      I x P Q hdet A W tailComponent →
+    finiteJetTailExclusionEstimate →
+    ¬ I.FiniteJetEquivalent x P Q hdet A W
+
 /--
 Pointwise analytic Green-kernel estimate input surface.
 
