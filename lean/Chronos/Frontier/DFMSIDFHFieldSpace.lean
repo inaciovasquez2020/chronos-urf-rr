@@ -292,6 +292,35 @@ def analytic_green_kernel_tail_package_to_all_finite_jet_nonabsorption
       Pkg.finiteJetNoTailAt A W
 
 
+
+/--
+Pointwise analytic Green-kernel estimate input surface.
+
+This is weaker than an internal proof of Green-kernel estimates: it records the
+two estimate-side propositions and the obstruction implication at one finite-jet
+test surface.
+-/
+structure AnalyticGreenKernelEstimateInputSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A) where
+  spectralTailEstimate : Prop
+  finiteJetTailExclusionEstimate : Prop
+  estimatesObstructFiniteJetEquivalence :
+    spectralTailEstimate →
+    finiteJetTailExclusionEstimate →
+    ¬ I.FiniteJetEquivalent x P Q hdet A W
+
 /--
 Analytic construction assumption surface for the uniform Green-kernel tail
 criterion package.
