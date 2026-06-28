@@ -7,6 +7,9 @@ def covariance(D: np.ndarray) -> np.ndarray:
     return (X.T @ X) / max(1, X.shape[0])
 
 def is_rank1(C: np.ndarray, tol: float = 1e-10) -> bool:
+    C = np.asarray(C, dtype=float)
+    if C.ndim != 2:
+        raise ValueError("expected a 2D array")
     s = np.linalg.svd(C, compute_uv=False)
     if s.size == 0:
         return True
