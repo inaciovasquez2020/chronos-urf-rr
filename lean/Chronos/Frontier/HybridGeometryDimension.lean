@@ -37,6 +37,14 @@ def DimensionUniverse.dimension_jump
     (x y : U.Space) : Int :=
   U.dimension y - U.dimension x
 
+def HybridGeometryDimension.proven_gravity_recovery : Prop :=
+  False
+
+theorem HybridGeometryDimension.not_proven_gravity_recovery :
+    ¬ HybridGeometryDimension.proven_gravity_recovery := by
+  intro h
+  exact h
+
 def HybridGeometryDimension.nonnegative_separation
     (H : HybridGeometryDimension) : Prop :=
   ∀ x y : H.Space, 0 ≤ H.separation x y
