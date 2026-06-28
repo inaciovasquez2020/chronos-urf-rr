@@ -18,6 +18,11 @@ def HybridGeometryDimension.zero_separation
     (x : H.Space) : Prop :=
   H.separation x x = 0
 
+def HybridGeometryDimension.dimension_potential
+    (H : HybridGeometryDimension)
+    (x y : H.Space) : Real :=
+  H.separation x y + (H.dimension x : Real)
+
 theorem HybridGeometryDimension.same_dimension_refl
     (H : HybridGeometryDimension)
     (x : H.Space) :
