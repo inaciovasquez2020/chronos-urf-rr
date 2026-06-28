@@ -1,4 +1,4 @@
-import Mathlib.Data.Finset
+import Mathlib.Data.Finset.Card
 
 namespace Oblivion
 
@@ -11,6 +11,9 @@ theorem signature_bound
 (cycles : Finset (Finset V))
 (v : V) :
 (cycleSignature cycles v).card ≤ cycles.card := by
-  simp [cycleSignature]
+  unfold cycleSignature
+  exact Nat.le_trans
+    (Finset.card_image_le)
+    (Finset.card_filter_le cycles (fun C => v ∈ C))
 
 end Oblivion
