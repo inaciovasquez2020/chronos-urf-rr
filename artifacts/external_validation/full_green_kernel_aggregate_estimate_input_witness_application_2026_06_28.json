@@ -1,0 +1,28 @@
+{
+  "date": "2026-06-28",
+  "repository": "chronos-urf-rr",
+  "pr": 825,
+  "commit_after_merge": "cb896151",
+  "lean_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "source_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "status": "full_green_kernel_aggregate_estimate_input_witness_application",
+  "definition": "certified_uniform_full_green_kernel_aggregate_surface_to_analytic_estimate_input_from_aux_witness",
+  "claims": {
+    "aggregate_exposed_obligation_applied": true,
+    "finite_jet_auxiliary_action_required": true,
+    "finite_jet_equivalence_witness_required": true,
+    "analytic_green_kernel_estimate_input_surface_produced": true,
+    "analytic_obligation_proved_internally": false,
+    "single_tail_estimate_proved_internally": false,
+    "finite_jet_exclusion_estimate_proved_internally": false,
+    "obstruction_estimate_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "the aggregate-exposed weakest obligation was known to be a function requiring finite-jet auxiliary data and equivalence witness data",
+  "boundary_after": "the aggregate-exposed weakest obligation is applied to supplied finite-jet auxiliary action and equivalence witness to produce AnalyticGreenKernelEstimateInputSurface",
+  "remaining_boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
