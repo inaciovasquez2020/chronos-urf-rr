@@ -613,6 +613,32 @@ structure CertifiedUniformAnalyticGreenKernelEstimateInputSurface
       (estimateAt A W).finiteJetTailExclusionEstimate
 
 
+
+/--
+A certified uniform single-tail-component completion surface supplies the
+certified uniform analytic Green-kernel estimate input surface.
+-/
+def certified_uniform_single_green_kernel_tail_estimate_component_completion_surface_to_certified_uniform_estimate_input
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformSingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet) :
+    CertifiedUniformAnalyticGreenKernelEstimateInputSurface I x P Q hdet where
+  estimateAt :=
+    fun A W =>
+      single_green_kernel_tail_estimate_component_completion_surface_to_estimate_input
+        I x P Q hdet A W (C.completionAt A W)
+  spectralTailEstimateAt :=
+    fun A W =>
+      C.spectralTailEstimateAt A W
+  finiteJetTailExclusionEstimateAt :=
+    fun A W =>
+      C.finiteJetTailExclusionEstimateAt A W
+
 /--
 A certified uniform analytic Green-kernel estimate input surface yields the
 uniform Green-kernel tail criterion package.
