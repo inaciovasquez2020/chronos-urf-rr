@@ -1,0 +1,27 @@
+{
+  "artifact": "SINGLE_GREEN_KERNEL_TAIL_ESTIMATE_COMPONENT_SURFACE_2026_06_28",
+  "date": "2026-06-28",
+  "repository": "chronos-urf-rr",
+  "pull_request": 801,
+  "merge_commit": "b5cf3b15",
+  "lean_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "validated_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "status": "single_component_estimate_surface",
+  "claims": {
+    "single_green_kernel_tail_estimate_component_surface_added": true,
+    "single_component_completion_bridges_to_pointwise_estimate_input": true,
+    "uniform_single_component_completion_bridges_to_uniform_estimate_input": true,
+    "certified_single_component_completion_bridges_to_certified_estimate_input": true,
+    "certified_single_component_completion_bridges_to_all_finite_jet_nonlocality": true,
+    "certified_single_component_completion_bridges_to_construction_assumptions": true,
+    "finite_jet_exclusion_estimate_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "CertifiedUniformAnalyticGreenKernelEstimateInputSurface",
+  "boundary_after": "CertifiedUniformSingleGreenKernelTailEstimateComponentCompletionSurface",
+  "remaining_boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
