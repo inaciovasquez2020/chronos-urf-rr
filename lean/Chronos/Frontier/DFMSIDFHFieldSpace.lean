@@ -901,6 +901,35 @@ def certified_uniform_obstruction_estimate_component_surface_to_construction_ass
     (certified_uniform_obstruction_estimate_component_surface_to_certified_uniform_estimate_input
       I x P Q hdet C)
 
+/--
+A bounded certified full Green-kernel estimate component aggregate surface.
+
+This ties together the certified single-tail, finite-jet exclusion, and
+obstruction-estimate component surfaces with explicit coherence fields.  It
+does not prove the full Green-kernel estimates internally; each analytic
+estimate remains represented by its certified component input.
+-/
+structure CertifiedUniformFullGreenKernelEstimateComponentAggregateSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q) :
+    Type 2 where
+  singleTailCompletion :
+    CertifiedUniformSingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet
+  finiteJetExclusionCompletion :
+    CertifiedUniformFiniteJetExclusionEstimateComponentSurface I x P Q hdet
+  obstructionCompletion :
+    CertifiedUniformObstructionEstimateComponentSurface I x P Q hdet
+  finiteJet_singleTail_coherent :
+    finiteJetExclusionCompletion.singleTailCompletion = singleTailCompletion
+  obstruction_finiteJet_coherent :
+    obstructionCompletion.finiteJetExclusionCompletion = finiteJetExclusionCompletion
+
+
 
 
 
