@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-28",
+  "repository": "chronos-urf-rr",
+  "pr": 819,
+  "commit_after_merge": "bb0e1b39",
+  "lean_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "source_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "status": "analytic_green_kernel_estimate_input_obligation_projection",
+  "projection": "certified_uniform_analytic_green_kernel_estimate_input_surface_weakest_missing_obligation",
+  "claims": {
+    "analytic_estimate_input_obligation_exposed": true,
+    "projection_only": true,
+    "single_tail_estimate_proved_internally": false,
+    "finite_jet_exclusion_estimate_proved_internally": false,
+    "obstruction_estimate_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "CertifiedUniformAnalyticGreenKernelEstimateInputSurface packaged the analytic input obligation without a named projection",
+  "boundary_after": "one named projection exposes the weakest missing analytic estimate-input obligation",
+  "remaining_boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
