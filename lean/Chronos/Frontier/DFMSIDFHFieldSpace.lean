@@ -322,6 +322,29 @@ structure SingleGreenKernelTailEstimateComponentSurface
     componentTailBound →
     Prop
 
+
+/--
+The single-component Green-kernel tail estimate surface exposes a spectral-tail
+estimate proposition for the pointwise analytic Green-kernel estimate input.
+-/
+def single_green_kernel_tail_estimate_component_surface_to_spectral_tail_estimate
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A)
+    (C : SingleGreenKernelTailEstimateComponentSurface I x P Q hdet A W) :
+    Prop :=
+  C.componentTailBoundImpliesSpectralTailEstimate C.componentTailBoundProved
+
 /--
 Pointwise analytic Green-kernel estimate input surface.
 
