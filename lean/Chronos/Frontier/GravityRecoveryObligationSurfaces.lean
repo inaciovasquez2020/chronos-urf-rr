@@ -57,5 +57,22 @@ theorem gravity_recovery_obligation_surface_exists
       G.empirical_prediction_bridge = E := by
   exact ⟨⟨F, M, R, C, E⟩, rfl, rfl, rfl, rfl, rfl⟩
 
+
+structure GravityRecoveryGapRankingSurface where
+  field_equation_rank : Nat := 1
+  motion_law_rank : Nat := 2
+  recovery_theorem_rank : Nat := 3
+  curvature_neighbor_geometry_rank : Nat := 4
+  empirical_prediction_bridge_rank : Nat := 5
+
+theorem gravity_recovery_gap_ranking_surface_exists :
+    ∃ R : GravityRecoveryGapRankingSurface,
+      R.field_equation_rank = 1 ∧
+      R.motion_law_rank = 2 ∧
+      R.recovery_theorem_rank = 3 ∧
+      R.curvature_neighbor_geometry_rank = 4 ∧
+      R.empirical_prediction_bridge_rank = 5 := by
+  exact ⟨⟨1, 2, 3, 4, 5⟩, rfl, rfl, rfl, rfl, rfl⟩
+
 end Frontier
 end Chronos
