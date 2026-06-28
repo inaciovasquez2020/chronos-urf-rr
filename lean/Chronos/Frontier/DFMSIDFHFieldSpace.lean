@@ -510,6 +510,48 @@ structure UniformAnalyticGreenKernelEstimateInputSurface
 
 
 
+
+/--
+Certified uniform completion surface for the single Green-kernel tail estimate
+component.
+
+This adds the proof witnesses needed to promote the uniform single-component
+completion surface to the certified uniform analytic estimate input surface.
+-/
+structure CertifiedUniformSingleGreenKernelTailEstimateComponentCompletionSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q) where
+  completionAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      SingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet A W
+  spectralTailEstimateAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      single_green_kernel_tail_estimate_component_surface_to_spectral_tail_estimate
+        I x P Q hdet A W (completionAt A W).tailComponent
+  finiteJetTailExclusionEstimateAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      (completionAt A W).finiteJetTailExclusionEstimate
+
 /--
 A uniform single-tail-component completion surface supplies the uniform analytic
 Green-kernel estimate input surface.
