@@ -91,6 +91,13 @@ theorem LeviCivitaConnection_ricciScalar_eq_RicciScalar
     LC.ricciScalar X Y Z = RicciScalar LC.nabla X Y Z :=
   rfl
 
+def RicciFromLeviCivita
+    (G : GRGeometry)
+    (LC : LeviCivitaConnection G)
+    (x y : G.Manifold) : Real :=
+  let K : VectorField := { f := fun _ => G.Metric x y }
+  LC.ricciScalar K K K
+
 theorem RicciScalarFromTensor_fromConnection_eq_RicciScalar
     (nabla : Connection)
     (X Y Z : VectorField) :
