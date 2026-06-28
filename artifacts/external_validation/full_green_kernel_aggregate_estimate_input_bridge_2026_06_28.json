@@ -1,0 +1,26 @@
+{
+  "date": "2026-06-28",
+  "repository": "chronos-urf-rr",
+  "pr": 817,
+  "commit_after_merge": "966b4b85",
+  "lean_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "source_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "status": "full_green_kernel_aggregate_estimate_input_bridge",
+  "bridge": "certified_uniform_full_green_kernel_estimate_component_aggregate_surface_to_certified_uniform_estimate_input",
+  "claims": {
+    "aggregate_surface_consumed": true,
+    "certified_analytic_estimate_input_surface_produced": true,
+    "bridge_uses_obstruction_component": true,
+    "single_tail_estimate_proved_internally": false,
+    "finite_jet_exclusion_estimate_proved_internally": false,
+    "obstruction_estimate_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "CertifiedUniformFullGreenKernelEstimateComponentAggregateSurface was coherent but not consumed by the certified analytic estimate-input layer",
+  "boundary_after": "aggregate surface bridges into CertifiedUniformAnalyticGreenKernelEstimateInputSurface through its obstruction component",
+  "remaining_boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
