@@ -1143,4 +1143,15 @@ def finiteJetCurvatureAuxActionFieldSurface_from_input
     FiniteJetCurvatureAuxActionFieldSurface X :=
   ⟨state, auxAction⟩
 
+
+
+/-- Weakest construction-input surface for finite-jet curvature auxiliary action data.
+This records only an external construction input asserting that such an auxiliary action is
+available at a state. It does not choose the action, does not construct an equivalence witness,
+does not prove Green-kernel estimates, and does not solve gravity. -/
+structure FiniteJetCurvatureAuxActionConstructionInputSurface
+    (X : DFMSIDFHFieldSpace) where
+  state : X.State
+  auxAction_available : Nonempty (FiniteJetCurvatureAuxAction X state)
+
 end Chronos.Frontier
