@@ -1,0 +1,24 @@
+{
+  "artifact": "FULL_GREEN_KERNEL_COMPONENT_AGGREGATE_SURFACE_2026_06_28",
+  "repository": "chronos-urf-rr",
+  "pr": 815,
+  "merge_commit": "d2bbc498",
+  "lean_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "source_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "status": "full_green_kernel_component_aggregate_surface",
+  "claims": {
+    "single_tail_finite_jet_obstruction_components_aggregated": true,
+    "component_coherence_fields_added": true,
+    "single_tail_estimate_proved_internally": false,
+    "finite_jet_exclusion_estimate_proved_internally": false,
+    "obstruction_estimate_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "separate certified component surfaces",
+  "boundary_after": "CertifiedUniformFullGreenKernelEstimateComponentAggregateSurface",
+  "remaining_boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
