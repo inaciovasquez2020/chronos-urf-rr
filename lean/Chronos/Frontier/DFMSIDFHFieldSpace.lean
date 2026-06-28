@@ -1130,4 +1130,17 @@ structure FiniteJetCurvatureAuxActionFieldSurface (X : DFMSIDFHFieldSpace) where
   state : X.State
   auxAction : FiniteJetCurvatureAuxAction X state
 
+/--
+A pure input constructor for the finite-jet auxiliary action field surface.
+
+This only packages already-supplied `FiniteJetCurvatureAuxAction X state` data.
+It does not construct the auxiliary action internally.
+-/
+def finiteJetCurvatureAuxActionFieldSurface_from_input
+    (X : DFMSIDFHFieldSpace)
+    (state : X.State)
+    (auxAction : FiniteJetCurvatureAuxAction X state) :
+    FiniteJetCurvatureAuxActionFieldSurface X :=
+  ⟨state, auxAction⟩
+
 end Chronos.Frontier
