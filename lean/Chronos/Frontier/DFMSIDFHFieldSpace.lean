@@ -291,4 +291,24 @@ def analytic_green_kernel_tail_package_to_all_finite_jet_nonabsorption
     fun A W =>
       Pkg.finiteJetNoTailAt A W
 
+
+/--
+Analytic construction assumption surface for the uniform Green-kernel tail
+criterion package.
+
+This is the current analytic boundary: it records that the Green-kernel tail
+criterion package has been analytically constructed, without proving the
+Green-kernel estimates internally.
+-/
+structure AnalyticGreenKernelTailConstructionAssumptions
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q) where
+  constructedPackage :
+    AnalyticGreenKernelTailCriterionPackage I x P Q hdet
+
 end Chronos.Frontier
