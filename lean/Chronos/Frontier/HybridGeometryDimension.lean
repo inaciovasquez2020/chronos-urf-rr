@@ -30,6 +30,11 @@ theorem HybridGeometryDimension.dimension_potential_eq
       H.separation x y + (H.dimension x : Real) :=
   rfl
 
+def HybridGeometryDimension.gravity_test_surface
+    (H : HybridGeometryDimension)
+    (x y : H.Space) : Real :=
+  H.dimension_potential x y
+
 theorem HybridGeometryDimension.same_dimension_refl
     (H : HybridGeometryDimension)
     (x : H.Space) :
