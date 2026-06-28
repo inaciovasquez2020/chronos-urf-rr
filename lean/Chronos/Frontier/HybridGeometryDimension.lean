@@ -37,6 +37,11 @@ def DimensionUniverse.dimension_jump
     (x y : U.Space) : Int :=
   U.dimension y - U.dimension x
 
+def DimensionUniverse.curvature_surrogate
+    (U : DimensionUniverse)
+    (x y : U.Space) : Real :=
+  U.separation x y + (U.dimension_jump x y : Real)
+
 def HybridGeometryDimension.proven_gravity_recovery : Prop :=
   False
 
