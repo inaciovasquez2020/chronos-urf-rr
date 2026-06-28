@@ -833,6 +833,30 @@ def certified_uniform_finite_jet_exclusion_estimate_component_surface_to_constru
     (certified_uniform_finite_jet_exclusion_estimate_component_surface_to_certified_uniform_estimate_input
       I x P Q hdet C)
 
+/--
+A bounded obstruction-estimate component surface.
+
+This isolates the next analytic obstruction estimate input after the certified
+finite-jet exclusion component.  It does not prove the obstruction estimate;
+it packages exactly one certified obstruction-estimate component as an explicit
+completion surface.
+-/
+structure CertifiedUniformObstructionEstimateComponentSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q) :
+    Type 2 where
+  finiteJetExclusionCompletion :
+    CertifiedUniformFiniteJetExclusionEstimateComponentSurface I x P Q hdet
+  obstructionEstimateComponent : Prop
+  obstructionEstimateComponent_certified :
+    obstructionEstimateComponent
+
+
 
 
 /--
