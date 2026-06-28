@@ -52,8 +52,9 @@ def DimensionUniverse.zeroCountermodel : DimensionUniverse where
 theorem DimensionUniverse.zeroCountermodel_curvature_surrogate_eq
     (x y : DimensionUniverse.zeroCountermodel.Space) :
     DimensionUniverse.zeroCountermodel.curvature_surrogate x y = 0 := by
-  simp [DimensionUniverse.curvature_surrogate, DimensionUniverse.dimension_jump,
-    DimensionUniverse.zeroCountermodel]
+  unfold DimensionUniverse.curvature_surrogate DimensionUniverse.dimension_jump
+  unfold DimensionUniverse.zeroCountermodel
+  simp
 
 def HybridGeometryDimension.proven_gravity_recovery : Prop :=
   False
