@@ -1,3 +1,4 @@
+import Chronos.Frontier.MASCONMeasurableObservableToDeficitVectorBridge
 import Chronos.Frontier.R1DomainIdentitySurface
 import Chronos.Frontier.R1ObstructionMeasureIdentitySurface
 import Chronos.Frontier.ActiveGravityCarrierBinding
