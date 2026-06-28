@@ -1,0 +1,28 @@
+{
+  "date": "2026-06-28",
+  "repository": "chronos-urf-rr",
+  "pr": 821,
+  "commit_after_merge": "6995ad1c",
+  "lean_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "source_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "status": "full_green_kernel_aggregate_weakest_obligation_projection",
+  "projection": "certified_uniform_full_green_kernel_aggregate_surface_weakest_missing_obligation",
+  "claims": {
+    "aggregate_surface_consumed": true,
+    "estimate_input_bridge_composed": true,
+    "weakest_named_analytic_obligation_exposed_from_aggregate": true,
+    "projection_only": true,
+    "analytic_obligation_proved_internally": false,
+    "single_tail_estimate_proved_internally": false,
+    "finite_jet_exclusion_estimate_proved_internally": false,
+    "obstruction_estimate_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "the weakest named analytic Green-kernel obligation was exposed only from the certified estimate-input surface",
+  "boundary_after": "the weakest named analytic Green-kernel obligation is exposed directly from the full component aggregate surface",
+  "remaining_boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
