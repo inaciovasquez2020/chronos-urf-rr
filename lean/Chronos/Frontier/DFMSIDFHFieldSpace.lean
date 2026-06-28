@@ -321,6 +321,31 @@ structure AnalyticGreenKernelEstimateInputSurface
     finiteJetTailExclusionEstimate →
     ¬ I.FiniteJetEquivalent x P Q hdet A W
 
+
+/--
+A pointwise analytic Green-kernel estimate input surface yields the corresponding
+pointwise Green-kernel tail criterion.
+-/
+def analytic_green_kernel_estimate_input_surface_to_green_kernel_tail_criterion
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A)
+    (E : AnalyticGreenKernelEstimateInputSurface I x P Q hdet A W) :
+    GreenKernelTailCriterion I x P Q hdet A W where
+  spectralTailDetected := E.spectralTailEstimate
+  finiteJetTailExcluded := E.finiteJetTailExclusionEstimate
+  obstructionSound := E.estimatesObstructFiniteJetEquivalence
+
 /--
 Analytic construction assumption surface for the uniform Green-kernel tail
 criterion package.
