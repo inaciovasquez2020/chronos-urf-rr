@@ -1,0 +1,27 @@
+{
+  "date": "2026-06-28",
+  "repository": "chronos-urf-rr",
+  "commit_before_artifact": "4f1c17fc",
+  "lean_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "source_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "status": "finite_jet_aux_action_projection_field_missing_boundary",
+  "missing_object": "finite_jet_aux_action_projection_field",
+  "claims": {
+    "finite_jet_curvature_aux_action_exists_as_type": true,
+    "finite_jet_aux_action_projection_field_found": false,
+    "finite_jet_auxiliary_action_remains_explicit_input": true,
+    "finite_jet_equivalence_witness_remains_explicit_input": true,
+    "finite_jet_auxiliary_action_constructed_internally": false,
+    "finite_jet_equivalence_witness_constructed_internally": false,
+    "analytic_obligation_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "the aggregate estimate-input route required supplied FiniteJetCurvatureAuxAction and FiniteJetEquivalenceWitness data",
+  "boundary_after": "inspection confirms no existing certified surface field projects FiniteJetCurvatureAuxAction",
+  "remaining_boundary": "MISSING_OBJECT := finite_jet_aux_action_projection_field",
+  "validation": [
+    "python inspection confirmed no structure field with type containing FiniteJetCurvatureAuxAction",
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
