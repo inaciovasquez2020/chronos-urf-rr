@@ -24,6 +24,14 @@ def HybridGeometryDimension.symmetric_separation
     (H : HybridGeometryDimension) : Prop :=
   ∀ x y : H.Space, H.separation x y = H.separation y x
 
+def HybridGeometryDimension.toDimensionUniverse
+    (H : HybridGeometryDimension) : DimensionUniverse where
+  Space := H.Space
+  dimension := fun x => (H.dimension x : Int)
+  separation := H.separation
+  known_dimension_space := True
+  unknown_dimension_space := False
+
 def HybridGeometryDimension.nonnegative_separation
     (H : HybridGeometryDimension) : Prop :=
   ∀ x y : H.Space, 0 ≤ H.separation x y
