@@ -1,0 +1,27 @@
+{
+  "date": "2026-06-28",
+  "repository": "chronos-urf-rr",
+  "pr": 823,
+  "commit_after_merge": "582cdad1",
+  "lean_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "source_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "status": "full_green_kernel_aggregate_obligation_equivalence_theorem",
+  "theorem": "certified_uniform_full_green_kernel_aggregate_surface_weakest_missing_obligation_eq_estimate_input_projection",
+  "claims": {
+    "definitional_equivalence_proved": true,
+    "weakest_obligation_target_isolated": true,
+    "projection_only_boundary_crossed": true,
+    "analytic_obligation_proved_internally": false,
+    "single_tail_estimate_proved_internally": false,
+    "finite_jet_exclusion_estimate_proved_internally": false,
+    "obstruction_estimate_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "the weakest analytic obligation was exposed directly from the aggregate only as a projection",
+  "boundary_after": "a theorem proves definitional equivalence between the aggregate-exposed obligation and the estimate-input obligation target",
+  "remaining_boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
