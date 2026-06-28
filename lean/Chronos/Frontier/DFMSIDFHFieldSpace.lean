@@ -1022,6 +1022,30 @@ theorem certified_uniform_full_green_kernel_aggregate_surface_weakest_missing_ob
         I x P Q hdet C) :=
   rfl
 
+
+/-- Apply the weakest aggregate-exposed analytic Green-kernel obligation to an
+existing finite-jet auxiliary action and equivalence witness.
+
+This is the first admissible constructor-shaped target after the failed attempt:
+the weakest obligation is not itself a `Sort`, but a function requiring `A` and
+`W`. This applies that existing function. It does not prove the analytic
+estimate internally.
+-/
+def certified_uniform_full_green_kernel_aggregate_surface_to_analytic_estimate_input_from_aux_witness
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformFullGreenKernelEstimateComponentAggregateSurface I x P Q hdet)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness X x (I.RenormalizedLogDet x P).QuotientClass A) :
+    AnalyticGreenKernelEstimateInputSurface I x P Q hdet A W :=
+  certified_uniform_full_green_kernel_aggregate_surface_weakest_missing_obligation
+    I x P Q hdet C A W
+
 /--
 The analytic construction-assumption surface yields all finite-jet spectral
 nonlocality by exposing its constructed uniform criterion package.
