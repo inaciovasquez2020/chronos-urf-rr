@@ -18,6 +18,11 @@ def variationalDerivative
     (g : G.Manifold → G.Manifold → Real) : Real :=
   action G g
 
+def dimension_gradient
+    (G : GRGeometry)
+    (_x : G.Manifold) : Nat :=
+  G.dimension
+
 def einsteinEmergence
     (G : GRGeometry)
     (g : G.Manifold → G.Manifold → Real) : Prop :=
