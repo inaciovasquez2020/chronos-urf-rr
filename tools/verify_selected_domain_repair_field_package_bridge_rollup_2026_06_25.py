@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import json
-import subprocess
 from pathlib import Path
 
 ARTIFACT = Path("artifacts/external_validation/selected_domain_repair_field_package_bridge_rollup_2026_06_25.json")
