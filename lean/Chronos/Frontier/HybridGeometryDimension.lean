@@ -42,6 +42,19 @@ def DimensionUniverse.curvature_surrogate
     (x y : U.Space) : Real :=
   U.separation x y + (U.dimension_jump x y : Real)
 
+def DimensionUniverse.zeroCountermodel : DimensionUniverse where
+  Space := Unit
+  dimension := fun _ => 0
+  separation := fun _ _ => 0
+  known_dimension_space := True
+  unknown_dimension_space := False
+
+theorem DimensionUniverse.zeroCountermodel_curvature_surrogate_eq
+    (x y : DimensionUniverse.zeroCountermodel.Space) :
+    DimensionUniverse.zeroCountermodel.curvature_surrogate x y = 0 := by
+  simp [DimensionUniverse.curvature_surrogate, DimensionUniverse.dimension_jump,
+    DimensionUniverse.zeroCountermodel]
+
 def HybridGeometryDimension.proven_gravity_recovery : Prop :=
   False
 
