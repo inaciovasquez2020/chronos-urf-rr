@@ -857,6 +857,28 @@ structure CertifiedUniformObstructionEstimateComponentSurface
     obstructionEstimateComponent
 
 
+/--
+Bridge the bounded obstruction-estimate component surface back into the
+certified analytic Green-kernel estimate-input layer.
+
+This bridge uses the certified finite-jet exclusion component already packaged
+inside the obstruction component surface.  It does not prove the obstruction
+estimate; that estimate remains an explicit certified component field.
+-/
+def certified_uniform_obstruction_estimate_component_surface_to_certified_uniform_estimate_input
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformObstructionEstimateComponentSurface I x P Q hdet) :
+    CertifiedUniformAnalyticGreenKernelEstimateInputSurface I x P Q hdet :=
+  certified_uniform_finite_jet_exclusion_estimate_component_surface_to_certified_uniform_estimate_input
+    I x P Q hdet C.finiteJetExclusionCompletion
+
+
 
 
 /--
