@@ -434,6 +434,31 @@ def single_green_kernel_tail_estimate_component_completion_surface_to_estimate_i
   estimatesObstructFiniteJetEquivalence :=
     C.estimatesObstructFiniteJetEquivalence
 
+
+/--
+Uniform completion surface for the single Green-kernel tail estimate component.
+
+This supplies the completed pointwise single-component estimate input at every
+finite-jet test surface, while keeping the actual Green-kernel estimate proof
+boundary external.
+-/
+structure UniformSingleGreenKernelTailEstimateComponentCompletionSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q) where
+  completionAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      SingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet A W
+
 /--
 A pointwise analytic Green-kernel estimate input surface yields the corresponding
 pointwise Green-kernel tail criterion.
