@@ -996,6 +996,32 @@ def certified_uniform_full_green_kernel_aggregate_surface_weakest_missing_obliga
     (certified_uniform_full_green_kernel_estimate_component_aggregate_surface_to_certified_uniform_estimate_input
       I x P Q hdet C)
 
+
+/-- The weakest obligation exposed from the full Green-kernel aggregate is
+definitionally the weakest obligation exposed from the certified estimate-input
+surface obtained by the aggregate-to-estimate-input bridge.
+
+This is the first non-projection theorem isolating the analytic obligation
+target. It proves only definitional equivalence of the named target, not the
+Green-kernel estimates themselves.
+-/
+theorem certified_uniform_full_green_kernel_aggregate_surface_weakest_missing_obligation_eq_estimate_input_projection
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformFullGreenKernelEstimateComponentAggregateSurface I x P Q hdet) :
+    certified_uniform_full_green_kernel_aggregate_surface_weakest_missing_obligation
+      I x P Q hdet C =
+    certified_uniform_analytic_green_kernel_estimate_input_surface_weakest_missing_obligation
+      I x P Q hdet
+      (certified_uniform_full_green_kernel_estimate_component_aggregate_surface_to_certified_uniform_estimate_input
+        I x P Q hdet C) :=
+  rfl
+
 /--
 The analytic construction-assumption surface yields all finite-jet spectral
 nonlocality by exposing its constructed uniform criterion package.
