@@ -811,6 +811,29 @@ def certified_uniform_finite_jet_exclusion_estimate_component_surface_to_certifi
   certified_uniform_single_green_kernel_tail_estimate_component_completion_surface_to_certified_uniform_estimate_input
     I x P Q hdet C.singleTailCompletion
 
+/--
+Bridge the bounded finite-jet exclusion component surface into the analytic
+Green-kernel tail construction assumptions.
+
+This reuses the certified estimate-input bridge.  It does not prove the
+finite-jet exclusion estimate or the full Green-kernel estimates internally.
+-/
+def certified_uniform_finite_jet_exclusion_estimate_component_surface_to_construction_assumptions
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformFiniteJetExclusionEstimateComponentSurface I x P Q hdet) :
+    AnalyticGreenKernelTailConstructionAssumptions I x P Q hdet :=
+  certified_uniform_analytic_green_kernel_estimate_input_surface_to_construction_assumptions
+    I x P Q hdet
+    (certified_uniform_finite_jet_exclusion_estimate_component_surface_to_certified_uniform_estimate_input
+      I x P Q hdet C)
+
+
 
 /--
 The analytic construction-assumption surface yields all finite-jet spectral
