@@ -934,6 +934,28 @@ structure CertifiedUniformFullGreenKernelEstimateComponentAggregateSurface
 
 
 
+
+/-- Bridge the bounded full Green-kernel component aggregate surface back into the
+certified analytic Green-kernel estimate-input layer.
+
+This consumes the aggregate through its obstruction component, which already
+contains the coherent finite-jet exclusion and single-tail completions. It does
+not prove the obstruction estimate, finite-jet exclusion estimate, single-tail
+estimate, or full Green-kernel estimates internally.
+-/
+def certified_uniform_full_green_kernel_estimate_component_aggregate_surface_to_certified_uniform_estimate_input
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformFullGreenKernelEstimateComponentAggregateSurface I x P Q hdet) :
+    CertifiedUniformAnalyticGreenKernelEstimateInputSurface I x P Q hdet :=
+  certified_uniform_obstruction_estimate_component_surface_to_certified_uniform_estimate_input
+    I x P Q hdet C.obstructionCompletion
+
 /--
 The analytic construction-assumption surface yields all finite-jet spectral
 nonlocality by exposing its constructed uniform criterion package.
