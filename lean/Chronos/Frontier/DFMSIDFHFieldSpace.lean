@@ -439,6 +439,26 @@ def certified_uniform_analytic_green_kernel_estimate_input_surface_to_tail_crite
     fun A W =>
       C.finiteJetTailExclusionEstimateAt A W
 
+
+/--
+A certified uniform analytic Green-kernel estimate input surface yields all
+finite-jet spectral nonlocality.
+-/
+def certified_uniform_analytic_green_kernel_estimate_input_surface_to_all_finite_jet_nonabsorption
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformAnalyticGreenKernelEstimateInputSurface I x P Q hdet) :
+    AllFiniteJetSpectralNonlocality I x P Q hdet :=
+  analytic_green_kernel_tail_package_to_all_finite_jet_nonabsorption
+    I x P Q hdet
+    (certified_uniform_analytic_green_kernel_estimate_input_surface_to_tail_criterion_package
+      I x P Q hdet C)
+
 /--
 Analytic construction assumption surface for the uniform Green-kernel tail
 criterion package.
