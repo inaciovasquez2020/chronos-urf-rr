@@ -745,6 +745,27 @@ def certified_uniform_analytic_green_kernel_estimate_input_surface_to_constructi
     certified_uniform_analytic_green_kernel_estimate_input_surface_to_tail_criterion_package
       I x P Q hdet C
 
+
+/--
+A certified uniform single-tail-component completion surface supplies the
+analytic construction-assumption package through the certified analytic estimate
+input surface.
+-/
+def certified_uniform_single_green_kernel_tail_estimate_component_completion_surface_to_construction_assumptions
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformSingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet) :
+    AnalyticGreenKernelTailConstructionAssumptions I x P Q hdet :=
+  certified_uniform_analytic_green_kernel_estimate_input_surface_to_construction_assumptions
+    I x P Q hdet
+    (certified_uniform_single_green_kernel_tail_estimate_component_completion_surface_to_certified_uniform_estimate_input
+      I x P Q hdet C)
+
 /--
 The analytic construction-assumption surface yields all finite-jet spectral
 nonlocality by exposing its constructed uniform criterion package.
