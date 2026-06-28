@@ -1,3 +1,4 @@
+import Chronos.Core.DimensionUniverse
 import Mathlib.Data.Real.Basic
 
 namespace Chronos
@@ -134,3 +135,14 @@ theorem HybridGeometryDimension.same_dimension_trans
 
 end Frontier
 end Chronos
+
+
+
+
+
+
+
+
+def DimensionUniverse.is_nontrivial (U : DimensionUniverse) : Prop :=
+  ∃ x y : U.Space,
+    (U.separation) x y ≠ 0
