@@ -1,0 +1,25 @@
+{
+  "artifact": "mascon_measurable_gravity_observable_target_2026_06_28",
+  "repository": "chronos-urf-rr",
+  "merged_pr": 839,
+  "merge_commit": "9b5c1f12",
+  "lean_file": "lean/Chronos/Frontier/MASCONBaselineGravityModelPredictionVector.lean",
+  "object": "MASCONMeasurableGravityObservableTarget",
+  "concrete_instance": "masconRadialGravityGradientObservableTarget",
+  "observable": "radial_gravity_gradient_dg_dr",
+  "unit": "s^-2",
+  "baseline_model": "standard_GR_or_Newtonian_geodesy_prediction",
+  "status": "MASCON_MEASURABLE_GRAVITY_OBSERVABLE_TARGET_BOUND_ONLY",
+  "locks": {
+    "predictionVectorMaterialized": false,
+    "modelComparisonExecuted": false,
+    "modifiedGravityClaim": false
+  },
+  "boundary": [
+    "no prediction vector materialized",
+    "no model comparison executed",
+    "no modified gravity claim",
+    "no gravity closure claim"
+  ],
+  "next_admissible_object": "MASCON_DEFICIT_MASS_MODEL_PREDICTION_VECTOR"
+}
