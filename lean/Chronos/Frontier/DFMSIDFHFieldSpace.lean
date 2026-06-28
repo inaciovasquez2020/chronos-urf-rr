@@ -293,6 +293,35 @@ def analytic_green_kernel_tail_package_to_all_finite_jet_nonabsorption
 
 
 
+
+/--
+Single-component Green-kernel spectral tail estimate surface.
+
+This isolates one bounded internal estimate component: proving the component tail
+bound is enough to supply the spectral-tail side of the pointwise analytic
+Green-kernel estimate input. It does not prove the finite-jet exclusion estimate
+and does not prove the full Green-kernel estimate package.
+-/
+structure SingleGreenKernelTailEstimateComponentSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A) where
+  componentTailBound : Prop
+  componentTailBoundProved : componentTailBound
+  componentTailBoundImpliesSpectralTailEstimate :
+    componentTailBound →
+    Prop
+
 /--
 Pointwise analytic Green-kernel estimate input surface.
 
