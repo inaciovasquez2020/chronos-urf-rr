@@ -1,0 +1,47 @@
+{
+  "artifact": "gravity_program_two_month_stop_lock_2026_06_28",
+  "repository": "chronos-urf-rr",
+  "counted_head": "9bb24ace",
+  "counted_through_pr": 835,
+  "standing_window": {
+    "start_date": "2026-06-28",
+    "intended_duration_months": 2,
+    "intended_stable_until": "2026-08-28"
+  },
+  "status": {
+    "green_kernel_analytic_estimate_input_surface_percent": 76.5,
+    "finite_jet_exclusion_estimate_component_isolation_percent": 68.0,
+    "full_green_kernel_component_aggregate_surface_percent": 74.0,
+    "boundary_documentation_validation_record_percent": 99.0,
+    "full_green_kernel_estimates_proved_internally_percent": 0.0,
+    "gravity_solved_percent": 0.0,
+    "overall_gravity_program_maturity_percent": 33.1
+  },
+  "weakest_point": "finite_jet_aux_action_internal_constructor",
+  "boundary": "BOUNDARY := \u00ac internal_proof_of_Green_kernel_estimates",
+  "classification": {
+    "finite_jet_aux_action_field_surface_exists": true,
+    "finite_jet_aux_action_packaged_from_supplied_input": true,
+    "finite_jet_aux_action_constructed_internally": false,
+    "finite_jet_equivalence_witness_constructed_internally": false,
+    "analytic_obligation_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "two_month_stop_lock": {
+    "count_local_unmerged_prs": false,
+    "allow_status_regression": false,
+    "allow_gravity_closure_claim": false,
+    "allow_green_kernel_internal_proof_claim": false,
+    "next_admissible_object": "weakest construction-input surface for FiniteJetCurvatureAuxAction",
+    "internal_construction_counting_rule": "Do not count internal construction until a declaration returns or existentially produces FiniteJetCurvatureAuxAction.",
+    "resume_point": "finite_jet_aux_action_internal_constructor"
+  },
+  "non_claims": [
+    "does not construct FiniteJetCurvatureAuxAction internally",
+    "does not construct FiniteJetEquivalenceWitness internally",
+    "does not prove Green-kernel estimates internally",
+    "does not solve gravity",
+    "does not count local-only or unmerged PR status"
+  ]
+}
