@@ -17,6 +17,10 @@ def HybridGeometryDimension.symmetric_separation
     (H : HybridGeometryDimension) : Prop :=
   ∀ x y : H.Space, H.separation x y = H.separation y x
 
+def HybridGeometryDimension.nonnegative_separation
+    (H : HybridGeometryDimension) : Prop :=
+  ∀ x y : H.Space, 0 ≤ H.separation x y
+
 def HybridGeometryDimension.zero_separation
     (H : HybridGeometryDimension)
     (x : H.Space) : Prop :=
