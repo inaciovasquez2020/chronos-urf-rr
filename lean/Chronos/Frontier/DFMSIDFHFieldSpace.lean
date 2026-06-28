@@ -1072,6 +1072,32 @@ theorem finite_jet_aux_action_is_remaining_assumption_for_aggregate_estimate_inp
       I x P Q hdet C A W :=
   rfl
 
+
+/-- Classifier isolating the finite-jet equivalence witness as a remaining
+constructor-side assumption for the aggregate estimate-input route.
+
+Even after a supplied finite-jet auxiliary action, the route to
+`AnalyticGreenKernelEstimateInputSurface` still requires a supplied
+`FiniteJetEquivalenceWitness`. This theorem records that dependency by
+definitional equality only; it does not construct the witness internally.
+-/
+theorem finite_jet_equivalence_witness_is_remaining_assumption_for_aggregate_estimate_input
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformFullGreenKernelEstimateComponentAggregateSurface I x P Q hdet)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness X x (I.RenormalizedLogDet x P).QuotientClass A) :
+    certified_uniform_full_green_kernel_aggregate_surface_to_analytic_estimate_input_from_aux_witness
+      I x P Q hdet C A W =
+    certified_uniform_full_green_kernel_aggregate_surface_weakest_missing_obligation
+      I x P Q hdet C A W :=
+  rfl
+
 /--
 The analytic construction-assumption surface yields all finite-jet spectral
 nonlocality by exposing its constructed uniform criterion package.
