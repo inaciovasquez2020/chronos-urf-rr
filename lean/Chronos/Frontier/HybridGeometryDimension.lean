@@ -49,6 +49,14 @@ theorem HybridGeometryDimension.gravity_test_surface_expanded_eq
       H.separation x y + (H.dimension x : Real) :=
   rfl
 
+theorem HybridGeometryDimension.same_dimension_gravity_test_dimension_term_eq
+    (H : HybridGeometryDimension)
+    {x y z : H.Space}
+    (h : H.same_dimension x z) :
+    H.separation x y + (H.dimension x : Real) =
+      H.separation x y + (H.dimension z : Real) := by
+  rw [h]
+
 theorem HybridGeometryDimension.same_dimension_refl
     (H : HybridGeometryDimension)
     (x : H.Space) :
