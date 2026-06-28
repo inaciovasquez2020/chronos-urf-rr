@@ -767,6 +767,30 @@ def certified_uniform_single_green_kernel_tail_estimate_component_completion_sur
       I x P Q hdet C)
 
 /--
+A bounded finite-jet exclusion estimate component surface.
+
+This isolates the next analytic completion input after the certified single
+Green-kernel tail component.  It does not prove the finite-jet exclusion
+estimate; it packages exactly one certified finite-jet exclusion component as
+an explicit completion surface.
+-/
+structure CertifiedUniformFiniteJetExclusionEstimateComponentSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q) :
+    Type 2 where
+  singleTailCompletion :
+    CertifiedUniformSingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet
+  finiteJetExclusionEstimateComponent : Prop
+  finiteJetExclusionEstimateComponent_certified :
+    finiteJetExclusionEstimateComponent
+
+
+/--
 The analytic construction-assumption surface yields all finite-jet spectral
 nonlocality by exposing its constructed uniform criterion package.
 -/
