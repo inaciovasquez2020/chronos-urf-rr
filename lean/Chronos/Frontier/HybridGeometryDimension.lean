@@ -3,6 +3,13 @@ import Mathlib.Data.Real.Basic
 namespace Chronos
 namespace Frontier
 
+structure DimensionUniverse where
+  Space : Type u
+  dimension : Space → Int
+  separation : Space → Space → Real
+  known_dimension_space : Prop
+  unknown_dimension_space : Prop
+
 structure HybridGeometryDimension where
   Space : Type
   dimension : Space → Nat
