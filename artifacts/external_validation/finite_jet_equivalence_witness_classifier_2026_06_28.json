@@ -1,0 +1,27 @@
+{
+  "date": "2026-06-28",
+  "repository": "chronos-urf-rr",
+  "pr": 829,
+  "commit_after_merge": "8ab31627",
+  "lean_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "source_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "status": "finite_jet_equivalence_witness_constructor_classifier",
+  "theorem": "finite_jet_equivalence_witness_is_remaining_assumption_for_aggregate_estimate_input",
+  "claims": {
+    "finite_jet_equivalence_witness_is_explicit_input": true,
+    "finite_jet_auxiliary_action_is_explicit_input": true,
+    "aggregate_estimate_input_witness_application_classified": true,
+    "definitional_equivalence_proved": true,
+    "finite_jet_equivalence_witness_constructed_internally": false,
+    "finite_jet_auxiliary_action_constructed_internally": false,
+    "analytic_obligation_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "FiniteJetEquivalenceWitness was an explicit supplied input to the aggregate estimate-input route but not separately recorded as the remaining witness-side constructor assumption",
+  "boundary_after": "a classifier theorem isolates FiniteJetEquivalenceWitness as a remaining explicit supplied assumption",
+  "remaining_boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
