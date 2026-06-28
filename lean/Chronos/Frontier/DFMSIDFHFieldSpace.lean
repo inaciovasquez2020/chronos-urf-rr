@@ -371,6 +371,48 @@ structure UniformAnalyticGreenKernelEstimateInputSurface
         A,
       AnalyticGreenKernelEstimateInputSurface I x P Q hdet A W
 
+
+/--
+Certified uniform analytic Green-kernel estimate input surface.
+
+This strengthens the uniform estimate-input surface only by adding proof
+witnesses for the two pointwise estimate propositions. It still leaves the
+analytic Green-kernel estimates as external inputs rather than proving them
+internally.
+-/
+structure CertifiedUniformAnalyticGreenKernelEstimateInputSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q) where
+  estimateAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      AnalyticGreenKernelEstimateInputSurface I x P Q hdet A W
+  spectralTailEstimateAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      (estimateAt A W).spectralTailEstimate
+  finiteJetTailExclusionEstimateAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      (estimateAt A W).finiteJetTailExclusionEstimate
+
 /--
 Analytic construction assumption surface for the uniform Green-kernel tail
 criterion package.
