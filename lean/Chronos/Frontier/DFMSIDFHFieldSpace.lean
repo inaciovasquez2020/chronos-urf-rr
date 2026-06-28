@@ -346,6 +346,31 @@ def analytic_green_kernel_estimate_input_surface_to_green_kernel_tail_criterion
   finiteJetTailExcluded := E.finiteJetTailExclusionEstimate
   obstructionSound := E.estimatesObstructFiniteJetEquivalence
 
+
+/--
+Uniform analytic Green-kernel estimate input surface.
+
+This narrows the analytic boundary from an opaque constructed criterion package
+to pointwise estimate inputs at every finite-jet test surface. It still does not
+prove those estimates internally.
+-/
+structure UniformAnalyticGreenKernelEstimateInputSurface
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q) where
+  estimateAt :
+    ∀ A : FiniteJetCurvatureAuxAction X x,
+    ∀ W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A,
+      AnalyticGreenKernelEstimateInputSurface I x P Q hdet A W
+
 /--
 Analytic construction assumption surface for the uniform Green-kernel tail
 criterion package.
