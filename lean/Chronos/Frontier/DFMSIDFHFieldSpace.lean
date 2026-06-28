@@ -1116,3 +1116,18 @@ def analytic_green_kernel_tail_construction_assumptions_to_all_finite_jet_nonabs
     I x P Q hdet A.constructedPackage
 
 end Chronos.Frontier
+
+namespace Chronos.Frontier
+
+/--
+A weakest field-bearing surface for finite-jet curvature auxiliary action data.
+
+This carries `FiniteJetCurvatureAuxAction X state` as supplied data only. It
+does not construct the auxiliary action, does not construct an equivalence
+witness, and does not prove Green-kernel estimates.
+-/
+structure FiniteJetCurvatureAuxActionFieldSurface (X : DFMSIDFHFieldSpace) where
+  state : X.State
+  auxAction : FiniteJetCurvatureAuxAction X state
+
+end Chronos.Frontier
