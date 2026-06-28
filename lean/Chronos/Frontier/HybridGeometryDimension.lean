@@ -13,6 +13,10 @@ def HybridGeometryDimension.same_dimension
     (x y : H.Space) : Prop :=
   H.dimension x = H.dimension y
 
+def HybridGeometryDimension.symmetric_separation
+    (H : HybridGeometryDimension) : Prop :=
+  ∀ x y : H.Space, H.separation x y = H.separation y x
+
 def HybridGeometryDimension.zero_separation
     (H : HybridGeometryDimension)
     (x : H.Space) : Prop :=
