@@ -1,0 +1,27 @@
+{
+  "date": "2026-06-28",
+  "repository": "chronos-urf-rr",
+  "pr": 827,
+  "commit_after_merge": "58c01a6e",
+  "lean_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "source_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "status": "finite_jet_aux_action_constructor_classifier",
+  "theorem": "finite_jet_aux_action_is_remaining_assumption_for_aggregate_estimate_input",
+  "claims": {
+    "finite_jet_auxiliary_action_is_explicit_input": true,
+    "finite_jet_equivalence_witness_is_explicit_input": true,
+    "aggregate_estimate_input_witness_application_classified": true,
+    "definitional_equivalence_proved": true,
+    "finite_jet_auxiliary_action_constructed_internally": false,
+    "finite_jet_equivalence_witness_constructed_internally": false,
+    "analytic_obligation_proved_internally": false,
+    "full_green_kernel_estimates_proved_internally": false,
+    "gravity_solved": false
+  },
+  "boundary_before": "the aggregate route produced AnalyticGreenKernelEstimateInputSurface only after supplied finite-jet auxiliary action and equivalence witness data",
+  "boundary_after": "a classifier theorem isolates FiniteJetCurvatureAuxAction and FiniteJetEquivalenceWitness as remaining explicit supplied assumptions",
+  "remaining_boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
