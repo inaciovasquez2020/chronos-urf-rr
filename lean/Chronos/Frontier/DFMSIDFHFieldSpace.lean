@@ -614,6 +614,24 @@ structure CertifiedUniformAnalyticGreenKernelEstimateInputSurface
 
 
 
+
+/-- Projection exposing the weakest analytic Green-kernel estimate-input
+obligation currently carried by the certified estimate-input surface.
+
+This is only a field projection. It does not prove the Green-kernel estimates
+internally and does not claim gravity closure.
+-/
+def certified_uniform_analytic_green_kernel_estimate_input_surface_weakest_missing_obligation
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : CertifiedUniformAnalyticGreenKernelEstimateInputSurface I x P Q hdet) :=
+  A.estimateAt
+
 /--
 A certified uniform single-tail-component completion surface supplies the
 certified uniform analytic Green-kernel estimate input surface.
