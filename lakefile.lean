@@ -17,4 +17,4 @@ lean_lib Chronos where
 
 lean_lib ChronosUrf where
   srcDir := "lean"
-  roots := #[`Chronos.XorReduce, `Chronos.EP2Bundle]
+  roots := #[`Chronos.XorReduce, `Chronos.EP2Bundle, `Oblivion]
