@@ -405,6 +405,35 @@ structure AnalyticGreenKernelEstimateInputSurface
     ¬ I.FiniteJetEquivalent x P Q hdet A W
 
 
+
+/--
+A completed single Green-kernel tail estimate component supplies the pointwise
+analytic Green-kernel estimate input surface.
+-/
+def single_green_kernel_tail_estimate_component_completion_surface_to_estimate_input
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness
+        X
+        x
+        (I.RenormalizedLogDet x P).QuotientClass
+        A)
+    (C : SingleGreenKernelTailEstimateComponentCompletionSurface I x P Q hdet A W) :
+    AnalyticGreenKernelEstimateInputSurface I x P Q hdet A W where
+  spectralTailEstimate :=
+    single_green_kernel_tail_estimate_component_surface_to_spectral_tail_estimate
+      I x P Q hdet A W C.tailComponent
+  finiteJetTailExclusionEstimate :=
+    C.finiteJetTailExclusionEstimate
+  estimatesObstructFiniteJetEquivalence :=
+    C.estimatesObstructFiniteJetEquivalence
+
 /--
 A pointwise analytic Green-kernel estimate input surface yields the corresponding
 pointwise Green-kernel tail criterion.
