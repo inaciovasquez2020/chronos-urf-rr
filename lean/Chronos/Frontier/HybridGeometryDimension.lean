@@ -35,6 +35,13 @@ def HybridGeometryDimension.gravity_test_surface
     (x y : H.Space) : Real :=
   H.dimension_potential x y
 
+theorem HybridGeometryDimension.gravity_test_surface_eq
+    (H : HybridGeometryDimension)
+    (x y : H.Space) :
+    H.gravity_test_surface x y =
+      H.dimension_potential x y :=
+  rfl
+
 theorem HybridGeometryDimension.same_dimension_refl
     (H : HybridGeometryDimension)
     (x : H.Space) :
