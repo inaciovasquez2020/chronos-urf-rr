@@ -1,0 +1,20 @@
+{
+  "artifact": "DFM_SIDFH_SPECTRAL_NONLOCALITY_REDUCTION_SURFACE_2026_06_28",
+  "date": "2026-06-28",
+  "repository": "chronos-urf-rr",
+  "merge_commit": "a2d3df4866edbecb0f6c0156fda9cbddbcfec286",
+  "pull_request": 797,
+  "lean_file": "lean/Chronos/Frontier/DFMSIDFHFieldSpace.lean",
+  "validated_target": "Chronos.Frontier.DFMSIDFHFieldSpace",
+  "status": "reduction_surface",
+  "claims": {
+    "dfm_sidfh_spectral_nonlocality_surface_added": true,
+    "all_finite_jet_nonlocality_reduced_to_analytic_green_kernel_tail_construction_assumptions": true,
+    "gravity_solved": false,
+    "green_kernel_estimates_proved_internally": false
+  },
+  "boundary": "BOUNDARY := ¬ internal_proof_of_Green_kernel_estimates",
+  "validation": [
+    "lake build Chronos.Frontier.DFMSIDFHFieldSpace"
+  ]
+}
