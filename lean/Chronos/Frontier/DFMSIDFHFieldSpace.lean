@@ -1046,6 +1046,32 @@ def certified_uniform_full_green_kernel_aggregate_surface_to_analytic_estimate_i
   certified_uniform_full_green_kernel_aggregate_surface_weakest_missing_obligation
     I x P Q hdet C A W
 
+
+/-- Classifier isolating the next remaining constructor-side assumption after
+the aggregate estimate-input witness application.
+
+The current aggregate route produces `AnalyticGreenKernelEstimateInputSurface`
+only after a supplied finite-jet auxiliary action and finite-jet equivalence
+witness. This theorem records that the finite-jet auxiliary action is still an
+explicit input to the route; it does not construct that action internally.
+-/
+theorem finite_jet_aux_action_is_remaining_assumption_for_aggregate_estimate_input
+    {X : DFMSIDFHFieldSpace}
+    {S : DFMSIDFHSpectralProbe X}
+    (I : NonlocalRenormalizedLogDet S)
+    (x : X.State)
+    (P : DFMSIDFHProbeOperator X x)
+    (Q : (I.RenormalizedLogDet x P).QuotientClass)
+    (hdet : (I.RenormalizedLogDet x P).representsRenormalizedLogDet Q)
+    (C : CertifiedUniformFullGreenKernelEstimateComponentAggregateSurface I x P Q hdet)
+    (A : FiniteJetCurvatureAuxAction X x)
+    (W : FiniteJetEquivalenceWitness X x (I.RenormalizedLogDet x P).QuotientClass A) :
+    certified_uniform_full_green_kernel_aggregate_surface_to_analytic_estimate_input_from_aux_witness
+      I x P Q hdet C A W =
+    certified_uniform_full_green_kernel_aggregate_surface_weakest_missing_obligation
+      I x P Q hdet C A W :=
+  rfl
+
 /--
 The analytic construction-assumption surface yields all finite-jet spectral
 nonlocality by exposing its constructed uniform criterion package.
