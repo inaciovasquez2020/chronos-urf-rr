@@ -74,6 +74,36 @@ theorem quantitativeGravityPredictionBoundary_preserves_nonPrediction
     B.noGravitySolved⟩
 
 /--
+GR plus scalar-fields separation boundary.
+
+This object isolates the currently missing separation theorem: it records that
+the framework has not proved separation from general relativity plus scalar
+fields, has not produced a distinct gravitational prediction, and has not
+solved gravity.
+-/
+structure GRScalarSeparationBoundary where
+  separatedFromGRPlusScalarFields : Prop
+  distinctGravitationalPredictionProduced : Prop
+  gravitySolved : Prop
+  noSeparatedFromGRPlusScalarFields : ¬ separatedFromGRPlusScalarFields
+  noDistinctGravitationalPredictionProduced :
+    ¬ distinctGravitationalPredictionProduced
+  noGravitySolved : ¬ gravitySolved
+
+/--
+Projection theorem: the GR/scalar separation boundary remains a non-separation
+and non-solution boundary.
+-/
+theorem grScalarSeparationBoundary_preserves_nonSeparation
+    (B : GRScalarSeparationBoundary) :
+    ¬ B.separatedFromGRPlusScalarFields ∧
+      ¬ B.distinctGravitationalPredictionProduced ∧
+      ¬ B.gravitySolved := by
+  exact ⟨B.noSeparatedFromGRPlusScalarFields,
+    B.noDistinctGravitationalPredictionProduced,
+    B.noGravitySolved⟩
+
+/--
 Boundary: existence of this input object alone does not derive gravity.
 -/
 theorem gravity_backreaction_input_object_not_solution
