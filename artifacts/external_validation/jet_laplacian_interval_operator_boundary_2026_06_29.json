@@ -1,0 +1,51 @@
+{
+  "artifact": "jet_laplacian_interval_operator_boundary",
+  "date": "2026-06-29",
+  "status": "interval_operator_certificate_boundary_only",
+  "depends_on": [
+    "artifacts/external_validation/jet_laplacian_newton_kantorovich_boundary_2026_06_29.json"
+  ],
+  "operator": {
+    "name": "finite_jet_laplacian_interval_operator",
+    "dimension": 3,
+    "coefficient_count": 3,
+    "interval_matrix_rows": [
+      [
+        {"lo": "1.0", "hi": "1.0"},
+        {"lo": "0.0", "hi": "0.0"},
+        {"lo": "0.0", "hi": "0.0"}
+      ],
+      [
+        {"lo": "0.0", "hi": "0.0"},
+        {"lo": "1.0", "hi": "1.0"},
+        {"lo": "0.0", "hi": "0.0"}
+      ],
+      [
+        {"lo": "0.0", "hi": "0.0"},
+        {"lo": "0.0", "hi": "0.0"},
+        {"lo": "1.0", "hi": "1.0"}
+      ]
+    ]
+  },
+  "certified_inverse_or_pseudoinverse_bound": {
+    "kind": "inverse_bound",
+    "bound": "1.0",
+    "field_is_certificate_bound_only": true
+  },
+  "distance_axis_lipschitz_bound": {
+    "bound": "0.0",
+    "field_is_certificate_bound_only": true
+  },
+  "required_fields": [
+    "operator.interval_matrix_rows",
+    "certified_inverse_or_pseudoinverse_bound.bound",
+    "distance_axis_lipschitz_bound.bound"
+  ],
+  "nonclaims": [
+    "No proof of Jet-Laplacian rank stability is claimed.",
+    "No proof of spectral stability is claimed.",
+    "No proof of gravity, Einstein-limit, metric-backreaction, or continuum limit is claimed.",
+    "No Navier-Stokes singularity or self-similar blow-up result is claimed.",
+    "The interval operator is a finite certificate payload only."
+  ]
+}
