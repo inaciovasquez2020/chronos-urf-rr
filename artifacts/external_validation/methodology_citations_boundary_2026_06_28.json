@@ -5,17 +5,44 @@
     {
       "id": "arxiv_2605_06660",
       "url": "https://arxiv.org/abs/2605.06660",
-      "use": "verifier_backed_problem_generation_methodology"
+      "use": "verifier_backed_problem_generation_methodology",
+      "supports_only": true,
+      "reference_role": "methodology",
+      "non_claims_preserved": [
+        "no_gravity_solution_claim",
+        "no_experimental_validation_claim",
+        "no_einstein_equation_replacement_claim",
+        "no_physical_field_equation_claim",
+        "no_external_problem_closure_claim"
+      ]
     },
     {
       "id": "arxiv_2606_19399v1",
       "url": "https://arxiv.org/html/2606.19399v1",
-      "use": "lean_feedback_guided_proof_search_methodology"
+      "use": "lean_feedback_guided_proof_search_methodology",
+      "supports_only": true,
+      "reference_role": "methodology",
+      "non_claims_preserved": [
+        "no_gravity_solution_claim",
+        "no_experimental_validation_claim",
+        "no_einstein_equation_replacement_claim",
+        "no_physical_field_equation_claim",
+        "no_external_problem_closure_claim"
+      ]
     },
     {
       "id": "harrison_asl_03jun02",
       "url": "https://www.cl.cam.ac.uk/~jrh13/slides/asl-03jun02/slides.pdf",
-      "use": "formal_verification_lineage"
+      "use": "formal_verification_lineage",
+      "supports_only": true,
+      "reference_role": "methodology",
+      "non_claims_preserved": [
+        "no_gravity_solution_claim",
+        "no_experimental_validation_claim",
+        "no_einstein_equation_replacement_claim",
+        "no_physical_field_equation_claim",
+        "no_external_problem_closure_claim"
+      ]
     }
   ],
   "boundaries": [
