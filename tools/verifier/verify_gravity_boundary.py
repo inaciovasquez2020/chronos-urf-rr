@@ -9,6 +9,10 @@ REQUIRED_FALSE_GAPS = (
     "metric_backreaction_proved",
     "experimental_validation_proved",
     "stress_energy_realization_proved",
+    "bridge_island_realization_proved",
+    "lorentzian_metric_g_realization_proved",
+    "stress_energy_T_realization_proved",
+    "carbon_subplanck_gravity_containment_proved",
 )
 
 def fail(message: str) -> None:
@@ -28,6 +32,16 @@ def main() -> None:
     for key in REQUIRED_FALSE_GAPS:
         if gaps.get(key) is not False:
             fail(f"'{key}' must be explicitly false.")
+
+    bridge = data.get("bridge_island_configuration")
+    if not isinstance(bridge, dict):
+        fail("bridge_island_configuration must exist.")
+
+    if bridge.get("object_name") != "ChronosGravityBridgeIsland":
+        fail("bridge_island_configuration.object_name must be ChronosGravityBridgeIsland.")
+
+    if bridge.get("implemented") is not False:
+        fail("bridge_island_configuration must remain explicitly unimplemented.")
 
     stubs = data.get("interface_stubs", {})
     if not stubs:
