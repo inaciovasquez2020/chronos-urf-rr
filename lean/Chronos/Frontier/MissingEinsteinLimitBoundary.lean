@@ -14,6 +14,33 @@ structure MissingEinsteinLimitBoundary where
   no_gravity_closure : Prop
 
 /--
+Verifier-aligned Einstein-limit non-realization boundary.
+
+This object records the missing Einstein-limit surface as explicitly
+non-realized: it does not derive an Einstein limit, metric backreaction, or
+gravity closure.
+-/
+structure EinsteinLimitNonRealizationBoundary where
+  einsteinLimitDerived : Prop
+  metricBackreactionDerived : Prop
+  gravityClosureDerived : Prop
+  noEinsteinLimitDerived : ¬ einsteinLimitDerived
+  noMetricBackreactionDerived : ¬ metricBackreactionDerived
+  noGravityClosureDerived : ¬ gravityClosureDerived
+
+/--
+Projection theorem: the Einstein-limit boundary remains non-realized.
+-/
+theorem einsteinLimitNonRealizationBoundary_preserves_nonRealization
+    (boundary : EinsteinLimitNonRealizationBoundary) :
+    ¬ boundary.einsteinLimitDerived ∧
+      ¬ boundary.metricBackreactionDerived ∧
+      ¬ boundary.gravityClosureDerived := by
+  exact ⟨boundary.noEinsteinLimitDerived,
+    boundary.noMetricBackreactionDerived,
+    boundary.noGravityClosureDerived⟩
+
+/--
 The weakest boundary theorem: the Einstein-limit input is only named as an
 explicit missing input surface.
 
