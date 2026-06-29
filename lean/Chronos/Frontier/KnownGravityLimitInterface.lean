@@ -364,3 +364,31 @@ theorem gravity_delta_monotone_from_nonnegative_added_mass
     gBase gBonded baseMass addedMass radius G
     hradius hG hbaseMass hgBase hgBonded]
   exact div_nonneg haddedMass (le_of_lt hbaseMass)
+
+
+/--
+Zero fractional Newtonian same-radius gravity delta is equivalent to zero added
+mass.
+
+This is only a same-radius Newtonian corollary. It removes all solved-gravity,
+metric-backreaction, carbon structural coupling, and sub-Planck containment
+claims.
+-/
+theorem gravity_delta_zero_iff_zero_added_mass
+  (gBase gBonded baseMass addedMass radius G : Real)
+  (hradius : radius > 0)
+  (hG : G > 0)
+  (hbaseMass : baseMass > 0)
+  (hgBase : gBase = (G * baseMass) / (radius ^ 2))
+  (hgBonded : gBonded = (G * (baseMass + addedMass)) / (radius ^ 2)) :
+  (gBonded - gBase) / gBase = 0 ↔ addedMass = 0 := by
+  rw [gravity_ratio_delta_from_added_mass_identity
+    gBase gBonded baseMass addedMass radius G
+    hradius hG hbaseMass hgBase hgBonded]
+  have hbaseMass_ne : baseMass ≠ 0 := ne_of_gt hbaseMass
+  constructor
+  · intro h
+    have hmul := congrArg (fun x : Real => x * baseMass) h
+    simpa [hbaseMass_ne] using hmul
+  · intro h
+    rw [h, zero_div]
