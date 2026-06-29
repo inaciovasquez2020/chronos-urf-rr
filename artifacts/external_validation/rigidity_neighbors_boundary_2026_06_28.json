@@ -1,0 +1,62 @@
+{
+  "artifact": "rigidity_neighbors_boundary_2026_06_28",
+  "status": "support_only_boundary",
+  "sources": [
+    {
+      "label": "IEEE 9424432",
+      "topic": "bearing rigidity theory",
+      "use": "support_only",
+      "supports": [
+        "observable rank matrix analogy",
+        "geometric rigidity witness surface",
+        "local directional data to global geometric constraint pattern"
+      ],
+      "does_not_support": [
+        "DFM_MKC gravity validation",
+        "SIDFH spectral nonlocality proof",
+        "Einstein limit derivation",
+        "experimental validation"
+      ]
+    },
+    {
+      "label": "arXiv:1808.04005",
+      "topic": "unit-bar rigid frameworks",
+      "use": "support_only",
+      "supports": [
+        "explicit finite graph rigidity witness analogy",
+        "local-versus-global rigidity example source",
+        "bounded constructive witness family pattern"
+      ],
+      "does_not_support": [
+        "DFM_MKC gravity validation",
+        "Green kernel estimate proof",
+        "physical metric backreaction law",
+        "experimental validation"
+      ]
+    },
+    {
+      "label": "ScienceDirect S0141029625006509",
+      "topic": "energy-based tensegrity form-finding",
+      "use": "support_only",
+      "supports": [
+        "finite-dimensional energy equilibrium analogy",
+        "Hessian stability check analogy",
+        "numerical verifier toy-model pattern"
+      ],
+      "does_not_support": [
+        "DFM_MKC gravity validation",
+        "SIDFH theorem closure",
+        "Einstein limit derivation",
+        "experimental validation"
+      ]
+    }
+  ],
+  "global_boundaries": [
+    "not_gravity_validation",
+    "not_green_kernel_estimate_proof",
+    "not_einstein_limit",
+    "not_experimental_validation",
+    "not_external_problem_closure"
+  ],
+  "next_theorem_object": "BearingRigidityRankWitnessSurface"
+}
