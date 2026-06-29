@@ -162,6 +162,39 @@ theorem carbonSubPlanckGravityContainment_preserves_noRealization
 
 
 /--
+Sub-Planck analogy boundary object.
+
+This object names the requested sub-Planck analogy surface only as a blocked
+analogy.  It does not assert a realized sub-Planck physical regime, a gravity
+solution, a metric-backreaction derivation, or a carbon structural gravity
+coupling theorem.
+-/
+structure SubPlanckAnalogyBoundary where
+  analogySurfaceNamed : Prop
+  realizedPhysicalRegime : Prop
+  gravitySolutionDerived : Prop
+  metricBackreactionDerived : Prop
+  carbonStructuralGravityCouplingDerived : Prop
+  noRealizedPhysicalRegime : ¬ realizedPhysicalRegime
+  noGravitySolutionDerived : ¬ gravitySolutionDerived
+  noMetricBackreactionDerived : ¬ metricBackreactionDerived
+  noCarbonStructuralGravityCouplingDerived : ¬ carbonStructuralGravityCouplingDerived
+
+/--
+Projection theorem: the sub-Planck analogy boundary remains blocked/non-realized.
+-/
+theorem subPlanckAnalogyBoundary_preserves_noRealization
+  (boundary : SubPlanckAnalogyBoundary) :
+  ¬ boundary.realizedPhysicalRegime ∧
+    ¬ boundary.gravitySolutionDerived ∧
+    ¬ boundary.metricBackreactionDerived ∧
+    ¬ boundary.carbonStructuralGravityCouplingDerived := by
+  exact ⟨boundary.noRealizedPhysicalRegime,
+    boundary.noGravitySolutionDerived,
+    boundary.noMetricBackreactionDerived,
+    boundary.noCarbonStructuralGravityCouplingDerived⟩
+
+/--
 Blocked Planck-scale boundary object.
 
 The slots name the requested sub-Planck carbon scale surface, but every
