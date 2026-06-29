@@ -28,7 +28,7 @@ def rank_deficiency(matrix: np.ndarray, expected_rank: int | None, tolerance: fl
         "cols": int(matrix.shape[1]),
         "rank": rank,
         "reference_rank": reference_rank,
-        "rank_deficiency": int(reference_rank - rank),
+        "rank_deficiency": int(max(0, reference_rank - rank)),
         "maps_eigenvalue_decay_to_overlap_axis": False,
         "computes_einstein_tensor": False,
         "computes_metric_backreaction": False,
