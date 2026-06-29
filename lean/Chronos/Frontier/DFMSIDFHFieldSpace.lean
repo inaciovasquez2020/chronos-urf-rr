@@ -1185,6 +1185,34 @@ noncomputable def finiteJetAuxActionProjectionField_from_input
 
 
 /--
+Boundary surface for the currently missing internal canonical projection-field
+constructor.
+
+This records the exact remaining constructor gap after the input-only selector:
+the repository can select a supplied projection field, but it does not yet
+construct a canonical projection field internally, does not prove overlap-axis
+stability, and does not derive any gravity, Einstein-limit, or metric
+backreaction law.
+-/
+structure InternalCanonicalProjectionFieldConstructorBoundary
+    (X : DFMSIDFHFieldSpace) where
+  suppliedProjectionSurface : FiniteJetAuxActionProjectionFieldInputSurface X
+  missingInternalCanonicalProjectionFieldConstructor : Prop
+  no_internal_constructor :
+    ¬ missingInternalCanonicalProjectionFieldConstructor
+  no_overlap_axis_stability_proof : Prop
+  no_gravity_closure : Prop
+  no_einstein_limit_claim : Prop
+  no_metric_backreaction_law : Prop
+
+theorem internalCanonicalProjectionFieldConstructorBoundary_no_internal_constructor
+    {X : DFMSIDFHFieldSpace}
+    (boundary : InternalCanonicalProjectionFieldConstructorBoundary X) :
+    ¬ boundary.missingInternalCanonicalProjectionFieldConstructor :=
+  boundary.no_internal_constructor
+
+
+/--
 Boundary surface for the missing spectral-tail continuum-limit translation.
 
 This names the weakest current bridge between the finite Green-kernel spectral
