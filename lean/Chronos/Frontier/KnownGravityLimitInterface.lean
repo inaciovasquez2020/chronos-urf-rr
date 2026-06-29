@@ -279,3 +279,23 @@ theorem carbon14_carbon12_gravity_ratio_bound
   exact gravity_ratio_bound_from_mass_ratio_bound
     gHeavy gLight mHeavy mLight radius G carbonIsotopeMassRatioBound
     hradius hG hmLight hgLight hgHeavy hmassBound
+
+
+/--
+Added-carbon Newtonian same-radius gravity ratio identity.
+
+This proves only the ordinary mass-addition ratio under the existing
+same-radius Newtonian model. It does not introduce or prove any structural
+carbon/gravity coupling law.
+-/
+theorem carbon_added_mass_gravity_ratio_identity
+  (gBase gBonded baseMass carbonMass radius G : Real)
+  (hradius : radius > 0)
+  (hG : G > 0)
+  (hbaseMass : baseMass > 0)
+  (hgBase : gBase = (G * baseMass) / (radius ^ 2))
+  (hgBonded : gBonded = (G * (baseMass + carbonMass)) / (radius ^ 2)) :
+  gBonded / gBase = (baseMass + carbonMass) / baseMass := by
+  exact newtonian_sameRadius_ratio_identity
+    gBonded gBase (baseMass + carbonMass) baseMass radius G
+    hradius hG hbaseMass hgBase hgBonded
