@@ -1,0 +1,60 @@
+{
+  "artifact": "finite_jet_rigidity_operator_boundary",
+  "date": "2026-06-28",
+  "status": "boundary_only",
+  "operator": {
+    "name": "finite_jet_rigidity_operator",
+    "symbol": "R_Jk",
+    "jet_order": {
+      "kind": "positive_integer_token",
+      "claim": "input_only"
+    },
+    "ambient_dimension": {
+      "kind": "positive_integer_token",
+      "claim": "input_only"
+    },
+    "nodes": {
+      "kind": "finite_index_set_token",
+      "claim": "input_only"
+    },
+    "edges": {
+      "kind": "finite_neighbor_coupling_token",
+      "claim": "input_only"
+    },
+    "projection_axis_tokens": {
+      "kind": "bearing_axis_token_family",
+      "claim": "input_only"
+    }
+  },
+  "diagnostics": {
+    "rank_deficiency_calculator": "diagnostic_only",
+    "eigenvalue_decay": "not_mapped_to_overlap_axis",
+    "overlap_axis_mapping": false
+  },
+  "dimension_contract": {
+    "checks_positive_jet_order": true,
+    "checks_positive_ambient_dimension": true,
+    "checks_nonempty_nodes": true,
+    "checks_edge_count_token": true,
+    "checks_projection_axis_token_count": true
+  },
+  "verifier_scope": {
+    "checks_schema": true,
+    "checks_dimension_tokens": true,
+    "checks_nonclaim_flags": true,
+    "computes_rank": false,
+    "computes_eigenvalue_decay": false,
+    "maps_eigenvalue_decay_to_overlap_axis": false,
+    "computes_einstein_tensor": false,
+    "computes_metric_backreaction": false,
+    "claims_gravity_closure": false
+  },
+  "boundaries": [
+    "not_einstein_limit",
+    "no_gravity_closure",
+    "no_physical_metric_backreaction",
+    "no_continuous_spacetime_curvature_claim",
+    "rank_deficiency_diagnostic_only",
+    "no_overlap_axis_eigenvalue_decay_mapping"
+  ]
+}
