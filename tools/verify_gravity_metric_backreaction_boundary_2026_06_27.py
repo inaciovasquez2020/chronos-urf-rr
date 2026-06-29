@@ -20,6 +20,41 @@ EXPECTED_NOT_CLAIMED = [
     "solution of gravity",
 ]
 
+REQUIRED_LEAN_SYMBOLS = [
+    (
+        "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
+        "structure GravityMetricBackreactionBoundary",
+    ),
+    (
+        "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
+        "theorem gravityMetricBackreactionBoundary_preserves_nonSolution",
+    ),
+    (
+        "lean/Chronos/Frontier/MissingEinsteinLimitBoundary.lean",
+        "structure EinsteinLimitNonRealizationBoundary",
+    ),
+    (
+        "lean/Chronos/Frontier/MissingEinsteinLimitBoundary.lean",
+        "theorem einsteinLimitNonRealizationBoundary_preserves_nonRealization",
+    ),
+    (
+        "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
+        "structure QuantitativeGravityPredictionBoundary",
+    ),
+    (
+        "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
+        "theorem quantitativeGravityPredictionBoundary_preserves_nonPrediction",
+    ),
+    (
+        "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
+        "structure GRScalarSeparationBoundary",
+    ),
+    (
+        "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
+        "theorem grScalarSeparationBoundary_preserves_nonSeparation",
+    ),
+]
+
 
 def main() -> None:
     if not TARGET.is_file():
@@ -52,6 +87,13 @@ def main() -> None:
 
     if data.get("not_claimed") != EXPECTED_NOT_CLAIMED:
         raise SystemExit("MISSING_OBJECT := not_claimed exact gravity non-claim list")
+
+    for relative_path, required_symbol in REQUIRED_LEAN_SYMBOLS:
+        lean_path = ROOT / relative_path
+        if not lean_path.is_file():
+            raise SystemExit(f"MISSING_OBJECT := {relative_path}")
+        if required_symbol not in lean_path.read_text():
+            raise SystemExit(f"MISSING_OBJECT := {required_symbol}")
 
     print("GRAVITY_METRIC_BACKREACTION_BOUNDARY_2026_06_27_OK")
 
