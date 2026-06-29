@@ -1,13 +1,36 @@
 import Mathlib.Analysis.Calculus.Deriv.Basic
 import Mathlib.Topology.MetricSpace.Basic
+import Mathlib.Data.Matrix.Basic
+
+/--
+The bridge island object names a future deformation-parameter target
+without realizing a metric, stress-energy tensor, field equation, or
+gravity solution.
+
+All slots are optional and the proof field forces them to remain empty.
+-/
+structure ChronosGravityBridgeIsland where
+  weak_field_scale : Option Real
+  hydrodynamic_collapse_scale : Option Real
+  dense_equilibrium_scale : Option Real
+  strong_curvature_scale : Option Real
+  deformation_tensor_slot : Option (Matrix (Fin 4) (Fin 4) Real)
+  no_bridge_island_realization_claim :
+    weak_field_scale = none ∧
+    hydrodynamic_collapse_scale = none ∧
+    dense_equilibrium_scale = none ∧
+    strong_curvature_scale = none ∧
+    deformation_tensor_slot = none
 
 /--
 Internal model object placeholder.
 
-This is intentionally empty and carries no coordinate, dimension,
-metric, field-equation, or gravity-realization claim.
+The bridge-island slot names where a future deformation object would land.
+The proof field enforces that no bridge island is realized here.
 -/
 structure ChronosFieldObject where
+  bridge_island_slot : Option ChronosGravityBridgeIsland
+  no_bridge_island_claim : bridge_island_slot = none
 
 /--
 Lorentzian metric placeholder.
@@ -70,3 +93,24 @@ theorem stressEnergyTensor_preserves_noRealization
   (tensor : StressEnergyTensor) :
   tensor.density_slot = none ∧ tensor.pressure_slot = none ∧ tensor.velocity_slot = none := by
   exact tensor.no_stress_energy_realization_claim
+
+/--
+Projection theorem: the bridge island placeholder carries only empty target slots
+and makes no deformation-field realization claim.
+-/
+theorem chronosGravityBridgeIsland_preserves_noRealization
+  (bridge : ChronosGravityBridgeIsland) :
+  bridge.weak_field_scale = none ∧
+    bridge.hydrodynamic_collapse_scale = none ∧
+    bridge.dense_equilibrium_scale = none ∧
+    bridge.strong_curvature_scale = none ∧
+    bridge.deformation_tensor_slot = none := by
+  exact bridge.no_bridge_island_realization_claim
+
+/--
+Projection theorem: the host field object does not realize a bridge island.
+-/
+theorem chronosFieldObject_preserves_noBridgeIsland
+  (obj : ChronosFieldObject) :
+  obj.bridge_island_slot = none := by
+  exact obj.no_bridge_island_claim
