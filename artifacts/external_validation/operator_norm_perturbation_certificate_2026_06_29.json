@@ -1,0 +1,22 @@
+{
+  "object": "supplied_operator_norm_perturbation_bound_certificate",
+  "bridge_status": "conditional_frontier_surface_only",
+  "source_boundary": "perturbation_radius_to_rank_margin_bridge",
+  "numeric_rank": 35,
+  "structural_nullity": 1,
+  "rank_margin_lower_bound": 0.003922619684665731,
+  "allowed_operator_perturbation": 0.0039,
+  "supplied_operator_norm_bound": 0.0038,
+  "required_checks": [
+    "0 < supplied_operator_norm_bound",
+    "supplied_operator_norm_bound <= allowed_operator_perturbation",
+    "allowed_operator_perturbation < rank_margin_lower_bound"
+  ],
+  "locked_out_claims": [
+    "no_coordinate_perturbation_radius_to_operator_norm_theorem",
+    "no_unconditional_rank_stability_theorem",
+    "no_unconditional_restricted_continuation_norm_theorem",
+    "no_continuous_metric_backreaction_claim",
+    "no_gravity_closure"
+  ]
+}
