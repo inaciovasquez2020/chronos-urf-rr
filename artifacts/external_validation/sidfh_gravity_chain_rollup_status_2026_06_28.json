@@ -1,0 +1,108 @@
+{
+  "artifact": "SIDFH_GRAVITY_CHAIN_ROLLUP_STATUS_2026_06_28",
+  "status": "conditional_rollup_complete",
+  "unconditional_claim": false,
+  "boundary": "BOUNDARY := \u00ac sidfh_unconditional_gravity_recovery_closed",
+  "main_head_from_terminal": {
+    "commit": "0e650a5c",
+    "subject": "lean: add SIDFH Omega00 bridge asymptotic conditional surface (#858)"
+  },
+  "merged_prs": [
+    {
+      "pr": 846,
+      "kind": "docs",
+      "object": "SIDFH_GRAVITY_RECOVERY_CONDITIONAL_BOUNDARY_2026_06_28"
+    },
+    {
+      "pr": 847,
+      "kind": "lean",
+      "object": "SIDFHConservedSource"
+    },
+    {
+      "pr": 848,
+      "kind": "lean",
+      "object": "SIDFHGravityProofConditional"
+    },
+    {
+      "pr": 849,
+      "kind": "docs",
+      "object": "GRAVITY_EXTERNAL_STATUS_CONTEXT_2026_06_28"
+    },
+    {
+      "pr": 850,
+      "kind": "lean",
+      "object": "SIDFHOmega00FlatCurveConditional"
+    },
+    {
+      "pr": 851,
+      "kind": "lean",
+      "object": "SIDFHFarFieldEquationBalanceConditional"
+    },
+    {
+      "pr": 852,
+      "kind": "lean",
+      "object": "SIDFHNewtonianRecoveryConditional"
+    },
+    {
+      "pr": 853,
+      "kind": "lean",
+      "object": "SIDFHLensingCompatibilityConditional"
+    },
+    {
+      "pr": 854,
+      "kind": "lean",
+      "object": "SIDFHPerturbativeStabilityConditional"
+    },
+    {
+      "pr": 855,
+      "kind": "lean",
+      "object": "SIDFHBoundaryMatchingConditional"
+    },
+    {
+      "pr": 856,
+      "kind": "lean",
+      "object": "SIDFHGravityRecoveryAggregateConditional"
+    },
+    {
+      "pr": 857,
+      "kind": "lean",
+      "object": "SIDFHBridgeDivergenceCompatibilityConditional"
+    },
+    {
+      "pr": 858,
+      "kind": "lean",
+      "object": "SIDFHOmega00BridgeAsymptoticConditional"
+    }
+  ],
+  "strongest_certified_chain": {
+    "name": "SIDFH conditional gravity chain with flat-curve limit",
+    "statement": "Supplied bridge-divergence compatibility, supplied Omega00 bridge-asymptotic regime, supplied far-field balance regime, supplied Newtonian regime, supplied lensing regime, supplied perturbative regime, supplied boundary regime, circular-orbit law, and explicit derivation rules imply the aggregate conditional gravity-recovery package with flat-rotation-curve limit.",
+    "lean_surfaces": [
+      "lean/Chronos/Frontier/SIDFHConservedSource.lean",
+      "lean/Chronos/Frontier/SIDFHGravityProofConditional.lean",
+      "lean/Chronos/Frontier/SIDFHOmega00FlatCurveConditional.lean",
+      "lean/Chronos/Frontier/SIDFHFarFieldEquationBalanceConditional.lean",
+      "lean/Chronos/Frontier/SIDFHNewtonianRecoveryConditional.lean",
+      "lean/Chronos/Frontier/SIDFHLensingCompatibilityConditional.lean",
+      "lean/Chronos/Frontier/SIDFHPerturbativeStabilityConditional.lean",
+      "lean/Chronos/Frontier/SIDFHBoundaryMatchingConditional.lean",
+      "lean/Chronos/Frontier/SIDFHGravityRecoveryAggregateConditional.lean",
+      "lean/Chronos/Frontier/SIDFHBridgeDivergenceCompatibilityConditional.lean",
+      "lean/Chronos/Frontier/SIDFHOmega00BridgeAsymptoticConditional.lean"
+    ]
+  },
+  "not_certified": [
+    "bridgeDivergenceCompatibilityDerivedFromDisplayedTensor",
+    "omega00WeakFieldAsymptoticClosedFromDisplayedBridgeTensor",
+    "farFieldEquationBalanceDerivedFromSIDFHFieldEquation",
+    "newtonianRecoveryDerivedFromSIDFHFieldEquation",
+    "lensingCompatibilityDerivedFromSIDFHFieldEquation",
+    "perturbativeStabilityDerivedFromSIDFHDynamics",
+    "boundaryMatchingDerivedFromSIDFHDynamics",
+    "sidfhUnconditionalGravityRecoveryClosed"
+  ],
+  "next_bounded_target": {
+    "name": "ShadowStressSingleDefinition",
+    "reason": "The current physical derivation still uses T_shadow both as a baryonic projection and as a curvature-dressed scalar expression. The next bounded improvement is to make that equivalence explicit or demote one side to calibration."
+  }
+}
