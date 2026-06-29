@@ -11,6 +11,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify operator norm perturbation boundary
         run: python3 tools/verify_operator_norm_perturbation_boundary.py
+      - name: Verify known gravity limit boundary
+        run: python3 tools/verifier/verify_gravity_boundary.py
       - name: Verify external status lock
         run: python3 scripts/verify_external_status_lock.py
 
