@@ -342,3 +342,25 @@ theorem gravity_ratio_delta_from_added_mass_identity
   have hbaseMass_ne : baseMass ≠ 0 := ne_of_gt hbaseMass
   field_simp [hradius_sq_ne, hG_ne, hbaseMass_ne]
   ring
+
+
+/--
+Nonnegative added mass gives a nonnegative Newtonian same-radius fractional
+gravity delta.
+
+This is only a monotonicity corollary of the added-mass Newtonian identity. It
+does not introduce or prove any carbon structural gravity coupling law.
+-/
+theorem gravity_delta_monotone_from_nonnegative_added_mass
+  (gBase gBonded baseMass addedMass radius G : Real)
+  (hradius : radius > 0)
+  (hG : G > 0)
+  (hbaseMass : baseMass > 0)
+  (haddedMass : 0 ≤ addedMass)
+  (hgBase : gBase = (G * baseMass) / (radius ^ 2))
+  (hgBonded : gBonded = (G * (baseMass + addedMass)) / (radius ^ 2)) :
+  0 ≤ (gBonded - gBase) / gBase := by
+  rw [gravity_ratio_delta_from_added_mass_identity
+    gBase gBonded baseMass addedMass radius G
+    hradius hG hbaseMass hgBase hgBonded]
+  exact div_nonneg haddedMass (le_of_lt hbaseMass)
