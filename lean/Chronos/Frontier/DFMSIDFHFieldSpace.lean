@@ -1156,6 +1156,21 @@ structure FiniteJetCurvatureAuxActionConstructionInputSurface
 
 
 /--
+Input-only boundary surface for a finite-jet auxiliary-action projection field.
+
+This names the remaining supplied projection-field input needed at the frontier.
+It does not construct `FiniteJetCurvatureAuxAction`, does not prove overlap-axis
+stability, and does not identify any gravity, Einstein-limit, or metric
+backreaction law.
+-/
+structure FiniteJetAuxActionProjectionFieldInputSurface
+    (X : DFMSIDFHFieldSpace) where
+  state : X.State
+  projectionFieldType : Type
+  projectionField_available : Nonempty projectionFieldType
+
+
+/--
 Boundary surface for the missing spectral-tail continuum-limit translation.
 
 This names the weakest current bridge between the finite Green-kernel spectral
