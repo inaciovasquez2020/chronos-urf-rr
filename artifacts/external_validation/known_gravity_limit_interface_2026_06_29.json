@@ -31,12 +31,40 @@
     "stress_energy_tensor": {
       "target_math": "T_{\\mu\\nu}",
       "implemented": false
+    },
+    "lorentzian_metric_g": {
+      "target_math": "g_{\\mu\\nu}",
+      "implemented": false
+    },
+    "stress_energy_T": {
+      "target_math": "T_{\\mu\\nu}",
+      "implemented": false
+    },
+    "carbon_subplanck_gravity_containment": {
+      "target_math": "carbon-scale/sub-Planck gravity containment",
+      "implemented": false
     }
   },
   "verifier_enforced_gaps": {
     "einstein_limit_proved": false,
     "metric_backreaction_proved": false,
     "experimental_validation_proved": false,
-    "stress_energy_realization_proved": false
+    "stress_energy_realization_proved": false,
+    "bridge_island_realization_proved": false,
+    "lorentzian_metric_g_realization_proved": false,
+    "stress_energy_T_realization_proved": false,
+    "carbon_subplanck_gravity_containment_proved": false
+  },
+  "bridge_island_configuration": {
+    "object_name": "ChronosGravityBridgeIsland",
+    "unified_dimensions": "4x4_placeholder_matrix_slot",
+    "bridged_regimes": [
+      "newtonian_poisson_limit",
+      "euler_poisson_collapse_limit",
+      "stellar_hydrostatic_limit",
+      "tov_compact_star_limit",
+      "black_hole_vacuum_limit"
+    ],
+    "implemented": false
   }
 }

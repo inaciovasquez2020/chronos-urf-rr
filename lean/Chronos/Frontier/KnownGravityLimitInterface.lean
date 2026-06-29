@@ -35,22 +35,29 @@ structure ChronosFieldObject where
 /--
 Lorentzian metric placeholder.
 
-This is intentionally empty and carries no metric component,
-signature, curvature, Einstein-limit, or black-hole solution claim.
+The `lorentzian_metric_g_slot` field names the requested `g` target,
+but it is forced to remain empty. This preserves the boundary against
+realized metric/backreaction claims.
 -/
 structure LorentzianMetric where
+  lorentzian_metric_g_slot : Option (Matrix (Fin 4) (Fin 4) Real)
+  no_lorentzian_metric_g_realization_claim :
+    lorentzian_metric_g_slot = none
 
 /--
 Stress-energy tensor placeholder.
 
-The slots name future target locations only. The proof field enforces
-that no density, pressure, or velocity realization is present.
+The `stress_energy_T_slot` field names the requested `T` target,
+but it is forced to remain empty. This preserves the boundary against
+realized stress-energy claims.
 -/
 structure StressEnergyTensor where
+  stress_energy_T_slot : Option (Matrix (Fin 4) (Fin 4) Real)
   density_slot : Option (Real → Real)
   pressure_slot : Option (Real → Real)
   velocity_slot : Option (Real → Real)
   no_stress_energy_realization_claim :
+    stress_energy_T_slot = none ∧
     density_slot = none ∧ pressure_slot = none ∧ velocity_slot = none
 
 /--
@@ -91,8 +98,18 @@ and makes no realization claim.
 -/
 theorem stressEnergyTensor_preserves_noRealization
   (tensor : StressEnergyTensor) :
-  tensor.density_slot = none ∧ tensor.pressure_slot = none ∧ tensor.velocity_slot = none := by
+  tensor.stress_energy_T_slot = none ∧
+    tensor.density_slot = none ∧ tensor.pressure_slot = none ∧ tensor.velocity_slot = none := by
   exact tensor.no_stress_energy_realization_claim
+
+/--
+Projection theorem: the Lorentzian metric placeholder names `g` only as an
+empty target slot and makes no realized metric claim.
+-/
+theorem lorentzianMetric_preserves_noGRealization
+  (metric : LorentzianMetric) :
+  metric.lorentzian_metric_g_slot = none := by
+  exact metric.no_lorentzian_metric_g_realization_claim
 
 /--
 Projection theorem: the bridge island placeholder carries only empty target slots
@@ -114,3 +131,31 @@ theorem chronosFieldObject_preserves_noBridgeIsland
   (obj : ChronosFieldObject) :
   obj.bridge_island_slot = none := by
   exact obj.no_bridge_island_claim
+
+
+/--
+Boundary object for the requested carbon/sub-Planck/gravity containment phrase.
+
+This records only the non-realization boundary. It does not assert that carbon
+contains gravity below the Planck length, nor that such a regime is physically
+or mathematically realized.
+-/
+structure CarbonSubPlanckGravityContainmentBoundary where
+  carbon_scale_slot : Option Real
+  sub_planck_length_slot : Option Real
+  gravity_containment_slot : Option Real
+  no_carbon_subplanck_gravity_containment_claim :
+    carbon_scale_slot = none ∧
+    sub_planck_length_slot = none ∧
+    gravity_containment_slot = none
+
+/--
+Projection theorem: the carbon/sub-Planck/gravity containment boundary remains
+a non-realized placeholder.
+-/
+theorem carbonSubPlanckGravityContainment_preserves_noRealization
+  (boundary : CarbonSubPlanckGravityContainmentBoundary) :
+  boundary.carbon_scale_slot = none ∧
+    boundary.sub_planck_length_slot = none ∧
+    boundary.gravity_containment_slot = none := by
+  exact boundary.no_carbon_subplanck_gravity_containment_claim
