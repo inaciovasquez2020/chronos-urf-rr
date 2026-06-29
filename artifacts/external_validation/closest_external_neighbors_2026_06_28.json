@@ -1,0 +1,123 @@
+{
+  "artifact": "closest_external_neighbors_2026_06_28",
+  "status": "support_only_boundary",
+  "nearest_neighbors": [
+    {
+      "rank": 1,
+      "name": "Horndeski and scalar-tensor modified gravity",
+      "overlap_axis": [
+        "scalar field coupled to curvature",
+        "modified-gravity comparison surface",
+        "cosmological perturbation neighbor"
+      ],
+      "distance_axis": [
+        "does not provide DFM-MKC derivation",
+        "does not provide SIDFH spectral nonlocality proof",
+        "does not provide repository-native verifier boundary"
+      ],
+      "non_claim_boundary": [
+        "no_gravity_closure",
+        "not_einstein_limit",
+        "not_experimental_validation"
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Spectral action and noncommutative geometry",
+      "overlap_axis": [
+        "spectral encoding of geometric data",
+        "action-principle analogy",
+        "operator-theoretic geometry neighbor"
+      ],
+      "distance_axis": [
+        "does not prove Green-kernel tail estimates",
+        "does not construct SIDFH finite-jet obstruction closure",
+        "does not validate DFM-MKC gravity"
+      ],
+      "non_claim_boundary": [
+        "no_gravity_closure",
+        "not_green_kernel_estimate_proof",
+        "not_einstein_limit"
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "Causal set theory",
+      "overlap_axis": [
+        "finite local structure",
+        "nonlocality and discreteness neighbor",
+        "local-to-global geometric reconstruction analogy"
+      ],
+      "distance_axis": [
+        "uses causal order rather than DFM-MKC deformation fields",
+        "does not provide SIDFH spectral-tail theorem",
+        "does not provide empirical gravity validation"
+      ],
+      "non_claim_boundary": [
+        "no_gravity_closure",
+        "not_physical_metric_backreaction_law",
+        "not_experimental_validation"
+      ]
+    },
+    {
+      "rank": 4,
+      "name": "Causal dynamical triangulations",
+      "overlap_axis": [
+        "background-independent quantum-gravity neighbor",
+        "computational geometry and emergent-continuum analogy",
+        "observable-based numerical comparison surface"
+      ],
+      "distance_axis": [
+        "uses lattice path-integral dynamics",
+        "does not match URF verifier architecture",
+        "does not close DFM-MKC Einstein recovery"
+      ],
+      "non_claim_boundary": [
+        "no_gravity_closure",
+        "not_einstein_limit",
+        "not_external_problem_closure"
+      ]
+    },
+    {
+      "rank": 5,
+      "name": "Sheaf-theoretic contextuality and obstruction theory",
+      "overlap_axis": [
+        "local consistency versus global obstruction",
+        "nonlocality as obstruction pattern",
+        "formal boundary and witness analogy"
+      ],
+      "distance_axis": [
+        "primarily quantum-foundational rather than gravitational",
+        "does not provide physical field equations",
+        "does not provide DFM-MKC empirical predictions"
+      ],
+      "non_claim_boundary": [
+        "no_gravity_closure",
+        "not_physical_field_equation",
+        "not_experimental_validation"
+      ]
+    }
+  ],
+  "overlap_axis": [
+    "modified-gravity comparison",
+    "spectral geometry and nonlocality",
+    "finite-local-to-global obstruction",
+    "observable and rigidity witness surfaces",
+    "formal verifier-backed claim governance"
+  ],
+  "distance_axis": [
+    "missing Einstein-limit derivation",
+    "missing physical metric backreaction construction",
+    "missing quantitative prediction interface",
+    "missing external experimental validation",
+    "missing independent replication"
+  ],
+  "non_claim_boundary": [
+    "no_gravity_closure",
+    "not_einstein_limit",
+    "not_green_kernel_estimate_proof",
+    "not_physical_metric_backreaction_law",
+    "not_experimental_validation",
+    "not_external_problem_closure"
+  ]
+}
