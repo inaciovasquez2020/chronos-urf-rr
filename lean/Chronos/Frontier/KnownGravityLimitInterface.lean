@@ -299,3 +299,22 @@ theorem carbon_added_mass_gravity_ratio_identity
   exact newtonian_sameRadius_ratio_identity
     gBonded gBase (baseMass + carbonMass) baseMass radius G
     hradius hG hbaseMass hgBase hgBonded
+
+
+/--
+Carbon-14 over carbon-12 Newtonian same-radius gravity ratio identity.
+
+This proves only the ordinary same-radius Newtonian mass-ratio identity for
+the formal masses `14` and `12`. It does not introduce or prove any structural
+carbon/gravity coupling law.
+-/
+theorem carbon14_over_carbon12_gravity_ratio_identity
+  (gC14 gC12 radius G : Real)
+  (hradius : radius > 0)
+  (hG : G > 0)
+  (hgC12 : gC12 = (G * 12) / (radius ^ 2))
+  (hgC14 : gC14 = (G * 14) / (radius ^ 2)) :
+  gC14 / gC12 = 14 / 12 := by
+  exact newtonian_sameRadius_ratio_identity
+    gC14 gC12 14 12 radius G
+    hradius hG (by norm_num) hgC12 hgC14
