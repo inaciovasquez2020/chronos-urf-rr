@@ -1,0 +1,31 @@
+{
+  "artifact": "rank_margin_to_stability_bridge_boundary",
+  "date": "2026-06-29",
+  "status": "conditional_frontier_surface_only",
+  "depends_on": [
+    "artifacts/external_validation/jet_laplacian_rank_margin_payload_2026_06_29.json"
+  ],
+  "bridge": {
+    "source_field": "rank_margin_certificate.rank_margin_lower_bound",
+    "target_field": "conditional_stability_coefficient",
+    "map": "sigma(x) = 1 / (1 + exp(-x))",
+    "terminal_assumption": "FGL_k_R_B",
+    "status_lock": "BUILD_CLOSEOUT_SURFACE_ONLY_NO_ANALYTIC_PACKAGE_PROOF",
+    "connection_is_diagnostic_only": true
+  },
+  "required_nonclaims": [
+    "no_unconditional_restricted_concentration_monotonicity_theorem",
+    "no_threshold_crossing_proof",
+    "no_gravity_closure",
+    "no_analytic_einstein_matter_bootstrap",
+    "no_global_rank_stability_theorem"
+  ],
+  "nonclaims": [
+    "No proof of Jet-Laplacian rank stability is claimed.",
+    "No proof of threshold crossing is claimed.",
+    "No proof of restricted concentration monotonicity is claimed.",
+    "No proof of analytic Einstein-matter bootstrap is claimed.",
+    "No proof of gravity closure is claimed.",
+    "This bridge only records a conditional diagnostic mapping from a finite rank-margin certificate field to a bounded stability-coefficient field."
+  ]
+}
