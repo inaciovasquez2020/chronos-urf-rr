@@ -318,3 +318,27 @@ theorem carbon14_over_carbon12_gravity_ratio_identity
   exact newtonian_sameRadius_ratio_identity
     gC14 gC12 14 12 radius G
     hradius hG (by norm_num) hgC12 hgC14
+
+
+/--
+Added-mass Newtonian same-radius fractional gravity delta identity.
+
+This proves only the ordinary fixed-radius Newtonian mass-addition formula:
+the fractional change in field strength is the normalized added mass. It does
+not introduce or prove any carbon structural gravity coupling law.
+-/
+theorem gravity_ratio_delta_from_added_mass_identity
+  (gBase gBonded baseMass addedMass radius G : Real)
+  (hradius : radius > 0)
+  (hG : G > 0)
+  (hbaseMass : baseMass > 0)
+  (hgBase : gBase = (G * baseMass) / (radius ^ 2))
+  (hgBonded : gBonded = (G * (baseMass + addedMass)) / (radius ^ 2)) :
+  (gBonded - gBase) / gBase = addedMass / baseMass := by
+  rw [hgBonded, hgBase]
+  have hradius_ne : radius ≠ 0 := ne_of_gt hradius
+  have hradius_sq_ne : radius ^ 2 ≠ 0 := pow_ne_zero 2 hradius_ne
+  have hG_ne : G ≠ 0 := ne_of_gt hG
+  have hbaseMass_ne : baseMass ≠ 0 := ne_of_gt hbaseMass
+  field_simp [hradius_sq_ne, hG_ne, hbaseMass_ne]
+  ring
