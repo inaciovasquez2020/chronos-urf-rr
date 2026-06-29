@@ -3,7 +3,7 @@
   "id": "known_gravity_limit_interface_2026_06_29.json",
   "metadata": {
     "timestamp": "2026-06-29T21:31:00Z",
-    "boundary": "¬ solved_gravity",
+    "boundary": "\u00ac solved_gravity",
     "weakest_point": "metric_backreaction_construction",
     "status": "non_operational_boundary_interface"
   },
@@ -53,7 +53,8 @@
     "bridge_island_realization_proved": false,
     "lorentzian_metric_g_realization_proved": false,
     "stress_energy_T_realization_proved": false,
-    "carbon_subplanck_gravity_containment_proved": false
+    "carbon_subplanck_gravity_containment_proved": false,
+    "carbon_structural_gravity_coupling_proved": false
   },
   "bridge_island_configuration": {
     "object_name": "ChronosGravityBridgeIsland",

@@ -13,6 +13,7 @@ REQUIRED_FALSE_GAPS = (
     "lorentzian_metric_g_realization_proved",
     "stress_energy_T_realization_proved",
     "carbon_subplanck_gravity_containment_proved",
+    "carbon_structural_gravity_coupling_proved",
 )
 
 def fail(message: str) -> None:
