@@ -11,3 +11,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify external status lock
         run: python3 scripts/verify_external_status_lock.py
+
+      - name: Verify literature nonclaim audit
+        run: python3 tools/verify_literature_nonclaim_audit.py
