@@ -1,0 +1,71 @@
+{
+  "artifact": "rigidity_ai_review_boundary_2026_06_28",
+  "status": "external_review_support_only",
+  "review_source": {
+    "label": "Google AI response",
+    "date_recorded": "2026-06-28",
+    "scope": "classification of three rigidity-adjacent sources for DFM-MKC / SIDFH / Chronos-URF-RR usefulness"
+  },
+  "reviewed_sources": [
+    {
+      "label": "IEEE 9424432",
+      "review_classification": "verifier_useful",
+      "corrected_classification": "verifier_useful_support",
+      "useful_for": [
+        "bearing-rigidity methodology",
+        "local relative-orientation check analogy",
+        "observable-rank verifier pattern"
+      ],
+      "boundary": [
+        "not_gravity_validation",
+        "not_einstein_limit",
+        "not_spectral_tail_continuum_limit_translation"
+      ]
+    },
+    {
+      "label": "ScienceDirect S0141029625006509",
+      "review_classification": "theorem_useful",
+      "corrected_classification": "theorem_useful_support",
+      "useful_for": [
+        "energy-based form-finding analogy",
+        "stationary equilibrium surface",
+        "Hessian stability toy-model pattern"
+      ],
+      "boundary": [
+        "not_gravity_validation",
+        "not_metric_backreaction_law",
+        "not_experimental_validation"
+      ]
+    },
+    {
+      "label": "arXiv:1808.04005",
+      "review_classification": "support_only",
+      "corrected_classification": "support_only_now_later_verifier_useful_if_bounded_witness_is_encoded",
+      "useful_for": [
+        "explicit finite rigidity witness analogy",
+        "combinatorial constraint validation",
+        "rank-check witness pattern"
+      ],
+      "boundary": [
+        "not_gravity_validation",
+        "not_green_kernel_estimate_proof",
+        "not_einstein_limit"
+      ]
+    }
+  ],
+  "ranked_missing_bridges": [
+    "spectral_tail_continuum_limit_translation",
+    "finite_jet_to_bearing_rigidity_gauge_map",
+    "energy_hessian_to_metric_backreaction_boundary",
+    "nonlinear_hyperbolic_dynamic_extension",
+    "observable_rank_to_einstein_limit_input"
+  ],
+  "global_non_claim_boundary": [
+    "no_gravity_closure",
+    "not_einstein_limit",
+    "not_green_kernel_estimate_proof",
+    "not_physical_metric_backreaction_law",
+    "not_experimental_validation",
+    "not_external_problem_closure"
+  ]
+}
