@@ -159,3 +159,123 @@ theorem carbonSubPlanckGravityContainment_preserves_noRealization
     boundary.sub_planck_length_slot = none ∧
     boundary.gravity_containment_slot = none := by
   exact boundary.no_carbon_subplanck_gravity_containment_claim
+
+
+/--
+Blocked Planck-scale boundary object.
+
+The slots name the requested sub-Planck carbon scale surface, but every
+physical realization slot is forced to remain empty.
+-/
+structure PlanckScaleBoundary where
+  carbon_length_slot : Option Real
+  planck_length_slot : Option Real
+  strict_sub_planck_witness_slot : Option Prop
+  no_planck_scale_realization_claim :
+    carbon_length_slot = none ∧
+    planck_length_slot = none ∧
+    strict_sub_planck_witness_slot = none
+
+/--
+Projection theorem: the Planck-scale boundary remains a non-realized
+hypothesis object.
+-/
+theorem planckScaleBoundary_preserves_noRealization
+  (boundary : PlanckScaleBoundary) :
+  boundary.carbon_length_slot = none ∧
+    boundary.planck_length_slot = none ∧
+    boundary.strict_sub_planck_witness_slot = none := by
+  exact boundary.no_planck_scale_realization_claim
+
+/--
+Blocked carbon structural coupling boundary object.
+
+The coupling-law slot is deliberately optional and forced to be empty. This
+records that no physically justified carbon/sub-Planck gravity containment law
+is proved here.
+-/
+structure CarbonStructuralCouplingBoundary where
+  carbon_scale_slot : Option Real
+  planck_scale_slot : Option Real
+  gravity_containment_law_slot : Option Prop
+  no_carbon_structural_gravity_coupling_claim :
+    carbon_scale_slot = none ∧
+    planck_scale_slot = none ∧
+    gravity_containment_law_slot = none
+
+/--
+Projection theorem: the carbon structural coupling object remains blocked and
+does not prove a gravity coupling law.
+-/
+theorem carbonStructuralCouplingBoundary_preserves_noRealization
+  (boundary : CarbonStructuralCouplingBoundary) :
+  boundary.carbon_scale_slot = none ∧
+    boundary.planck_scale_slot = none ∧
+    boundary.gravity_containment_law_slot = none := by
+  exact boundary.no_carbon_structural_gravity_coupling_claim
+
+/--
+The requested numerical isotope mass-ratio bound, recorded only as a Newtonian
+same-radius bound target.
+-/
+noncomputable def carbonIsotopeMassRatioBound : Real :=
+  14 / 12 + 0.0001
+
+/--
+Newtonian same-radius ratio identity.
+
+At fixed radius and fixed positive gravitational constant, the acceleration
+ratio is exactly the mass ratio. This is the only realized gravity statement in
+this module.
+-/
+theorem newtonian_sameRadius_ratio_identity
+  (gHeavy gLight mHeavy mLight radius G : Real)
+  (hradius : radius > 0)
+  (hG : G > 0)
+  (hmLight : mLight > 0)
+  (hgLight : gLight = (G * mLight) / (radius ^ 2))
+  (hgHeavy : gHeavy = (G * mHeavy) / (radius ^ 2)) :
+  gHeavy / gLight = mHeavy / mLight := by
+  rw [hgHeavy, hgLight]
+  have hradius_ne : radius ≠ 0 := ne_of_gt hradius
+  have hradius_sq_ne : radius ^ 2 ≠ 0 := pow_ne_zero 2 hradius_ne
+  have hG_ne : G ≠ 0 := ne_of_gt hG
+  calc
+    (G * mHeavy / radius ^ 2) / (G * mLight / radius ^ 2)
+        = (G * mHeavy) / (G * mLight) := by
+          field_simp [hradius_sq_ne]
+    _ = mHeavy / mLight := by
+          field_simp [hG_ne]
+
+/--
+Bound transfer theorem: a mass-ratio bound transfers to the Newtonian
+same-radius acceleration-ratio bound.
+-/
+theorem gravity_ratio_bound_from_mass_ratio_bound
+  (gHeavy gLight mHeavy mLight radius G B : Real)
+  (hradius : radius > 0)
+  (hG : G > 0)
+  (hmLight : mLight > 0)
+  (hgLight : gLight = (G * mLight) / (radius ^ 2))
+  (hgHeavy : gHeavy = (G * mHeavy) / (radius ^ 2))
+  (hmassBound : mHeavy / mLight ≤ B) :
+  gHeavy / gLight ≤ B := by
+  rw [newtonian_sameRadius_ratio_identity
+    gHeavy gLight mHeavy mLight radius G hradius hG hmLight hgLight hgHeavy]
+  exact hmassBound
+
+/--
+Carbon-14/carbon-12 instantiation of the Newtonian same-radius ratio bound.
+-/
+theorem carbon14_carbon12_gravity_ratio_bound
+  (gHeavy gLight mHeavy mLight radius G : Real)
+  (hradius : radius > 0)
+  (hG : G > 0)
+  (hmLight : mLight > 0)
+  (hgLight : gLight = (G * mLight) / (radius ^ 2))
+  (hgHeavy : gHeavy = (G * mHeavy) / (radius ^ 2))
+  (hmassBound : mHeavy / mLight ≤ carbonIsotopeMassRatioBound) :
+  gHeavy / gLight ≤ carbonIsotopeMassRatioBound := by
+  exact gravity_ratio_bound_from_mass_ratio_bound
+    gHeavy gLight mHeavy mLight radius G carbonIsotopeMassRatioBound
+    hradius hG hmLight hgLight hgHeavy hmassBound
