@@ -1,0 +1,29 @@
+{
+  "object": "coordinate_perturbation_radius_to_operator_norm_bound_certificate",
+  "bridge_status": "conditional_frontier_surface_only",
+  "claim_boundary": "certificate_supplies_operator_norm_upper_bound_only",
+  "inputs": {
+    "coordinate_delta_x": 0.0001,
+    "node_count": 4,
+    "ambient_dimension": 3,
+    "jet_order": 2,
+    "block_dimension": 9,
+    "local_lipschitz_constant": 16.0
+  },
+  "metrics": {
+    "supplied_operator_norm_upper_bound": 0.0576,
+    "operator_norm_upper_bound_formula": "node_count * block_dimension * local_lipschitz_constant * coordinate_delta_x",
+    "is_finite_matrix_diagnostic": true
+  },
+  "governing_locks": {
+    "terminal_assumption": "FGL_k_R_B",
+    "status_lock": "BUILD_CLOSEOUT_SURFACE_ONLY_NO_ANALYTIC_PACKAGE_PROOF"
+  },
+  "locked_out_claims": [
+    "no_unconditional_rank_stability_theorem",
+    "no_json_as_lean_theorem",
+    "no_smooth_differentiable_manifold_theorem",
+    "no_continuous_metric_tensor_field_law",
+    "no_gravity_closure"
+  ]
+}
