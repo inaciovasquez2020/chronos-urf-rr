@@ -1,0 +1,24 @@
+{
+  "artifact": "jet_laplacian_newton_kantorovich_boundary",
+  "date": "2026-06-29",
+  "status": "boundary_certificate_only",
+  "claim_boundary": "This artifact verifies only the submitted Newton-Kantorovich-style numerical inequality fields. It does not prove Jet-Laplacian rank stability, spectral stability, gravity, continuum limits, Navier-Stokes blow-up, or any global theorem.",
+  "residual_bound_Z0": "0.0001",
+  "linearization_defect_Z1": "0.1",
+  "lipschitz_bound_K": "1.0",
+  "radius_r": "0.01",
+  "contraction_margin": "0.8098",
+  "required_inequalities": {
+    "linearization_defect_range": "0 <= Z1 < 1",
+    "contraction_condition": "2*K*Z0 <= (1 - Z1)^2",
+    "radius_positive": "radius_r > 0",
+    "contraction_margin_definition": "(1 - Z1)^2 - 2*K*Z0"
+  },
+  "nonclaims": [
+    "No proof of Jet-Laplian rank stability is claimed.",
+    "No interval enclosure of a Jet-Laplacian operator is claimed.",
+    "No certified inverse or pseudoinverse bound is claimed.",
+    "No Lipschitz theorem for distance_axis parameters is claimed.",
+    "No Navier-Stokes singularity or self-similar blow-up result is claimed."
+  ]
+}
