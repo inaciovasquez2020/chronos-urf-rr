@@ -1171,6 +1171,20 @@ structure FiniteJetAuxActionProjectionFieldInputSurface
 
 
 /--
+Select a supplied projection-field witness from the input-only surface.
+
+This is only a selector from `Nonempty`; it does not construct a canonical
+projection field, does not prove overlap-axis stability, and does not identify
+any gravity, Einstein-limit, or metric backreaction law.
+-/
+noncomputable def finiteJetAuxActionProjectionField_from_input
+    {X : DFMSIDFHFieldSpace}
+    (input : FiniteJetAuxActionProjectionFieldInputSurface X) :
+    input.projectionFieldType :=
+  Classical.choice input.projectionField_available
+
+
+/--
 Boundary surface for the missing spectral-tail continuum-limit translation.
 
 This names the weakest current bridge between the finite Green-kernel spectral

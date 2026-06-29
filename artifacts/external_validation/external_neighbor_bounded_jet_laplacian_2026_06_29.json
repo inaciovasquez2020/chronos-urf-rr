@@ -1,0 +1,79 @@
+{
+  "boundary_status": "finite_seeded_numeric_witness_only",
+  "locked_out_claims": [
+    "no_continuous_metric_backreaction_claim",
+    "no_einstein_field_limit_claim",
+    "no_general_rank_stability_claim",
+    "no_gravity_closure_claim",
+    "no_universal_operator_theorem_claim"
+  ],
+  "metrics": {
+    "lowest_positive_singular_values": [
+      0.003922620980665731,
+      0.0351790687769575,
+      0.05797269027845972,
+      0.07911854107991115,
+      0.16024771232706173
+    ],
+    "lowest_singular_values": [
+      9.542193964615452e-17,
+      0.003922620980665731,
+      0.0351790687769575,
+      0.05797269027845972,
+      0.07911854107991115,
+      0.16024771232706173
+    ],
+    "rank_plus_nullity": 36,
+    "structural_nullity": 1,
+    "verified_rank": 35
+  },
+  "object": "external_neighbor_bounded_jet_laplacian_witness",
+  "overlap_axis": [
+    {
+      "diagnostic_decay": 0.45454545454545453,
+      "semantic_role": "finite_weight_only",
+      "source": 0,
+      "target": 1
+    },
+    {
+      "diagnostic_decay": 0.3125,
+      "semantic_role": "finite_weight_only",
+      "source": 0,
+      "target": 2
+    },
+    {
+      "diagnostic_decay": 0.23809523809523808,
+      "semantic_role": "finite_weight_only",
+      "source": 0,
+      "target": 3
+    },
+    {
+      "diagnostic_decay": 0.23809523809523808,
+      "semantic_role": "finite_weight_only",
+      "source": 1,
+      "target": 2
+    },
+    {
+      "diagnostic_decay": 0.1923076923076923,
+      "semantic_role": "finite_weight_only",
+      "source": 1,
+      "target": 3
+    },
+    {
+      "diagnostic_decay": 0.16129032258064516,
+      "semantic_role": "finite_weight_only",
+      "source": 2,
+      "target": 3
+    }
+  ],
+  "parameters": {
+    "block_dim": 9,
+    "dimension": 3,
+    "jet_order": 2,
+    "num_nodes": 4,
+    "operator_dim": 36,
+    "projection_rank": 2,
+    "seed": 20260628,
+    "svd_tol": 1e-08
+  }
+}
