@@ -1,0 +1,27 @@
+{
+  "artifact": "methodology_citations_boundary_2026_06_28",
+  "status": "methodology_support_only",
+  "references": [
+    {
+      "id": "arxiv_2605_06660",
+      "url": "https://arxiv.org/abs/2605.06660",
+      "use": "verifier_backed_problem_generation_methodology"
+    },
+    {
+      "id": "arxiv_2606_19399v1",
+      "url": "https://arxiv.org/html/2606.19399v1",
+      "use": "lean_feedback_guided_proof_search_methodology"
+    },
+    {
+      "id": "harrison_asl_03jun02",
+      "url": "https://www.cl.cam.ac.uk/~jrh13/slides/asl-03jun02/slides.pdf",
+      "use": "formal_verification_lineage"
+    }
+  ],
+  "boundaries": [
+    "not_physics_validation",
+    "not_gravity_solution",
+    "not_experimental_validation",
+    "not_external_problem_closure"
+  ]
+}
