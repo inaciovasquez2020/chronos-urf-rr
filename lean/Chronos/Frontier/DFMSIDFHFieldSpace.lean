@@ -1154,4 +1154,21 @@ structure FiniteJetCurvatureAuxActionConstructionInputSurface
   state : X.State
   auxAction_available : Nonempty (FiniteJetCurvatureAuxAction X state)
 
+
+/--
+Boundary surface for the missing spectral-tail continuum-limit translation.
+
+This names the weakest current bridge between the finite Green-kernel spectral
+tail estimate interface and any continuum-limit interpretation.  It does not
+prove Green-kernel estimates, an Einstein limit, a physical metric backreaction
+law, or gravity closure.
+-/
+structure SpectralTailContinuumLimitTranslationBoundary
+    (X : DFMSIDFHFieldSpace) where
+  spectralTailContinuumLimitTranslation : Prop
+  noGreenKernelEstimateProof : Prop
+  noEinsteinLimit : Prop
+  noPhysicalMetricBackreactionLaw : Prop
+  noGravityClosure : Prop
+
 end Chronos.Frontier
