@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org",
+  "id": "known_gravity_limit_interface_2026_06_29.json",
+  "metadata": {
+    "timestamp": "2026-06-29T21:31:00Z",
+    "boundary": "¬ solved_gravity",
+    "weakest_point": "metric_backreaction_construction",
+    "status": "non_operational_boundary_interface"
+  },
+  "interface_stubs": {
+    "newtonian_poisson_limit": {
+      "target_math": "\\nabla^2\\Phi = 4\\pi G\\rho",
+      "implemented": false
+    },
+    "euler_poisson_collapse_limit": {
+      "target_math": "\\partial_t\\rho + \\nabla\\cdot(\\rho v) = 0",
+      "implemented": false
+    },
+    "stellar_hydrostatic_limit": {
+      "target_math": "dP/dr = -GM(r)\\rho / r^2",
+      "implemented": false
+    },
+    "tov_compact_star_limit": {
+      "target_math": "dP/dr = -[Gm\\rho/r^2][1 + P/\\rho c^2][1 + 4\\pi r^3 P/mc^2][1 - 2Gm/rc^2]^-1",
+      "implemented": false
+    },
+    "black_hole_vacuum_limit": {
+      "target_math": "R_{\\mu\\nu} = 0",
+      "implemented": false
+    },
+    "stress_energy_tensor": {
+      "target_math": "T_{\\mu\\nu}",
+      "implemented": false
+    }
+  },
+  "verifier_enforced_gaps": {
+    "einstein_limit_proved": false,
+    "metric_backreaction_proved": false,
+    "experimental_validation_proved": false,
+    "stress_energy_realization_proved": false
+  }
+}
