@@ -1,0 +1,59 @@
+{
+  "artifact": "GRAVITY_EXTERNAL_STATUS_CONTEXT_2026_06_28",
+  "status": "boundary_context",
+  "unconditional_claim": false,
+  "boundary": "BOUNDARY := \u00ac unconditional_gravity_proof",
+  "repository_head_before_artifact": {
+    "expected_main_subject": "lean: add SIDFH gravity proof conditional surface (#848)",
+    "known_main_commit_from_terminal": "90eabeb9"
+  },
+  "external_context": [
+    {
+      "source": "ScienceDaily / Brown University, 2026-06-19",
+      "url": "https://www.sciencedaily.com/releases/2026/06/260619020516.htm",
+      "relevance": "Reports a proposed topological explanation of the cosmological constant from quantum gravitational theta vacua / gravitational Hall effect.",
+      "boundary_use": "Supports a cosmological-constant/topological-protection research direction, but does not prove SIDFH gravity recovery."
+    },
+    {
+      "source": "arXiv:2605.18922v1, 2026-05-18",
+      "url": "https://arxiv.org/html/2605.18922v1",
+      "relevance": "States that black-hole mass density, entropy, and interior non-singularity lack a fully coherent understanding and proposes a spacetime-condensate interpretation.",
+      "boundary_use": "Supports treating spacetime condensate ideas as research context, not as a closed theorem."
+    },
+    {
+      "source": "Space.com, 2026-05-27",
+      "url": "https://www.space.com/science/one-of-the-great-unresolved-embarrassments-of-physics-its-been-340-years-since-newton-and-scientists-still-havent-solved-the-secret-of-gravity",
+      "relevance": "Public-facing summary that gravity remains unresolved at a foundational level.",
+      "boundary_use": "Context only; not used as a formal proof source."
+    },
+    {
+      "source": "NIST, 2026-04-16",
+      "url": "https://www.nist.gov/news-events/news/2026/04/nist-weighs-mystery-gravitational-constant",
+      "relevance": "Reports ongoing difficulty measuring the gravitational constant G and disagreement among recent measurements.",
+      "boundary_use": "Supports retaining empirical-calibration obligations for any claimed gravity recovery."
+    }
+  ],
+  "current_repository_status": {
+    "merged_boundaries": [
+      "SIDFH_GRAVITY_RECOVERY_CONDITIONAL_BOUNDARY_2026_06_28",
+      "SIDFHConservedSource",
+      "SIDFHGravityProofConditional"
+    ],
+    "strongest_certified_statement": "SIDFHGravityRecoveryObligations -> SIDFHGravityRecoveryConditional",
+    "not_certified": [
+      "BridgeDivergenceCompatibility",
+      "Omega00WeakFieldAsymptotic",
+      "FarFieldEquationBalance",
+      "NewtonianRecovery",
+      "LensingCompatibility",
+      "PerturbativeStability",
+      "BoundaryMatching",
+      "unconditional gravity recovery"
+    ]
+  },
+  "next_bounded_target": {
+    "name": "Omega00WeakFieldAsymptotic",
+    "admissible_form": "A conditional Lean surface deriving a flat-curve consequence from an explicitly supplied Omega00 asymptotic and far-field balance.",
+    "inadmissible_form": "An unconditional proof that the displayed bridge tensor yields Omega00(r) ~ -A_flat^2/(2 r^2)."
+  }
+}
