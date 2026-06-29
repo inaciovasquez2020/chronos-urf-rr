@@ -1,0 +1,77 @@
+{
+  "artifact": "SIDFH_GRAVITY_RECOVERY_CONDITIONAL_BOUNDARY_2026_06_28",
+  "status": "conditional_boundary",
+  "unconditional_claim": false,
+  "boundary": "BOUNDARY := \u00ac solved_gravity_from_current_SIDFH_derivation",
+  "source_failure": {
+    "object": "OmegaSIDFH",
+    "claimed_result": "nabla^mu Omega^SIDFH_{mu nu} = 0",
+    "first_structural_gap": "The bridge-divergence proof treats a free index nu as if it were symmetrically contracted, so the antisymmetry cancellation does not establish nabla^mu C^bridge_{mu nu} = 0.",
+    "secondary_gap": "The weak-field Omega00 computation changes from +A_flat^2/(4 r^2) to -A_flat^2/(2 r^2) without a derived sign and factor theorem."
+  },
+  "completed_conditional_reduction": {
+    "name": "SIDFHGravityRecoveryConditional",
+    "statement": "GravityRecovery follows only from ConservedSIDFHSource, Omega00WeakFieldAsymptotic, FarFieldEquationBalance, NewtonianRecovery, LensingCompatibility, PerturbativeStability, and BoundaryMatching.",
+    "rotation_curve_conditional": {
+      "assumptions": [
+        "Omega00(r) ~ -A_flat^2/(2 r^2)",
+        "the weak-field far-field balance implies partial_r Phi ~ beta_SIDFH c^2 A_flat^2/(4 r)",
+        "circular-orbit law v^2(r) = r partial_r Phi"
+      ],
+      "conclusion": "v^2(r) -> beta_SIDFH c^2 A_flat^2 / 4"
+    }
+  },
+  "ranked_remaining_math": [
+    {
+      "rank": 1,
+      "name": "ConservedSIDFHSource",
+      "needed_statement": "nabla^mu Omega_{mu nu} = 0"
+    },
+    {
+      "rank": 2,
+      "name": "BridgeDivergenceCompatibility",
+      "needed_statement": "nabla^mu C^bridge_{mu nu} = 0, or nabla^mu K^shadow_{mu nu} + nabla^mu C^bridge_{mu nu} = 0"
+    },
+    {
+      "rank": 3,
+      "name": "ExtrinsicDivergenceLift",
+      "needed_statement": "D^mu K_{mu nu} = 0 implies the required spacetime-divergence statement under explicit embedding hypotheses"
+    },
+    {
+      "rank": 4,
+      "name": "ShadowStressSingleDefinition",
+      "needed_statement": "the baryonic projection definition of T_shadow equals the curvature-dressed scalar expression, or one is demoted to calibration"
+    },
+    {
+      "rank": 5,
+      "name": "ChiWellDefined",
+      "needed_statement": "T_shadow != 0 for chi_SIDFH = A_flat^2/(2 ell_Chronos^2 T_shadow)"
+    },
+    {
+      "rank": 6,
+      "name": "Omega00WeakFieldAsymptotic",
+      "needed_statement": "Omega00(r) ~ -A_flat^2/(2 r^2) with sign and factor derived"
+    },
+    {
+      "rank": 7,
+      "name": "FarFieldEquationBalance",
+      "needed_statement": "the retained leading-order weak-field equation balances the nonzero r^-2 SIDFH term"
+    },
+    {
+      "rank": 8,
+      "name": "NewtonianRecovery",
+      "needed_statement": "the theory reduces to ordinary Newtonian gravity in the appropriate limit"
+    },
+    {
+      "rank": 9,
+      "name": "LensingCompatibility",
+      "needed_statement": "the same source that yields flat rotation curves also yields compatible lensing"
+    },
+    {
+      "rank": 10,
+      "name": "PerturbativeStabilityAndBoundaryMatching",
+      "needed_statement": "sigma perturbations are stable and baryonic-shadow boundary matching is well posed"
+    }
+  ],
+  "next_bounded_improvement": "Add ConservedSIDFHSource as an explicit invariant or replace C^bridge with a tensor whose divergence-free property is proved."
+}
