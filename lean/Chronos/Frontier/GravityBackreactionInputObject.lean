@@ -46,6 +46,34 @@ theorem gravityMetricBackreactionBoundary_preserves_nonSolution
     B.noGravitySolved⟩
 
 /--
+Quantitative gravity prediction boundary.
+
+This object isolates the currently missing quantitative-prediction interface:
+it records that no new quantitative gravitational prediction is produced and
+that no gravity solution is derived from this boundary.
+-/
+structure QuantitativeGravityPredictionBoundary where
+  quantitativePredictionProduced : Prop
+  newGravitationalPredictionProduced : Prop
+  gravitySolved : Prop
+  noQuantitativePredictionProduced : ¬ quantitativePredictionProduced
+  noNewGravitationalPredictionProduced : ¬ newGravitationalPredictionProduced
+  noGravitySolved : ¬ gravitySolved
+
+/--
+Projection theorem: the quantitative-prediction boundary remains non-predictive
+and non-solution.
+-/
+theorem quantitativeGravityPredictionBoundary_preserves_nonPrediction
+    (B : QuantitativeGravityPredictionBoundary) :
+    ¬ B.quantitativePredictionProduced ∧
+      ¬ B.newGravitationalPredictionProduced ∧
+      ¬ B.gravitySolved := by
+  exact ⟨B.noQuantitativePredictionProduced,
+    B.noNewGravitationalPredictionProduced,
+    B.noGravitySolved⟩
+
+/--
 Boundary: existence of this input object alone does not derive gravity.
 -/
 theorem gravity_backreaction_input_object_not_solution
