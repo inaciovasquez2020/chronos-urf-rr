@@ -117,6 +117,15 @@ theorem H4_1_FGL_FinalSelectedInput_closes_selected_observation_layer
   refine ⟨H4_1_FGL_FinalSelectedInputClosure.ofInput I, rfl, rfl, rfl⟩
 
 /--
+Bridge from the selected observation-layer closure package to the named
+restricted-package theorem surface.
+-/
+theorem selected_observation_layer_to_named_restricted_package_surface :
+    restricted_package_theorem_surface_closed := by
+  intro I
+  exact ⟨H4_1_FGL_FinalSelectedInputClosure.ofInput I, rfl⟩
+
+/--
 Boundary: this solves the remaining observation-extraction layer only on the
 selected theorem domain. It does not claim arbitrary semantic final-carrier closure
 closure, unrestricted H4.1/FGL, UniversalFiberEntropyGap, Chronos-RR, P vs NP,
