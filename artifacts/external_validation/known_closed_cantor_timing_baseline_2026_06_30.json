@@ -1,0 +1,30 @@
+{
+  "artifact": "known_closed_cantor_timing_baseline_2026_06_30",
+  "classification": "KNOWN_CLOSED_THEOREM_TIMING_BASELINE",
+  "subject": "known_closed_cantor_boundary_demo",
+  "measurements_seconds": {
+    "lake_build_Chronos_Frontier_KnownClosedCantorBoundaryDemo": 1.735554,
+    "verify_known_closed_cantor_boundary_demo": 0.053862,
+    "verify_external_status_lock": 0.051611
+  },
+  "allowed_claims": [
+    "This records one local timing baseline for the known closed Cantor theorem demo.",
+    "This can be used as a future comparison point for the same targeted commands on similar hardware."
+  ],
+  "forbidden_claims": [
+    "This proves general proof efficiency.",
+    "This proves open problem acceleration.",
+    "This proves P vs NP.",
+    "This proves Chronos-RR.",
+    "This proves gravity closure.",
+    "This proves cosmology closure.",
+    "This proves foundations-of-physics closure."
+  ],
+  "negative_boundary": {
+    "general_efficiency_claim": false,
+    "open_problem_acceleration": false,
+    "frontier_closure": false,
+    "physics_closure": false,
+    "complexity_closure": false
+  }
+}
