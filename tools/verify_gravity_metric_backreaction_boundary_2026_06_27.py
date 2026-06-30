@@ -62,6 +62,10 @@ REQUIRED_LEAN_SYMBOLS = [
         "theorem carbonBondingMetricBackreactionBoundary_preserves_noClosure",
     ),
     (
+        "lean/Chronos/Frontier/CarbonBondingIsotopeCompositionBoundary.lean",
+        "theorem carbonBondingBoundary_composes_with_carbon14_carbon12_gravity_ratio_bound",
+    ),
+    (
         "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
         "structure EnergyHessianMetricBackreactionBoundary",
     ),
