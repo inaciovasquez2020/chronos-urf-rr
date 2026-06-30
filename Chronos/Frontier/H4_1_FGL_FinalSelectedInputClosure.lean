@@ -76,6 +76,16 @@ structure H4_1_FGL_FinalSelectedInputClosure where
     H4_1_FGL_FinalCarrierObservationExtractionTarget
 
 /--
+Named restricted-package theorem surface. This is only the target proposition
+for the selected-domain closure package; it does not assert arbitrary semantic
+final-carrier closure.
+-/
+def restricted_package_theorem_surface_closed : Prop :=
+  ∀ I : H4_1_FGL_FinalSelectedInput.{u, v},
+    ∃ C : H4_1_FGL_FinalSelectedInputClosure.{u, v},
+      C.input = I
+
+/--
 Construct the final selected-domain closure package from the final selected
 toolkit input.
 -/
