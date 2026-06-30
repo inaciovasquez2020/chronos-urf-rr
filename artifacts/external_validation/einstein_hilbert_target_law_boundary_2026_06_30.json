@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org",
+  "id": "einstein_hilbert_target_law_boundary_2026_06_30.json",
+  "metadata": {
+    "timestamp": "2026-06-30T09:49:00Z",
+    "error_codex": "BR-0104",
+    "boundary": "¬ standard_GR_action_derivation_supplies_ChronosFieldObject_realization_map",
+    "status": "boundary_lockout",
+    "weakest_missing_object": "inductive_structure_preserving_realization_map"
+  },
+  "standard_gr_target_law": {
+    "object_name": "EinsteinHilbertTargetLawBoundary",
+    "role": "detached_target_boundary",
+    "stationary_action_target_law_recorded": true,
+    "requires_smooth_lorentzian_manifold": true,
+    "requires_active_metric_field": true,
+    "requires_matter_field_state": true,
+    "requires_matter_action": true,
+    "requires_gibbons_hawking_york_boundary_term_for_boundary_well_posedness": true,
+    "supplies_chronos_realization_map": false
+  },
+  "carbon_bonding_molecular_scale_boundary_list": {
+    "chronos_missing_bridge_boundary": {
+      "missing_object": "ChronosFieldObject_to_metric_stress_energy_action_triple_realization_map",
+      "reject_standard_gr_action_derivation_as_chronos_realization": true
+    },
+    "carbon_bonding_no_gravity_closure_boundary": {
+      "local_molecular_lattice_stress_defines_global_lorentzian_metric": false,
+      "local_molecular_lattice_stress_defines_cosmological_stress_energy": false,
+      "molecular_bonding_pressure_closes_gravity": false
+    },
+    "target_law_asymptotic_boundary": {
+      "einstein_hilbert_action_is_detached_target_boundary": true,
+      "general_relativity_linked_to_chronos_source": false
+    }
+  },
+  "verifier_enforced_lockouts": {
+    "ChronosFieldObject_constructs_metric_stress_energy_action_triple": false,
+    "standard_GR_action_derivation_proves_Chronos_realization": false,
+    "carbon_lattice_stress_defines_global_metric": false,
+    "carbon_lattice_stress_defines_cosmological_stress_energy": false,
+    "molecular_bonding_pressure_closes_gravity": false,
+    "general_relativity_linked_to_chronos_source": false,
+    "solved_gravity": false
+  }
+}
