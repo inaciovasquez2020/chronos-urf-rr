@@ -39,6 +39,14 @@ REQUIRED_LEAN_SYMBOLS = [
     ),
     (
         "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
+        "structure EnergyHessianMetricBackreactionBoundary",
+    ),
+    (
+        "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
+        "theorem energyHessianMetricBackreactionBoundary_preserves_nonRealization",
+    ),
+    (
+        "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
         "structure QuantitativeGravityPredictionBoundary",
     ),
     (
