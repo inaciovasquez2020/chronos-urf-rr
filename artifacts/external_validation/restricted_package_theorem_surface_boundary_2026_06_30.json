@@ -1,0 +1,41 @@
+{
+  "boundary": "BOUNDARY := \u00ac restricted_package_theorem_surface_closed",
+  "forbidden_affirmative_claims": [
+    "restricted_package_theorem_surface_closed",
+    "RESTRICTED_PACKAGE_THEOREM_SURFACE_CLOSED",
+    "restricted package theorem surface closed",
+    "restricted package theorem discharged",
+    "explicit restricted package theorem discharge complete"
+  ],
+  "name": "restricted_package_theorem_surface_boundary_2026_06_30",
+  "open_gap": "restricted_package_theorem_surface_closed",
+  "source_search_hits": [
+    "Chronos.lean",
+    "THEOREM_LEDGER.md",
+    "README.md",
+    "Chronos/Frontier/RepositoryRegisteredRegSNFClosure.lean",
+    "Chronos/Frontier/H4_1_FGL_FinalSelectedInputClosure.lean",
+    "Chronos/Frontier/RepositoryNativeZeroArityGuardedFields.lean",
+    "artifacts/chronos/finite_capacity_optical_metric_numerical_witness_2026_05_23.json",
+    "artifacts/chronos/black_hole_scale_normalization_map_2026_05_23.json",
+    "artifacts/chronos/restricted_collapse_gate_trigger_certificate_2026_05_23.json",
+    "artifacts/chronos/restricted_continuation_norm_control_pde_to_derivative_identity_lemma_target_2026_06_15.json",
+    "artifacts/chronos/r1_native_coherence_refutation_2026_05_24.json",
+    "artifacts/chronos/restricted_continuation_until_threshold_certificate_2026_05_23.json",
+    "artifacts/chronos/nonsymmetric_einstein_matter_bootstrap_kernel_constructor_input_2026_05_22.json",
+    "artifacts/chronos/restricted_continuation_norm_control_pde_input_package_construction_2026_06_13.json",
+    "artifacts/chronos/nonsymmetric_einstein_matter_bootstrap_kernel_analytic_package_2026_05_22.json",
+    "artifacts/chronos/fzloop_zero_flux_localization_2026_05_28.json",
+    "artifacts/chronos/restricted_continuation_norm_control_analytic_estimate_derivation_from_pde_inputs_2026_06_13.json",
+    "artifacts/chronos/nonsymmetric_einstein_matter_bootstrap_kernel_existence_frontier_2026_05_21.json",
+    "artifacts/chronos/h4_1_fgl_semantic_observation_map_construction.json",
+    "artifacts/chronos/concrete_analytic_einstein_matter_estimate_package_closeout_stack_2026_05_23.json",
+    "artifacts/chronos/restricted_continuation_norm_control_pde_obligation_derivation_ledger_2026_06_14.json",
+    "artifacts/chronos/measure_fiber_mass_package_2026_05_18.json",
+    "artifacts/chronos/finite_positive_fiber_mass_to_admissible_fiber_mass_data_2026_05_18.json",
+    "artifacts/chronos/nonsymmetric_einstein_matter_bootstrap_kernel_2026_05_21.json",
+    "artifacts/chronos/repository_native_zero_arity_guarded_fields_2026_05_11.json"
+  ],
+  "status": "negative_boundary",
+  "weakest_missing_object": "explicit restricted package theorem discharge from the currently tracked theorem-surface inputs"
+}
