@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org",
+  "id": "chronos_spectral_operator_root_boundary_2026_06_30.json",
+  "metadata": {
+    "timestamp": "2026-06-30T10:06:00Z",
+    "boundary": "¬ chronos_spectral_operator_root_trace_collapses_to_geometry",
+    "status": "spectral_root_boundary",
+    "commit_base": "d6ccfe142a94eefd7fab188a53c4d192c6d6d6bb",
+    "active_parent_boundary": "¬ pregeometric_bridge_continuum_limit_completed"
+  },
+  "root_source": {
+    "object_name": "ChronosSpectralOperatorRootSource",
+    "intended_shape": "C = (X_hat, D_hat, W_hat)",
+    "event_state_operator_supplied": true,
+    "causal_adjacency_operator_supplied": true,
+    "spectral_weight_operator_supplied": true,
+    "event_indexed_vector_space_supplied": true,
+    "preexisting_metric_tensor_assumed": false,
+    "molecular_lattice_stress_input_used": false,
+    "smooth_spacetime_manifold_assumed": false
+  },
+  "raw_spectral_trace": {
+    "object_name": "ChronosSpectralOperatorRootBoundary",
+    "graph_laplacian_operator_declared": true,
+    "heat_kernel_trace_declared": true,
+    "raw_eigenvalue_trace_representation_declared": true,
+    "allowed_terms": [
+      "operator_triplet",
+      "graph_laplacian",
+      "eigenvalues",
+      "heat_kernel_trace",
+      "tau_parameter"
+    ]
+  },
+  "downstream_lockouts": {
+    "asymptotic_heat_kernel_coefficients_derived": false,
+    "ricci_scalar_from_spectral_trace_derived": false,
+    "stress_energy_from_spectral_trace_derived": false,
+    "ghy_boundary_term_from_spectral_trace_derived": false,
+    "point_mass_solution_from_spectral_trace_derived": false,
+    "continuum_limit_completed": false,
+    "solved_gravity": false
+  },
+  "advance_order": {
+    "current_admissible_baseline": "raw_graph_laplacian_heat_kernel_trace",
+    "asymptotic_heat_kernel_coefficients_are_downstream": true,
+    "algebraic_gauge_rules_are_downstream": true,
+    "point_mass_calculation_is_downstream": true,
+    "point_mass_admissible_before_continuum_limit": false,
+    "asymptotic_coefficients_claimed_before_trace_baseline": false
+  },
+  "verifier_enforced_lockouts": {
+    "chronos_spectral_operator_root_trace_collapses_to_geometry": false,
+    "pregeometric_bridge_continuum_limit_completed": false,
+    "graph_laplacian_heat_kernel_derives_ricci_scalar": false,
+    "spectral_trace_derives_stress_energy_tensor": false,
+    "spectral_trace_derives_ghy_boundary_term": false,
+    "spectral_trace_generates_point_mass_solution": false,
+    "molecular_lattice_stress_used_as_root_source": false,
+    "solved_gravity": false
+  }
+}
