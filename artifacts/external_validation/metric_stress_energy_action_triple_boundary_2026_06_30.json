@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org",
+  "id": "metric_stress_energy_action_triple_boundary_2026_06_30.json",
+  "metadata": {
+    "timestamp": "2026-06-30T09:37:00Z",
+    "boundary": "¬ ChronosFieldObject_constructs_metric_stress_energy_action_triple",
+    "status": "negative_boundary",
+    "weakest_missing_object": "structure_preserving_realization_map"
+  },
+  "target_triple": {
+    "object_name": "MetricStressEnergyActionTriple",
+    "source": "ChronosFieldObject",
+    "target": "(gμν, Tμν, A)",
+    "A_target_name": "ActionFunctional"
+  },
+  "component_status": {
+    "LorentzianMetric.g_derived_from_ChronosFieldObject": false,
+    "StressEnergyTensor.T_derived_from_ChronosFieldObject": false,
+    "ActionFunctional_derived_from_ChronosFieldObject": false,
+    "nontrivial_metric_stress_energy_action_coupling_proved": false
+  },
+  "verifier_enforced_gaps": {
+    "ChronosFieldObject_constructs_metric_stress_energy_action_triple": false,
+    "lorentzian_metric_g_derived": false,
+    "stress_energy_T_derived": false,
+    "action_functional_derived": false,
+    "nontrivial_metric_stress_energy_action_coupling_proved": false,
+    "einstein_equation_derived": false,
+    "metric_backreaction_derived": false,
+    "solved_gravity": false
+  }
+}
