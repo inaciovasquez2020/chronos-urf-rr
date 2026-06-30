@@ -1,0 +1,41 @@
+{
+  "boundary": "BOUNDARY := \u00ac certificate_constant_binding",
+  "forbidden_affirmative_claims": [
+    "certificate_constant_binding := closed",
+    "certificate_constant_binding_closed",
+    "trusted_explicit_constant_family_bound",
+    "certificate_checker_constant_family_bound",
+    "CERTIFICATE_CONSTANT_BINDING_CLOSED"
+  ],
+  "name": "certificate_constant_binding_boundary_2026_06_30",
+  "open_gap": "certificate_constant_binding",
+  "source_search_hits": [
+    "THEOREM_LEDGER.md",
+    "Chronos/Certified/RepositoryNativeCertifiedDepth.lean",
+    ".venv-gravity-inspect/lib/python3.11/site-packages/pip/_internal/cli/cmdoptions.py",
+    ".venv-gravity-inspect/lib/python3.11/site-packages/pip/_vendor/truststore/_api.py",
+    ".venv-gravity-inspect/lib/python3.11/site-packages/pip/_vendor/truststore/_macos.py",
+    ".venv-gravity-inspect/lib/python3.11/site-packages/pip/_vendor/truststore/_windows.py",
+    ".venv-gravity-inspect/lib/python3.11/site-packages/pip/_vendor/urllib3/connectionpool.py",
+    ".venv-gravity-inspect/lib/python3.11/site-packages/pip/_vendor/urllib3/util/ssl_.py",
+    "artifacts/chronos/ytr_gravity_tidal_derivative_real_dataset_falsification_run_2026_05_29.json",
+    "artifacts/chronos/explicit_ic_bridge_contract_2026_05_04.json",
+    "artifacts/chronos/chronos_certificate_embedding_interface_2026_05_04.json",
+    "artifacts/chronos/r1_r2_r3_progressive_witness_packet_2026_05_24.json",
+    "artifacts/chronos/r1_r2_r3_mathematical_data_accuracy_schema_2026_05_24.json",
+    "artifacts/chronos/r1_r2_r3_finite_data_completion_certificate_2026_05_24.json",
+    "artifacts/chronos/r2_diameter_separation_filling_mathematical_data_packet_2026_05_24.json",
+    "artifacts/chronos/selected_carrier_observation_dimension_obstruction.json",
+    "artifacts/chronos/certificates/chronos_certificate_embedding_frontier_2026_05_04.json",
+    "artifacts/external_validation/coordinate_perturbation_radius_to_operator_norm_bound_certificate_2026_06_29.json",
+    "lean/Chronos.lean",
+    "lean/Chronos/Frontier/YtRGravityTidalDerivativeRealDatasetFalsificationRun.lean",
+    "lean/Chronos/Frontier/EinsteinDynamicsRegularityTransferFrontier.lean",
+    "tools/verify_ytr_gravity_tidal_derivative_real_dataset_falsification_run.py",
+    "tools/verify_explicit_ic_bridge_contract.py",
+    "tools/verify_coordinate_perturbation_radius_to_operator_norm_bound.py",
+    "tools/verify_r1_r2_r3_finite_data_completion_certificate.py"
+  ],
+  "status": "negative_boundary",
+  "weakest_missing_object": "trusted explicit constant family bound to the certificate checker"
+}
