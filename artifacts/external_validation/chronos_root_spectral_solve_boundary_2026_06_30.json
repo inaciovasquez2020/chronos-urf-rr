@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org",
+  "advance_order": {
+    "current_admissible_target": "finite_root_spectral_trace_certificate",
+    "discrete_gauge_group_rules_derived": false,
+    "eigenvalue_distribution_density_derived": false,
+    "link_deletion_eigenvalue_shift_law_derived": false
+  },
+  "id": "chronos_root_spectral_solve_boundary_2026_06_30.json",
+  "metadata": {
+    "active_parent_boundary": "\u00ac chronos_spectral_operator_root_trace_collapses_to_geometry",
+    "boundary": "\u00ac chronos_root_spectral_solve_outputs_geometric_objects",
+    "commit_base": "1f3931c843c1d64b12b5d2b8565f862bc34816dd",
+    "status": "finite_root_spectral_trace_certificate_boundary",
+    "timestamp": "2026-06-30T10:13:00Z",
+    "weakest_missing_object": "generic_exact_spectrum_family_derivation"
+  },
+  "purity_lockout": {
+    "continuum_limit_completed": false,
+    "curvature_tensor_extracted": false,
+    "geometric_collapse_claimed": false,
+    "mass_density_extracted": false,
+    "metric_tensor_extracted": false,
+    "solved_gravity": false,
+    "spacetime_dimension_extracted": false
+  },
+  "root_solve_certificate": {
+    "asserted_trace_value": 2.8255648828047337,
+    "coordinate_free": true,
+    "dimension": 4,
+    "eigenvalues": [
+      0.0,
+      1.24,
+      3.56,
+      8.91
+    ],
+    "object_name": "ChronosRootSpectralSolveBoundary",
+    "tau": 0.125,
+    "trace_formula": "sum(exp(-tau * lambda_n))"
+  },
+  "verifier_enforced_lockouts": {
+    "chronos_root_spectral_solve_outputs_geometric_objects": false,
+    "chronos_spectral_operator_root_trace_collapses_to_geometry": false,
+    "curvature_tensor_extracted_from_root_trace": false,
+    "mass_density_extracted_from_root_trace": false,
+    "metric_tensor_extracted_from_root_trace": false,
+    "pregeometric_bridge_continuum_limit_completed": false,
+    "solved_gravity": false,
+    "spacetime_dimension_extracted_from_root_trace": false
+  }
+}
