@@ -37,6 +37,9 @@ jobs:
       - name: Verify certificate constant binding boundary
         run: python3 tools/verifier/verify_certificate_constant_binding_boundary.py
 
+      - name: Verify restricted package theorem surface boundary
+        run: python3 tools/verifier/verify_restricted_package_theorem_surface_boundary.py
+
       - name: Verify known closed Cantor boundary demo
         run: python3 tools/verifier/verify_known_closed_cantor_boundary_demo.py
       - name: Verify literature nonclaim audit

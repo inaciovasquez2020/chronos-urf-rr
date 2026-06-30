@@ -56,6 +56,10 @@ required_workflow_steps = [
         "python3 tools/verifier/verify_certificate_constant_binding_boundary.py",
     ),
     (
+        "Verify restricted package theorem surface boundary",
+        "python3 tools/verifier/verify_restricted_package_theorem_surface_boundary.py",
+    ),
+    (
         "Verify literature nonclaim audit",
         "python3 tools/verify_literature_nonclaim_audit.py",
     ),    ("Verify known closed Cantor boundary demo", "python3 tools/verifier/verify_known_closed_cantor_boundary_demo.py"),
