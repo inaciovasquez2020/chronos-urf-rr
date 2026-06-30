@@ -36,6 +36,7 @@ required_workflow_steps = [
         "python3 tools/verifier/verify_gravity_boundary.py",
     ),
     ("Verify gravity program closeout boundary", "python3 tools/verifier/verify_gravity_program_closeout_boundary.py"),
+    ("Verify metric stress energy action triple boundary", "python3 tools/verifier/verify_metric_stress_energy_action_triple_boundary.py"),
     (
         "Verify gravity metric backreaction boundary",
         "python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py",
