@@ -27,8 +27,16 @@ if not workflow.exists():
 workflow_text = workflow.read_text(encoding="utf-8")
 
 required_workflow_entries = [
+    "Verify operator norm perturbation boundary",
+    "python3 tools/verify_operator_norm_perturbation_boundary.py",
+    "Verify known gravity limit boundary",
+    "python3 tools/verifier/verify_gravity_boundary.py",
     "Verify gravity metric backreaction boundary",
     "python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py",
+    "Verify external status lock",
+    "python3 scripts/verify_external_status_lock.py",
+    "Verify literature nonclaim audit",
+    "python3 tools/verify_literature_nonclaim_audit.py",
 ]
 
 for s in required_workflow_entries:
