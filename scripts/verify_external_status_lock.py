@@ -61,6 +61,16 @@ for line in workflow_lines:
         workflow_steps.append((current_name, stripped.removeprefix("run: ").strip()))
         current_name = None
 
+required_step_names = {name for name, _command in required_workflow_steps}
+seen_required_step_names = set()
+
+for name, _command in workflow_steps:
+    if name not in required_step_names:
+        continue
+    if name in seen_required_step_names:
+        raise SystemExit(f"duplicate required status-lock workflow step name: {name}")
+    seen_required_step_names.add(name)
+
 for step in required_workflow_steps:
     if step not in workflow_steps:
         name, command = step
