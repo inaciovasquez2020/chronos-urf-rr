@@ -1,14 +1,15 @@
 {
-  "boundary": "BOUNDARY := \u00ac restricted_package_theorem_surface_closed",
+  "boundary": "BOUNDARY := \u00ac unrestricted H4.1/FGL",
+  "closed_gap": "restricted_package_theorem_surface_closed",
+  "discharge_theorem": "selected_observation_layer_to_named_restricted_package_surface",
   "forbidden_affirmative_claims": [
-    "restricted_package_theorem_surface_closed",
-    "RESTRICTED_PACKAGE_THEOREM_SURFACE_CLOSED",
-    "restricted package theorem surface closed",
-    "restricted package theorem discharged",
-    "explicit restricted package theorem discharge complete"
+    "UNRESTRICTED_H4_1_FGL_FULL_CLOSURE_CERTIFIED",
+    "unrestricted_h4_1_fgl_full_closure_certified",
+    "unrestricted H4.1/FGL full theorem closed",
+    "arbitrary semantic final-carrier closure theorem certified"
   ],
   "name": "restricted_package_theorem_surface_boundary_2026_06_30",
-  "open_gap": "restricted_package_theorem_surface_closed",
+  "open_gap": "unrestricted_h4_1_fgl",
   "source_search_hits": [
     "Chronos.lean",
     "THEOREM_LEDGER.md",
@@ -36,6 +37,6 @@
     "artifacts/chronos/nonsymmetric_einstein_matter_bootstrap_kernel_2026_05_21.json",
     "artifacts/chronos/repository_native_zero_arity_guarded_fields_2026_05_11.json"
   ],
-  "status": "negative_boundary",
-  "weakest_missing_object": "explicit restricted package theorem discharge from the currently tracked theorem-surface inputs"
+  "status": "restricted_surface_discharged",
+  "weakest_missing_object": "unrestricted H4.1/FGL beyond the selected theorem domain"
 }
