@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org",
+  "closeout_certificate": {
+    "finishing_point": "finite_spectral_layer_closed_against_coordinate_and_basis_relabeling_leakage",
+    "finite_trace_layer_sealed": true,
+    "gauge_invariant_trace_boundary_present": true,
+    "object_name": "ChronosRootFiniteSpectralLayerCloseoutBoundary",
+    "root_spectral_solve_boundary_present": true,
+    "scope": "finite_root_spectral_trace_layer_only"
+  },
+  "closeout_lockout": {
+    "continuum_emergence_proved": false,
+    "curvature_tensor_generated": false,
+    "mass_density_generated": false,
+    "metric_tensor_generated": false,
+    "solved_gravity": false,
+    "spacetime_dimension_generated": false,
+    "stress_energy_generated": false
+  },
+  "id": "chronos_root_finite_spectral_layer_closeout_boundary_2026_06_30.json",
+  "metadata": {
+    "active_parent_boundaries": [
+      "\u00ac chronos_root_spectral_solve_outputs_geometric_objects",
+      "\u00ac chronos_root_gauge_trace_preservation_generates_geometry"
+    ],
+    "boundary": "\u00ac chronos_root_finite_spectral_layer_closeout_generates_geometry_or_gravity",
+    "commit_base": "7a6d99e1f339e9079ef20c14e2ced4b666d96b0d",
+    "status": "finite_root_spectral_layer_closeout_boundary",
+    "timestamp": "2026-06-30T10:39:00Z"
+  },
+  "next_gap_lockout": {
+    "continuum_scaling_input_supplied": false,
+    "geometric_field_constructor_supplied": false,
+    "gravity_solution_supplied": false,
+    "stress_energy_identification_supplied": false
+  },
+  "ranked_remaining_gaps": [
+    {
+      "gap": "continuum_scaling_input_surface",
+      "rank": 1,
+      "status": "not_supplied"
+    },
+    {
+      "gap": "geometric_field_constructor",
+      "rank": 2,
+      "status": "not_supplied"
+    },
+    {
+      "gap": "stress_energy_identification",
+      "rank": 3,
+      "status": "not_supplied"
+    },
+    {
+      "gap": "gravity_solution",
+      "rank": 4,
+      "status": "not_supplied"
+    }
+  ],
+  "verifier_enforced_lockouts": {
+    "chronos_root_finite_spectral_layer_closeout_generates_geometry_or_gravity": false,
+    "finite_spectral_layer_closeout_derives_curvature": false,
+    "finite_spectral_layer_closeout_derives_metric_tensor": false,
+    "finite_spectral_layer_closeout_derives_stress_energy": false,
+    "finite_spectral_layer_closeout_proves_continuum_emergence": false,
+    "finite_spectral_layer_closeout_solves_gravity": false
+  }
+}
