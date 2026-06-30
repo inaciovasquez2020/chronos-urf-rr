@@ -46,6 +46,41 @@ theorem gravityMetricBackreactionBoundary_preserves_nonSolution
     B.noGravitySolved⟩
 
 /--
+Energy-Hessian to metric-backreaction boundary.
+
+This object names the currently missing bridge from an energy Hessian surface
+to a metric-backreaction construction.  It records only that the bridge is
+not realized here: no metric backreaction theorem, Einstein-limit recovery,
+quantitative prediction, or gravity solution follows from this boundary.
+-/
+structure EnergyHessianMetricBackreactionBoundary where
+  energyHessianSurface : Prop
+  metricBackreactionConstruction : Prop
+  einsteinLimitRecovered : Prop
+  quantitativePredictionProduced : Prop
+  gravitySolved : Prop
+  noMetricBackreactionConstruction : ¬ metricBackreactionConstruction
+  noEinsteinLimitRecovered : ¬ einsteinLimitRecovered
+  noQuantitativePredictionProduced : ¬ quantitativePredictionProduced
+  noGravitySolved : ¬ gravitySolved
+
+/--
+Projection theorem: the energy-Hessian bridge remains a non-realized
+metric-backreaction boundary.
+-/
+theorem energyHessianMetricBackreactionBoundary_preserves_nonRealization
+    (B : EnergyHessianMetricBackreactionBoundary) :
+    ¬ B.metricBackreactionConstruction ∧
+      ¬ B.einsteinLimitRecovered ∧
+      ¬ B.quantitativePredictionProduced ∧
+      ¬ B.gravitySolved := by
+  exact ⟨B.noMetricBackreactionConstruction,
+    B.noEinsteinLimitRecovered,
+    B.noQuantitativePredictionProduced,
+    B.noGravitySolved⟩
+
+
+/--
 Quantitative gravity prediction boundary.
 
 This object isolates the currently missing quantitative-prediction interface:
