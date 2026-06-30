@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org",
+  "advance_order": {
+    "continuum_scaling_law_derived": false,
+    "current_admissible_target": "finite_gauge_invariant_trace_preservation",
+    "point_mass_solution_derived_from_gauge_trace": false,
+    "ricci_scalar_derived_from_gauge_trace": false,
+    "stress_energy_derived_from_gauge_trace": false
+  },
+  "gauge_trace_certificate": {
+    "coordinate_free": true,
+    "dimension": 4,
+    "eigenvalues_after": [
+      3.56,
+      0.0,
+      8.91,
+      1.24
+    ],
+    "eigenvalues_before": [
+      0.0,
+      1.24,
+      3.56,
+      8.91
+    ],
+    "object_name": "ChronosRootGaugeInvariantTraceBoundary",
+    "tau": 0.125,
+    "trace_after": 2.8255648828047333,
+    "trace_before": 2.8255648828047337,
+    "trace_preserved": true,
+    "transformation_kind": "finite_basis_permutation_proxy_for_internal_unitary_similarity"
+  },
+  "id": "chronos_root_gauge_invariant_trace_boundary_2026_06_30.json",
+  "metadata": {
+    "active_parent_boundary": "\u00ac chronos_root_spectral_solve_outputs_geometric_objects",
+    "boundary": "\u00ac chronos_root_gauge_trace_preservation_generates_geometry",
+    "commit_base": "34f0c9812e59c787617182141659b3067fbf80f4",
+    "status": "finite_gauge_invariant_trace_boundary",
+    "timestamp": "2026-06-30T10:22:00Z"
+  },
+  "purity_lockout": {
+    "continuum_limit_completed": false,
+    "curvature_tensor_generated": false,
+    "mass_density_generated": false,
+    "metric_tensor_generated": false,
+    "solved_gravity": false,
+    "spacetime_dimension_generated": false
+  },
+  "verifier_enforced_lockouts": {
+    "chronos_root_gauge_trace_preservation_generates_geometry": false,
+    "chronos_root_spectral_solve_outputs_geometric_objects": false,
+    "chronos_spectral_operator_root_trace_collapses_to_geometry": false,
+    "continuum_limit_completed": false,
+    "curvature_tensor_generated_from_gauge_trace": false,
+    "mass_density_generated_from_gauge_trace": false,
+    "metric_tensor_generated_from_gauge_trace": false,
+    "solved_gravity": false,
+    "spacetime_dimension_generated_from_gauge_trace": false
+  }
+}
