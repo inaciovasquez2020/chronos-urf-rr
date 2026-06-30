@@ -19,6 +19,8 @@ jobs:
         run: python3 tools/verifier/verify_metric_stress_energy_action_triple_boundary.py
       - name: Verify Einstein Hilbert target law boundary
         run: python3 tools/verifier/verify_einstein_hilbert_target_law_boundary.py
+      - name: Verify pregeometric bridge continuum limit boundary
+        run: python3 tools/verifier/verify_pregeometric_bridge_continuum_limit_boundary.py
       - name: Verify gravity metric backreaction boundary
         run: python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py
       - name: Verify external status lock
