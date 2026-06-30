@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org",
+  "object": "CARBON_BONDING_STIFFNESS_BASELINE_BOUNDARY_2026_06_29",
+  "repository": "chronos-urf-rr",
+  "status": "material_mechanics_baseline_not_gravity_law",
+  "boundary": "carbon bond length, stiffness, lattice curvature, pressure, and bulk modulus are material-mechanics controls, not evidence of carbon-bonding metric backreaction",
+  "mechanics_inputs": {
+    "toy_pair_potential": "Lennard-Jones V(r)=4 epsilon [(sigma/r)^12-(sigma/r)^6]",
+    "toy_equilibrium_distance": "r_e = 2^(1/6) sigma",
+    "stiffness_proxy": "second derivative of potential energy at equilibrium",
+    "macroscopic_proxy": "bulk modulus from curvature of lattice energy with respect to volume"
+  },
+  "required_material_controls": [
+    "bond order",
+    "equilibrium bond length",
+    "bond stiffness or force constant",
+    "bulk density",
+    "bulk modulus",
+    "crystal or network geometry",
+    "temperature band",
+    "pressure band",
+    "isotope composition",
+    "total mass-energy"
+  ],
+  "required_model_boundary": {
+    "lennard_jones_toy_only": true,
+    "covalent_carbon_requires_covalent_potential_or_measured_stiffness": true,
+    "same_mass_residual_prediction_required": true,
+    "density_contrast_baseline_required": true
+  },
+  "linked_artifacts": [
+    "artifacts/external_validation/carbon_bonding_same_mass_residual_prediction_2026_06_29.json",
+    "artifacts/external_validation/carbon_bonding_density_contrast_baseline_boundary_2026_06_29.json"
+  ],
+  "verifier_enforced_nonclaims": {
+    "bond_stiffness_proves_gravity_residual": false,
+    "bulk_modulus_proves_metric_backreaction": false,
+    "lennard_jones_proves_covalent_carbon_gravity": false,
+    "carbon_bonding_to_metric_backreaction_law_proved": false,
+    "metric_backreaction_proved": false,
+    "einstein_limit_proved": false,
+    "new_gravity_law_proved": false,
+    "solved_gravity": false
+  },
+  "weakest_missing_object": "same_mass_same_density_carbon_stiffness_residual_protocol"
+}
