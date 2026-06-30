@@ -20,6 +20,21 @@ for s in required:
     if s not in text:
         raise SystemExit(f"missing required status boundary: {s}")
 
+workflow = Path(".github/workflows/external-status-lock.yml")
+if not workflow.exists():
+    raise SystemExit("missing .github/workflows/external-status-lock.yml")
+
+workflow_text = workflow.read_text(encoding="utf-8")
+
+required_workflow_entries = [
+    "Verify gravity metric backreaction boundary",
+    "python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py",
+]
+
+for s in required_workflow_entries:
+    if s not in workflow_text:
+        raise SystemExit(f"missing required status-lock workflow entry: {s}")
+
 readme_paths = [Path("README.md"), Path("README"), Path("readme.md")]
 readme_text = "\n".join(p.read_text(encoding="utf-8", errors="ignore") for p in readme_paths if p.exists())
 
