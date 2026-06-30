@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org",
+  "id": "gravity_program_closeout_boundary_2026_06_30.json",
+  "metadata": {
+    "timestamp": "2026-06-30T03:49:00Z",
+    "boundary": "¬ solved_gravity",
+    "status": "gravity_program_closeout_negative_boundary",
+    "closed_negative_result": "carbon_structure_gravity_no_go_dichotomy",
+    "final_missing_bridge": "gravity_backreaction_reconstruction"
+  },
+  "gravity_backreaction_reconstruction_boundary": {
+    "chronos_to_metric_action_map_proved": false,
+    "einstein_equation_derived": false,
+    "weak_field_limit_derived": false,
+    "metric_backreaction_derived": false
+  },
+  "stress_energy_reduction_boundary": {
+    "load_bearing_assumption": "local_covariant_conserved_known_field_tensor_reduces_to_stress_energy_sector_or_requires_new_field",
+    "proved_as_full_physical_theorem": false,
+    "recorded_as_boundary": true
+  },
+  "carbon_structure_gravity_no_go_dichotomy": {
+    "carbon_bonding_topology_independent_gravity_source_proved": false,
+    "positive_carbon_gravity_mechanism_proved": false,
+    "standard_channel": "stress_energy_sector_bookkeeping",
+    "nonstandard_channel": "new_field_or_exotic_mechanism",
+    "direct_experimental_residual": "eta_diamond_graphite"
+  },
+  "diamond_graphite_experimental_boundary": {
+    "direct_diamond_graphite_eotvos_detection_claimed": false,
+    "eta_diamond_graphite_realized": false
+  },
+  "verifier_enforced_gaps": {
+    "solved_gravity": false,
+    "chronos_field_to_metric_action_map_proved": false,
+    "einstein_equation_derived": false,
+    "weak_field_limit_derived": false,
+    "metric_backreaction_derived": false,
+    "positive_carbon_gravity_mechanism_proved": false,
+    "carbon_bonding_topology_independent_gravity_source_proved": false,
+    "direct_diamond_graphite_eotvos_detection_claimed": false
+  }
+}
