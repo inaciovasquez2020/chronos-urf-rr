@@ -27,6 +27,8 @@ jobs:
         run: python3 tools/verifier/verify_chronos_root_spectral_solve_boundary.py
       - name: Verify Chronos root gauge invariant trace boundary
         run: python3 tools/verifier/verify_chronos_root_gauge_invariant_trace_boundary.py
+      - name: Verify Chronos root finite spectral layer closeout boundary
+        run: python3 tools/verifier/verify_chronos_root_finite_spectral_layer_closeout_boundary.py
       - name: Verify gravity metric backreaction boundary
         run: python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py
       - name: Verify external status lock

@@ -42,6 +42,7 @@ required_workflow_steps = [
     ("Verify Chronos spectral operator root boundary", "python3 tools/verifier/verify_chronos_spectral_operator_root_boundary.py"),
     ("Verify Chronos root spectral solve boundary", "python3 tools/verifier/verify_chronos_root_spectral_solve_boundary.py"),
     ("Verify Chronos root gauge invariant trace boundary", "python3 tools/verifier/verify_chronos_root_gauge_invariant_trace_boundary.py"),
+    ("Verify Chronos root finite spectral layer closeout boundary", "python3 tools/verifier/verify_chronos_root_finite_spectral_layer_closeout_boundary.py"),
     (
         "Verify gravity metric backreaction boundary",
         "python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py",
