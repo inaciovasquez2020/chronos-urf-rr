@@ -24,24 +24,50 @@ workflow = Path(".github/workflows/external-status-lock.yml")
 if not workflow.exists():
     raise SystemExit("missing .github/workflows/external-status-lock.yml")
 
-workflow_text = workflow.read_text(encoding="utf-8")
+workflow_lines = workflow.read_text(encoding="utf-8").splitlines()
 
-required_workflow_entries = [
-    "Verify operator norm perturbation boundary",
-    "python3 tools/verify_operator_norm_perturbation_boundary.py",
-    "Verify known gravity limit boundary",
-    "python3 tools/verifier/verify_gravity_boundary.py",
-    "Verify gravity metric backreaction boundary",
-    "python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py",
-    "Verify external status lock",
-    "python3 scripts/verify_external_status_lock.py",
-    "Verify literature nonclaim audit",
-    "python3 tools/verify_literature_nonclaim_audit.py",
+required_workflow_steps = [
+    (
+        "Verify operator norm perturbation boundary",
+        "python3 tools/verify_operator_norm_perturbation_boundary.py",
+    ),
+    (
+        "Verify known gravity limit boundary",
+        "python3 tools/verifier/verify_gravity_boundary.py",
+    ),
+    (
+        "Verify gravity metric backreaction boundary",
+        "python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py",
+    ),
+    (
+        "Verify external status lock",
+        "python3 scripts/verify_external_status_lock.py",
+    ),
+    (
+        "Verify literature nonclaim audit",
+        "python3 tools/verify_literature_nonclaim_audit.py",
+    ),
 ]
 
-for s in required_workflow_entries:
-    if s not in workflow_text:
-        raise SystemExit(f"missing required status-lock workflow entry: {s}")
+workflow_steps = []
+current_name = None
+
+for line in workflow_lines:
+    stripped = line.strip()
+    if stripped.startswith("- name: "):
+        current_name = stripped.removeprefix("- name: ").strip()
+        continue
+    if current_name is not None and stripped.startswith("run: "):
+        workflow_steps.append((current_name, stripped.removeprefix("run: ").strip()))
+        current_name = None
+
+for step in required_workflow_steps:
+    if step not in workflow_steps:
+        name, command = step
+        raise SystemExit(
+            "missing required status-lock workflow step pair: "
+            f"name={name!r}, run={command!r}"
+        )
 
 readme_paths = [Path("README.md"), Path("README"), Path("readme.md")]
 readme_text = "\n".join(p.read_text(encoding="utf-8", errors="ignore") for p in readme_paths if p.exists())
