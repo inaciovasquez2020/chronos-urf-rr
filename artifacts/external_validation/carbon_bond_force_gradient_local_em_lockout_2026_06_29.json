@@ -1,0 +1,42 @@
+{
+  "artifact": "carbon_bond_force_gradient_local_em_lockout_2026_06_29",
+  "status": "boundary_lockout_imposed",
+  "scope": "carbon_bonding_molecular_scale",
+  "boundaries": [
+    {
+      "id": "carbon_bond_force_as_energy_gradient_boundary",
+      "definition": "Interatomic force is represented as the negative radial gradient of a molecular potential energy surface.",
+      "canonical_relation": "F(r) = -dV/dr",
+      "allowed_interpretation": "local molecular electromagnetic/effective-potential force law",
+      "lockout": [
+        "does_not_define_gravitational_source_potential",
+        "does_not_define_cosmological_source_potential",
+        "does_not_define_macro_magnetic_pole_alignment",
+        "does_not_close_metric_backreaction"
+      ]
+    },
+    {
+      "id": "carbon_bonding_no_gravity_closure_boundary",
+      "definition": "Molecular carbon bonding stress is not a closure, solution, or mechanism for gravity, mass anomalies, or spacetime metric backreaction.",
+      "forbidden_mappings": [
+        "local_bond_force_to_gravitational_closure",
+        "local_bond_pressure_to_metric_tensor_solution",
+        "carbon_bonding_to_cosmological_backreaction",
+        "covalent_bonding_to_magnetic_pole_equivalence"
+      ]
+    }
+  ],
+  "ranked_weakest_gaps": [
+    "carbon_bond_force_as_energy_gradient_boundary",
+    "carbon_bond_short_range_repulsion_boundary",
+    "carbon_lattice_pressure_response_boundary",
+    "carbon_same_mass_bonding_residual_boundary",
+    "carbon_bonding_no_gravity_closure_boundary"
+  ],
+  "nonclaims": [
+    "This artifact does not prove a new force.",
+    "This artifact does not identify a gravity anomaly from carbon bonding alone.",
+    "This artifact does not map molecular pressure into a general relativistic metric tensor.",
+    "This artifact does not equate covalent bonding with macroscopic magnetic pole behavior."
+  ]
+}
