@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org",
+  "object": "CARBON_BONDING_SAME_MASS_RESIDUAL_PREDICTION_2026_06_29",
+  "repository": "chronos-urf-rr",
+  "status": "falsifiable_prediction_boundary_not_established_science",
+  "boundary": "not a carbon-bonding-to-metric-backreaction law; not solved gravity",
+  "prediction": {
+    "name": "same_mass_carbon_bonding_gravity_residual",
+    "claim_type": "candidate_residual_prediction_only",
+    "configuration_A": {
+      "material_family": "carbon network",
+      "bonding_descriptor": "higher electronic Hessian/rank or bonding-topology signal"
+    },
+    "configuration_B": {
+      "material_family": "carbon network",
+      "bonding_descriptor": "lower electronic Hessian/rank or bonding-topology signal"
+    },
+    "required_matching_controls": [
+      "same total rest mass-energy within declared tolerance",
+      "same isotope inventory within declared tolerance",
+      "same external geometry within declared tolerance",
+      "same temperature band within declared tolerance",
+      "same net charge within declared tolerance",
+      "same environmental gravitational background within declared tolerance"
+    ],
+    "measured_quantity": "gravity residual after subtracting ordinary mass-energy/Newtonian/GR baseline",
+    "candidate_prediction": "configuration_A and configuration_B have different residuals after baseline subtraction",
+    "null_prediction": "residual difference is zero within measurement uncertainty"
+  },
+  "baseline_requirements": {
+    "ordinary_mass_energy_baseline_required": true,
+    "newtonian_same_radius_mass_baseline_required": true,
+    "gr_or_stress_energy_baseline_required": true,
+    "same_total_mass_energy_required": true,
+    "independent_holdout_required": true
+  },
+  "verifier_enforced_nonclaims": {
+    "carbon_bonding_to_metric_backreaction_law_proved": false,
+    "metric_backreaction_proved": false,
+    "einstein_limit_proved": false,
+    "stress_energy_realization_proved": false,
+    "new_gravity_law_proved": false,
+    "solved_gravity": false
+  },
+  "weakest_missing_object": "same_mass_carbon_bonding_residual_measurement_protocol"
+}
