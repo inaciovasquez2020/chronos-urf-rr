@@ -54,6 +54,14 @@ REQUIRED_LEAN_SYMBOLS = [
         "theorem candidateNewGravityRouteBoundary_preserves_nonClosure",
     ),
     (
+        "lean/Chronos/Frontier/CarbonBondingMetricBackreactionBoundary.lean",
+        "structure CarbonBondingMetricBackreactionBoundary",
+    ),
+    (
+        "lean/Chronos/Frontier/CarbonBondingMetricBackreactionBoundary.lean",
+        "theorem carbonBondingMetricBackreactionBoundary_preserves_noClosure",
+    ),
+    (
         "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
         "structure EnergyHessianMetricBackreactionBoundary",
     ),
