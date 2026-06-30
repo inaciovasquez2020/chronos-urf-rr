@@ -71,6 +71,44 @@ theorem observableRankEinsteinLimitInputBoundary_preserves_nonRealization
     boundary.noGravityClosureDerived⟩
 
 /--
+Candidate new-gravity route boundary.
+
+This object names a possible new-gravity research route: an observable rank
+defect, an effective metric ansatz, and an independent holdout residual
+prediction. It is only a falsifiable route boundary. It does not derive a new
+gravity law, an Einstein limit, metric backreaction, or gravity closure.
+-/
+structure CandidateNewGravityRouteBoundary where
+  observableRankDefect : Prop
+  effectiveMetricAnsatz : Prop
+  independentHoldoutResidualPrediction : Prop
+  newGravityLawDerived : Prop
+  einsteinLimitDerived : Prop
+  metricBackreactionDerived : Prop
+  gravityClosureDerived : Prop
+  noNewGravityLawDerived : ¬ newGravityLawDerived
+  noEinsteinLimitDerived : ¬ einsteinLimitDerived
+  noMetricBackreactionDerived : ¬ metricBackreactionDerived
+  noGravityClosureDerived : ¬ gravityClosureDerived
+
+/--
+Projection theorem: the candidate new-gravity route remains a falsifiable
+non-closure boundary.
+-/
+theorem candidateNewGravityRouteBoundary_preserves_nonClosure
+    (boundary : CandidateNewGravityRouteBoundary) :
+    ¬ boundary.newGravityLawDerived ∧
+      ¬ boundary.einsteinLimitDerived ∧
+      ¬ boundary.metricBackreactionDerived ∧
+      ¬ boundary.gravityClosureDerived := by
+  exact ⟨boundary.noNewGravityLawDerived,
+    boundary.noEinsteinLimitDerived,
+    boundary.noMetricBackreactionDerived,
+    boundary.noGravityClosureDerived⟩
+
+
+
+/--
 The weakest boundary theorem: the Einstein-limit input is only named as an
 explicit missing input surface.
 
