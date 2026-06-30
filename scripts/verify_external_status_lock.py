@@ -50,16 +50,17 @@ required_workflow_steps = [
 ]
 
 workflow_steps = []
-current_name = None
 
-for line in workflow_lines:
+for index, line in enumerate(workflow_lines):
     stripped = line.strip()
-    if stripped.startswith("- name: "):
-        current_name = stripped.removeprefix("- name: ").strip()
+    if not stripped.startswith("- name: "):
         continue
-    if current_name is not None and stripped.startswith("run: "):
-        workflow_steps.append((current_name, stripped.removeprefix("run: ").strip()))
-        current_name = None
+    name = stripped.removeprefix("- name: ").strip()
+    if index + 1 >= len(workflow_lines):
+        continue
+    next_stripped = workflow_lines[index + 1].strip()
+    if next_stripped.startswith("run: "):
+        workflow_steps.append((name, next_stripped.removeprefix("run: ").strip()))
 
 required_step_names = {name for name, _command in required_workflow_steps}
 seen_required_step_names = set()
