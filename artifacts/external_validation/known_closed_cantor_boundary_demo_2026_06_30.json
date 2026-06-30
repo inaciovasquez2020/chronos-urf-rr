@@ -1,0 +1,32 @@
+{
+  "artifact": "known_closed_cantor_boundary_demo_2026_06_30",
+  "classification": "KNOWN_CLOSED_THEOREM_DEMO",
+  "closed_theorem": {
+    "name": "Cantor's theorem",
+    "lean_symbol": "known_closed_cantor_boundary_demo",
+    "mathlib_anchor": "Function.cantor_surjective",
+    "statement": "For every type alpha, no function alpha -> Set alpha is surjective."
+  },
+  "methodology_role": "Benchmark object showing that the repository can certify a fully closed theorem while preserving frontier nonclaim boundaries.",
+  "allowed_claims": [
+    "The repository contains a Lean-checked closed-theorem demo.",
+    "The demo uses a known Mathlib Cantor theorem as a trusted library anchor.",
+    "The verifier infrastructure can distinguish a closed theorem from frontier nonclaims."
+  ],
+  "forbidden_claims": [
+    "This proves P vs NP.",
+    "This proves Chronos-RR.",
+    "This proves a gravity theorem.",
+    "This proves a cosmology theorem.",
+    "This proves foundations-of-physics closure.",
+    "This proves that the boundary method solves open problems.",
+    "This measures efficiency without a defined baseline."
+  ],
+  "negative_boundary": {
+    "frontier_closure": false,
+    "open_problem_solution": false,
+    "physics_closure": false,
+    "complexity_closure": false,
+    "efficiency_claim_without_baseline": false
+  }
+}
