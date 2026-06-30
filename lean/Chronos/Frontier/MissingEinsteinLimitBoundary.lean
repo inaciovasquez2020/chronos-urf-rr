@@ -40,6 +40,36 @@ theorem einsteinLimitNonRealizationBoundary_preserves_nonRealization
     boundary.noMetricBackreactionDerived,
     boundary.noGravityClosureDerived⟩
 
+
+/--
+Observable-rank to Einstein-limit input boundary.
+
+This object names the currently missing bridge from an observable-rank
+certificate to an Einstein-limit input only as a non-realized boundary. It does
+not derive an Einstein limit, metric backreaction, or gravity closure.
+-/
+structure ObservableRankEinsteinLimitInputBoundary where
+  observableRankCertificate : Prop
+  einsteinLimitInputDerived : Prop
+  metricBackreactionDerived : Prop
+  gravityClosureDerived : Prop
+  noEinsteinLimitInputDerived : ¬ einsteinLimitInputDerived
+  noMetricBackreactionDerived : ¬ metricBackreactionDerived
+  noGravityClosureDerived : ¬ gravityClosureDerived
+
+/--
+Projection theorem: the observable-rank to Einstein-limit input bridge remains
+non-realized.
+-/
+theorem observableRankEinsteinLimitInputBoundary_preserves_nonRealization
+    (boundary : ObservableRankEinsteinLimitInputBoundary) :
+    ¬ boundary.einsteinLimitInputDerived ∧
+      ¬ boundary.metricBackreactionDerived ∧
+      ¬ boundary.gravityClosureDerived := by
+  exact ⟨boundary.noEinsteinLimitInputDerived,
+    boundary.noMetricBackreactionDerived,
+    boundary.noGravityClosureDerived⟩
+
 /--
 The weakest boundary theorem: the Einstein-limit input is only named as an
 explicit missing input surface.

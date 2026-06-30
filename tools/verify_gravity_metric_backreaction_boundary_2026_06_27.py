@@ -38,6 +38,14 @@ REQUIRED_LEAN_SYMBOLS = [
         "theorem einsteinLimitNonRealizationBoundary_preserves_nonRealization",
     ),
     (
+        "lean/Chronos/Frontier/MissingEinsteinLimitBoundary.lean",
+        "structure ObservableRankEinsteinLimitInputBoundary",
+    ),
+    (
+        "lean/Chronos/Frontier/MissingEinsteinLimitBoundary.lean",
+        "theorem observableRankEinsteinLimitInputBoundary_preserves_nonRealization",
+    ),
+    (
         "lean/Chronos/Frontier/GravityBackreactionInputObject.lean",
         "structure EnergyHessianMetricBackreactionBoundary",
     ),
