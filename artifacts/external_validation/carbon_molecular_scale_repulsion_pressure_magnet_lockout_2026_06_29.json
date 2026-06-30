@@ -1,0 +1,61 @@
+{
+  "artifact": "carbon_molecular_scale_repulsion_pressure_magnet_lockout_2026_06_29",
+  "status": "boundary_lockout_imposed",
+  "scope": "carbon_bonding_molecular_scale",
+  "boundaries": [
+    {
+      "id": "carbon_bond_short_range_repulsion_boundary",
+      "definition": "Short-range carbon-carbon compression is bounded as an effective molecular repulsion from known electronic and nuclear interactions.",
+      "allowed_interpretation": [
+        "electron_cloud_overlap_resistance",
+        "pauli_exclusion_compression_resistance",
+        "electron_electron_coulomb_repulsion",
+        "nucleus_nucleus_coulomb_repulsion"
+      ],
+      "lockout": [
+        "does_not_introduce_new_fundamental_force",
+        "does_not_close_gravity",
+        "does_not_close_metric_backreaction",
+        "does_not_equate_to_magnetic_pole_alignment"
+      ]
+    },
+    {
+      "id": "carbon_lattice_pressure_response_boundary",
+      "definition": "Macroscopic pressure or bulk modulus claims require an explicit aggregation rule from local lattice energy curvature or local bond repulsion terms.",
+      "required_bridge_terms": [
+        "local_bond_energy_curvature",
+        "lattice_aggregation_rule",
+        "stress_or_bulk_modulus_output"
+      ],
+      "lockout": [
+        "does_not_infer_pressure_from_single_bond_without_aggregation",
+        "does_not_infer_bulk_modulus_without_lattice_energy_density",
+        "does_not_map_local_pressure_to_spacetime_metric_solution"
+      ]
+    },
+    {
+      "id": "carbon_bonding_no_magnetic_pole_equivalence_boundary",
+      "definition": "Magnet-pole language is restricted to analogy only; covalent carbon bonding remains an electron-energy/effective-potential boundary.",
+      "allowed_use": "heuristic_analogy_only",
+      "forbidden_equivalences": [
+        "covalent_bonding_as_macro_magnetic_pole_alignment",
+        "carbon_bond_attraction_as_bar_magnet_pole_force",
+        "carbon_bond_repulsion_as_bar_magnet_pole_force",
+        "bond_order_as_lorentz_force_closure"
+      ]
+    }
+  ],
+  "ranked_weakest_gaps": [
+    "carbon_bond_short_range_repulsion_boundary",
+    "carbon_lattice_pressure_response_boundary",
+    "carbon_bonding_no_magnetic_pole_equivalence_boundary"
+  ],
+  "nonclaims": [
+    "This artifact does not prove a new force.",
+    "This artifact does not derive macroscopic pressure from a single bond.",
+    "This artifact does not solve gravity.",
+    "This artifact does not solve metric backreaction.",
+    "This artifact does not chemically identify a gravity anomaly.",
+    "This artifact does not equate covalent bonding with macroscopic magnet poles."
+  ]
+}
