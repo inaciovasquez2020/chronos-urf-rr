@@ -39,6 +39,7 @@ required_workflow_steps = [
     ("Verify metric stress energy action triple boundary", "python3 tools/verifier/verify_metric_stress_energy_action_triple_boundary.py"),
     ("Verify Einstein Hilbert target law boundary", "python3 tools/verifier/verify_einstein_hilbert_target_law_boundary.py"),
     ("Verify pregeometric bridge continuum limit boundary", "python3 tools/verifier/verify_pregeometric_bridge_continuum_limit_boundary.py"),
+    ("Verify Chronos spectral operator root boundary", "python3 tools/verifier/verify_chronos_spectral_operator_root_boundary.py"),
     (
         "Verify gravity metric backreaction boundary",
         "python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py",
