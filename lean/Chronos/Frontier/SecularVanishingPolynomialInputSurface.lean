@@ -172,6 +172,53 @@ theorem chronosPositiveEvaluationSpecificSoundnessInputSurface_preserves_nonSema
       ChronosSemanticPolynomialSyntax.variable 0 := by
   rfl
 
+
+/-- Fixed evaluation map for the first nondegenerate positive soundness surface.
+
+It vanishes on the currently derived variable while remaining nonzero on a
+separate constant syntax witness. -/
+def chronosNondegenerateEvaluation :
+    ChronosSemanticPolynomialSyntax → Nat → Int
+  | ChronosSemanticPolynomialSyntax.constant 1, _ => 1
+  | _, _ => 0
+
+/-- Nondegenerate positive evaluation-specific witness surface.
+
+This strengthens the positive input surface by using one fixed evaluation map
+that both vanishes on the admissible derived polynomial and has a separate
+nonzero evaluation witness. It still does not assert full semantic Chronos SVP
+closure or syntactic nonzero semantic polynomial content. -/
+structure ChronosNondegenerateEvaluationWitnessSurface where
+  positive : ChronosPositiveEvaluationSpecificSoundnessInputSurface
+  witnessPolynomial : ChronosSemanticPolynomialSyntax
+  witnessPoint : Nat
+  witness_nonzero :
+    positive.evaluation witnessPolynomial witnessPoint ≠ 0
+
+/-- First nondegenerate positive evaluation-specific witness surface. -/
+def chronosNondegenerateEvaluationWitnessSurface :
+    ChronosNondegenerateEvaluationWitnessSurface :=
+  { positive :=
+      { polynomial := chronosSemanticDerivedVariableZero.polynomial
+        derivation := chronosSemanticDerivedVariableZero.is_chronos_derived
+        evaluation := chronosNondegenerateEvaluation
+        admissible := fun _ => True
+        vanishes_on_admissible := by
+          intro x hx
+          rfl }
+    witnessPolynomial := ChronosSemanticPolynomialSyntax.constant 1
+    witnessPoint := 0
+    witness_nonzero := by
+      intro h
+      cases h }
+
+/-- Boundary: nondegenerate evaluation witnessing is still not full semantic
+Chronos SVP closure. -/
+theorem chronosNondegenerateEvaluationWitnessSurface_preserves_nonSemanticSVPBoundary :
+    chronosNondegenerateEvaluationWitnessSurface.positive.polynomial =
+      ChronosSemanticPolynomialSyntax.variable 0 := by
+  rfl
+
 structure ChronosSemanticPolynomialInterface (σ : Type u) (α : Type v) where
 zeroPolynomial : σ
 eval : σ → α → Int
