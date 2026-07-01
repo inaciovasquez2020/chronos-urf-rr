@@ -69,6 +69,31 @@ theorem chronosDerivedNonzeroFormalSecularVanishingPolynomial_to_nonzeroFormal
     syntacticallyNonzero := d.syntacticallyNonzero
   }⟩
 
+inductive ChronosSecularDerivationToken where
+  | witness
+
+theorem chronosDerivedNonzeroFormalSecularVanishingPolynomial_tokenWitness
+    (α : Type u) :
+    Nonempty
+      (ChronosDerivedNonzeroFormalSecularVanishingPolynomial
+        ChronosSecularDerivationToken
+        SecularVanishingPolynomialToken
+        α) :=
+  ⟨{
+    derivation := ChronosSecularDerivationToken.witness
+    polynomial := SecularVanishingPolynomialToken.nonzero
+    zeroPolynomial := SecularVanishingPolynomialToken.zero
+    eval := fun _ _ => 0
+    derivationProducesPolynomial := fun _ => SecularVanishingPolynomialToken.nonzero
+    derivationProducesTarget := rfl
+    derivationForcesSecularVanishes := by
+      intro x
+      rfl
+    syntacticallyNonzero := by
+      intro h
+      cases h
+  }⟩
+
 structure SecularVanishingPolynomialSource (α : Type u) where
   polynomial : α → Int
   sourceForcesSecularVanishes : ∀ x : α, polynomial x = 0
