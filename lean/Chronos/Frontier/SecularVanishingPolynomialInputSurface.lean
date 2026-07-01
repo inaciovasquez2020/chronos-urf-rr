@@ -64,6 +64,49 @@ theorem chronosSemanticPolynomialSyntax_preserves_nonSemanticSVPBoundary :
       ChronosSemanticPolynomialSyntax.variable 0 := by
   rfl
 
+
+/-- Structural Chronos derivation rules over the non-token syntax carrier.
+
+These rules certify only syntactic generation. They intentionally do not provide
+an evaluation-specific vanishing soundness theorem. -/
+inductive ChronosSemanticDerivationRules :
+    ChronosSemanticPolynomialSyntax → Prop where
+  | constant (n : Nat) :
+      ChronosSemanticDerivationRules
+        (ChronosSemanticPolynomialSyntax.constant n)
+  | variable (n : Nat) :
+      ChronosSemanticDerivationRules
+        (ChronosSemanticPolynomialSyntax.variable n)
+  | add {p q : ChronosSemanticPolynomialSyntax} :
+      ChronosSemanticDerivationRules p →
+      ChronosSemanticDerivationRules q →
+      ChronosSemanticDerivationRules
+        (ChronosSemanticPolynomialSyntax.add p q)
+  | mul {p q : ChronosSemanticPolynomialSyntax} :
+      ChronosSemanticDerivationRules p →
+      ChronosSemanticDerivationRules q →
+      ChronosSemanticDerivationRules
+        (ChronosSemanticPolynomialSyntax.mul p q)
+
+/-- Non-token Chronos derivation object.
+
+This object records structural derivability only. It does not assert semantic
+vanishing or solve the semantic Chronos SVP boundary. -/
+structure ChronosSemanticDerivationObject where
+  polynomial : ChronosSemanticPolynomialSyntax
+  is_chronos_derived : ChronosSemanticDerivationRules polynomial
+
+/-- First structurally derived non-token Chronos polynomial object. -/
+def chronosSemanticDerivedVariableZero : ChronosSemanticDerivationObject :=
+  { polynomial := chronosSemanticPolynomialSyntaxVariableZero
+    is_chronos_derived := ChronosSemanticDerivationRules.variable 0 }
+
+/-- Boundary: structural derivability alone is not semantic Chronos SVP closure. -/
+theorem chronosSemanticDerivationRules_preserve_nonSemanticSVPBoundary :
+    chronosSemanticDerivedVariableZero.polynomial =
+      ChronosSemanticPolynomialSyntax.variable 0 := by
+  rfl
+
 structure ChronosSemanticPolynomialInterface (σ : Type u) (α : Type v) where
 zeroPolynomial : σ
 eval : σ → α → Int
