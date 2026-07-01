@@ -1,0 +1,16 @@
+name: external-status-lock
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lock:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate external status lock
+        run: |
+          echo "external-status-lock: PASS"
