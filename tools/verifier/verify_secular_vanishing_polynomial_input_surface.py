@@ -15,6 +15,10 @@ required = [
     "secularVanishes : ∀ x : α, polynomial x = 0",
     "def SecularVanishingPolynomialInputSurface",
     "Nonempty (SecularVanishingPolynomial α)",
+    "structure SecularVanishingPolynomialSource",
+    "sourceForcesSecularVanishes : ∀ x : α, polynomial x = 0",
+    "def SecularVanishingPolynomialSourceSurface",
+    "theorem secularVanishingPolynomialSource_to_inputSurface",
     "BOUNDARY := secular vanishing polynomial is primitive input structure; not antisymmetry, not involution, not cancellation",
 ]
 
