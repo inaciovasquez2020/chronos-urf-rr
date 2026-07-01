@@ -19,6 +19,7 @@ def main() -> None:
         "structure H4_1_FGL_IntermediateAdmissibleDomain where",
         "def intermediate_admissible_carrier_domain_closed : Prop :=",
         "theorem intermediate_admissible_carrier_domain_target_named :",
+        "structure H4_1_FGL_IntermediateAdmissibleSeparatingObservableInput : Prop where",
         "theorem unrestricted_h4_1_fgl_promotion_refuted :",
     ]
 

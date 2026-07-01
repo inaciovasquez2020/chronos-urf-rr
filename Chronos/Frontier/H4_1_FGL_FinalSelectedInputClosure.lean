@@ -185,5 +185,18 @@ theorem intermediate_admissible_carrier_domain_target_named :
     True := by
   trivial
 
+
+/--
+Input surface for the still-open intermediate admissible-carrier step.
+
+This does not close the intermediate domain. It only names the weakest
+remaining obligation: every intermediate admissible domain must supply a
+semantic separating observable for its selected carrier.
+-/
+structure H4_1_FGL_IntermediateAdmissibleSeparatingObservableInput : Prop where
+  observable_exists :
+    ∀ D : H4_1_FGL_IntermediateAdmissibleDomain.{u, v},
+      Nonempty (H4_1_FGL_SemanticSeparatingObservable D.S)
+
 end Frontier
 end Chronos
