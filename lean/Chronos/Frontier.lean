@@ -6,3 +6,4 @@ import Chronos.Frontier.ActiveGravityCarrierBinding
 import Chronos.Frontier.FiberLargeFromNonPropCore
 import Chronos.Frontier.RestrictedCarrierRankToEntropyGap
 import Chronos.Frontier.SharedNativeCarrierR1R2R3
+import Chronos.Frontier.SemanticSupportFixedPoint
