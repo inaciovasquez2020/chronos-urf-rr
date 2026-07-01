@@ -25,6 +25,7 @@ jobs:
 
       - name: Run Python verifiers
         run: |
+          python3 tools/verifier/verify_operator_norm_perturbation_boundary.py
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
           python3 tools/verifier/verify_gravity_boundary.py
           python3 tools/verifier/verify_secular_vanishing_polynomial_input_surface.py
