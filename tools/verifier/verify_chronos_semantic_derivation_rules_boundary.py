@@ -23,6 +23,11 @@ required = [
     "chronosPositiveEvaluationSpecificSoundnessInputSurface_preserves_nonSemanticSVPBoundary",
     "chronosPositiveEvaluationSpecificSoundnessInputSurface",
     "ChronosPositiveEvaluationSpecificSoundnessInputSurface",
+    "witness_nonzero",
+    "chronosNondegenerateEvaluationWitnessSurface_preserves_nonSemanticSVPBoundary",
+    "chronosNondegenerateEvaluationWitnessSurface",
+    "ChronosNondegenerateEvaluationWitnessSurface",
+    "chronosNondegenerateEvaluation",
 ]
 
 missing = [item for item in required if item not in text]
