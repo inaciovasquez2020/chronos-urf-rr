@@ -42,6 +42,33 @@ theorem nonzeroFormalSecularVanishingPolynomial_tokenWitness
       cases h
   }⟩
 
+structure ChronosDerivedNonzeroFormalSecularVanishingPolynomial
+    (δ : Type u) (σ : Type v) (α : Type w) where
+  derivation : δ
+  polynomial : σ
+  zeroPolynomial : σ
+  eval : σ → α → Int
+  derivationProducesPolynomial : δ → σ
+  derivationProducesTarget : derivationProducesPolynomial derivation = polynomial
+  derivationForcesSecularVanishes :
+    ∀ x : α, eval (derivationProducesPolynomial derivation) x = 0
+  syntacticallyNonzero : polynomial ≠ zeroPolynomial
+
+theorem chronosDerivedNonzeroFormalSecularVanishingPolynomial_to_nonzeroFormal
+    {δ : Type u} {σ : Type v} {α : Type w}
+    (d : ChronosDerivedNonzeroFormalSecularVanishingPolynomial δ σ α) :
+    Nonempty (NonzeroFormalSecularVanishingPolynomial σ α) :=
+  ⟨{
+    polynomial := d.polynomial
+    zeroPolynomial := d.zeroPolynomial
+    eval := d.eval
+    secularVanishes := by
+      intro x
+      rw [← d.derivationProducesTarget]
+      exact d.derivationForcesSecularVanishes x
+    syntacticallyNonzero := d.syntacticallyNonzero
+  }⟩
+
 structure SecularVanishingPolynomialSource (α : Type u) where
   polynomial : α → Int
   sourceForcesSecularVanishes : ∀ x : α, polynomial x = 0
