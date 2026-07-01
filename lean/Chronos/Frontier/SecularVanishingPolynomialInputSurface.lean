@@ -219,6 +219,38 @@ theorem chronosNondegenerateEvaluationWitnessSurface_preserves_nonSemanticSVPBou
       ChronosSemanticPolynomialSyntax.variable 0 := by
   rfl
 
+
+/-- Chosen syntactic zero for the non-token Chronos polynomial syntax layer. -/
+def chronosSemanticPolynomialSyntaxZero : ChronosSemanticPolynomialSyntax :=
+  ChronosSemanticPolynomialSyntax.constant 0
+
+/-- Same-polynomial syntactic nonzero surface.
+
+This records that the structurally derived polynomial used in the positive
+nondegenerate evaluation witness is syntactically distinct from the chosen
+syntax-level zero. It still does not assert semantic Chronos SVP closure. -/
+structure ChronosSamePolynomialSyntacticNonzeroSurface where
+  nondegenerate : ChronosNondegenerateEvaluationWitnessSurface
+  syntaxZero : ChronosSemanticPolynomialSyntax
+  same_polynomial_nonzero :
+    nondegenerate.positive.polynomial ≠ syntaxZero
+
+/-- First same-polynomial syntactic nonzero witness. -/
+def chronosSamePolynomialSyntacticNonzeroSurface :
+    ChronosSamePolynomialSyntacticNonzeroSurface :=
+  { nondegenerate := chronosNondegenerateEvaluationWitnessSurface
+    syntaxZero := chronosSemanticPolynomialSyntaxZero
+    same_polynomial_nonzero := by
+      intro h
+      cases h }
+
+/-- Boundary: same-polynomial syntactic nonzero is still not semantic Chronos
+SVP closure. -/
+theorem chronosSamePolynomialSyntacticNonzeroSurface_preserves_nonSemanticSVPBoundary :
+    chronosSamePolynomialSyntacticNonzeroSurface.nondegenerate.positive.polynomial =
+      ChronosSemanticPolynomialSyntax.variable 0 := by
+  rfl
+
 structure ChronosSemanticPolynomialInterface (σ : Type u) (α : Type v) where
 zeroPolynomial : σ
 eval : σ → α → Int
