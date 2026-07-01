@@ -135,5 +135,22 @@ theorem h4_1_fgl_final_selected_input_closure_boundary :
     True := by
   trivial
 
+/--
+The unrestricted arbitrary semantic final-carrier closure claim. This is kept
+as a named negative-boundary surface and is not discharged.
+-/
+def unrestricted_h4_1_fgl_closed : Prop :=
+  ∀ S : H4_1_FGL_SemanticFinalCarrier.{0, 0},
+    Nonempty (H4_1_FGL_SemanticSeparatingObservable S)
+
+/--
+Negative boundary: the selected-domain closure package does not promote to
+unrestricted arbitrary semantic final-carrier closure.
+-/
+theorem unrestricted_h4_1_fgl_promotion_refuted :
+    ¬ unrestricted_h4_1_fgl_closed := by
+  intro h_closed
+  exact H4_1_FGL_arbitrary_semantic_final_carrier_separating_observable_refuted (by simpa [unrestricted_h4_1_fgl_closed] using h_closed)
+
 end Frontier
 end Chronos
