@@ -1,0 +1,11 @@
+{
+  "check_forbidden_overclaims": {
+    "schema": "schemas/overclaims.json",
+    "paths": ["lean", "Chronos"]
+  },
+  "reconcile_ledger": {
+    "input": "artifacts/ledger/input.json",
+    "schema": "schemas/ledger.json",
+    "output": "artifacts/ledger/output.json"
+  }
+}
