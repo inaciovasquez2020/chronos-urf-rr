@@ -14,14 +14,13 @@ jobs:
       - name: Install Lean (stable)
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
-          echo "$HOME/.elan/bin" >> $GITHUB_PATH
-          source "$HOME/.elan/env"
+          export PATH="$HOME/.elan/bin:$PATH"
           elan default leanprover/lean4:stable
           lake --version
 
       - name: Build Lean project
         run: |
-          source "$HOME/.elan/env"
+          export PATH="$HOME/.elan/bin:$PATH"
           lake build
 
       - name: Run Python verifiers
