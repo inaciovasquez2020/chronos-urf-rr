@@ -8,6 +8,7 @@
     "unrestricted H4.1/FGL full theorem closed",
     "arbitrary semantic final-carrier closure theorem certified"
   ],
+  "intermediate_domain_status": "OPEN_GAP",
   "metrics": {
     "unrestricted_program_completion_pct": 85
   },
