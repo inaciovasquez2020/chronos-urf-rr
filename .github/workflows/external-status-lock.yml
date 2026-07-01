@@ -31,8 +31,14 @@ jobs:
         run: python3 tools/verifier/verify_chronos_root_finite_spectral_layer_closeout_boundary.py
       - name: Verify gravity metric backreaction boundary
         run: python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py
+      - name: Verify secular vanishing polynomial input surface
+        run: python3 tools/verifier/verify_secular_vanishing_polynomial_input_surface.py
+
       - name: Verify external status lock
         run: python3 scripts/verify_external_status_lock.py
+
+      - name: Verify Chronos semantic derivation rules boundary
+        run: python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
 
       - name: Verify certificate constant binding boundary
         run: python3 tools/verifier/verify_certificate_constant_binding_boundary.py

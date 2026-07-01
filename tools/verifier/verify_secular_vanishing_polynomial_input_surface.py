@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+from pathlib import Path
+
+lean_path = Path("lean/Chronos/Frontier/SecularVanishingPolynomialInputSurface.lean")
+old_path = Path("lean/Chronos/Frontier/SecularPolynomialVanishingInputSurface.lean")
+
+if old_path.exists():
+    raise SystemExit(f"FORBIDDEN_OBJECT := {old_path}")
+
+text = lean_path.read_text()
+
+required = [
+    "structure SecularVanishingPolynomial",
+    "polynomial : α → Int",
+    "secularVanishes : ∀ x : α, polynomial x = 0",
+    "def SecularVanishingPolynomialInputSurface",
+    "structure FormalSecularVanishingPolynomial",
+    "secularVanishes : ∀ x : α, eval polynomial x = 0",
+    "nontrivialWitness : nontrivial",
+    "structure NonzeroFormalSecularVanishingPolynomial",
+    "zeroPolynomial : σ",
+    "syntacticallyNonzero : polynomial ≠ zeroPolynomial",
+    "inductive SecularVanishingPolynomialToken",
+    "| zero",
+    "| nonzero",
+    "theorem nonzeroFormalSecularVanishingPolynomial_tokenWitness",
+    "Nonempty (NonzeroFormalSecularVanishingPolynomial SecularVanishingPolynomialToken α)",
+    "structure ChronosSemanticPolynomialInterface",
+    "structure ChronosSemanticInterfaceCompatibilitySurface",
+    "fixedVanishingEvaluation",
+    "semanticZeroAtFixedEvaluation",
+    "semanticChronosSVPRemainsBoundaryAfterInterfaceCompatibility",
+    "BOUNDARY := ¬ SEMANTIC_CHRONOS_SVP_SOLVED",
+
+    "semanticallyZero : σ → Prop",
+    "semanticallyZero_iff_eval_zero",
+    "structure ChronosDerivedNonzeroFormalSecularVanishingPolynomial",
+    "derivationProducesPolynomial : δ → σ",
+    "derivationProducesTarget : derivationProducesPolynomial derivation = polynomial",
+    "derivationForcesSecularVanishes",
+    "theorem chronosDerivedNonzeroFormalSecularVanishingPolynomial_to_nonzeroFormal",
+    "inductive ChronosSecularDerivationToken",
+    "| witness",
+    "theorem chronosDerivedNonzeroFormalSecularVanishingPolynomial_tokenWitness",
+    "ChronosDerivedNonzeroFormalSecularVanishingPolynomial",
+    "ChronosSecularDerivationToken",
+    "Nonempty (SecularVanishingPolynomial α)",
+    "structure SecularVanishingPolynomialSource",
+    "sourceForcesSecularVanishes : ∀ x : α, polynomial x = 0",
+    "def SecularVanishingPolynomialSourceSurface",
+    "theorem secularVanishingPolynomialSource_to_inputSurface",
+    "theorem secularVanishingPolynomialInputSurface_zeroWitness",
+    "BOUNDARY := token-level Chronos-derived nonzero SVP witness does not prove non-token semantic Chronos polynomial derivation",
+    "BOUNDARY := secular vanishing polynomial is primitive input structure; not antisymmetry, not involution, not cancellation",
+]
+
+for needle in required:
+    if needle not in text:
+        raise SystemExit(f"MISSING_OBJECT := {needle}")
+
+forbidden_substitution_symbols = [
+    "SecularPolynomialAntisymmetryInput",
+    "SecularInvolutionInput",
+    "SecularWeakOrbitVanishing",
+    "secularPolynomialAntisymmetry_to_weakOrbitVanishing",
+    "iota_iota",
+    "antisymmetric :",
+]
+
+for needle in forbidden_substitution_symbols:
+    if needle in text:
+        raise SystemExit(f"FORBIDDEN_SUBSTITUTION := {needle}")
+
+print("SECULAR_VANISHING_POLYNOMIAL_INPUT_SURFACE_OK")

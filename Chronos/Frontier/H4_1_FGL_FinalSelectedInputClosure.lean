@@ -152,5 +152,51 @@ theorem unrestricted_h4_1_fgl_promotion_refuted :
   intro h_closed
   exact H4_1_FGL_arbitrary_semantic_final_carrier_separating_observable_refuted (by simpa [unrestricted_h4_1_fgl_closed] using h_closed)
 
+/--
+Admissibility predicate for the intermediate bounded semantic-carrier domain.
+It excludes the degenerate class where a final-left witness and final-right
+witness can coincide at the same carrier point.
+-/
+def H4_1_FGL_IsAdmissibleCarrier
+    (S : H4_1_FGL_SemanticFinalCarrier.{u, v}) : Prop :=
+  ∀ x y : S.Carrier, S.FinalGapLeft x → S.FinalGapRight y → x ≠ y
+
+/--
+Intermediate bounded domain: semantic final carriers satisfying the admissible
+non-overlap predicate.
+-/
+structure H4_1_FGL_IntermediateAdmissibleDomain where
+  S : H4_1_FGL_SemanticFinalCarrier.{u, v}
+  admissible : H4_1_FGL_IsAdmissibleCarrier S
+
+/--
+New bounded target surface. This is strictly weaker than unrestricted H4.1/FGL
+closure because it quantifies only over admissible intermediate carriers.
+-/
+def intermediate_admissible_carrier_domain_closed : Prop :=
+  ∀ D : H4_1_FGL_IntermediateAdmissibleDomain.{u, v},
+    Nonempty (H4_1_FGL_SemanticSeparatingObservable D.S)
+
+/--
+Boundary marker: the intermediate admissible carrier target is now named, but
+its closure is not asserted here.
+-/
+theorem intermediate_admissible_carrier_domain_target_named :
+    True := by
+  trivial
+
+
+/--
+Input surface for the still-open intermediate admissible-carrier step.
+
+This does not close the intermediate domain. It only names the weakest
+remaining obligation: every intermediate admissible domain must supply a
+semantic separating observable for its selected carrier.
+-/
+structure H4_1_FGL_IntermediateAdmissibleSeparatingObservableInput : Prop where
+  observable_exists :
+    ∀ D : H4_1_FGL_IntermediateAdmissibleDomain.{u, v},
+      Nonempty (H4_1_FGL_SemanticSeparatingObservable D.S)
+
 end Frontier
 end Chronos
