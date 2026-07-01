@@ -18,6 +18,11 @@ required = [
     "chronosEvaluationSpecificSoundnessBoundary_preserves_nonSemanticSVPBoundary",
     "chronosEvaluationSpecificSoundnessBoundary",
     "ChronosEvaluationSpecificSoundnessBoundary",
+    "admissible : Nat → Prop",
+    "vanishes_on_admissible",
+    "chronosPositiveEvaluationSpecificSoundnessInputSurface_preserves_nonSemanticSVPBoundary",
+    "chronosPositiveEvaluationSpecificSoundnessInputSurface",
+    "ChronosPositiveEvaluationSpecificSoundnessInputSurface",
 ]
 
 missing = [item for item in required if item not in text]
@@ -34,6 +39,8 @@ forbidden = [
     "axiom",
     "opaque",
     "derives_vanishing",
+    "SemanticChronosSVPSolved",
+    "semanticChronosSVPSolved",
     "SEMANTIC_CHRONOS_SVP_SOLVED",
 ]
 
