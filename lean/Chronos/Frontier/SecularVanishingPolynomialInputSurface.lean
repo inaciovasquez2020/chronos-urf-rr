@@ -9,6 +9,13 @@ structure SecularVanishingPolynomial (α : Type u) where
 def SecularVanishingPolynomialInputSurface (α : Type u) : Prop :=
   Nonempty (SecularVanishingPolynomial α)
 
+structure FormalSecularVanishingPolynomial (σ : Type u) (α : Type v) where
+  polynomial : σ
+  eval : σ → α → Int
+  secularVanishes : ∀ x : α, eval polynomial x = 0
+  nontrivial : Prop
+  nontrivialWitness : nontrivial
+
 structure SecularVanishingPolynomialSource (α : Type u) where
   polynomial : α → Int
   sourceForcesSecularVanishes : ∀ x : α, polynomial x = 0
