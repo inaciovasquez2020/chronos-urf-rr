@@ -9,6 +9,22 @@ structure SecularVanishingPolynomial (α : Type u) where
 def SecularVanishingPolynomialInputSurface (α : Type u) : Prop :=
   Nonempty (SecularVanishingPolynomial α)
 
+structure SecularVanishingPolynomialSource (α : Type u) where
+  polynomial : α → Int
+  sourceForcesSecularVanishes : ∀ x : α, polynomial x = 0
+
+def SecularVanishingPolynomialSourceSurface (α : Type u) : Prop :=
+  Nonempty (SecularVanishingPolynomialSource α)
+
+theorem secularVanishingPolynomialSource_to_inputSurface
+    {α : Type u}
+    (s : SecularVanishingPolynomialSource α) :
+    SecularVanishingPolynomialInputSurface α :=
+  ⟨{
+    polynomial := s.polynomial
+    secularVanishes := s.sourceForcesSecularVanishes
+  }⟩
+
 theorem secularVanishingPolynomial_exposes_primitive_vanishing
     {α : Type u}
     (p : SecularVanishingPolynomial α) :
