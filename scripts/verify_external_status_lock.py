@@ -25,16 +25,9 @@ if not workflow.exists():
     raise SystemExit("missing .github/workflows/external-status-lock.yml")
 
 workflow_lines = workflow.read_text(encoding="utf-8").splitlines()
-
 required_workflow_steps = [
-    (
-        "Verify operator norm perturbation boundary",
-        "python3 tools/verify_operator_norm_perturbation_boundary.py",
-    ),
-    (
-        "Verify known gravity limit boundary",
-        "python3 tools/verifier/verify_gravity_boundary.py",
-    ),
+    ("Verify operator norm perturbation boundary", "python3 tools/verify_operator_norm_perturbation_boundary.py"),
+    ("Verify known gravity limit boundary", "python3 tools/verifier/verify_gravity_boundary.py"),
     ("Verify gravity program closeout boundary", "python3 tools/verifier/verify_gravity_program_closeout_boundary.py"),
     ("Verify metric stress energy action triple boundary", "python3 tools/verifier/verify_metric_stress_energy_action_triple_boundary.py"),
     ("Verify Einstein Hilbert target law boundary", "python3 tools/verifier/verify_einstein_hilbert_target_law_boundary.py"),
@@ -43,27 +36,13 @@ required_workflow_steps = [
     ("Verify Chronos root spectral solve boundary", "python3 tools/verifier/verify_chronos_root_spectral_solve_boundary.py"),
     ("Verify Chronos root gauge invariant trace boundary", "python3 tools/verifier/verify_chronos_root_gauge_invariant_trace_boundary.py"),
     ("Verify Chronos root finite spectral layer closeout boundary", "python3 tools/verifier/verify_chronos_root_finite_spectral_layer_closeout_boundary.py"),
-    (
-        "Verify gravity metric backreaction boundary",
-        "python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py",
-    ),
-    (
-        "Verify external status lock",
-        "python3 scripts/verify_external_status_lock.py",
-    ),
-    (
-        "Verify certificate constant binding boundary",
-        "python3 tools/verifier/verify_certificate_constant_binding_boundary.py",
-    ),
-    (
-        "Verify restricted package theorem surface boundary",
-        "python3 tools/verifier/verify_restricted_package_theorem_surface_boundary.py",
-    ),
-    (
-        "Verify literature nonclaim audit",
-        "python3 tools/verify_literature_nonclaim_audit.py",
-    ),    ("Verify known closed Cantor boundary demo", "python3 tools/verifier/verify_known_closed_cantor_boundary_demo.py"),
-
+    ("Verify gravity metric backreaction boundary", "python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py"),
+    ("Verify external status lock", "python3 scripts/verify_external_status_lock.py"),
+    ("Verify certificate constant binding boundary", "python3 tools/verifier/verify_certificate_constant_binding_boundary.py"),
+    ("Verify restricted package theorem surface boundary", "python3 tools/verifier/verify_restricted_package_theorem_surface_boundary.py"),
+    ("Verify literature nonclaim audit", "python3 tools/verify_literature_nonclaim_audit.py"),
+    ("Verify known closed Cantor boundary demo", "python3 tools/verifier/verify_known_closed_cantor_boundary_demo.py"),
+    ("Verify Chronos semantic derivation rules boundary", "python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py"),
 ]
 
 workflow_steps = []

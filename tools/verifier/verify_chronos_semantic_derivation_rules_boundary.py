@@ -14,6 +14,10 @@ required = [
     "structure ChronosSemanticDerivationObject",
     "chronosSemanticDerivedVariableZero",
     "chronosSemanticDerivationRules_preserve_nonSemanticSVPBoundary",
+    "missing_everywhere_vanishing",
+    "chronosEvaluationSpecificSoundnessBoundary_preserves_nonSemanticSVPBoundary",
+    "chronosEvaluationSpecificSoundnessBoundary",
+    "ChronosEvaluationSpecificSoundnessBoundary",
 ]
 
 missing = [item for item in required if item not in text]
