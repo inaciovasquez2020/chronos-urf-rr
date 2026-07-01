@@ -139,6 +139,39 @@ theorem chronosEvaluationSpecificSoundnessBoundary_preserves_nonSemanticSVPBound
       ChronosSemanticPolynomialSyntax.variable 0 := by
   rfl
 
+
+/-- Positive evaluation-specific soundness input surface.
+
+This surface records a fixed evaluation map and an admissible predicate under
+which a structurally derived non-token polynomial vanishes. It is intentionally
+only an input surface: it does not assert nondegeneracy, syntactic nonzero
+semantic polynomial content, or full semantic Chronos SVP closure. -/
+structure ChronosPositiveEvaluationSpecificSoundnessInputSurface where
+  polynomial : ChronosSemanticPolynomialSyntax
+  derivation : ChronosSemanticDerivationRules polynomial
+  evaluation : ChronosSemanticPolynomialSyntax → Nat → Int
+  admissible : Nat → Prop
+  vanishes_on_admissible :
+    ∀ x : Nat, admissible x → evaluation polynomial x = 0
+
+/-- A bounded positive evaluation-specific soundness input witness. -/
+def chronosPositiveEvaluationSpecificSoundnessInputSurface :
+    ChronosPositiveEvaluationSpecificSoundnessInputSurface :=
+  { polynomial := chronosSemanticDerivedVariableZero.polynomial
+    derivation := chronosSemanticDerivedVariableZero.is_chronos_derived
+    evaluation := fun _ _ => 0
+    admissible := fun _ => True
+    vanishes_on_admissible := by
+      intro x hx
+      rfl }
+
+/-- Boundary: a positive evaluation-specific input surface is still not full
+semantic Chronos SVP closure. -/
+theorem chronosPositiveEvaluationSpecificSoundnessInputSurface_preserves_nonSemanticSVPBoundary :
+    chronosPositiveEvaluationSpecificSoundnessInputSurface.polynomial =
+      ChronosSemanticPolynomialSyntax.variable 0 := by
+  rfl
+
 structure ChronosSemanticPolynomialInterface (σ : Type u) (α : Type v) where
 zeroPolynomial : σ
 eval : σ → α → Int
