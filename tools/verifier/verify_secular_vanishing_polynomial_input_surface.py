@@ -41,6 +41,7 @@ required = [
     "def SecularVanishingPolynomialSourceSurface",
     "theorem secularVanishingPolynomialSource_to_inputSurface",
     "theorem secularVanishingPolynomialInputSurface_zeroWitness",
+    "BOUNDARY := token-level Chronos-derived nonzero SVP witness does not prove non-token semantic Chronos polynomial derivation",
     "BOUNDARY := secular vanishing polynomial is primitive input structure; not antisymmetry, not involution, not cancellation",
 ]
 

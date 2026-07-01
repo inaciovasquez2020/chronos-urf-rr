@@ -126,6 +126,9 @@ theorem secularVanishingPolynomial_exposes_primitive_vanishing
     ∀ x : α, p.polynomial x = 0 :=
   p.secularVanishes
 
+def nonTokenChronosSemanticSVPBoundary : String :=
+  "BOUNDARY := token-level Chronos-derived nonzero SVP witness does not prove non-token semantic Chronos polynomial derivation"
+
 def secularVanishingPolynomialBoundary : String :=
   "BOUNDARY := secular vanishing polynomial is primitive input structure; not antisymmetry, not involution, not cancellation"
 
