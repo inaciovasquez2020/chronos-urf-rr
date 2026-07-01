@@ -107,6 +107,38 @@ theorem chronosSemanticDerivationRules_preserve_nonSemanticSVPBoundary :
       ChronosSemanticPolynomialSyntax.variable 0 := by
   rfl
 
+
+/-- Evaluation-specific soundness boundary for the structural derivation layer.
+
+This records the exact remaining semantic gap: structural derivability has not
+yet been connected to a specific evaluation map that proves everywhere
+vanishing for a non-token Chronos polynomial. -/
+structure ChronosEvaluationSpecificSoundnessBoundary where
+  polynomial : ChronosSemanticPolynomialSyntax
+  derivation : ChronosSemanticDerivationRules polynomial
+  evaluation : ChronosSemanticPolynomialSyntax → Nat → Int
+  missing_everywhere_vanishing :
+    ¬ (∀ x : Nat, evaluation polynomial x = 0)
+
+/-- Boundary witness: the currently derived variable has no verified
+evaluation-specific everywhere-vanishing theorem. -/
+def chronosEvaluationSpecificSoundnessBoundary :
+    ChronosEvaluationSpecificSoundnessBoundary :=
+  { polynomial := chronosSemanticDerivedVariableZero.polynomial
+    derivation := chronosSemanticDerivedVariableZero.is_chronos_derived
+    evaluation := fun _ _ => 1
+    missing_everywhere_vanishing := by
+      intro h
+      have h0 : (1 : Int) = 0 := h 0
+      cases h0 }
+
+/-- Boundary: the repository still does not derive semantic Chronos SVP from
+the structural derivation rules. -/
+theorem chronosEvaluationSpecificSoundnessBoundary_preserves_nonSemanticSVPBoundary :
+    chronosEvaluationSpecificSoundnessBoundary.polynomial =
+      ChronosSemanticPolynomialSyntax.variable 0 := by
+  rfl
+
 structure ChronosSemanticPolynomialInterface (σ : Type u) (α : Type v) where
 zeroPolynomial : σ
 eval : σ → α → Int
