@@ -27,6 +27,11 @@ required = [
     "chronosNondegenerateEvaluationWitnessSurface_preserves_nonSemanticSVPBoundary",
     "chronosNondegenerateEvaluationWitnessSurface",
     "ChronosNondegenerateEvaluationWitnessSurface",
+    "chronosSamePolynomialSyntacticNonzeroSurface_preserves_nonSemanticSVPBoundary",
+    "same_polynomial_nonzero",
+    "chronosSamePolynomialSyntacticNonzeroSurface",
+    "ChronosSamePolynomialSyntacticNonzeroSurface",
+    "chronosSemanticPolynomialSyntaxZero",
     "chronosNondegenerateEvaluation",
 ]
 
