@@ -9,6 +9,7 @@
     "arbitrary semantic final-carrier closure theorem certified"
   ],
   "intermediate_domain_status": "OPEN_GAP",
+  "intermediate_weakest_missing_object": "\u2200 D : H4_1_FGL_IntermediateAdmissibleDomain, Nonempty (H4_1_FGL_SemanticSeparatingObservable D.S)",
   "metrics": {
     "unrestricted_program_completion_pct": 85
   },
@@ -43,5 +44,5 @@
   ],
   "status": "restricted_surface_discharged",
   "unrestricted_domain_status": "REFUTED_OPEN_GAP",
-  "weakest_missing_object": "unrestricted H4.1/FGL beyond the selected theorem domain"
+  "weakest_missing_object": "H4_1_FGL_IntermediateAdmissibleSeparatingObservableInput.observable_exists"
 }
