@@ -257,6 +257,30 @@ structure ChronosSemanticPolynomialInterface (σ : Type u) (α : Type v) where
   semanticallyZero : σ → Prop
   semanticallyZero_iff_eval_zero : ∀ p : σ, semanticallyZero p ↔ ∀ x : α, eval p x = 0
 
+/--
+Semantic-interface compatibility surface: the repaired interface fields are
+now exposed as the admissible bridge target connecting the same structurally
+derived, syntactically nonzero polynomial to a fixed vanishing semantic
+evaluation.  This remains only a compatibility/input surface and does not
+close semantic Chronos SVP.
+-/
+structure ChronosSemanticInterfaceCompatibilitySurface where
+  Poly : Type
+  Point : Type
+  interface : ChronosSemanticPolynomialInterface Poly Point
+  structurallyDerivedPolynomial : Poly
+  syntacticallyNonzero : Prop
+  fixedVanishingEvaluationPoint : Point
+  samePolynomialWitness : structurallyDerivedPolynomial = structurallyDerivedPolynomial
+  syntacticNonzeroWitness : syntacticallyNonzero
+  fixedVanishingEvaluation :
+    interface.eval structurallyDerivedPolynomial fixedVanishingEvaluationPoint = 0
+  semanticZeroAtFixedEvaluation :
+    interface.semanticallyZero structurallyDerivedPolynomial
+
+def semanticChronosSVPRemainsBoundaryAfterInterfaceCompatibility : String :=
+  "BOUNDARY := ¬ SEMANTIC_CHRONOS_SVP_SOLVED"
+
 structure ChronosDerivedNonzeroFormalSecularVanishingPolynomial
     (δ : Type u) (σ : Type v) (α : Type w) where
   derivation : δ

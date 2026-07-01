@@ -26,6 +26,12 @@ required = [
     "theorem nonzeroFormalSecularVanishingPolynomial_tokenWitness",
     "Nonempty (NonzeroFormalSecularVanishingPolynomial SecularVanishingPolynomialToken α)",
     "structure ChronosSemanticPolynomialInterface",
+    "structure ChronosSemanticInterfaceCompatibilitySurface",
+    "fixedVanishingEvaluation",
+    "semanticZeroAtFixedEvaluation",
+    "semanticChronosSVPRemainsBoundaryAfterInterfaceCompatibility",
+    "BOUNDARY := ¬ SEMANTIC_CHRONOS_SVP_SOLVED",
+
     "semanticallyZero : σ → Prop",
     "semanticallyZero_iff_eval_zero",
     "structure ChronosDerivedNonzeroFormalSecularVanishingPolynomial",
