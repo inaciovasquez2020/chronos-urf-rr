@@ -185,33 +185,5 @@ theorem intermediate_admissible_carrier_domain_target_named :
     True := by
   trivial
 
-/--
-Input surface for the next bounded step: admissibility alone is not asserted
-to construct a semantic separating observable.  A future closure theorem for
-`intermediate_admissible_carrier_domain_closed` must supply this bridge.
--/
-structure H4_1_FGL_IntermediateAdmissibleSeparatingObservableInput where
-  bridge :
-    ∀ D : H4_1_FGL_IntermediateAdmissibleDomain.{u, v},
-      Nonempty (H4_1_FGL_SemanticSeparatingObservable D.S)
-
-/--
-Named projection from the bridge input surface to the intermediate admissible
-carrier-domain closure target.
--/
-theorem H4_1_FGL_IntermediateAdmissibleSeparatingObservableInput.closes
-    (I : H4_1_FGL_IntermediateAdmissibleSeparatingObservableInput.{u, v}) :
-    intermediate_admissible_carrier_domain_closed := by
-  intro D
-  exact I.bridge D
-
-/--
-Boundary marker: the bridge input surface is named, but no inhabitant of it is
-constructed here.
--/
-theorem intermediate_admissible_separating_observable_input_target_named :
-    True := by
-  trivial
-
 end Frontier
 end Chronos
