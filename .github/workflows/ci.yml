@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Lean (stable)
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+          export PATH="$HOME/.elan/bin:$PATH"
+          elan default leanprover/lean4:stable
+          lake --version
+
+      - name: Build Lean project
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake build
+
+      - name: Run Python verifiers
+        run: |
+          python3 tools/verifier/verify_operator_norm_perturbation_boundary.py
+          python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
+          python3 scripts/verify_external_status_lock.py
