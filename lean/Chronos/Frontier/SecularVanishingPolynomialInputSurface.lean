@@ -25,6 +25,16 @@ theorem secularVanishingPolynomialSource_to_inputSurface
     secularVanishes := s.sourceForcesSecularVanishes
   }⟩
 
+theorem secularVanishingPolynomialInputSurface_zeroWitness
+    (α : Type u) :
+    SecularVanishingPolynomialInputSurface α :=
+  ⟨{
+    polynomial := fun _ => 0
+    secularVanishes := by
+      intro x
+      rfl
+  }⟩
+
 theorem secularVanishingPolynomial_exposes_primitive_vanishing
     {α : Type u}
     (p : SecularVanishingPolynomial α) :
