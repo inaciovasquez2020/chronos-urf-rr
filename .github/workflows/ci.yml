@@ -8,19 +8,21 @@ jobs:
   ci:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        shell: bash -l {0}
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Install Lean (stable)
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
-          export PATH="$HOME/.elan/bin:$PATH"
           elan default leanprover/lean4:stable
           lake --version
 
       - name: Build Lean project
         run: |
-          export PATH="$HOME/.elan/bin:$PATH"
           lake build
 
       - name: Run Python verifiers
