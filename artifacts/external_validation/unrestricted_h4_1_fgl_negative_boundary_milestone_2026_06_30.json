@@ -1,0 +1,23 @@
+{
+  "milestone_id": "UNRESTRICTED_H4_1_FGL_NEGATIVE_BOUNDARY_RECEIPT_LOCKED",
+  "repository": "chronos-urf-rr",
+  "date": "2026-06-30",
+  "main_commit": "bbffa00a87ad8099cb068b656543617b77bb7186",
+  "closed_pr": 932,
+  "status": "milestone_locked",
+  "percentage_complete": 85,
+  "bounded_selected_domain_status": "closed_and_bounded",
+  "unrestricted_domain_status": "refuted_open_gap",
+  "boundary": "BOUNDARY := ¬ unrestricted_h4_1_fgl_closed",
+  "receipt_verifier": "tools/verifier/verify_unrestricted_h4_1_fgl_negative_boundary_receipt.py",
+  "lean_boundary_file": "Chronos/Frontier/H4_1_FGL_FinalSelectedInputClosure.lean",
+  "main_push_ci": {
+    "lean-proof-portfolio-classification": 28484911852,
+    "verify": 28484911848,
+    "external-status-lock": 28484911805,
+    "CI": 28484911821,
+    "Lean Build": 28484911840,
+    "Lean CI": 28484911859
+  },
+  "weakest_point": "No admissible positive closure remains for unrestricted arbitrary semantic final-carrier promotion; future work must select a new bounded object outside unrestricted H4.1/FGL."
+}
