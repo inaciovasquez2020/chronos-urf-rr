@@ -23,6 +23,25 @@ structure NonzeroFormalSecularVanishingPolynomial (σ : Type u) (α : Type v) wh
   secularVanishes : ∀ x : α, eval polynomial x = 0
   syntacticallyNonzero : polynomial ≠ zeroPolynomial
 
+inductive SecularVanishingPolynomialToken where
+  | zero
+  | nonzero
+
+theorem nonzeroFormalSecularVanishingPolynomial_tokenWitness
+    (α : Type u) :
+    Nonempty (NonzeroFormalSecularVanishingPolynomial SecularVanishingPolynomialToken α) :=
+  ⟨{
+    polynomial := SecularVanishingPolynomialToken.nonzero
+    zeroPolynomial := SecularVanishingPolynomialToken.zero
+    eval := fun _ _ => 0
+    secularVanishes := by
+      intro x
+      rfl
+    syntacticallyNonzero := by
+      intro h
+      cases h
+  }⟩
+
 structure SecularVanishingPolynomialSource (α : Type u) where
   polynomial : α → Int
   sourceForcesSecularVanishes : ∀ x : α, polynomial x = 0
