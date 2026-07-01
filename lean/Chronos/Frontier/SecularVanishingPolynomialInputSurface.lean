@@ -42,6 +42,28 @@ theorem nonzeroFormalSecularVanishingPolynomial_tokenWitness
       cases h
   }⟩
 
+
+/-- Non-token Chronos polynomial syntax carrier.
+
+This is still only a formal syntax object. It does not provide a semantic
+Chronos derivation, a non-degenerate evaluation map, or a vanishing theorem. -/
+inductive ChronosSemanticPolynomialSyntax where
+  | constant : Nat -> ChronosSemanticPolynomialSyntax
+  | variable : Nat -> ChronosSemanticPolynomialSyntax
+  | add : ChronosSemanticPolynomialSyntax -> ChronosSemanticPolynomialSyntax -> ChronosSemanticPolynomialSyntax
+  | mul : ChronosSemanticPolynomialSyntax -> ChronosSemanticPolynomialSyntax -> ChronosSemanticPolynomialSyntax
+deriving DecidableEq, Repr
+
+/-- A first non-token syntactic Chronos polynomial witness. -/
+def chronosSemanticPolynomialSyntaxVariableZero : ChronosSemanticPolynomialSyntax :=
+  ChronosSemanticPolynomialSyntax.variable 0
+
+/-- Boundary: this syntax object is not yet a semantic Chronos SVP solution. -/
+theorem chronosSemanticPolynomialSyntax_preserves_nonSemanticSVPBoundary :
+    chronosSemanticPolynomialSyntaxVariableZero =
+      ChronosSemanticPolynomialSyntax.variable 0 := by
+  rfl
+
 structure ChronosSemanticPolynomialInterface (σ : Type u) (α : Type v) where
 zeroPolynomial : σ
 eval : σ → α → Int
