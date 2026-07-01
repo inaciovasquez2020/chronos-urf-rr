@@ -252,10 +252,10 @@ theorem chronosSamePolynomialSyntacticNonzeroSurface_preserves_nonSemanticSVPBou
   rfl
 
 structure ChronosSemanticPolynomialInterface (σ : Type u) (α : Type v) where
-zeroPolynomial : σ
-eval : σ → α → Int
-semanticallyZero : σ → Prop
-semanticallyZero_iff_eval_zero : ∀ p : σ, semanticallyZero p ↔ ∀ x : α, eval p x = 0
+  zeroPolynomial : σ
+  eval : σ → α → Int
+  semanticallyZero : σ → Prop
+  semanticallyZero_iff_eval_zero : ∀ p : σ, semanticallyZero p ↔ ∀ x : α, eval p x = 0
 
 structure ChronosDerivedNonzeroFormalSecularVanishingPolynomial
     (δ : Type u) (σ : Type v) (α : Type w) where
