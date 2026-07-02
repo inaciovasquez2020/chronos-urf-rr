@@ -11,7 +11,53 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate external status lock
-        run: |
-          echo "external-status-lock: PASS"
-# Cache bust
+      - name: Verify operator norm perturbation boundary
+        run: python3 tools/verifier/verify_operator_norm_perturbation_boundary.py
+
+      - name: Verify known gravity limit boundary
+        run: python3 tools/verifier/verify_gravity_boundary.py
+
+      - name: Verify gravity program closeout boundary
+        run: python3 tools/verifier/verify_gravity_program_closeout_boundary.py
+
+      - name: Verify metric stress energy action triple boundary
+        run: python3 tools/verifier/verify_metric_stress_energy_action_triple_boundary.py
+
+      - name: Verify Einstein Hilbert target law boundary
+        run: python3 tools/verifier/verify_einstein_hilbert_target_law_boundary.py
+
+      - name: Verify pregeometric bridge continuum limit boundary
+        run: python3 tools/verifier/verify_pregeometric_bridge_continuum_limit_boundary.py
+
+      - name: Verify Chronos spectral operator root boundary
+        run: python3 tools/verifier/verify_chronos_spectral_operator_root_boundary.py
+
+      - name: Verify Chronos root spectral solve boundary
+        run: python3 tools/verifier/verify_chronos_root_spectral_solve_boundary.py
+
+      - name: Verify Chronos root gauge invariant trace boundary
+        run: python3 tools/verifier/verify_chronos_root_gauge_invariant_trace_boundary.py
+
+      - name: Verify Chronos root finite spectral layer closeout boundary
+        run: python3 tools/verifier/verify_chronos_root_finite_spectral_layer_closeout_boundary.py
+
+      - name: Verify gravity metric backreaction boundary
+        run: python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py
+
+      - name: Verify external status lock
+        run: python3 scripts/verify_external_status_lock.py
+
+      - name: Verify certificate constant binding boundary
+        run: python3 tools/verifier/verify_certificate_constant_binding_boundary.py
+
+      - name: Verify restricted package theorem surface boundary
+        run: python3 tools/verifier/verify_restricted_package_theorem_surface_boundary.py
+
+      - name: Verify literature nonclaim audit
+        run: python3 tools/verify_literature_nonclaim_audit.py
+
+      - name: Verify known closed Cantor boundary demo
+        run: python3 tools/verifier/verify_known_closed_cantor_boundary_demo.py
+
+      - name: Verify Chronos semantic derivation rules boundary
+        run: python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
