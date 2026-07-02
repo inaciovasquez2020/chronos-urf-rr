@@ -25,7 +25,6 @@ if not workflow.exists():
     raise SystemExit("missing .github/workflows/external-status-lock.yml")
 
 workflow_lines = workflow.read_text(encoding="utf-8").splitlines()
-workflow_steps = []
 
 required_workflow_steps = [
     ("Verify operator norm perturbation boundary", "python3 tools/verifier/verify_operator_norm_perturbation_boundary.py"),
@@ -47,14 +46,14 @@ required_workflow_steps = [
     ("Verify Chronos semantic derivation rules boundary", "python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py"),
 ]
 
+workflow_steps = []
+current_name = None
 
 for line in workflow_lines:
     s = line.strip()
-
     if s.startswith("- name: "):
         current_name = s.removeprefix("- name: ").strip()
         continue
-
     if s.startswith("run: ") and current_name is not None:
         run_cmd = s.removeprefix("run: ").strip()
         workflow_steps.append((current_name, run_cmd))
@@ -67,7 +66,6 @@ for name, cmd in required_workflow_steps:
             f"name={name!r}, run={cmd!r}"
         )
 
-print("external status lock: PASS")
 readme_paths = [Path("README.md"), Path("README"), Path("readme.md")]
 readme_text = "\n".join(p.read_text(encoding="utf-8", errors="ignore") for p in readme_paths if p.exists())
 
