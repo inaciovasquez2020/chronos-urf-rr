@@ -46,8 +46,6 @@ required_workflow_steps = [
     ("Verify Chronos semantic derivation rules boundary", "python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py"),
 ]
 
-workflow_steps = []
-current_name = None
 
 for line in workflow_lines:
     s = line.strip()
