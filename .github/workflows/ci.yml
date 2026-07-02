@@ -14,18 +14,21 @@ jobs:
       - name: Install Lean (stable)
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
-          echo "$HOME/.elan/bin" >> $GITHUB_PATH
-          . "$HOME/.elan/env"
+          export PATH="$HOME/.elan/bin:$PATH"
           elan default leanprover/lean4:stable
           lake --version
 
       - name: Build Lean project
         run: |
-          . "$HOME/.elan/env"
+          export PATH="$HOME/.elan/bin:$PATH"
           lake build
 
-      - name: Run Python verifiers
+      - name: Verify operator norm perturbation boundary
+        run: python3 tools/verifier/verify_operator_norm_perturbation_boundary.py
+
+      - name: Run remaining Python verifiers
         run: |
-          python3 tools/verifier/verify_operator_norm_perturbation_boundary.py
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
+          python3 tools/verifier/verify_gravity_boundary.py
+          python3 tools/verifier/verify_secular_vanishing_polynomial_input_surface.py
           python3 scripts/verify_external_status_lock.py
