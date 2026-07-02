@@ -25,6 +25,7 @@ if not workflow.exists():
     raise SystemExit("missing .github/workflows/external-status-lock.yml")
 
 workflow_lines = workflow.read_text(encoding="utf-8").splitlines()
+workflow_steps = []
 
 required_workflow_steps = [
     ("Verify operator norm perturbation boundary", "python3 tools/verifier/verify_operator_norm_perturbation_boundary.py"),
