@@ -68,7 +68,8 @@ for name, cmd in required_workflow_steps:
             f"name={name!r}, run={cmd!r}"
         )
 
-print("external status lock: PASS")readme_paths = [Path("README.md"), Path("README"), Path("readme.md")]
+print("external status lock: PASS")
+readme_paths = [Path("README.md"), Path("README"), Path("readme.md")]
 readme_text = "\n".join(p.read_text(encoding="utf-8", errors="ignore") for p in readme_paths if p.exists())
 
 dangerous_patterns = [
