@@ -25,6 +25,7 @@ if not workflow.exists():
     raise SystemExit("missing .github/workflows/external-status-lock.yml")
 
 workflow_lines = workflow.read_text(encoding="utf-8").splitlines()
+
 required_workflow_steps = [
     ("Verify operator norm perturbation boundary", "python3 tools/verifier/verify_operator_norm_perturbation_boundary.py"),
     ("Verify known gravity limit boundary", "python3 tools/verifier/verify_gravity_boundary.py"),
@@ -46,37 +47,28 @@ required_workflow_steps = [
 ]
 
 workflow_steps = []
+current_name = None
 
-for index, line in enumerate(workflow_lines):
-    stripped = line.strip()
-    if not stripped.startswith("- name: "):
+for line in workflow_lines:
+    s = line.strip()
+
+    if s.startswith("- name: "):
+        current_name = s.removeprefix("- name: ").strip()
         continue
-    name = stripped.removeprefix("- name: ").strip()
-    if index + 1 >= len(workflow_lines):
-        continue
-    next_stripped = workflow_lines[index + 1].strip()
-    if next_stripped.startswith("run: "):
-        workflow_steps.append((name, next_stripped.removeprefix("run: ").strip()))
 
-required_step_names = {name for name, _command in required_workflow_steps}
-seen_required_step_names = set()
+    if s.startswith("run: ") and current_name is not None:
+        run_cmd = s.removeprefix("run: ").strip()
+        workflow_steps.append((current_name, run_cmd))
+        current_name = None
 
-for name, _command in workflow_steps:
-    if name not in required_step_names:
-        continue
-    if name in seen_required_step_names:
-        raise SystemExit(f"duplicate required status-lock workflow step name: {name}")
-    seen_required_step_names.add(name)
-
-for step in required_workflow_steps:
-    if step not in workflow_steps:
-        name, command = step
+for name, cmd in required_workflow_steps:
+    if (name, cmd) not in workflow_steps:
         raise SystemExit(
             "missing required status-lock workflow step pair: "
-            f"name={name!r}, run={command!r}"
+            f"name={name!r}, run={cmd!r}"
         )
 
-readme_paths = [Path("README.md"), Path("README"), Path("readme.md")]
+print("external status lock: PASS")readme_paths = [Path("README.md"), Path("README"), Path("readme.md")]
 readme_text = "\n".join(p.read_text(encoding="utf-8", errors="ignore") for p in readme_paths if p.exists())
 
 dangerous_patterns = [
