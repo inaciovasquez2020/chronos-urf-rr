@@ -47,6 +47,9 @@ jobs:
       - name: Verify external status lock
         run: python3 scripts/verify_external_status_lock.py
 
+      - name: Verify Gaussian KK reduction surface
+        run: python3 tools/verifier/verify_gaussian_kk_reduction_surface.py
+
       - name: Verify certificate constant binding boundary
         run: python3 tools/verifier/verify_certificate_constant_binding_boundary.py
 
