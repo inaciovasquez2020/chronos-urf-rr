@@ -64,3 +64,6 @@ jobs:
 
       - name: Verify Chronos semantic derivation rules boundary
         run: python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
+
+      - name: Verify long chord exclusion input surface
+        run: python3 tools/verify_long_chord_exclusion_input_surface.py

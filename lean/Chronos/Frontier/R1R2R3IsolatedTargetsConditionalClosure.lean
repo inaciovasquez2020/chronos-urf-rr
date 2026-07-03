@@ -3,11 +3,25 @@ import Chronos.Frontier.RepositoryNativeR1R2R3BindingMissingObject
 namespace Chronos.Frontier
 
 /--
+Input surface for the first isolated R1 target.
+
+This records the local long-chord exclusion obligation without solving
+the repository-native geometry.
+-/
+structure LongChordExclusionInputSurface where
+  Configuration : Type
+  LongChord : Configuration → Prop
+  Admissible : Configuration → Prop
+  exclusion : ∀ C, Admissible C → ¬ LongChord C
+
+/--
 First isolated R1 target.
 
-Opaque by design: this records the proof obligation without solving it.
+Nonempty input surface only: this makes the missing mathematical object
+explicit without proving the concrete repository-native geometry.
 -/
-def LongChordExclusionProofTarget : Prop := True
+def LongChordExclusionProofTarget : Prop :=
+  Nonempty LongChordExclusionInputSurface
 
 /--
 Second isolated R2 target.
