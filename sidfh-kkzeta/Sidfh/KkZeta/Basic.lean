@@ -130,6 +130,13 @@ theorem finiteModeMass_zero_of_zero_inputs :
     finiteModeMass 0 0 ⟨0⟩ = 0 := by
   rfl
 
+theorem finiteModeMass_eq_zero_implies_base_zero
+    (m0 radius : Nat) (mode : ConcreteKKCarrier)
+    (h : finiteModeMass m0 radius mode = 0) :
+    m0 = 0 := by
+  exact Nat.eq_zero_of_le_zero
+    (h ▸ finiteModeMass_base_le m0 radius mode)
+
 def zeta_analytic_continuation_proof_target : Prop :=
   Nonempty ZetaAnalyticContinuationInputSurface
 
