@@ -73,3 +73,6 @@ jobs:
 
       - name: Verify uniform local type capacity input surface
         run: python3 tools/verify_uniform_local_type_capacity_input_surface.py
+
+      - name: Verify non-factorisation input surface
+        run: python3 tools/verify_non_factorisation_input_surface.py
