@@ -79,6 +79,17 @@ theorem concreteKKOperator_selfAdjoint :
   concreteKKAOp.H.selfAdjoint := by
   trivial
 
+def finiteModeMass (m0 radius : Nat) (mode : ConcreteKKCarrier) : Nat :=
+  (m0 + mode.mode * mode.mode) + radius
+
+theorem finiteModeMass_base_le
+    (m0 radius : Nat) (mode : ConcreteKKCarrier) :
+    m0 ≤ finiteModeMass m0 radius mode := by
+  unfold finiteModeMass
+  exact Nat.le_trans
+    (Nat.le_add_right m0 (mode.mode * mode.mode))
+    (Nat.le_add_right (m0 + mode.mode * mode.mode) radius)
+
 def zeta_analytic_continuation_proof_target : Prop :=
   Nonempty ZetaAnalyticContinuationInputSurface
 
