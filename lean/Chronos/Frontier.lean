@@ -1,3 +1,4 @@
+import Chronos.Frontier.GaussianKKReductionSurface
 import Chronos.Frontier.SecularVanishingPolynomialInputSurface
 import Chronos.Frontier.MASCONMeasurableObservableToDeficitVectorBridge
 import Chronos.Frontier.R1DomainIdentitySurface
