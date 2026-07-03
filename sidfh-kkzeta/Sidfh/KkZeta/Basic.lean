@@ -90,6 +90,13 @@ theorem finiteModeMass_base_le
     (Nat.le_add_right m0 (mode.mode * mode.mode))
     (Nat.le_add_right (m0 + mode.mode * mode.mode) radius)
 
+theorem finiteModeMass_radius_monotone
+    (m0 r₁ r₂ : Nat) (mode : ConcreteKKCarrier)
+    (h : r₁ ≤ r₂) :
+    finiteModeMass m0 r₁ mode ≤ finiteModeMass m0 r₂ mode := by
+  unfold finiteModeMass
+  exact Nat.add_le_add_left h (m0 + mode.mode * mode.mode)
+
 def zeta_analytic_continuation_proof_target : Prop :=
   Nonempty ZetaAnalyticContinuationInputSurface
 
