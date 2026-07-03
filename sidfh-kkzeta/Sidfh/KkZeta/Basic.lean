@@ -126,6 +126,10 @@ theorem finiteModeMass_ne_zero_of_base_pos
     finiteModeMass m0 radius mode ≠ 0 := by
   exact Nat.ne_of_gt (finiteModeMass_pos_of_base_pos m0 radius mode h)
 
+theorem finiteModeMass_zero_of_zero_inputs :
+    finiteModeMass 0 0 ⟨0⟩ = 0 := by
+  rfl
+
 def zeta_analytic_continuation_proof_target : Prop :=
   Nonempty ZetaAnalyticContinuationInputSurface
 
