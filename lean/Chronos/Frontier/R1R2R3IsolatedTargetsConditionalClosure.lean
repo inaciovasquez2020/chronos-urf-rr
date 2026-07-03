@@ -24,11 +24,25 @@ def LongChordExclusionProofTarget : Prop :=
   Nonempty LongChordExclusionInputSurface
 
 /--
+Input surface for the second isolated R2 target.
+
+This records the local diameter-separation filling-obstruction obligation
+without solving the repository-native geometry.
+-/
+structure DiameterSeparationFillingObstructionInputSurface where
+  Configuration : Type
+  DiameterSeparated : Configuration → Prop
+  Fillable : Configuration → Prop
+  obstruction : ∀ C, DiameterSeparated C → ¬ Fillable C
+
+/--
 Second isolated R2 target.
 
-Opaque by design: this records the proof obligation without solving it.
+Nonempty input surface only: this makes the missing mathematical object
+explicit without proving the concrete repository-native geometry.
 -/
-def DiameterSeparationFillingObstructionProofTarget : Prop := True
+def DiameterSeparationFillingObstructionProofTarget : Prop :=
+  Nonempty DiameterSeparationFillingObstructionInputSurface
 
 /--
 Third isolated R3 target.
