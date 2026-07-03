@@ -106,6 +106,14 @@ theorem finiteModeMass_mode_monotone
     (Nat.add_le_add_left (Nat.mul_le_mul h h) m0)
     radius
 
+theorem finiteModeMass_mode_radius_monotone
+    (m0 r₁ r₂ a b : Nat)
+    (ha : a ≤ b) (hr : r₁ ≤ r₂) :
+    finiteModeMass m0 r₁ ⟨a⟩ ≤ finiteModeMass m0 r₂ ⟨b⟩ := by
+  exact Nat.le_trans
+    (finiteModeMass_mode_monotone m0 r₁ a b ha)
+    (finiteModeMass_radius_monotone m0 r₁ r₂ ⟨b⟩ hr)
+
 def zeta_analytic_continuation_proof_target : Prop :=
   Nonempty ZetaAnalyticContinuationInputSurface
 
