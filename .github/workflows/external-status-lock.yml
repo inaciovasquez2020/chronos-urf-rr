@@ -48,7 +48,7 @@ jobs:
         run: python3 scripts/verify_external_status_lock.py
 
       - name: Verify SIDFH KKZeta input surface
-        run: cd sidfh-kkzeta && ./check_kkzeta.sh
+        run: cd sidfh-kkzeta && python3 tools/verify_kkzeta_input_surfaces.py
 
       - name: Verify Gaussian KK reduction surface
         run: python3 tools/verifier/verify_gaussian_kk_reduction_surface.py
