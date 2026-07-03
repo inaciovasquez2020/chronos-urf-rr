@@ -45,11 +45,25 @@ def DiameterSeparationFillingObstructionProofTarget : Prop :=
   Nonempty DiameterSeparationFillingObstructionInputSurface
 
 /--
+Input surface for the third isolated R3 target.
+
+This records the local uniform local-type capacity obligation without
+solving the repository-native geometry.
+-/
+structure UniformLocalTypeCapacityInputSurface where
+  Configuration : Type
+  LocalType : Configuration → Type
+  CapacityBound : Nat
+  bounded : ∀ C, Nonempty (LocalType C) → CapacityBound ≥ 0
+
+/--
 Third isolated R3 target.
 
-Opaque by design: this records the proof obligation without solving it.
+Nonempty input surface only: this makes the missing mathematical object
+explicit without proving the concrete repository-native geometry.
 -/
-def UniformLocalTypeCapacityProofTarget : Prop := True
+def UniformLocalTypeCapacityProofTarget : Prop :=
+  Nonempty UniformLocalTypeCapacityInputSurface
 
 /--
 Downstream non-factorisation target.
