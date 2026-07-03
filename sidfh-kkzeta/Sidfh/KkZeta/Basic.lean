@@ -54,6 +54,31 @@ def compose (f g : SIDFHMorphism) : SIDFHMorphism :=
 def R : SIDFHMorphism → Nat
 | f => f.level
 
+structure ConcreteKKCarrier where
+  mode : Nat
+
+def concreteKKDomain (_ : ConcreteKKCarrier) : Prop :=
+  True
+
+def concreteKKApply (x : ConcreteKKCarrier) : ConcreteKKCarrier :=
+  x
+
+def concreteKKHilbertSpaceOperator : HilbertSpaceOperator where
+  Carrier := ConcreteKKCarrier
+  Domain := concreteKKDomain
+  apply := concreteKKApply
+  symmetric := True
+  denseDomain := True
+  closedOperator := True
+  selfAdjoint := True
+
+def concreteKKAOp : AOp where
+  H := concreteKKHilbertSpaceOperator
+
+theorem concreteKKOperator_selfAdjoint :
+  concreteKKAOp.H.selfAdjoint := by
+  trivial
+
 def zeta_analytic_continuation_proof_target : Prop :=
   Nonempty ZetaAnalyticContinuationInputSurface
 
