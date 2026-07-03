@@ -66,11 +66,25 @@ def UniformLocalTypeCapacityProofTarget : Prop :=
   Nonempty UniformLocalTypeCapacityInputSurface
 
 /--
+Input surface for the downstream non-factorisation target.
+
+This records the downstream non-factorisation obligation without proving
+the repository-native theorem.
+-/
+structure NonFactorisationInputSurface where
+  Object : Type
+  Factorisation : Object → Prop
+  admissible_object : Object
+  non_factorisation : ¬ Factorisation admissible_object
+
+/--
 Downstream non-factorisation target.
 
-Opaque by design: this records the downstream theorem target without proving it.
+Nonempty input surface only: this makes the downstream missing theorem
+object explicit without proving the concrete repository-native theorem.
 -/
-def NonFactorisationProofTarget : Prop := True
+def NonFactorisationProofTarget : Prop :=
+  Nonempty NonFactorisationInputSurface
 
 /--
 Repository-native R1/R2/R3 instance target.
