@@ -120,6 +120,12 @@ theorem finiteModeMass_pos_of_base_pos
     0 < finiteModeMass m0 radius mode := by
   exact Nat.lt_of_lt_of_le h (finiteModeMass_base_le m0 radius mode)
 
+theorem finiteModeMass_ne_zero_of_base_pos
+    (m0 radius : Nat) (mode : ConcreteKKCarrier)
+    (h : 0 < m0) :
+    finiteModeMass m0 radius mode ≠ 0 := by
+  exact Nat.ne_of_gt (finiteModeMass_pos_of_base_pos m0 radius mode h)
+
 def zeta_analytic_continuation_proof_target : Prop :=
   Nonempty ZetaAnalyticContinuationInputSurface
 
