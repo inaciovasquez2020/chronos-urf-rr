@@ -129,6 +129,22 @@ def RepositoryNativeR1R2R3BindingClosureConditionalTarget : Prop :=
   NonFactorisationProofTarget
 
 /--
+Construct the conditional closure target from explicit input-surface
+assumptions.
+
+This remains conditional: it does not construct any of the four input
+surfaces from repository-native geometry.
+-/
+theorem repository_native_r1_r2_r3_binding_closure_conditional_target_from_inputs
+    (_hSpec : RepositoryNativeR1R2R3BindingSpec)
+    (_hR1 : LongChordExclusionProofTarget)
+    (_hR2 : DiameterSeparationFillingObstructionProofTarget)
+    (_hR3 : UniformLocalTypeCapacityProofTarget)
+    (hNF : NonFactorisationProofTarget) :
+    NonFactorisationProofTarget :=
+  hNF
+
+/--
 The exact remaining theorem-level object after this file.
 
 The repository now has isolated targets and a conditional composition
