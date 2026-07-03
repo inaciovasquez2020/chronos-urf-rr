@@ -70,3 +70,6 @@ jobs:
 
       - name: Verify diameter separation filling obstruction input surface
         run: python3 tools/verify_diameter_separation_filling_obstruction_input_surface.py
+
+      - name: Verify uniform local type capacity input surface
+        run: python3 tools/verify_uniform_local_type_capacity_input_surface.py
