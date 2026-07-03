@@ -114,6 +114,12 @@ theorem finiteModeMass_mode_radius_monotone
     (finiteModeMass_mode_monotone m0 r₁ a b ha)
     (finiteModeMass_radius_monotone m0 r₁ r₂ ⟨b⟩ hr)
 
+theorem finiteModeMass_pos_of_base_pos
+    (m0 radius : Nat) (mode : ConcreteKKCarrier)
+    (h : 0 < m0) :
+    0 < finiteModeMass m0 radius mode := by
+  exact Nat.lt_of_lt_of_le h (finiteModeMass_base_le m0 radius mode)
+
 def zeta_analytic_continuation_proof_target : Prop :=
   Nonempty ZetaAnalyticContinuationInputSurface
 
