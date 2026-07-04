@@ -145,6 +145,16 @@ def heat_kernel_seely_dewitt_proof_target : Prop :=
 def zeta_det_closed_form_proof_target : Prop :=
   Nonempty ZetaDetClosedFormInputSurface
 
+structure KKZetaOperatorSurface where
+  H : Type
+  DenseDomain : H → Prop
+  operator : H → H
+  symmetric : Prop
+  nonnegative : Prop
+
+def KKZetaOperatorSurface_proof_target : Prop :=
+  Nonempty KKZetaOperatorSurface
+
 structure InversePowerBoundedInputSurface where
   A : AOp
   inversePower : Float → Float
