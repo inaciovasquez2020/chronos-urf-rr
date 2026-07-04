@@ -10,6 +10,8 @@ namespace S1MassiveLaplacianInputSurface
 structure PeriodicField where
   val : ℝ → ℝ
   periodic : val 0 = val 0
+  periodic_value : val (2 * Real.pi) = val 0
+  periodic_deriv : deriv val (2 * Real.pi) = deriv val 0
 
 def spatialOperatorA (m : ℝ) (f : PeriodicField) (x : ℝ) : ℝ :=
   - (deriv (deriv f.val) x) + m ^ 2 * f.val x
@@ -62,6 +64,19 @@ structure PeriodicEndpointCancellation (m : ℝ) (f g : PeriodicField)
     deriv f.val (2 * Real.pi) * g.val (2 * Real.pi) - deriv f.val 0 * g.val 0 = 0
   g_boundary_cancels :
     deriv g.val (2 * Real.pi) * f.val (2 * Real.pi) - deriv g.val 0 * f.val 0 = 0
+
+def derive_periodic_endpoint_cancellation
+    (m : ℝ) (f g : PeriodicField)
+    (h_ftc : PeriodicIBPFTCHypotheses m f g) :
+    PeriodicEndpointCancellation m f g h_ftc := by
+  exact {
+    f_boundary_cancels := by
+      rw [f.periodic_deriv, g.periodic_value]
+      ring
+    g_boundary_cancels := by
+      rw [g.periodic_deriv, f.periodic_value]
+      ring
+  }
 
 def derive_periodic_ibp_boundary_cancellation
     (m : ℝ) (f g : PeriodicField)
