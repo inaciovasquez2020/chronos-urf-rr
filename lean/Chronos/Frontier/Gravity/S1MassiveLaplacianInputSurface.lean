@@ -9,7 +9,7 @@ namespace S1MassiveLaplacianInputSurface
 
 structure PeriodicField where
   val : ℝ → ℝ
-  periodic : val 0 = val 0
+  periodic : val (2 * Real.pi) = val 0
   periodic_value : val (2 * Real.pi) = val 0
   periodic_deriv : deriv val (2 * Real.pi) = deriv val 0
 
