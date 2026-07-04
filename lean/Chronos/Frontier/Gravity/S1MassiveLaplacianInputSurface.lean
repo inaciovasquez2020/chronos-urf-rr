@@ -38,6 +38,17 @@ def mathlib_C1_interval_ibp_obligation : Prop :=
   Nonempty MathlibC1IntervalIBPObligation
 
 structure PeriodicIBPFTCHypotheses (m : ℝ) (f g : PeriodicField) where
+  ftc_f_boundary_identity :
+    (∫ x in (0)..(2 * Real.pi), deriv (deriv f.val) x * g.val x) +
+      (∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x) =
+    deriv f.val (2 * Real.pi) * g.val (2 * Real.pi) - deriv f.val 0 * g.val 0
+  ftc_g_boundary_identity :
+    (∫ x in (0)..(2 * Real.pi), deriv (deriv g.val) x * f.val x) +
+      (∫ x in (0)..(2 * Real.pi), deriv g.val x * deriv f.val x) =
+    deriv g.val (2 * Real.pi) * f.val (2 * Real.pi) - deriv g.val 0 * f.val 0
+
+structure PeriodicIBPBoundaryCancellation (m : ℝ) (f g : PeriodicField)
+    (h_ftc : PeriodicIBPFTCHypotheses m f g) where
   ftc_f_to_ibp_f :
     ∫ x in (0)..(2 * Real.pi), -deriv (deriv f.val) x * g.val x =
     ∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x
@@ -47,11 +58,12 @@ structure PeriodicIBPFTCHypotheses (m : ℝ) (f g : PeriodicField) where
 
 def derive_periodic_ibp_from_ftc
     (m : ℝ) (f g : PeriodicField)
-    (h_ftc : PeriodicIBPFTCHypotheses m f g) :
+    (h_ftc : PeriodicIBPFTCHypotheses m f g)
+    (h_cancel : PeriodicIBPBoundaryCancellation m f g h_ftc) :
     PeriodicBoundaryIntegrationByParts m f g := by
   exact {
-    ibp_identity_f := h_ftc.ftc_f_to_ibp_f
-    ibp_identity_g := h_ftc.ftc_g_to_ibp_g
+    ibp_identity_f := h_cancel.ftc_f_to_ibp_f
+    ibp_identity_g := h_cancel.ftc_g_to_ibp_g
   }
 
 def BOUNDARY_integration_by_parts_derived_from_mathlib : Prop :=
