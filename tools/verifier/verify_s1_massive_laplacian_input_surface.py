@@ -16,6 +16,7 @@ required = [
     "S1MassiveLaplacianInputSurface",
     "mathlib_C1_interval_ibp_obligation",
     "def PeriodicField.periodic_value",
+    "periodic_deriv : deriv val (2 * Real.pi) = deriv val 0",
     "PeriodicIBPFTCHypotheses",
     "derive_periodic_ibp_from_ftc",
     "ftc_f_boundary_identity",
