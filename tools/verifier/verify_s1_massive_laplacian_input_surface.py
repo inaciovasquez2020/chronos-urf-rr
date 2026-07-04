@@ -15,6 +15,8 @@ for token in forbidden:
 required = [
     "S1MassiveLaplacianInputSurface",
     "mathlib_C1_interval_ibp_obligation",
+    "MathlibFTCIBPLemmaSurface",
+    "mathlib_ftc_ibp_lemma_surface",
     "def PeriodicField.periodic_value",
     "periodic_deriv : deriv val (2 * Real.pi) = deriv val 0",
     "PeriodicIBPFTCHypotheses",
