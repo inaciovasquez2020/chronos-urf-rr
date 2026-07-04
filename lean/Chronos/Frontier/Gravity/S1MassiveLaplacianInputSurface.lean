@@ -42,6 +42,14 @@ structure MathlibC1IntervalIBPObligation where
 def mathlib_C1_interval_ibp_obligation : Prop :=
   Nonempty MathlibC1IntervalIBPObligation
 
+structure MathlibFTCIBPLemmaSurface where
+  lemma_name : String
+  lemma_statement_available : Prop
+
+def mathlib_ftc_ibp_lemma_surface : Prop :=
+  Nonempty MathlibFTCIBPLemmaSurface
+
+
 structure PeriodicIBPFTCHypotheses (m : ℝ) (f g : PeriodicField) where
   ftc_f_boundary_identity :
     (∫ x in (0)..(2 * Real.pi), deriv (deriv f.val) x * g.val x) +
