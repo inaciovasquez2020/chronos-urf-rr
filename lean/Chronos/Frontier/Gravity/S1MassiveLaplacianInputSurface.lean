@@ -50,6 +50,18 @@ structure MathlibFTCIBPLemmaSurface where
 def mathlib_ftc_ibp_lemma_surface : Prop :=
   Nonempty MathlibFTCIBPLemmaSurface
 
+structure MathlibFTCIBPSideConditions (f g : PeriodicField) where
+  f_continuous_on_interval : Prop
+  g_continuous_on_interval : Prop
+  deriv_f_hasDerivAt_on_interior : Prop
+  deriv_g_hasDerivAt_on_interior : Prop
+  deriv_f_intervalIntegrable : Prop
+  deriv_g_intervalIntegrable : Prop
+
+def mathlib_ftc_ibp_side_conditions_surface : Prop :=
+  ∀ f g : PeriodicField, Nonempty (MathlibFTCIBPSideConditions f g)
+
+
 
 structure PeriodicIBPFTCHypotheses (m : ℝ) (f g : PeriodicField) where
   ftc_f_boundary_identity :
