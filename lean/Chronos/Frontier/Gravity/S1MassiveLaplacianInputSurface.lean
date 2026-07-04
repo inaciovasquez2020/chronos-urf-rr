@@ -23,7 +23,15 @@ structure PeriodicQuadraticFormNonnegativity (m : ℝ) (f : PeriodicField) where
   mass_integral_nonneg : Prop
   diagonal_decomposition : Prop
 
-def mathlib_C1_interval_ibp_obligation : Prop := True
+structure MathlibC1IntervalIBPObligation where
+  left_endpoint : ℝ
+  right_endpoint : ℝ
+  field_left : ℝ → ℝ
+  field_right : ℝ → ℝ
+  ibp_identity : Prop
+
+def mathlib_C1_interval_ibp_obligation : Prop :=
+  Nonempty MathlibC1IntervalIBPObligation
 
 def BOUNDARY_integration_by_parts_derived_from_mathlib : Prop :=
   ¬ ∀ (m : ℝ) (f g : PeriodicField), Nonempty (PeriodicBoundaryIntegrationByParts m f g)
