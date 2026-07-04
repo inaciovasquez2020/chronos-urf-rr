@@ -43,7 +43,8 @@ def mathlib_C1_interval_ibp_obligation : Prop :=
   Nonempty MathlibC1IntervalIBPObligation
 
 structure MathlibFTCIBPLemmaSurface where
-  lemma_name : String
+  exact_lemma_token :
+    lemma_name = "intervalIntegral.integral_deriv_mul_eq_sub_of_hasDerivAt"
   lemma_statement_available : Prop
 
 def mathlib_ftc_ibp_lemma_surface : Prop :=
