@@ -185,6 +185,27 @@ theorem bridge_combined_to_split_f
     h.deriv_deriv_f_mul_g_intervalIntegrable
     h.deriv_f_mul_deriv_g_intervalIntegrable
 
+structure PeriodicFTCSplitIntegralBridgeGConditions (f g : PeriodicField) where
+  deriv_f_mul_deriv_g_intervalIntegrable :
+    IntervalIntegrable
+      (fun x => deriv f.val x * deriv g.val x)
+      MeasureTheory.volume 0 (2 * Real.pi)
+  f_mul_deriv_deriv_g_intervalIntegrable :
+    IntervalIntegrable
+      (fun x => f.val x * deriv (deriv g.val) x)
+      MeasureTheory.volume 0 (2 * Real.pi)
+
+theorem bridge_combined_to_split_g
+    (f g : PeriodicField)
+    (h : PeriodicFTCSplitIntegralBridgeGConditions f g) :
+    ∫ x in (0)..(2 * Real.pi),
+        deriv f.val x * deriv g.val x + f.val x * deriv (deriv g.val) x =
+      (∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x) +
+        (∫ x in (0)..(2 * Real.pi), f.val x * deriv (deriv g.val) x) := by
+  exact intervalIntegral.integral_add
+    h.deriv_f_mul_deriv_g_intervalIntegrable
+    h.f_mul_deriv_deriv_g_intervalIntegrable
+
 structure PeriodicIBPFTCHypotheses (m : ℝ) (f g : PeriodicField) where
   ftc_f_boundary_identity :
     (∫ x in (0)..(2 * Real.pi), deriv (deriv f.val) x * g.val x) +
