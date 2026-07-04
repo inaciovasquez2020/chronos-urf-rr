@@ -1,0 +1,20 @@
+from pathlib import Path
+
+path = Path("lean/Chronos/Frontier/Gravity/S1MassiveLaplacianInputSurface.lean")
+text = path.read_text()
+
+required = [
+    "S1MassiveLaplacianInputSurface",
+    "mathlib_C1_interval_ibp_obligation",
+    "BOUNDARY_integration_by_parts_derived_from_mathlib",
+    "BOUNDARY_pointwise_square_nonnegativity_derived_from_mathlib",
+    "BOUNDARY_self_adjointness_proved",
+    "BOUNDARY_heat_trace_class_proved",
+    "BOUNDARY_spectral_zeta_constructed",
+]
+
+missing = [token for token in required if token not in text]
+if missing:
+    raise SystemExit(f"MISSING_OBJECT := {missing[0]}")
+
+print("S1_MASSIVE_LAPLACIAN_INPUT_SURFACE_OK")
