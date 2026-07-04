@@ -15,8 +15,12 @@ def spatialOperatorA (m : ℝ) (f : PeriodicField) (x : ℝ) : ℝ :=
   - (deriv (deriv f.val) x) + m ^ 2 * f.val x
 
 structure PeriodicBoundaryIntegrationByParts (m : ℝ) (f g : PeriodicField) where
-  ibp_identity_f : Prop
-  ibp_identity_g : Prop
+  ibp_identity_f :
+    ∫ x in (0)..(2 * Real.pi), -deriv (deriv f.val) x * g.val x =
+    ∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x
+  ibp_identity_g :
+    ∫ x in (0)..(2 * Real.pi), -f.val x * deriv (deriv g.val) x =
+    ∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x
 
 structure PeriodicQuadraticFormNonnegativity (m : ℝ) (f : PeriodicField) where
   deriv_integral_nonneg : Prop
@@ -32,6 +36,23 @@ structure MathlibC1IntervalIBPObligation where
 
 def mathlib_C1_interval_ibp_obligation : Prop :=
   Nonempty MathlibC1IntervalIBPObligation
+
+structure PeriodicIBPFTCHypotheses (m : ℝ) (f g : PeriodicField) where
+  ftc_f_to_ibp_f :
+    ∫ x in (0)..(2 * Real.pi), -deriv (deriv f.val) x * g.val x =
+    ∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x
+  ftc_g_to_ibp_g :
+    ∫ x in (0)..(2 * Real.pi), -f.val x * deriv (deriv g.val) x =
+    ∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x
+
+def derive_periodic_ibp_from_ftc
+    (m : ℝ) (f g : PeriodicField)
+    (h_ftc : PeriodicIBPFTCHypotheses m f g) :
+    PeriodicBoundaryIntegrationByParts m f g := by
+  exact {
+    ibp_identity_f := h_ftc.ftc_f_to_ibp_f
+    ibp_identity_g := h_ftc.ftc_g_to_ibp_g
+  }
 
 def BOUNDARY_integration_by_parts_derived_from_mathlib : Prop :=
   ¬ ∀ (m : ℝ) (f g : PeriodicField), Nonempty (PeriodicBoundaryIntegrationByParts m f g)

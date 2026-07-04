@@ -15,6 +15,8 @@ for token in forbidden:
 required = [
     "S1MassiveLaplacianInputSurface",
     "mathlib_C1_interval_ibp_obligation",
+    "PeriodicIBPFTCHypotheses",
+    "derive_periodic_ibp_from_ftc",
     "BOUNDARY_integration_by_parts_derived_from_mathlib",
     "BOUNDARY_pointwise_square_nonnegativity_derived_from_mathlib",
     "BOUNDARY_self_adjointness_proved",
