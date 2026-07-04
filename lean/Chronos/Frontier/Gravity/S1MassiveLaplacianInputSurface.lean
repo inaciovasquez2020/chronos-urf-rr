@@ -43,8 +43,8 @@ structure PeriodicIBPFTCHypotheses (m : ℝ) (f g : PeriodicField) where
       (∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x) =
     deriv f.val (2 * Real.pi) * g.val (2 * Real.pi) - deriv f.val 0 * g.val 0
   ftc_g_boundary_identity :
-    (∫ x in (0)..(2 * Real.pi), deriv (deriv g.val) x * f.val x) +
-      (∫ x in (0)..(2 * Real.pi), deriv g.val x * deriv f.val x) =
+    (∫ x in (0)..(2 * Real.pi), f.val x * deriv (deriv g.val) x) +
+      (∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x) =
     deriv g.val (2 * Real.pi) * f.val (2 * Real.pi) - deriv g.val 0 * f.val 0
 
 structure PeriodicIBPBoundaryCancellation (m : ℝ) (f g : PeriodicField)
@@ -55,6 +55,43 @@ structure PeriodicIBPBoundaryCancellation (m : ℝ) (f g : PeriodicField)
   ftc_g_to_ibp_g :
     ∫ x in (0)..(2 * Real.pi), -f.val x * deriv (deriv g.val) x =
     ∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x
+
+structure PeriodicEndpointCancellation (m : ℝ) (f g : PeriodicField)
+    (h_ftc : PeriodicIBPFTCHypotheses m f g) where
+  f_boundary_cancels :
+    deriv f.val (2 * Real.pi) * g.val (2 * Real.pi) - deriv f.val 0 * g.val 0 = 0
+  g_boundary_cancels :
+    deriv g.val (2 * Real.pi) * f.val (2 * Real.pi) - deriv g.val 0 * f.val 0 = 0
+
+def derive_periodic_ibp_boundary_cancellation
+    (m : ℝ) (f g : PeriodicField)
+    (h_ftc : PeriodicIBPFTCHypotheses m f g)
+    (h_endpoint : PeriodicEndpointCancellation m f g h_ftc) :
+    PeriodicIBPBoundaryCancellation m f g h_ftc := by
+  exact {
+    ftc_f_to_ibp_f := by
+      have hzero :
+          (∫ x in (0)..(2 * Real.pi), deriv (deriv f.val) x * g.val x) +
+            (∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x) = 0 := by
+        rw [h_ftc.ftc_f_boundary_identity, h_endpoint.f_boundary_cancels]
+      have hneg :
+          ∫ x in (0)..(2 * Real.pi), -deriv (deriv f.val) x * g.val x =
+            -(∫ x in (0)..(2 * Real.pi), deriv (deriv f.val) x * g.val x) := by
+        simp [neg_mul]
+      rw [hneg]
+      linarith
+    ftc_g_to_ibp_g := by
+      have hzero :
+          (∫ x in (0)..(2 * Real.pi), f.val x * deriv (deriv g.val) x) +
+            (∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x) = 0 := by
+        rw [h_ftc.ftc_g_boundary_identity, h_endpoint.g_boundary_cancels]
+      have hneg :
+          ∫ x in (0)..(2 * Real.pi), -f.val x * deriv (deriv g.val) x =
+            -(∫ x in (0)..(2 * Real.pi), f.val x * deriv (deriv g.val) x) := by
+        simp [neg_mul]
+      rw [hneg]
+      linarith
+  }
 
 def derive_periodic_ibp_from_ftc
     (m : ℝ) (f g : PeriodicField)
