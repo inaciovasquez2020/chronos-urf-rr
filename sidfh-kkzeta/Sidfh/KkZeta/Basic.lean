@@ -152,6 +152,21 @@ structure KKZetaOperatorSurface where
   symmetric : Prop
   nonnegative : Prop
 
+structure NonToyKKZetaOperatorCandidateSurface where
+  H : Type
+  DenseDomain : H → Prop
+  A : H → H
+  symmetric : Prop
+  nonnegative : Prop
+  infiniteDimensionalIntended : Prop
+  analyticModelSpecified : Prop
+
+def NonToyKKZetaOperatorCandidateSurface_proof_target : Prop :=
+  Nonempty NonToyKKZetaOperatorCandidateSurface
+
+def BOUNDARY_nonToyOperatorConstructed : Prop :=
+  ¬ NonToyKKZetaOperatorCandidateSurface_proof_target
+
 def KKZetaOperatorSurface_proof_target : Prop :=
   Nonempty KKZetaOperatorSurface
 
