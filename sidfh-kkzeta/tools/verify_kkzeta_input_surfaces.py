@@ -27,6 +27,16 @@ for required in [
     "spectralMeasureExists : Prop",
     "def zeta_det_closed_form_proof_target : Prop :=",
     "Nonempty ZetaDetClosedFormInputSurface",
+    "structure InversePowerBoundedInputSurface where",
+    "structure TraceClassInversePowerInputSurface where",
+    "structure ImportedAnalyticContinuationInput where",
+    "structure ConditionalZetaDeterminantInputSurface where",
+    "def A_inverse_power_bounded_proof_target : Prop :=",
+    "def trace_class_for_Re_gt_1_proof_target : Prop :=",
+    "def imported_analytic_input_proof_target : Prop :=",
+    "def conditional_zeta_determinant_proof_target : Prop :=",
+    "def BOUNDARY_meromorphic_continuation : Prop :=",
+    "def BOUNDARY_conditional_determinant_properties : Prop :=",
 ]:
     if required not in text:
         print(f"KKZETA_INPUT_SURFACE_REJECTED missing token: {required}")
