@@ -136,7 +136,6 @@ theorem finiteModeMass_eq_zero_implies_base_zero
     m0 = 0 := by
   exact Nat.eq_zero_of_le_zero
     (h ▸ finiteModeMass_base_le m0 radius mode)
-
 def zeta_analytic_continuation_proof_target : Prop :=
   Nonempty ZetaAnalyticContinuationInputSurface
 
@@ -145,5 +144,47 @@ def heat_kernel_seely_dewitt_proof_target : Prop :=
 
 def zeta_det_closed_form_proof_target : Prop :=
   Nonempty ZetaDetClosedFormInputSurface
+
+structure InversePowerBoundedInputSurface where
+  A : AOp
+  inversePower : Float → Float
+  reNonnegative : Prop
+  bounded : Prop
+
+structure TraceClassInversePowerInputSurface where
+  A : AOp
+  inversePower : Float → Float
+  reGreaterThanOne : Prop
+  traceClass : Prop
+
+structure ImportedAnalyticContinuationInput where
+  A : AOp
+  zeta : Float → Float
+  meromorphicContinuation : Prop
+  regularAtZero : Prop
+
+structure ConditionalZetaDeterminantInputSurface where
+  A : AOp
+  continuationInput : ImportedAnalyticContinuationInput
+  determinant : Float
+  determinantDefinedConditionally : Prop
+
+def A_inverse_power_bounded_proof_target : Prop :=
+  Nonempty InversePowerBoundedInputSurface
+
+def trace_class_for_Re_gt_1_proof_target : Prop :=
+  Nonempty TraceClassInversePowerInputSurface
+
+def imported_analytic_input_proof_target : Prop :=
+  Nonempty ImportedAnalyticContinuationInput
+
+def conditional_zeta_determinant_proof_target : Prop :=
+  Nonempty ConditionalZetaDeterminantInputSurface
+
+def BOUNDARY_meromorphic_continuation : Prop :=
+  ¬ imported_analytic_input_proof_target
+
+def BOUNDARY_conditional_determinant_properties : Prop :=
+  ¬ conditional_zeta_determinant_proof_target
 
 end KKZeta
