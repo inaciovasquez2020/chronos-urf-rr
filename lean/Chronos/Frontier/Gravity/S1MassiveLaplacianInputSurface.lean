@@ -10,8 +10,11 @@ namespace S1MassiveLaplacianInputSurface
 structure PeriodicField where
   val : ℝ → ℝ
   periodic : val (2 * Real.pi) = val 0
-  periodic_value : val (2 * Real.pi) = val 0
   periodic_deriv : deriv val (2 * Real.pi) = deriv val 0
+
+def PeriodicField.periodic_value (f : PeriodicField) :
+    f.val (2 * Real.pi) = f.val 0 :=
+  f.periodic
 
 def spatialOperatorA (m : ℝ) (f : PeriodicField) (x : ℝ) : ℝ :=
   - (deriv (deriv f.val) x) + m ^ 2 * f.val x
