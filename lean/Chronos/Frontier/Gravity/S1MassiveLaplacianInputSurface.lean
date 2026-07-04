@@ -61,6 +61,35 @@ structure MathlibFTCIBPSideConditions (f g : PeriodicField) where
 def mathlib_ftc_ibp_side_conditions_surface : Prop :=
   ∀ f g : PeriodicField, Nonempty (MathlibFTCIBPSideConditions f g)
 
+theorem mathlib_ftc_ibp_identity_from_surface
+    (u v u' v' : ℝ → ℝ)
+    (a b : ℝ)
+    (hu : ContinuousOn u (Set.uIcc a b))
+    (hv : ContinuousOn v (Set.uIcc a b))
+    (huu' : ∀ x ∈ Set.Ioo (min a b) (max a b), HasDerivAt u (u' x) x)
+    (hvv' : ∀ x ∈ Set.Ioo (min a b) (max a b), HasDerivAt v (v' x) x)
+    (hu' : IntervalIntegrable u' MeasureTheory.volume a b)
+    (hv' : IntervalIntegrable v' MeasureTheory.volume a b) :
+    ∫ x in a..b, u' x * v x + u x * v' x = u b * v b - u a * v a := by
+  exact intervalIntegral.integral_deriv_mul_eq_sub_of_hasDerivAt
+    hu hv huu' hvv' hu' hv'
+
+def PR1000_MILESTONE_mathlib_ftc_ibp_identity_executable : Prop :=
+  ∀ (u v u' v' : ℝ → ℝ) (a b : ℝ),
+    ContinuousOn u (Set.uIcc a b) →
+    ContinuousOn v (Set.uIcc a b) →
+    (∀ x ∈ Set.Ioo (min a b) (max a b), HasDerivAt u (u' x) x) →
+    (∀ x ∈ Set.Ioo (min a b) (max a b), HasDerivAt v (v' x) x) →
+    IntervalIntegrable u' MeasureTheory.volume a b →
+    IntervalIntegrable v' MeasureTheory.volume a b →
+    ∫ x in a..b, u' x * v x + u x * v' x = u b * v b - u a * v a
+
+theorem pr1000_milestone_mathlib_ftc_ibp_identity_executable :
+    PR1000_MILESTONE_mathlib_ftc_ibp_identity_executable := by
+  intro u v u' v' a b hu hv huu' hvv' hu' hv'
+  exact mathlib_ftc_ibp_identity_from_surface u v u' v' a b hu hv huu' hvv' hu' hv'
+
+
 
 
 structure PeriodicIBPFTCHypotheses (m : ℝ) (f g : PeriodicField) where
