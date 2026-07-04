@@ -319,6 +319,26 @@ def derive_periodic_ibp_from_ftc
     ibp_identity_g := h_cancel.ftc_g_to_ibp_g
   }
 
+theorem derive_periodic_ibp_from_mathlib
+    (m : ℝ) (f g : PeriodicField)
+    (h : PeriodicIBPFTCHypothesesFromMathlibConditions f g) :
+    PeriodicBoundaryIntegrationByParts m f g := by
+  let h_ftc := derive_periodic_ibp_ftc_hypotheses_from_mathlib m f g h
+  let h_endpoint := derive_periodic_endpoint_cancellation m f g h_ftc
+  let h_cancel := derive_periodic_ibp_boundary_cancellation m f g h_ftc h_endpoint
+  exact derive_periodic_ibp_from_ftc m f g h_ftc h_cancel
+
+def S1_MATHLIB_TO_PERIODIC_IBP_CLOSURE : Prop :=
+  ∀ (m : ℝ) (f g : PeriodicField),
+    PeriodicIBPFTCHypothesesFromMathlibConditions f g →
+    PeriodicBoundaryIntegrationByParts m f g
+
+theorem s1_mathlib_to_periodic_ibp_closure :
+    S1_MATHLIB_TO_PERIODIC_IBP_CLOSURE := by
+  intro m f g h
+  exact derive_periodic_ibp_from_mathlib m f g h
+
+
 def BOUNDARY_integration_by_parts_derived_from_mathlib : Prop :=
   ¬ ∀ (m : ℝ) (f g : PeriodicField), Nonempty (PeriodicBoundaryIntegrationByParts m f g)
 
