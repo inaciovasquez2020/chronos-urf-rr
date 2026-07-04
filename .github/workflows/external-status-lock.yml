@@ -79,3 +79,6 @@ jobs:
 
       - name: Verify non-factorisation input surface
         run: python3 tools/verify_non_factorisation_input_surface.py
+
+      - name: Verify S1 massive Laplacian input surface
+        run: python3 tools/verifier/verify_s1_massive_laplacian_input_surface.py
