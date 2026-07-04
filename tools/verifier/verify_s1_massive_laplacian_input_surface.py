@@ -3,6 +3,15 @@ from pathlib import Path
 path = Path("lean/Chronos/Frontier/Gravity/S1MassiveLaplacianInputSurface.lean")
 text = path.read_text()
 
+forbidden = [
+    "def mathlib_C1_interval_ibp_obligation : Prop := True",
+]
+
+for token in forbidden:
+    if token in text:
+        raise SystemExit(f"FORBIDDEN_OBJECT := {token}")
+
+
 required = [
     "S1MassiveLaplacianInputSurface",
     "mathlib_C1_interval_ibp_obligation",
