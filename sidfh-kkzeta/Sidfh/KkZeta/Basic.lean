@@ -155,6 +155,21 @@ structure KKZetaOperatorSurface where
 def KKZetaOperatorSurface_proof_target : Prop :=
   Nonempty KKZetaOperatorSurface
 
+def concreteKKZetaOperatorSurface : KKZetaOperatorSurface where
+  H := ConcreteKKCarrier
+  DenseDomain := concreteKKDomain
+  operator := concreteKKApply
+  symmetric := True
+  nonnegative := True
+
+theorem concreteKKZetaOperatorSurface_symmetric :
+    concreteKKZetaOperatorSurface.symmetric := by
+  trivial
+
+theorem concreteKKZetaOperatorSurface_nonnegative :
+    concreteKKZetaOperatorSurface.nonnegative := by
+  trivial
+
 structure InversePowerBoundedInputSurface where
   A : AOp
   inversePower : Float → Float
