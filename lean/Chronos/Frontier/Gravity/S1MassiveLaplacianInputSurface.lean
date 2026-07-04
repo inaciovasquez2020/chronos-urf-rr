@@ -216,6 +216,40 @@ structure PeriodicIBPFTCHypotheses (m : ℝ) (f g : PeriodicField) where
       (∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x) =
     deriv g.val (2 * Real.pi) * f.val (2 * Real.pi) - deriv g.val 0 * f.val 0
 
+structure PeriodicIBPFTCHypothesesFromMathlibConditions (f g : PeriodicField) where
+  f_identity_side_conditions : PeriodicFTCIdentityFMathlibSideConditions f g
+  g_identity_side_conditions : PeriodicFTCIdentityGMathlibSideConditions f g
+  f_split_bridge_conditions : PeriodicFTCSplitIntegralBridgeFConditions f g
+  g_split_bridge_conditions : PeriodicFTCSplitIntegralBridgeGConditions f g
+
+theorem derive_periodic_ibp_ftc_hypotheses_from_mathlib
+    (m : ℝ) (f g : PeriodicField)
+    (h : PeriodicIBPFTCHypothesesFromMathlibConditions f g) :
+    PeriodicIBPFTCHypotheses m f g := by
+  exact {
+    ftc_f_boundary_identity := by
+      have h_combined := derive_ftc_f_boundary_identity_from_mathlib f g h.f_identity_side_conditions
+      have h_split := bridge_combined_to_split_f f g h.f_split_bridge_conditions
+      rw [h_split] at h_combined
+      exact h_combined
+    ftc_g_boundary_identity := by
+      have h_combined := derive_ftc_g_boundary_identity_from_mathlib f g h.g_identity_side_conditions
+      have h_split := bridge_combined_to_split_g f g h.g_split_bridge_conditions
+      rw [h_split] at h_combined
+      calc
+        (∫ x in (0)..(2 * Real.pi), f.val x * deriv (deriv g.val) x) +
+            (∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x)
+            =
+          (∫ x in (0)..(2 * Real.pi), deriv f.val x * deriv g.val x) +
+            (∫ x in (0)..(2 * Real.pi), f.val x * deriv (deriv g.val) x) := by
+              ring
+        _ = f.val (2 * Real.pi) * deriv g.val (2 * Real.pi) -
+              f.val 0 * deriv g.val 0 := h_combined
+        _ = deriv g.val (2 * Real.pi) * f.val (2 * Real.pi) -
+              deriv g.val 0 * f.val 0 := by
+              ring
+  }
+
 structure PeriodicIBPBoundaryCancellation (m : ℝ) (f g : PeriodicField)
     (h_ftc : PeriodicIBPFTCHypotheses m f g) where
   ftc_f_to_ibp_f :
