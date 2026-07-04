@@ -92,6 +92,78 @@ theorem pr1000_milestone_mathlib_ftc_ibp_identity_executable :
 
 
 
+structure PeriodicFTCIdentityFMathlibSideConditions (f g : PeriodicField) where
+  deriv_f_continuous_on_interval :
+    ContinuousOn (deriv f.val) (Set.uIcc 0 (2 * Real.pi))
+  g_continuous_on_interval :
+    ContinuousOn g.val (Set.uIcc 0 (2 * Real.pi))
+  deriv_f_hasDerivAt_on_interior :
+    ∀ x ∈ Set.Ioo (min 0 (2 * Real.pi)) (max 0 (2 * Real.pi)),
+      HasDerivAt (deriv f.val) (deriv (deriv f.val) x) x
+  g_hasDerivAt_on_interior :
+    ∀ x ∈ Set.Ioo (min 0 (2 * Real.pi)) (max 0 (2 * Real.pi)),
+      HasDerivAt g.val (deriv g.val x) x
+  deriv_deriv_f_intervalIntegrable :
+    IntervalIntegrable (fun x => deriv (deriv f.val) x) MeasureTheory.volume 0 (2 * Real.pi)
+  deriv_g_intervalIntegrable :
+    IntervalIntegrable (fun x => deriv g.val x) MeasureTheory.volume 0 (2 * Real.pi)
+
+theorem derive_ftc_f_boundary_identity_from_mathlib
+    (f g : PeriodicField)
+    (h : PeriodicFTCIdentityFMathlibSideConditions f g) :
+    ∫ x in (0)..(2 * Real.pi),
+        deriv (deriv f.val) x * g.val x + deriv f.val x * deriv g.val x =
+    deriv f.val (2 * Real.pi) * g.val (2 * Real.pi) - deriv f.val 0 * g.val 0 := by
+  exact mathlib_ftc_ibp_identity_from_surface
+    (deriv f.val)
+    g.val
+    (fun x => deriv (deriv f.val) x)
+    (fun x => deriv g.val x)
+    0
+    (2 * Real.pi)
+    h.deriv_f_continuous_on_interval
+    h.g_continuous_on_interval
+    h.deriv_f_hasDerivAt_on_interior
+    h.g_hasDerivAt_on_interior
+    h.deriv_deriv_f_intervalIntegrable
+    h.deriv_g_intervalIntegrable
+
+structure PeriodicFTCIdentityGMathlibSideConditions (f g : PeriodicField) where
+  f_continuous_on_interval :
+    ContinuousOn f.val (Set.uIcc 0 (2 * Real.pi))
+  deriv_g_continuous_on_interval :
+    ContinuousOn (deriv g.val) (Set.uIcc 0 (2 * Real.pi))
+  f_hasDerivAt_on_interior :
+    ∀ x ∈ Set.Ioo (min 0 (2 * Real.pi)) (max 0 (2 * Real.pi)),
+      HasDerivAt f.val (deriv f.val x) x
+  deriv_g_hasDerivAt_on_interior :
+    ∀ x ∈ Set.Ioo (min 0 (2 * Real.pi)) (max 0 (2 * Real.pi)),
+      HasDerivAt (deriv g.val) (deriv (deriv g.val) x) x
+  deriv_f_intervalIntegrable :
+    IntervalIntegrable (fun x => deriv f.val x) MeasureTheory.volume 0 (2 * Real.pi)
+  deriv_deriv_g_intervalIntegrable :
+    IntervalIntegrable (fun x => deriv (deriv g.val) x) MeasureTheory.volume 0 (2 * Real.pi)
+
+theorem derive_ftc_g_boundary_identity_from_mathlib
+    (f g : PeriodicField)
+    (h : PeriodicFTCIdentityGMathlibSideConditions f g) :
+    ∫ x in (0)..(2 * Real.pi),
+        deriv f.val x * deriv g.val x + f.val x * deriv (deriv g.val) x =
+    f.val (2 * Real.pi) * deriv g.val (2 * Real.pi) - f.val 0 * deriv g.val 0 := by
+  exact mathlib_ftc_ibp_identity_from_surface
+    f.val
+    (deriv g.val)
+    (fun x => deriv f.val x)
+    (fun x => deriv (deriv g.val) x)
+    0
+    (2 * Real.pi)
+    h.f_continuous_on_interval
+    h.deriv_g_continuous_on_interval
+    h.f_hasDerivAt_on_interior
+    h.deriv_g_hasDerivAt_on_interior
+    h.deriv_f_intervalIntegrable
+    h.deriv_deriv_g_intervalIntegrable
+
 structure PeriodicIBPFTCHypotheses (m : ℝ) (f g : PeriodicField) where
   ftc_f_boundary_identity :
     (∫ x in (0)..(2 * Real.pi), deriv (deriv f.val) x * g.val x) +
