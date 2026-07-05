@@ -40,6 +40,26 @@ theorem concrete_native_r3_correct :
   simp [concreteNativeR3SemanticData, concreteNativeR3Dim]
 
 /--
+A bounded repository-native isolated R3 semantic surface.
+
+This packages the exact local R3 semantic data and theorem already proved for
+the concrete native one-point quotient-data model.  It does not promote R3 to
+the unrestricted R1/R2/R3 geometric closure target.
+-/
+structure RepositoryNativeR3IsolatedSemanticSurface where
+  data : R3SemanticData
+  theoremClosed : R3UniformLocalTypeCapacityTheorem data
+
+def repositoryNativeR3IsolatedSemanticSurface :
+    RepositoryNativeR3IsolatedSemanticSurface where
+  data := concreteNativeR3SemanticData
+  theoremClosed := concrete_native_r3_correct
+
+theorem repository_native_R3_isolated_targets_input_surface :
+    Nonempty RepositoryNativeR3IsolatedSemanticSurface :=
+  ⟨repositoryNativeR3IsolatedSemanticSurface⟩
+
+/--
 A binding spec is connected to the concrete native R3 construction when its R3
 semantic data is exactly the concrete native R3 semantic data.
 -/
