@@ -85,6 +85,8 @@ jobs:
 
       - name: Verify concrete input surfaces receipt
         run: python3 tools/verifier/verify_concrete_input_surfaces_receipt.py
+      - name: Verify repository-native long-chord exclusion input surface
+        run: python3 tools/verifier/verify_repository_native_long_chord_exclusion_input_surface.py
 
       - name: Verify S1 massive Laplacian input surface
         run: python3 tools/verifier/verify_s1_massive_laplacian_input_surface.py
