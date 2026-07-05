@@ -171,6 +171,30 @@ theorem repository_native_UniformLocalTypeCapacityInputSurface_instance :
   ⟨repositoryNativeUniformLocalTypeCapacityInputSurface⟩
 
 /--
+A bounded repository-native composite surface for the isolated R1 targets.
+
+This object only packages the three already merged repo-native input surfaces:
+long-chord exclusion, diameter-separation filling obstruction, and uniform
+local-type capacity.  It does not promote the package to unrestricted R1/R2/R3
+geometric closure.
+-/
+structure RepositoryNativeR1IsolatedCompositeInputSurface where
+  longChordExclusion : LongChordExclusionInputSurface
+  diameterSeparationObstruction : DiameterSeparationFillingObstructionInputSurface
+  uniformLocalTypeCapacity : UniformLocalTypeCapacityInputSurface
+
+def repositoryNativeR1IsolatedCompositeInputSurface :
+    RepositoryNativeR1IsolatedCompositeInputSurface where
+  longChordExclusion := repositoryNativeLongChordExclusionInputSurface
+  diameterSeparationObstruction :=
+    repositoryNativeDiameterSeparationFillingObstructionInputSurface
+  uniformLocalTypeCapacity := repositoryNativeUniformLocalTypeCapacityInputSurface
+
+theorem repository_native_R1_isolated_targets_composite_surface :
+    Nonempty RepositoryNativeR1IsolatedCompositeInputSurface :=
+  ⟨repositoryNativeR1IsolatedCompositeInputSurface⟩
+
+/--
 Third isolated R3 target.
 
 Nonempty input surface only: this makes the missing mathematical object
