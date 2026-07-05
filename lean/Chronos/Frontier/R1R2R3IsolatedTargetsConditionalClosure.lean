@@ -74,6 +74,45 @@ structure DiameterSeparationFillingObstructionInputSurface where
   obstruction : ∀ C, DiameterSeparated C → ¬ Fillable C
 
 /--
+A minimal repository-native finite-configuration model for the isolated R1
+diameter-separation filling obstruction surface.
+
+A configuration carries an endpoint separation and an admissible diameter.
+Diameter separation means the separation strictly exceeds the diameter.
+Fillability means the separation is bounded by the diameter.  The obstruction
+is local to this model only.
+-/
+structure RepositoryNativeDiameterSeparationConfiguration where
+  endpointSeparation : Nat
+  admissibleDiameter : Nat
+
+def RepositoryNativeDiameterSeparationConfiguration.DiameterSeparated
+    (C : RepositoryNativeDiameterSeparationConfiguration) : Prop :=
+  C.admissibleDiameter < C.endpointSeparation
+
+def RepositoryNativeDiameterSeparationConfiguration.Fillable
+    (C : RepositoryNativeDiameterSeparationConfiguration) : Prop :=
+  C.endpointSeparation ≤ C.admissibleDiameter
+
+theorem RepositoryNativeDiameterSeparationConfiguration.obstruction
+    (C : RepositoryNativeDiameterSeparationConfiguration) :
+    RepositoryNativeDiameterSeparationConfiguration.DiameterSeparated C →
+      ¬ RepositoryNativeDiameterSeparationConfiguration.Fillable C := by
+  intro hSeparated
+  exact Nat.not_le_of_gt hSeparated
+
+def repositoryNativeDiameterSeparationFillingObstructionInputSurface :
+    DiameterSeparationFillingObstructionInputSurface where
+  Configuration := RepositoryNativeDiameterSeparationConfiguration
+  DiameterSeparated := RepositoryNativeDiameterSeparationConfiguration.DiameterSeparated
+  Fillable := RepositoryNativeDiameterSeparationConfiguration.Fillable
+  obstruction := RepositoryNativeDiameterSeparationConfiguration.obstruction
+
+theorem repository_native_DiameterSeparationFillingObstructionInputSurface_instance :
+    Nonempty DiameterSeparationFillingObstructionInputSurface :=
+  ⟨repositoryNativeDiameterSeparationFillingObstructionInputSurface⟩
+
+/--
 Second isolated R2 target.
 
 Nonempty input surface only: this makes the missing mathematical object
