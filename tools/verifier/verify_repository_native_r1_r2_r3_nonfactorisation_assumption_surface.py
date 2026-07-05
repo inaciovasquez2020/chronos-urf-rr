@@ -55,10 +55,10 @@ for needle in missing_object_boundary_required:
         raise SystemExit(f"missing bridge assumption inhabitant boundary token: {needle}")
 
 forbidden_surface_inhabitant = re.search(
-    r"(?m)^\\s*(def|theorem|example)\\s+"
-    r"(?!repository_native_R1_R2_R3_to_nonfactorisation_bridge_assumption_surface_inhabitant_missing_object\\b)"
-    r"[A-Za-z0-9_'.]*[\\s\\S]{0,300}?:\\s*"
-    r"(Nonempty\\s+)?RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface\\s*:=",
+    r"(?m)^\s*(def|theorem|example)\s+"
+    r"(?!repository_native_R1_R2_R3_to_nonfactorisation_bridge_assumption_surface_inhabitant_missing_object\b)"
+    r"[A-Za-z0-9_'.]*[\s\S]{0,300}?:\s*"
+    r"(Nonempty\s+)?RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface\s*:=",
     text,
 )
 if forbidden_surface_inhabitant:
@@ -68,8 +68,8 @@ if forbidden_surface_inhabitant:
     )
 
 forbidden_inhabited_instance = re.search(
-    r"(?m)^\\s*instance\\s+[A-Za-z0-9_'.]*[\\s\\S]{0,300}?:\\s*"
-    r"Inhabited\\s+RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface\\s*:=",
+    r"(?m)^\s*instance\s+[A-Za-z0-9_'.]*[\s\S]{0,300}?:\s*"
+    r"Inhabited\s+RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface\s*:=",
     text,
 )
 if forbidden_inhabited_instance:
