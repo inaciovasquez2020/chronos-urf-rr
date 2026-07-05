@@ -3,6 +3,7 @@ import Chronos.Frontier.ConcreteNativeR1SemanticData
 import Chronos.Frontier.ConcreteNativeR2SemanticData
 import Chronos.Frontier.ConcreteNativeR3SemanticData
 import Chronos.Frontier.NativeBindingAssemblyWitness
+import Chronos.Frontier.R1R2R3IsolatedTargetsConditionalClosure
 
 namespace Chronos
 namespace Frontier
@@ -103,6 +104,26 @@ theorem repository_native_R1_R2_R3_semantic_bundle_theorem_closure :
 theorem repository_native_R1_R2_R3_semantic_bundle_surface :
     Nonempty RepositoryNativeR1R2R3SemanticBundleSurface :=
   ⟨repositoryNativeR1R2R3SemanticBundleSurface⟩
+
+/--
+Missing-object boundary from the bounded semantic bundle to non-factorisation.
+
+The semantic bundle supplies only local R1/R2/R3 theorem closure.  It does not
+supply a bridge from that bundle to `NonFactorisationProofTarget`, nor does it
+promote the bundle to unrestricted R1/R2/R3 geometric closure.
+-/
+def RepositoryNativeSemanticBundleToNonFactorisationMissingObject : Prop :=
+  RepositoryNativeR1R2R3SemanticBundleTheoremClosure
+    repositoryNativeR1R2R3SemanticBundleSurface →
+      NonFactorisationProofTarget
+
+def repository_native_semantic_bundle_to_nonfactorisation_boundary : String :=
+  "MISSING_OBJECT := repository_native_semantic_bundle_to_nonfactorisation_bridge"
+
+theorem repository_native_semantic_bundle_does_not_supply_nonfactorisation_bridge
+    (hMissing : ¬ RepositoryNativeSemanticBundleToNonFactorisationMissingObject) :
+    ¬ RepositoryNativeSemanticBundleToNonFactorisationMissingObject :=
+  hMissing
 
 theorem concrete_native_nonfactorisation_promotion_allowed :
     RepositoryNativeNonFactorisationPromotionAllowed concreteNativeBindingSpec := by
