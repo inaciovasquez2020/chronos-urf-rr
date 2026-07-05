@@ -20,6 +20,12 @@ required = [
     "structure CDTReplicationCriterionInputSurface",
     "def CDTCarbonStructuralGravityCausalClaim : Prop := False",
     "theorem cdt_rejects_causal_overclaim",
+    "structure StructuralObservableInputSurface",
+    "structure StructuralCouplingPredictionSurface",
+    "noncomputable def predictedAcceleration",
+    "noncomputable def predictedEtaCDT",
+    "theorem predicted_acceleration_lambda_zero",
+    "theorem predicted_eta_lambda_zero",
 ]
 
 for item in required:
@@ -36,6 +42,9 @@ forbidden_claims = [
     "cdt_proves_wep_violation",
     "cdt_proves_new_gravity",
     "CDT_proves_carbon_structural_gravity",
+    "cdt_proves_structural_coupling",
+    "structural_coupling_empirically_established",
+    "lambda_nonzero_theorem",
 ]
 
 for item in forbidden_claims:

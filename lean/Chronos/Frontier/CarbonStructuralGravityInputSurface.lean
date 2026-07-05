@@ -130,4 +130,41 @@ theorem cdt_rejects_causal_overclaim :
   intro h
   exact h
 
+
+structure StructuralObservableInputSurface where
+  Sample : Type
+  structuralObservable : Sample → ℝ
+  diamond : Sample
+  graphite : Sample
+
+structure StructuralCouplingPredictionSurface where
+  Sample : Type
+  structuralObservable : Sample → ℝ
+  lambda : ℝ
+  g0 : ℝ
+  diamond : Sample
+  graphite : Sample
+
+noncomputable def predictedAcceleration
+    (S : StructuralCouplingPredictionSurface) (sample : S.Sample) : ℝ :=
+  S.g0 * (1 + S.lambda * S.structuralObservable sample)
+
+noncomputable def predictedEtaCDT
+    (S : StructuralCouplingPredictionSurface) : ℝ :=
+  2 * (predictedAcceleration S S.diamond - predictedAcceleration S S.graphite) /
+    (predictedAcceleration S S.diamond + predictedAcceleration S S.graphite)
+
+theorem predicted_acceleration_lambda_zero
+    (S : StructuralCouplingPredictionSurface) (sample : S.Sample)
+    (hlambda : S.lambda = 0) :
+    predictedAcceleration S sample = S.g0 := by
+  simp [predictedAcceleration, hlambda]
+
+theorem predicted_eta_lambda_zero
+    (S : StructuralCouplingPredictionSurface)
+    (hlambda : S.lambda = 0) :
+    predictedEtaCDT S = 0 := by
+  simp [predictedEtaCDT, predicted_acceleration_lambda_zero S S.diamond hlambda,
+    predicted_acceleration_lambda_zero S S.graphite hlambda]
+
 end Chronos.Frontier
