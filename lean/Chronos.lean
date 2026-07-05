@@ -475,3 +475,4 @@ import Chronos.Frontier.ConcreteNativeR1SemanticData
 import Chronos.Frontier.ConcreteNativeR2SemanticData
 import Chronos.Frontier.ConcreteNativeR3SemanticData
 import Chronos.Frontier.ConcreteNativeBindingSpec
+import Chronos.Frontier.CarbonStructuralGravityInputSurface
