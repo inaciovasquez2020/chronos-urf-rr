@@ -9,6 +9,7 @@ FORBIDDEN_EXACT = [
     "gravity_closure",
     "Einstein_limit",
     "new_cosmology_solution",
+    "turnaround_radius_proves_gravity",
 ]
 
 REQUIRED = [
