@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Verify CDT protocol surfaces
+        run: python3 tools/verifier/verify_cdt_protocol_surfaces.py
+
       - name: Verify operator norm perturbation boundary
         run: python3 tools/verifier/verify_operator_norm_perturbation_boundary.py
 
