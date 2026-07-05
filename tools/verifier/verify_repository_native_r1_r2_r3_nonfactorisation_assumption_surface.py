@@ -92,4 +92,28 @@ for index, decl in enumerate(decls):
                 + name
             )
 
+
+for index, decl in enumerate(decls):
+    kind = decl.group(1)
+    name = decl.group(2)
+    next_start = decls[index + 1].start() if index + 1 < len(decls) else len(text)
+    header = text[decl.start():next_start].split(":=", 1)[0]
+
+    if kind not in {"def", "theorem", "example"}:
+        continue
+
+    if ":" not in header:
+        continue
+
+    result_type = re.sub(r"\s+", " ", header.rsplit(":", 1)[1]).strip()
+
+    if result_type in {
+        "RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumption",
+        "RepositoryNativeR1R2R3InstanceTarget → NonFactorisationProofTarget",
+    }:
+        raise SystemExit(
+            "forbidden bridge assumption function inhabitant detected: "
+            + name
+        )
+
 print("REPOSITORY_NATIVE_R1_R2_R3_NONFACTORISATION_ASSUMPTION_SURFACE_OK")
