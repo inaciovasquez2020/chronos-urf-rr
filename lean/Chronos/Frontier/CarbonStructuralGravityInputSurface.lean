@@ -152,6 +152,22 @@ theorem cdt_measurement_run_detected_eta_nonzero
   have hprod_nonneg : 0 ≤ R.k * R.delta_eta_total := mul_nonneg hk_nonneg R.h_delta_nonneg
   exact not_lt_of_ge hprod_nonneg hdet
 
+structure CDTDecisionReceipt where
+  measurement : CDTMeasurementRunReceipt
+  uncertainty : CDTUncertaintyComputationReceipt
+  h_delta_eta_total_bind :
+    measurement.delta_eta_total = uncertainty.delta_eta_total
+  decision_detected : Prop
+  h_decision_detected_iff_measurement_detected :
+    decision_detected ↔ measurement.detected
+
+theorem cdt_decision_receipt_detected_eta_nonzero
+    (D : CDTDecisionReceipt) (h : D.decision_detected) :
+    D.measurement.eta_observed ≠ 0 := by
+  exact cdt_measurement_run_detected_eta_nonzero
+    D.measurement
+    (D.h_decision_detected_iff_measurement_detected.mp h)
+
 structure CDTNullControlPairSurface where
   ControlSample : Type
   control_A : ControlSample

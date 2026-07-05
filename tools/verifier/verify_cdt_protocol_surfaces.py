@@ -20,6 +20,8 @@ required = [
     "theorem cdt_detected_eta_nonzero",
     "structure CDTMeasurementRunReceipt",
 "theorem cdt_measurement_run_detected_eta_nonzero",
+"structure CDTDecisionReceipt",
+"theorem cdt_decision_receipt_detected_eta_nonzero",
 "structure CDTNullControlPairSurface",
     "structure CDTReplicationCriterionInputSurface",
     "def CDTCarbonStructuralGravityCausalClaim : Prop := False",
@@ -96,5 +98,24 @@ for item in [
 ]:
     if item not in uncertainty_block:
         raise SystemExit(f"MISSING_OBJECT := CDTUncertaintyComputationReceipt.{item}")
+
+
+decision_start = text.find("structure CDTDecisionReceipt where")
+decision_end = text.find("theorem cdt_decision_receipt_detected_eta_nonzero", decision_start)
+
+if decision_start == -1 or decision_end == -1:
+    raise SystemExit("MISSING_OBJECT := CDTDecisionReceipt block")
+
+decision_block = text[decision_start:decision_end]
+
+for item in [
+    "measurement : CDTMeasurementRunReceipt",
+    "uncertainty : CDTUncertaintyComputationReceipt",
+    "h_delta_eta_total_bind",
+    "decision_detected : Prop",
+    "h_decision_detected_iff_measurement_detected",
+]:
+    if item not in decision_block:
+        raise SystemExit(f"MISSING_OBJECT := CDTDecisionReceipt.{item}")
 
 print("CDT_PROTOCOL_SURFACES_OK")
