@@ -177,3 +177,10 @@ This README update is documentation only. It does not prove analytic Einstein-ma
 `PASS: FGL is the sole open finite-patch assumption`
 
 `proofs/Chronos/conditional/FGL_PROOF_SHELL_2026_04.md`
+
+## Governance and Claim Discipline
+
+- [Physics Admission Standard](docs/PHYSICS_ADMISSION_STANDARD.md)
+- [Program Percentage Ledger](docs/PROGRAM_PERCENTAGE_LEDGER.md)
+- [Formal Physics Candidate Selection](docs/FORMAL_PHYSICS_CANDIDATE_SELECTION.md)
+- [README Staleness Audit](artifacts/readme_audit/README_STALENESS_AUDIT_2026_07_04.md)
