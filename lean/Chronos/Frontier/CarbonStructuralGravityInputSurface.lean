@@ -86,6 +86,33 @@ structure CDTUncertaintyBudgetSurface where
   delta_eta_total : ℝ
   h_total_nonneg : 0 ≤ delta_eta_total
 
+structure CDTUncertaintyComputationReceipt where
+  timing_uncertainty : ℝ
+  distance_uncertainty : ℝ
+  sample_preparation_uncertainty : ℝ
+  environmental_uncertainty : ℝ
+  delta_eta_total : ℝ
+  h_timing_nonneg : 0 ≤ timing_uncertainty
+  h_distance_nonneg : 0 ≤ distance_uncertainty
+  h_sample_preparation_nonneg : 0 ≤ sample_preparation_uncertainty
+  h_environmental_nonneg : 0 ≤ environmental_uncertainty
+  h_delta_eta_total_eq_sum :
+    delta_eta_total =
+      timing_uncertainty +
+      distance_uncertainty +
+      sample_preparation_uncertainty +
+      environmental_uncertainty
+
+theorem cdt_uncertainty_computation_delta_nonnegative
+    (U : CDTUncertaintyComputationReceipt) :
+    0 ≤ U.delta_eta_total := by
+  rw [U.h_delta_eta_total_eq_sum]
+  exact add_nonneg
+    (add_nonneg
+      (add_nonneg U.h_timing_nonneg U.h_distance_nonneg)
+      U.h_sample_preparation_nonneg)
+    U.h_environmental_nonneg
+
 structure CDTDecisionRuleSurface where
   eta_observed : ℝ
   delta_eta_total : ℝ
