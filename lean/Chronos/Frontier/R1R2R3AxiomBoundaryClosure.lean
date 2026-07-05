@@ -28,6 +28,25 @@ def R3FiniteDataToGeneralProofPromotionBridgeAssumption : Prop :=
 def RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumption : Prop :=
   RepositoryNativeR1R2R3InstanceTarget → NonFactorisationProofTarget
 
+/--
+Bounded assumption surface for the exact repository-native R1/R2/R3 instance
+target to non-factorisation bridge.
+
+This is only an explicit assumption package.  It does not prove unconditional
+`NonFactorisationProofTarget`.
+-/
+structure RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface where
+  bridge : RepositoryNativeR1R2R3InstanceTarget → NonFactorisationProofTarget
+
+def RepositoryNativeR1R2R3ConditionalNonFactorisationFromBridgeAssumption
+    (_S : RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface) : Prop :=
+  RepositoryNativeR1R2R3InstanceTarget → NonFactorisationProofTarget
+
+theorem repository_native_R1_R2_R3_conditional_nonfactorisation_from_bridge_assumption
+    (S : RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface) :
+    RepositoryNativeR1R2R3ConditionalNonFactorisationFromBridgeAssumption S :=
+  S.bridge
+
 structure R1R2R3ConditionalAssumptionSurface : Prop where
   r1 : R1FiniteDataToGeneralProofPromotionBridgeAssumption
   r2 : R2FiniteDataToGeneralProofPromotionBridgeAssumption
