@@ -15,6 +15,44 @@ structure LongChordExclusionInputSurface where
   exclusion : ∀ C, Admissible C → ¬ LongChord C
 
 /--
+A minimal repository-native finite-configuration model for the isolated R1
+long-chord exclusion surface.
+
+A configuration carries an endpoint separation and an admissible diameter budget.
+A long chord is a budget-violating chord; admissibility is the bounded-separation
+condition.  The exclusion theorem is local to this model only.
+-/
+structure RepositoryNativeLongChordConfiguration where
+ endpointSeparation : Nat
+ admissibleDiameter : Nat
+
+def RepositoryNativeLongChordConfiguration.LongChord
+ (C : RepositoryNativeLongChordConfiguration) : Prop :=
+ ¬ C.endpointSeparation ≤ C.admissibleDiameter
+
+def RepositoryNativeLongChordConfiguration.Admissible
+ (C : RepositoryNativeLongChordConfiguration) : Prop :=
+ C.endpointSeparation ≤ C.admissibleDiameter
+
+theorem RepositoryNativeLongChordConfiguration.exclusion
+ (C : RepositoryNativeLongChordConfiguration) :
+ RepositoryNativeLongChordConfiguration.Admissible C →
+  ¬ RepositoryNativeLongChordConfiguration.LongChord C := by
+ intro hAdmissible hLongChord
+ exact hLongChord hAdmissible
+
+def repositoryNativeLongChordExclusionInputSurface :
+ LongChordExclusionInputSurface where
+ Configuration := RepositoryNativeLongChordConfiguration
+ LongChord := RepositoryNativeLongChordConfiguration.LongChord
+ Admissible := RepositoryNativeLongChordConfiguration.Admissible
+ exclusion := RepositoryNativeLongChordConfiguration.exclusion
+
+theorem repository_native_LongChordExclusionInputSurface_instance :
+ Nonempty LongChordExclusionInputSurface :=
+ ⟨repositoryNativeLongChordExclusionInputSurface⟩
+
+/--
 First isolated R1 target.
 
 Nonempty input surface only: this makes the missing mathematical object
