@@ -1,7 +1,8 @@
 import Mathlib.Data.Set.Basic
+import Mathlib.Data.Real.Basic
 
 -- Fixed point: evaluation → support → kernel collapse structure
-structure SupportFixedPoint (σ α : Type) (eval : σ → α → ℝ) where
+structure SupportFixedPoint (σ α : Type) [HAdd σ σ σ] (eval : σ → α → ℝ) where
 
   support : σ → Set α :=
     fun p => { x | eval p x ≠ 0 }
