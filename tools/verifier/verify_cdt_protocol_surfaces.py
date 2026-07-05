@@ -14,7 +14,9 @@ required = [
     "structure CDTSampleSpecificationSurface",
     "structure CDTMeasurementProtocolSurface",
     "structure CDTUncertaintyBudgetSurface",
-    "structure CDTDecisionRuleSurface",
+    "structure CDTUncertaintyComputationReceipt",
+"theorem cdt_uncertainty_computation_delta_nonnegative",
+"structure CDTDecisionRuleSurface",
     "theorem cdt_detected_eta_nonzero",
     "structure CDTMeasurementRunReceipt",
 "theorem cdt_measurement_run_detected_eta_nonzero",
@@ -74,5 +76,25 @@ for item in [
 ]:
     if item not in receipt_block:
         raise SystemExit(f"MISSING_OBJECT := CDTMeasurementRunReceipt.{item}")
+
+
+uncertainty_start = text.find("structure CDTUncertaintyComputationReceipt where")
+uncertainty_end = text.find("theorem cdt_uncertainty_computation_delta_nonnegative", uncertainty_start)
+
+if uncertainty_start == -1 or uncertainty_end == -1:
+    raise SystemExit("MISSING_OBJECT := CDTUncertaintyComputationReceipt block")
+
+uncertainty_block = text[uncertainty_start:uncertainty_end]
+
+for item in [
+    "timing_uncertainty : ℝ",
+    "distance_uncertainty : ℝ",
+    "sample_preparation_uncertainty : ℝ",
+    "environmental_uncertainty : ℝ",
+    "delta_eta_total : ℝ",
+    "h_delta_eta_total_eq_sum",
+]:
+    if item not in uncertainty_block:
+        raise SystemExit(f"MISSING_OBJECT := CDTUncertaintyComputationReceipt.{item}")
 
 print("CDT_PROTOCOL_SURFACES_OK")
