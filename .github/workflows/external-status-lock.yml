@@ -106,6 +106,7 @@ jobs:
       - name: Verify repository-native R1/R2/R3 nonfactorisation assumption surface
         run: python3 tools/verifier/verify_repository_native_r1_r2_r3_nonfactorisation_assumption_surface.py
         python3 tools/verifier/verify_local_anisotropic_turnaround_input_surface.py
+        python3 tools/verifier/verify_local_anisotropic_turnaround_observation_receipt.py
 
       - name: Verify S1 massive Laplacian input surface
         run: python3 tools/verifier/verify_s1_massive_laplacian_input_surface.py
