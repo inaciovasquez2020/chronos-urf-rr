@@ -52,6 +52,26 @@ theorem concrete_native_r2_correct :
   simp [concreteNativeR2SemanticData, concreteNativeR2Diameter]
 
 /--
+A bounded repository-native isolated R2 semantic surface.
+
+This packages the exact local R2 semantic data and theorem already proved for
+the concrete native two-point fiber model.  It does not promote R2 to the
+unrestricted R1/R2/R3 geometric closure target.
+-/
+structure RepositoryNativeR2IsolatedSemanticSurface where
+  data : R2SemanticData
+  theoremClosed : R2DiameterSeparationFillingObstructionTheorem data
+
+def repositoryNativeR2IsolatedSemanticSurface :
+    RepositoryNativeR2IsolatedSemanticSurface where
+  data := concreteNativeR2SemanticData
+  theoremClosed := concrete_native_r2_correct
+
+theorem repository_native_R2_isolated_targets_input_surface :
+    Nonempty RepositoryNativeR2IsolatedSemanticSurface :=
+  ⟨repositoryNativeR2IsolatedSemanticSurface⟩
+
+/--
 A binding spec is connected to the concrete native R2 construction when its R2
 semantic data is exactly the concrete native R2 semantic data.
 -/
