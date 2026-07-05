@@ -54,28 +54,42 @@ for needle in missing_object_boundary_required:
     if needle not in text:
         raise SystemExit(f"missing bridge assumption inhabitant boundary token: {needle}")
 
-forbidden_surface_inhabitant = re.search(
-    r"(?m)^\\s*(def|theorem|example)\\s+"
-    r"(?!repository_native_R1_R2_R3_to_nonfactorisation_bridge_assumption_surface_inhabitant_missing_object\\b)"
-    r"[A-Za-z0-9_'.]*[\\s\\S]{0,300}?:\\s*"
-    r"(Nonempty\\s+)?RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface\\s*:=",
-    text,
+decl_start = re.compile(
+    r"(?m)^\s*(def|theorem|example|instance)\s+([A-Za-z0-9_'.]+)\b"
 )
-if forbidden_surface_inhabitant:
-    raise SystemExit(
-        "forbidden bridge assumption surface inhabitant detected: "
-        + forbidden_surface_inhabitant.group(0).split(":=", 1)[0].strip()
-    )
+decls = list(decl_start.finditer(text))
+for index, decl in enumerate(decls):
+    kind = decl.group(1)
+    name = decl.group(2)
+    next_start = decls[index + 1].start() if index + 1 < len(decls) else len(text)
+    header = text[decl.start():next_start].split(":=", 1)[0]
 
-forbidden_inhabited_instance = re.search(
-    r"(?m)^\\s*instance\\s+[A-Za-z0-9_'.]*[\\s\\S]{0,300}?:\\s*"
-    r"Inhabited\\s+RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface\\s*:=",
-    text,
-)
-if forbidden_inhabited_instance:
-    raise SystemExit(
-        "forbidden bridge assumption surface Inhabited instance detected: "
-        + forbidden_inhabited_instance.group(0).split(":=", 1)[0].strip()
-    )
+    if name == "repository_native_R1_R2_R3_to_nonfactorisation_bridge_assumption_surface_inhabitant_missing_object":
+        continue
+
+    if ":" not in header:
+        continue
+
+    result_type = header.rsplit(":", 1)[1].strip()
+
+    if kind in {"def", "theorem", "example"}:
+        if re.fullmatch(
+            r"(Nonempty\s+)?RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface",
+            result_type,
+        ):
+            raise SystemExit(
+                "forbidden bridge assumption surface inhabitant detected: "
+                + name
+            )
+
+    if kind == "instance":
+        if re.fullmatch(
+            r"Inhabited\s+RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface",
+            result_type,
+        ):
+            raise SystemExit(
+                "forbidden bridge assumption surface Inhabited instance detected: "
+                + name
+            )
 
 print("REPOSITORY_NATIVE_R1_R2_R3_NONFACTORISATION_ASSUMPTION_SURFACE_OK")
