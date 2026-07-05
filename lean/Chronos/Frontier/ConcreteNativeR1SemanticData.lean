@@ -66,6 +66,26 @@ theorem concrete_native_r1_correct :
     exact hsupport
 
 /--
+A bounded repository-native isolated R1 semantic surface.
+
+This packages the exact local R1 semantic data and theorem already proved for
+the concrete native R1 model.  It does not promote R1 to the unrestricted
+R1/R2/R3 geometric closure target.
+-/
+structure RepositoryNativeR1IsolatedSemanticSurface where
+  data : R1SemanticData
+  theoremClosed : R1LongChordExclusionTheorem data
+
+def repositoryNativeR1IsolatedSemanticSurface :
+    RepositoryNativeR1IsolatedSemanticSurface where
+  data := concreteNativeR1SemanticData
+  theoremClosed := concrete_native_r1_correct
+
+theorem repository_native_R1_isolated_targets_input_surface :
+    Nonempty RepositoryNativeR1IsolatedSemanticSurface :=
+  ⟨repositoryNativeR1IsolatedSemanticSurface⟩
+
+/--
 A binding spec is connected to the concrete native R1 construction when its R1
 semantic data is exactly the concrete native R1 semantic data.
 -/
