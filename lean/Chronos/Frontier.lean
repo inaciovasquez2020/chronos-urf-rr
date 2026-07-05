@@ -9,3 +9,4 @@ import Chronos.Frontier.RestrictedCarrierRankToEntropyGap
 import Chronos.Frontier.SharedNativeCarrierR1R2R3
 import Chronos.Frontier.SemanticSupportFixedPoint
 import Chronos.Frontier.LongChordExclusionConcreteInputSurface
+import Chronos.Frontier.DiameterSeparationFillingConcreteInputSurface
