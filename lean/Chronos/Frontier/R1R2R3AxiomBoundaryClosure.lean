@@ -47,6 +47,17 @@ theorem repository_native_R1_R2_R3_conditional_nonfactorisation_from_bridge_assu
     RepositoryNativeR1R2R3ConditionalNonFactorisationFromBridgeAssumption S :=
   S.bridge
 
+/--
+MISSING_OBJECT := inhabitant_of_RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface
+
+Boundary marker only: this names the repository object still missing before
+this route can remove the bridge-assumption condition from
+`NonFactorisationProofTarget`.
+-/
+def repository_native_R1_R2_R3_to_nonfactorisation_bridge_assumption_surface_inhabitant_missing_object : Prop :=
+  Nonempty RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface
+
+
 structure R1R2R3ConditionalAssumptionSurface : Prop where
   r1 : R1FiniteDataToGeneralProofPromotionBridgeAssumption
   r2 : R2FiniteDataToGeneralProofPromotionBridgeAssumption
