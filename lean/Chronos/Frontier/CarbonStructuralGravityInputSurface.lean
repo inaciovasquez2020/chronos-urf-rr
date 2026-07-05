@@ -106,6 +106,25 @@ theorem cdt_detected_eta_nonzero (S : CDTDecisionRuleSurface)
     mul_nonneg hk_nonneg S.h_delta_nonneg
   exact not_lt_of_ge hprod_nonneg hdet
 
+structure CDTMeasurementRunReceipt where
+  eta_observed : ℝ
+  delta_eta_total : ℝ
+  k : ℝ
+  h_delta_nonneg : 0 ≤ delta_eta_total
+  h_k_pos : 0 < k
+  detected : Prop
+  h_detected_iff : detected ↔ |eta_observed| > k * delta_eta_total
+
+theorem cdt_measurement_run_detected_eta_nonzero
+    (R : CDTMeasurementRunReceipt) (h : R.detected) :
+    R.eta_observed ≠ 0 := by
+  intro hzero
+  have hdet : |R.eta_observed| > R.k * R.delta_eta_total := R.h_detected_iff.mp h
+  rw [hzero, abs_zero] at hdet
+  have hk_nonneg : 0 ≤ R.k := le_of_lt R.h_k_pos
+  have hprod_nonneg : 0 ≤ R.k * R.delta_eta_total := mul_nonneg hk_nonneg R.h_delta_nonneg
+  exact not_lt_of_ge hprod_nonneg hdet
+
 structure CDTNullControlPairSurface where
   ControlSample : Type
   control_A : ControlSample

@@ -16,7 +16,9 @@ required = [
     "structure CDTUncertaintyBudgetSurface",
     "structure CDTDecisionRuleSurface",
     "theorem cdt_detected_eta_nonzero",
-    "structure CDTNullControlPairSurface",
+    "structure CDTMeasurementRunReceipt",
+"theorem cdt_measurement_run_detected_eta_nonzero",
+"structure CDTNullControlPairSurface",
     "structure CDTReplicationCriterionInputSurface",
     "def CDTCarbonStructuralGravityCausalClaim : Prop := False",
     "theorem cdt_rejects_causal_overclaim",
@@ -54,5 +56,23 @@ for item in forbidden_claims:
 chronos = Path("lean/Chronos.lean").read_text()
 if "import Chronos.Frontier.CarbonStructuralGravityInputSurface" not in chronos:
     raise SystemExit("MISSING_OBJECT := Chronos import for CarbonStructuralGravityInputSurface")
+
+
+receipt_start = text.find("structure CDTMeasurementRunReceipt where")
+receipt_end = text.find("theorem cdt_measurement_run_detected_eta_nonzero", receipt_start)
+
+if receipt_start == -1 or receipt_end == -1:
+    raise SystemExit("MISSING_OBJECT := CDTMeasurementRunReceipt block")
+
+receipt_block = text[receipt_start:receipt_end]
+
+for item in [
+    "eta_observed : ℝ",
+    "delta_eta_total : ℝ",
+    "detected : Prop",
+    "h_detected_iff : detected ↔ |eta_observed| > k * delta_eta_total",
+]:
+    if item not in receipt_block:
+        raise SystemExit(f"MISSING_OBJECT := CDTMeasurementRunReceipt.{item}")
 
 print("CDT_PROTOCOL_SURFACES_OK")
