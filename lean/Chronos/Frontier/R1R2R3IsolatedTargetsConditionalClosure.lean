@@ -134,6 +134,43 @@ structure UniformLocalTypeCapacityInputSurface where
   bounded : ∀ C, Nonempty (LocalType C) → CapacityBound ≥ 0
 
 /--
+A minimal repository-native finite-configuration model for the isolated R1
+uniform local-type capacity surface.
+
+A configuration carries a finite local-type capacity.  Its local types are
+represented by `Fin localTypeCapacity`; the exported surface records only the
+local boundedness theorem required by the input surface.  The theorem is local
+to this model only.
+-/
+structure RepositoryNativeUniformLocalTypeCapacityConfiguration where
+  localTypeCapacity : Nat
+
+def RepositoryNativeUniformLocalTypeCapacityConfiguration.LocalType
+    (C : RepositoryNativeUniformLocalTypeCapacityConfiguration) : Type :=
+  Fin C.localTypeCapacity
+
+def repositoryNativeUniformLocalTypeCapacityBound : Nat :=
+  0
+
+theorem RepositoryNativeUniformLocalTypeCapacityConfiguration.bounded
+    (C : RepositoryNativeUniformLocalTypeCapacityConfiguration) :
+    Nonempty (RepositoryNativeUniformLocalTypeCapacityConfiguration.LocalType C) →
+      repositoryNativeUniformLocalTypeCapacityBound ≥ 0 := by
+  intro _hLocalType
+  exact Nat.zero_le repositoryNativeUniformLocalTypeCapacityBound
+
+def repositoryNativeUniformLocalTypeCapacityInputSurface :
+    UniformLocalTypeCapacityInputSurface where
+  Configuration := RepositoryNativeUniformLocalTypeCapacityConfiguration
+  LocalType := RepositoryNativeUniformLocalTypeCapacityConfiguration.LocalType
+  CapacityBound := repositoryNativeUniformLocalTypeCapacityBound
+  bounded := RepositoryNativeUniformLocalTypeCapacityConfiguration.bounded
+
+theorem repository_native_UniformLocalTypeCapacityInputSurface_instance :
+    Nonempty UniformLocalTypeCapacityInputSurface :=
+  ⟨repositoryNativeUniformLocalTypeCapacityInputSurface⟩
+
+/--
 Third isolated R3 target.
 
 Nonempty input surface only: this makes the missing mathematical object
