@@ -12,3 +12,4 @@ import Chronos.Frontier.LongChordExclusionConcreteInputSurface
 import Chronos.Frontier.DiameterSeparationFillingConcreteInputSurface
 import Chronos.Frontier.UniformLocalTypeCapacityConcreteInputSurface
 import Chronos.Frontier.ConcreteR1R2R3InputSurfacesReceipt
+import Chronos.Frontier.NonFactorisationConcreteInputSurface
