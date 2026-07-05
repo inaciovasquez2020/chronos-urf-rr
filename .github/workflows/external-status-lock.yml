@@ -99,6 +99,8 @@ jobs:
         run: python3 tools/verifier/verify_repository_native_r3_isolated_semantic_surface.py
       - name: Verify repository-native R1 isolated semantic surface
         run: python3 tools/verifier/verify_repository_native_r1_isolated_semantic_surface.py
+      - name: Verify repository-native R1/R2/R3 semantic bundle surface
+        run: python3 tools/verifier/verify_repository_native_r1_r2_r3_semantic_bundle_surface.py
 
       - name: Verify S1 massive Laplacian input surface
         run: python3 tools/verifier/verify_s1_massive_laplacian_input_surface.py
