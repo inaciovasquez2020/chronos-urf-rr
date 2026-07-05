@@ -44,4 +44,14 @@ if bad_unconditional:
         + bad_unconditional.group(0).split(":=", 1)[0].strip()
     )
 
+missing_object_boundary_required = [
+    "MISSING_OBJECT := inhabitant_of_RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface",
+    "def repository_native_R1_R2_R3_to_nonfactorisation_bridge_assumption_surface_inhabitant_missing_object : Prop :=",
+    "Nonempty RepositoryNativeR1R2R3ToNonFactorisationBridgeAssumptionSurface",
+]
+
+for needle in missing_object_boundary_required:
+    if needle not in text:
+        raise SystemExit(f"missing bridge assumption inhabitant boundary token: {needle}")
+
 print("REPOSITORY_NATIVE_R1_R2_R3_NONFACTORISATION_ASSUMPTION_SURFACE_OK")
