@@ -112,5 +112,8 @@ jobs:
       - name: Verify local anisotropic turnaround observation receipt
         run: python3 tools/verifier/verify_local_anisotropic_turnaround_observation_receipt.py
 
+      - name: Verify local anisotropic residual classification receipt
+        run: python3 tools/verifier/verify_local_anisotropic_residual_classification_receipt.py
+
       - name: Verify S1 massive Laplacian input surface
         run: python3 tools/verifier/verify_s1_massive_laplacian_input_surface.py
