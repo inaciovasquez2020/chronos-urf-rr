@@ -10,8 +10,8 @@
   "flux_column": "PDCSAP_FLUX",
   "time_column": "TIME",
   "finite_interval": {
-    "start_row": 1,
-    "end_row": 100
+    "start_row": 77,
+    "end_row": 176
   },
   "normalization_rule": "median_divided",
   "excluded_operations": [
