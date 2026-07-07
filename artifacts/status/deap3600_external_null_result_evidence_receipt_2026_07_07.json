@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "receipt_name": "deap3600_external_null_result_evidence_receipt_2026_07_07",
+  "claim_classification": "EXTERNAL_NULL_RESULT_OR_BACKGROUND_EVIDENCE_ONLY",
+  "experiment": "DEAP-3600",
+  "facility": "SNOLAB",
+  "result_title": "Search for dark matter with a 231-day exposure of liquid argon using DEAP-3600 at SNOLAB",
+  "collaboration": "DEAP Collaboration",
+  "arxiv_id": "1902.04048",
+  "arxiv_doi": "10.48550/arXiv.1902.04048",
+  "related_publication_doi": "10.1103/PhysRevD.100.022004",
+  "journal_reference": "Phys. Rev. D 100, 022004 (2019)",
+  "source_url": "https://arxiv.org/abs/1902.04048",
+  "source_metadata": {
+    "submitted": "2019-02-11",
+    "last_revised": "2019-07-04",
+    "live_days": 231,
+    "exposure": "758 tonne day",
+    "detector_medium": "liquid argon",
+    "detector_mass_kg": 3279,
+    "observed_candidate_signal_events": 0,
+    "confidence_level": "90%",
+    "reported_limit_100gev_cm2": "3.9e-45"
+  },
+  "dataset_checksum_status": "NO_PUBLIC_MACHINE_READABLE_DATASET_CHECKSUM_PINNED",
+  "allowed_use": [
+    "external validation evidence",
+    "underground rare-event null-result evidence",
+    "background-model evidence",
+    "bounded dark-matter direct-detection constraint evidence"
+  ],
+  "forbidden_claims": [
+    "dark matter solved",
+    "gravity closure",
+    "cosmology closure"
+  ],
+  "non_claims": [
+    "Does not solve dark matter.",
+    "Does not derive or close gravity.",
+    "Does not prove cosmology closure.",
+    "Does not transform a null result into a theory-complete result.",
+    "Does not provide unrestricted physical closure."
+  ]
+}
