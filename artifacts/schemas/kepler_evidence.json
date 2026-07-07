@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KeplerFiniteLightCurveEvidenceSchema",
+  "type": "object",
+  "properties": {
+    "receipt_class": {
+      "type": "string",
+      "enum": [
+        "STRUCTURAL_STUB_ONLY",
+        "PINNED_MAST_FITS_EVIDENCE"
+      ]
+    },
+    "source_archive": {
+      "type": "string",
+      "enum": [
+        "MAST"
+      ]
+    },
+    "kic_id": {
+      "type": "string",
+      "pattern": "^KIC \\d+$"
+    },
+    "product_type": {
+      "type": "string",
+      "enum": [
+        "light curve"
+      ]
+    },
+    "cadence": {
+      "type": "string",
+      "enum": [
+        "long",
+        "short"
+      ]
+    },
+    "quarter_or_observation_window": {
+      "type": "string"
+    },
+    "filename": {
+      "type": "string",
+      "pattern": "\\.fits$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "flux_column": {
+      "type": "string",
+      "enum": [
+        "SAP_FLUX",
+        "PDCSAP_FLUX"
+      ]
+    },
+    "time_column": {
+      "type": "string"
+    },
+    "finite_interval": {
+      "type": "object",
+      "properties": {
+        "start_row": {
+          "type": "integer"
+        },
+        "end_row": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start_row",
+        "end_row"
+      ],
+      "additionalProperties": false
+    },
+    "normalization_rule": {
+      "type": "string"
+    },
+    "excluded_operations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "non_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "null_comparator_output": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "receipt_class",
+    "source_archive",
+    "kic_id",
+    "product_type",
+    "cadence",
+    "quarter_or_observation_window",
+    "filename",
+    "sha256",
+    "flux_column",
+    "time_column",
+    "finite_interval",
+    "normalization_rule",
+    "excluded_operations",
+    "non_claims",
+    "null_comparator_output"
+  ],
+  "additionalProperties": false
+}
