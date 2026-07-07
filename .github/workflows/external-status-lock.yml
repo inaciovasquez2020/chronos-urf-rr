@@ -48,8 +48,7 @@ jobs:
         run: python3 tools/verify_gravity_metric_backreaction_boundary_2026_06_27.py
 
       - name: Verify external status lock
-        run:           python3 tools/verify_kepler_receipt.py artifacts/external_validation/kepler/kic_008462852_receipt.json
-python3 scripts/verify_external_status_lock.py
+        run: python3 scripts/verify_external_status_lock.py
 
       - name: Verify SIDFH KKZeta input surface
         run: cd sidfh-kkzeta && python3 tools/verify_kkzeta_input_surfaces.py
