@@ -23,5 +23,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-lake-
 
+      - name: Reset urf_core Lake package checkout
+        run: rm -rf .lake/packages/urf_core
+
       - name: Build
         run: lake build
