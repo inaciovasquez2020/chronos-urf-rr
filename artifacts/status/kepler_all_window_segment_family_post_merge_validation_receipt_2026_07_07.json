@@ -1,0 +1,79 @@
+{
+  "receipt_name": "KeplerAllWindowSegmentFamilyPostMergeValidationReceipt",
+  "receipt_class": "POST_MERGE_VALIDATION_RECEIPT",
+  "repository": "chronos-urf-rr",
+  "merged_pr": 1049,
+  "merged_head": "7090ff16",
+  "validated_objects": [
+    "artifacts/external_validation/kepler/kic_008462852_receipt.json",
+    "artifacts/external_validation/kepler/kplr008462852-2013098041711_llc.fits",
+    "artifacts/external_validation/kepler/kepler_finite_light_curve_observation_predicate.json",
+    "artifacts/external_validation/kepler/kepler_multisegment_null_comparator_receipt.json",
+    "artifacts/external_validation/kepler/kepler_all_window_segment_family_summary_receipt.json",
+    "artifacts/external_validation/kepler/kepler_all_window_anti_selection_bias_receipt.json",
+    "tools/verify_kepler_receipt.py",
+    "tools/verify_kepler_fits_semantic_predicate.py",
+    "tools/verify_kepler_multisegment_null_comparator.py",
+    "tools/verify_kepler_all_window_segment_family.py"
+  ],
+  "post_merge_validation_commands": [
+    "python3 tools/verify_kepler_receipt.py artifacts/external_validation/kepler/kic_008462852_receipt.json",
+    "python3 tools/verify_kepler_fits_semantic_predicate.py artifacts/external_validation/kepler/kic_008462852_receipt.json artifacts/external_validation/kepler/kepler_finite_light_curve_observation_predicate.json",
+    "python3 tools/verify_kepler_multisegment_null_comparator.py artifacts/external_validation/kepler/kic_008462852_receipt.json artifacts/external_validation/kepler/kepler_semantic_predicate_receipt_rollup.json artifacts/external_validation/kepler/kepler_multisegment_null_comparator_receipt.json artifacts/external_validation/kepler/kepler_anti_overfitting_boundary_receipt.json",
+    "python3 tools/verify_kepler_all_window_segment_family.py artifacts/external_validation/kepler/kic_008462852_receipt.json artifacts/external_validation/kepler/kepler_multisegment_null_comparator_receipt.json artifacts/external_validation/kepler/kepler_all_window_segment_family_summary_receipt.json artifacts/external_validation/kepler/kepler_all_window_anti_selection_bias_receipt.json",
+    "python3 scripts/verify_external_status_lock.py"
+  ],
+  "validated_outputs": {
+    "receipt_verifier": "Local asset cryptographic parity confirmed",
+    "single_segment_predicate": {
+      "status": "KEPLER_FITS_SEMANTIC_PREDICATE_OK",
+      "rows_verified": "77..176",
+      "time_column": "TIME",
+      "flux_column": "PDCSAP_FLUX",
+      "null_comparator": "constant_flux_mean_residual",
+      "mean_flux": 249305.868125,
+      "mean_abs_residual": 42.256525
+    },
+    "multisegment_null_comparator": {
+      "status": "KEPLER_MULTISEGMENT_NULL_COMPARATOR_OK",
+      "segment_001": {
+        "rows_verified": "77..176",
+        "mean_flux": 249305.868125,
+        "mean_abs_residual": 42.256525
+      },
+      "segment_002": {
+        "rows_verified": "868..967",
+        "mean_flux": 249027.983125,
+        "mean_abs_residual": 104.3819
+      }
+    },
+    "all_window_segment_family": {
+      "status": "KEPLER_ALL_WINDOW_SEGMENT_FAMILY_OK",
+      "window_length_rows": 100,
+      "row_count": 4203,
+      "finite_window_count": 568,
+      "min_mean_abs_residual": 24.850075,
+      "median_mean_abs_residual": 91.892778125,
+      "max_mean_abs_residual": 3144.52625,
+      "min_residual_window": "1345..1444",
+      "max_residual_window": "2348..2447"
+    },
+    "external_status_lock": "PASS"
+  },
+  "unrelated_untracked_objects_excluded": [
+    "artifacts/status/deap3600_external_null_result_evidence_receipt_2026_07_07.json",
+    "tools/verifier/verify_deap3600_external_null_result_evidence_receipt.py"
+  ],
+  "next_bounded_improvement": {
+    "object": "named astrophysical baseline comparator",
+    "allowed_scope": "comparator only",
+    "forbidden_scope": "closure claim or theory validation claim"
+  },
+  "non_claims": [
+    "gravity closure",
+    "cosmology closure",
+    "Chronos-RR closure",
+    "physical time theorem closure",
+    "ZeroDay closure"
+  ]
+}
