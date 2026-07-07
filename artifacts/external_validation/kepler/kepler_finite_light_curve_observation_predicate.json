@@ -1,0 +1,32 @@
+{
+  "predicate_name": "KeplerFiniteLightCurveObservationPredicate",
+  "source_receipt": "artifacts/external_validation/kepler/kic_008462852_receipt.json",
+  "source_artifact": "artifacts/external_validation/kepler/kplr008462852-2013098041711_llc.fits",
+  "semantic_checks": [
+    "FITS artifact exists locally",
+    "FITS artifact SHA-256 equals receipt sha256",
+    "receipt_class is PINNED_MAST_FITS_EVIDENCE",
+    "TIME column exists in a FITS binary table",
+    "PDCSAP_FLUX column exists in a FITS binary table",
+    "finite row interval is bounded by FITS table row count",
+    "rows 1..100 contain finite TIME values",
+    "rows 1..100 contain finite PDCSAP_FLUX values",
+    "constant-flux null comparator is computed from PDCSAP_FLUX rows 1..100"
+  ],
+  "null_comparator": {
+    "name": "constant_flux_mean_residual",
+    "input_column": "PDCSAP_FLUX",
+    "interval_rows": {
+      "start_row": 77,
+      "end_row": 176
+    },
+    "allowed_output": "FINITE_LIGHT_CURVE_SEGMENT_COMPARED_TO_CONSTANT_NULL"
+  },
+  "non_claims": [
+    "gravity closure",
+    "cosmology closure",
+    "Chronos-RR closure",
+    "physical time theorem closure",
+    "ZeroDay closure"
+  ]
+}
