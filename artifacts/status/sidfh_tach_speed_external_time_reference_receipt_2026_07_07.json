@@ -1,0 +1,37 @@
+{
+  "receipt": "sidfh_tach_speed_external_time_reference_receipt_2026_07_07",
+  "repo": "chronos-urf-rr",
+  "local_surface": "lean/Chronos/Frontier/SIDFHTachSpeedInputSurface.lean",
+  "local_object": "SIDFHTachSpeedInputSurface",
+  "local_input_fields": [
+    "properTimeRate",
+    "v_min",
+    "c",
+    "admissible_speed_below_light",
+    "admissible_moving_speed_lower_bound",
+    "slower_moves_faster_in_time"
+  ],
+  "external_reference_repo": "inaciovasquez2020/urf-core",
+  "external_reference_objects": {
+    "MotionBandShadow": {
+      "definition": "MotionBandShadow(V,c,v) := V < v ∧ v < c",
+      "status": "external bounded-reference object only",
+      "restriction": "does not prove a universal physical minimum nonzero speed"
+    },
+    "RelativeTimeScale": {
+      "definition": "RelativeTimeScale(S,t) := elapsed_time(S,t) / natural_cycle_time(S)",
+      "status": "external bounded-reference object only",
+      "restriction": "does not prove physical time dilation"
+    }
+  },
+  "link_status": "bounded reference only; no derivation imported into chronos",
+  "forbidden_promotions": [
+    "chronos proves v_min from SIDFHTachSpeedInputSurface",
+    "v_min proves physical time dilation",
+    "MotionBandShadow proves physical time dilation",
+    "RelativeTimeScale proves physical time dilation",
+    "SIDFHTachSpeedInputSurface proves physical time dilation",
+    "ShadowOfInfinity implies physical time dilation"
+  ],
+  "boundary": "BOUNDARY := ¬ chronos_derives_RelativeTimeScale_physical_time_dilation"
+}
