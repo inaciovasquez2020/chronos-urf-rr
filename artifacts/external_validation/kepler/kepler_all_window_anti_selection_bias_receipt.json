@@ -1,0 +1,36 @@
+{
+  "receipt_name": "KeplerAllWindowAntiSelectionBiasReceipt",
+  "receipt_class": "ANTI_SELECTION_BIAS_BOUNDARY",
+  "source_family_receipt": "artifacts/external_validation/kepler/kepler_all_window_segment_family_summary_receipt.json",
+  "allowed_selection_rule": "scan_all_contiguous_100_row_windows_and_keep_only_finite_TIME_PDCSAP_FLUX_windows",
+  "forbidden_selection_rules": [
+    "select windows by minimizing residual before reporting family statistics",
+    "select windows by maximizing signal before reporting family statistics",
+    "select windows using Chronos-RR target",
+    "select windows using gravity target",
+    "select windows using cosmology target",
+    "select windows using ZeroDay target",
+    "discard finite windows after inspecting comparator values"
+  ],
+  "required_statistics": [
+    "finite_window_count",
+    "min_mean_abs_residual",
+    "median_mean_abs_residual",
+    "max_mean_abs_residual"
+  ],
+  "model_boundary": [
+    "constant-flux null comparator only",
+    "all-window finite scan only",
+    "no astrophysical model fitting",
+    "no hidden detrending",
+    "no closure inference",
+    "no theorem promotion"
+  ],
+  "non_claims": [
+    "gravity closure",
+    "cosmology closure",
+    "Chronos-RR closure",
+    "physical time theorem closure",
+    "ZeroDay closure"
+  ]
+}

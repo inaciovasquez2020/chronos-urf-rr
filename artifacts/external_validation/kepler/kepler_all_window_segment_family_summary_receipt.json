@@ -1,0 +1,33 @@
+{
+  "receipt_name": "KeplerAllWindowSegmentFamilySummaryReceipt",
+  "receipt_class": "ALL_WINDOW_SEGMENT_FAMILY_SUMMARY",
+  "source_receipt": "artifacts/external_validation/kepler/kic_008462852_receipt.json",
+  "source_multisegment_receipt": "artifacts/external_validation/kepler/kepler_multisegment_null_comparator_receipt.json",
+  "window_length_rows": 100,
+  "segment_selection_rule": "scan_all_contiguous_100_row_windows_and_keep_only_finite_TIME_PDCSAP_FLUX_windows",
+  "time_column": "TIME",
+  "flux_column": "PDCSAP_FLUX",
+  "row_count": 4203,
+  "finite_window_count": 568,
+  "summary_statistics": {
+    "min_mean_abs_residual": 24.850074999998323,
+    "median_mean_abs_residual": 91.89277812499931,
+    "max_mean_abs_residual": 3144.526250000002,
+    "min_residual_window": {
+      "start_row": 1345,
+      "end_row": 1444
+    },
+    "max_residual_window": {
+      "start_row": 2348,
+      "end_row": 2447
+    }
+  },
+  "allowed_output": "FINITE_LIGHT_CURVE_ALL_WINDOWS_COMPARED_TO_CONSTANT_NULL",
+  "non_claims": [
+    "gravity closure",
+    "cosmology closure",
+    "Chronos-RR closure",
+    "physical time theorem closure",
+    "ZeroDay closure"
+  ]
+}
