@@ -1,12 +1,12 @@
 {
-  "receipt_class": "STRUCTURAL_STUB_ONLY",
+  "receipt_class": "PINNED_MAST_FITS_EVIDENCE",
   "source_archive": "MAST",
   "kic_id": "KIC 008462852",
   "product_type": "light curve",
   "cadence": "long",
   "quarter_or_observation_window": "Quarter 16",
   "filename": "kplr008462852-2013098041711_llc.fits",
-  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sha256": "e3e9a9b247b0f01ec73f448e5d890905078777755c93063e78ed3ae47581c289",
   "flux_column": "PDCSAP_FLUX",
   "time_column": "TIME",
   "finite_interval": {
