@@ -1,0 +1,30 @@
+{
+  "receipt_class": "STRUCTURAL_STUB_ONLY",
+  "source_archive": "MAST",
+  "kic_id": "KIC 008462852",
+  "product_type": "light curve",
+  "cadence": "long",
+  "quarter_or_observation_window": "Quarter 16",
+  "filename": "kplr008462852-2013098041711_llc.fits",
+  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "flux_column": "PDCSAP_FLUX",
+  "time_column": "TIME",
+  "finite_interval": {
+    "start_row": 1,
+    "end_row": 100
+  },
+  "normalization_rule": "median_divided",
+  "excluded_operations": [
+    "no model-fitting",
+    "no hidden detrending",
+    "no inferred physics"
+  ],
+  "non_claims": [
+    "gravity closure",
+    "cosmology closure",
+    "Chronos-RR closure",
+    "physical time theorem closure",
+    "ZeroDay closure"
+  ],
+  "null_comparator_output": "FINITE_LIGHT_CURVE_SEGMENT_COMPARED_TO_CONSTANT_NULL"
+}
