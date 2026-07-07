@@ -1,0 +1,33 @@
+{
+  "receipt_name": "KeplerSemanticPredicateReceiptRollup",
+  "receipt_class": "SEMANTIC_PREDICATE_ROLLUP",
+  "source_receipt": "artifacts/external_validation/kepler/kic_008462852_receipt.json",
+  "source_artifact": "artifacts/external_validation/kepler/kplr008462852-2013098041711_llc.fits",
+  "source_predicate": "artifacts/external_validation/kepler/kepler_finite_light_curve_observation_predicate.json",
+  "verified_predicate": "KeplerFiniteLightCurveObservationPredicate",
+  "verified_receipt_class": "PINNED_MAST_FITS_EVIDENCE",
+  "verified_columns": [
+    "TIME",
+    "PDCSAP_FLUX"
+  ],
+  "primary_interval": {
+    "start_row": 77,
+    "end_row": 176
+  },
+  "second_interval": {
+    "start_row": 868,
+    "end_row": 967
+  },
+  "rollup_scope": [
+    "receipt checksum parity is delegated to tools/verify_kepler_receipt.py",
+    "single-segment FITS semantic predicate is delegated to tools/verify_kepler_fits_semantic_predicate.py",
+    "multi-segment comparator is delegated to tools/verify_kepler_multisegment_null_comparator.py"
+  ],
+  "non_claims": [
+    "gravity closure",
+    "cosmology closure",
+    "Chronos-RR closure",
+    "physical time theorem closure",
+    "ZeroDay closure"
+  ]
+}

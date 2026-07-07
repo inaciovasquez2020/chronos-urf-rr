@@ -1,0 +1,42 @@
+{
+  "receipt_name": "KeplerMultiSegmentNullComparatorReceipt",
+  "receipt_class": "MULTISEGMENT_NULL_COMPARATOR",
+  "source_receipt": "artifacts/external_validation/kepler/kic_008462852_receipt.json",
+  "source_artifact": "artifacts/external_validation/kepler/kplr008462852-2013098041711_llc.fits",
+  "time_column": "TIME",
+  "flux_column": "PDCSAP_FLUX",
+  "segment_selection_rule": "first_verified_interval_from_receipt_then_first_later_non_overlapping_finite_window_of_equal_length",
+  "segments": [
+    {
+      "segment_id": "kepler_kic_008462852_segment_001",
+      "interval_rows": {
+        "start_row": 77,
+        "end_row": 176
+      },
+      "null_comparator": "constant_flux_mean_residual"
+    },
+    {
+      "segment_id": "kepler_kic_008462852_segment_002",
+      "interval_rows": {
+        "start_row": 868,
+        "end_row": 967
+      },
+      "null_comparator": "constant_flux_mean_residual"
+    }
+  ],
+  "allowed_output": "FINITE_LIGHT_CURVE_SEGMENTS_COMPARED_TO_CONSTANT_NULL",
+  "forbidden_outputs": [
+    "PLANET_DETECTED",
+    "PHYSICAL_TIME_CONFIRMED",
+    "CHRONOS_OBSERVABLE_CONFIRMED",
+    "GRAVITY_MODEL_VALIDATED",
+    "COSMOLOGY_VALIDATED"
+  ],
+  "non_claims": [
+    "gravity closure",
+    "cosmology closure",
+    "Chronos-RR closure",
+    "physical time theorem closure",
+    "ZeroDay closure"
+  ]
+}

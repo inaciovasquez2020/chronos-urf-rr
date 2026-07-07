@@ -1,0 +1,29 @@
+{
+  "receipt_name": "KeplerAntiOverfittingBoundaryReceipt",
+  "receipt_class": "ANTI_OVERFITTING_BOUNDARY",
+  "source_multisegment_receipt": "artifacts/external_validation/kepler/kepler_multisegment_null_comparator_receipt.json",
+  "forbidden_selection_rules": [
+    "choose interval by minimizing residual",
+    "choose interval by maximizing signal",
+    "choose interval after inspecting theoretical fit",
+    "choose interval using Chronos-RR target",
+    "choose interval using gravity target",
+    "choose interval using cosmology target",
+    "choose interval using ZeroDay target"
+  ],
+  "allowed_selection_rule": "first_verified_interval_from_receipt_then_first_later_non_overlapping_finite_window_of_equal_length",
+  "model_boundary": [
+    "constant-flux null comparator only",
+    "no astrophysical model fitting",
+    "no hidden detrending",
+    "no closure inference",
+    "no theorem promotion"
+  ],
+  "non_claims": [
+    "gravity closure",
+    "cosmology closure",
+    "Chronos-RR closure",
+    "physical time theorem closure",
+    "ZeroDay closure"
+  ]
+}
