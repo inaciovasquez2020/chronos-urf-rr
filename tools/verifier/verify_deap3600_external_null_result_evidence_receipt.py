@@ -8,6 +8,7 @@ EXPECTED = {
     "claim_classification": "EXTERNAL_NULL_RESULT_OR_BACKGROUND_EVIDENCE_ONLY",
     "experiment": "DEAP-3600",
     "facility": "SNOLAB",
+    "collaboration": "DEAP Collaboration",
     "arxiv_id": "1902.04048",
     "arxiv_doi": "10.48550/arXiv.1902.04048",
     "related_publication_doi": "10.1103/PhysRevD.100.022004",
