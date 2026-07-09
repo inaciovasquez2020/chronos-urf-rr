@@ -1,0 +1,30 @@
+{
+  "id": "r1_concrete_native_binding_repository_native_geometry_instance_receipt_2026_07_09",
+  "date": "2026-07-09",
+  "scope": "bounded concrete native binding repository-native geometry instance input",
+  "commits": [
+    "17caaf13",
+    "726fe971"
+  ],
+  "added_targets": [
+    "R1ConcreteNewsteinFGLConcreteNativeBindingToRepositoryNativeGeometryTarget",
+    "R1ConcreteNewsteinFGLConcreteNativeBindingToRepositoryNativeGeometryTarget.toRepositoryNativeGeometry",
+    "R1ConcreteNewsteinFGLConcreteNativeBindingRepositoryNativeGeometryInstanceInput",
+    "R1ConcreteNewsteinFGLConcreteNativeBindingRepositoryNativeGeometryInstanceInput.toRepositoryNativeGeometry"
+  ],
+  "positive_claims": [
+    "bridges supplied concrete native binding data to repository-native geometry evidence",
+    "builds the source object through the existing R1c native interface constructor",
+    "requires explicit R1c interface input fields"
+  ],
+  "non_claims": [
+    "does not prove the R1c native interface fields",
+    "does not prove native non-alias evidence",
+    "does not discharge R1ConcreteNewsteinFGLToNativeMapInputContract",
+    "does not prove unrestricted R1",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove any Clay problem"
+  ],
+  "remaining_boundary": "BOUNDARY := ¬ repository_native_non_alias_Newstein_FGL_geometry_constructs_full_R1TheoremProofInputs"
+}
