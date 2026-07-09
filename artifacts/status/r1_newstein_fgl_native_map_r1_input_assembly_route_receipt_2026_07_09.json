@@ -1,0 +1,38 @@
+{
+  "id": "r1_newstein_fgl_native_map_r1_input_assembly_route_receipt_2026_07_09",
+  "date": "2026-07-09",
+  "scope": "bounded R1 native-map input assembly route",
+  "commits": [
+    "5e0067ca",
+    "51ec04b9",
+    "f32cda05",
+    "6a811c74",
+    "8cafef93",
+    "63cfbe3b"
+  ],
+  "added_targets": [
+    "R1ConcreteNewsteinFGLToNativeMapR1aInputFieldTarget",
+    "R1ConcreteNewsteinFGLToNativeMapR1bInputFieldTarget",
+    "R1ConcreteNewsteinFGLToNativeMapR1cInputFieldTarget",
+    "R1ConcreteNewsteinFGLToNativeMapR1InputAssemblyTarget",
+    "R1ConcreteNewsteinFGLToNativeMapR1InputAssemblyTarget.toR1TheoremProofInputsExists",
+    "R1ConcreteNewsteinFGLToNativeMapR1InputAssemblyTarget.toR1LongChordExclusionTheorem"
+  ],
+  "positive_claims": [
+    "isolates R1a input field target",
+    "isolates R1b input field target",
+    "isolates R1c input field target",
+    "assembles supplied R1a/R1b/R1c fields into R1TheoremProofInputs",
+    "routes assembled inputs through R1_LongChordExclusion_from_semantic_inputs"
+  ],
+  "non_claims": [
+    "does not construct repository-native non-alias Newstein/FGL geometry",
+    "does not discharge R1ConcreteNewsteinFGLToNativeMapInputContract",
+    "does not prove full R1TheoremProofInputs from native data alone",
+    "does not prove unrestricted R1",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove any Clay problem"
+  ],
+  "remaining_boundary": "BOUNDARY := \u00ac repository_native_non_alias_Newstein_FGL_geometry_constructs_full_R1TheoremProofInputs"
+}
