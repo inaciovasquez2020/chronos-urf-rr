@@ -1,0 +1,35 @@
+{
+  "id": "r1_newstein_fgl_native_non_alias_data_r1_theorem_route_receipt_2026_07_09",
+  "date": "2026-07-09",
+  "scope": "bounded native non-alias data R1 theorem route",
+  "commits": [
+    "51a211ef",
+    "47fa41b7",
+    "c1a6921c",
+    "31d67f51",
+    "c1e3b0c4"
+  ],
+  "added_targets": [
+    "R1ConcreteNewsteinFGLNativeNonAliasData",
+    "R1ConcreteNewsteinFGLNativeNonAliasDataToR1aInputFieldTarget",
+    "R1ConcreteNewsteinFGLNativeNonAliasDataToR1bInputFieldTarget",
+    "R1ConcreteNewsteinFGLNativeNonAliasDataToR1cInputFieldTarget",
+    "R1ConcreteNewsteinFGLNativeNonAliasDataR1InputAssemblyTarget",
+    "R1ConcreteNewsteinFGLNativeNonAliasDataR1InputAssemblyTarget.toR1LongChordExclusionTheorem"
+  ],
+  "positive_claims": [
+    "isolates native non-alias data as supplied evidence",
+    "routes supplied R1a/R1b/R1c fields into the prior native-map assembly target",
+    "routes assembled fields to R1LongChordExclusionTheorem"
+  ],
+  "non_claims": [
+    "does not prove native non-alias evidence from repository geometry",
+    "does not discharge R1ConcreteNewsteinFGLToNativeMapInputContract",
+    "does not prove R1TheoremProofInputs from native data alone",
+    "does not prove unrestricted R1",
+    "does not prove Chronos-RR",
+    "does not prove H4.1/FGL",
+    "does not prove any Clay problem"
+  ],
+  "remaining_boundary": "BOUNDARY := \u00ac repository_native_non_alias_Newstein_FGL_geometry_constructs_full_R1TheoremProofInputs"
+}
