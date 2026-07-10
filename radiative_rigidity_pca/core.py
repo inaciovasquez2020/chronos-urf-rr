@@ -4,6 +4,8 @@ def covariance(D: np.ndarray) -> np.ndarray:
     D = np.asarray(D, dtype=float)
     if D.ndim != 2:
         raise ValueError("covariance expects a 2D array")
+    if D.shape[0] == 0:
+        raise ValueError("covariance expects at least one observation")
     mu = D.mean(axis=0, keepdims=True)
     X = D - mu
     return (X.T @ X) / max(1, X.shape[0])
