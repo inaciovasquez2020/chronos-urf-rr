@@ -32,3 +32,7 @@ def test_package_covariance_matches_numpy_rowvar_false():
 def test_package_is_rank1_uses_absolute_tolerance_at_small_scale():
     matrix = np.diag([1e-12, 5e-13])
     assert is_rank1(matrix)
+
+def test_package_covariance_rejects_non_2d_input():
+    with pytest.raises(ValueError, match="2D"):
+        covariance([1.0, 2.0, 3.0])
