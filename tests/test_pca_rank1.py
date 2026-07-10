@@ -23,3 +23,16 @@ def test_is_rank1_false():
     rng = np.random.default_rng(0)
     noisy = data + 1e-2 * rng.standard_normal(data.shape)
     assert bool(is_rank1(noisy)) is False
+
+def test_is_rank1_rejects_empty_dimensions():
+    import numpy as np
+    import pytest
+
+    with pytest.raises(ValueError, match="empty|non-empty|dimension"):
+        is_rank1(np.empty((0, 0)))
+
+    with pytest.raises(ValueError, match="empty|non-empty|dimension"):
+        is_rank1(np.empty((0, 2)))
+
+    with pytest.raises(ValueError, match="empty|non-empty|dimension"):
+        is_rank1(np.empty((2, 0)))
