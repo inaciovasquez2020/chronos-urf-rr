@@ -28,3 +28,7 @@ def test_package_covariance_matches_numpy_rowvar_false():
         ]
     )
     np.testing.assert_allclose(covariance(x), np.cov(x, rowvar=False, bias=True))
+
+def test_package_is_rank1_uses_absolute_tolerance_at_small_scale():
+    matrix = np.diag([1e-12, 5e-13])
+    assert is_rank1(matrix)
