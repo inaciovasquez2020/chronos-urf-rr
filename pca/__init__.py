@@ -4,6 +4,8 @@ def is_rank1(x, *, rtol=1e-7, atol=1e-12) -> bool:
     a = np.asarray(x, dtype=float)
     if a.ndim != 2:
         raise ValueError("is_rank1 expects a 2D array")
+    if not np.isfinite(a).all():
+        raise ValueError("is_rank1 expects finite values")
 
     m, n = a.shape
     if m <= 1 or n <= 1:
