@@ -32,3 +32,26 @@ def test_radiative_rigidity_is_rank1_rejects_rank2_identity_matrix():
 def test_radiative_rigidity_is_rank1_rejects_non_2d_input():
     with pytest.raises(ValueError, match="2D array"):
         pca_rank1.is_rank1([1.0, 2.0, 3.0])
+
+def test_radiative_rigidity_is_rank1_rejects_empty_dimensions():
+    import numpy as np
+    import pytest
+
+    with pytest.raises(ValueError, match="empty|non-empty|dimension"):
+        pca_rank1.is_rank1(np.empty((0, 0)))
+
+    with pytest.raises(ValueError, match="empty|non-empty|dimension"):
+        pca_rank1.is_rank1(np.empty((0, 2)))
+
+    with pytest.raises(ValueError, match="empty|non-empty|dimension"):
+        pca_rank1.is_rank1(np.empty((2, 0)))
+
+def test_radiative_rigidity_is_rank1_rejects_non_finite_input():
+    import numpy as np
+    import pytest
+
+    with pytest.raises(ValueError, match="finite"):
+        pca_rank1.is_rank1(np.array([[1.0, np.nan], [0.0, 1.0]]))
+
+    with pytest.raises(ValueError, match="finite"):
+        pca_rank1.is_rank1(np.array([[1.0, np.inf], [0.0, 1.0]]))

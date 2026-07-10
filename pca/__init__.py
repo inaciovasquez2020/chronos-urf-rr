@@ -8,6 +8,8 @@ def is_rank1(x, *, rtol=1e-7, atol=1e-12) -> bool:
         raise ValueError("is_rank1 expects finite values")
 
     m, n = a.shape
+    if m == 0 or n == 0:
+        raise ValueError("is_rank1 expects non-empty dimensions")
     if m <= 1 or n <= 1:
         return True
 
