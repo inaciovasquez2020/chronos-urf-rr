@@ -48,3 +48,7 @@ def test_package_covariance_rejects_empty_feature_axis():
 def test_package_covariance_rejects_non_finite_input():
     with pytest.raises(ValueError, match="finite"):
         covariance(np.array([[1.0, 2.0], [np.nan, 4.0]]))
+
+def test_package_is_rank1_rejects_nan_input():
+    with pytest.raises(ValueError, match="finite"):
+        is_rank1(np.diag([1.0, np.nan]))

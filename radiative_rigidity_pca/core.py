@@ -23,6 +23,8 @@ def is_rank1(
     C = np.asarray(C, dtype=float)
     if C.ndim != 2:
         raise ValueError("expected a 2D array")
+    if not np.isfinite(C).all():
+        raise ValueError("is_rank1 expects finite values")
     s = np.linalg.svd(C, compute_uv=False)
     if s.size <= 1:
         return True
