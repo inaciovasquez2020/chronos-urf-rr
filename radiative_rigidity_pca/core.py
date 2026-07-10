@@ -8,6 +8,8 @@ def covariance(D: np.ndarray) -> np.ndarray:
         raise ValueError("covariance expects at least one observation")
     if D.shape[1] == 0:
         raise ValueError("covariance expects at least one feature")
+    if not np.isfinite(D).all():
+        raise ValueError("covariance expects finite values")
     mu = D.mean(axis=0, keepdims=True)
     X = D - mu
     return (X.T @ X) / max(1, X.shape[0])
