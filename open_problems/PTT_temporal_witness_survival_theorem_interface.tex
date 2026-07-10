@@ -1,0 +1,43 @@
+\section{PTT Temporal Witness Survival Theorem Interface}
+
+\paragraph{Scope.}
+This artifact records the weakest theorem interface required for a future
+derivation-time witness/configuration result. It does not prove the theorem.
+
+\paragraph{Definitions.}
+
+A temporal configuration witness records that a derivation contains a
+specified witness object at a specific derivation timestep.
+
+\[
+\mathrm{TemporalConfigurationWitness}(D,t,W).
+\]
+
+The target survival property is:
+
+\[
+\mathrm{DerivationTimeWitness}(D,W)
+:=
+\exists t \leq \mathrm{depth}(D),
+\mathrm{TemporalConfigurationWitness}(D,t,W).
+\]
+
+\paragraph{Conditional theorem interface.}
+
+A future verified derivation-time witness theorem would provide:
+
+\[
+\mathrm{InitialWitness}(D,W)
+\land
+\mathrm{TraceInvariant}(D)
+\Longrightarrow
+\mathrm{DerivationTimeWitness}(D,W).
+\]
+
+\paragraph{Non-claims.}
+
+This interface does not prove temporal witness survival.
+It does not prove rank amplification.
+It does not prove layer-rank transfer.
+It does not prove locality-to-depth composition.
+It does not prove PTT closure.
