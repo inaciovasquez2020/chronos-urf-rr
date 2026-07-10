@@ -60,3 +60,7 @@ def test_package_is_rank1_rejects_negative_rtol():
 def test_package_is_rank1_rejects_negative_atol():
     with pytest.raises(ValueError, match="atol"):
         is_rank1(np.diag([1.0, 0.0]), atol=-1e-12)
+
+def test_package_is_rank1_rejects_empty_dimensions():
+    with pytest.raises(ValueError, match="non-empty dimensions"):
+        is_rank1(np.empty((0, 0)))
