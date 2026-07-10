@@ -36,3 +36,7 @@ def test_package_is_rank1_uses_absolute_tolerance_at_small_scale():
 def test_package_covariance_rejects_non_2d_input():
     with pytest.raises(ValueError, match="2D"):
         covariance([1.0, 2.0, 3.0])
+
+def test_package_covariance_rejects_empty_observation_axis():
+    with pytest.raises(ValueError, match="at least one observation"):
+        covariance(np.empty((0, 2)))
