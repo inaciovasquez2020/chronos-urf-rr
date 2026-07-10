@@ -40,3 +40,7 @@ def test_package_covariance_rejects_non_2d_input():
 def test_package_covariance_rejects_empty_observation_axis():
     with pytest.raises(ValueError, match="at least one observation"):
         covariance(np.empty((0, 2)))
+
+def test_package_covariance_rejects_empty_feature_axis():
+    with pytest.raises(ValueError, match="at least one feature"):
+        covariance(np.empty((3, 0)))
