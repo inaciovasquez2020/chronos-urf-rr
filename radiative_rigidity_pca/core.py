@@ -29,6 +29,8 @@ def is_rank1(
         raise ValueError("rtol must be finite and nonnegative")
     if not np.isfinite(atol) or atol < 0:
         raise ValueError("atol must be finite and nonnegative")
+    if C.shape[0] == 0 or C.shape[1] == 0:
+        raise ValueError("is_rank1 expects non-empty dimensions")
     s = np.linalg.svd(C, compute_uv=False)
     if s.size <= 1:
         return True
