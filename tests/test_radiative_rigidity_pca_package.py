@@ -56,3 +56,7 @@ def test_package_is_rank1_rejects_nan_input():
 def test_package_is_rank1_rejects_negative_rtol():
     with pytest.raises(ValueError, match="rtol"):
         is_rank1(np.diag([1.0, 0.0]), rtol=-1e-7)
+
+def test_package_is_rank1_rejects_negative_atol():
+    with pytest.raises(ValueError, match="atol"):
+        is_rank1(np.diag([1.0, 0.0]), atol=-1e-12)
