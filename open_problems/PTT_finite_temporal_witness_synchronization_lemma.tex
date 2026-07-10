@@ -1,0 +1,84 @@
+\section*{PTT finite temporal witness synchronization lemma}
+
+This lemma discharges only the finite synchronization step following the
+temporal witness survival theorem interface.
+
+\paragraph{Hypotheses.}
+Fix a derivation \(D\), a finite nonempty set \(\mathcal W\) of witnesses,
+and a predicate
+\[
+\mathrm{TemporalConfigurationWitness}(D,t,W).
+\]
+Assume
+\[
+\forall W\in\mathcal W,\;
+\exists t\in\mathbb N,\;
+\mathrm{TemporalConfigurationWitness}(D,t,W).
+\]
+
+\paragraph{Lemma.}
+There exists \(T\in\mathbb N\) such that
+\[
+\forall W\in\mathcal W,\;
+\exists t\leq T,\;
+\mathrm{TemporalConfigurationWitness}(D,t,W).
+\]
+
+Moreover, there exist \(W_\ast\in\mathcal W\) and \(t_\ast\leq T\) such that
+\[
+\mathrm{TemporalConfigurationWitness}(D,t_\ast,W_\ast).
+\]
+
+\paragraph{Proof.}
+For each \(W\in\mathcal W\), define
+\[
+\tau(W)
+=
+\min\left\{
+t\in\mathbb N:
+\mathrm{TemporalConfigurationWitness}(D,t,W)
+\right\}.
+\]
+The defining set is nonempty by hypothesis, so \(\tau(W)\) exists by the
+well-ordering principle for \(\mathbb N\).
+
+Since \(\mathcal W\) is finite and nonempty, the finite nonempty set
+\[
+\{\tau(W):W\in\mathcal W\}
+\]
+has a maximum. Define
+\[
+T=\max\{\tau(W):W\in\mathcal W\}.
+\]
+Then for every \(W\in\mathcal W\),
+\[
+\tau(W)\leq T
+\]
+and
+\[
+\mathrm{TemporalConfigurationWitness}(D,\tau(W),W).
+\]
+Taking \(t=\tau(W)\) proves
+\[
+\forall W\in\mathcal W,\;
+\exists t\leq T,\;
+\mathrm{TemporalConfigurationWitness}(D,t,W).
+\]
+
+Because the maximum is attained, there exists \(W_\ast\in\mathcal W\) with
+\[
+\tau(W_\ast)=T.
+\]
+Taking \(t_\ast=T\) gives
+\[
+\mathrm{TemporalConfigurationWitness}(D,t_\ast,W_\ast).
+\]
+\(\square\)
+
+\paragraph{Boundary.}
+This lemma does not construct any
+\(\mathrm{TemporalConfigurationWitness}\).
+It requires the individual witnesses as hypotheses.
+It does not prove a verified trace extraction theorem.
+It does not construct \(\mathrm{TemporalWitnessSource}\).
+It does not prove PTT closure.
