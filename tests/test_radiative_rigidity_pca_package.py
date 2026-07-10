@@ -52,3 +52,7 @@ def test_package_covariance_rejects_non_finite_input():
 def test_package_is_rank1_rejects_nan_input():
     with pytest.raises(ValueError, match="finite"):
         is_rank1(np.diag([1.0, np.nan]))
+
+def test_package_is_rank1_rejects_negative_rtol():
+    with pytest.raises(ValueError, match="rtol"):
+        is_rank1(np.diag([1.0, 0.0]), rtol=-1e-7)

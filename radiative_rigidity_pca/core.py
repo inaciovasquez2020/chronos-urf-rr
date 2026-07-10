@@ -25,6 +25,8 @@ def is_rank1(
         raise ValueError("expected a 2D array")
     if not np.isfinite(C).all():
         raise ValueError("is_rank1 expects finite values")
+    if not np.isfinite(rtol) or rtol < 0:
+        raise ValueError("rtol must be finite and nonnegative")
     s = np.linalg.svd(C, compute_uv=False)
     if s.size <= 1:
         return True
