@@ -1,0 +1,31 @@
+\section{PTT Locality-to-Depth Composition Invariant Surface}
+
+\paragraph{Scope.}
+This artifact records the missing intermediate invariant required by the
+Propagation Transfer Theorem (PTT). It does not prove PTT.
+
+\paragraph{Invariant target.}
+A future composition lemma must preserve the dependency:
+
+\[
+\mathrm{LocalFO}^k
+\land
+\mathrm{BoundedSpan}
+\Longrightarrow
+\mathrm{NoShortcutDepthCollapse}.
+\]
+
+\paragraph{Required inputs.}
+\begin{itemize}
+\item FO$^k$ locality certificate for each derivation step.
+\item Simultaneous $\mathbb F_2$-span bound certificate.
+\item Composition rule over bounded-degree expander gadget families.
+\end{itemize}
+
+\paragraph{Missing lemma.}
+A composition invariant showing that local indistinguishability and bounded
+span prevent shortcut aggregation.
+
+\paragraph{Non-claims.}
+This surface does not prove the missing lemma, does not prove PTT, and does not
+establish a derivation depth lower bound.
