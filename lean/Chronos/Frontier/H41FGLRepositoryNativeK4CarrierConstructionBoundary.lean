@@ -88,6 +88,36 @@ theorem repositoryNativeK4WalshTransform_injective
       construction.toRealizability
       (toRealizability_vertexExt construction)
 
+/--
+An independently supplied carrier specification may be empty. In that case,
+no completed repository-native carrier construction exists.
+-/
+theorem noCarrierConstructionForEmptySpecification :
+    ¬ Nonempty
+      (H41FGLRepositoryNativeK4CarrierConstruction
+        (fun _ : Type u => False)) := by
+  intro hconstruction
+  rcases hconstruction with ⟨construction⟩
+  exact construction.repository_native
+
+/--
+The current interfaces and transported Walsh results cannot uniformly
+manufacture a carrier-construction inhabitant for every independent
+repository-native carrier specification.
+
+This does not refute construction for the intended `X(𝒫_{4,0,1})`
+specification; that specification and its inhabitant remain separate inputs.
+-/
+theorem carrierConstruction_not_unconditional :
+    ¬ ∀ IsRepositoryNativeCarrier : Type u → Prop,
+        Nonempty
+          (H41FGLRepositoryNativeK4CarrierConstruction
+            IsRepositoryNativeCarrier) := by
+  intro hall
+  exact
+    noCarrierConstructionForEmptySpecification
+      (hall (fun _ : Type u => False))
+
 end H41FGLRepositoryNativeK4CarrierConstruction
 
 end Frontier
