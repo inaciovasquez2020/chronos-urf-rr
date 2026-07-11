@@ -119,5 +119,24 @@ def h41FGLK4SelectedAdmissibleHistoryCarrierConstruction :
   vertex_ext :=
     h41FGLK4SelectedAdmissibleHistory_vertexExt
 
+/--
+The completed selected admissible-history carrier inherits injectivity of the
+transported sixteen-state K4 Walsh transform.
+
+This remains a theorem about the explicitly defined selected carrier and does
+not identify it with the external admissible-history space
+`X(𝒫_{4,0,1})`.
+-/
+theorem h41FGLK4SelectedAdmissibleHistoryWalshTransform_injective :
+    Function.Injective
+      (H41FGLRepositoryNativeK4HistoryRealizability.repositoryNativeK4WalshTransform
+        (H41FGLRepositoryNativeK4CarrierConstruction.toRealizability
+          h41FGLK4SelectedAdmissibleHistoryCarrierConstruction)
+        (H41FGLRepositoryNativeK4CarrierConstruction.toRealizability_vertexExt
+          h41FGLK4SelectedAdmissibleHistoryCarrierConstruction)) := by
+  exact
+    H41FGLRepositoryNativeK4CarrierConstruction.repositoryNativeK4WalshTransform_injective
+      h41FGLK4SelectedAdmissibleHistoryCarrierConstruction
+
 end Frontier
 end Chronos
