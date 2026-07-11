@@ -70,6 +70,24 @@ theorem toRealizability_vertexExt
   intro i
   exact congrFun hcoordinates i
 
+/--
+A completed repository-native carrier construction directly supplies the
+conditional transported K4 Walsh-transform injectivity theorem.
+-/
+theorem repositoryNativeK4WalshTransform_injective
+    {IsRepositoryNativeCarrier : Type u → Prop}
+    (construction :
+      H41FGLRepositoryNativeK4CarrierConstruction
+        IsRepositoryNativeCarrier) :
+    Function.Injective
+      (H41FGLRepositoryNativeK4HistoryRealizability.repositoryNativeK4WalshTransform
+        construction.toRealizability
+        (toRealizability_vertexExt construction)) := by
+  exact
+    H41FGLRepositoryNativeK4HistoryRealizability.repositoryNativeK4WalshTransform_injective
+      construction.toRealizability
+      (toRealizability_vertexExt construction)
+
 end H41FGLRepositoryNativeK4CarrierConstruction
 
 end Frontier
