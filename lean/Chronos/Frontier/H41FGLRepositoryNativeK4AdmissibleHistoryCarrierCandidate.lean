@@ -52,6 +52,20 @@ theorem h41FGLK4SelectedHistoryAdmissible_all
       Finset.card_le_card hsubset
     _ = 4 := by native_decide
 
+/--
+At the bounded `(k, R, B) = (4, 0, 1)` parameter choice, the selected
+support-cardinality admissibility predicate imposes no further restriction:
+every candidate history is admissible.
+-/
+theorem h41FGLK4SelectedHistoryAdmissible_iff_true
+    (history : H41FGLK4VertexAssignmentHistory) :
+    H41FGLK4SelectedHistoryAdmissible history ↔ True := by
+  constructor
+  · intro _
+    trivial
+  · intro _
+    exact h41FGLK4SelectedHistoryAdmissible_all history
+
 /-- Evaluation of a selected admissible history at K4 vertex `i`. -/
 def h41FGLK4SelectedAdmissibleHistoryObservable
     (i : Fin 4)
