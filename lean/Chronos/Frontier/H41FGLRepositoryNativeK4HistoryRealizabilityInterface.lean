@@ -54,6 +54,24 @@ theorem vertex_realizable
   intro σ
   exact ⟨data.historyOfBits σ, combinedObservable_historyOfBits data σ⟩
 
+/--
+Repository-native vertex extensionality is the remaining injectivity
+obligation: histories with identical four Boolean coordinates must coincide.
+-/
+def H41FGLRepositoryNativeK4VertexExt
+    (data : H41FGLRepositoryNativeK4HistoryRealizability.{u}) : Prop :=
+  ∀ h₁ h₂ : data.History,
+    combinedObservable data h₁ = combinedObservable data h₂ →
+      h₁ = h₂
+
+/-- Vertex extensionality makes the combined observation map injective. -/
+theorem combinedObservable_injective
+    (data : H41FGLRepositoryNativeK4HistoryRealizability.{u})
+    (hvertexExt : H41FGLRepositoryNativeK4VertexExt data) :
+    Function.Injective (combinedObservable data) := by
+  intro h₁ h₂ hcoordinates
+  exact hvertexExt h₁ h₂ hcoordinates
+
 end H41FGLRepositoryNativeK4HistoryRealizability
 
 end Frontier
