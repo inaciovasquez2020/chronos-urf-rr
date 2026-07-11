@@ -72,6 +72,27 @@ theorem combinedObservable_injective
   intro h₁ h₂ hcoordinates
   exact hvertexExt h₁ h₂ hcoordinates
 
+/--
+Realizability and vertex extensionality identify the history carrier with the
+four-bit carrier without using an arbitrary inverse choice.
+-/
+def historyEquivBitVector
+    (data : H41FGLRepositoryNativeK4HistoryRealizability.{u})
+    (hvertexExt : H41FGLRepositoryNativeK4VertexExt data) :
+    data.History ≃ H41FGLK4BitVector where
+  toFun := combinedObservable data
+  invFun := data.historyOfBits
+  left_inv := by
+    intro h
+    apply hvertexExt
+    exact
+      combinedObservable_historyOfBits
+        data
+        (combinedObservable data h)
+  right_inv := by
+    intro σ
+    exact combinedObservable_historyOfBits data σ
+
 end H41FGLRepositoryNativeK4HistoryRealizability
 
 end Frontier
