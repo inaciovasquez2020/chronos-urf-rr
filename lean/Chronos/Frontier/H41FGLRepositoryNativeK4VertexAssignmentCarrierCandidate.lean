@@ -99,5 +99,23 @@ def h41FGLK4VertexAssignmentCarrierConstruction :
   vertex_ext :=
     h41FGLK4VertexAssignment_vertexExt
 
+/--
+The completed bounded vertex-assignment carrier construction inherits
+injectivity of the transported sixteen-state K4 Walsh transform.
+
+This theorem remains confined to the concrete candidate carrier and does not
+identify it with the external admissible-history space `X(𝒫_{4,0,1})`.
+-/
+theorem h41FGLK4VertexAssignmentWalshTransform_injective :
+    Function.Injective
+      (H41FGLRepositoryNativeK4HistoryRealizability.repositoryNativeK4WalshTransform
+        (H41FGLRepositoryNativeK4CarrierConstruction.toRealizability
+          h41FGLK4VertexAssignmentCarrierConstruction)
+        (H41FGLRepositoryNativeK4CarrierConstruction.toRealizability_vertexExt
+          h41FGLK4VertexAssignmentCarrierConstruction)) := by
+  exact
+    H41FGLRepositoryNativeK4CarrierConstruction.repositoryNativeK4WalshTransform_injective
+      h41FGLK4VertexAssignmentCarrierConstruction
+
 end Frontier
 end Chronos
