@@ -152,5 +152,24 @@ theorem h41FGLK4SelectedAdmissibleHistoryWalshTransform_injective :
     H41FGLRepositoryNativeK4CarrierConstruction.repositoryNativeK4WalshTransform_injective
       h41FGLK4SelectedAdmissibleHistoryCarrierConstruction
 
+/--
+Because bounded K4 admissibility is satisfied by every vertex-assignment
+history, the selected admissible subtype is equivalent to its underlying
+bounded vertex-assignment carrier.
+-/
+def h41FGLK4SelectedAdmissibleHistoryEquivVertexAssignment :
+    H41FGLK4SelectedAdmissibleHistory ≃
+      H41FGLK4VertexAssignmentHistory where
+  toFun := Subtype.val
+  invFun := fun history =>
+    ⟨history, h41FGLK4SelectedHistoryAdmissible_all history⟩
+  left_inv := by
+    intro history
+    apply Subtype.ext
+    rfl
+  right_inv := by
+    intro history
+    rfl
+
 end Frontier
 end Chronos
