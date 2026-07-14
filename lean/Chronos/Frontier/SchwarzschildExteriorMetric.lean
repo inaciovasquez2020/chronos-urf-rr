@@ -306,12 +306,12 @@ theorem schwarzschildMetric_tt_radialFormula_hasDerivAt
   have hRadiusNe : x.1 1 ≠ 0 :=
     ne_of_gt hRadiusPos
 
-  convert
+  (convert
     (((hasDerivAt_const (x.1 1) (1 : Real)).sub
       ((hasDerivAt_const (x.1 1) (2 * p.mass)).fun_div
         (hasDerivAt_id' (x.1 1))
         hRadiusNe)).neg)
-    using 1 <;> ring
+    using 1; ring)
 
 /--
 The time-time component of the Schwarzschild metric is exactly the
@@ -450,15 +450,15 @@ theorem schwarzschildChristoffel_r_rr_from_metric
         (fun r : Real => r / (r - 2 * p.mass))
         (-(2 * p.mass) / (x.1 1 - 2 * p.mass) ^ 2)
         (x.1 1) := by
-    convert
+    (convert
       (hasDerivAt_id' (x.1 1)).fun_div
         ((hasDerivAt_id' (x.1 1)).sub
           (hasDerivAt_const (x.1 1) (2 * p.mass)))
         hExteriorGapNe
-      using 1 <;>
-        simp only [Pi.sub_apply] <;>
-        field_simp [hExteriorGapNe] <;>
-        ring
+      using 1;
+        simp only [Pi.sub_apply];
+        field_simp [hExteriorGapNe];
+        ring)
 
   have hDerivative :
       deriv
@@ -640,7 +640,7 @@ theorem schwarzschildChristoffel_theta_r_theta_from_metric
           ((x.1 1) ^ 2)⁻¹ *
           (2 * x.1 1) =
         1 / x.1 1 := by
-    field_simp [hRadiusNe] <;> ring
+    field_simp [hRadiusNe]
 
   rw [hDerivative]
   simpa [schwarzschildInverseMetric] using hAlgebra
@@ -782,7 +782,7 @@ theorem schwarzschildChristoffel_theta_phi_phi_from_metric
             (Real.cos (x.1 2) * Real.sin (x.1 2) +
               Real.sin (x.1 2) * Real.cos (x.1 2))) =
         -(Real.sin (x.1 2) * Real.cos (x.1 2)) := by
-    field_simp [hRadiusSqNe] <;> ring
+    (field_simp [hRadiusSqNe]; ring)
 
   rw [hDerivative]
   simpa [schwarzschildInverseMetric] using hAlgebra
@@ -862,7 +862,7 @@ theorem schwarzschildChristoffel_phi_theta_phi_from_metric
             (Real.cos (x.1 2) * Real.sin (x.1 2) +
               Real.sin (x.1 2) * Real.cos (x.1 2))) =
         Real.cos (x.1 2) / Real.sin (x.1 2) := by
-    field_simp [hRadiusSqNe, hSinNe, hSinSqNe] <;> ring
+    (field_simp [hRadiusSqNe, hSinNe, hSinSqNe]; ring)
 
   rw [hDerivative]
   simpa [schwarzschildInverseMetric] using hAlgebra
@@ -931,11 +931,11 @@ theorem schwarzschildChristoffel_radialTrace
     (∑ α : Fin 4,
       schwarzschildChristoffel p x α 1 α) =
         2 / x.1 1 := by
-  simp [
+  (simp [
     Fin.sum_univ_four,
     schwarzschildChristoffel,
     div_eq_mul_inv
-  ] <;> ring
+  ]; ring)
 
 
 /--
@@ -971,6 +971,26 @@ theorem schwarzschildChristoffel_temporalTrace
     (x : SchwarzschildExteriorDomain p) :
     (∑ α : Fin 4,
       schwarzschildChristoffel p x α 0 α) =
+        0 := by
+  simp [
+    Fin.sum_univ_four,
+    schwarzschildChristoffel
+  ]
+
+
+/--
+The contracted Schwarzschild connection coefficient in the azimuthal
+coordinate vanishes:
+
+`∑ α, Γ^α_{φα} = 0`.
+
+Every summand is outside the thirteen-entry nonzero support table.
+-/
+theorem schwarzschildChristoffel_azimuthalTrace
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (∑ α : Fin 4,
+      schwarzschildChristoffel p x α 3 α) =
         0 := by
   simp [
     Fin.sum_univ_four,
