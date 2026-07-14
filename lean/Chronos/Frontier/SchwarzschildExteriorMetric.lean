@@ -997,6 +997,83 @@ theorem schwarzschildChristoffel_azimuthalTrace
     schwarzschildChristoffel
   ]
 
+
+/--
+The radial derivative of the packaged Schwarzschild coefficient
+
+`Γʳₜₜ(r) = M(r - 2M) / r³`
+
+is
+
+`-2M(r - 3M) / r⁴`
+
+throughout the exterior chart.
+-/
+theorem schwarzschildChristoffel_r_tt_radialFormula_hasDerivAt
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    HasDerivAt
+      (fun r : Real =>
+        p.mass * (r - 2 * p.mass) / r ^ 3)
+      (-(2 * p.mass * (x.1 1 - 3 * p.mass) /
+        (x.1 1) ^ 4))
+      (x.1 1) := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusNe : x.1 1 ≠ 0 :=
+    ne_of_gt hRadiusPos
+
+  have hRadiusCubeNe : (x.1 1) ^ 3 ≠ 0 :=
+    pow_ne_zero 3 hRadiusNe
+
+  have hNumerator :
+      HasDerivAt
+        (fun r : Real =>
+          p.mass * (r - 2 * p.mass))
+        p.mass
+        (x.1 1) := by
+    simpa using
+      (hasDerivAt_const (x.1 1) p.mass).mul
+        ((hasDerivAt_id' (x.1 1)).sub
+          (hasDerivAt_const
+            (x.1 1)
+            (2 * p.mass)))
+
+  have hDenominator :
+      HasDerivAt
+        (fun r : Real => r ^ 3)
+        (3 * (x.1 1) ^ 2)
+        (x.1 1) := by
+    simpa using
+      (hasDerivAt_id' (x.1 1)).pow 3
+
+  have hDerivative :
+      HasDerivAt
+        (fun r : Real =>
+          p.mass * (r - 2 * p.mass) / r ^ 3)
+        ((p.mass * (x.1 1) ^ 3 -
+            (p.mass * (x.1 1 - 2 * p.mass)) *
+              (3 * (x.1 1) ^ 2)) /
+          ((x.1 1) ^ 3) ^ 2)
+        (x.1 1) :=
+    hNumerator.fun_div
+      hDenominator
+      hRadiusCubeNe
+
+  have hAlgebra :
+      ((p.mass * (x.1 1) ^ 3 -
+            (p.mass * (x.1 1 - 2 * p.mass)) *
+              (3 * (x.1 1) ^ 2)) /
+          ((x.1 1) ^ 3) ^ 2) =
+        -(2 * p.mass * (x.1 1 - 3 * p.mass) /
+          (x.1 1) ^ 4) := by
+    field_simp [hRadiusNe]
+    ring
+
+  rw [hAlgebra] at hDerivative
+  exact hDerivative
+
 end
 
 end Frontier
