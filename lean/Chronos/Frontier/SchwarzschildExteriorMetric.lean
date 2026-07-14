@@ -597,6 +597,54 @@ theorem schwarzschildChristoffel_r_phi_phi_from_metric
   rw [hDerivative, hInverseRR, hLapseEq]
   field_simp [hRadiusNe]
 
+/--
+The Schwarzschild Christoffel component obtained from
+
+`Γθ_rθ = (1/2) gθθ ∂ᵣg_θθ`
+
+with `g_θθ(r) = r²` is `1/r` throughout the exterior chart.
+-/
+theorem schwarzschildChristoffel_theta_r_theta_from_metric
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (1 / 2 : Real) *
+        schwarzschildInverseMetric p x 2 2 *
+        deriv
+          (fun r : Real => r ^ 2)
+          (x.1 1) =
+      1 / x.1 1 := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusNe : x.1 1 ≠ 0 :=
+    ne_of_gt hRadiusPos
+
+  have hDerivativeHas :
+      HasDerivAt
+        (fun r : Real => r ^ 2)
+        (2 * x.1 1)
+        (x.1 1) := by
+    simpa [pow_two, two_mul] using
+      ((hasDerivAt_id' (x.1 1)).mul
+        (hasDerivAt_id' (x.1 1)))
+
+  have hDerivative :
+      deriv
+          (fun r : Real => r ^ 2)
+          (x.1 1) =
+        2 * x.1 1 :=
+    hDerivativeHas.deriv
+
+  have hAlgebra :
+      (1 / 2 : Real) *
+          ((x.1 1) ^ 2)⁻¹ *
+          (2 * x.1 1) =
+        1 / x.1 1 := by
+    field_simp [hRadiusNe] <;> ring
+
+  rw [hDerivative]
+  simpa [schwarzschildInverseMetric] using hAlgebra
+
 end
 
 end Frontier
