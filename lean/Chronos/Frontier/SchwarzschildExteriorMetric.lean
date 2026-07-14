@@ -977,6 +977,26 @@ theorem schwarzschildChristoffel_temporalTrace
     schwarzschildChristoffel
   ]
 
+
+/--
+The contracted Schwarzschild connection coefficient in the azimuthal
+coordinate vanishes:
+
+`∑ α, Γ^α_{φα} = 0`.
+
+Every summand is outside the thirteen-entry nonzero support table.
+-/
+theorem schwarzschildChristoffel_azimuthalTrace
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (∑ α : Fin 4,
+      schwarzschildChristoffel p x α 3 α) =
+        0 := by
+  simp [
+    Fin.sum_univ_four,
+    schwarzschildChristoffel
+  ]
+
 end
 
 end Frontier
