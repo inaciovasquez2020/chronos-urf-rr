@@ -915,6 +915,28 @@ def schwarzschildChristoffel
   else
     0
 
+
+/--
+The contracted Schwarzschild connection coefficient in the radial
+coordinate is
+
+`∑ α, Γ^α_{rα} = 2 / r`.
+
+The time-radial and radial-radial terms cancel, leaving the polar and
+azimuthal contributions `1 / r + 1 / r`.
+-/
+theorem schwarzschildChristoffel_radialTrace
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (∑ α : Fin 4,
+      schwarzschildChristoffel p x α 1 α) =
+        2 / x.1 1 := by
+  simp [
+    Fin.sum_univ_four,
+    schwarzschildChristoffel,
+    div_eq_mul_inv
+  ] <;> ring
+
 end
 
 end Frontier
