@@ -719,6 +719,74 @@ theorem schwarzschildChristoffel_phi_r_phi_from_metric
   rw [hDerivative]
   simpa [schwarzschildInverseMetric] using hAlgebra
 
+/--
+The Schwarzschild Christoffel component obtained from
+
+`Γθ_φφ = -(1/2) gθθ ∂θg_φφ`
+
+with `g_φφ(r, θ) = r² sin² θ` is
+`-sin θ cos θ` throughout the exterior chart.
+-/
+theorem schwarzschildChristoffel_theta_phi_phi_from_metric
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (-(1 / 2 : Real)) *
+        schwarzschildInverseMetric p x 2 2 *
+        deriv
+          (fun θ : Real =>
+            (x.1 1) ^ 2 * Real.sin θ ^ 2)
+          (x.1 2) =
+      -(Real.sin (x.1 2) * Real.cos (x.1 2)) := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusSqNe : (x.1 1) ^ 2 ≠ 0 := by
+    exact pow_ne_zero 2 (ne_of_gt hRadiusPos)
+
+  have hSinSquareDerivative :
+      HasDerivAt
+        (fun θ : Real => Real.sin θ ^ 2)
+        (Real.cos (x.1 2) * Real.sin (x.1 2) +
+          Real.sin (x.1 2) * Real.cos (x.1 2))
+        (x.1 2) := by
+    simpa [pow_two] using
+      (Real.hasDerivAt_sin (x.1 2)).mul
+        (Real.hasDerivAt_sin (x.1 2))
+
+  have hDerivativeHas :
+      HasDerivAt
+        (fun θ : Real =>
+          (x.1 1) ^ 2 * Real.sin θ ^ 2)
+        ((x.1 1) ^ 2 *
+          (Real.cos (x.1 2) * Real.sin (x.1 2) +
+            Real.sin (x.1 2) * Real.cos (x.1 2)))
+        (x.1 2) := by
+    simpa using
+      (hasDerivAt_const (x.1 2) ((x.1 1) ^ 2)).mul
+        hSinSquareDerivative
+
+  have hDerivative :
+      deriv
+          (fun θ : Real =>
+            (x.1 1) ^ 2 * Real.sin θ ^ 2)
+          (x.1 2) =
+        (x.1 1) ^ 2 *
+          (Real.cos (x.1 2) * Real.sin (x.1 2) +
+            Real.sin (x.1 2) * Real.cos (x.1 2)) :=
+    hDerivativeHas.deriv
+
+  have hAlgebra :
+      (-(1 / 2 : Real)) *
+          ((x.1 1) ^ 2)⁻¹ *
+          ((x.1 1) ^ 2 *
+            (Real.cos (x.1 2) * Real.sin (x.1 2) +
+              Real.sin (x.1 2) * Real.cos (x.1 2))) =
+        -(Real.sin (x.1 2) * Real.cos (x.1 2)) := by
+    field_simp [hRadiusSqNe] <;> ring
+
+  rw [hDerivative]
+  simpa [schwarzschildInverseMetric] using hAlgebra
+
 end
 
 end Frontier
