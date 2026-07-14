@@ -529,6 +529,74 @@ theorem schwarzschildChristoffel_r_theta_theta_from_metric
   rw [hDerivative, hInverseRR, hLapseEq]
   field_simp [hRadiusNe]
 
+/--
+The Schwarzschild Christoffel component obtained from
+
+`Γʳ_φφ = -(1/2) gʳʳ ∂ᵣg_φφ`
+
+with `g_φφ(r, θ) = r² sin² θ` is
+`-(r - 2M) sin² θ` throughout the exterior chart.
+-/
+theorem schwarzschildChristoffel_r_phi_phi_from_metric
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (-(1 / 2 : Real)) *
+        schwarzschildInverseMetric p x 1 1 *
+        deriv
+          (fun r : Real =>
+            r ^ 2 * Real.sin (x.1 2) ^ 2)
+          (x.1 1) =
+      -(x.1 1 - 2 * p.mass) *
+        Real.sin (x.1 2) ^ 2 := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusNe : x.1 1 ≠ 0 :=
+    ne_of_gt hRadiusPos
+
+  have hSquareDerivative :
+      HasDerivAt
+        (fun r : Real => r ^ 2)
+        (2 * x.1 1)
+        (x.1 1) := by
+    simpa [pow_two, two_mul] using
+      ((hasDerivAt_id' (x.1 1)).mul
+        (hasDerivAt_id' (x.1 1)))
+
+  have hDerivativeHas :
+      HasDerivAt
+        (fun r : Real =>
+          r ^ 2 * Real.sin (x.1 2) ^ 2)
+        ((2 * x.1 1) * Real.sin (x.1 2) ^ 2)
+        (x.1 1) := by
+    simpa using
+      hSquareDerivative.mul
+        (hasDerivAt_const
+          (x.1 1)
+          (Real.sin (x.1 2) ^ 2))
+
+  have hDerivative :
+      deriv
+          (fun r : Real =>
+            r ^ 2 * Real.sin (x.1 2) ^ 2)
+          (x.1 1) =
+        (2 * x.1 1) * Real.sin (x.1 2) ^ 2 :=
+    hDerivativeHas.deriv
+
+  have hInverseRR :
+      schwarzschildInverseMetric p x 1 1 =
+        schwarzschildLapse p x := by
+    simp [schwarzschildInverseMetric]
+
+  have hLapseEq :
+      schwarzschildLapse p x =
+        (x.1 1 - 2 * p.mass) / x.1 1 := by
+    unfold schwarzschildLapse
+    field_simp [hRadiusNe]
+
+  rw [hDerivative, hInverseRR, hLapseEq]
+  field_simp [hRadiusNe]
+
 end
 
 end Frontier
