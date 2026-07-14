@@ -867,6 +867,54 @@ theorem schwarzschildChristoffel_phi_theta_phi_from_metric
   rw [hDerivative]
   simpa [schwarzschildInverseMetric] using hAlgebra
 
+
+/--
+The thirteen ordered nonzero Levi-Civita connection coefficients of the
+Schwarzschild metric in the coordinate order
+
+`0 = t`, `1 = r`, `2 = θ`, `3 = φ`.
+
+The lower-index symmetric partners are listed explicitly. Every other
+ordered coefficient is zero.
+-/
+def schwarzschildChristoffel
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p)
+    (ρ μ ν : Fin 4) : Real :=
+  if ρ = 0 ∧ μ = 0 ∧ ν = 1 then
+    p.mass /
+      (x.1 1 * (x.1 1 - 2 * p.mass))
+  else if ρ = 0 ∧ μ = 1 ∧ ν = 0 then
+    p.mass /
+      (x.1 1 * (x.1 1 - 2 * p.mass))
+  else if ρ = 1 ∧ μ = 0 ∧ ν = 0 then
+    p.mass * (x.1 1 - 2 * p.mass) /
+      (x.1 1) ^ 3
+  else if ρ = 1 ∧ μ = 1 ∧ ν = 1 then
+    -(p.mass /
+      (x.1 1 * (x.1 1 - 2 * p.mass)))
+  else if ρ = 1 ∧ μ = 2 ∧ ν = 2 then
+    -(x.1 1 - 2 * p.mass)
+  else if ρ = 1 ∧ μ = 3 ∧ ν = 3 then
+    -(x.1 1 - 2 * p.mass) *
+      Real.sin (x.1 2) ^ 2
+  else if ρ = 2 ∧ μ = 1 ∧ ν = 2 then
+    (1 : Real) / x.1 1
+  else if ρ = 2 ∧ μ = 2 ∧ ν = 1 then
+    (1 : Real) / x.1 1
+  else if ρ = 3 ∧ μ = 1 ∧ ν = 3 then
+    (1 : Real) / x.1 1
+  else if ρ = 3 ∧ μ = 3 ∧ ν = 1 then
+    (1 : Real) / x.1 1
+  else if ρ = 2 ∧ μ = 3 ∧ ν = 3 then
+    -(Real.sin (x.1 2) * Real.cos (x.1 2))
+  else if ρ = 3 ∧ μ = 2 ∧ ν = 3 then
+    Real.cos (x.1 2) / Real.sin (x.1 2)
+  else if ρ = 3 ∧ μ = 3 ∧ ν = 2 then
+    Real.cos (x.1 2) / Real.sin (x.1 2)
+  else
+    0
+
 end
 
 end Frontier
