@@ -414,6 +414,69 @@ theorem schwarzschildChristoffel_r_tt_from_metric
   simp [schwarzschildInverseMetric, hLapseEq]
   field_simp [hRadiusNe]
 
+/--
+The Schwarzschild Christoffel component obtained from
+
+`Γʳᵣᵣ = (1/2) gʳʳ ∂ᵣgᵣᵣ`
+
+with `gᵣᵣ(r) = r / (r - 2M)` is
+`-M / (r(r - 2M))` throughout the exterior chart.
+-/
+theorem schwarzschildChristoffel_r_rr_from_metric
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (1 / 2 : Real) *
+        schwarzschildInverseMetric p x 1 1 *
+        deriv
+          (fun r : Real => r / (r - 2 * p.mass))
+          (x.1 1) =
+      -(p.mass / (x.1 1 * (x.1 1 - 2 * p.mass))) := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusNe : x.1 1 ≠ 0 :=
+    ne_of_gt hRadiusPos
+
+  have hExteriorGapPos :
+      0 < x.1 1 - 2 * p.mass := by
+    linarith [x.property.1]
+
+  have hExteriorGapNe :
+      x.1 1 - 2 * p.mass ≠ 0 :=
+    ne_of_gt hExteriorGapPos
+
+  have hDerivativeHas :
+      HasDerivAt
+        (fun r : Real => r / (r - 2 * p.mass))
+        (-(2 * p.mass) / (x.1 1 - 2 * p.mass) ^ 2)
+        (x.1 1) := by
+    convert
+      (hasDerivAt_id' (x.1 1)).fun_div
+        ((hasDerivAt_id' (x.1 1)).sub
+          (hasDerivAt_const (x.1 1) (2 * p.mass)))
+        hExteriorGapNe
+      using 1 <;>
+        simp only [Pi.sub_apply] <;>
+        field_simp [hExteriorGapNe] <;>
+        ring
+
+  have hDerivative :
+      deriv
+          (fun r : Real => r / (r - 2 * p.mass))
+          (x.1 1) =
+        -(2 * p.mass) / (x.1 1 - 2 * p.mass) ^ 2 :=
+    hDerivativeHas.deriv
+
+  have hLapseEq :
+      schwarzschildLapse p x =
+        (x.1 1 - 2 * p.mass) / x.1 1 := by
+    unfold schwarzschildLapse
+    field_simp [hRadiusNe]
+
+  rw [hDerivative]
+  simp [schwarzschildInverseMetric, hLapseEq]
+  field_simp [hRadiusNe, hExteriorGapNe]
+
 end
 
 end Frontier
