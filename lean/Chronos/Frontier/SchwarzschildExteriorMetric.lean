@@ -937,6 +937,26 @@ theorem schwarzschildChristoffel_radialTrace
     div_eq_mul_inv
   ] <;> ring
 
+
+/--
+The contracted Schwarzschild connection coefficient in the polar
+coordinate is
+
+`∑ α, Γ^α_{θα} = cos θ / sin θ`.
+
+The only nonzero summand is `Γ^φ_{θφ}`.
+-/
+theorem schwarzschildChristoffel_polarTrace
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (∑ α : Fin 4,
+      schwarzschildChristoffel p x α 2 α) =
+        Real.cos (x.1 2) / Real.sin (x.1 2) := by
+  simp [
+    Fin.sum_univ_four,
+    schwarzschildChristoffel
+  ]
+
 end
 
 end Frontier
