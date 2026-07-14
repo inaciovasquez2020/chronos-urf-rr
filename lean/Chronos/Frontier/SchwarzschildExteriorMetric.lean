@@ -957,6 +957,26 @@ theorem schwarzschildChristoffel_polarTrace
     schwarzschildChristoffel
   ]
 
+
+/--
+The contracted Schwarzschild connection coefficient in the temporal
+coordinate vanishes:
+
+`∑ α, Γ^α_{tα} = 0`.
+
+Every summand is outside the thirteen-entry nonzero support table.
+-/
+theorem schwarzschildChristoffel_temporalTrace
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (∑ α : Fin 4,
+      schwarzschildChristoffel p x α 0 α) =
+        0 := by
+  simp [
+    Fin.sum_univ_four,
+    schwarzschildChristoffel
+  ]
+
 end
 
 end Frontier
