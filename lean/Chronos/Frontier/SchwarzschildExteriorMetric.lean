@@ -1074,6 +1074,57 @@ theorem schwarzschildChristoffel_r_tt_radialFormula_hasDerivAt
   rw [hAlgebra] at hDerivative
   exact hDerivative
 
+
+/--
+The nonzero terms in the Schwarzschild `tt` Ricci-component formula
+cancel exactly:
+
+`∂ᵣ Γʳₜₜ + Γʳₜₜ (∑ α, Γ^α_{rα})
+  - Γᵗₜᵣ Γʳₜₜ - Γʳₜₜ Γᵗₜᵣ = 0`.
+
+The omitted temporal-trace derivative is zero because the temporal
+contracted connection coefficient vanishes.
+-/
+theorem schwarzschildRicci_tt_reducedExpression_eq_zero
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    deriv
+        (fun r : Real =>
+          p.mass * (r - 2 * p.mass) / r ^ 3)
+        (x.1 1) +
+      schwarzschildChristoffel p x 1 0 0 *
+        (∑ α : Fin 4,
+          schwarzschildChristoffel p x α 1 α) -
+      (schwarzschildChristoffel p x 0 0 1 *
+          schwarzschildChristoffel p x 1 0 0 +
+        schwarzschildChristoffel p x 1 0 0 *
+          schwarzschildChristoffel p x 0 0 1) =
+      0 := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusNe : x.1 1 ≠ 0 :=
+    ne_of_gt hRadiusPos
+
+  have hExteriorGapPos :
+      0 < x.1 1 - 2 * p.mass := by
+    linarith [x.property.1]
+
+  have hExteriorGapNe :
+      x.1 1 - 2 * p.mass ≠ 0 :=
+    ne_of_gt hExteriorGapPos
+
+  rw [
+    (schwarzschildChristoffel_r_tt_radialFormula_hasDerivAt
+      p
+      x).deriv,
+    schwarzschildChristoffel_radialTrace p x
+  ]
+
+  simp [schwarzschildChristoffel]
+
+  (field_simp [hRadiusNe, hExteriorGapNe]; ring)
+
 end
 
 end Frontier
