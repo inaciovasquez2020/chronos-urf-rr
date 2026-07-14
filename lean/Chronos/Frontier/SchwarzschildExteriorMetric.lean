@@ -375,6 +375,45 @@ theorem schwarzschildChristoffel_t_tr_from_metric
   simp [schwarzschildInverseMetric, hLapseEq]
   field_simp [hRadiusNe, hExteriorGapNe]
 
+/--
+The Schwarzschild Christoffel component obtained from
+
+`Γʳₜₜ = -(1/2) gʳʳ ∂ᵣgₜₜ`
+
+is `M(r - 2M) / r³` throughout the exterior chart.
+-/
+theorem schwarzschildChristoffel_r_tt_from_metric
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (-(1 / 2 : Real)) *
+        schwarzschildInverseMetric p x 1 1 *
+        deriv
+          (fun r : Real => -(1 - 2 * p.mass / r))
+          (x.1 1) =
+      p.mass * (x.1 1 - 2 * p.mass) / (x.1 1) ^ 3 := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusNe : x.1 1 ≠ 0 :=
+    ne_of_gt hRadiusPos
+
+  have hDerivative :
+      deriv
+          (fun r : Real => -(1 - 2 * p.mass / r))
+          (x.1 1) =
+        -(2 * p.mass / (x.1 1) ^ 2) :=
+    (schwarzschildMetric_tt_radialFormula_hasDerivAt p x).deriv
+
+  have hLapseEq :
+      schwarzschildLapse p x =
+        (x.1 1 - 2 * p.mass) / x.1 1 := by
+    unfold schwarzschildLapse
+    field_simp [hRadiusNe]
+
+  rw [hDerivative]
+  simp [schwarzschildInverseMetric, hLapseEq]
+  field_simp [hRadiusNe]
+
 end
 
 end Frontier
