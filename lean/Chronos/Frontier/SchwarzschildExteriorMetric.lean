@@ -1,0 +1,381 @@
+import Mathlib
+
+namespace Chronos
+namespace Frontier
+
+noncomputable section
+
+/--
+Positive Schwarzschild mass parameter in geometrized units `G = c = 1`.
+-/
+structure SchwarzschildParameters where
+  mass : Real
+  mass_pos : 0 < mass
+
+/--
+Schwarzschild exterior coordinates represented by `Fin 4 → Real`:
+
+* `0` — time `t`;
+* `1` — radius `r`;
+* `2` — polar angle `θ`;
+* `3` — azimuthal angle `φ`.
+-/
+def SchwarzschildExteriorDomain (p : SchwarzschildParameters) :=
+  {x : Fin 4 → Real //
+    2 * p.mass < x 1 ∧
+      0 < x 2 ∧
+      x 2 < Real.pi}
+
+/-- Schwarzschild lapse factor `1 - 2M/r`. -/
+def schwarzschildLapse
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) : Real :=
+  1 - 2 * p.mass / x.1 1
+
+/--
+Covariant Schwarzschild metric with signature `(-,+,+,+)`:
+
+`diag (-(1 - 2M/r), (1 - 2M/r)⁻¹, r², r² sin² θ)`.
+-/
+def schwarzschildMetric
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    Matrix (Fin 4) (Fin 4) Real :=
+  fun μ ν =>
+    if μ = 0 ∧ ν = 0 then
+      -schwarzschildLapse p x
+    else if μ = 1 ∧ ν = 1 then
+      (schwarzschildLapse p x)⁻¹
+    else if μ = 2 ∧ ν = 2 then
+      (x.1 1) ^ 2
+    else if μ = 3 ∧ ν = 3 then
+      (x.1 1) ^ 2 * Real.sin (x.1 2) ^ 2
+    else
+      0
+
+/--
+Contravariant Schwarzschild metric, defined componentwise as the
+diagonal reciprocal of `schwarzschildMetric`.
+-/
+def schwarzschildInverseMetric
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    Matrix (Fin 4) (Fin 4) Real :=
+  fun μ ν =>
+    if μ = 0 ∧ ν = 0 then
+      -((schwarzschildLapse p x)⁻¹)
+    else if μ = 1 ∧ ν = 1 then
+      schwarzschildLapse p x
+    else if μ = 2 ∧ ν = 2 then
+      ((x.1 1) ^ 2)⁻¹
+    else if μ = 3 ∧ ν = 3 then
+      ((x.1 1) ^ 2 * Real.sin (x.1 2) ^ 2)⁻¹
+    else
+      0
+
+/--
+The time-time entry of the covariant metric multiplied by the
+contravariant metric is one on the Schwarzschild exterior domain.
+-/
+theorem schwarzschildMetric_mul_inverse_tt
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (schwarzschildMetric p x * schwarzschildInverseMetric p x) 0 0 =
+      1 := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRatioLtOne :
+      2 * p.mass / x.1 1 < 1 := by
+    exact (div_lt_one hRadiusPos).2 x.property.1
+
+  have hLapsePos :
+      0 < schwarzschildLapse p x := by
+    unfold schwarzschildLapse
+    linarith
+
+  have hLapseNe :
+      schwarzschildLapse p x ≠ 0 :=
+    ne_of_gt hLapsePos
+
+  simp [
+    Matrix.mul_apply,
+    schwarzschildMetric,
+    schwarzschildInverseMetric,
+    hLapseNe
+  ]
+
+/--
+The radial-radial entry of the covariant metric multiplied by the
+contravariant metric is one on the Schwarzschild exterior domain.
+-/
+theorem schwarzschildMetric_mul_inverse_rr
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (schwarzschildMetric p x * schwarzschildInverseMetric p x) 1 1 =
+      1 := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRatioLtOne :
+      2 * p.mass / x.1 1 < 1 := by
+    exact (div_lt_one hRadiusPos).2 x.property.1
+
+  have hLapsePos :
+      0 < schwarzschildLapse p x := by
+    unfold schwarzschildLapse
+    linarith
+
+  have hLapseNe :
+      schwarzschildLapse p x ≠ 0 :=
+    ne_of_gt hLapsePos
+
+  simp [
+    Matrix.mul_apply,
+    schwarzschildMetric,
+    schwarzschildInverseMetric,
+    hLapseNe
+  ]
+
+/--
+The polar-polar entry of the covariant metric multiplied by the
+contravariant metric is one on the Schwarzschild exterior domain.
+-/
+theorem schwarzschildMetric_mul_inverse_polar
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (schwarzschildMetric p x * schwarzschildInverseMetric p x) 2 2 =
+      1 := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusNe : x.1 1 ≠ 0 :=
+    ne_of_gt hRadiusPos
+
+  have hRadiusSqNe : (x.1 1) ^ 2 ≠ 0 :=
+    pow_ne_zero 2 hRadiusNe
+
+  simp [
+    Matrix.mul_apply,
+    schwarzschildMetric,
+    schwarzschildInverseMetric,
+    hRadiusSqNe
+  ]
+
+/--
+The azimuthal-azimuthal entry of the covariant metric multiplied by
+the contravariant metric is one on the Schwarzschild exterior domain.
+-/
+theorem schwarzschildMetric_mul_inverse_azimuthal
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (schwarzschildMetric p x * schwarzschildInverseMetric p x) 3 3 =
+      1 := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusSqNe : (x.1 1) ^ 2 ≠ 0 := by
+    exact pow_ne_zero 2 (ne_of_gt hRadiusPos)
+
+  have hSinPos : 0 < Real.sin (x.1 2) := by
+    exact
+      Real.sin_pos_of_pos_of_lt_pi
+        x.property.2.1
+        x.property.2.2
+
+  have hSinSqNe : Real.sin (x.1 2) ^ 2 ≠ 0 := by
+    exact pow_ne_zero 2 (ne_of_gt hSinPos)
+
+  simp [
+    Matrix.mul_apply,
+    schwarzschildMetric,
+    schwarzschildInverseMetric
+  ]
+
+  field_simp [hRadiusSqNe, hSinSqNe]
+
+/--
+Every off-diagonal entry of the Schwarzschild covariant metric
+multiplied by its contravariant metric is zero.
+-/
+theorem schwarzschildMetric_mul_inverse_offDiagonal
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p)
+    (μ ν : Fin 4)
+    (hμν : μ ≠ ν) :
+    (schwarzschildMetric p x * schwarzschildInverseMetric p x) μ ν =
+      0 := by
+  fin_cases μ <;>
+    fin_cases ν <;>
+    simp_all [
+      Matrix.mul_apply,
+      schwarzschildMetric,
+      schwarzschildInverseMetric
+    ]
+
+/--
+The explicitly defined contravariant Schwarzschild metric is a right
+matrix inverse of the covariant metric throughout the exterior chart.
+-/
+theorem schwarzschildMetric_mul_inverse_identity
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    schwarzschildMetric p x * schwarzschildInverseMetric p x =
+      (1 : Matrix (Fin 4) (Fin 4) Real) := by
+  ext μ ν
+  by_cases hμν : μ = ν
+  · subst ν
+    fin_cases μ
+    · simpa using schwarzschildMetric_mul_inverse_tt p x
+    · simpa using schwarzschildMetric_mul_inverse_rr p x
+    · simpa using schwarzschildMetric_mul_inverse_polar p x
+    · simpa using schwarzschildMetric_mul_inverse_azimuthal p x
+  · rw [
+      schwarzschildMetric_mul_inverse_offDiagonal
+        p x μ ν hμν
+    ]
+    simp [hμν]
+
+/--
+The explicitly defined contravariant Schwarzschild metric is also a
+left matrix inverse of the covariant metric throughout the exterior chart.
+-/
+theorem schwarzschildInverseMetric_mul_metric_identity
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    schwarzschildInverseMetric p x * schwarzschildMetric p x =
+      (1 : Matrix (Fin 4) (Fin 4) Real) := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusSqNe : (x.1 1) ^ 2 ≠ 0 := by
+    exact pow_ne_zero 2 (ne_of_gt hRadiusPos)
+
+  have hRatioLtOne :
+      2 * p.mass / x.1 1 < 1 := by
+    exact (div_lt_one hRadiusPos).2 x.property.1
+
+  have hLapsePos :
+      0 < schwarzschildLapse p x := by
+    unfold schwarzschildLapse
+    linarith
+
+  have hLapseNe :
+      schwarzschildLapse p x ≠ 0 :=
+    ne_of_gt hLapsePos
+
+  have hSinPos : 0 < Real.sin (x.1 2) := by
+    exact
+      Real.sin_pos_of_pos_of_lt_pi
+        x.property.2.1
+        x.property.2.2
+
+  have hSinSqNe : Real.sin (x.1 2) ^ 2 ≠ 0 := by
+    exact pow_ne_zero 2 (ne_of_gt hSinPos)
+
+  ext μ ν
+  fin_cases μ <;>
+    fin_cases ν <;>
+    simp [
+      Matrix.mul_apply,
+      schwarzschildMetric,
+      schwarzschildInverseMetric,
+      hLapseNe,
+      hRadiusSqNe
+    ]
+
+  field_simp [hRadiusSqNe, hSinSqNe]
+
+/--
+The radial Schwarzschild time-time metric formula
+
+`g_tt(r) = -(1 - 2M/r)`
+
+has radial derivative `-2M/r²` at every exterior coordinate radius.
+-/
+theorem schwarzschildMetric_tt_radialFormula_hasDerivAt
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    HasDerivAt
+      (fun r : Real => -(1 - 2 * p.mass / r))
+      (-(2 * p.mass / (x.1 1) ^ 2))
+      (x.1 1) := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusNe : x.1 1 ≠ 0 :=
+    ne_of_gt hRadiusPos
+
+  convert
+    (((hasDerivAt_const (x.1 1) (1 : Real)).sub
+      ((hasDerivAt_const (x.1 1) (2 * p.mass)).fun_div
+        (hasDerivAt_id' (x.1 1))
+        hRadiusNe)).neg)
+    using 1 <;> ring
+
+/--
+The time-time component of the Schwarzschild metric is exactly the
+radial formula used by
+`schwarzschildMetric_tt_radialFormula_hasDerivAt`.
+-/
+theorem schwarzschildMetric_tt_eq_radialFormula
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    schwarzschildMetric p x 0 0 =
+      -(1 - 2 * p.mass / x.1 1) := by
+  simp [
+    schwarzschildMetric,
+    schwarzschildLapse
+  ]
+
+/--
+The Schwarzschild Christoffel component obtained from
+
+`Γᵗₜᵣ = (1/2) gᵗᵗ ∂ᵣgₜₜ`
+
+is `M / (r(r - 2M))` throughout the exterior chart.
+-/
+theorem schwarzschildChristoffel_t_tr_from_metric
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    (1 / 2 : Real) *
+        schwarzschildInverseMetric p x 0 0 *
+        deriv
+          (fun r : Real => -(1 - 2 * p.mass / r))
+          (x.1 1) =
+      p.mass / (x.1 1 * (x.1 1 - 2 * p.mass)) := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusNe : x.1 1 ≠ 0 :=
+    ne_of_gt hRadiusPos
+
+  have hExteriorGapPos :
+      0 < x.1 1 - 2 * p.mass := by
+    linarith [x.property.1]
+
+  have hExteriorGapNe :
+      x.1 1 - 2 * p.mass ≠ 0 :=
+    ne_of_gt hExteriorGapPos
+
+  have hDerivative :
+      deriv
+          (fun r : Real => -(1 - 2 * p.mass / r))
+          (x.1 1) =
+        -(2 * p.mass / (x.1 1) ^ 2) :=
+    (schwarzschildMetric_tt_radialFormula_hasDerivAt p x).deriv
+
+  have hLapseEq :
+      schwarzschildLapse p x =
+        (x.1 1 - 2 * p.mass) / x.1 1 := by
+    unfold schwarzschildLapse
+    field_simp [hRadiusNe]
+
+  rw [hDerivative]
+  simp [schwarzschildInverseMetric, hLapseEq]
+  field_simp [hRadiusNe, hExteriorGapNe]
+
+end
+
+end Frontier
+end Chronos
