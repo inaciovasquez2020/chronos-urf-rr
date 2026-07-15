@@ -2009,6 +2009,12 @@ structure SchwarzschildConstantNegativeDefectMarkedRadialCarrier where
   markedAreaRadius_pos : 0 < markedAreaRadius
   defectParameter : ℝ
 
+
+/-- The intrinsic dimensionless marked area-radius ratio `b = Rₛ / M`. -/
+def schwarzschildConstantNegativeDefectGeometricB
+    (X : SchwarzschildConstantNegativeDefectMarkedRadialCarrier) : ℝ :=
+  X.markedAreaRadius / X.mass
+
 /--
 The admissible parameter domain for the constant negative-defect
 Schwarzschild photon model.
