@@ -1586,6 +1586,36 @@ theorem schwarzschildConstantNegativeDefect_photonRoot_closedForm
   apply (eq_div_iff hDenominator).2
   simpa [mul_assoc, mul_comm, mul_left_comm] using hLinear
 
+/--
+Exact shadow formula for the constant negative-defect photon root.
+
+If
+
+`x = 3 * (2 - b * t) / (2 * (1 - t))`
+
+and the reconstructed metric coefficient at that root is
+
+`F(x) = (1 - t) / 3`,
+
+then the shadow impact parameter `B = x / sqrt(F(x))` has the
+corresponding closed form.
+-/
+theorem schwarzschildConstantNegativeDefect_shadow_closedForm
+    (b t x FAtRoot B : ℝ)
+    (hRoot :
+      x =
+        3 * (2 - b * t) /
+          (2 * (1 - t)))
+    (hMetricAtRoot :
+      FAtRoot = (1 - t) / 3)
+    (hShadow :
+      B = x / Real.sqrt FAtRoot) :
+    B =
+      (3 * (2 - b * t) /
+          (2 * (1 - t))) /
+        Real.sqrt ((1 - t) / 3) := by
+  rw [hShadow, hRoot, hMetricAtRoot]
+
 end
 
 end Frontier
