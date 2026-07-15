@@ -2317,6 +2317,454 @@ theorem schwarzschildConstantNegativeDefectGap_half_mul_lt
   linarith
 
 
+
+set_option maxHeartbeats 1000000 in
+/--
+A uniform product-scale upper bound for the exact gap throughout the
+admissible domain.
+-/
+theorem schwarzschildConstantNegativeDefectGap_le_192_mul
+    (b t : ℝ)
+    (hAdmissible :
+      schwarzschildConstantNegativeDefectAdmissible b t) :
+    schwarzschildConstantNegativeDefectGap b t
+      ≤ 192 * (b * t) := by
+  rcases hAdmissible with
+    ⟨hb, ht, htOne, hbt⟩
+
+  let s : ℝ := Real.sqrt (1 - t)
+
+  have hOneMinusT :
+      0 < 1 - t := by
+    linarith
+
+  have hSPos :
+      0 < s := by
+    simpa [s] using Real.sqrt_pos.2 hOneMinusT
+
+  have hSNonneg :
+      0 ≤ s :=
+    le_of_lt hSPos
+
+  have hSSquare :
+      s ^ 2 = 1 - t := by
+    simpa [s] using
+      Real.sq_sqrt (le_of_lt hOneMinusT)
+
+  have hTFromS :
+      t = 1 - s ^ 2 := by
+    linarith [hSSquare]
+
+  have hSLtOne :
+      s < 1 := by
+    by_contra hNot
+    have hOneLeS :
+        1 ≤ s :=
+      le_of_not_gt hNot
+    have hSquareOneLe :
+        1 ≤ s ^ 2 := by
+      nlinarith [sq_nonneg (s - 1)]
+    nlinarith [hSSquare]
+
+  have hSLeOne :
+      s ≤ 1 :=
+    le_of_lt hSLtOne
+
+  have hOneMinusSPos :
+      0 < 1 - s := by
+    linarith
+
+  have hOnePlusSPos :
+      0 < 1 + s := by
+    linarith
+
+  have hThreeT :
+      3 * t < b * t :=
+    mul_lt_mul_of_pos_right hb ht
+
+  have hTLtTwoThirds :
+      t < (2 : ℝ) / 3 := by
+    nlinarith
+
+  have hOneThird :
+      (1 : ℝ) / 3 < 1 - t := by
+    linarith
+
+  have hSHalf :
+      (1 : ℝ) / 2 < s := by
+    by_contra hNot
+    have hSLeHalf :
+        s ≤ (1 : ℝ) / 2 :=
+      le_of_not_gt hNot
+    have hSquareLeQuarter :
+        s ^ 2 ≤ (1 : ℝ) / 4 := by
+      have hAux :
+          0 ≤
+            ((1 : ℝ) / 2 - s) *
+              ((1 : ℝ) / 2 + s) :=
+        mul_nonneg
+          (by linarith)
+          (by linarith)
+      nlinarith [hAux]
+    nlinarith [hSSquare, hOneThird]
+
+  have hCubeAux :
+      0 <
+        (s - (1 : ℝ) / 2) *
+          (s ^ 2 +
+            s / 2 +
+            (1 : ℝ) / 4) := by
+    exact
+      mul_pos
+        (by linarith)
+        (by nlinarith [sq_nonneg s])
+
+  have hSCubeEighth :
+      (1 : ℝ) / 8 < s ^ 3 := by
+    nlinarith [hCubeAux]
+
+  have hTwoCubeQuarter :
+      (1 : ℝ) / 4 <
+        2 * s ^ 3 := by
+    nlinarith
+
+  have hTwoCubePos :
+      0 < 2 * s ^ 3 := by
+    exact
+      mul_pos
+        (by norm_num)
+        (pow_pos hSPos 3)
+
+  have hOneLtOnePlusS :
+      1 < 1 + s := by
+    linarith
+
+  have hDenominatorGrowth :
+      2 * s ^ 3 <
+        2 * s ^ 3 * (1 + s) := by
+    simpa using
+      mul_lt_mul_of_pos_left
+        hOneLtOnePlusS
+        hTwoCubePos
+
+  have hDenominatorQuarter :
+      (1 : ℝ) / 4 <
+        2 * s ^ 3 * (1 + s) :=
+    lt_trans hTwoCubeQuarter hDenominatorGrowth
+
+  have hDenominatorPos :
+      0 <
+        2 * s ^ 3 * (1 + s) := by
+    linarith
+
+  have hOneMinusSLeT :
+      1 - s ≤ t := by
+    have hProductPos :
+        0 < s * (1 - s) :=
+      mul_pos hSPos hOneMinusSPos
+    nlinarith [hTFromS]
+
+  have hNumeratorLe :
+      3 * (1 - s) ≤ 3 * t := by
+    nlinarith
+
+  have hQuarterLe :
+      (1 : ℝ) / 4 ≤
+        2 * s ^ 3 * (1 + s) :=
+    le_of_lt hDenominatorQuarter
+
+  have hScaledDenominator :
+      3 * t ≤
+        12 * t *
+          (2 * s ^ 3 * (1 + s)) := by
+    have hScaled :=
+      mul_le_mul_of_nonneg_left
+        hQuarterLe
+        (show 0 ≤ 12 * t by positivity)
+    nlinarith [hScaled]
+
+  have hPrefactorNumeratorLe :
+      3 * (1 - s) ≤
+        12 * t *
+          (2 * s ^ 3 * (1 + s)) :=
+    le_trans hNumeratorLe hScaledDenominator
+
+  have hPrefactorLe :
+      3 * (1 - s) /
+          (2 * s ^ 3 * (1 + s))
+        ≤ 12 * t := by
+    exact
+      (div_le_iff₀ hDenominatorPos).2
+        hPrefactorNumeratorLe
+
+  have hOnePlusSquareLeFour :
+      (1 + s) ^ 2 ≤ 4 := by
+    nlinarith [sq_nonneg (1 - s)]
+
+  have hRadialFactorLeFour :
+      s * (1 + s) ^ 2 ≤ 4 := by
+    calc
+      s * (1 + s) ^ 2
+          ≤ 1 * (1 + s) ^ 2 := by
+            exact
+              mul_le_mul_of_nonneg_right
+                hSLeOne
+                (sq_nonneg (1 + s))
+      _ ≤ 1 * 4 := by
+            exact
+              mul_le_mul_of_nonneg_left
+                hOnePlusSquareLeFour
+                (by norm_num)
+      _ = 4 := by
+            norm_num
+
+  have hOneMinusSNonneg :
+      0 ≤ 1 - s := by
+    linarith
+
+  have hOnePlusSNonneg :
+      0 ≤ 1 + s :=
+    le_of_lt hOnePlusSPos
+
+  have hSSquareLeOne :
+      s ^ 2 ≤ 1 := by
+    have hAux :
+        0 ≤
+          (1 - s) * (1 + s) :=
+      mul_nonneg hOneMinusSNonneg hOnePlusSNonneg
+    nlinarith [hAux]
+
+  have hSCubeLeOne :
+      s ^ 3 ≤ 1 := by
+    have hAux :=
+      mul_le_mul_of_nonneg_left
+        hSSquareLeOne
+        hSNonneg
+    nlinarith [hAux, hSLeOne]
+
+  have hPolynomialLeSix :
+      s ^ 3 +
+          2 * s ^ 2 +
+          2 * s +
+          1
+        ≤ 6 := by
+    nlinarith [
+      hSCubeLeOne,
+      hSSquareLeOne,
+      hSLeOne
+    ]
+
+  have hPolynomialPos :
+      0 <
+        s ^ 3 +
+          2 * s ^ 2 +
+          2 * s +
+          1 := by
+    nlinarith [
+      pow_pos hSPos 3,
+      sq_nonneg s
+    ]
+
+  have hBGapNonneg :
+      0 ≤ b - 3 := by
+    linarith
+
+  have hBMinusTwoNonneg :
+      0 ≤ b - 2 := by
+    linarith
+
+  have hPolynomialScaled :=
+    mul_le_mul_of_nonneg_left
+      hPolynomialLeSix
+      hBGapNonneg
+
+  have hLinearTailLe :
+      2 * s + 1 ≤ 3 := by
+    linarith
+
+  have hTailLeSixB :
+      (b - 3) *
+            (s ^ 3 +
+              2 * s ^ 2 +
+              2 * s +
+              1) +
+          (2 * s + 1)
+        ≤ 6 * b := by
+    nlinarith [
+      hPolynomialScaled,
+      hLinearTailLe
+    ]
+
+  have hTailNonneg :
+      0 ≤
+        (b - 3) *
+            (s ^ 3 +
+              2 * s ^ 2 +
+              2 * s +
+              1) +
+          (2 * s + 1) := by
+    exact
+      le_of_lt
+        (add_pos
+          (mul_pos
+            (by linarith)
+            hPolynomialPos)
+          (by linarith))
+
+  have hRadialTermScaled :=
+    mul_le_mul_of_nonneg_left
+      hRadialFactorLeFour
+      hBMinusTwoNonneg
+
+  have hRadialTermLeFourB :
+      (b - 2) *
+          (s * (1 + s) ^ 2)
+        ≤ 4 * b := by
+    nlinarith [hRadialTermScaled]
+
+  have hSqrtThreeNonneg :
+      0 ≤ Real.sqrt 3 :=
+    Real.sqrt_nonneg 3
+
+  have hSqrtThreeSquare :
+      (Real.sqrt 3) ^ 2 = 3 := by
+    simpa using
+      Real.sq_sqrt
+        (show (0 : ℝ) ≤ 3 by norm_num)
+
+  have hSqrtThreeLeTwo :
+      Real.sqrt 3 ≤ 2 := by
+    nlinarith [
+      hSqrtThreeNonneg,
+      hSqrtThreeSquare
+    ]
+
+  have hSqrtTailStep :=
+    mul_le_mul_of_nonneg_right
+      hSqrtThreeLeTwo
+      hTailNonneg
+
+  have hTwiceTailStep :=
+    mul_le_mul_of_nonneg_left
+      hTailLeSixB
+      (show (0 : ℝ) ≤ 2 by norm_num)
+
+  have hSqrtTailLeTwelveB :
+      Real.sqrt 3 *
+          ((b - 3) *
+              (s ^ 3 +
+                2 * s ^ 2 +
+                2 * s +
+                1) +
+            (2 * s + 1))
+        ≤ 12 * b := by
+    nlinarith [
+      hSqrtTailStep,
+      hTwiceTailStep
+    ]
+
+  have hBracketLe :
+      (b - 2) *
+            s *
+            (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1))
+        ≤ 16 * b := by
+    nlinarith [
+      hRadialTermLeFourB,
+      hSqrtTailLeTwelveB
+    ]
+
+  have hBracketNonneg :
+      0 ≤
+        (b - 2) *
+            s *
+            (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1)) := by
+    exact
+      add_nonneg
+        (mul_nonneg
+          (mul_nonneg
+            hBMinusTwoNonneg
+            hSNonneg)
+          (sq_nonneg (1 + s)))
+        (mul_nonneg
+          hSqrtThreeNonneg
+          hTailNonneg)
+
+  rw [
+    schwarzschildConstantNegativeDefectGap_factorization
+      b
+      t
+      ht
+      htOne
+  ]
+
+  change
+    3 * (1 - s) /
+          (2 * s ^ 3 * (1 + s)) *
+        ((b - 2) *
+            s *
+            (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1)))
+      ≤ 192 * (b * t)
+
+  calc
+    3 * (1 - s) /
+          (2 * s ^ 3 * (1 + s)) *
+        ((b - 2) *
+            s *
+            (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1)))
+        ≤
+      (12 * t) *
+        ((b - 2) *
+            s *
+            (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1))) := by
+          exact
+            mul_le_mul_of_nonneg_right
+              hPrefactorLe
+              hBracketNonneg
+    _ ≤
+      (12 * t) * (16 * b) := by
+          exact
+            mul_le_mul_of_nonneg_left
+              hBracketLe
+              (show 0 ≤ 12 * t by positivity)
+    _ = 192 * (b * t) := by
+          ring
+
+
 end
 
 end Frontier
