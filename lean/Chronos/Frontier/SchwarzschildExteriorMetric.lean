@@ -3055,6 +3055,121 @@ def schwarzschildConstantNegativeDefectGapRange :
         g =
           schwarzschildConstantNegativeDefectGap b t}
 
+/--
+Zero is the greatest lower bound of the exact gap range.
+-/
+theorem schwarzschildConstantNegativeDefectGapRange_infimum_eq_zero :
+    IsGLB
+      schwarzschildConstantNegativeDefectGapRange
+      0 := by
+  constructor
+  · intro g hg
+
+    change
+      ∃ b t : ℝ,
+        schwarzschildConstantNegativeDefectAdmissible b t ∧
+          g =
+            schwarzschildConstantNegativeDefectGap b t at hg
+
+    rcases hg with
+      ⟨b, t, hDomain, rfl⟩
+
+    rcases hDomain with
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hAdmissible :
+        schwarzschildConstantNegativeDefectAdmissible b t :=
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hLower :=
+      schwarzschildConstantNegativeDefectGap_half_mul_lt
+        b
+        t
+        hAdmissible
+
+    have hProductPos :
+        0 < b * t :=
+      mul_pos
+        (by linarith)
+        ht
+
+    nlinarith
+
+  · intro a ha
+
+    by_contra hNot
+
+    have hAPos :
+        0 < a :=
+      lt_of_not_ge hNot
+
+    obtain ⟨N, hN⟩ :=
+      schwarzschildConstantNegativeDefect_explicit_infimizingSequence
+        a
+        hAPos
+
+    have hDomain :=
+      schwarzschildConstantNegativeDefect_infimizing_admissible
+        N
+
+    have hLower :=
+      schwarzschildConstantNegativeDefectGap_half_mul_lt
+        (schwarzschildConstantNegativeDefectInfimizingB N)
+        (schwarzschildConstantNegativeDefectInfimizingT N)
+        hDomain
+
+    have hProductPos :
+        0 <
+          schwarzschildConstantNegativeDefectInfimizingB N *
+            schwarzschildConstantNegativeDefectInfimizingT N := by
+      rcases hDomain with
+        ⟨hb, ht, htOne, hbt⟩
+
+      exact
+        mul_pos
+          (by linarith)
+          ht
+
+    have hGapPos :
+        0 <
+          schwarzschildConstantNegativeDefectGap
+            (schwarzschildConstantNegativeDefectInfimizingB N)
+            (schwarzschildConstantNegativeDefectInfimizingT N) := by
+      nlinarith [hLower, hProductPos]
+
+    have hAtN :=
+      hN N le_rfl
+
+    rw [abs_of_pos hGapPos] at hAtN
+
+    have hMember :
+        schwarzschildConstantNegativeDefectGap
+            (schwarzschildConstantNegativeDefectInfimizingB N)
+            (schwarzschildConstantNegativeDefectInfimizingT N)
+          ∈ schwarzschildConstantNegativeDefectGapRange := by
+      change
+        ∃ b t : ℝ,
+          schwarzschildConstantNegativeDefectAdmissible b t ∧
+            schwarzschildConstantNegativeDefectGap
+                (schwarzschildConstantNegativeDefectInfimizingB N)
+                (schwarzschildConstantNegativeDefectInfimizingT N) =
+              schwarzschildConstantNegativeDefectGap b t
+
+      exact
+        ⟨schwarzschildConstantNegativeDefectInfimizingB N,
+          schwarzschildConstantNegativeDefectInfimizingT N,
+          schwarzschildConstantNegativeDefect_infimizing_admissible N,
+          rfl⟩
+
+    have hALe :
+        a ≤
+          schwarzschildConstantNegativeDefectGap
+            (schwarzschildConstantNegativeDefectInfimizingB N)
+            (schwarzschildConstantNegativeDefectInfimizingT N) :=
+      ha hMember
+
+    linarith
+
 end
 
 end Frontier
