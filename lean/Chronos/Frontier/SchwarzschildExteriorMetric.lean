@@ -1404,6 +1404,41 @@ theorem schwarzschildRadialDefect_hasDerivAt_mul_sub
   rw [hCoefficient] at hProduct
   exact hProduct
 
+/--
+Scalar photon equation for a reconstructed radial defect.
+
+The reconstruction relation is the denominator-free form
+
+`x * F = x - 2 - I_e`,
+
+the defect equation is
+
+`e = x * F' + F - 1`,
+
+and the photon-sphere equation is
+
+`x * F' - 2 * F = 0`.
+
+Together they imply
+
+`2 * (3 - x) + x * e + 3 * I_e = 0`.
+-/
+theorem schwarzschildScalarPhotonEquation_of_reconstruction
+    (x e I_e F F' : ℝ)
+    (hReconstruction : x * F = x - 2 - I_e)
+    (hDefect : e = x * F' + F - 1)
+    (hPhoton : x * F' - 2 * F = 0) :
+    2 * (3 - x) + x * e + 3 * I_e = 0 := by
+  have he : e = 3 * F - 1 := by
+    linarith
+
+  have hxe : x * e = 3 * (x * F) - x := by
+    rw [he]
+    ring
+
+  rw [hReconstruction] at hxe
+  linarith
+
 end
 
 end Frontier
