@@ -3170,6 +3170,50 @@ theorem schwarzschildConstantNegativeDefectGapRange_infimum_eq_zero :
 
     linarith
 
+/--
+The zero infimum is not attained anywhere in the open admissible
+domain.
+-/
+theorem schwarzschildConstantNegativeDefectGapRange_zero_not_mem :
+    0 ∉
+      schwarzschildConstantNegativeDefectGapRange := by
+  intro hZero
+
+  change
+    ∃ b t : ℝ,
+      schwarzschildConstantNegativeDefectAdmissible b t ∧
+        0 =
+          schwarzschildConstantNegativeDefectGap b t at hZero
+
+  rcases hZero with
+    ⟨b, t, hDomain, hZeroEq⟩
+
+  rcases hDomain with
+    ⟨hb, ht, htOne, hbt⟩
+
+  have hAdmissible :
+      schwarzschildConstantNegativeDefectAdmissible b t :=
+    ⟨hb, ht, htOne, hbt⟩
+
+  have hLower :=
+    schwarzschildConstantNegativeDefectGap_half_mul_lt
+      b
+      t
+      hAdmissible
+
+  have hProductPos :
+      0 < b * t :=
+    mul_pos
+      (by linarith)
+      ht
+
+  have hGapPos :
+      0 <
+        schwarzschildConstantNegativeDefectGap b t := by
+    nlinarith [hLower, hProductPos]
+
+  linarith
+
 end
 
 end Frontier
