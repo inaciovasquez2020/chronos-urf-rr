@@ -946,4 +946,21 @@ theorem quznorD1D5TrivialCoefficientExtractionCorrectAt
   rfl
 
 
+
+/--
+A nontrivial abstract carrier containing five typed data components and three
+real coefficient components. No physical interpretation is asserted.
+-/
+structure QuznorD1D5CoefficientCarrier
+    (D1 D2 D3 D4 D5 : Type*) where
+  d1 : D1
+  d2 : D2
+  d3 : D3
+  d4 : D4
+  d5 : D5
+  S2 : ℝ
+  S3 : ℝ
+  S4 : ℝ
+
+
 end Chronos.Frontier
