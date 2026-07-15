@@ -2098,11 +2098,11 @@ theorem schwarzschildConstantNegativeDefectGap_factorization
               (2 * s + 1)))
 
   rw [hTFromS]
-  field_simp [
+  (field_simp [
     hSNe,
     hOnePlusSNe,
     hTFormNe
-  ] <;> ring
+  ]; ring)
 
 
 /--
