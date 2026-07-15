@@ -26,4 +26,33 @@ theorem quznor_three_mode_vandermonde_inversion
   · ring
   · ring
 
+
+/--
+The first three asymptotic coefficient data exactly isolate the
+three mode amplitudes associated with weights `2`, `3`, and `4`.
+-/
+theorem quznorThreeModeAsymptoticCoefficientIsolation
+    (S2 S3 S4 A0 A1 A2 : ℝ)
+    (hA0 : A0 = S2 + S3 + S4)
+    (hA1 : A1 = 4 * S2 + 9 * S3 + 16 * S4)
+    (hA2 : A2 = 16 * S2 + 81 * S3 + 256 * S4) :
+    S2 =
+        (12 / 5 : ℝ) * A0 -
+          (5 / 12 : ℝ) * A1 +
+          (1 / 60 : ℝ) * A2 ∧
+      S3 =
+        -(64 / 35 : ℝ) * A0 +
+          (4 / 7 : ℝ) * A1 -
+          (1 / 35 : ℝ) * A2 ∧
+      S4 =
+        (3 / 7 : ℝ) * A0 -
+          (13 / 84 : ℝ) * A1 +
+          (1 / 84 : ℝ) * A2 := by
+  subst A0
+  subst A1
+  subst A2
+  constructor
+  · ring
+  constructor <;> ring
+
 end Chronos.Frontier
