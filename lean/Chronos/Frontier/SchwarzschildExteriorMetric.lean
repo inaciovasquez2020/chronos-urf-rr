@@ -2906,6 +2906,127 @@ theorem schwarzschildConstantNegativeDefect_infimizing_product_tendsToZero :
     div_eq_mul_inv
   ] using hFraction
 
+/--
+For every admissible sequence, the exact gaps converge to zero if and
+only if the products `bₙ tₙ` converge to zero.
+-/
+theorem schwarzschildConstantNegativeDefect_infimizingSequence_iff
+    (b t : ℕ → ℝ)
+    (hAdmissible :
+      ∀ n : ℕ,
+        schwarzschildConstantNegativeDefectAdmissible
+          (b n)
+          (t n)) :
+    schwarzschildSequenceTendsToZero
+        (fun n : ℕ =>
+          schwarzschildConstantNegativeDefectGap
+            (b n)
+            (t n))
+      ↔
+    schwarzschildSequenceTendsToZero
+        (fun n : ℕ =>
+          b n * t n) := by
+  unfold schwarzschildSequenceTendsToZero
+
+  constructor
+  · intro hGap ε hε
+
+    obtain ⟨N, hN⟩ :=
+      hGap
+        (ε / 2)
+        (by linarith)
+
+    refine ⟨N, ?_⟩
+    intro n hn
+
+    rcases hAdmissible n with
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hDomain :
+        schwarzschildConstantNegativeDefectAdmissible
+          (b n)
+          (t n) :=
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hLower :=
+      schwarzschildConstantNegativeDefectGap_half_mul_lt
+        (b n)
+        (t n)
+        hDomain
+
+    have hProductPos :
+        0 < b n * t n :=
+      mul_pos
+        (by linarith)
+        ht
+
+    have hGapPos :
+        0 <
+          schwarzschildConstantNegativeDefectGap
+            (b n)
+            (t n) := by
+      nlinarith [hLower, hProductPos]
+
+    have hSmall :=
+      hN n hn
+
+    rw [abs_of_pos hGapPos] at hSmall
+    rw [abs_of_pos hProductPos]
+
+    nlinarith [hLower, hSmall]
+
+  · intro hProduct ε hε
+
+    obtain ⟨N, hN⟩ :=
+      hProduct
+        (ε / 192)
+        (by positivity)
+
+    refine ⟨N, ?_⟩
+    intro n hn
+
+    rcases hAdmissible n with
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hDomain :
+        schwarzschildConstantNegativeDefectAdmissible
+          (b n)
+          (t n) :=
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hLower :=
+      schwarzschildConstantNegativeDefectGap_half_mul_lt
+        (b n)
+        (t n)
+        hDomain
+
+    have hUpper :=
+      schwarzschildConstantNegativeDefectGap_le_192_mul
+        (b n)
+        (t n)
+        hDomain
+
+    have hProductPos :
+        0 < b n * t n :=
+      mul_pos
+        (by linarith)
+        ht
+
+    have hGapPos :
+        0 <
+          schwarzschildConstantNegativeDefectGap
+            (b n)
+            (t n) := by
+      nlinarith [hLower, hProductPos]
+
+    have hSmall :=
+      hN n hn
+
+    rw [abs_of_pos hProductPos] at hSmall
+    rw [abs_of_pos hGapPos]
+
+    nlinarith [hUpper, hSmall]
+
 end
 
 end Frontier
