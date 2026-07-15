@@ -2785,6 +2785,15 @@ def schwarzschildConstantNegativeDefectInfimizingB
     (_n : ℕ) : ℝ :=
   4
 
+
+/--
+The explicit sequence `tₙ = 1 / (n + 3)`.
+-/
+def schwarzschildConstantNegativeDefectInfimizingT
+    (n : ℕ) : ℝ :=
+  1 / ((n : ℝ) + 3)
+
+
 end
 
 end Frontier
