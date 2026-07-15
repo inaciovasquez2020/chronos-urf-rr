@@ -451,4 +451,61 @@ theorem quznorSpartanHighModeRemainder_norm_le_inv
     mul_pos (sub_pos.mpr hlt) hsum_pos
   nlinarith
 
+/-- The Spartan high-frequency remainder converges uniformly in `θ` to zero. -/
+theorem quznorSpartanHighModeRemainder_uniform_tendsto_zero
+    (M E : ℝ) (hEM : M ≤ E) :
+    ∀ ε > 0, ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ θ : ℝ,
+      ‖quznorSpartanHighModeRemainder M E N θ‖ < ε := by
+  intro ε hε
+  obtain ⟨K, hK⟩ :=
+    exists_nat_gt (Real.sqrt (2 * (E - M)) / ε)
+  refine ⟨max 2 K, ?_⟩
+  intro N hN θ
+  have hNtwo : 2 ≤ N :=
+    le_trans (le_max_left 2 K) hN
+  have hKN : K ≤ N :=
+    le_trans (le_max_right 2 K) hN
+  have hbound :=
+    quznorSpartanHighModeRemainder_norm_le_inv
+      M E N θ hEM hNtwo
+  have hNposNat : 0 < N :=
+    lt_of_lt_of_le (by norm_num) hNtwo
+  have hNpos : 0 < (N : ℝ) := by
+    exact_mod_cast hNposNat
+  have hKleN : (K : ℝ) ≤ (N : ℝ) := by
+    exact_mod_cast hKN
+  have hratio_lt_N :
+      Real.sqrt (2 * (E - M)) / ε < (N : ℝ) :=
+    lt_of_lt_of_le hK hKleN
+  have hnum_lt :
+      Real.sqrt (2 * (E - M)) < ε * (N : ℝ) := by
+    simpa [mul_comm] using (div_lt_iff₀ hε).1 hratio_lt_N
+  have hinv_lt :
+      Real.sqrt (2 * (E - M)) / (N : ℝ) < ε :=
+    (div_lt_iff₀ hNpos).2 hnum_lt
+  exact lt_of_le_of_lt hbound hinv_lt
+
+/-- The native Spartan profile converges uniformly to its fundamental mode.
+
+The limiting comparison still carries the `N`-dependent fundamental
+coefficient; only the high-frequency remainder is removed here.
+-/
+theorem quznorSpartanComplexProfile_uniform_tendsto_fundamental
+    (M E : ℝ) (hEM : M ≤ E) :
+    ∀ ε > 0, ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ θ : ℝ,
+      ‖quznorSpartanComplexProfile M E N θ -
+          ((Real.sqrt
+              ((((N : ℝ) ^ 2) * M - E) /
+                (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) *
+            Complex.exp (Complex.I * (θ : ℂ))‖ < ε := by
+  intro ε hε
+  obtain ⟨N₀, hN₀⟩ :=
+    quznorSpartanHighModeRemainder_uniform_tendsto_zero
+      M E hEM ε hε
+  refine ⟨N₀, ?_⟩
+  intro N hN θ
+  have hrem := hN₀ N hN θ
+  rw [quznorSpartanComplexProfile_fundamental_add_highMode]
+  simpa [quznorSpartanHighModeRemainder] using hrem
+
 end Chronos.Frontier
