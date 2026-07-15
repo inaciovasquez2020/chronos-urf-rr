@@ -338,6 +338,78 @@ noncomputable def quznorSpartanComplexProfile
       Complex.exp
         (Complex.I * ((((N : ℝ) * θ : ℝ)) : ℂ))
 
+
+/-- Exact error identity for the squared Spartan fundamental coefficient. -/
+theorem quznorSpartan_fundamentalCoefficientSq_error_identity
+    (M E : ℝ) (N : ℕ) (hN : 2 ≤ N) :
+    ((((N : ℝ) ^ 2) * M - E) / (((N : ℝ) ^ 2) - 1)) - M =
+      (M - E) / (((N : ℝ) ^ 2) - 1) := by
+  have hNreal : (2 : ℝ) ≤ (N : ℝ) := by
+    exact_mod_cast hN
+  have hdenpos : 0 < ((N : ℝ) ^ 2) - 1 := by
+    nlinarith [sq_nonneg ((N : ℝ) - 2)]
+  field_simp [ne_of_gt hdenpos]
+  all_goals ring
+
+
+/-- The squared Spartan fundamental coefficient converges to `M`. -/
+theorem quznorSpartan_fundamentalCoefficientSq_tendsto
+    (M E : ℝ) :
+    Tendsto
+      (fun N : ℕ =>
+        (((N : ℝ) ^ 2) * M - E) / (((N : ℝ) ^ 2) - 1))
+      atTop
+      (nhds M) := by
+  rw [Metric.tendsto_atTop]
+  intro ε hε
+  obtain ⟨K, hK⟩ := exists_nat_gt (|M - E| / ε + 2)
+  refine ⟨max 2 K, ?_⟩
+  intro N hN
+  have hNtwo : 2 ≤ N :=
+    le_trans (le_max_left 2 K) hN
+  have hKN : K ≤ N :=
+    le_trans (le_max_right 2 K) hN
+  have hNreal : (2 : ℝ) ≤ (N : ℝ) := by
+    exact_mod_cast hNtwo
+  have hKNreal : (K : ℝ) ≤ (N : ℝ) := by
+    exact_mod_cast hKN
+  have hdenpos : 0 < ((N : ℝ) ^ 2) - 1 := by
+    nlinarith [sq_nonneg ((N : ℝ) - 2)]
+  have hden_ge_N :
+      (N : ℝ) ≤ ((N : ℝ) ^ 2) - 1 := by
+    nlinarith [sq_nonneg ((N : ℝ) - 2)]
+  have hratio_lt_N :
+      |M - E| / ε < (N : ℝ) := by
+    linarith
+  have hratio_lt_den :
+      |M - E| / ε < ((N : ℝ) ^ 2) - 1 :=
+    lt_of_lt_of_le hratio_lt_N hden_ge_N
+  have hnum_lt :
+      |M - E| < ε * (((N : ℝ) ^ 2) - 1) := by
+    simpa [mul_comm] using
+      (div_lt_iff₀ hε).1 hratio_lt_den
+  rw [
+    Real.dist_eq,
+    quznorSpartan_fundamentalCoefficientSq_error_identity M E N hNtwo,
+    abs_div,
+    abs_of_pos hdenpos
+  ]
+  exact (div_lt_iff₀ hdenpos).2 hnum_lt
+
+
+/-- The Spartan fundamental coefficient converges to `sqrt M`. -/
+theorem quznorSpartan_fundamentalCoefficient_tendsto_sqrt
+    (M E : ℝ) :
+    Tendsto
+      (fun N : ℕ =>
+        Real.sqrt
+          ((((N : ℝ) ^ 2) * M - E) /
+            (((N : ℝ) ^ 2) - 1)))
+      atTop
+      (nhds (Real.sqrt M)) := by
+  exact
+    (quznorSpartan_fundamentalCoefficientSq_tendsto M E).sqrt
+
 /-- Exact fundamental-mode plus high-frequency-mode decomposition.
 
 The second summand is the repository-native Spartan profile remainder term.
@@ -507,5 +579,102 @@ theorem quznorSpartanComplexProfile_uniform_tendsto_fundamental
   have hrem := hN₀ N hN θ
   rw [quznorSpartanComplexProfile_fundamental_add_highMode]
   simpa [quznorSpartanHighModeRemainder] using hrem
+
+/-- The native Spartan profile converges uniformly to the fixed circular
+profile with coefficient `sqrt M`. -/
+theorem quznorSpartanComplexProfile_uniform_tendsto_fixedCircle
+    (M E : ℝ) (hEM : M ≤ E) :
+    ∀ ε > 0, ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ θ : ℝ,
+      ‖quznorSpartanComplexProfile M E N θ -
+        ((Real.sqrt M : ℝ) : ℂ) *
+          Complex.exp (Complex.I * (θ : ℂ))‖ < ε := by
+  intro ε hε
+  have hhalf : 0 < ε / 2 := by
+    linarith
+  obtain ⟨Nr, hNr⟩ :=
+    quznorSpartanHighModeRemainder_uniform_tendsto_zero
+      M E hEM (ε / 2) hhalf
+  have hcoeff :=
+    quznorSpartan_fundamentalCoefficient_tendsto_sqrt M E
+  rw [Metric.tendsto_atTop] at hcoeff
+  obtain ⟨Nc, hNc⟩ := hcoeff (ε / 2) hhalf
+  refine ⟨max Nr Nc, ?_⟩
+  intro N hN θ
+  have hNrN : Nr ≤ N :=
+    le_trans (le_max_left Nr Nc) hN
+  have hNcN : Nc ≤ N :=
+    le_trans (le_max_right Nr Nc) hN
+  have hrem := hNr N hNrN θ
+  have hcoeffN := hNc N hNcN
+  have hfund :
+      ‖((Real.sqrt
+              ((((N : ℝ) ^ 2) * M - E) /
+                (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) *
+            Complex.exp (Complex.I * (θ : ℂ)) -
+          ((Real.sqrt M : ℝ) : ℂ) *
+            Complex.exp (Complex.I * (θ : ℂ))‖ <
+        ε / 2 := by
+    rw [← sub_mul, norm_mul]
+    have hexp :
+        ‖Complex.exp (Complex.I * (θ : ℂ))‖ = 1 := by
+      rw [Complex.norm_exp]
+      simp
+    rw [hexp, mul_one]
+    have hcast :
+        (((Real.sqrt
+              ((((N : ℝ) ^ 2) * M - E) /
+                (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) -
+            ((Real.sqrt M : ℝ) : ℂ)) =
+          ((Real.sqrt
+              ((((N : ℝ) ^ 2) * M - E) /
+                (((N : ℝ) ^ 2) - 1)) -
+            Real.sqrt M : ℝ) : ℂ) := by
+      norm_num
+    simpa only [
+      hcast,
+      Complex.norm_real,
+      Real.norm_eq_abs,
+      Real.dist_eq
+    ] using hcoeffN
+  rw [quznorSpartanComplexProfile_fundamental_add_highMode]
+  change
+    ‖((Real.sqrt
+            ((((N : ℝ) ^ 2) * M - E) /
+              (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) *
+          Complex.exp (Complex.I * (θ : ℂ)) +
+        quznorSpartanHighModeRemainder M E N θ -
+        ((Real.sqrt M : ℝ) : ℂ) *
+          Complex.exp (Complex.I * (θ : ℂ))‖ < ε
+  calc
+    ‖((Real.sqrt
+            ((((N : ℝ) ^ 2) * M - E) /
+              (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) *
+          Complex.exp (Complex.I * (θ : ℂ)) +
+        quznorSpartanHighModeRemainder M E N θ -
+        ((Real.sqrt M : ℝ) : ℂ) *
+          Complex.exp (Complex.I * (θ : ℂ))‖ =
+        ‖(((Real.sqrt
+                ((((N : ℝ) ^ 2) * M - E) /
+                  (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) *
+              Complex.exp (Complex.I * (θ : ℂ)) -
+            ((Real.sqrt M : ℝ) : ℂ) *
+              Complex.exp (Complex.I * (θ : ℂ))) +
+          quznorSpartanHighModeRemainder M E N θ‖ := by
+            congr 1
+            ring
+    _ ≤
+        ‖((Real.sqrt
+                ((((N : ℝ) ^ 2) * M - E) /
+                  (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) *
+              Complex.exp (Complex.I * (θ : ℂ)) -
+            ((Real.sqrt M : ℝ) : ℂ) *
+              Complex.exp (Complex.I * (θ : ℂ))‖ +
+          ‖quznorSpartanHighModeRemainder M E N θ‖ :=
+      norm_add_le _ _
+    _ < ε / 2 + ε / 2 :=
+      add_lt_add hfund hrem
+    _ = ε := by
+      ring
+
 
 end Chronos.Frontier
