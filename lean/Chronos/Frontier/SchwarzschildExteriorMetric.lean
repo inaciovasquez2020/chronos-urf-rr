@@ -1616,6 +1616,318 @@ theorem schwarzschildConstantNegativeDefect_shadow_closedForm
         Real.sqrt ((1 - t) / 3) := by
   rw [hShadow, hRoot, hMetricAtRoot]
 
+
+/--
+For a constant negative defect, the exact nonlinear quantity `K₋(t)`
+strictly exceeds its first-order comparison value `K_lin`.
+
+The hypotheses `3 < b`, `0 < t < 1`, and `b * t < 2` keep the
+constant-defect photon root in the positive exterior branch.
+-/
+theorem schwarzschildConstantNegativeDefect_Kminus_gt_Klin
+    (b t : ℝ)
+    (hb : 3 < b)
+    (ht : 0 < t)
+    (htOne : t < 1)
+    (hbt : b * t < 2) :
+    3 * (b - 2) / (2 * (1 - t)) +
+        (3 * Real.sqrt 3 / t) *
+          (1 -
+            (2 - b * t) /
+              (2 * (Real.sqrt (1 - t)) ^ 3)) >
+      3 / 2 *
+        (1 +
+          (1 + Real.sqrt 3) * (b - 3)) := by
+  let s : ℝ := Real.sqrt (1 - t)
+
+  have hOneMinusT :
+      0 < 1 - t := by
+    linarith
+
+  have hRootPositive :
+      0 < s := by
+    simpa [s] using Real.sqrt_pos.2 hOneMinusT
+
+  have hRootSquare :
+      s ^ 2 = 1 - t := by
+    simpa [s] using
+      Real.sq_sqrt (le_of_lt hOneMinusT)
+
+  have htFromRoot :
+      t = 1 - s ^ 2 := by
+    linarith [hRootSquare]
+
+  have hRootLtOne :
+      s < 1 := by
+    by_contra hNot
+    have hOneLe :
+        1 ≤ s :=
+      le_of_not_gt hNot
+    have hSquareOneLe :
+        1 ≤ s ^ 2 := by
+      nlinarith [sq_nonneg (s - 1)]
+    nlinarith [hRootSquare]
+
+  have hOneMinusRootPositive :
+      0 < 1 - s := by
+    linarith
+
+  have hRootCubePositive :
+      0 < s ^ 3 :=
+    pow_pos hRootPositive 3
+
+  have hRootSquareNonnegative :
+      0 ≤ s ^ 2 :=
+    sq_nonneg s
+
+  have hPolynomial :
+      0 <
+        s ^ 3 +
+          2 * s ^ 2 +
+          2 * s +
+          1 := by
+    nlinarith
+
+  have hBracketIdentity :
+      b * s ^ 3 +
+          2 * b * s ^ 2 +
+          2 * b * s +
+          b -
+          3 * s ^ 3 -
+          6 * s ^ 2 -
+          4 * s -
+          2 =
+        (b - 3) *
+            (s ^ 3 +
+              2 * s ^ 2 +
+              2 * s +
+              1) +
+          (2 * s + 1) := by
+    ring
+
+  have hBracketPositive :
+      0 <
+        b * s ^ 3 +
+          2 * b * s ^ 2 +
+          2 * b * s +
+          b -
+          3 * s ^ 3 -
+          6 * s ^ 2 -
+          4 * s -
+          2 := by
+    rw [hBracketIdentity]
+
+    have hBGapPositive :
+        0 < b - 3 := by
+      linarith
+
+    have hProductPositive :
+        0 <
+          (b - 3) *
+            (s ^ 3 +
+              2 * s ^ 2 +
+              2 * s +
+              1) :=
+      mul_pos hBGapPositive hPolynomial
+
+    nlinarith
+
+  have hSdenominator :
+      0 < 2 * s ^ 3 :=
+    mul_pos (by norm_num) hRootCubePositive
+
+  have hQIdentity :
+      (1 - (b - 3) * t / 2) -
+          (2 - b * t) / (2 * s ^ 3) =
+        ((1 - s) ^ 2 *
+            (b * s ^ 3 +
+              2 * b * s ^ 2 +
+              2 * b * s +
+              b -
+              3 * s ^ 3 -
+              6 * s ^ 2 -
+              4 * s -
+              2)) /
+          (2 * s ^ 3) := by
+    rw [htFromRoot]
+    field_simp [ne_of_gt hRootPositive]
+    ring
+
+  have hQDifferencePositive :
+      0 <
+        (1 - (b - 3) * t / 2) -
+          (2 - b * t) / (2 * s ^ 3) := by
+    rw [hQIdentity]
+
+    exact
+      div_pos
+        (mul_pos
+          (pow_pos hOneMinusRootPositive 2)
+          hBracketPositive)
+        hSdenominator
+
+  have hRootNumeratorPositive :
+      0 < 2 - b * t := by
+    linarith
+
+  have hQPositive :
+      0 <
+        (2 - b * t) /
+          (2 * s ^ 3) :=
+    div_pos
+      hRootNumeratorPositive
+      hSdenominator
+
+  have hQStrict :
+      (2 - b * t) /
+          (2 * s ^ 3) <
+        1 - (b - 3) * t / 2 := by
+    linarith [
+      hQDifferencePositive,
+      hQPositive
+    ]
+
+  have hBMinusTwoPositive :
+      0 < b - 2 := by
+    linarith
+
+  have hRootIdentity :
+      3 * (b - 2) / (2 * (1 - t)) -
+          (3 / 2) * (b - 2) =
+        3 * t * (b - 2) /
+          (2 * (1 - t)) := by
+    field_simp [ne_of_gt hOneMinusT]
+    ring
+
+  have hRootDenominatorPositive :
+      0 < 2 * (1 - t) :=
+    mul_pos (by norm_num) hOneMinusT
+
+  have hRootDifferencePositive :
+      0 <
+        3 * t * (b - 2) /
+          (2 * (1 - t)) := by
+    exact
+      div_pos
+        (mul_pos
+          (mul_pos (by norm_num) ht)
+          hBMinusTwoPositive)
+        hRootDenominatorPositive
+
+  have hRootStrict :
+      (3 / 2) * (b - 2) <
+        3 * (b - 2) /
+          (2 * (1 - t)) := by
+    linarith [
+      hRootIdentity,
+      hRootDifferencePositive
+    ]
+
+  have hQGap :
+      (b - 3) * t / 2 <
+        1 -
+          (2 - b * t) /
+            (2 * s ^ 3) := by
+    linarith [hQStrict]
+
+  have hSqrtThree :
+      0 < Real.sqrt 3 := by
+    exact Real.sqrt_pos.2 (by norm_num)
+
+  have hScalePositive :
+      0 < 3 * Real.sqrt 3 / t := by
+    exact
+      div_pos
+        (mul_pos (by norm_num) hSqrtThree)
+        ht
+
+  have hScaledQ :
+      (3 * Real.sqrt 3 / t) *
+          ((b - 3) * t / 2) <
+        (3 * Real.sqrt 3 / t) *
+          (1 -
+            (2 - b * t) /
+              (2 * s ^ 3)) :=
+    mul_lt_mul_of_pos_left
+      hQGap
+      hScalePositive
+
+  have hScaleIdentity :
+      (3 * Real.sqrt 3 / t) *
+          ((b - 3) * t / 2) =
+        (3 * Real.sqrt 3 / 2) *
+          (b - 3) := by
+    field_simp [ne_of_gt ht]
+
+  have hShadowStrict :
+      (3 * Real.sqrt 3 / 2) *
+          (b - 3) <
+        (3 * Real.sqrt 3 / t) *
+          (1 -
+            (2 - b * t) /
+              (2 * s ^ 3)) := by
+    calc
+      (3 * Real.sqrt 3 / 2) *
+            (b - 3) =
+          (3 * Real.sqrt 3 / t) *
+            ((b - 3) * t / 2) :=
+        hScaleIdentity.symm
+      _ <
+          (3 * Real.sqrt 3 / t) *
+            (1 -
+              (2 - b * t) /
+                (2 * s ^ 3)) :=
+        hScaledQ
+
+  have hLinearIdentity :
+      (3 / 2) * (b - 2) +
+          (3 * Real.sqrt 3 / 2) *
+            (b - 3) =
+        3 / 2 *
+          (1 +
+            (1 + Real.sqrt 3) *
+              (b - 3)) := by
+    ring
+
+  have hTotal :
+      (3 / 2) * (b - 2) +
+          (3 * Real.sqrt 3 / 2) *
+            (b - 3) <
+        3 * (b - 2) /
+            (2 * (1 - t)) +
+          (3 * Real.sqrt 3 / t) *
+            (1 -
+              (2 - b * t) /
+                (2 * s ^ 3)) :=
+    add_lt_add hRootStrict hShadowStrict
+
+  calc
+    3 / 2 *
+          (1 +
+            (1 + Real.sqrt 3) *
+              (b - 3)) =
+        (3 / 2) * (b - 2) +
+          (3 * Real.sqrt 3 / 2) *
+            (b - 3) :=
+      hLinearIdentity.symm
+    _ <
+        3 * (b - 2) /
+            (2 * (1 - t)) +
+          (3 * Real.sqrt 3 / t) *
+            (1 -
+              (2 - b * t) /
+                (2 * s ^ 3)) :=
+      hTotal
+    _ =
+        3 * (b - 2) /
+            (2 * (1 - t)) +
+          (3 * Real.sqrt 3 / t) *
+            (1 -
+              (2 - b * t) /
+                (2 * (Real.sqrt (1 - t)) ^ 3)) := by
+      rfl
+
+
 end
 
 end Frontier
