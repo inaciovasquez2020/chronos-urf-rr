@@ -66,4 +66,15 @@ noncomputable def quznorThreeModeAsymptoticField
     S3 / r ^ 3 +
     S4 / r ^ 4
 
+
+/--
+Evaluation of the concrete three-mode asymptotic field at unit radius
+recovers the zeroth asymptotic coefficient.
+-/
+theorem quznorThreeModeAsymptoticField_at_one_eq_A0
+    (S2 S3 S4 A0 : ℝ)
+    (hA0 : A0 = S2 + S3 + S4) :
+    quznorThreeModeAsymptoticField S2 S3 S4 1 = A0 := by
+  simpa [quznorThreeModeAsymptoticField] using hA0.symm
+
 end Chronos.Frontier
