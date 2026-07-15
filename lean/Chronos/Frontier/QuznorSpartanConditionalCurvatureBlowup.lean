@@ -89,4 +89,83 @@ theorem quznorSpartanConditionalCurvatureBlowup
     quznorSpartanConditionalCurvatureSup_tendsto_atTop data
   ⟩
 
+
+/--
+Private unit-circle power-chord estimate.
+
+For a complex number of unit norm, the chord from `1` to its `N`th
+power is bounded by `N` times the original chord.
+-/
+private theorem quznorSpartan_unitCircle_powChord_le
+    (z : ℂ)
+    (N : ℕ)
+    (hz : ‖z‖ = 1) :
+    ‖z ^ N - 1‖ ≤ (N : ℝ) * ‖z - 1‖ := by
+  induction N with
+  | zero =>
+      simp
+  | succ N ih =>
+      have hdecomp :
+          z ^ (N + 1) - 1 =
+            z ^ N * (z - 1) + (z ^ N - 1) := by
+        rw [pow_succ]
+        ring
+      rw [hdecomp]
+      calc
+        ‖z ^ N * (z - 1) + (z ^ N - 1)‖
+            ≤ ‖z ^ N * (z - 1)‖ + ‖z ^ N - 1‖ :=
+          norm_add_le _ _
+        _ =
+            ‖z ^ N‖ * ‖z - 1‖ + ‖z ^ N - 1‖ := by
+          rw [norm_mul]
+        _ ≤
+            ‖z ^ N‖ * ‖z - 1‖ +
+              (N : ℝ) * ‖z - 1‖ := by
+          exact add_le_add_right ih _
+        _ =
+            (((N + 1 : ℕ) : ℝ)) * ‖z - 1‖ := by
+          rw [norm_pow, hz, one_pow, one_mul]
+          push_cast
+          ring
+
+/--
+Spartan complex-exponential chord lemma.
+
+For every real `u` and positive natural number `N`,
+
+`‖exp(iu) - 1‖ ≤ N * ‖exp(iu/N) - 1‖`.
+-/
+theorem quznorSpartan_expChord_nat_mul_le
+    (u : ℝ)
+    (N : ℕ)
+    (hN : 0 < N) :
+    ‖Complex.exp (Complex.I * (u : ℂ)) - 1‖
+      ≤
+    (N : ℝ) *
+      ‖Complex.exp
+          (Complex.I * (((u / (N : ℝ)) : ℝ) : ℂ)) - 1‖ := by
+  let z : ℂ :=
+    Complex.exp
+      (Complex.I * (((u / (N : ℝ)) : ℝ) : ℂ))
+  have hz : ‖z‖ = 1 := by
+    dsimp [z]
+    simpa using
+      Complex.norm_exp_I_mul_ofReal (u / (N : ℝ))
+  have hpow :
+      z ^ N =
+        Complex.exp (Complex.I * (u : ℂ)) := by
+    dsimp [z]
+    rw [← Complex.exp_nat_mul]
+    congr 1
+    have hN0R : (N : ℝ) ≠ 0 := by
+      exact_mod_cast hN.ne'
+    have hN0C : (N : ℂ) ≠ 0 := by
+      exact_mod_cast hN.ne'
+    push_cast
+    field_simp [hN0R, hN0C]
+  have h :=
+    quznorSpartan_unitCircle_powChord_le z N hz
+  rw [hpow] at h
+  simpa [z] using h
+
 end Chronos.Frontier
