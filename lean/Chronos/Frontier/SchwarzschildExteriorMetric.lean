@@ -3249,6 +3249,59 @@ theorem schwarzschildConstantNegativeDefectGapRange_zero_not_mem :
 
   linarith
 
+
+/--
+**NDQ Theorem**
+
+Formal description: sharp negative-defect infimum, non-attainment,
+and minimizing-sequence classification.
+
+This theorem packages the two-sided product estimates, complete
+minimizing-sequence equivalence, explicit infimizing sequence,
+greatest-lower-bound theorem, and non-attainment theorem.
+
+Boundary: this is not an invariant Schwarzschild rigidity theorem.
+-/
+theorem NDQ :
+    (∀ b t : ℝ,
+      schwarzschildConstantNegativeDefectAdmissible b t →
+        b * t / 2 <
+          schwarzschildConstantNegativeDefectGap b t) ∧
+    (∀ b t : ℝ,
+      schwarzschildConstantNegativeDefectAdmissible b t →
+        schwarzschildConstantNegativeDefectGap b t
+          ≤ 192 * (b * t)) ∧
+    (∀ (b t : ℕ → ℝ),
+      (∀ n : ℕ,
+        schwarzschildConstantNegativeDefectAdmissible
+          (b n)
+          (t n)) →
+      (schwarzschildSequenceTendsToZero
+          (fun n : ℕ =>
+            schwarzschildConstantNegativeDefectGap
+              (b n)
+              (t n))
+        ↔
+       schwarzschildSequenceTendsToZero
+          (fun n : ℕ => b n * t n))) ∧
+    schwarzschildSequenceTendsToZero
+      (fun n : ℕ =>
+        schwarzschildConstantNegativeDefectGap
+          (schwarzschildConstantNegativeDefectInfimizingB n)
+          (schwarzschildConstantNegativeDefectInfimizingT n)) ∧
+    IsGLB
+      schwarzschildConstantNegativeDefectGapRange
+      0 ∧
+    0 ∉ schwarzschildConstantNegativeDefectGapRange := by
+  exact ⟨
+    schwarzschildConstantNegativeDefectGap_half_mul_lt,
+    schwarzschildConstantNegativeDefectGap_le_192_mul,
+    schwarzschildConstantNegativeDefect_infimizingSequence_iff,
+    schwarzschildConstantNegativeDefect_explicit_infimizingSequence,
+    schwarzschildConstantNegativeDefectGapRange_infimum_eq_zero,
+    schwarzschildConstantNegativeDefectGapRange_zero_not_mem
+  ⟩
+
 end
 
 end Frontier
