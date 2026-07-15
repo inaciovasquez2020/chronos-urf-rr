@@ -407,4 +407,116 @@ theorem quznorThreeModeSquaredEulerOperator_at_one_eq_A1
   ]
   exact hA1.symm
 
+
+/--
+Away from the origin, two applications of the radial Euler operator
+give the pointwise squared mode weights `2²`, `3²`, and `4²`.
+-/
+theorem quznorThreeModeSquaredEulerOperator_eq
+    (S2 S3 S4 r : ℝ)
+    (hr : r ≠ 0) :
+    quznorEulerRadialOperator
+        (fun y : ℝ =>
+          quznorEulerRadialOperator
+            (quznorThreeModeAsymptoticField S2 S3 S4)
+            y)
+        r =
+      4 * S2 / r ^ 2 +
+        9 * S3 / r ^ 3 +
+        16 * S4 / r ^ 4 := by
+  have h2 :
+      HasDerivAt
+        (fun y : ℝ => (-2 * S2) / y ^ 2)
+        (4 * S2 / r ^ 3)
+        r := by
+    convert
+      quznorInverseSquareMode_hasDerivAt
+        (-2 * S2) r hr
+      using 1 <;>
+        ring
+
+  have h3 :
+      HasDerivAt
+        (fun y : ℝ => (-3 * S3) / y ^ 3)
+        (9 * S3 / r ^ 4)
+        r := by
+    convert
+      quznorInverseCubeMode_hasDerivAt
+        (-3 * S3) r hr
+      using 1 <;>
+        ring
+
+  have h4 :
+      HasDerivAt
+        (fun y : ℝ => (-4 * S4) / y ^ 4)
+        (16 * S4 / r ^ 5)
+        r := by
+    convert
+      quznorInverseFourthMode_hasDerivAt
+        (-4 * S4) r hr
+      using 1 <;>
+        ring
+
+  have hModewise :
+      HasDerivAt
+        (((fun y : ℝ => (-2 * S2) / y ^ 2) +
+            (fun y : ℝ => (-3 * S3) / y ^ 3)) +
+          (fun y : ℝ => (-4 * S4) / y ^ 4))
+        (4 * S2 / r ^ 3 +
+          9 * S3 / r ^ 4 +
+          16 * S4 / r ^ 5)
+        r :=
+    (h2.add h3).add h4
+
+  have hEventually :
+      (fun y : ℝ =>
+        quznorEulerRadialOperator
+          (quznorThreeModeAsymptoticField S2 S3 S4)
+          y) =ᶠ[nhds r]
+      (((fun y : ℝ => (-2 * S2) / y ^ 2) +
+          (fun y : ℝ => (-3 * S3) / y ^ 3)) +
+        (fun y : ℝ => (-4 * S4) / y ^ 4)) := by
+    rcases lt_or_gt_of_ne hr with hrNegative | hrPositive
+    · filter_upwards [Iio_mem_nhds hrNegative] with y hy
+      rw [
+        quznorThreeModeEulerOperator_eq
+          S2 S3 S4 y (ne_of_lt hy)
+      ]
+      simp only [Pi.add_apply]
+      ring_nf
+    · filter_upwards [Ioi_mem_nhds hrPositive] with y hy
+      rw [
+        quznorThreeModeEulerOperator_eq
+          S2 S3 S4 y (ne_of_gt hy)
+      ]
+      simp only [Pi.add_apply]
+      ring_nf
+
+  have hActual :
+      HasDerivAt
+        (fun y : ℝ =>
+          quznorEulerRadialOperator
+            (quznorThreeModeAsymptoticField S2 S3 S4)
+            y)
+        (4 * S2 / r ^ 3 +
+          9 * S3 / r ^ 4 +
+          16 * S4 / r ^ 5)
+        r :=
+    hModewise.congr_of_eventuallyEq hEventually
+
+  change
+    r *
+        deriv
+          (fun y : ℝ =>
+            quznorEulerRadialOperator
+              (quznorThreeModeAsymptoticField S2 S3 S4)
+              y)
+          r =
+      4 * S2 / r ^ 2 +
+        9 * S3 / r ^ 3 +
+        16 * S4 / r ^ 4
+
+  rw [hActual.deriv]
+  field_simp [hr]
+
 end Chronos.Frontier
