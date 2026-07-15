@@ -897,4 +897,18 @@ structure QuznorD1D5CoefficientExtractionInterface
   extract : D1 → D2 → D3 → D4 → D5 → ℝ × ℝ × ℝ
 
 
+
+/--
+Correctness at supplied `D1`–`D5` data and supplied three-mode coefficients
+means exactly that the extractor returns `(S2, S3, S4)`.
+-/
+def QuznorD1D5CoefficientExtractionCorrectAt
+    {D1 D2 D3 D4 D5 : Type*}
+    (interface :
+      QuznorD1D5CoefficientExtractionInterface D1 D2 D3 D4 D5)
+    (d1 : D1) (d2 : D2) (d3 : D3) (d4 : D4) (d5 : D5)
+    (S2 S3 S4 : ℝ) : Prop :=
+  interface.extract d1 d2 d3 d4 d5 = (S2, S3, S4)
+
+
 end Chronos.Frontier
