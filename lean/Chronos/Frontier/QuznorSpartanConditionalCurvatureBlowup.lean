@@ -299,4 +299,25 @@ theorem quznorSpartan_scaledChord_profile_coercivity
       hmain
       hremainder
 
+/-- Strict scaled-chord profile coercivity from a quantitative remainder gap.
+
+If the remainder norm is bounded by `error` and that error is strictly smaller
+than the scaled chord lower bound, then the perturbed profile has positive norm.
+-/
+theorem quznorSpartan_scaledChord_profile_pos
+    (u : ℝ) (N : ℕ) (hN : 0 < N)
+    (remainder : ℂ) (error : ℝ)
+    (hu : |u| ≤ Real.pi * (N : ℝ))
+    (hremainder : ‖remainder‖ ≤ error)
+    (herror : error < 2 * |u| / Real.pi) :
+    0 <
+      ‖(N : ℝ) •
+          (Complex.exp
+              (Complex.I * (((u / (N : ℝ)) : ℝ) : ℂ)) - 1) +
+        remainder‖ := by
+  have hcoercivity :=
+    quznorSpartan_scaledChord_profile_coercivity
+      u N hN remainder error hu hremainder
+  linarith
+
 end Chronos.Frontier
