@@ -1185,6 +1185,30 @@ def schwarzschildChristoffelRaw
   else
     0
 
+
+/--
+The unrestricted raw-coordinate Schwarzschild connection field agrees
+definitionally with the exterior-domain connection table at every valid
+exterior point.
+-/
+theorem schwarzschildChristoffelRaw_eq_exterior
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p)
+    (ρ μ ν : Fin 4) :
+    schwarzschildChristoffelRaw
+        p.mass
+        x.1
+        ρ
+        μ
+        ν =
+      schwarzschildChristoffel
+        p
+        x
+        ρ
+        μ
+        ν := by
+  rfl
+
 end
 
 end Frontier
