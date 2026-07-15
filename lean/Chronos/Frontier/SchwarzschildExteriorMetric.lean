@@ -1275,6 +1275,34 @@ def schwarzschildRicciRaw
           ν
           sigma)
 
+
+/--
+The complete coordinate time-time component of the Schwarzschild Ricci
+tensor vanishes throughout the exterior chart.
+-/
+theorem schwarzschildRicciRaw_tt_eq_zero
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    schwarzschildRicciRaw
+        p.mass
+        x.1
+        0
+        0 =
+      0 := by
+  have hReduced :=
+    schwarzschildRicci_tt_reducedExpression_eq_zero p x
+
+  simp [
+    schwarzschildRicciRaw,
+    schwarzschildCoordinatePartial,
+    schwarzschildChristoffelRaw,
+    schwarzschildChristoffel,
+    Fin.sum_univ_four
+  ] at hReduced ⊢
+
+  ring_nf at hReduced ⊢
+  exact hReduced
+
 end
 
 end Frontier
