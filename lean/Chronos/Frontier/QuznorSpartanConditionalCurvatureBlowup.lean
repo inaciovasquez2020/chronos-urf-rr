@@ -356,4 +356,26 @@ theorem quznorSpartanComplexProfile_fundamental_add_highMode
             (Complex.I * ((((N : ℝ) * θ : ℝ)) : ℂ)) := by
   rfl
 
+/-- The frequency-`N` remainder term in the native Spartan complex profile. -/
+noncomputable def quznorSpartanHighModeRemainder
+    (M E : ℝ) (N : ℕ) (θ : ℝ) : ℂ :=
+  ((Real.sqrt
+      ((E - M) /
+        (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) *
+    Complex.exp
+      (Complex.I * ((((N : ℝ) * θ : ℝ)) : ℂ))
+
+/-- The high-frequency Spartan remainder has constant norm in `θ`. -/
+theorem quznorSpartanHighModeRemainder_norm
+    (M E : ℝ) (N : ℕ) (θ : ℝ) :
+    ‖quznorSpartanHighModeRemainder M E N θ‖ =
+      Real.sqrt
+        ((E - M) /
+          (((N : ℝ) ^ 2) - 1)) := by
+  simp [
+    quznorSpartanHighModeRemainder,
+    Complex.norm_exp,
+    Real.sqrt_nonneg
+  ]
+
 end Chronos.Frontier
