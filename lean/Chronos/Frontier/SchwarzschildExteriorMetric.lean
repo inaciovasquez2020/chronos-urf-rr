@@ -3044,6 +3044,17 @@ theorem schwarzschildConstantNegativeDefect_explicit_infimizingSequence :
       schwarzschildConstantNegativeDefect_infimizing_admissible).2
       schwarzschildConstantNegativeDefect_infimizing_product_tendsToZero
 
+/--
+The set of all exact gap values on the admissible parameter domain.
+-/
+def schwarzschildConstantNegativeDefectGapRange :
+    Set ℝ :=
+  {g : ℝ |
+    ∃ b t : ℝ,
+      schwarzschildConstantNegativeDefectAdmissible b t ∧
+        g =
+          schwarzschildConstantNegativeDefectGap b t}
+
 end
 
 end Frontier
