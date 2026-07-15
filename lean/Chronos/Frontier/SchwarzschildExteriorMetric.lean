@@ -2005,6 +2005,21 @@ def schwarzschildConstantNegativeDefectAdmissible
     t < 1 ∧
     b * t < 2
 
+/--
+The exact nonlinear-minus-linear gap for the constant negative-defect
+Schwarzschild photon-shadow model.
+-/
+def schwarzschildConstantNegativeDefectGap
+    (b t : ℝ) : ℝ :=
+  3 * (b - 2) / (2 * (1 - t)) +
+      (3 * Real.sqrt 3 / t) *
+        (1 -
+          (2 - b * t) /
+            (2 * (Real.sqrt (1 - t)) ^ 3)) -
+    3 / 2 *
+      (1 +
+        (1 + Real.sqrt 3) * (b - 3))
+
 end
 
 end Frontier
