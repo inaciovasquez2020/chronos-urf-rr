@@ -2765,6 +2765,19 @@ theorem schwarzschildConstantNegativeDefectGap_le_192_mul
           ring
 
 
+/--
+Elementary epsilon formulation of convergence of a real sequence to
+zero.
+-/
+def schwarzschildSequenceTendsToZero
+    (u : ℕ → ℝ) : Prop :=
+  ∀ ε : ℝ,
+    0 < ε →
+      ∃ N : ℕ,
+        ∀ n : ℕ,
+          N ≤ n →
+            |u n| < ε
+
 end
 
 end Frontier
