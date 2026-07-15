@@ -936,4 +936,14 @@ def quznorD1D5TrivialCoefficientExtractionInterface
   extract := fun _ _ _ _ _ => (S2, S3, S4)
 
 
+
+theorem quznorD1D5TrivialCoefficientExtractionCorrectAt
+    (S2 S3 S4 : ℝ) :
+    QuznorD1D5CoefficientExtractionCorrectAt
+      (quznorD1D5TrivialCoefficientExtractionInterface S2 S3 S4)
+      PUnit.unit PUnit.unit PUnit.unit PUnit.unit PUnit.unit
+      S2 S3 S4 := by
+  rfl
+
+
 end Chronos.Frontier
