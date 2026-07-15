@@ -382,4 +382,29 @@ theorem quznorThreeModeSquaredEulerOperator_at_one
     (quznorThreeModeEulerOperator_hasDerivAt_one
       S2 S3 S4).deriv
 
+
+/--
+Under the supplied first asymptotic-coefficient identity, the actual
+squared radial Euler operator evaluated at unit radius recovers `A₁`.
+-/
+theorem quznorThreeModeSquaredEulerOperator_at_one_eq_A1
+    (S2 S3 S4 A1 : ℝ)
+    (hA1 :
+      A1 =
+        4 * S2 +
+          9 * S3 +
+          16 * S4) :
+    quznorEulerRadialOperator
+        (fun r : ℝ =>
+          quznorEulerRadialOperator
+            (quznorThreeModeAsymptoticField S2 S3 S4)
+            r)
+        1 =
+      A1 := by
+  rw [
+    quznorThreeModeSquaredEulerOperator_at_one
+      S2 S3 S4
+  ]
+  exact hA1.symm
+
 end Chronos.Frontier
