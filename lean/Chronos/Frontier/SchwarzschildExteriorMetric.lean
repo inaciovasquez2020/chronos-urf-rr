@@ -1994,6 +1994,1226 @@ theorem schwarzschildConstantNegativeDefect_Kminus_sub_Klin_exact
   ]
   ring
 
+/--
+The admissible parameter domain for the constant negative-defect
+Schwarzschild photon model.
+-/
+def schwarzschildConstantNegativeDefectAdmissible
+    (b t : ℝ) : Prop :=
+  3 < b ∧
+    0 < t ∧
+    t < 1 ∧
+    b * t < 2
+
+/--
+The exact nonlinear-minus-linear gap for the constant negative-defect
+Schwarzschild photon-shadow model.
+-/
+def schwarzschildConstantNegativeDefectGap
+    (b t : ℝ) : ℝ :=
+  3 * (b - 2) / (2 * (1 - t)) +
+      (3 * Real.sqrt 3 / t) *
+        (1 -
+          (2 - b * t) /
+            (2 * (Real.sqrt (1 - t)) ^ 3)) -
+    3 / 2 *
+      (1 +
+        (1 + Real.sqrt 3) * (b - 3))
+
+/--
+Exact positive-factor form of the constant negative-defect gap.
+-/
+theorem schwarzschildConstantNegativeDefectGap_factorization
+    (b t : ℝ)
+    (ht : 0 < t)
+    (htOne : t < 1) :
+    schwarzschildConstantNegativeDefectGap b t =
+      3 * (1 - Real.sqrt (1 - t)) /
+          (2 * (Real.sqrt (1 - t)) ^ 3 *
+            (1 + Real.sqrt (1 - t))) *
+        ((b - 2) *
+            Real.sqrt (1 - t) *
+            (1 + Real.sqrt (1 - t)) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                ((Real.sqrt (1 - t)) ^ 3 +
+                  2 * (Real.sqrt (1 - t)) ^ 2 +
+                  2 * Real.sqrt (1 - t) +
+                  1) +
+              (2 * Real.sqrt (1 - t) + 1))) := by
+  let s : ℝ := Real.sqrt (1 - t)
+
+  have hOneMinusT :
+      0 < 1 - t := by
+    linarith
+
+  have hSPos :
+      0 < s := by
+    simpa [s] using Real.sqrt_pos.2 hOneMinusT
+
+  have hSSquare :
+      s ^ 2 = 1 - t := by
+    simpa [s] using
+      Real.sq_sqrt (le_of_lt hOneMinusT)
+
+  have hTFromS :
+      t = 1 - s ^ 2 := by
+    linarith [hSSquare]
+
+  have hSNe :
+      s ≠ 0 :=
+    ne_of_gt hSPos
+
+  have hOnePlusSNe :
+      1 + s ≠ 0 := by
+    nlinarith
+
+  have hTFormPos :
+      0 < 1 - s ^ 2 := by
+    rw [← hTFromS]
+    exact ht
+
+  have hTFormNe :
+      1 - s ^ 2 ≠ 0 :=
+    ne_of_gt hTFormPos
+
+  change
+    3 * (b - 2) / (2 * (1 - t)) +
+          (3 * Real.sqrt 3 / t) *
+            (1 -
+              (2 - b * t) /
+                (2 * s ^ 3)) -
+        3 / 2 *
+          (1 +
+            (1 + Real.sqrt 3) * (b - 3)) =
+      3 * (1 - s) /
+          (2 * s ^ 3 * (1 + s)) *
+        ((b - 2) * s * (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1)))
+
+  rw [hTFromS]
+  field_simp [
+    hSNe,
+    hOnePlusSNe,
+    hTFormNe
+  ] <;> ring
+
+
+/--
+The exact gap strictly dominates one half of the product `b * t`
+throughout the admissible domain.
+-/
+theorem schwarzschildConstantNegativeDefectGap_half_mul_lt
+    (b t : ℝ)
+    (hAdmissible :
+      schwarzschildConstantNegativeDefectAdmissible b t) :
+    b * t / 2 <
+      schwarzschildConstantNegativeDefectGap b t := by
+  rcases hAdmissible with
+    ⟨hb, ht, htOne, hbt⟩
+
+  let s : ℝ := Real.sqrt (1 - t)
+
+  have hOneMinusT :
+      0 < 1 - t := by
+    linarith
+
+  have hSPos :
+      0 < s := by
+    simpa [s] using Real.sqrt_pos.2 hOneMinusT
+
+  have hSSquare :
+      s ^ 2 = 1 - t := by
+    simpa [s] using
+      Real.sq_sqrt (le_of_lt hOneMinusT)
+
+  have hTFromS :
+      t = 1 - s ^ 2 := by
+    linarith [hSSquare]
+
+  have hSLtOne :
+      s < 1 := by
+    by_contra hNot
+    have hOneLeS :
+        1 ≤ s :=
+      le_of_not_gt hNot
+    have hSquareOneLe :
+        1 ≤ s ^ 2 := by
+      nlinarith [sq_nonneg (s - 1)]
+    nlinarith [hSSquare]
+
+  have hOneMinusSPos :
+      0 < 1 - s := by
+    linarith
+
+  have hOnePlusSPos :
+      0 < 1 + s := by
+    linarith
+
+  have hSNe :
+      s ≠ 0 :=
+    ne_of_gt hSPos
+
+  have hOnePlusSNe :
+      1 + s ≠ 0 :=
+    ne_of_gt hOnePlusSPos
+
+  have hSSquareLtOne :
+      s ^ 2 < 1 := by
+    rw [hSSquare]
+    linarith
+
+  have hBPos :
+      0 < b := by
+    linarith
+
+  have hBSquareLt :
+      b * s ^ 2 < b := by
+    simpa using
+      mul_lt_mul_of_pos_left
+        hSSquareLtOne
+        hBPos
+
+  have hCoefficientPos :
+      0 <
+        3 * (b - 2) -
+          b * s ^ 2 := by
+    nlinarith
+
+  have hPolynomialPos :
+      0 <
+        s ^ 3 +
+          2 * s ^ 2 +
+          2 * s +
+          1 := by
+    nlinarith [
+      pow_pos hSPos 3,
+      sq_nonneg s
+    ]
+
+  have hBGapPos :
+      0 < b - 3 := by
+    linarith
+
+  have hBracketTailPos :
+      0 <
+        (b - 3) *
+            (s ^ 3 +
+              2 * s ^ 2 +
+              2 * s +
+              1) +
+          (2 * s + 1) := by
+    exact
+      add_pos
+        (mul_pos
+          hBGapPos
+          hPolynomialPos)
+        (by linarith)
+
+  have hSqrtThreePos :
+      0 < Real.sqrt 3 := by
+    exact Real.sqrt_pos.2 (by norm_num)
+
+  have hLargeBracketPos :
+      0 <
+        s * (1 + s) ^ 2 *
+            (3 * (b - 2) -
+              b * s ^ 2) +
+          3 * Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1)) := by
+    exact
+      add_pos
+        (mul_pos
+          (mul_pos
+            hSPos
+            (pow_pos hOnePlusSPos 2))
+          hCoefficientPos)
+        (mul_pos
+          (mul_pos
+            (by norm_num)
+            hSqrtThreePos)
+          hBracketTailPos)
+
+  have hDenominatorPos :
+      0 <
+        2 * s ^ 3 * (1 + s) := by
+    exact
+      mul_pos
+        (mul_pos
+          (by norm_num)
+          (pow_pos hSPos 3))
+        hOnePlusSPos
+
+  have hPrefactorPos :
+      0 <
+        (1 - s) /
+          (2 * s ^ 3 * (1 + s)) :=
+    div_pos
+      hOneMinusSPos
+      hDenominatorPos
+
+  have hFactorization :=
+    schwarzschildConstantNegativeDefectGap_factorization
+      b
+      t
+      ht
+      htOne
+
+  change
+    schwarzschildConstantNegativeDefectGap b t =
+      3 * (1 - s) /
+          (2 * s ^ 3 * (1 + s)) *
+        ((b - 2) * s * (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1))) at hFactorization
+
+  have hDifference :
+      schwarzschildConstantNegativeDefectGap b t -
+          b * t / 2 =
+        (1 - s) /
+            (2 * s ^ 3 * (1 + s)) *
+          (s * (1 + s) ^ 2 *
+              (3 * (b - 2) -
+                b * s ^ 2) +
+            3 * Real.sqrt 3 *
+              ((b - 3) *
+                  (s ^ 3 +
+                    2 * s ^ 2 +
+                    2 * s +
+                    1) +
+                (2 * s + 1))) := by
+    rw [hFactorization, hTFromS]
+    field_simp [
+      hSNe,
+      hOnePlusSNe
+    ] <;> ring
+
+  have hDifferencePos :
+      0 <
+        schwarzschildConstantNegativeDefectGap b t -
+          b * t / 2 := by
+    rw [hDifference]
+    exact
+      mul_pos
+        hPrefactorPos
+        hLargeBracketPos
+
+  linarith
+
+
+
+set_option maxHeartbeats 1000000 in
+/--
+A uniform product-scale upper bound for the exact gap throughout the
+admissible domain.
+-/
+theorem schwarzschildConstantNegativeDefectGap_le_192_mul
+    (b t : ℝ)
+    (hAdmissible :
+      schwarzschildConstantNegativeDefectAdmissible b t) :
+    schwarzschildConstantNegativeDefectGap b t
+      ≤ 192 * (b * t) := by
+  rcases hAdmissible with
+    ⟨hb, ht, htOne, hbt⟩
+
+  let s : ℝ := Real.sqrt (1 - t)
+
+  have hOneMinusT :
+      0 < 1 - t := by
+    linarith
+
+  have hSPos :
+      0 < s := by
+    simpa [s] using Real.sqrt_pos.2 hOneMinusT
+
+  have hSNonneg :
+      0 ≤ s :=
+    le_of_lt hSPos
+
+  have hSSquare :
+      s ^ 2 = 1 - t := by
+    simpa [s] using
+      Real.sq_sqrt (le_of_lt hOneMinusT)
+
+  have hTFromS :
+      t = 1 - s ^ 2 := by
+    linarith [hSSquare]
+
+  have hSLtOne :
+      s < 1 := by
+    by_contra hNot
+    have hOneLeS :
+        1 ≤ s :=
+      le_of_not_gt hNot
+    have hSquareOneLe :
+        1 ≤ s ^ 2 := by
+      nlinarith [sq_nonneg (s - 1)]
+    nlinarith [hSSquare]
+
+  have hSLeOne :
+      s ≤ 1 :=
+    le_of_lt hSLtOne
+
+  have hOneMinusSPos :
+      0 < 1 - s := by
+    linarith
+
+  have hOnePlusSPos :
+      0 < 1 + s := by
+    linarith
+
+  have hThreeT :
+      3 * t < b * t :=
+    mul_lt_mul_of_pos_right hb ht
+
+  have hTLtTwoThirds :
+      t < (2 : ℝ) / 3 := by
+    nlinarith
+
+  have hOneThird :
+      (1 : ℝ) / 3 < 1 - t := by
+    linarith
+
+  have hSHalf :
+      (1 : ℝ) / 2 < s := by
+    by_contra hNot
+    have hSLeHalf :
+        s ≤ (1 : ℝ) / 2 :=
+      le_of_not_gt hNot
+    have hSquareLeQuarter :
+        s ^ 2 ≤ (1 : ℝ) / 4 := by
+      have hAux :
+          0 ≤
+            ((1 : ℝ) / 2 - s) *
+              ((1 : ℝ) / 2 + s) :=
+        mul_nonneg
+          (by linarith)
+          (by linarith)
+      nlinarith [hAux]
+    nlinarith [hSSquare, hOneThird]
+
+  have hCubeAux :
+      0 <
+        (s - (1 : ℝ) / 2) *
+          (s ^ 2 +
+            s / 2 +
+            (1 : ℝ) / 4) := by
+    exact
+      mul_pos
+        (by linarith)
+        (by nlinarith [sq_nonneg s])
+
+  have hSCubeEighth :
+      (1 : ℝ) / 8 < s ^ 3 := by
+    nlinarith [hCubeAux]
+
+  have hTwoCubeQuarter :
+      (1 : ℝ) / 4 <
+        2 * s ^ 3 := by
+    nlinarith
+
+  have hTwoCubePos :
+      0 < 2 * s ^ 3 := by
+    exact
+      mul_pos
+        (by norm_num)
+        (pow_pos hSPos 3)
+
+  have hOneLtOnePlusS :
+      1 < 1 + s := by
+    linarith
+
+  have hDenominatorGrowth :
+      2 * s ^ 3 <
+        2 * s ^ 3 * (1 + s) := by
+    simpa using
+      mul_lt_mul_of_pos_left
+        hOneLtOnePlusS
+        hTwoCubePos
+
+  have hDenominatorQuarter :
+      (1 : ℝ) / 4 <
+        2 * s ^ 3 * (1 + s) :=
+    lt_trans hTwoCubeQuarter hDenominatorGrowth
+
+  have hDenominatorPos :
+      0 <
+        2 * s ^ 3 * (1 + s) := by
+    linarith
+
+  have hOneMinusSLeT :
+      1 - s ≤ t := by
+    have hProductPos :
+        0 < s * (1 - s) :=
+      mul_pos hSPos hOneMinusSPos
+    nlinarith [hTFromS]
+
+  have hNumeratorLe :
+      3 * (1 - s) ≤ 3 * t := by
+    nlinarith
+
+  have hQuarterLe :
+      (1 : ℝ) / 4 ≤
+        2 * s ^ 3 * (1 + s) :=
+    le_of_lt hDenominatorQuarter
+
+  have hScaledDenominator :
+      3 * t ≤
+        12 * t *
+          (2 * s ^ 3 * (1 + s)) := by
+    have hScaled :=
+      mul_le_mul_of_nonneg_left
+        hQuarterLe
+        (show 0 ≤ 12 * t by positivity)
+    nlinarith [hScaled]
+
+  have hPrefactorNumeratorLe :
+      3 * (1 - s) ≤
+        12 * t *
+          (2 * s ^ 3 * (1 + s)) :=
+    le_trans hNumeratorLe hScaledDenominator
+
+  have hPrefactorLe :
+      3 * (1 - s) /
+          (2 * s ^ 3 * (1 + s))
+        ≤ 12 * t := by
+    exact
+      (div_le_iff₀ hDenominatorPos).2
+        hPrefactorNumeratorLe
+
+  have hOnePlusSquareLeFour :
+      (1 + s) ^ 2 ≤ 4 := by
+    nlinarith [sq_nonneg (1 - s)]
+
+  have hRadialFactorLeFour :
+      s * (1 + s) ^ 2 ≤ 4 := by
+    calc
+      s * (1 + s) ^ 2
+          ≤ 1 * (1 + s) ^ 2 := by
+            exact
+              mul_le_mul_of_nonneg_right
+                hSLeOne
+                (sq_nonneg (1 + s))
+      _ ≤ 1 * 4 := by
+            exact
+              mul_le_mul_of_nonneg_left
+                hOnePlusSquareLeFour
+                (by norm_num)
+      _ = 4 := by
+            norm_num
+
+  have hOneMinusSNonneg :
+      0 ≤ 1 - s := by
+    linarith
+
+  have hOnePlusSNonneg :
+      0 ≤ 1 + s :=
+    le_of_lt hOnePlusSPos
+
+  have hSSquareLeOne :
+      s ^ 2 ≤ 1 := by
+    have hAux :
+        0 ≤
+          (1 - s) * (1 + s) :=
+      mul_nonneg hOneMinusSNonneg hOnePlusSNonneg
+    nlinarith [hAux]
+
+  have hSCubeLeOne :
+      s ^ 3 ≤ 1 := by
+    have hAux :=
+      mul_le_mul_of_nonneg_left
+        hSSquareLeOne
+        hSNonneg
+    nlinarith [hAux, hSLeOne]
+
+  have hPolynomialLeSix :
+      s ^ 3 +
+          2 * s ^ 2 +
+          2 * s +
+          1
+        ≤ 6 := by
+    nlinarith [
+      hSCubeLeOne,
+      hSSquareLeOne,
+      hSLeOne
+    ]
+
+  have hPolynomialPos :
+      0 <
+        s ^ 3 +
+          2 * s ^ 2 +
+          2 * s +
+          1 := by
+    nlinarith [
+      pow_pos hSPos 3,
+      sq_nonneg s
+    ]
+
+  have hBGapNonneg :
+      0 ≤ b - 3 := by
+    linarith
+
+  have hBMinusTwoNonneg :
+      0 ≤ b - 2 := by
+    linarith
+
+  have hPolynomialScaled :=
+    mul_le_mul_of_nonneg_left
+      hPolynomialLeSix
+      hBGapNonneg
+
+  have hLinearTailLe :
+      2 * s + 1 ≤ 3 := by
+    linarith
+
+  have hTailLeSixB :
+      (b - 3) *
+            (s ^ 3 +
+              2 * s ^ 2 +
+              2 * s +
+              1) +
+          (2 * s + 1)
+        ≤ 6 * b := by
+    nlinarith [
+      hPolynomialScaled,
+      hLinearTailLe
+    ]
+
+  have hTailNonneg :
+      0 ≤
+        (b - 3) *
+            (s ^ 3 +
+              2 * s ^ 2 +
+              2 * s +
+              1) +
+          (2 * s + 1) := by
+    exact
+      le_of_lt
+        (add_pos
+          (mul_pos
+            (by linarith)
+            hPolynomialPos)
+          (by linarith))
+
+  have hRadialTermScaled :=
+    mul_le_mul_of_nonneg_left
+      hRadialFactorLeFour
+      hBMinusTwoNonneg
+
+  have hRadialTermLeFourB :
+      (b - 2) *
+          (s * (1 + s) ^ 2)
+        ≤ 4 * b := by
+    nlinarith [hRadialTermScaled]
+
+  have hSqrtThreeNonneg :
+      0 ≤ Real.sqrt 3 :=
+    Real.sqrt_nonneg 3
+
+  have hSqrtThreeSquare :
+      (Real.sqrt 3) ^ 2 = 3 := by
+    simpa using
+      Real.sq_sqrt
+        (show (0 : ℝ) ≤ 3 by norm_num)
+
+  have hSqrtThreeLeTwo :
+      Real.sqrt 3 ≤ 2 := by
+    nlinarith [
+      hSqrtThreeNonneg,
+      hSqrtThreeSquare
+    ]
+
+  have hSqrtTailStep :=
+    mul_le_mul_of_nonneg_right
+      hSqrtThreeLeTwo
+      hTailNonneg
+
+  have hTwiceTailStep :=
+    mul_le_mul_of_nonneg_left
+      hTailLeSixB
+      (show (0 : ℝ) ≤ 2 by norm_num)
+
+  have hSqrtTailLeTwelveB :
+      Real.sqrt 3 *
+          ((b - 3) *
+              (s ^ 3 +
+                2 * s ^ 2 +
+                2 * s +
+                1) +
+            (2 * s + 1))
+        ≤ 12 * b := by
+    nlinarith [
+      hSqrtTailStep,
+      hTwiceTailStep
+    ]
+
+  have hBracketLe :
+      (b - 2) *
+            s *
+            (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1))
+        ≤ 16 * b := by
+    nlinarith [
+      hRadialTermLeFourB,
+      hSqrtTailLeTwelveB
+    ]
+
+  have hBracketNonneg :
+      0 ≤
+        (b - 2) *
+            s *
+            (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1)) := by
+    exact
+      add_nonneg
+        (mul_nonneg
+          (mul_nonneg
+            hBMinusTwoNonneg
+            hSNonneg)
+          (sq_nonneg (1 + s)))
+        (mul_nonneg
+          hSqrtThreeNonneg
+          hTailNonneg)
+
+  rw [
+    schwarzschildConstantNegativeDefectGap_factorization
+      b
+      t
+      ht
+      htOne
+  ]
+
+  change
+    3 * (1 - s) /
+          (2 * s ^ 3 * (1 + s)) *
+        ((b - 2) *
+            s *
+            (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1)))
+      ≤ 192 * (b * t)
+
+  calc
+    3 * (1 - s) /
+          (2 * s ^ 3 * (1 + s)) *
+        ((b - 2) *
+            s *
+            (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1)))
+        ≤
+      (12 * t) *
+        ((b - 2) *
+            s *
+            (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1))) := by
+          exact
+            mul_le_mul_of_nonneg_right
+              hPrefactorLe
+              hBracketNonneg
+    _ ≤
+      (12 * t) * (16 * b) := by
+          exact
+            mul_le_mul_of_nonneg_left
+              hBracketLe
+              (show 0 ≤ 12 * t by positivity)
+    _ = 192 * (b * t) := by
+          ring
+
+
+/--
+Elementary epsilon formulation of convergence of a real sequence to
+zero.
+-/
+def schwarzschildSequenceTendsToZero
+    (u : ℕ → ℝ) : Prop :=
+  ∀ ε : ℝ,
+    0 < ε →
+      ∃ N : ℕ,
+        ∀ n : ℕ,
+          N ≤ n →
+            |u n| < ε
+
+/--
+The explicit sequence `bₙ = 4`.
+-/
+def schwarzschildConstantNegativeDefectInfimizingB
+    (_n : ℕ) : ℝ :=
+  4
+
+
+/--
+The explicit sequence `tₙ = 1 / (n + 3)`.
+-/
+def schwarzschildConstantNegativeDefectInfimizingT
+    (n : ℕ) : ℝ :=
+  1 / ((n : ℝ) + 3)
+
+
+
+/--
+Every pair `bₙ = 4`, `tₙ = 1 / (n + 3)` belongs to the admissible
+constant negative-defect domain.
+-/
+theorem schwarzschildConstantNegativeDefect_infimizing_admissible
+    (n : ℕ) :
+    schwarzschildConstantNegativeDefectAdmissible
+      (schwarzschildConstantNegativeDefectInfimizingB n)
+      (schwarzschildConstantNegativeDefectInfimizingT n) := by
+  have hn :
+      0 ≤ (n : ℝ) := by
+    positivity
+
+  have hDenominatorPos :
+      0 < (n : ℝ) + 3 := by
+    positivity
+
+  unfold
+    schwarzschildConstantNegativeDefectAdmissible
+    schwarzschildConstantNegativeDefectInfimizingB
+    schwarzschildConstantNegativeDefectInfimizingT
+
+  constructor
+  · norm_num
+  constructor
+  · exact one_div_pos.mpr hDenominatorPos
+  constructor
+  · exact
+      (div_lt_one hDenominatorPos).2
+        (by nlinarith [hn])
+  · have hDiv :
+        4 / ((n : ℝ) + 3) < 2 := by
+      exact
+        (div_lt_iff₀ hDenominatorPos).2
+          (by nlinarith [hn])
+
+    simpa [div_eq_mul_inv] using hDiv
+
+
+/--
+The explicit products `bₙ tₙ = 4 / (n + 3)` converge to zero.
+-/
+theorem schwarzschildConstantNegativeDefect_infimizing_product_tendsToZero :
+    schwarzschildSequenceTendsToZero
+      (fun n : ℕ =>
+        schwarzschildConstantNegativeDefectInfimizingB n *
+          schwarzschildConstantNegativeDefectInfimizingT n) := by
+  unfold schwarzschildSequenceTendsToZero
+
+  intro ε hε
+
+  obtain ⟨N, hN⟩ :=
+    exists_nat_gt (4 / ε)
+
+  refine ⟨N, ?_⟩
+  intro n hn
+
+  have hNLeN :
+      (N : ℝ) ≤ (n : ℝ) := by
+    exact_mod_cast hn
+
+  have hDenominatorPos :
+      0 < (n : ℝ) + 3 := by
+    positivity
+
+  have hLarge :
+      4 / ε < (n : ℝ) + 3 := by
+    calc
+      4 / ε < (N : ℝ) :=
+        hN
+      _ ≤ (n : ℝ) :=
+        hNLeN
+      _ < (n : ℝ) + 3 := by
+        linarith
+
+  have hCross :
+      4 < ((n : ℝ) + 3) * ε :=
+    (div_lt_iff₀ hε).1 hLarge
+
+  have hFour :
+      4 < ε * ((n : ℝ) + 3) := by
+    nlinarith [hCross]
+
+  have hFraction :
+      4 / ((n : ℝ) + 3) < ε := by
+    apply (div_lt_iff₀ hDenominatorPos).2
+    nlinarith [hFour]
+
+  have hProductPos :
+      0 <
+        schwarzschildConstantNegativeDefectInfimizingB n *
+          schwarzschildConstantNegativeDefectInfimizingT n := by
+    exact
+      mul_pos
+        (by
+          unfold
+            schwarzschildConstantNegativeDefectInfimizingB
+          norm_num)
+        (by
+          unfold
+            schwarzschildConstantNegativeDefectInfimizingT
+          exact one_div_pos.mpr hDenominatorPos)
+
+  rw [abs_of_pos hProductPos]
+
+  simpa [
+    schwarzschildConstantNegativeDefectInfimizingB,
+    schwarzschildConstantNegativeDefectInfimizingT,
+    div_eq_mul_inv
+  ] using hFraction
+
+/--
+For every admissible sequence, the exact gaps converge to zero if and
+only if the products `bₙ tₙ` converge to zero.
+-/
+theorem schwarzschildConstantNegativeDefect_infimizingSequence_iff
+    (b t : ℕ → ℝ)
+    (hAdmissible :
+      ∀ n : ℕ,
+        schwarzschildConstantNegativeDefectAdmissible
+          (b n)
+          (t n)) :
+    schwarzschildSequenceTendsToZero
+        (fun n : ℕ =>
+          schwarzschildConstantNegativeDefectGap
+            (b n)
+            (t n))
+      ↔
+    schwarzschildSequenceTendsToZero
+        (fun n : ℕ =>
+          b n * t n) := by
+  unfold schwarzschildSequenceTendsToZero
+
+  constructor
+  · intro hGap ε hε
+
+    obtain ⟨N, hN⟩ :=
+      hGap
+        (ε / 2)
+        (by linarith)
+
+    refine ⟨N, ?_⟩
+    intro n hn
+
+    rcases hAdmissible n with
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hDomain :
+        schwarzschildConstantNegativeDefectAdmissible
+          (b n)
+          (t n) :=
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hLower :=
+      schwarzschildConstantNegativeDefectGap_half_mul_lt
+        (b n)
+        (t n)
+        hDomain
+
+    have hProductPos :
+        0 < b n * t n :=
+      mul_pos
+        (by linarith)
+        ht
+
+    have hGapPos :
+        0 <
+          schwarzschildConstantNegativeDefectGap
+            (b n)
+            (t n) := by
+      nlinarith [hLower, hProductPos]
+
+    have hSmall :=
+      hN n hn
+
+    rw [abs_of_pos hGapPos] at hSmall
+    rw [abs_of_pos hProductPos]
+
+    nlinarith [hLower, hSmall]
+
+  · intro hProduct ε hε
+
+    obtain ⟨N, hN⟩ :=
+      hProduct
+        (ε / 192)
+        (by positivity)
+
+    refine ⟨N, ?_⟩
+    intro n hn
+
+    rcases hAdmissible n with
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hDomain :
+        schwarzschildConstantNegativeDefectAdmissible
+          (b n)
+          (t n) :=
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hLower :=
+      schwarzschildConstantNegativeDefectGap_half_mul_lt
+        (b n)
+        (t n)
+        hDomain
+
+    have hUpper :=
+      schwarzschildConstantNegativeDefectGap_le_192_mul
+        (b n)
+        (t n)
+        hDomain
+
+    have hProductPos :
+        0 < b n * t n :=
+      mul_pos
+        (by linarith)
+        ht
+
+    have hGapPos :
+        0 <
+          schwarzschildConstantNegativeDefectGap
+            (b n)
+            (t n) := by
+      nlinarith [hLower, hProductPos]
+
+    have hSmall :=
+      hN n hn
+
+    rw [abs_of_pos hProductPos] at hSmall
+    rw [abs_of_pos hGapPos]
+
+    nlinarith [hUpper, hSmall]
+
+/--
+The explicit sequence `bₙ = 4`, `tₙ = 1 / (n + 3)` drives the exact
+gap to zero.
+-/
+theorem schwarzschildConstantNegativeDefect_explicit_infimizingSequence :
+    schwarzschildSequenceTendsToZero
+      (fun n : ℕ =>
+        schwarzschildConstantNegativeDefectGap
+          (schwarzschildConstantNegativeDefectInfimizingB n)
+          (schwarzschildConstantNegativeDefectInfimizingT n)) := by
+  exact
+    (schwarzschildConstantNegativeDefect_infimizingSequence_iff
+      schwarzschildConstantNegativeDefectInfimizingB
+      schwarzschildConstantNegativeDefectInfimizingT
+      schwarzschildConstantNegativeDefect_infimizing_admissible).2
+      schwarzschildConstantNegativeDefect_infimizing_product_tendsToZero
+
+/--
+The set of all exact gap values on the admissible parameter domain.
+-/
+def schwarzschildConstantNegativeDefectGapRange :
+    Set ℝ :=
+  {g : ℝ |
+    ∃ b t : ℝ,
+      schwarzschildConstantNegativeDefectAdmissible b t ∧
+        g =
+          schwarzschildConstantNegativeDefectGap b t}
+
+/--
+Zero is the greatest lower bound of the exact gap range.
+-/
+theorem schwarzschildConstantNegativeDefectGapRange_infimum_eq_zero :
+    IsGLB
+      schwarzschildConstantNegativeDefectGapRange
+      0 := by
+  constructor
+  · intro g hg
+
+    change
+      ∃ b t : ℝ,
+        schwarzschildConstantNegativeDefectAdmissible b t ∧
+          g =
+            schwarzschildConstantNegativeDefectGap b t at hg
+
+    rcases hg with
+      ⟨b, t, hDomain, rfl⟩
+
+    rcases hDomain with
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hAdmissible :
+        schwarzschildConstantNegativeDefectAdmissible b t :=
+      ⟨hb, ht, htOne, hbt⟩
+
+    have hLower :=
+      schwarzschildConstantNegativeDefectGap_half_mul_lt
+        b
+        t
+        hAdmissible
+
+    have hProductPos :
+        0 < b * t :=
+      mul_pos
+        (by linarith)
+        ht
+
+    nlinarith
+
+  · intro a ha
+
+    by_contra hNot
+
+    have hAPos :
+        0 < a :=
+      lt_of_not_ge hNot
+
+    obtain ⟨N, hN⟩ :=
+      schwarzschildConstantNegativeDefect_explicit_infimizingSequence
+        a
+        hAPos
+
+    have hDomain :=
+      schwarzschildConstantNegativeDefect_infimizing_admissible
+        N
+
+    have hLower :=
+      schwarzschildConstantNegativeDefectGap_half_mul_lt
+        (schwarzschildConstantNegativeDefectInfimizingB N)
+        (schwarzschildConstantNegativeDefectInfimizingT N)
+        hDomain
+
+    have hProductPos :
+        0 <
+          schwarzschildConstantNegativeDefectInfimizingB N *
+            schwarzschildConstantNegativeDefectInfimizingT N := by
+      rcases hDomain with
+        ⟨hb, ht, htOne, hbt⟩
+
+      exact
+        mul_pos
+          (by linarith)
+          ht
+
+    have hGapPos :
+        0 <
+          schwarzschildConstantNegativeDefectGap
+            (schwarzschildConstantNegativeDefectInfimizingB N)
+            (schwarzschildConstantNegativeDefectInfimizingT N) := by
+      nlinarith [hLower, hProductPos]
+
+    have hAtN :=
+      hN N le_rfl
+
+    rw [abs_of_pos hGapPos] at hAtN
+
+    have hMember :
+        schwarzschildConstantNegativeDefectGap
+            (schwarzschildConstantNegativeDefectInfimizingB N)
+            (schwarzschildConstantNegativeDefectInfimizingT N)
+          ∈ schwarzschildConstantNegativeDefectGapRange := by
+      change
+        ∃ b t : ℝ,
+          schwarzschildConstantNegativeDefectAdmissible b t ∧
+            schwarzschildConstantNegativeDefectGap
+                (schwarzschildConstantNegativeDefectInfimizingB N)
+                (schwarzschildConstantNegativeDefectInfimizingT N) =
+              schwarzschildConstantNegativeDefectGap b t
+
+      exact
+        ⟨schwarzschildConstantNegativeDefectInfimizingB N,
+          schwarzschildConstantNegativeDefectInfimizingT N,
+          schwarzschildConstantNegativeDefect_infimizing_admissible N,
+          rfl⟩
+
+    have hALe :
+        a ≤
+          schwarzschildConstantNegativeDefectGap
+            (schwarzschildConstantNegativeDefectInfimizingB N)
+            (schwarzschildConstantNegativeDefectInfimizingT N) :=
+      ha hMember
+
+    linarith
+
+/--
+The zero infimum is not attained anywhere in the open admissible
+domain.
+-/
+theorem schwarzschildConstantNegativeDefectGapRange_zero_not_mem :
+    0 ∉
+      schwarzschildConstantNegativeDefectGapRange := by
+  intro hZero
+
+  change
+    ∃ b t : ℝ,
+      schwarzschildConstantNegativeDefectAdmissible b t ∧
+        0 =
+          schwarzschildConstantNegativeDefectGap b t at hZero
+
+  rcases hZero with
+    ⟨b, t, hDomain, hZeroEq⟩
+
+  rcases hDomain with
+    ⟨hb, ht, htOne, hbt⟩
+
+  have hAdmissible :
+      schwarzschildConstantNegativeDefectAdmissible b t :=
+    ⟨hb, ht, htOne, hbt⟩
+
+  have hLower :=
+    schwarzschildConstantNegativeDefectGap_half_mul_lt
+      b
+      t
+      hAdmissible
+
+  have hProductPos :
+      0 < b * t :=
+    mul_pos
+      (by linarith)
+      ht
+
+  have hGapPos :
+      0 <
+        schwarzschildConstantNegativeDefectGap b t := by
+    nlinarith [hLower, hProductPos]
+
+  linarith
+
 end
 
 end Frontier
