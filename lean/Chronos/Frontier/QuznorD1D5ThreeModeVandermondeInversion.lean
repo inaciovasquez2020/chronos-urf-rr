@@ -911,4 +911,17 @@ def QuznorD1D5CoefficientExtractionCorrectAt
   interface.extract d1 d2 d3 d4 d5 = (S2, S3, S4)
 
 
+
+theorem quznorD1D5CoefficientExtractionCorrectAt_of_eq
+    {D1 D2 D3 D4 D5 : Type*}
+    (interface :
+      QuznorD1D5CoefficientExtractionInterface D1 D2 D3 D4 D5)
+    (d1 : D1) (d2 : D2) (d3 : D3) (d4 : D4) (d5 : D5)
+    (S2 S3 S4 : ℝ)
+    (h : interface.extract d1 d2 d3 d4 d5 = (S2, S3, S4)) :
+    QuznorD1D5CoefficientExtractionCorrectAt
+      interface d1 d2 d3 d4 d5 S2 S3 S4 := by
+  simpa [QuznorD1D5CoefficientExtractionCorrectAt] using h
+
+
 end Chronos.Frontier
