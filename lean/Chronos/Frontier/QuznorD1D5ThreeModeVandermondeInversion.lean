@@ -195,4 +195,54 @@ theorem quznorInverseFourthMode_hasDerivAt
     field_simp [hr] <;>
     ring
 
+
+/--
+One application of the radial Euler operator to the concrete
+three-mode field gives the mode weights `-2`, `-3`, and `-4`.
+-/
+theorem quznorThreeModeEulerOperator_eq
+    (S2 S3 S4 r : ℝ)
+    (hr : r ≠ 0) :
+    quznorEulerRadialOperator
+        (quznorThreeModeAsymptoticField S2 S3 S4)
+        r =
+      -2 * S2 / r ^ 2 -
+        3 * S3 / r ^ 3 -
+        4 * S4 / r ^ 4 := by
+  have hFieldRaw :=
+    ((quznorInverseSquareMode_hasDerivAt S2 r hr).add
+      (quznorInverseCubeMode_hasDerivAt S3 r hr)).add
+      (quznorInverseFourthMode_hasDerivAt S4 r hr)
+
+  have hField :
+      HasDerivAt
+        (fun y : ℝ =>
+          S2 / y ^ 2 +
+            S3 / y ^ 3 +
+            S4 / y ^ 4)
+        (-(2 * S2) / r ^ 3 +
+          -(3 * S3) / r ^ 4 +
+          -(4 * S4) / r ^ 5)
+        r := by
+    convert hFieldRaw using 1 <;>
+      try { funext y; rfl } <;>
+      ring
+
+  rw [quznorEulerRadialOperator]
+
+  change
+    r *
+        deriv
+          (fun y : ℝ =>
+            S2 / y ^ 2 +
+              S3 / y ^ 3 +
+              S4 / y ^ 4)
+          r =
+      -2 * S2 / r ^ 2 -
+        3 * S3 / r ^ 3 -
+        4 * S4 / r ^ 4
+
+  rw [hField.deriv]
+  field_simp [hr] <;> ring
+
 end Chronos.Frontier
