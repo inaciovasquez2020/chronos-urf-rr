@@ -810,4 +810,80 @@ theorem quznorThreeModeFourthEulerOperator_at_one_eq_A2
   ]
   simpa using hA2.symm
 
+
+/--
+The three supplied asymptotic coefficients are simultaneously realized
+as the unit-radius field value, squared Euler value, and fourth Euler
+value. They also uniquely recover the three mode amplitudes through the
+verified Vandermonde inverse.
+-/
+theorem quznorThreeModeEulerCoefficientCharacterization
+    (S2 S3 S4 A0 A1 A2 : ℝ)
+    (hA0 :
+      A0 =
+        S2 + S3 + S4)
+    (hA1 :
+      A1 =
+        4 * S2 +
+          9 * S3 +
+          16 * S4)
+    (hA2 :
+      A2 =
+        16 * S2 +
+          81 * S3 +
+          256 * S4) :
+    quznorThreeModeAsymptoticField
+        S2 S3 S4 1 =
+      A0 ∧
+    quznorEulerRadialOperator
+        (fun r : ℝ =>
+          quznorEulerRadialOperator
+            (quznorThreeModeAsymptoticField S2 S3 S4)
+            r)
+        1 =
+      A1 ∧
+    quznorEulerRadialOperator
+        (fun y : ℝ =>
+          quznorEulerRadialOperator
+            (fun z : ℝ =>
+              quznorEulerRadialOperator
+                (fun w : ℝ =>
+                  quznorEulerRadialOperator
+                    (quznorThreeModeAsymptoticField S2 S3 S4)
+                    w)
+                z)
+            y)
+        1 =
+      A2 ∧
+    (
+      S2 =
+        (12 / 5 : ℝ) * A0 -
+          (5 / 12 : ℝ) * A1 +
+          (1 / 60 : ℝ) * A2 ∧
+      S3 =
+        -(64 / 35 : ℝ) * A0 +
+          (4 / 7 : ℝ) * A1 -
+          (1 / 35 : ℝ) * A2 ∧
+      S4 =
+        (3 / 7 : ℝ) * A0 -
+          (13 / 84 : ℝ) * A1 +
+          (1 / 84 : ℝ) * A2
+    ) := by
+  constructor
+  · exact
+      quznorThreeModeAsymptoticField_at_one_eq_A0
+        S2 S3 S4 A0 hA0
+  constructor
+  · exact
+      quznorThreeModeSquaredEulerOperator_at_one_eq_A1
+        S2 S3 S4 A1 hA1
+  constructor
+  · exact
+      quznorThreeModeFourthEulerOperator_at_one_eq_A2
+        S2 S3 S4 A2 hA2
+  · exact
+      quznorThreeModeAsymptoticCoefficientIsolation
+        S2 S3 S4 A0 A1 A2
+        hA0 hA1 hA2
+
 end Chronos.Frontier
