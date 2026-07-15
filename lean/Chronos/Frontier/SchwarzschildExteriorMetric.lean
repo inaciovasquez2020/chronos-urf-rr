@@ -1439,6 +1439,115 @@ theorem schwarzschildScalarPhotonEquation_of_reconstruction
   rw [hReconstruction] at hxe
   linarith
 
+/--
+The algebraic estimate used in the quadratic photon-root remainder.
+
+Writing the remainder as
+
+`(x - 3) * e(x) + 3 * (e(x) - e(3)) - 3 * integralDelta`,
+
+the pointwise defect bound, Lipschitz defect bound, and integral bound
+give the explicit coefficient seven.
+-/
+theorem schwarzschildPhotonRootRemainder_abs_le_seven
+    (x eAtX eAtThree integralDelta δ R : ℝ)
+    (heAtX :
+      |eAtX| ≤ δ)
+    (heVariation :
+      |eAtX - eAtThree| ≤ δ * |x - 3|)
+    (hIntegral :
+      |integralDelta| ≤ δ * |x - 3|)
+    (hR :
+      R =
+        x * eAtX -
+          3 * eAtThree -
+          3 * integralDelta) :
+    |R| ≤ 7 * δ * |x - 3| := by
+  have hRDecomposition :
+      R =
+        (x - 3) * eAtX +
+          3 * (eAtX - eAtThree) -
+          3 * integralDelta := by
+    rw [hR]
+    ring
+
+  have hAtX :
+      |(x - 3) * eAtX| ≤
+        δ * |x - 3| := by
+    calc
+      |(x - 3) * eAtX| =
+          |x - 3| * |eAtX| := by
+            rw [abs_mul]
+      _ ≤ |x - 3| * δ :=
+        mul_le_mul_of_nonneg_left
+          heAtX
+          (abs_nonneg (x - 3))
+      _ = δ * |x - 3| := by
+        ring
+
+  have hVariationTerm :
+      |3 * (eAtX - eAtThree)| ≤
+        3 * (δ * |x - 3|) := by
+    calc
+      |3 * (eAtX - eAtThree)| =
+          3 * |eAtX - eAtThree| := by
+            rw [abs_mul]
+            norm_num
+      _ ≤ 3 * (δ * |x - 3|) :=
+        mul_le_mul_of_nonneg_left
+          heVariation
+          (by norm_num)
+
+  have hIntegralTerm :
+      |3 * integralDelta| ≤
+        3 * (δ * |x - 3|) := by
+    calc
+      |3 * integralDelta| =
+          3 * |integralDelta| := by
+            rw [abs_mul]
+            norm_num
+      _ ≤ 3 * (δ * |x - 3|) :=
+        mul_le_mul_of_nonneg_left
+          hIntegral
+          (by norm_num)
+
+  rw [hRDecomposition]
+
+  calc
+    |(x - 3) * eAtX +
+        3 * (eAtX - eAtThree) -
+        3 * integralDelta| ≤
+        |(x - 3) * eAtX +
+          3 * (eAtX - eAtThree)| +
+        |3 * integralDelta| := by
+          exact
+            abs_sub
+              ((x - 3) * eAtX +
+                3 * (eAtX - eAtThree))
+              (3 * integralDelta)
+    _ ≤
+        (|(x - 3) * eAtX| +
+          |3 * (eAtX - eAtThree)|) +
+        |3 * integralDelta| := by
+          exact
+            add_le_add
+              (by
+                simpa [sub_eq_add_neg, abs_neg] using
+                  (abs_sub
+                    ((x - 3) * eAtX)
+                    (-(3 * (eAtX - eAtThree)))))
+              (le_refl |3 * integralDelta|)
+    _ ≤
+        (δ * |x - 3| +
+          3 * (δ * |x - 3|)) +
+        3 * (δ * |x - 3|) := by
+          exact
+            add_le_add
+              (add_le_add hAtX hVariationTerm)
+              hIntegralTerm
+    _ = 7 * δ * |x - 3| := by
+          ring
+
 end
 
 end Frontier
