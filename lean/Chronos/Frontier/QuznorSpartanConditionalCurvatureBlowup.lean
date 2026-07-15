@@ -378,4 +378,77 @@ theorem quznorSpartanHighModeRemainder_norm
     Real.sqrt_nonneg
   ]
 
+/-- Explicit inverse-scale bound for the Spartan high-frequency remainder.
+
+For `M ≤ E` and `N ≥ 2`, the exact remainder amplitude is bounded by
+`sqrt (2 * (E - M)) / N`.
+-/
+theorem quznorSpartanHighModeRemainder_norm_le_inv
+    (M E : ℝ) (N : ℕ) (θ : ℝ)
+    (hEM : M ≤ E) (hN : 2 ≤ N) :
+    ‖quznorSpartanHighModeRemainder M E N θ‖ ≤
+      Real.sqrt (2 * (E - M)) / (N : ℝ) := by
+  rw [quznorSpartanHighModeRemainder_norm]
+  have ha : 0 ≤ E - M := sub_nonneg.mpr hEM
+  have hNreal : (2 : ℝ) ≤ (N : ℝ) := by
+    exact_mod_cast hN
+  have hNpos : 0 < (N : ℝ) := by
+    linarith
+  have hn2pos : 0 < (N : ℝ) ^ 2 := sq_pos_of_pos hNpos
+  have hn2ge : 2 ≤ (N : ℝ) ^ 2 := by
+    nlinarith
+  have hdenpos : 0 < (N : ℝ) ^ 2 - 1 := by
+    linarith
+  have hfrac_nonneg :
+      0 ≤ (E - M) / ((N : ℝ) ^ 2 - 1) :=
+    div_nonneg ha (le_of_lt hdenpos)
+  have htwice_nonneg : 0 ≤ 2 * (E - M) :=
+    mul_nonneg (by norm_num) ha
+  have hfrac_le :
+      (E - M) / ((N : ℝ) ^ 2 - 1) ≤
+        (2 * (E - M)) / (N : ℝ) ^ 2 := by
+    apply (div_le_div_iff₀ hdenpos hn2pos).2
+    have hproduct :
+        0 ≤ (E - M) * ((N : ℝ) ^ 2 - 2) :=
+      mul_nonneg ha (sub_nonneg.mpr hn2ge)
+    nlinarith
+  have hleft_sq :
+      (Real.sqrt
+          ((E - M) / ((N : ℝ) ^ 2 - 1))) ^ 2 =
+        (E - M) / ((N : ℝ) ^ 2 - 1) :=
+    Real.sq_sqrt hfrac_nonneg
+  have hright_sq :
+      (Real.sqrt (2 * (E - M)) / (N : ℝ)) ^ 2 =
+        (2 * (E - M)) / (N : ℝ) ^ 2 := by
+    rw [div_pow, Real.sq_sqrt htwice_nonneg]
+  have hleft_nonneg :
+      0 ≤ Real.sqrt
+        ((E - M) / ((N : ℝ) ^ 2 - 1)) :=
+    Real.sqrt_nonneg _
+  have hright_nonneg :
+      0 ≤ Real.sqrt (2 * (E - M)) / (N : ℝ) :=
+    div_nonneg (Real.sqrt_nonneg _) (le_of_lt hNpos)
+  by_contra hnot
+  have hlt :
+      Real.sqrt (2 * (E - M)) / (N : ℝ) <
+        Real.sqrt
+          ((E - M) / ((N : ℝ) ^ 2 - 1)) :=
+    lt_of_not_ge hnot
+  have hsum_pos :
+      0 <
+        Real.sqrt
+            ((E - M) / ((N : ℝ) ^ 2 - 1)) +
+          Real.sqrt (2 * (E - M)) / (N : ℝ) := by
+    nlinarith
+  have hproduct_pos :
+      0 <
+        (Real.sqrt
+            ((E - M) / ((N : ℝ) ^ 2 - 1)) -
+          Real.sqrt (2 * (E - M)) / (N : ℝ)) *
+        (Real.sqrt
+            ((E - M) / ((N : ℝ) ^ 2 - 1)) +
+          Real.sqrt (2 * (E - M)) / (N : ℝ)) :=
+    mul_pos (sub_pos.mpr hlt) hsum_pos
+  nlinarith
+
 end Chronos.Frontier
