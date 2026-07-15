@@ -3027,6 +3027,23 @@ theorem schwarzschildConstantNegativeDefect_infimizingSequence_iff
 
     nlinarith [hUpper, hSmall]
 
+/--
+The explicit sequence `bₙ = 4`, `tₙ = 1 / (n + 3)` drives the exact
+gap to zero.
+-/
+theorem schwarzschildConstantNegativeDefect_explicit_infimizingSequence :
+    schwarzschildSequenceTendsToZero
+      (fun n : ℕ =>
+        schwarzschildConstantNegativeDefectGap
+          (schwarzschildConstantNegativeDefectInfimizingB n)
+          (schwarzschildConstantNegativeDefectInfimizingT n)) := by
+  exact
+    (schwarzschildConstantNegativeDefect_infimizingSequence_iff
+      schwarzschildConstantNegativeDefectInfimizingB
+      schwarzschildConstantNegativeDefectInfimizingT
+      schwarzschildConstantNegativeDefect_infimizing_admissible).2
+      schwarzschildConstantNegativeDefect_infimizing_product_tendsToZero
+
 end
 
 end Frontier
