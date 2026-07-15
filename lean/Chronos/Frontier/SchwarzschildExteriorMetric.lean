@@ -1928,6 +1928,72 @@ theorem schwarzschildConstantNegativeDefect_Kminus_gt_Klin
       rfl
 
 
+
+/--
+For every `0 < t < 1`, the exact constant-negative-defect nonlinear
+quantity differs from its first-order comparison value by an explicit
+algebraic remainder.
+
+This is an identity only; positivity and optimization are separate
+consequences.
+-/
+theorem schwarzschildConstantNegativeDefect_Kminus_sub_Klin_exact
+    (b t : ℝ)
+    (ht : 0 < t)
+    (htOne : t < 1) :
+    (3 * (b - 2) / (2 * (1 - t)) +
+        (3 * Real.sqrt 3 / t) *
+          (1 -
+            (2 - b * t) /
+              (2 * (Real.sqrt (1 - t)) ^ 3))) -
+      3 / 2 *
+        (1 +
+          (1 + Real.sqrt 3) * (b - 3)) =
+    3 * t * (b - 2) /
+        (2 * (1 - t)) +
+      (3 * Real.sqrt 3 / t) *
+        (((1 - Real.sqrt (1 - t)) ^ 2 *
+            (b * (Real.sqrt (1 - t)) ^ 3 +
+              2 * b * (Real.sqrt (1 - t)) ^ 2 +
+              2 * b * Real.sqrt (1 - t) +
+              b -
+              3 * (Real.sqrt (1 - t)) ^ 3 -
+              6 * (Real.sqrt (1 - t)) ^ 2 -
+              4 * Real.sqrt (1 - t) -
+              2)) /
+          (2 * (Real.sqrt (1 - t)) ^ 3)) := by
+  set s : ℝ := Real.sqrt (1 - t) with hsDef
+
+  have hOneMinusT :
+      0 < 1 - t := by
+    linarith
+
+  have hsPositive :
+      0 < s := by
+    rw [hsDef]
+    exact Real.sqrt_pos.2 hOneMinusT
+
+  have hsSquare :
+      s ^ 2 = 1 - t := by
+    rw [hsDef]
+    exact Real.sq_sqrt (le_of_lt hOneMinusT)
+
+  have htFromRoot :
+      t = 1 - s ^ 2 := by
+    linarith [hsSquare]
+
+  have hRootTimeNonzero :
+      1 - s ^ 2 ≠ 0 := by
+    rw [← htFromRoot]
+    exact ne_of_gt ht
+
+  rw [htFromRoot]
+  field_simp [
+    ne_of_gt hsPositive,
+    hRootTimeNonzero
+  ]
+  ring
+
 end
 
 end Frontier
