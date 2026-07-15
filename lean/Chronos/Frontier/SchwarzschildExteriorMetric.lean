@@ -2104,6 +2104,219 @@ theorem schwarzschildConstantNegativeDefectGap_factorization
     hTFormNe
   ] <;> ring
 
+
+/--
+The exact gap strictly dominates one half of the product `b * t`
+throughout the admissible domain.
+-/
+theorem schwarzschildConstantNegativeDefectGap_half_mul_lt
+    (b t : ℝ)
+    (hAdmissible :
+      schwarzschildConstantNegativeDefectAdmissible b t) :
+    b * t / 2 <
+      schwarzschildConstantNegativeDefectGap b t := by
+  rcases hAdmissible with
+    ⟨hb, ht, htOne, hbt⟩
+
+  let s : ℝ := Real.sqrt (1 - t)
+
+  have hOneMinusT :
+      0 < 1 - t := by
+    linarith
+
+  have hSPos :
+      0 < s := by
+    simpa [s] using Real.sqrt_pos.2 hOneMinusT
+
+  have hSSquare :
+      s ^ 2 = 1 - t := by
+    simpa [s] using
+      Real.sq_sqrt (le_of_lt hOneMinusT)
+
+  have hTFromS :
+      t = 1 - s ^ 2 := by
+    linarith [hSSquare]
+
+  have hSLtOne :
+      s < 1 := by
+    by_contra hNot
+    have hOneLeS :
+        1 ≤ s :=
+      le_of_not_gt hNot
+    have hSquareOneLe :
+        1 ≤ s ^ 2 := by
+      nlinarith [sq_nonneg (s - 1)]
+    nlinarith [hSSquare]
+
+  have hOneMinusSPos :
+      0 < 1 - s := by
+    linarith
+
+  have hOnePlusSPos :
+      0 < 1 + s := by
+    linarith
+
+  have hSNe :
+      s ≠ 0 :=
+    ne_of_gt hSPos
+
+  have hOnePlusSNe :
+      1 + s ≠ 0 :=
+    ne_of_gt hOnePlusSPos
+
+  have hSSquareLtOne :
+      s ^ 2 < 1 := by
+    rw [hSSquare]
+    linarith
+
+  have hBPos :
+      0 < b := by
+    linarith
+
+  have hBSquareLt :
+      b * s ^ 2 < b := by
+    simpa using
+      mul_lt_mul_of_pos_left
+        hSSquareLtOne
+        hBPos
+
+  have hCoefficientPos :
+      0 <
+        3 * (b - 2) -
+          b * s ^ 2 := by
+    nlinarith
+
+  have hPolynomialPos :
+      0 <
+        s ^ 3 +
+          2 * s ^ 2 +
+          2 * s +
+          1 := by
+    nlinarith [
+      pow_pos hSPos 3,
+      sq_nonneg s
+    ]
+
+  have hBGapPos :
+      0 < b - 3 := by
+    linarith
+
+  have hBracketTailPos :
+      0 <
+        (b - 3) *
+            (s ^ 3 +
+              2 * s ^ 2 +
+              2 * s +
+              1) +
+          (2 * s + 1) := by
+    exact
+      add_pos
+        (mul_pos
+          hBGapPos
+          hPolynomialPos)
+        (by linarith)
+
+  have hSqrtThreePos :
+      0 < Real.sqrt 3 := by
+    exact Real.sqrt_pos.2 (by norm_num)
+
+  have hLargeBracketPos :
+      0 <
+        s * (1 + s) ^ 2 *
+            (3 * (b - 2) -
+              b * s ^ 2) +
+          3 * Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1)) := by
+    exact
+      add_pos
+        (mul_pos
+          (mul_pos
+            hSPos
+            (pow_pos hOnePlusSPos 2))
+          hCoefficientPos)
+        (mul_pos
+          (mul_pos
+            (by norm_num)
+            hSqrtThreePos)
+          hBracketTailPos)
+
+  have hDenominatorPos :
+      0 <
+        2 * s ^ 3 * (1 + s) := by
+    exact
+      mul_pos
+        (mul_pos
+          (by norm_num)
+          (pow_pos hSPos 3))
+        hOnePlusSPos
+
+  have hPrefactorPos :
+      0 <
+        (1 - s) /
+          (2 * s ^ 3 * (1 + s)) :=
+    div_pos
+      hOneMinusSPos
+      hDenominatorPos
+
+  have hFactorization :=
+    schwarzschildConstantNegativeDefectGap_factorization
+      b
+      t
+      ht
+      htOne
+
+  change
+    schwarzschildConstantNegativeDefectGap b t =
+      3 * (1 - s) /
+          (2 * s ^ 3 * (1 + s)) *
+        ((b - 2) * s * (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1))) at hFactorization
+
+  have hDifference :
+      schwarzschildConstantNegativeDefectGap b t -
+          b * t / 2 =
+        (1 - s) /
+            (2 * s ^ 3 * (1 + s)) *
+          (s * (1 + s) ^ 2 *
+              (3 * (b - 2) -
+                b * s ^ 2) +
+            3 * Real.sqrt 3 *
+              ((b - 3) *
+                  (s ^ 3 +
+                    2 * s ^ 2 +
+                    2 * s +
+                    1) +
+                (2 * s + 1))) := by
+    rw [hFactorization, hTFromS]
+    field_simp [
+      hSNe,
+      hOnePlusSNe
+    ] <;> ring
+
+  have hDifferencePos :
+      0 <
+        schwarzschildConstantNegativeDefectGap b t -
+          b * t / 2 := by
+    rw [hDifference]
+    exact
+      mul_pos
+        hPrefactorPos
+        hLargeBracketPos
+
+  linarith
+
+
 end
 
 end Frontier
