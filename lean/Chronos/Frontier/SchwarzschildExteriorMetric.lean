@@ -2778,6 +2778,13 @@ def schwarzschildSequenceTendsToZero
           N ≤ n →
             |u n| < ε
 
+/--
+The explicit sequence `bₙ = 4`.
+-/
+def schwarzschildConstantNegativeDefectInfimizingB
+    (_n : ℕ) : ℝ :=
+  4
+
 end
 
 end Frontier
