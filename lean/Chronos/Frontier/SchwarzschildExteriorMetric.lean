@@ -2834,6 +2834,78 @@ theorem schwarzschildConstantNegativeDefect_infimizing_admissible
     simpa [div_eq_mul_inv] using hDiv
 
 
+/--
+The explicit products `bₙ tₙ = 4 / (n + 3)` converge to zero.
+-/
+theorem schwarzschildConstantNegativeDefect_infimizing_product_tendsToZero :
+    schwarzschildSequenceTendsToZero
+      (fun n : ℕ =>
+        schwarzschildConstantNegativeDefectInfimizingB n *
+          schwarzschildConstantNegativeDefectInfimizingT n) := by
+  unfold schwarzschildSequenceTendsToZero
+
+  intro ε hε
+
+  obtain ⟨N, hN⟩ :=
+    exists_nat_gt (4 / ε)
+
+  refine ⟨N, ?_⟩
+  intro n hn
+
+  have hNLeN :
+      (N : ℝ) ≤ (n : ℝ) := by
+    exact_mod_cast hn
+
+  have hDenominatorPos :
+      0 < (n : ℝ) + 3 := by
+    positivity
+
+  have hLarge :
+      4 / ε < (n : ℝ) + 3 := by
+    calc
+      4 / ε < (N : ℝ) :=
+        hN
+      _ ≤ (n : ℝ) :=
+        hNLeN
+      _ < (n : ℝ) + 3 := by
+        linarith
+
+  have hCross :
+      4 < ((n : ℝ) + 3) * ε :=
+    (div_lt_iff₀ hε).1 hLarge
+
+  have hFour :
+      4 < ε * ((n : ℝ) + 3) := by
+    nlinarith [hCross]
+
+  have hFraction :
+      4 / ((n : ℝ) + 3) < ε := by
+    apply (div_lt_iff₀ hDenominatorPos).2
+    nlinarith [hFour]
+
+  have hProductPos :
+      0 <
+        schwarzschildConstantNegativeDefectInfimizingB n *
+          schwarzschildConstantNegativeDefectInfimizingT n := by
+    exact
+      mul_pos
+        (by
+          unfold
+            schwarzschildConstantNegativeDefectInfimizingB
+          norm_num)
+        (by
+          unfold
+            schwarzschildConstantNegativeDefectInfimizingT
+          exact one_div_pos.mpr hDenominatorPos)
+
+  rw [abs_of_pos hProductPos]
+
+  simpa [
+    schwarzschildConstantNegativeDefectInfimizingB,
+    schwarzschildConstantNegativeDefectInfimizingT,
+    div_eq_mul_inv
+  ] using hFraction
+
 end
 
 end Frontier
