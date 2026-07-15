@@ -109,4 +109,32 @@ noncomputable def quznorEulerRadialOperator
     (r : ℝ) : ℝ :=
   r * deriv f r
 
+
+/--
+The inverse-square mode has derivative
+`d/dr (S₂ / r²) = -2 S₂ / r³` away from the origin.
+-/
+theorem quznorInverseSquareMode_hasDerivAt
+    (S2 r : ℝ)
+    (hr : r ≠ 0) :
+    HasDerivAt
+      (fun y : ℝ => S2 / y ^ 2)
+      (-2 * S2 / r ^ 3)
+      r := by
+  have hDenominator :
+      HasDerivAt
+        (fun y : ℝ => y ^ 2)
+        (2 * r)
+        r := by
+    simpa using (hasDerivAt_id r).pow 2
+
+  have hQuotient :=
+    (hasDerivAt_const r S2).div
+      hDenominator
+      (pow_ne_zero 2 hr)
+
+  convert hQuotient using 1 <;>
+    field_simp [hr] <;>
+    ring
+
 end Chronos.Frontier
