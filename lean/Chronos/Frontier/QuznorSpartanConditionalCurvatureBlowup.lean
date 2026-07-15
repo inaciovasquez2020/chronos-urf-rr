@@ -240,4 +240,63 @@ theorem quznorSpartan_scaledChord_uniformLowerBound
             Real.pi := by
       ring
 
+/-- Abstract reverse-triangle coercivity.
+
+A main term with norm at least `lower`, perturbed by a remainder with norm at
+most `error`, retains norm at least `lower - error`.
+-/
+theorem quznorSpartan_reverseTriangle_coercivity
+    {E : Type*} [SeminormedAddCommGroup E]
+    (mainTerm remainder : E) (lower error : ℝ)
+    (hmain : lower ≤ ‖mainTerm‖)
+    (hremainder : ‖remainder‖ ≤ error) :
+    lower - error ≤ ‖mainTerm + remainder‖ := by
+  have htriangle :
+      ‖mainTerm‖ ≤ ‖mainTerm + remainder‖ + ‖remainder‖ := by
+    calc
+      ‖mainTerm‖ = ‖mainTerm + remainder - remainder‖ := by
+        congr 1
+        abel
+      _ ≤ ‖mainTerm + remainder‖ + ‖remainder‖ :=
+        norm_sub_le _ _
+  linarith
+
+/-- Reverse-triangle coercivity instantiated with the scaled Spartan chord.
+
+Inside the normalized range, adding a remainder of norm at most `error`
+preserves the lower bound `2 |u| / π - error`.
+-/
+theorem quznorSpartan_scaledChord_profile_coercivity
+    (u : ℝ) (N : ℕ) (hN : 0 < N)
+    (remainder : ℂ) (error : ℝ)
+    (hu : |u| ≤ Real.pi * (N : ℝ))
+    (hremainder : ‖remainder‖ ≤ error) :
+    2 * |u| / Real.pi - error ≤
+      ‖(N : ℝ) •
+          (Complex.exp
+              (Complex.I * (((u / (N : ℝ)) : ℝ) : ℂ)) - 1) +
+        remainder‖ := by
+  have hchord :=
+    quznorSpartan_scaledChord_uniformLowerBound u N hN hu
+  have hmain :
+      2 * |u| / Real.pi ≤
+        ‖(N : ℝ) •
+            (Complex.exp
+                (Complex.I * (((u / (N : ℝ)) : ℝ) : ℂ)) - 1)‖ := by
+    simpa [
+      norm_smul,
+      Real.norm_eq_abs,
+      abs_of_nonneg (show 0 ≤ (N : ℝ) from Nat.cast_nonneg N)
+    ] using hchord
+  exact
+    quznorSpartan_reverseTriangle_coercivity
+      ((N : ℝ) •
+        (Complex.exp
+            (Complex.I * (((u / (N : ℝ)) : ℝ) : ℂ)) - 1))
+      remainder
+      (2 * |u| / Real.pi)
+      error
+      hmain
+      hremainder
+
 end Chronos.Frontier
