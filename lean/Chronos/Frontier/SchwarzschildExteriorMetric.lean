@@ -1303,6 +1303,72 @@ theorem schwarzschildRicciRaw_tt_eq_zero
   ring_nf at hReduced ⊢
   exact hReduced
 
+
+/--
+The radial derivative of the Schwarzschild coefficient
+
+`Γʳᵣᵣ(r) = -M / (r(r - 2M))`
+
+is
+
+`2M(r - M) / (r²(r - 2M)²)`
+
+throughout the exterior chart.
+-/
+theorem schwarzschildChristoffel_r_rr_radialFormula_hasDerivAt
+    (p : SchwarzschildParameters)
+    (x : SchwarzschildExteriorDomain p) :
+    HasDerivAt
+      (fun r : Real =>
+        -(p.mass / (r * (r - 2 * p.mass))))
+      (2 * p.mass * (x.1 1 - p.mass) /
+        ((x.1 1) ^ 2 *
+          (x.1 1 - 2 * p.mass) ^ 2))
+      (x.1 1) := by
+  have hRadiusPos : 0 < x.1 1 := by
+    nlinarith [p.mass_pos, x.property.1]
+
+  have hRadiusNe : x.1 1 ≠ 0 :=
+    ne_of_gt hRadiusPos
+
+  have hExteriorGapPos :
+      0 < x.1 1 - 2 * p.mass := by
+    linarith [x.property.1]
+
+  have hExteriorGapNe :
+      x.1 1 - 2 * p.mass ≠ 0 :=
+    ne_of_gt hExteriorGapPos
+
+  have hDenominatorNe :
+      x.1 1 * (x.1 1 - 2 * p.mass) ≠ 0 :=
+    mul_ne_zero hRadiusNe hExteriorGapNe
+
+  have hDenominator :
+      HasDerivAt
+        (fun r : Real =>
+          r * (r - 2 * p.mass))
+        (2 * (x.1 1 - p.mass))
+        (x.1 1) := by
+    convert
+      (hasDerivAt_id' (x.1 1)).mul
+        ((hasDerivAt_id' (x.1 1)).sub
+          (hasDerivAt_const
+            (x.1 1)
+            (2 * p.mass))) using 1
+    all_goals
+      simp only [Pi.sub_apply]
+      ring
+
+  convert
+    ((hasDerivAt_const
+        (x.1 1)
+        p.mass).fun_div
+      hDenominator
+      hDenominatorNe).neg using 1
+  all_goals
+    field_simp [hRadiusNe, hExteriorGapNe]
+    ring
+
 end
 
 end Frontier
