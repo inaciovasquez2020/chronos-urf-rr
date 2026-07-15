@@ -205,4 +205,39 @@ theorem quznorSpartan_normalizedLowerChord_le
       rw [Real.norm_eq_abs, abs_mul]
       norm_num
 
+/-- Uniform lower bound for the scaled Spartan exponential chord.
+
+The factor `N` cancels the normalization loss in the lower chord estimate:
+if `|u| ≤ π N`, then `2 |u| / π ≤ N ‖exp(iu/N) - 1‖`.
+-/
+theorem quznorSpartan_scaledChord_uniformLowerBound
+    (u : ℝ) (N : ℕ) (hN : 0 < N)
+    (hu : |u| ≤ Real.pi * (N : ℝ)) :
+    2 * |u| / Real.pi ≤
+      (N : ℝ) *
+        ‖Complex.exp
+            (Complex.I * (((u / (N : ℝ)) : ℝ) : ℂ)) - 1‖ := by
+  have hNpos : 0 < (N : ℝ) := by
+    exact_mod_cast hN
+  have hLower :=
+    quznorSpartan_normalizedLowerChord_le u N hN hu
+  apply (div_le_iff₀ Real.pi_pos).2
+  have hCleared :
+      2 * |u| ≤
+        ‖Complex.exp
+            (Complex.I * (((u / (N : ℝ)) : ℝ) : ℂ)) - 1‖ *
+          (Real.pi * (N : ℝ)) :=
+    (div_le_iff₀ (mul_pos Real.pi_pos hNpos)).1 hLower
+  calc
+    2 * |u| ≤
+        ‖Complex.exp
+            (Complex.I * (((u / (N : ℝ)) : ℝ) : ℂ)) - 1‖ *
+          (Real.pi * (N : ℝ)) := hCleared
+    _ =
+        (N : ℝ) *
+          ‖Complex.exp
+              (Complex.I * (((u / (N : ℝ)) : ℝ) : ℂ)) - 1‖ *
+            Real.pi := by
+      ring
+
 end Chronos.Frontier
