@@ -886,4 +886,15 @@ theorem quznorThreeModeEulerCoefficientCharacterization
         S2 S3 S4 A0 A1 A2
         hA0 hA1 hA2
 
+
+/--
+A purely typed extraction interface from five field-data carriers to three
+real mode coefficients. No physical interpretation or correctness property
+is asserted.
+-/
+structure QuznorD1D5CoefficientExtractionInterface
+    (D1 D2 D3 D4 D5 : Type*) where
+  extract : D1 → D2 → D3 → D4 → D5 → ℝ × ℝ × ℝ
+
+
 end Chronos.Frontier
