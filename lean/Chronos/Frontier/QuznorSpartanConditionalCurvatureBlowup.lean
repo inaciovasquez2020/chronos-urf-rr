@@ -320,4 +320,40 @@ theorem quznorSpartan_scaledChord_profile_pos
       u N hN remainder error hu hremainder
   linarith
 
+/-- The complex-coordinate form of the documented Spartan profile.
+
+The first summand is the fundamental circular mode with coefficient
+`sqrt ((N² M - E)/(N² - 1))`; the second is the frequency-`N` mode with
+coefficient `sqrt ((E - M)/(N² - 1))`.
+-/
+noncomputable def quznorSpartanComplexProfile
+    (M E : ℝ) (N : ℕ) (θ : ℝ) : ℂ :=
+  ((Real.sqrt
+      ((((N : ℝ) ^ 2) * M - E) /
+        (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) *
+      Complex.exp (Complex.I * (θ : ℂ)) +
+    ((Real.sqrt
+      ((E - M) /
+        (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) *
+      Complex.exp
+        (Complex.I * ((((N : ℝ) * θ : ℝ)) : ℂ))
+
+/-- Exact fundamental-mode plus high-frequency-mode decomposition.
+
+The second summand is the repository-native Spartan profile remainder term.
+-/
+theorem quznorSpartanComplexProfile_fundamental_add_highMode
+    (M E : ℝ) (N : ℕ) (θ : ℝ) :
+    quznorSpartanComplexProfile M E N θ =
+      ((Real.sqrt
+          ((((N : ℝ) ^ 2) * M - E) /
+            (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) *
+          Complex.exp (Complex.I * (θ : ℂ)) +
+        ((Real.sqrt
+          ((E - M) /
+            (((N : ℝ) ^ 2) - 1)) : ℝ) : ℂ) *
+          Complex.exp
+            (Complex.I * ((((N : ℝ) * θ : ℝ)) : ℂ)) := by
+  rfl
+
 end Chronos.Frontier
