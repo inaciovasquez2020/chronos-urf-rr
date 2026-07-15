@@ -2628,9 +2628,7 @@ theorem schwarzschildConstantNegativeDefectGap_le_192_mul
 
   have hSqrtThreeSquare :
       (Real.sqrt 3) ^ 2 = 3 := by
-    simpa using
-      Real.sq_sqrt
-        (show (0 : ℝ) ≤ 3 by norm_num)
+    exact Real.sq_sqrt (by norm_num)
 
   have hSqrtThreeLeTwo :
       Real.sqrt 3 ≤ 2 := by
