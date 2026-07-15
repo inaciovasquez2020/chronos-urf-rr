@@ -302,4 +302,55 @@ theorem quznorThreeModeEulerModewise_hasDerivAt_one
 
   exact (h2.add h3).add h4
 
+
+/--
+The actual first Euler-operator field has derivative
+`4*S₂ + 9*S₃ + 16*S₄` at unit radius.
+
+The proof transports the verified modewise derivative through the
+pointwise Euler identity on the positive neighborhood of `r = 1`.
+-/
+theorem quznorThreeModeEulerOperator_hasDerivAt_one
+    (S2 S3 S4 : ℝ) :
+    HasDerivAt
+      (fun r : ℝ =>
+        quznorEulerRadialOperator
+          (quznorThreeModeAsymptoticField S2 S3 S4)
+          r)
+      (4 * S2 + 9 * S3 + 16 * S4)
+      1 := by
+  have hModewise :
+      HasDerivAt
+        (fun r : ℝ =>
+          ((-2 * S2) / r ^ 2 +
+            (-3 * S3) / r ^ 3) +
+            (-4 * S4) / r ^ 4)
+        (4 * S2 + 9 * S3 + 16 * S4)
+        1 := by
+    simpa only [Pi.add_apply] using
+      quznorThreeModeEulerModewise_hasDerivAt_one
+        S2 S3 S4
+
+  have hEventually :
+      (fun r : ℝ =>
+        quznorEulerRadialOperator
+          (quznorThreeModeAsymptoticField S2 S3 S4)
+          r) =ᶠ[nhds (1 : ℝ)]
+      (fun r : ℝ =>
+        ((-2 * S2) / r ^ 2 +
+          (-3 * S3) / r ^ 3) +
+          (-4 * S4) / r ^ 4) := by
+    filter_upwards [
+      Ioi_mem_nhds
+        (show (0 : ℝ) < 1 by norm_num)
+    ] with r hr
+
+    rw [
+      quznorThreeModeEulerOperator_eq
+        S2 S3 S4 r (ne_of_gt hr)
+    ]
+    ring
+
+  exact hModewise.congr_of_eventuallyEq hEventually
+
 end Chronos.Frontier
