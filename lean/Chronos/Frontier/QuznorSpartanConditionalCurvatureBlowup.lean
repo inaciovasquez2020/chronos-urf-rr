@@ -168,4 +168,41 @@ theorem quznorSpartan_expChord_nat_mul_le
   rw [hpow] at h
   simpa [z] using h
 
+/-- Spartan normalized lower chord bound.
+
+For every real `u` and positive natural number `N`, if `|u| ≤ π N`, then
+`2 |u| / (π N) ≤ ‖exp(iu/N) - 1‖`.
+-/
+theorem quznorSpartan_normalizedLowerChord_le
+    (u : ℝ) (N : ℕ) (hN : 0 < N)
+    (hu : |u| ≤ Real.pi * (N : ℝ)) :
+    2 * |u| / (Real.pi * (N : ℝ)) ≤
+      ‖Complex.exp
+          (Complex.I * (((u / (N : ℝ)) : ℝ) : ℂ)) - 1‖ := by
+  have hNpos : 0 < (N : ℝ) := by
+    exact_mod_cast hN
+  have hu_div : |u / (N : ℝ)| ≤ Real.pi := by
+    rw [abs_div, abs_of_pos hNpos]
+    exact (div_le_iff₀ hNpos).2 hu
+  have hhalf : |u / (N : ℝ) / 2| ≤ Real.pi / 2 := by
+    rw [abs_div]
+    norm_num
+    linarith
+  have hs :
+      2 / Real.pi * |u / (N : ℝ) / 2| ≤
+        |Real.sin (u / (N : ℝ) / 2)| :=
+    Real.mul_abs_le_abs_sin hhalf
+  rw [Complex.norm_exp_I_mul_ofReal_sub_one]
+  calc
+    2 * |u| / (Real.pi * (N : ℝ))
+        = 2 * (2 / Real.pi * |u / (N : ℝ) / 2|) := by
+            rw [abs_div, abs_div, abs_of_pos hNpos]
+            norm_num
+            ring
+    _ ≤ 2 * |Real.sin (u / (N : ℝ) / 2)| :=
+      mul_le_mul_of_nonneg_left hs (by norm_num)
+    _ = ‖2 * Real.sin (u / (N : ℝ) / 2)‖ := by
+      rw [Real.norm_eq_abs, abs_mul]
+      norm_num
+
 end Chronos.Frontier
