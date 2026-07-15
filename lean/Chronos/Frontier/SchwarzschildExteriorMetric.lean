@@ -2794,6 +2794,46 @@ def schwarzschildConstantNegativeDefectInfimizingT
   1 / ((n : ℝ) + 3)
 
 
+
+/--
+Every pair `bₙ = 4`, `tₙ = 1 / (n + 3)` belongs to the admissible
+constant negative-defect domain.
+-/
+theorem schwarzschildConstantNegativeDefect_infimizing_admissible
+    (n : ℕ) :
+    schwarzschildConstantNegativeDefectAdmissible
+      (schwarzschildConstantNegativeDefectInfimizingB n)
+      (schwarzschildConstantNegativeDefectInfimizingT n) := by
+  have hn :
+      0 ≤ (n : ℝ) := by
+    positivity
+
+  have hDenominatorPos :
+      0 < (n : ℝ) + 3 := by
+    positivity
+
+  unfold
+    schwarzschildConstantNegativeDefectAdmissible
+    schwarzschildConstantNegativeDefectInfimizingB
+    schwarzschildConstantNegativeDefectInfimizingT
+
+  constructor
+  · norm_num
+  constructor
+  · exact one_div_pos.mpr hDenominatorPos
+  constructor
+  · exact
+      (div_lt_one hDenominatorPos).2
+        (by nlinarith [hn])
+  · have hDiv :
+        4 / ((n : ℝ) + 3) < 2 := by
+      exact
+        (div_lt_iff₀ hDenominatorPos).2
+          (by nlinarith [hn])
+
+    simpa [div_eq_mul_inv] using hDiv
+
+
 end
 
 end Frontier
