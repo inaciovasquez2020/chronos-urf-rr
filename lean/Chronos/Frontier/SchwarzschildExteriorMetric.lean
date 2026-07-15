@@ -1548,6 +1548,44 @@ theorem schwarzschildPhotonRootRemainder_abs_le_seven
     _ = 7 * δ * |x - 3| := by
           ring
 
+/--
+Closed-form photon-sphere root for the constant negative defect
+`e = -t`, whose reconstructed integral is `I_e(x) = -t * (b - x)`.
+
+The scalar photon equation becomes
+
+`2 * (3 - x) - x * t - 3 * t * (b - x) = 0`,
+
+and therefore, provided `t ≠ 1`,
+
+`x = 3 * (2 - b * t) / (2 * (1 - t))`.
+-/
+theorem schwarzschildConstantNegativeDefect_photonRoot_closedForm
+    (b t x : ℝ)
+    (ht : 1 - t ≠ 0)
+    (hPhoton :
+      2 * (3 - x) -
+          x * t -
+          3 * t * (b - x) =
+        0) :
+    x =
+      3 * (2 - b * t) /
+        (2 * (1 - t)) := by
+  have hLinear :
+      2 * (1 - t) * x =
+        3 * (2 - b * t) := by
+    linarith
+
+  have hDenominator :
+      2 * (1 - t) ≠ 0 := by
+    exact
+      mul_ne_zero
+        (by norm_num)
+        ht
+
+  apply (eq_div_iff hDenominator).2
+  simpa [mul_assoc, mul_comm, mul_left_comm] using hLinear
+
 end
 
 end Frontier
