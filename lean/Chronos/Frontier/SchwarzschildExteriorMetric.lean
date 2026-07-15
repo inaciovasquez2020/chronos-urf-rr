@@ -1369,6 +1369,41 @@ theorem schwarzschildChristoffel_r_rr_radialFormula_hasDerivAt
     field_simp [hRadiusNe, hExteriorGapNe]
     ring
 
+/--
+Exact differential identity underlying radial Einstein-defect
+reconstruction: if `F₀` has zero defect and `F` has defect `E`, then
+the derivative of `x * (F - F₀)` is exactly `E`.
+-/
+theorem schwarzschildRadialDefect_hasDerivAt_mul_sub
+    (F F₀ : ℝ → ℝ)
+    (x F' F₀' E : ℝ)
+    (hF : HasDerivAt F F' x)
+    (hF₀ : HasDerivAt F₀ F₀' x)
+    (hBaseline : x * F₀' + F₀ x - 1 = 0)
+    (hDefect : E = x * F' + F x - 1) :
+    HasDerivAt
+      (fun y => y * (F y - F₀ y))
+      E
+      x := by
+  have hProduct :
+      HasDerivAt
+        (fun y => y * (F y - F₀ y))
+        ((F x - F₀ x) + x * (F' - F₀'))
+        x := by
+    simpa using (hasDerivAt_id x).mul (hF.sub hF₀)
+
+  have hCoefficient :
+      (F x - F₀ x) + x * (F' - F₀') = E := by
+    calc
+      (F x - F₀ x) + x * (F' - F₀') =
+          x * F' + F x - (x * F₀' + F₀ x) := by
+            ring
+      _ = E := by
+        linarith
+
+  rw [hCoefficient] at hProduct
+  exact hProduct
+
 end
 
 end Frontier
