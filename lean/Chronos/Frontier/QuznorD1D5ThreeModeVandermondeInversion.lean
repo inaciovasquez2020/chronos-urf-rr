@@ -55,4 +55,15 @@ theorem quznorThreeModeAsymptoticCoefficientIsolation
   · ring
   constructor <;> ring
 
+
+/--
+Concrete three-mode radial asymptotic field with inverse-radius modes
+`r⁻²`, `r⁻³`, and `r⁻⁴`.
+-/
+noncomputable def quznorThreeModeAsymptoticField
+    (S2 S3 S4 r : ℝ) : ℝ :=
+  S2 / r ^ 2 +
+    S3 / r ^ 3 +
+    S4 / r ^ 4
+
 end Chronos.Frontier
