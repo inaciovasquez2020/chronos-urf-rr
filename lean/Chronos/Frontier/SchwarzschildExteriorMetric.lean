@@ -2098,11 +2098,11 @@ theorem schwarzschildConstantNegativeDefectGap_factorization
               (2 * s + 1)))
 
   rw [hTFromS]
-  field_simp [
+  (field_simp [
     hSNe,
     hOnePlusSNe,
     hTFormNe
-  ] <;> ring
+  ]; ring)
 
 
 /--
@@ -2299,10 +2299,10 @@ theorem schwarzschildConstantNegativeDefectGap_half_mul_lt
                     1) +
                 (2 * s + 1))) := by
     rw [hFactorization, hTFromS]
-    field_simp [
+    (field_simp [
       hSNe,
       hOnePlusSNe
-    ] <;> ring
+    ]; ring)
 
   have hDifferencePos :
       0 <
@@ -2628,9 +2628,7 @@ theorem schwarzschildConstantNegativeDefectGap_le_192_mul
 
   have hSqrtThreeSquare :
       (Real.sqrt 3) ^ 2 = 3 := by
-    simpa using
-      Real.sq_sqrt
-        (show (0 : ℝ) ≤ 3 by norm_num)
+    exact Real.sq_sqrt (by norm_num)
 
   have hSqrtThreeLeTwo :
       Real.sqrt 3 ≤ 2 := by
