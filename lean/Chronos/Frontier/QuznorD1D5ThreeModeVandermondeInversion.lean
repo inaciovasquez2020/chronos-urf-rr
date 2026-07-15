@@ -779,4 +779,35 @@ theorem quznorThreeModeFourthEulerOperator_eq
   rw [hActual.deriv]
   field_simp [hr]
 
+
+/--
+Under the supplied second asymptotic-coefficient identity, the actual
+fourth radial Euler power evaluated at unit radius recovers `A₂`.
+-/
+theorem quznorThreeModeFourthEulerOperator_at_one_eq_A2
+    (S2 S3 S4 A2 : ℝ)
+    (hA2 :
+      A2 =
+        16 * S2 +
+          81 * S3 +
+          256 * S4) :
+    quznorEulerRadialOperator
+        (fun y : ℝ =>
+          quznorEulerRadialOperator
+            (fun z : ℝ =>
+              quznorEulerRadialOperator
+                (fun w : ℝ =>
+                  quznorEulerRadialOperator
+                    (quznorThreeModeAsymptoticField S2 S3 S4)
+                    w)
+                z)
+            y)
+        1 =
+      A2 := by
+  rw [
+    quznorThreeModeFourthEulerOperator_eq
+      S2 S3 S4 1 (by norm_num)
+  ]
+  simpa using hA2.symm
+
 end Chronos.Frontier
