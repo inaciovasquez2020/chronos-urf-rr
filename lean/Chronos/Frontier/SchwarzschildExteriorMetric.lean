@@ -1995,6 +1995,21 @@ theorem schwarzschildConstantNegativeDefect_Kminus_sub_Klin_exact
   ring
 
 /--
+A symmetry-reduced marked radial carrier for the constant
+negative-defect Schwarzschild model.
+
+This carrier records only the positive mass scale, positive marked
+area radius, and reduced defect parameter. It does not yet assert a
+metric-level geometric extension or diffeomorphism invariance.
+-/
+structure SchwarzschildConstantNegativeDefectMarkedRadialCarrier where
+  mass : ℝ
+  mass_pos : 0 < mass
+  markedAreaRadius : ℝ
+  markedAreaRadius_pos : 0 < markedAreaRadius
+  defectParameter : ℝ
+
+/--
 The admissible parameter domain for the constant negative-defect
 Schwarzschild photon model.
 -/
