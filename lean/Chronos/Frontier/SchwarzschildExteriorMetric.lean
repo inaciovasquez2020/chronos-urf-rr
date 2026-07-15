@@ -2020,6 +2020,90 @@ def schwarzschildConstantNegativeDefectGap
       (1 +
         (1 + Real.sqrt 3) * (b - 3))
 
+/--
+Exact positive-factor form of the constant negative-defect gap.
+-/
+theorem schwarzschildConstantNegativeDefectGap_factorization
+    (b t : ℝ)
+    (ht : 0 < t)
+    (htOne : t < 1) :
+    schwarzschildConstantNegativeDefectGap b t =
+      3 * (1 - Real.sqrt (1 - t)) /
+          (2 * (Real.sqrt (1 - t)) ^ 3 *
+            (1 + Real.sqrt (1 - t))) *
+        ((b - 2) *
+            Real.sqrt (1 - t) *
+            (1 + Real.sqrt (1 - t)) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                ((Real.sqrt (1 - t)) ^ 3 +
+                  2 * (Real.sqrt (1 - t)) ^ 2 +
+                  2 * Real.sqrt (1 - t) +
+                  1) +
+              (2 * Real.sqrt (1 - t) + 1))) := by
+  let s : ℝ := Real.sqrt (1 - t)
+
+  have hOneMinusT :
+      0 < 1 - t := by
+    linarith
+
+  have hSPos :
+      0 < s := by
+    simpa [s] using Real.sqrt_pos.2 hOneMinusT
+
+  have hSSquare :
+      s ^ 2 = 1 - t := by
+    simpa [s] using
+      Real.sq_sqrt (le_of_lt hOneMinusT)
+
+  have hTFromS :
+      t = 1 - s ^ 2 := by
+    linarith [hSSquare]
+
+  have hSNe :
+      s ≠ 0 :=
+    ne_of_gt hSPos
+
+  have hOnePlusSNe :
+      1 + s ≠ 0 := by
+    nlinarith
+
+  have hTFormPos :
+      0 < 1 - s ^ 2 := by
+    rw [← hTFromS]
+    exact ht
+
+  have hTFormNe :
+      1 - s ^ 2 ≠ 0 :=
+    ne_of_gt hTFormPos
+
+  change
+    3 * (b - 2) / (2 * (1 - t)) +
+          (3 * Real.sqrt 3 / t) *
+            (1 -
+              (2 - b * t) /
+                (2 * s ^ 3)) -
+        3 / 2 *
+          (1 +
+            (1 + Real.sqrt 3) * (b - 3)) =
+      3 * (1 - s) /
+          (2 * s ^ 3 * (1 + s)) *
+        ((b - 2) * s * (1 + s) ^ 2 +
+          Real.sqrt 3 *
+            ((b - 3) *
+                (s ^ 3 +
+                  2 * s ^ 2 +
+                  2 * s +
+                  1) +
+              (2 * s + 1)))
+
+  rw [hTFromS]
+  field_simp [
+    hSNe,
+    hOnePlusSNe,
+    hTFormNe
+  ] <;> ring
+
 end
 
 end Frontier
