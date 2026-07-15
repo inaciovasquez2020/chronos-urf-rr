@@ -95,4 +95,18 @@ theorem quznorThreeModeSquaredEulerCoefficient_at_one_eq_A1
       A1 := by
   simpa using hA1.symm
 
+
+/--
+The radial Euler differential operator
+
+`D f(r) = r * f'(r)`.
+
+For an inverse-power mode `r⁻ⁿ`, one application gives weight `-n`,
+and two applications give weight `n²`.
+-/
+noncomputable def quznorEulerRadialOperator
+    (f : ℝ → ℝ)
+    (r : ℝ) : ℝ :=
+  r * deriv f r
+
 end Chronos.Frontier
