@@ -2015,6 +2015,22 @@ def schwarzschildConstantNegativeDefectGeometricB
     (X : SchwarzschildConstantNegativeDefectMarkedRadialCarrier) : ℝ :=
   X.markedAreaRadius / X.mass
 
+
+/--
+The marked radial model with mass `M`, dimensionless marked radius `b`,
+and reduced defect parameter `t`.
+-/
+def schwarzschildConstantNegativeDefectRadialModel
+    (M b t : ℝ)
+    (hM : 0 < M)
+    (hb : 0 < b) :
+    SchwarzschildConstantNegativeDefectMarkedRadialCarrier where
+  mass := M
+  mass_pos := hM
+  markedAreaRadius := b * M
+  markedAreaRadius_pos := mul_pos hb hM
+  defectParameter := t
+
 /--
 The admissible parameter domain for the constant negative-defect
 Schwarzschild photon model.
