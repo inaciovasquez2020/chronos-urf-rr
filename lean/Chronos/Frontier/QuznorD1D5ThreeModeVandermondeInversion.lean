@@ -77,4 +77,22 @@ theorem quznorThreeModeAsymptoticField_at_one_eq_A0
     quznorThreeModeAsymptoticField S2 S3 S4 1 = A0 := by
   simpa [quznorThreeModeAsymptoticField] using hA0.symm
 
+
+/--
+At unit radius, the modewise squared-Euler expression has weights
+`2²`, `3²`, and `4²`, and therefore recovers `A1`.
+-/
+theorem quznorThreeModeSquaredEulerCoefficient_at_one_eq_A1
+    (S2 S3 S4 A1 : ℝ)
+    (hA1 :
+      A1 =
+        4 * S2 +
+          9 * S3 +
+          16 * S4) :
+    4 * S2 / (1 : ℝ) ^ 2 +
+        9 * S3 / (1 : ℝ) ^ 3 +
+        16 * S4 / (1 : ℝ) ^ 4 =
+      A1 := by
+  simpa using hA1.symm
+
 end Chronos.Frontier
