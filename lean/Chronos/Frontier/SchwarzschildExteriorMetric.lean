@@ -1994,6 +1994,17 @@ theorem schwarzschildConstantNegativeDefect_Kminus_sub_Klin_exact
   ]
   ring
 
+/--
+The admissible parameter domain for the constant negative-defect
+Schwarzschild photon model.
+-/
+def schwarzschildConstantNegativeDefectAdmissible
+    (b t : ℝ) : Prop :=
+  3 < b ∧
+    0 < t ∧
+    t < 1 ∧
+    b * t < 2
+
 end
 
 end Frontier
