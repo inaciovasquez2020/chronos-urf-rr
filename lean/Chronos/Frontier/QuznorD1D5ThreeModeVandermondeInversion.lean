@@ -924,4 +924,16 @@ theorem quznorD1D5CoefficientExtractionCorrectAt_of_eq
   simpa [QuznorD1D5CoefficientExtractionCorrectAt] using h
 
 
+
+/--
+A concrete abstract carrier instance whose five inputs contain no information
+and whose extractor definitionally returns the supplied three coefficients.
+-/
+def quznorD1D5TrivialCoefficientExtractionInterface
+    (S2 S3 S4 : ℝ) :
+    QuznorD1D5CoefficientExtractionInterface
+      PUnit PUnit PUnit PUnit PUnit where
+  extract := fun _ _ _ _ _ => (S2, S3, S4)
+
+
 end Chronos.Frontier
