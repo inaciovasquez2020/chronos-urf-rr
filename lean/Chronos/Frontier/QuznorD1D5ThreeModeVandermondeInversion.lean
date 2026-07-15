@@ -137,4 +137,33 @@ theorem quznorInverseSquareMode_hasDerivAt
     field_simp [hr] <;>
     ring
 
+
+/--
+The inverse-cube mode has derivative
+`d/dr (S₃ / r³) = -3 S₃ / r⁴` away from the origin.
+-/
+theorem quznorInverseCubeMode_hasDerivAt
+    (S3 r : ℝ)
+    (hr : r ≠ 0) :
+    HasDerivAt
+      (fun y : ℝ => S3 / y ^ 3)
+      (-3 * S3 / r ^ 4)
+      r := by
+  have hDenominator :
+      HasDerivAt
+        (fun y : ℝ => y ^ 3)
+        (3 * r ^ 2)
+        r := by
+    simpa [id, mul_comm, mul_left_comm, mul_assoc] using
+      (hasDerivAt_id r).pow 3
+
+  have hQuotient :=
+    (hasDerivAt_const r S3).div
+      hDenominator
+      (pow_ne_zero 3 hr)
+
+  convert hQuotient using 1 <;>
+    field_simp [hr] <;>
+    ring
+
 end Chronos.Frontier
