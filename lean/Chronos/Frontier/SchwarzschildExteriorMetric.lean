@@ -1125,6 +1125,24 @@ theorem schwarzschildRicci_tt_reducedExpression_eq_zero
 
   (field_simp [hRadiusNe, hExteriorGapNe]; ring)
 
+
+/--
+The coordinate partial derivative of a scalar field on the raw
+Schwarzschild coordinate array.
+
+`schwarzschildCoordinatePartial coord f x` varies only coordinate
+`coord` through `Function.update`, holds the other three coordinates
+fixed, and applies Mathlib's one-variable derivative at `x coord`.
+-/
+def schwarzschildCoordinatePartial
+    (coord : Fin 4)
+    (f : (Fin 4 → Real) → Real)
+    (x : Fin 4 → Real) : Real :=
+  deriv
+    (fun value : Real =>
+      f (Function.update x coord value))
+    (x coord)
+
 end
 
 end Frontier
