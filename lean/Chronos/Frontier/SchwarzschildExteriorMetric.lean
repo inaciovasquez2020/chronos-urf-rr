@@ -1143,6 +1143,48 @@ def schwarzschildCoordinatePartial
       f (Function.update x coord value))
     (x coord)
 
+
+/--
+The Schwarzschild connection-coefficient field on an unrestricted raw
+coordinate array.
+
+This has the same thirteen-entry support and coordinate formulas as
+`schwarzschildChristoffel`, but does not require an exterior-domain
+subtype. It can therefore be varied by `schwarzschildCoordinatePartial`.
+-/
+def schwarzschildChristoffelRaw
+    (mass : Real)
+    (x : Fin 4 → Real)
+    (ρ μ ν : Fin 4) : Real :=
+  if ρ = 0 ∧ μ = 0 ∧ ν = 1 then
+    mass / (x 1 * (x 1 - 2 * mass))
+  else if ρ = 0 ∧ μ = 1 ∧ ν = 0 then
+    mass / (x 1 * (x 1 - 2 * mass))
+  else if ρ = 1 ∧ μ = 0 ∧ ν = 0 then
+    mass * (x 1 - 2 * mass) / (x 1) ^ 3
+  else if ρ = 1 ∧ μ = 1 ∧ ν = 1 then
+    -(mass / (x 1 * (x 1 - 2 * mass)))
+  else if ρ = 1 ∧ μ = 2 ∧ ν = 2 then
+    -(x 1 - 2 * mass)
+  else if ρ = 1 ∧ μ = 3 ∧ ν = 3 then
+    -(x 1 - 2 * mass) * Real.sin (x 2) ^ 2
+  else if ρ = 2 ∧ μ = 1 ∧ ν = 2 then
+    (1 : Real) / x 1
+  else if ρ = 2 ∧ μ = 2 ∧ ν = 1 then
+    (1 : Real) / x 1
+  else if ρ = 3 ∧ μ = 1 ∧ ν = 3 then
+    (1 : Real) / x 1
+  else if ρ = 3 ∧ μ = 3 ∧ ν = 1 then
+    (1 : Real) / x 1
+  else if ρ = 2 ∧ μ = 3 ∧ ν = 3 then
+    -(Real.sin (x 2) * Real.cos (x 2))
+  else if ρ = 3 ∧ μ = 2 ∧ ν = 3 then
+    Real.cos (x 2) / Real.sin (x 2)
+  else if ρ = 3 ∧ μ = 3 ∧ ν = 2 then
+    Real.cos (x 2) / Real.sin (x 2)
+  else
+    0
+
 end
 
 end Frontier
