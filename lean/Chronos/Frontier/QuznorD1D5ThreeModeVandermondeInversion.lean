@@ -975,4 +975,15 @@ def quznorD1D5CarrierBackedCoefficientExtractionInterface
   extract := fun _ _ _ _ _ => (carrier.S2, carrier.S3, carrier.S4)
 
 
+
+theorem quznorD1D5CarrierBackedCoefficientExtractionCorrectAt
+    {D1 D2 D3 D4 D5 : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5) :
+    QuznorD1D5CoefficientExtractionCorrectAt
+      (quznorD1D5CarrierBackedCoefficientExtractionInterface carrier)
+      carrier.d1 carrier.d2 carrier.d3 carrier.d4 carrier.d5
+      carrier.S2 carrier.S3 carrier.S4 := by
+  rfl
+
+
 end Chronos.Frontier
