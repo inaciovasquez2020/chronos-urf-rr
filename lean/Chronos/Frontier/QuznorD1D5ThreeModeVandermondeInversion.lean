@@ -353,4 +353,33 @@ theorem quznorThreeModeEulerOperator_hasDerivAt_one
 
   exact hModewise.congr_of_eventuallyEq hEventually
 
+
+/--
+Two applications of the radial Euler operator to the concrete
+three-mode field give the squared mode weights `2²`, `3²`, and `4²`
+at unit radius.
+-/
+theorem quznorThreeModeSquaredEulerOperator_at_one
+    (S2 S3 S4 : ℝ) :
+    quznorEulerRadialOperator
+        (fun r : ℝ =>
+          quznorEulerRadialOperator
+            (quznorThreeModeAsymptoticField S2 S3 S4)
+            r)
+        1 =
+      4 * S2 + 9 * S3 + 16 * S4 := by
+  change
+    (1 : ℝ) *
+        deriv
+          (fun r : ℝ =>
+            quznorEulerRadialOperator
+              (quznorThreeModeAsymptoticField S2 S3 S4)
+              r)
+          1 =
+      4 * S2 + 9 * S3 + 16 * S4
+
+  simpa using
+    (quznorThreeModeEulerOperator_hasDerivAt_one
+      S2 S3 S4).deriv
+
 end Chronos.Frontier
