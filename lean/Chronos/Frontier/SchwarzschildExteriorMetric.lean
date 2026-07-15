@@ -1209,6 +1209,72 @@ theorem schwarzschildChristoffelRaw_eq_exterior
         ν := by
   rfl
 
+
+/--
+The coordinate Ricci tensor constructed from the unrestricted
+Schwarzschild connection field using the convention
+
+`R_μν =
+  ∂_λ Γ^λ_μν
+  - ∂_ν Γ^λ_μλ
+  + Γ^λ_μν Γ^σ_λσ
+  - Γ^σ_μλ Γ^λ_νσ`.
+-/
+def schwarzschildRicciRaw
+    (mass : Real)
+    (x : Fin 4 → Real)
+    (μ ν : Fin 4) : Real :=
+  (∑ coord : Fin 4,
+    schwarzschildCoordinatePartial
+      coord
+      (fun y : Fin 4 → Real =>
+        schwarzschildChristoffelRaw
+          mass
+          y
+          coord
+          μ
+          ν)
+      x) -
+  (∑ coord : Fin 4,
+    schwarzschildCoordinatePartial
+      ν
+      (fun y : Fin 4 → Real =>
+        schwarzschildChristoffelRaw
+          mass
+          y
+          coord
+          μ
+          coord)
+      x) +
+  (∑ coord : Fin 4,
+    ∑ sigma : Fin 4,
+      schwarzschildChristoffelRaw
+          mass
+          x
+          coord
+          μ
+          ν *
+        schwarzschildChristoffelRaw
+          mass
+          x
+          sigma
+          coord
+          sigma) -
+  (∑ coord : Fin 4,
+    ∑ sigma : Fin 4,
+      schwarzschildChristoffelRaw
+          mass
+          x
+          sigma
+          μ
+          coord *
+        schwarzschildChristoffelRaw
+          mass
+          x
+          coord
+          ν
+          sigma)
+
 end
 
 end Frontier
