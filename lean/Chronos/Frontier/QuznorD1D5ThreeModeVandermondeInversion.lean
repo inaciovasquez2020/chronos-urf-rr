@@ -245,4 +245,61 @@ theorem quznorThreeModeEulerOperator_eq
   rw [hField.deriv]
   field_simp [hr] <;> ring
 
+
+/--
+The three weighted inverse-power modes have combined derivative
+`4*S₂ + 9*S₃ + 16*S₄` at unit radius.
+-/
+theorem quznorThreeModeEulerModewise_hasDerivAt_one
+    (S2 S3 S4 : ℝ) :
+    HasDerivAt
+      (((fun r : ℝ => (-2 * S2) / r ^ 2) +
+          (fun r : ℝ => (-3 * S3) / r ^ 3)) +
+        (fun r : ℝ => (-4 * S4) / r ^ 4))
+      (4 * S2 + 9 * S3 + 16 * S4)
+      1 := by
+  have h2 :
+      HasDerivAt
+        (fun r : ℝ => (-2 * S2) / r ^ 2)
+        (4 * S2)
+        1 := by
+    convert
+      quznorInverseSquareMode_hasDerivAt
+        (-2 * S2)
+        1
+        (by norm_num)
+      using 1 <;>
+        norm_num <;>
+        ring_nf
+
+  have h3 :
+      HasDerivAt
+        (fun r : ℝ => (-3 * S3) / r ^ 3)
+        (9 * S3)
+        1 := by
+    convert
+      quznorInverseCubeMode_hasDerivAt
+        (-3 * S3)
+        1
+        (by norm_num)
+      using 1 <;>
+        norm_num <;>
+        ring_nf
+
+  have h4 :
+      HasDerivAt
+        (fun r : ℝ => (-4 * S4) / r ^ 4)
+        (16 * S4)
+        1 := by
+    convert
+      quznorInverseFourthMode_hasDerivAt
+        (-4 * S4)
+        1
+        (by norm_num)
+      using 1 <;>
+        norm_num <;>
+        ring_nf
+
+  exact (h2.add h3).add h4
+
 end Chronos.Frontier
