@@ -2299,10 +2299,10 @@ theorem schwarzschildConstantNegativeDefectGap_half_mul_lt
                     1) +
                 (2 * s + 1))) := by
     rw [hFactorization, hTFromS]
-    field_simp [
+    (field_simp [
       hSNe,
       hOnePlusSNe
-    ] <;> ring
+    ]; ring)
 
   have hDifferencePos :
       0 <
