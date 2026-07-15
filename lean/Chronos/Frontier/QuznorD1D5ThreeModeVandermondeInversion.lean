@@ -963,4 +963,16 @@ structure QuznorD1D5CoefficientCarrier
   S4 : ℝ
 
 
+
+/--
+The coefficient extractor backed by a fixed carrier. Its output is the
+carrier's stored coefficient triple.
+-/
+def quznorD1D5CarrierBackedCoefficientExtractionInterface
+    {D1 D2 D3 D4 D5 : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5) :
+    QuznorD1D5CoefficientExtractionInterface D1 D2 D3 D4 D5 where
+  extract := fun _ _ _ _ _ => (carrier.S2, carrier.S3, carrier.S4)
+
+
 end Chronos.Frontier
