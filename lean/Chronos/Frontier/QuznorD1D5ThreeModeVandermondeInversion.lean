@@ -166,4 +166,33 @@ theorem quznorInverseCubeMode_hasDerivAt
     field_simp [hr] <;>
     ring
 
+
+/--
+The inverse-fourth mode has derivative
+`d/dr (S₄ / r⁴) = -4 S₄ / r⁵` away from the origin.
+-/
+theorem quznorInverseFourthMode_hasDerivAt
+    (S4 r : ℝ)
+    (hr : r ≠ 0) :
+    HasDerivAt
+      (fun y : ℝ => S4 / y ^ 4)
+      (-4 * S4 / r ^ 5)
+      r := by
+  have hDenominator :
+      HasDerivAt
+        (fun y : ℝ => y ^ 4)
+        (4 * r ^ 3)
+        r := by
+    simpa [id, mul_comm, mul_left_comm, mul_assoc] using
+      (hasDerivAt_id r).pow 4
+
+  have hQuotient :=
+    (hasDerivAt_const r S4).div
+      hDenominator
+      (pow_ne_zero 4 hr)
+
+  convert hQuotient using 1 <;>
+    field_simp [hr] <;>
+    ring
+
 end Chronos.Frontier
