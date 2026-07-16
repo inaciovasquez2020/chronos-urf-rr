@@ -1055,15 +1055,18 @@ noncomputable def scalarDifferentiatedGreenFluxVector
           (reducedSpatialMultiDerivative α field) x
 
 /--
-The generic compact-support divergence theorem needed on the fixed `R3`
-chart.
+The differentiable compact-support divergence theorem needed on the fixed
+`R3` chart.
 
-This is deliberately isolated as one global analytic missing lemma rather
-than assumed separately for every reduced field.
+Compact support and integrability alone are insufficient: a discontinuous
+compactly supported field can have a nonzero integral of its classical
+derivative away from the jumps. Global differentiability supplies the missing
+regularity required by the divergence theorem.
 -/
 def CompactSupportDivergenceIntegralProperty : Prop :=
   ∀ flux : ReducedSpatialVectorField,
     HasCompactSupport flux →
+    Differentiable ℝ flux →
     Integrable (reducedSpatialDivergence flux) →
     (∫ x : R3, reducedSpatialDivergence flux x) = 0
 
@@ -1213,6 +1216,10 @@ structure ScalarDifferentiatedCompactSupportFluxData
     HasCompactSupport
       (scalarDifferentiatedGreenFluxVector
         α field fieldTime)
+  flux_differentiable :
+    Differentiable ℝ
+      (scalarDifferentiatedGreenFluxVector
+        α field fieldTime)
   fieldTime_differentiable :
     ∀ x,
       DifferentiableAt ℝ
@@ -1247,6 +1254,7 @@ theorem scalarDifferentiatedBoundaryFluxIntegral_zero_of_compactSupport
     (scalarDifferentiatedGreenFluxVector
       α field fieldTime)
     H.flux_compactSupport
+    H.flux_differentiable
     H.divergence_integrable
 
 /--
@@ -1276,7 +1284,7 @@ def causalRecordEinsteinRosenCompactGreenFluxStatus : String :=
   "GREEN_FLUX_PRODUCT_RULE_PROVED_AND_REDUCED_TO_COMPACT_DIVERGENCE"
 
 def causalRecordEinsteinRosenCompactGreenFluxMissingObject : String :=
-  "COMPACT_SUPPORT_DIVERGENCE_INTEGRAL_THEOREM"
+  "DIFFERENTIABLE_COMPACT_SUPPORT_DIVERGENCE_INTEGRAL_THEOREM"
 
 def causalRecordEinsteinRosenScalarPrincipalWaveIBPStatus : String :=
   "SCALAR_PRINCIPAL_WAVE_IBP_FROM_VANISHING_GREEN_FLUX"
@@ -1285,7 +1293,7 @@ def causalRecordEinsteinRosenScalarPrincipalWaveIBPStatus : String :=
 Machine-readable boundary left after the scalar identity.
 -/
 def causalRecordEinsteinRosenScalarPrincipalWaveIBPMissingObject : String :=
-  "COMPACT_SUPPORT_DIVERGENCE_INTEGRAL_THEOREM"
+  "DIFFERENTIABLE_COMPACT_SUPPORT_DIVERGENCE_INTEGRAL_THEOREM"
 
 /--
 Machine-readable status for the concrete energy layer.
