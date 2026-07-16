@@ -281,7 +281,7 @@ theorem quznorThreeModeEulerModewise_hasDerivAt_one
         (-3 * S3)
         1
         (by norm_num)
-      using 1 <;>
+      using 1 ;
         norm_num <;>
         ring_nf
 
