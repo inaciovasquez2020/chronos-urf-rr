@@ -41,6 +41,36 @@ def QuznorAbstractAsymptoticBridge
     (S Q : QuznorScalarLabel → ℝ) : Prop :=
   ∀ j, S j = Q j
 
+/-- A typed carrier containing both the established abstract coefficient
+surface and a candidate asymptotic coefficient surface.
+
+The relation between them is supplied as an explicit proof field. This
+structure does not construct that proof from either coefficient surface. -/
+structure QuznorAbstractAsymptoticBridgeCarrier where
+  abstractCoefficient : QuznorScalarLabel → ℝ
+  asymptoticCoefficient : QuznorScalarLabel → ℝ
+  bridge :
+    QuznorAbstractAsymptoticBridge
+      abstractCoefficient asymptoticCoefficient
+
+/-- Pointwise coefficient transport obtained only from the carrier's
+explicit bridge hypothesis. -/
+theorem QuznorAbstractAsymptoticBridgeCarrier.coefficient_eq
+    (carrier : QuznorAbstractAsymptoticBridgeCarrier)
+    (j : QuznorScalarLabel) :
+    carrier.abstractCoefficient j =
+      carrier.asymptoticCoefficient j := by
+  exact carrier.bridge j
+
+/-- The explicit bridge also yields equality of the two coefficient
+functions. -/
+theorem QuznorAbstractAsymptoticBridgeCarrier.coefficient_fun_eq
+    (carrier : QuznorAbstractAsymptoticBridgeCarrier) :
+    carrier.abstractCoefficient =
+      carrier.asymptoticCoefficient := by
+  funext j
+  exact carrier.coefficient_eq j
+
 /-- Axisymmetric real `Y₂₀` in the coordinate `x = cos θ`. -/
 noncomputable def quznorY20Axisymmetric (x : ℝ) : ℝ :=
   (Real.sqrt 5 / (4 * Real.sqrt Real.pi)) * (3 * x ^ 2 - 1)
