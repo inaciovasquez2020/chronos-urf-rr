@@ -339,6 +339,45 @@ noncomputable def quznorSpartanComplexProfile
         (Complex.I * ((((N : ℝ) * θ : ℝ)) : ℂ))
 
 
+
+/--
+Weak typed bridge from the native Spartan profile to sampled scalar
+curvature.
+
+The bridge asserts only that sampled curvature is `N` times the value of
+an arbitrary real-valued observable applied to the native profile. It
+does not assert positivity, convergence, or a geometric curvature law.
+-/
+structure QuznorSpartanProfileCurvatureBridge (M E : ℝ) where
+  normalizedCurvatureFromProfile : ℕ → (ℝ → ℂ) → ℝ
+  scalarCurvatureAtSample : ℕ → ℝ
+  scalarCurvatureAtSample_eq :
+    ∀ N : ℕ,
+      scalarCurvatureAtSample N =
+        (N : ℝ) *
+          normalizedCurvatureFromProfile N
+            (quznorSpartanComplexProfile M E N)
+
+
+/--
+Exact normalized-curvature identity supplied by the typed bridge.
+
+The restriction `0 < N` is only needed to cancel the normalization
+factor. No sign condition on the resulting normalized curvature is used.
+-/
+theorem quznorSpartanProfileCurvatureBridge_normalized_identity
+    {M E : ℝ}
+    (bridge : QuznorSpartanProfileCurvatureBridge M E)
+    (N : ℕ) (hN : 0 < N) :
+    bridge.scalarCurvatureAtSample N / (N : ℝ) =
+      bridge.normalizedCurvatureFromProfile N
+        (quznorSpartanComplexProfile M E N) := by
+  rw [bridge.scalarCurvatureAtSample_eq]
+  have hN0 : (N : ℝ) ≠ 0 := by
+    exact_mod_cast hN.ne'
+  apply (div_eq_iff hN0).2
+  ring
+
 /-- Exact error identity for the squared Spartan fundamental coefficient. -/
 theorem quznorSpartan_fundamentalCoefficientSq_error_identity
     (M E : ℝ) (N : ℕ) (hN : 2 ≤ N) :
