@@ -295,7 +295,7 @@ theorem quznorThreeModeEulerModewise_hasDerivAt_one
         (-4 * S4)
         1
         (by norm_num)
-      using 1 <;>
+      using 1 ;
         norm_num <;>
         ring_nf
 
