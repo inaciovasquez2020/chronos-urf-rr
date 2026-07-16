@@ -160,6 +160,26 @@ theorem quznorAbstractAsymptoticBridge_of_asymptoticExtractorCompatible
   exact congrFun hCompatible j
 
 
+/--
+The weakest typed carrier recording asymptotic coefficient limits for a
+supplied solved three-scalar field configuration.
+
+The carrier stores only the pointwise identification needed later to derive
+`QuznorD1D5AsymptoticExtractorCompatible`. It does not derive the field
+solution, existence of the asymptotic limits, or their values.
+-/
+structure QuznorSolvedThreeScalarAsymptoticLimitCarrier
+    {D1 D2 D3 D4 D5 Spacetime : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5)
+    (extractor : QuznorThreeScalarAsymptoticExtractor Spacetime)
+    (φ2 φ3 φ4 : Spacetime → ℝ) where
+  coefficientLimit :
+    ∀ j,
+      quznorD1D5CarrierAbstractCoefficients carrier j =
+        quznorThreeScalarAsymptoticCoefficients
+          extractor φ2 φ3 φ4 j
+
+
 /-- Axisymmetric real `Y₂₀` in the coordinate `x = cos θ`. -/
 noncomputable def quznorY20Axisymmetric (x : ℝ) : ℝ :=
   (Real.sqrt 5 / (4 * Real.sqrt Real.pi)) * (3 * x ^ 2 - 1)
