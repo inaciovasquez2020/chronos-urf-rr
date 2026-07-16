@@ -706,8 +706,7 @@ theorem quznorThreeModeFourthEulerOperator_eq
           81 * S3 / r ^ 4 +
           256 * S4 / r ^ 5)
         r := by
-    convert (h2.add h3).add h4 using 1 <;>
-      ring
+    convert (h2.add h3).add h4 using 1
 
   have hEventually :
       (fun y : ℝ =>
