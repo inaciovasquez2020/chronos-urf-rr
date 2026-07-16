@@ -1068,6 +1068,122 @@ def CompactSupportDivergenceIntegralProperty : Prop :=
     (∫ x : R3, reducedSpatialDivergence flux x) = 0
 
 /--
+Coordinate product rule for the concrete spatial derivative.
+-/
+theorem reducedSpatialPartialDerivative_mul
+    (j : Fin 3)
+    (f g : ReducedScalarField)
+    (x : R3)
+    (hf : DifferentiableAt ℝ f x)
+    (hg : DifferentiableAt ℝ g x) :
+    reducedSpatialPartialDerivative j
+        (fun y => f y * g y) x =
+      f x * reducedSpatialPartialDerivative j g x +
+        g x * reducedSpatialPartialDerivative j f x := by
+  unfold reducedSpatialPartialDerivative
+  have h :=
+    congrArg
+      (fun L : R3 →L[ℝ] ℝ =>
+        L ((EuclideanSpace.basisFun (Fin 3) ℝ) j))
+      (fderiv_fun_mul hf hg)
+  simpa using h
+
+/--
+The divergence of the differentiated Green vector equals the existing
+Laplacian-work plus gradient-rate density.
+-/
+theorem scalarDifferentiatedGreenFlux_factorization
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime : ReducedScalarField)
+    (hTime :
+      ∀ x,
+        DifferentiableAt ℝ
+          (reducedSpatialMultiDerivative α fieldTime) x)
+    (hSpace :
+      ∀ j x,
+        DifferentiableAt ℝ
+          (reducedSpatialPartialDerivative j
+            (reducedSpatialMultiDerivative α field)) x) :
+    scalarDifferentiatedGreenFluxDensity
+        α field fieldTime =
+      reducedSpatialDivergence
+        (scalarDifferentiatedGreenFluxVector
+          α field fieldTime) := by
+  funext x
+  symm
+  change
+    (∑ j : Fin 3,
+      reducedSpatialPartialDerivative j
+        (fun y =>
+          reducedSpatialMultiDerivative α fieldTime y *
+            reducedSpatialPartialDerivative j
+              (reducedSpatialMultiDerivative α field) y)
+        x) =
+      reducedSpatialMultiDerivative α fieldTime x *
+          (∑ j : Fin 3,
+            reducedSpatialPartialDerivative j
+              (reducedSpatialPartialDerivative j
+                (reducedSpatialMultiDerivative α field))
+              x) +
+        ∑ j : Fin 3,
+          reducedSpatialPartialDerivative j
+              (reducedSpatialMultiDerivative α fieldTime)
+              x *
+            reducedSpatialPartialDerivative j
+              (reducedSpatialMultiDerivative α field)
+              x
+  calc
+    (∑ j : Fin 3,
+      reducedSpatialPartialDerivative j
+        (fun y =>
+          reducedSpatialMultiDerivative α fieldTime y *
+            reducedSpatialPartialDerivative j
+              (reducedSpatialMultiDerivative α field) y)
+        x) =
+        ∑ j : Fin 3,
+          (reducedSpatialMultiDerivative α fieldTime x *
+              reducedSpatialPartialDerivative j
+                (reducedSpatialPartialDerivative j
+                  (reducedSpatialMultiDerivative α field))
+                x +
+            reducedSpatialPartialDerivative j
+                (reducedSpatialMultiDerivative α field)
+                x *
+              reducedSpatialPartialDerivative j
+                (reducedSpatialMultiDerivative α fieldTime)
+                x) := by
+      apply Finset.sum_congr rfl
+      intro j _
+      exact reducedSpatialPartialDerivative_mul
+        j
+        (reducedSpatialMultiDerivative α fieldTime)
+        (reducedSpatialPartialDerivative j
+          (reducedSpatialMultiDerivative α field))
+        x
+        (hTime x)
+        (hSpace j x)
+    _ =
+      reducedSpatialMultiDerivative α fieldTime x *
+          (∑ j : Fin 3,
+            reducedSpatialPartialDerivative j
+              (reducedSpatialPartialDerivative j
+                (reducedSpatialMultiDerivative α field))
+              x) +
+        ∑ j : Fin 3,
+          reducedSpatialPartialDerivative j
+              (reducedSpatialMultiDerivative α fieldTime)
+              x *
+            reducedSpatialPartialDerivative j
+              (reducedSpatialMultiDerivative α field)
+              x := by
+      rw [Finset.sum_add_distrib, Finset.mul_sum]
+      congr 1
+      apply Finset.sum_congr rfl
+      intro j _
+      ring
+
+/--
 Concrete compact-support data reducing the differentiated Green-flux
 cancellation to the generic compact-support divergence theorem.
 
@@ -1097,12 +1213,15 @@ structure ScalarDifferentiatedCompactSupportFluxData
     HasCompactSupport
       (scalarDifferentiatedGreenFluxVector
         α field fieldTime)
-  greenFlux_factorization :
-    scalarDifferentiatedGreenFluxDensity
-        α field fieldTime =
-      reducedSpatialDivergence
-        (scalarDifferentiatedGreenFluxVector
-          α field fieldTime)
+  fieldTime_differentiable :
+    ∀ x,
+      DifferentiableAt ℝ
+        (reducedSpatialMultiDerivative α fieldTime) x
+  fieldSpace_differentiable :
+    ∀ j x,
+      DifferentiableAt ℝ
+        (reducedSpatialPartialDerivative j
+          (reducedSpatialMultiDerivative α field)) x
 
 /--
 Compact support forces the integrated differentiated Green flux to vanish,
@@ -1120,7 +1239,10 @@ theorem scalarDifferentiatedBoundaryFluxIntegral_zero_of_compactSupport
     (∫ x : R3,
       scalarDifferentiatedGreenFluxDensity
         α field fieldTime x) = 0 := by
-  rw [H.greenFlux_factorization]
+  rw [scalarDifferentiatedGreenFlux_factorization
+    α field fieldTime
+    H.fieldTime_differentiable
+    H.fieldSpace_differentiable]
   exact hDivergence
     (scalarDifferentiatedGreenFluxVector
       α field fieldTime)
@@ -1151,10 +1273,10 @@ theorem scalarDifferentiatedPrincipalWaveIBPData_of_compactSupport
       α field fieldTime hDivergence H
 
 def causalRecordEinsteinRosenCompactGreenFluxStatus : String :=
-  "GREEN_FLUX_REDUCED_TO_COMPACT_SUPPORT_DIVERGENCE_THEOREM"
+  "GREEN_FLUX_PRODUCT_RULE_PROVED_AND_REDUCED_TO_COMPACT_DIVERGENCE"
 
 def causalRecordEinsteinRosenCompactGreenFluxMissingObject : String :=
-  "COORDINATE_PRODUCT_RULE_AND_COMPACT_SUPPORT_DIVERGENCE_INTEGRAL_THEOREM"
+  "COMPACT_SUPPORT_DIVERGENCE_INTEGRAL_THEOREM"
 
 def causalRecordEinsteinRosenScalarPrincipalWaveIBPStatus : String :=
   "SCALAR_PRINCIPAL_WAVE_IBP_FROM_VANISHING_GREEN_FLUX"
@@ -1163,7 +1285,7 @@ def causalRecordEinsteinRosenScalarPrincipalWaveIBPStatus : String :=
 Machine-readable boundary left after the scalar identity.
 -/
 def causalRecordEinsteinRosenScalarPrincipalWaveIBPMissingObject : String :=
-  "COORDINATE_PRODUCT_RULE_AND_COMPACT_SUPPORT_DIVERGENCE_THEOREM"
+  "COMPACT_SUPPORT_DIVERGENCE_INTEGRAL_THEOREM"
 
 /--
 Machine-readable status for the concrete energy layer.
