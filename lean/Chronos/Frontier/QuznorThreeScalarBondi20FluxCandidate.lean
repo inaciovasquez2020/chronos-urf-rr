@@ -160,6 +160,66 @@ theorem quznorAbstractAsymptoticBridge_of_asymptoticExtractorCompatible
   exact congrFun hCompatible j
 
 
+/--
+The weakest typed carrier recording asymptotic coefficient limits for a
+supplied solved three-scalar field configuration.
+
+The carrier stores only the pointwise identification needed later to derive
+`QuznorD1D5AsymptoticExtractorCompatible`. It does not derive the field
+solution, existence of the asymptotic limits, or their values.
+-/
+structure QuznorSolvedThreeScalarAsymptoticLimitCarrier
+    {D1 D2 D3 D4 D5 Spacetime : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5)
+    (extractor : QuznorThreeScalarAsymptoticExtractor Spacetime)
+    (φ2 φ3 φ4 : Spacetime → ℝ) where
+  coefficientLimit :
+    ∀ j,
+      quznorD1D5CarrierAbstractCoefficients carrier j =
+        quznorThreeScalarAsymptoticCoefficients
+          extractor φ2 φ3 φ4 j
+
+
+/--
+A supplied solved-field asymptotic-limit carrier yields the minimal
+abstract-to-asymptotic compatibility proposition.
+-/
+theorem quznorD1D5AsymptoticExtractorCompatible_of_solvedThreeScalarAsymptoticLimitCarrier
+    {D1 D2 D3 D4 D5 Spacetime : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5)
+    (extractor : QuznorThreeScalarAsymptoticExtractor Spacetime)
+    (φ2 φ3 φ4 : Spacetime → ℝ)
+    (hLimit :
+      QuznorSolvedThreeScalarAsymptoticLimitCarrier
+        carrier extractor φ2 φ3 φ4) :
+    QuznorD1D5AsymptoticExtractorCompatible
+      carrier extractor φ2 φ3 φ4 := by
+  unfold QuznorD1D5AsymptoticExtractorCompatible
+  exact funext hLimit.coefficientLimit
+
+
+/--
+A supplied solved-field asymptotic-limit carrier yields the complete typed
+abstract-to-asymptotic bridge.
+-/
+theorem quznorAbstractAsymptoticBridge_of_solvedThreeScalarAsymptoticLimitCarrier
+    {D1 D2 D3 D4 D5 Spacetime : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5)
+    (extractor : QuznorThreeScalarAsymptoticExtractor Spacetime)
+    (φ2 φ3 φ4 : Spacetime → ℝ)
+    (hLimit :
+      QuznorSolvedThreeScalarAsymptoticLimitCarrier
+        carrier extractor φ2 φ3 φ4) :
+    QuznorAbstractAsymptoticBridge
+      (quznorD1D5CarrierAbstractCoefficients carrier)
+      (quznorThreeScalarAsymptoticCoefficients
+        extractor φ2 φ3 φ4) := by
+  apply quznorAbstractAsymptoticBridge_of_asymptoticExtractorCompatible
+  exact
+    quznorD1D5AsymptoticExtractorCompatible_of_solvedThreeScalarAsymptoticLimitCarrier
+      carrier extractor φ2 φ3 φ4 hLimit
+
+
 /-- Axisymmetric real `Y₂₀` in the coordinate `x = cos θ`. -/
 noncomputable def quznorY20Axisymmetric (x : ℝ) : ℝ :=
   (Real.sqrt 5 / (4 * Real.sqrt Real.pi)) * (3 * x ^ 2 - 1)
