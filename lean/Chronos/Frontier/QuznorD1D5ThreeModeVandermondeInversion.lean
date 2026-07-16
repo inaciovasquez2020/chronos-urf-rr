@@ -225,7 +225,7 @@ theorem quznorThreeModeEulerOperator_eq
           -(4 * S4) / r ^ 5)
         r := by
     convert hFieldRaw using 1;
-      try { funext y } <;>
+      try { funext y } ;
       ring
 
   rw [quznorEulerRadialOperator]
