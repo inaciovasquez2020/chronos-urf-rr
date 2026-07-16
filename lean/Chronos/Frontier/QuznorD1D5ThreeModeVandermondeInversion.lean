@@ -694,7 +694,7 @@ theorem quznorThreeModeFourthEulerOperator_eq
     convert
       quznorInverseFourthMode_hasDerivAt
         (-64 * S4) r hr
-      using 1 <;>
+      using 1 ;
         ring
 
   have hModewise :
