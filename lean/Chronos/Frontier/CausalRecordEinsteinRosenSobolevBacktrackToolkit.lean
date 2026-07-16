@@ -704,6 +704,159 @@ def toAnalyticTheoremPackage
 
 end BacktrackedSobolevEnergyToolkit
 
+open scoped BigOperators
+open MeasureTheory
+
+/--
+A bounded spatial multi-index in three dimensions.
+
+Each component is at most `order`, and the subtype condition imposes the
+standard total-order bound `|α| ≤ order`. This gives a finite index type for
+the differentiated energy sum.
+-/
+abbrev ReducedSpatialMultiIndex (order : Nat) :=
+  { α : Fin 3 → Fin (order + 1) //
+      ∑ i : Fin 3, (α i).val ≤ order }
+
+namespace ReducedSpatialMultiIndex
+
+/--
+Canonical axis list for a spatial multi-index: all `0` derivatives first,
+then all `1` derivatives, then all `2` derivatives.
+
+No commutation theorem for mixed derivatives is asserted here.
+-/
+def axisList
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order) :
+    List (Fin 3) :=
+  (List.finRange 3).flatMap fun i =>
+    List.replicate (α.1 i).val i
+
+end ReducedSpatialMultiIndex
+
+/--
+The concrete coordinate derivative in the `i`-th Euclidean spatial direction.
+
+`fderiv` is total in Lean; later analytic work must supply the differentiability
+and integrability hypotheses needed to identify these values with Sobolev weak
+derivatives for the solution class.
+-/
+noncomputable def reducedSpatialPartialDerivative
+    (i : Fin 3)
+    (f : ReducedScalarField) :
+    ReducedScalarField :=
+  fun x =>
+    (fderiv ℝ f x) ((EuclideanSpace.basisFun (Fin 3) ℝ) i)
+
+/--
+Iterated coordinate differentiation along a fixed finite axis list.
+-/
+noncomputable def reducedSpatialDerivativeAlong :
+    List (Fin 3) → ReducedScalarField → ReducedScalarField
+  | [], f =>
+      f
+  | i :: is, f =>
+      reducedSpatialDerivativeAlong is
+        (reducedSpatialPartialDerivative i f)
+
+/--
+Concrete spatial derivative `D^α f`, using the canonical axis order attached
+to `α`.
+-/
+noncomputable def reducedSpatialMultiDerivative
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (f : ReducedScalarField) :
+    ReducedScalarField :=
+  reducedSpatialDerivativeAlong
+    (ReducedSpatialMultiIndex.axisList α)
+    f
+
+/--
+Pointwise differentiated first-order energy density for one scalar wave field.
+
+For every `|α| ≤ order`, it contains the squares of `D^α field`,
+`D^α fieldTime`, and all three components of `D^α fieldSpace`.
+-/
+noncomputable def reducedScalarFirstOrderHsDensity
+    (order : Nat)
+    (field fieldTime : ReducedScalarField)
+    (fieldSpace : ReducedScalarSpatialGradient)
+    (x : R3) :
+    ℝ :=
+  ∑ α : ReducedSpatialMultiIndex order, (
+    (reducedSpatialMultiDerivative α field x) ^ 2 +
+    (reducedSpatialMultiDerivative α fieldTime x) ^ 2 +
+    (∑ j : Fin 3,
+      (reducedSpatialMultiDerivative α (fieldSpace j) x) ^ 2))
+
+/--
+Concrete pointwise `H^s` energy density for the complete reduced harmonic
+state.
+
+The first-order variables are differentiated through order `s - 1`. Thus the
+spatial-gradient entries control the primary metric, mesh, and SIDFH fields
+through spatial order `s`, while the time-derivative entries are controlled
+through order `s - 1`.
+-/
+noncomputable def concreteReducedHsEnergyDensity
+    (R : ReducedSobolevRegularityChoice)
+    (U : ReducedHarmonicStateVector)
+    (x : R3) :
+    ℝ :=
+  (∑ a : Fin 10,
+    reducedScalarFirstOrderHsDensity
+      (R.s - 1)
+      (U.metric a)
+      (U.metricTime a)
+      (fun j => U.metricSpace j a)
+      x) +
+  reducedScalarFirstOrderHsDensity
+    (R.s - 1)
+    U.mesh
+    U.meshTime
+    U.meshSpace
+    x +
+  reducedScalarFirstOrderHsDensity
+    (R.s - 1)
+    U.sidfh
+    U.sidfhTime
+    U.sidfhSpace
+    x
+
+/--
+Finiteness condition for the concrete differentiated energy density.
+-/
+def HasFiniteConcreteReducedHsEnergy
+    (R : ReducedSobolevRegularityChoice)
+    (U : ReducedHarmonicStateVector) :
+    Prop :=
+  Integrable (concreteReducedHsEnergyDensity R U)
+
+/--
+Concrete spatial multi-index differentiated `H^s` energy of the reduced state,
+integrated over the fixed Euclidean `R3` slice with volume measure.
+-/
+noncomputable def concreteReducedHsEnergy
+    (R : ReducedSobolevRegularityChoice)
+    (U : ReducedHarmonicStateVector) :
+    ℝ :=
+  (1 / 2 : ℝ) *
+    ∫ x : R3, concreteReducedHsEnergyDensity R U x
+
+/--
+Machine-readable status for the concrete energy layer.
+-/
+def causalRecordEinsteinRosenConcreteHsEnergyStatus : String :=
+  "CONCRETE_SPATIAL_MULTI_INDEX_HS_ENERGY_DEFINED"
+
+/--
+The next analytic boundary after defining the energy itself.
+-/
+def causalRecordEinsteinRosenConcreteHsEnergyMissingObject : String :=
+  "PDE_ENERGY_IDENTITY_AND_SOURCE_TERM_BOUNDS"
+
 def causalRecordEinsteinRosenSobolevBacktrackStatus : String :=
   "BACKTRACKED_TO_HS_ENERGY_TOOLKIT_WITH_S_GE_4"
 
@@ -711,6 +864,6 @@ def causalRecordEinsteinRosenSobolevBacktrackProved : String :=
   "ENERGY_SCHEMA_UNIQUENESS_BLOWUP_ALTERNATIVE_CENTER_AND_FALLOFF_TRANSPORT"
 
 def causalRecordEinsteinRosenSobolevBacktrackMissingObjects : String :=
-  "CONCRETE_SOBOLEV_NORM_AND_PDE_ENERGY_IDENTITY_PLUS_LOCAL_AND_GLOBAL_EXISTENCE"
+  "PDE_ENERGY_IDENTITY_SOURCE_BOUNDS_LOCAL_AND_GLOBAL_EXISTENCE"
 
 end Chronos.Frontier
