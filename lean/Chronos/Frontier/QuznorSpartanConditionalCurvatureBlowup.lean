@@ -378,6 +378,32 @@ theorem quznorSpartanProfileCurvatureBridge_normalized_identity
   apply (div_eq_iff hN0).2
   ring
 
+
+/--
+A continuity-bearing observable interface linking the `N`-indexed bridge
+observable to one real-valued functional of the complete profile.
+
+Continuity is stated only at the fixed circular profile and directly in
+the uniform norm needed by the compiled profile-convergence theorem.
+No positivity or geometric-curvature interpretation is included.
+-/
+structure QuznorSpartanContinuousProfileCurvatureObservable
+    {M E : ℝ}
+    (bridge : QuznorSpartanProfileCurvatureBridge M E) where
+  value : (ℝ → ℂ) → ℝ
+  limitValue : ℝ
+  bridge_value_eq :
+    ∀ N : ℕ, ∀ profile : ℝ → ℂ,
+      bridge.normalizedCurvatureFromProfile N profile =
+        value profile
+  continuousAtFixedCircle :
+    ∀ ε > 0, ∃ δ > 0, ∀ profile : ℝ → ℂ,
+      (∀ θ : ℝ,
+        ‖profile θ -
+          ((Real.sqrt M : ℝ) : ℂ) *
+            Complex.exp (Complex.I * (θ : ℂ))‖ < δ) →
+      |value profile - limitValue| < ε
+
 /-- Exact error identity for the squared Spartan fundamental coefficient. -/
 theorem quznorSpartan_fundamentalCoefficientSq_error_identity
     (M E : ℝ) (N : ℕ) (hN : 2 ≤ N) :
@@ -714,6 +740,96 @@ theorem quznorSpartanComplexProfile_uniform_tendsto_fixedCircle
       add_lt_add hfund hrem
     _ = ε := by
       ring
+
+
+/--
+Uniform convergence of the native Spartan profile transfers through any
+observable satisfying the continuity interface.
+
+The theorem contains no positivity conclusion.
+-/
+theorem quznorSpartanContinuousProfileCurvatureObservable_tendsto
+    {M E : ℝ}
+    (hEM : M ≤ E)
+    (bridge : QuznorSpartanProfileCurvatureBridge M E)
+    (observable :
+      QuznorSpartanContinuousProfileCurvatureObservable bridge) :
+    Tendsto
+      (fun N : ℕ =>
+        bridge.normalizedCurvatureFromProfile N
+          (quznorSpartanComplexProfile M E N))
+      atTop
+      (nhds observable.limitValue) := by
+  rw [Metric.tendsto_atTop]
+  intro ε hε
+  obtain ⟨δ, hδ, hcontinuous⟩ :=
+    observable.continuousAtFixedCircle ε hε
+  obtain ⟨N₀, hprofile⟩ :=
+    quznorSpartanComplexProfile_uniform_tendsto_fixedCircle
+      M E hEM δ hδ
+  refine ⟨N₀, ?_⟩
+  intro N hN
+  rw [Real.dist_eq]
+  rw [
+    observable.bridge_value_eq N
+      (quznorSpartanComplexProfile M E N)
+  ]
+  exact
+    hcontinuous
+      (quznorSpartanComplexProfile M E N)
+      (hprofile N hN)
+
+
+/--
+The exact bridge identity transfers observable convergence to normalized
+sampled-curvature convergence.
+
+Positivity of the limiting value remains a separate hypothesis.
+-/
+theorem quznorSpartanProfileCurvatureBridge_normalizedSample_tendsto
+    {M E : ℝ}
+    (hEM : M ≤ E)
+    (bridge : QuznorSpartanProfileCurvatureBridge M E)
+    (observable :
+      QuznorSpartanContinuousProfileCurvatureObservable bridge) :
+    Tendsto
+      (fun N : ℕ =>
+        bridge.scalarCurvatureAtSample N / (N : ℝ))
+      atTop
+      (nhds observable.limitValue) := by
+  have hobservable :=
+    quznorSpartanContinuousProfileCurvatureObservable_tendsto
+      hEM bridge observable
+  rw [Metric.tendsto_atTop] at hobservable ⊢
+  intro ε hε
+  obtain ⟨N₀, hN₀⟩ := hobservable ε hε
+  refine ⟨max 1 N₀, ?_⟩
+  intro N hN
+  have hOne : 1 ≤ N :=
+    le_trans (le_max_left 1 N₀) hN
+  have hNpos : 0 < N :=
+    lt_of_lt_of_le Nat.zero_lt_one hOne
+  have hN₀N : N₀ ≤ N :=
+    le_trans (le_max_right 1 N₀) hN
+  rw [
+    quznorSpartanProfileCurvatureBridge_normalized_identity
+      bridge N hNpos
+  ]
+  exact hN₀ N hN₀N
+
+
+/--
+Separate positivity hypothesis for the limiting normalized curvature.
+
+This proposition is not derived from profile convergence or continuity.
+-/
+def QuznorSpartanProfileCurvatureLimitPositive
+    {M E : ℝ}
+    {bridge : QuznorSpartanProfileCurvatureBridge M E}
+    (observable :
+      QuznorSpartanContinuousProfileCurvatureObservable bridge) :
+    Prop :=
+  0 < observable.limitValue
 
 
 end Chronos.Frontier
