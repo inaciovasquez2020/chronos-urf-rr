@@ -180,6 +180,24 @@ structure QuznorSolvedThreeScalarAsymptoticLimitCarrier
           extractor φ2 φ3 φ4 j
 
 
+/--
+A supplied solved-field asymptotic-limit carrier yields the minimal
+abstract-to-asymptotic compatibility proposition.
+-/
+theorem quznorD1D5AsymptoticExtractorCompatible_of_solvedThreeScalarAsymptoticLimitCarrier
+    {D1 D2 D3 D4 D5 Spacetime : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5)
+    (extractor : QuznorThreeScalarAsymptoticExtractor Spacetime)
+    (φ2 φ3 φ4 : Spacetime → ℝ)
+    (hLimit :
+      QuznorSolvedThreeScalarAsymptoticLimitCarrier
+        carrier extractor φ2 φ3 φ4) :
+    QuznorD1D5AsymptoticExtractorCompatible
+      carrier extractor φ2 φ3 φ4 := by
+  unfold QuznorD1D5AsymptoticExtractorCompatible
+  exact funext hLimit.coefficientLimit
+
+
 /-- Axisymmetric real `Y₂₀` in the coordinate `x = cos θ`. -/
 noncomputable def quznorY20Axisymmetric (x : ℝ) : ℝ :=
   (Real.sqrt 5 / (4 * Real.sqrt Real.pi)) * (3 * x ^ 2 - 1)
