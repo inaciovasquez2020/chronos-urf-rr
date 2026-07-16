@@ -198,6 +198,28 @@ theorem quznorD1D5AsymptoticExtractorCompatible_of_solvedThreeScalarAsymptoticLi
   exact funext hLimit.coefficientLimit
 
 
+/--
+A supplied solved-field asymptotic-limit carrier yields the complete typed
+abstract-to-asymptotic bridge.
+-/
+theorem quznorAbstractAsymptoticBridge_of_solvedThreeScalarAsymptoticLimitCarrier
+    {D1 D2 D3 D4 D5 Spacetime : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5)
+    (extractor : QuznorThreeScalarAsymptoticExtractor Spacetime)
+    (φ2 φ3 φ4 : Spacetime → ℝ)
+    (hLimit :
+      QuznorSolvedThreeScalarAsymptoticLimitCarrier
+        carrier extractor φ2 φ3 φ4) :
+    QuznorAbstractAsymptoticBridge
+      (quznorD1D5CarrierAbstractCoefficients carrier)
+      (quznorThreeScalarAsymptoticCoefficients
+        extractor φ2 φ3 φ4) := by
+  apply quznorAbstractAsymptoticBridge_of_asymptoticExtractorCompatible
+  exact
+    quznorD1D5AsymptoticExtractorCompatible_of_solvedThreeScalarAsymptoticLimitCarrier
+      carrier extractor φ2 φ3 φ4 hLimit
+
+
 /-- Axisymmetric real `Y₂₀` in the coordinate `x = cos θ`. -/
 noncomputable def quznorY20Axisymmetric (x : ℝ) : ℝ :=
   (Real.sqrt 5 / (4 * Real.sqrt Real.pi)) * (3 * x ^ 2 - 1)
