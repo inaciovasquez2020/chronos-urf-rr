@@ -846,6 +846,193 @@ noncomputable def concreteReducedHsEnergy
     ∫ x : R3, concreteReducedHsEnergyDensity R U x
 
 /--
+The coordinate spatial Laplacian on the fixed Euclidean `R3` chart.
+-/
+noncomputable def reducedSpatialLaplacian
+    (field : ReducedScalarField) :
+    ReducedScalarField :=
+  fun x =>
+    ∑ j : Fin 3,
+      reducedSpatialPartialDerivative j
+        (reducedSpatialPartialDerivative j field) x
+
+/--
+The differentiated acceleration-work density
+`D^α fieldTime * D^α fieldAcceleration`.
+-/
+noncomputable def scalarDifferentiatedAccelerationWorkDensity
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (fieldTime fieldAcceleration : ReducedScalarField) :
+    ReducedScalarField :=
+  fun x =>
+    reducedSpatialMultiDerivative α fieldTime x *
+      reducedSpatialMultiDerivative α fieldAcceleration x
+
+/--
+The differentiated Laplacian-work density
+`D^α fieldTime * Δ(D^α field)`.
+-/
+noncomputable def scalarDifferentiatedLaplacianWorkDensity
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime : ReducedScalarField) :
+    ReducedScalarField :=
+  fun x =>
+    reducedSpatialMultiDerivative α fieldTime x *
+      reducedSpatialLaplacian
+        (reducedSpatialMultiDerivative α field) x
+
+/--
+The spatial-gradient contribution to the differentiated energy rate:
+`Σ_j ∂_j(D^α fieldTime) * ∂_j(D^α field)`.
+-/
+noncomputable def scalarDifferentiatedGradientRateDensity
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime : ReducedScalarField) :
+    ReducedScalarField :=
+  fun x =>
+    ∑ j : Fin 3,
+      reducedSpatialPartialDerivative j
+          (reducedSpatialMultiDerivative α fieldTime) x *
+        reducedSpatialPartialDerivative j
+          (reducedSpatialMultiDerivative α field) x
+
+/--
+The Green-flux density whose vanishing integral supplies the spatial
+integration-by-parts boundary condition.
+-/
+noncomputable def scalarDifferentiatedGreenFluxDensity
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime : ReducedScalarField) :
+    ReducedScalarField :=
+  fun x =>
+    scalarDifferentiatedLaplacianWorkDensity
+        α field fieldTime x +
+      scalarDifferentiatedGradientRateDensity
+        α field fieldTime x
+
+/--
+Exact analytic hypotheses needed for one differentiated scalar spatial
+integration-by-parts step.
+
+The boundary-flux cancellation is explicit. It is not derived here from
+compact support, weighted falloff, or a divergence theorem.
+-/
+structure ScalarDifferentiatedPrincipalWaveIBPData
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime : ReducedScalarField) :
+    Prop where
+  laplacianWork_integrable :
+    Integrable
+      (scalarDifferentiatedLaplacianWorkDensity
+        α field fieldTime)
+  gradientRate_integrable :
+    Integrable
+      (scalarDifferentiatedGradientRateDensity
+        α field fieldTime)
+  boundaryFluxIntegral_zero :
+    (∫ x : R3,
+      scalarDifferentiatedGreenFluxDensity
+        α field fieldTime x) = 0
+
+/--
+Scalar spatial integration by parts for one differentiated reduced field:
+`∫ D^α fieldTime · Δ(D^α field)
+ = -∫ ∇D^α fieldTime · ∇D^α field`.
+-/
+theorem scalarDifferentiatedSpatialIntegrationByParts
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime : ReducedScalarField)
+    (H :
+      ScalarDifferentiatedPrincipalWaveIBPData
+        α field fieldTime) :
+    (∫ x : R3,
+      scalarDifferentiatedLaplacianWorkDensity
+        α field fieldTime x) =
+      -(∫ x : R3,
+        scalarDifferentiatedGradientRateDensity
+          α field fieldTime x) := by
+  have hsum :
+      (∫ x : R3,
+        scalarDifferentiatedLaplacianWorkDensity
+          α field fieldTime x) +
+        (∫ x : R3,
+          scalarDifferentiatedGradientRateDensity
+            α field fieldTime x) = 0 := by
+    rw [← integral_add
+      H.laplacianWork_integrable
+      H.gradientRate_integrable]
+    simpa [scalarDifferentiatedGreenFluxDensity] using
+      H.boundaryFluxIntegral_zero
+  linarith
+
+/--
+Integrated work of the differentiated scalar principal wave operator
+`D^α fieldAcceleration - Δ(D^α field)`.
+-/
+noncomputable def scalarDifferentiatedPrincipalWaveWork
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime fieldAcceleration : ReducedScalarField) :
+    ℝ :=
+  (∫ x : R3,
+    scalarDifferentiatedAccelerationWorkDensity
+      α fieldTime fieldAcceleration x) -
+    (∫ x : R3,
+      scalarDifferentiatedLaplacianWorkDensity
+        α field fieldTime x)
+
+/--
+The corresponding differentiated scalar energy-rate pairing.
+-/
+noncomputable def scalarDifferentiatedEnergyRatePairing
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime fieldAcceleration : ReducedScalarField) :
+    ℝ :=
+  (∫ x : R3,
+    scalarDifferentiatedAccelerationWorkDensity
+      α fieldTime fieldAcceleration x) +
+    (∫ x : R3,
+      scalarDifferentiatedGradientRateDensity
+        α field fieldTime x)
+
+/--
+Principal-wave integration-by-parts identity for one spatially differentiated
+reduced scalar field.
+-/
+theorem scalarPrincipalWaveIntegrationByPartsIdentity
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime fieldAcceleration : ReducedScalarField)
+    (H :
+      ScalarDifferentiatedPrincipalWaveIBPData
+        α field fieldTime) :
+    scalarDifferentiatedPrincipalWaveWork
+        α field fieldTime fieldAcceleration =
+      scalarDifferentiatedEnergyRatePairing
+        α field fieldTime fieldAcceleration := by
+  unfold scalarDifferentiatedPrincipalWaveWork
+  unfold scalarDifferentiatedEnergyRatePairing
+  rw [scalarDifferentiatedSpatialIntegrationByParts
+    α field fieldTime H]
+  ring
+
+def causalRecordEinsteinRosenScalarPrincipalWaveIBPStatus : String :=
+  "SCALAR_PRINCIPAL_WAVE_IBP_FROM_VANISHING_GREEN_FLUX"
+
+/--
+Machine-readable boundary left after the scalar identity.
+-/
+def causalRecordEinsteinRosenScalarPrincipalWaveIBPMissingObject : String :=
+  "GREEN_FLUX_CANCELLATION_FROM_FALLOFF_OR_COMPACT_SUPPORT"
+
+/--
 Machine-readable status for the concrete energy layer.
 -/
 def causalRecordEinsteinRosenConcreteHsEnergyStatus : String :=
