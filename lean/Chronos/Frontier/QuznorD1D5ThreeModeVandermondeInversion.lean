@@ -546,7 +546,7 @@ theorem quznorThreeModeCubicEulerOperator_eq
     convert
       quznorInverseSquareMode_hasDerivAt
         (4 * S2) r hr
-      using 1 <;>
+      using 1 ;
         ring
 
   have h3 :
