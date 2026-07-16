@@ -568,7 +568,7 @@ theorem quznorThreeModeCubicEulerOperator_eq
     convert
       quznorInverseFourthMode_hasDerivAt
         (16 * S4) r hr
-      using 1 <;>
+      using 1 ;
         ring
 
   have hModewise :
