@@ -478,3 +478,5 @@ import Chronos.Frontier.ConcreteNativeBindingSpec
 import Chronos.Frontier.CarbonStructuralGravityInputSurface
 
 import Chronos.Frontier.CausalRecordEinsteinRosenRestrictedNonRealization
+
+import Chronos.Frontier.CausalRecordEinsteinRosenGlobalDevelopmentReduction
