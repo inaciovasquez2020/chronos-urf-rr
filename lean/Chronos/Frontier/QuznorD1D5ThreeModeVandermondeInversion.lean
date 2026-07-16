@@ -243,7 +243,7 @@ theorem quznorThreeModeEulerOperator_eq
         4 * S4 / r ^ 4
 
   rw [hField.deriv]
-  field_simp [hr] <;> ring
+  field_simp [hr] ; ring
 
 
 /--
