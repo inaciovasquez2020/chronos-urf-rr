@@ -370,4 +370,29 @@ theorem bondi20FirstBinSource_eq
         quznorBondi20Flux data.quznorFluxData := by
   rfl
 
+
+/--
+Minimal carrier for three scalar fields already proved to solve a supplied
+covariant evolution predicate.
+
+No asymptotic coefficient equality is stored here. The first subsequent
+mathematical obligation is to prove, from `solvesCovariantEvolution` and
+controlled asymptotic analysis,
+
+`∀ j, quznorD1D5CarrierAbstractCoefficients carrier j =
+  quznorThreeScalarAsymptoticCoefficients extractor φ2 φ3 φ4 j`.
+-/
+structure QuznorCovariantThreeScalarSolutionCarrier
+    (D1 D2 D3 D4 D5 Spacetime : Type*)
+    (covariantSolution :
+      (Spacetime → ℝ) →
+        (Spacetime → ℝ) →
+          (Spacetime → ℝ) → Prop) where
+  carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5
+  extractor : QuznorThreeScalarAsymptoticExtractor Spacetime
+  φ2 : Spacetime → ℝ
+  φ3 : Spacetime → ℝ
+  φ4 : Spacetime → ℝ
+  solvesCovariantEvolution : covariantSolution φ2 φ3 φ4
+
 end Chronos.Frontier
