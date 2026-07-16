@@ -832,4 +832,103 @@ def QuznorSpartanProfileCurvatureLimitPositive
   0 < observable.limitValue
 
 
+/--
+Weakest typed identification of the bridge's sampled-curvature sequence
+with a supplied geometric scalar-curvature sequence.
+
+This interface supplies only an exact pointwise identification. It does
+not construct geometry, prove a curvature formula, establish convergence,
+or assert positivity.
+-/
+structure QuznorSpartanGeometricCurvatureIdentification
+    {M E : ℝ}
+    (bridge : QuznorSpartanProfileCurvatureBridge M E) where
+  geometricScalarCurvatureAtSample : ℕ → ℝ
+  geometricScalarCurvatureAtSample_eq :
+    ∀ N : ℕ,
+      geometricScalarCurvatureAtSample N =
+        bridge.scalarCurvatureAtSample N
+
+
+/--
+Transport the compiled normalized profile-observable convergence into the
+existing conditional curvature certificate.
+
+Strict positivity remains an explicit input. The geometric identification
+remains supplied data rather than a derived curvature law.
+-/
+noncomputable def
+    quznorSpartanConditionalCurvatureBlowupData_of_geometricIdentification
+    {M E : ℝ}
+    (hEM : M ≤ E)
+    (bridge : QuznorSpartanProfileCurvatureBridge M E)
+    (observable :
+      QuznorSpartanContinuousProfileCurvatureObservable bridge)
+    (identification :
+      QuznorSpartanGeometricCurvatureIdentification bridge)
+    (hpositive :
+      QuznorSpartanProfileCurvatureLimitPositive observable)
+    (fixedFiberData : QuznorSpartanFixedFiberData)
+    (scalarCurvatureSup : ℕ → ℝ)
+    (sample_le_sup :
+      ∀ N : ℕ,
+        identification.geometricScalarCurvatureAtSample N ≤
+          scalarCurvatureSup N) :
+    QuznorSpartanConditionalCurvatureBlowupData where
+  fiberData := fun _ => fixedFiberData
+  fixedFiberData := fixedFiberData
+  fiberData_fixed := by
+    intro N
+    rfl
+  scalarCurvatureAtSample :=
+    identification.geometricScalarCurvatureAtSample
+  scalarCurvatureSup := scalarCurvatureSup
+  sample_le_sup := sample_le_sup
+  c0 := observable.limitValue
+  c0_pos := by
+    simpa [QuznorSpartanProfileCurvatureLimitPositive] using hpositive
+  normalizedSampleTendsto := by
+    have hnormalized :=
+      quznorSpartanProfileCurvatureBridge_normalizedSample_tendsto
+        hEM bridge observable
+    simpa only [
+      identification.geometricScalarCurvatureAtSample_eq
+    ] using hnormalized
+
+/--
+The existing conditional Spartan curvature-blowup theorem applies after
+supplying geometric identification, supremum domination, and explicit
+positivity of the normalized-curvature limit.
+-/
+theorem
+    quznorSpartanConditionalCurvatureBlowup_of_geometricIdentification
+    {M E : ℝ}
+    (hEM : M ≤ E)
+    (bridge : QuznorSpartanProfileCurvatureBridge M E)
+    (observable :
+      QuznorSpartanContinuousProfileCurvatureObservable bridge)
+    (identification :
+      QuznorSpartanGeometricCurvatureIdentification bridge)
+    (hpositive :
+      QuznorSpartanProfileCurvatureLimitPositive observable)
+    (fixedFiberData : QuznorSpartanFixedFiberData)
+    (scalarCurvatureSup : ℕ → ℝ)
+    (sample_le_sup :
+      ∀ N : ℕ,
+        identification.geometricScalarCurvatureAtSample N ≤
+          scalarCurvatureSup N) :
+    (∀ _ : ℕ, fixedFiberData = fixedFiberData) ∧
+      Tendsto scalarCurvatureSup atTop atTop := by
+  let data :=
+    quznorSpartanConditionalCurvatureBlowupData_of_geometricIdentification
+      hEM bridge observable identification hpositive fixedFiberData
+        scalarCurvatureSup sample_le_sup
+  have hcertificate :=
+    quznorSpartanConditionalCurvatureBlowup data
+  refine ⟨?_, ?_⟩
+  · intro _
+    rfl
+  · exact hcertificate.2
+
+
 end Chronos.Frontier
