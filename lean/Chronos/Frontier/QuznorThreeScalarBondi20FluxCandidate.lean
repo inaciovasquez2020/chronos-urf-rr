@@ -96,6 +96,70 @@ theorem QuznorAbstractAsymptoticBridgeCarrier.coefficient_fun_eq
   funext j
   exact carrier.coefficient_eq j
 
+/--
+A typed asymptotic coefficient extractor for three real scalar fields.
+
+For supplied fields `φ₂`, `φ₃`, and `φ₄`, `extract φ₂ φ₃ φ₄ j`
+represents the candidate asymptotic coefficient `Q_j[φ₂, φ₃, φ₄]`.
+No field equation, asymptotic limit, or coefficient formula is imposed here.
+-/
+structure QuznorThreeScalarAsymptoticExtractor
+    (Spacetime : Type*) where
+  extract :
+    (Spacetime → ℝ) →
+      (Spacetime → ℝ) →
+        (Spacetime → ℝ) →
+          QuznorScalarLabel → ℝ
+
+
+/--
+The complete candidate asymptotic coefficient surface
+`j ↦ Q_j[φ₂, φ₃, φ₄]`.
+-/
+def quznorThreeScalarAsymptoticCoefficients
+    {Spacetime : Type*}
+    (extractor : QuznorThreeScalarAsymptoticExtractor Spacetime)
+    (φ2 φ3 φ4 : Spacetime → ℝ) :
+    QuznorScalarLabel → ℝ :=
+  extractor.extract φ2 φ3 φ4
+
+
+/--
+Minimal compatibility between the repository-native abstract coefficient
+surface and the coefficients extracted from the three scalar fields.
+
+This equality is an explicit hypothesis. Its derivation from D1–D5 data,
+covariant evolution, or asymptotic limits remains outside this definition.
+-/
+def QuznorD1D5AsymptoticExtractorCompatible
+    {D1 D2 D3 D4 D5 Spacetime : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5)
+    (extractor : QuznorThreeScalarAsymptoticExtractor Spacetime)
+    (φ2 φ3 φ4 : Spacetime → ℝ) : Prop :=
+  quznorD1D5CarrierAbstractCoefficients carrier =
+    quznorThreeScalarAsymptoticCoefficients extractor φ2 φ3 φ4
+
+
+/--
+The abstract-to-asymptotic bridge follows from the minimal compatibility
+hypothesis alone.
+-/
+theorem quznorAbstractAsymptoticBridge_of_asymptoticExtractorCompatible
+    {D1 D2 D3 D4 D5 Spacetime : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5)
+    (extractor : QuznorThreeScalarAsymptoticExtractor Spacetime)
+    (φ2 φ3 φ4 : Spacetime → ℝ)
+    (hCompatible :
+      QuznorD1D5AsymptoticExtractorCompatible
+        carrier extractor φ2 φ3 φ4) :
+    QuznorAbstractAsymptoticBridge
+      (quznorD1D5CarrierAbstractCoefficients carrier)
+      (quznorThreeScalarAsymptoticCoefficients
+        extractor φ2 φ3 φ4) := by
+  intro j
+  exact congrFun hCompatible j
+
+
 /-- Axisymmetric real `Y₂₀` in the coordinate `x = cos θ`. -/
 noncomputable def quznorY20Axisymmetric (x : ℝ) : ℝ :=
   (Real.sqrt 5 / (4 * Real.sqrt Real.pi)) * (3 * x ^ 2 - 1)
