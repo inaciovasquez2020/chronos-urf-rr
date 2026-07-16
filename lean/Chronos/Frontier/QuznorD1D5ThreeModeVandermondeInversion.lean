@@ -580,7 +580,7 @@ theorem quznorThreeModeCubicEulerOperator_eq
           27 * S3 / r ^ 4 -
           64 * S4 / r ^ 5)
         r := by
-    convert (h2.add h3).add h4 using 1 <;>
+    convert (h2.add h3).add h4 using 1 ;
       ring
 
   have hEventually :
