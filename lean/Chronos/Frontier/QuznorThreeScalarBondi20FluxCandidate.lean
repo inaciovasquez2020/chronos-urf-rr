@@ -1,4 +1,5 @@
 import Mathlib
+import Chronos.Frontier.QuznorD1D5ThreeModeVandermondeInversion
 
 namespace Chronos.Frontier
 
@@ -35,6 +36,30 @@ noncomputable def quznorCandidateLagrangianDensity
         candidate.kineticWeight j * kineticContractions j)
     - candidate.potential fieldValues
     - candidate.sidfhInteraction sidfhValue fieldValues
+
+/-- Repository-native extraction of the stored `S₂`, `S₃`, and `S₄`
+components from a `QuznorD1D5CoefficientCarrier` into the common
+`QuznorScalarLabel → ℝ` coefficient surface.
+
+This map only repackages the carrier fields; it makes no claim about the
+candidate asymptotic coefficients. -/
+def quznorD1D5CarrierAbstractCoefficients
+    {D1 D2 D3 D4 D5 : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5) :
+    QuznorScalarLabel → ℝ
+  | .q2 => carrier.S2
+  | .q3 => carrier.S3
+  | .q4 => carrier.S4
+
+/-- The repository-native extraction map returns exactly the three stored
+carrier coefficients. -/
+theorem quznorD1D5CarrierAbstractCoefficients_values
+    {D1 D2 D3 D4 D5 : Type*}
+    (carrier : QuznorD1D5CoefficientCarrier D1 D2 D3 D4 D5) :
+    quznorD1D5CarrierAbstractCoefficients carrier .q2 = carrier.S2 ∧
+      quznorD1D5CarrierAbstractCoefficients carrier .q3 = carrier.S3 ∧
+      quznorD1D5CarrierAbstractCoefficients carrier .q4 = carrier.S4 := by
+  simp [quznorD1D5CarrierAbstractCoefficients]
 
 /-- Missing abstract-to-asymptotic bridge proposition. -/
 def QuznorAbstractAsymptoticBridge
