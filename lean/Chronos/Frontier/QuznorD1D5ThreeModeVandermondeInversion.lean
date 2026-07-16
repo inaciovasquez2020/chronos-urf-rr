@@ -296,7 +296,7 @@ theorem quznorThreeModeEulerModewise_hasDerivAt_one
         1
         (by norm_num)
       using 1 ;
-        norm_num <;>
+        norm_num ;
         ring_nf
 
   exact (h2.add h3).add h4
