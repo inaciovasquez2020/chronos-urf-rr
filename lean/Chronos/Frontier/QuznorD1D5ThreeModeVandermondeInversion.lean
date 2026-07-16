@@ -683,7 +683,7 @@ theorem quznorThreeModeFourthEulerOperator_eq
     convert
       quznorInverseCubeMode_hasDerivAt
         (-27 * S3) r hr
-      using 1 <;>
+      using 1 ;
         ring
 
   have h4 :
