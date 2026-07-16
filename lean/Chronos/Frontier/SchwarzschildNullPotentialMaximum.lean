@@ -37,7 +37,7 @@ theorem schwarzschildNullEffectivePotential_gap_identity
   unfold schwarzschildNullEffectivePotential
     schwarzschildPhotonSphereRadius
     schwarzschildEFFactor
-  field_simp [hM0, hr] <;> ring
+  field_simp [hM0, hr] ; ring
 
 theorem schwarzschildNullEffectivePotential_le_photonSphere
     (metric : SchwarzschildIngoingEFMetric)
