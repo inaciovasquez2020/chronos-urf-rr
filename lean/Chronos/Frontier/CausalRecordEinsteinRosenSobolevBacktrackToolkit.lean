@@ -1023,6 +1023,139 @@ theorem scalarPrincipalWaveIntegrationByPartsIdentity
     α field fieldTime H]
   ring
 
+/--
+A spatial vector field on the fixed Euclidean `R3` chart.
+-/
+abbrev ReducedSpatialVectorField := R3 → R3
+
+/--
+Coordinate divergence of a spatial vector field.
+-/
+noncomputable def reducedSpatialDivergence
+    (flux : ReducedSpatialVectorField) :
+    ReducedScalarField :=
+  fun x =>
+    ∑ j : Fin 3,
+      reducedSpatialPartialDerivative j
+        (fun y => flux y j) x
+
+/--
+The Green flux vector
+`D^α fieldTime * ∇(D^α field)`.
+-/
+noncomputable def scalarDifferentiatedGreenFluxVector
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime : ReducedScalarField) :
+    ReducedSpatialVectorField :=
+  fun x =>
+    WithLp.toLp 2 fun j =>
+      reducedSpatialMultiDerivative α fieldTime x *
+        reducedSpatialPartialDerivative j
+          (reducedSpatialMultiDerivative α field) x
+
+/--
+The generic compact-support divergence theorem needed on the fixed `R3`
+chart.
+
+This is deliberately isolated as one global analytic missing lemma rather
+than assumed separately for every reduced field.
+-/
+def CompactSupportDivergenceIntegralProperty : Prop :=
+  ∀ flux : ReducedSpatialVectorField,
+    HasCompactSupport flux →
+    Integrable (reducedSpatialDivergence flux) →
+    (∫ x : R3, reducedSpatialDivergence flux x) = 0
+
+/--
+Concrete compact-support data reducing the differentiated Green-flux
+cancellation to the generic compact-support divergence theorem.
+
+The factorization field records the still-required coordinate product-rule
+calculation identifying the existing Green density with the divergence of
+`D^α fieldTime * ∇(D^α field)`.
+-/
+structure ScalarDifferentiatedCompactSupportFluxData
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime : ReducedScalarField) :
+    Prop where
+  laplacianWork_integrable :
+    Integrable
+      (scalarDifferentiatedLaplacianWorkDensity
+        α field fieldTime)
+  gradientRate_integrable :
+    Integrable
+      (scalarDifferentiatedGradientRateDensity
+        α field fieldTime)
+  divergence_integrable :
+    Integrable
+      (reducedSpatialDivergence
+        (scalarDifferentiatedGreenFluxVector
+          α field fieldTime))
+  flux_compactSupport :
+    HasCompactSupport
+      (scalarDifferentiatedGreenFluxVector
+        α field fieldTime)
+  greenFlux_factorization :
+    scalarDifferentiatedGreenFluxDensity
+        α field fieldTime =
+      reducedSpatialDivergence
+        (scalarDifferentiatedGreenFluxVector
+          α field fieldTime)
+
+/--
+Compact support forces the integrated differentiated Green flux to vanish,
+provided the generic compact-support divergence theorem holds.
+-/
+theorem scalarDifferentiatedBoundaryFluxIntegral_zero_of_compactSupport
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime : ReducedScalarField)
+    (hDivergence :
+      CompactSupportDivergenceIntegralProperty)
+    (H :
+      ScalarDifferentiatedCompactSupportFluxData
+        α field fieldTime) :
+    (∫ x : R3,
+      scalarDifferentiatedGreenFluxDensity
+        α field fieldTime x) = 0 := by
+  rw [H.greenFlux_factorization]
+  exact hDivergence
+    (scalarDifferentiatedGreenFluxVector
+      α field fieldTime)
+    H.flux_compactSupport
+    H.divergence_integrable
+
+/--
+The compact-support reduction supplies the previously required scalar
+principal-wave integration-by-parts data.
+-/
+theorem scalarDifferentiatedPrincipalWaveIBPData_of_compactSupport
+    {order : Nat}
+    (α : ReducedSpatialMultiIndex order)
+    (field fieldTime : ReducedScalarField)
+    (hDivergence :
+      CompactSupportDivergenceIntegralProperty)
+    (H :
+      ScalarDifferentiatedCompactSupportFluxData
+        α field fieldTime) :
+    ScalarDifferentiatedPrincipalWaveIBPData
+      α field fieldTime where
+  laplacianWork_integrable :=
+    H.laplacianWork_integrable
+  gradientRate_integrable :=
+    H.gradientRate_integrable
+  boundaryFluxIntegral_zero :=
+    scalarDifferentiatedBoundaryFluxIntegral_zero_of_compactSupport
+      α field fieldTime hDivergence H
+
+def causalRecordEinsteinRosenCompactGreenFluxStatus : String :=
+  "GREEN_FLUX_REDUCED_TO_COMPACT_SUPPORT_DIVERGENCE_THEOREM"
+
+def causalRecordEinsteinRosenCompactGreenFluxMissingObject : String :=
+  "COORDINATE_PRODUCT_RULE_AND_COMPACT_SUPPORT_DIVERGENCE_INTEGRAL_THEOREM"
+
 def causalRecordEinsteinRosenScalarPrincipalWaveIBPStatus : String :=
   "SCALAR_PRINCIPAL_WAVE_IBP_FROM_VANISHING_GREEN_FLUX"
 
@@ -1030,7 +1163,7 @@ def causalRecordEinsteinRosenScalarPrincipalWaveIBPStatus : String :=
 Machine-readable boundary left after the scalar identity.
 -/
 def causalRecordEinsteinRosenScalarPrincipalWaveIBPMissingObject : String :=
-  "GREEN_FLUX_CANCELLATION_FROM_FALLOFF_OR_COMPACT_SUPPORT"
+  "COORDINATE_PRODUCT_RULE_AND_COMPACT_SUPPORT_DIVERGENCE_THEOREM"
 
 /--
 Machine-readable status for the concrete energy layer.
