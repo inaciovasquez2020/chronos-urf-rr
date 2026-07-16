@@ -192,7 +192,7 @@ theorem quznorInverseFourthMode_hasDerivAt
       (pow_ne_zero 4 hr)
 
   convert hQuotient using 1 ;
-    field_simp [hr] <;>
+    field_simp [hr] ;
     ring
 
 
