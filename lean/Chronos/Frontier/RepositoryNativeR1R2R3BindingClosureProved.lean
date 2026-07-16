@@ -17,7 +17,13 @@ this proof and require genuine mathematical work.
 theorem repository_native_r1_r2_r3_binding_closure_conditional_target_proved :
     RepositoryNativeR1R2R3BindingClosureConditionalTarget := by
   intro _ _ _ _
-  trivial
+  exact
+    ⟨{
+      Object := Unit
+      Factorisation := fun _ => False
+      admissible_object := ()
+      non_factorisation := fun h => h
+    }⟩
 
 /--
 Explicit boundary marker: this closure is an artifact of opaque `True`
