@@ -133,7 +133,7 @@ theorem quznorInverseSquareMode_hasDerivAt
       hDenominator
       (pow_ne_zero 2 hr)
 
-  convert hQuotient using 1 <;>
+  convert hQuotient using 1 ;
     field_simp [hr] <;>
     ring
 
