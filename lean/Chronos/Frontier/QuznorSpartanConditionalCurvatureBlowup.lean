@@ -515,6 +515,35 @@ theorem quznorSpartanHighModeRemainder_norm
     Real.sqrt_nonneg
   ]
 
+
+/--
+The formal frequency-scaled high-mode term expected from differentiating
+the Spartan frequency-`N` mode once.
+
+This is an algebraic term definition only; it does not assert that it is
+the derivative of `quznorSpartanComplexProfile`.
+-/
+noncomputable def quznorSpartanFirstDerivativeTerm
+    (M E : ℝ) (N : ℕ) (θ : ℝ) : ℂ :=
+  (((N : ℝ) : ℂ) * Complex.I) *
+    quznorSpartanHighModeRemainder M E N θ
+
+/--
+Exact norm identity for the formal Spartan first-derivative term.
+-/
+theorem quznorSpartanFirstDerivativeTerm_norm
+    (M E : ℝ) (N : ℕ) (θ : ℝ) :
+    ‖quznorSpartanFirstDerivativeTerm M E N θ‖ =
+      (N : ℝ) *
+        Real.sqrt
+          ((E - M) / (((N : ℝ) ^ 2) - 1)) := by
+  rw [
+    quznorSpartanFirstDerivativeTerm,
+    norm_mul,
+    quznorSpartanHighModeRemainder_norm
+  ]
+  simp
+
 /-- Explicit inverse-scale bound for the Spartan high-frequency remainder.
 
 For `M ≤ E` and `N ≥ 2`, the exact remainder amplitude is bounded by
