@@ -395,4 +395,32 @@ structure QuznorCovariantThreeScalarSolutionCarrier
   φ4 : Spacetime → ℝ
   solvesCovariantEvolution : covariantSolution φ2 φ3 φ4
 
+
+/--
+The weakest pointwise asymptotic-control predicate for a covariant
+three-scalar solution carrier.
+
+It states exactly the coefficient-limit conclusion required to construct
+`QuznorSolvedThreeScalarAsymptoticLimitCarrier`. It does not yet derive that
+conclusion from `solvesCovariantEvolution`.
+-/
+def QuznorThreeScalarAsymptoticControl
+    {D1 D2 D3 D4 D5 Spacetime : Type*}
+    {covariantSolution :
+      (Spacetime → ℝ) →
+        (Spacetime → ℝ) →
+          (Spacetime → ℝ) → Prop}
+    (solution :
+      QuznorCovariantThreeScalarSolutionCarrier
+        D1 D2 D3 D4 D5 Spacetime covariantSolution) : Prop :=
+  ∀ j : QuznorScalarLabel,
+    quznorD1D5CarrierAbstractCoefficients
+        solution.carrier j =
+      quznorThreeScalarAsymptoticCoefficients
+        solution.extractor
+        solution.φ2
+        solution.φ3
+        solution.φ4
+        j
+
 end Chronos.Frontier
