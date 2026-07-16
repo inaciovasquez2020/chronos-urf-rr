@@ -482,3 +482,5 @@ import Chronos.Frontier.CausalRecordEinsteinRosenRestrictedNonRealization
 import Chronos.Frontier.CausalRecordEinsteinRosenGlobalDevelopmentReduction
 
 import Chronos.Frontier.CausalRecordEinsteinRosenAnalyticDevelopmentInterface
+
+import Chronos.Frontier.CausalRecordEinsteinRosenSobolevBacktrackToolkit
