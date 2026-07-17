@@ -660,6 +660,544 @@ theorem reggeWheelerUnitMemoryDiscriminatorGap_eq_half :
   ]
   ring
 
+
+open scoped Matrix Matrix.Norms.Operator
+
+def finiteExchangeSchrodingerGeneratorMatrix
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    FiniteExchangeComplexMatrix :=
+  (-Complex.I * (tau : ℂ)) •
+    finiteExchangeHamiltonianMatrix H k
+
+theorem finiteExchangeMatrixExpSeries_hasSum
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    HasSum
+      (fun n : Nat =>
+        ((n.factorial : ℂ)⁻¹) •
+          (finiteExchangeSchrodingerGeneratorMatrix H k tau) ^ n)
+      (NormedSpace.exp
+        (finiteExchangeSchrodingerGeneratorMatrix H k tau)) := by
+  exact
+    NormedSpace.exp_series_hasSum_exp'
+      (finiteExchangeSchrodingerGeneratorMatrix H k tau)
+
+
+def finiteExchangeMulVecRightLinearMap
+    (state : FiniteExchangeComplexState) :
+    FiniteExchangeComplexMatrix →ₗ[ℂ]
+      FiniteExchangeComplexState where
+  toFun matrix := matrix *ᵥ state
+  map_add' left right :=
+    Matrix.add_mulVec left right state
+  map_smul' scalar matrix :=
+    Matrix.smul_mulVec scalar matrix state
+
+def finiteExchangeMulVecRightContinuousLinearMap
+    (state : FiniteExchangeComplexState) :
+    FiniteExchangeComplexMatrix →L[ℂ]
+      FiniteExchangeComplexState :=
+  LinearMap.toContinuousLinearMap
+    (finiteExchangeMulVecRightLinearMap state)
+
+@[simp]
+theorem finiteExchangeMulVecRightContinuousLinearMap_apply
+    (state : FiniteExchangeComplexState)
+    (matrix : FiniteExchangeComplexMatrix) :
+    finiteExchangeMulVecRightContinuousLinearMap state matrix =
+      matrix *ᵥ state := by
+  rfl
+
+theorem finiteExchangeResidualMatrixExpSeries_hasSum_expAction
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    HasSum
+      (fun n : Nat =>
+        ((n.factorial : ℂ)⁻¹) •
+          ((finiteExchangeSchrodingerGeneratorMatrix H k tau) ^ n *ᵥ
+            finiteExchangeResidualKet))
+      (NormedSpace.exp
+          (finiteExchangeSchrodingerGeneratorMatrix H k tau) *ᵥ
+        finiteExchangeResidualKet) := by
+  have hMapped :
+      HasSum
+        (fun n : Nat =>
+          finiteExchangeMulVecRightContinuousLinearMap
+            finiteExchangeResidualKet
+            (((n.factorial : ℂ)⁻¹) •
+              (finiteExchangeSchrodingerGeneratorMatrix H k tau) ^ n))
+        (finiteExchangeMulVecRightContinuousLinearMap
+          finiteExchangeResidualKet
+          (NormedSpace.exp
+            (finiteExchangeSchrodingerGeneratorMatrix H k tau))) :=
+    (finiteExchangeMulVecRightContinuousLinearMap
+      finiteExchangeResidualKet).hasSum
+        (finiteExchangeMatrixExpSeries_hasSum H k tau)
+
+  simpa only [
+    finiteExchangeMulVecRightContinuousLinearMap_apply,
+    Matrix.smul_mulVec
+  ] using hMapped
+
+
+theorem finiteExchangeBasis_univ_matrix_exp_closed :
+    (Finset.univ : Finset FiniteExchangeBasis) =
+      ({.vacuum, .residual, .hard, .soft} :
+        Finset FiniteExchangeBasis) := by
+  decide
+
+theorem finiteExchangeHamiltonianMatrix_mulVec_eq_operator_matrix_exp_closed
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (state : FiniteExchangeComplexState) :
+    finiteExchangeHamiltonianMatrix H k *ᵥ state =
+      finiteExchangeHamiltonianOperator H k state := by
+  funext basis
+  cases basis <;>
+    simp [
+      finiteExchangeHamiltonianMatrix,
+      finiteExchangeHamiltonianOperator,
+      finiteExchangeHamiltonianEntry,
+      Matrix.mulVec,
+      dotProduct,
+      finiteExchangeBasis_univ_matrix_exp_closed
+    ];
+    ring
+
+theorem finiteExchangeStateScale_eq_smul_matrix_exp_closed
+    (scalar : ℂ)
+    (state : FiniteExchangeComplexState) :
+    finiteExchangeStateScale scalar state = scalar • state := by
+  rfl
+
+theorem finiteExchangeHamiltonianMatrix_mulVec_residual_matrix_exp_closed
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat) :
+    finiteExchangeHamiltonianMatrix H k *ᵥ
+        finiteExchangeResidualKet =
+      (H.frequency k : ℂ) • finiteExchangeBrightKet H k := by
+  rw [
+    finiteExchangeHamiltonianMatrix_mulVec_eq_operator_matrix_exp_closed,
+    finiteExchangeHamiltonianOperator_residual,
+    finiteExchangeStateScale_eq_smul_matrix_exp_closed
+  ]
+
+theorem finiteExchangeHamiltonianMatrix_mulVec_bright_matrix_exp_closed
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat) :
+    finiteExchangeHamiltonianMatrix H k *ᵥ
+        finiteExchangeBrightKet H k =
+      (H.frequency k : ℂ) • finiteExchangeResidualKet := by
+  rw [
+    finiteExchangeHamiltonianMatrix_mulVec_eq_operator_matrix_exp_closed,
+    finiteExchangeHamiltonianOperator_bright,
+    finiteExchangeStateScale_eq_smul_matrix_exp_closed
+  ]
+
+theorem finiteExchangeMatrix_pow_even_odd_on_matrix_exp_closed
+    (A : FiniteExchangeComplexMatrix)
+    (residual bright : FiniteExchangeComplexState)
+    (omega : ℂ)
+    (hResidual : A *ᵥ residual = omega • bright)
+    (hBright : A *ᵥ bright = omega • residual) :
+    (∀ n : Nat,
+        A ^ (2 * n) *ᵥ residual =
+          omega ^ (2 * n) • residual) ∧
+      (∀ n : Nat,
+        A ^ (2 * n + 1) *ᵥ residual =
+          omega ^ (2 * n + 1) • bright) := by
+  have h :
+      ∀ n : Nat,
+        (A ^ (2 * n) *ᵥ residual =
+            omega ^ (2 * n) • residual) ∧
+          (A ^ (2 * n + 1) *ᵥ residual =
+            omega ^ (2 * n + 1) • bright) := by
+    intro n
+    induction n with
+    | zero =>
+        constructor
+        · simp
+        · simpa using hResidual
+    | succ n ih =>
+        rcases ih with ⟨hEven, hOdd⟩
+
+        have hEvenNext :
+            A ^ (2 * (n + 1)) *ᵥ residual =
+              omega ^ (2 * (n + 1)) • residual := by
+          calc
+            A ^ (2 * (n + 1)) *ᵥ residual =
+                A *ᵥ (A ^ (2 * n + 1) *ᵥ residual) := by
+              rw [
+                show 2 * (n + 1) = 1 + (2 * n + 1) by omega,
+                pow_add,
+                pow_one,
+                Matrix.mulVec_mulVec
+              ]
+            _ =
+                A *ᵥ (omega ^ (2 * n + 1) • bright) := by
+              rw [hOdd]
+            _ =
+                omega ^ (2 * n + 1) • (A *ᵥ bright) := by
+              rw [Matrix.mulVec_smul]
+            _ =
+                omega ^ (2 * n + 1) • (omega • residual) := by
+              rw [hBright]
+            _ =
+                omega ^ (2 * (n + 1)) • residual := by
+              rw [smul_smul]
+              congr 1
+
+        have hOddNext :
+            A ^ (2 * (n + 1) + 1) *ᵥ residual =
+              omega ^ (2 * (n + 1) + 1) • bright := by
+          calc
+            A ^ (2 * (n + 1) + 1) *ᵥ residual =
+                A *ᵥ
+                  (A ^ (2 * (n + 1)) *ᵥ residual) := by
+              rw [
+                show 2 * (n + 1) + 1 =
+                    1 + 2 * (n + 1) by omega,
+                pow_add,
+                pow_one,
+                Matrix.mulVec_mulVec
+              ]
+            _ =
+                A *ᵥ
+                  (omega ^ (2 * (n + 1)) • residual) := by
+              rw [hEvenNext]
+            _ =
+                omega ^ (2 * (n + 1)) •
+                  (A *ᵥ residual) := by
+              rw [Matrix.mulVec_smul]
+            _ =
+                omega ^ (2 * (n + 1)) •
+                  (omega • bright) := by
+              rw [hResidual]
+            _ =
+                omega ^ (2 * (n + 1) + 1) • bright := by
+              rw [smul_smul, pow_succ]
+
+        exact ⟨hEvenNext, hOddNext⟩
+
+  exact ⟨fun n => (h n).1, fun n => (h n).2⟩
+
+def finiteExchangeSchrodingerPhase
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    ℂ :=
+  (-Complex.I * (tau : ℂ)) * (H.frequency k : ℂ)
+
+def finiteExchangeSchrodingerAngle
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    ℂ :=
+  ((H.frequency k * tau : ℝ) : ℂ)
+
+theorem finiteExchangeSchrodingerPhase_eq_neg_I_mul_angle
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    finiteExchangeSchrodingerPhase H k tau =
+      -Complex.I * finiteExchangeSchrodingerAngle H k tau := by
+  unfold
+    finiteExchangeSchrodingerPhase
+    finiteExchangeSchrodingerAngle
+  push_cast
+  ring
+
+theorem finiteExchangeSchrodingerGeneratorMatrix_mulVec_residual
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    finiteExchangeSchrodingerGeneratorMatrix H k tau *ᵥ
+        finiteExchangeResidualKet =
+      finiteExchangeSchrodingerPhase H k tau •
+        finiteExchangeBrightKet H k := by
+  unfold
+    finiteExchangeSchrodingerGeneratorMatrix
+    finiteExchangeSchrodingerPhase
+  rw [
+    Matrix.smul_mulVec,
+    finiteExchangeHamiltonianMatrix_mulVec_residual_matrix_exp_closed,
+    smul_smul
+  ]
+
+theorem finiteExchangeSchrodingerGeneratorMatrix_mulVec_bright
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    finiteExchangeSchrodingerGeneratorMatrix H k tau *ᵥ
+        finiteExchangeBrightKet H k =
+      finiteExchangeSchrodingerPhase H k tau •
+        finiteExchangeResidualKet := by
+  unfold
+    finiteExchangeSchrodingerGeneratorMatrix
+    finiteExchangeSchrodingerPhase
+  rw [
+    Matrix.smul_mulVec,
+    finiteExchangeHamiltonianMatrix_mulVec_bright_matrix_exp_closed,
+    smul_smul
+  ]
+
+theorem finiteExchangeSchrodingerGeneratorMatrix_pow_even_odd
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    (∀ n : Nat,
+        (finiteExchangeSchrodingerGeneratorMatrix H k tau) ^
+              (2 * n) *ᵥ
+            finiteExchangeResidualKet =
+          (finiteExchangeSchrodingerPhase H k tau) ^
+              (2 * n) •
+            finiteExchangeResidualKet) ∧
+      (∀ n : Nat,
+        (finiteExchangeSchrodingerGeneratorMatrix H k tau) ^
+              (2 * n + 1) *ᵥ
+            finiteExchangeResidualKet =
+          (finiteExchangeSchrodingerPhase H k tau) ^
+              (2 * n + 1) •
+            finiteExchangeBrightKet H k) := by
+  exact
+    finiteExchangeMatrix_pow_even_odd_on_matrix_exp_closed
+      (finiteExchangeSchrodingerGeneratorMatrix H k tau)
+      finiteExchangeResidualKet
+      (finiteExchangeBrightKet H k)
+      (finiteExchangeSchrodingerPhase H k tau)
+      (finiteExchangeSchrodingerGeneratorMatrix_mulVec_residual
+        H k tau)
+      (finiteExchangeSchrodingerGeneratorMatrix_mulVec_bright
+        H k tau)
+
+theorem finiteExchange_neg_I_mul_pow_even
+    (angle : ℂ)
+    (n : Nat) :
+    (-Complex.I * angle) ^ (2 * n) =
+      (-1 : ℂ) ^ n * angle ^ (2 * n) := by
+  have hNegISq :
+      (-Complex.I : ℂ) ^ 2 = -1 := by
+    calc
+      (-Complex.I : ℂ) ^ 2 =
+          Complex.I * Complex.I := by
+        ring
+      _ = -1 := Complex.I_mul_I
+
+  calc
+    (-Complex.I * angle) ^ (2 * n) =
+        (-Complex.I : ℂ) ^ (2 * n) *
+          angle ^ (2 * n) := by
+      rw [mul_pow]
+    _ =
+        (((-Complex.I : ℂ) ^ 2) ^ n) *
+          angle ^ (2 * n) := by
+      rw [pow_mul]
+    _ =
+        (-1 : ℂ) ^ n * angle ^ (2 * n) := by
+      rw [hNegISq]
+
+theorem finiteExchange_neg_I_mul_pow_odd
+    (angle : ℂ)
+    (n : Nat) :
+    (-Complex.I * angle) ^ (2 * n + 1) =
+      -Complex.I *
+        ((-1 : ℂ) ^ n * angle ^ (2 * n + 1)) := by
+  calc
+    (-Complex.I * angle) ^ (2 * n + 1) =
+        (-Complex.I * angle) ^ (2 * n) *
+          (-Complex.I * angle) := by
+      rw [pow_succ]
+    _ =
+        ((-1 : ℂ) ^ n * angle ^ (2 * n)) *
+          (-Complex.I * angle) := by
+      rw [finiteExchange_neg_I_mul_pow_even]
+    _ =
+        -Complex.I *
+          ((-1 : ℂ) ^ n * angle ^ (2 * n + 1)) := by
+      rw [pow_succ]
+      ring
+
+def finiteExchangeResidualExponentialSeriesTerm
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ)
+    (n : Nat) :
+    FiniteExchangeComplexState :=
+  ((n.factorial : ℂ)⁻¹) •
+    ((finiteExchangeSchrodingerGeneratorMatrix H k tau) ^ n *ᵥ
+      finiteExchangeResidualKet)
+
+theorem finiteExchangeResidualExponentialSeriesTerm_even
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k n : Nat)
+    (tau : ℝ) :
+    finiteExchangeResidualExponentialSeriesTerm
+        H k tau (2 * n) =
+      (((-1 : ℂ) ^ n *
+          (finiteExchangeSchrodingerAngle H k tau) ^ (2 * n) /
+          ((2 * n).factorial : ℂ)) •
+        finiteExchangeResidualKet) := by
+  unfold finiteExchangeResidualExponentialSeriesTerm
+  rw [
+    (finiteExchangeSchrodingerGeneratorMatrix_pow_even_odd
+      H k tau).1 n,
+    finiteExchangeSchrodingerPhase_eq_neg_I_mul_angle,
+    finiteExchange_neg_I_mul_pow_even,
+    smul_smul
+  ]
+  congr 1
+  ring
+
+theorem finiteExchangeResidualExponentialSeriesTerm_odd
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k n : Nat)
+    (tau : ℝ) :
+    finiteExchangeResidualExponentialSeriesTerm
+        H k tau (2 * n + 1) =
+      (-Complex.I *
+          (((-1 : ℂ) ^ n *
+              (finiteExchangeSchrodingerAngle H k tau) ^
+                (2 * n + 1)) /
+            ((2 * n + 1).factorial : ℂ))) •
+        finiteExchangeBrightKet H k := by
+  unfold finiteExchangeResidualExponentialSeriesTerm
+  rw [
+    (finiteExchangeSchrodingerGeneratorMatrix_pow_even_odd
+      H k tau).2 n,
+    finiteExchangeSchrodingerPhase_eq_neg_I_mul_angle,
+    finiteExchange_neg_I_mul_pow_odd,
+    smul_smul
+  ]
+  congr 1
+  ring
+
+theorem finiteExchangeResidualExponentialSeries_even_hasSum
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    HasSum
+      (fun n =>
+        finiteExchangeResidualExponentialSeriesTerm
+          H k tau (2 * n))
+      (Complex.cos
+          (finiteExchangeSchrodingerAngle H k tau) •
+        finiteExchangeResidualKet) := by
+  simpa only [
+    finiteExchangeResidualExponentialSeriesTerm_even
+  ] using
+    (Complex.hasSum_cos
+      (finiteExchangeSchrodingerAngle H k tau)).smul_const
+        finiteExchangeResidualKet
+
+theorem finiteExchangeResidualExponentialSeries_odd_hasSum
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    HasSum
+      (fun n =>
+        finiteExchangeResidualExponentialSeriesTerm
+          H k tau (2 * n + 1))
+      ((-Complex.I *
+          Complex.sin
+            (finiteExchangeSchrodingerAngle H k tau)) •
+        finiteExchangeBrightKet H k) := by
+  have hSin :
+      HasSum
+        (fun n =>
+          (((-1 : ℂ) ^ n *
+              (finiteExchangeSchrodingerAngle H k tau) ^
+                (2 * n + 1) /
+              ((2 * n + 1).factorial : ℂ)) •
+            finiteExchangeBrightKet H k))
+        (Complex.sin
+            (finiteExchangeSchrodingerAngle H k tau) •
+          finiteExchangeBrightKet H k) :=
+    (Complex.hasSum_sin
+      (finiteExchangeSchrodingerAngle H k tau)).smul_const
+        (finiteExchangeBrightKet H k)
+
+  have hScaled :=
+    HasSum.const_smul (-Complex.I) hSin
+
+  simpa only [
+    finiteExchangeResidualExponentialSeriesTerm_odd,
+    smul_smul
+  ] using hScaled
+
+theorem finiteExchangeResidualExponentialSeries_hasSum_closed
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    HasSum
+      (finiteExchangeResidualExponentialSeriesTerm H k tau)
+      (Complex.cos
+            (finiteExchangeSchrodingerAngle H k tau) •
+          finiteExchangeResidualKet +
+        (-Complex.I *
+            Complex.sin
+              (finiteExchangeSchrodingerAngle H k tau)) •
+          finiteExchangeBrightKet H k) := by
+  exact
+    (finiteExchangeResidualExponentialSeries_even_hasSum
+      H k tau).even_add_odd
+        (finiteExchangeResidualExponentialSeries_odd_hasSum
+          H k tau)
+
+theorem finiteExchangeResidualMatrixExponentialAction_closed
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    NormedSpace.exp
+        (finiteExchangeSchrodingerGeneratorMatrix H k tau) *ᵥ
+      finiteExchangeResidualKet =
+        Complex.cos
+            (finiteExchangeSchrodingerAngle H k tau) •
+          finiteExchangeResidualKet +
+        (-Complex.I *
+            Complex.sin
+              (finiteExchangeSchrodingerAngle H k tau)) •
+          finiteExchangeBrightKet H k := by
+  have hExp :
+      HasSum
+        (finiteExchangeResidualExponentialSeriesTerm H k tau)
+        (NormedSpace.exp
+            (finiteExchangeSchrodingerGeneratorMatrix H k tau) *ᵥ
+          finiteExchangeResidualKet) := by
+    simpa only [
+      finiteExchangeResidualExponentialSeriesTerm
+    ] using
+      finiteExchangeResidualMatrixExpSeries_hasSum_expAction
+        H k tau
+
+  exact
+    hExp.unique
+      (finiteExchangeResidualExponentialSeries_hasSum_closed
+        H k tau)
+
+
+theorem finiteExchangeResidualMatrixExponentialAction_eq_formal
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    NormedSpace.exp
+        (finiteExchangeSchrodingerGeneratorMatrix H k tau) *ᵥ
+      finiteExchangeResidualKet =
+        finiteExchangeResidualFormalMatrixExponentialAction H k tau := by
+  rw [finiteExchangeResidualMatrixExponentialAction_closed]
+  funext basis
+  cases basis <;>
+    simp [
+      finiteExchangeSchrodingerAngle,
+      finiteExchangeResidualKet,
+      finiteExchangeBrightKet,
+      finiteExchangeResidualFormalMatrixExponentialAction
+    ] <;>
+    ring
+
 def reggeWheelerFiniteExchangeMatrixEvolutionStatus : String :=
   "EXPLICIT_COMPLEX_MATRIX_HERMITIAN_CHARGE_COMMUTING_FORMAL_RESIDUAL_EVOLUTION_AND_RW_BALANCED_PREDICTION"
 
