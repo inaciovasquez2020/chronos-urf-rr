@@ -57,7 +57,7 @@ theorem reggeWheelerUnitWindowPotential_ne_zero :
     congrArg
       (fun potential : ℝ → ℝ => potential 0)
       h
-  simpa [reggeWheelerUnitWindowPotential] using hAtZero
+  simp [reggeWheelerUnitWindowPotential] at hAtZero
 
 /--
 Pointwise multiplication by the concrete bounded deformation potential.
