@@ -117,6 +117,90 @@ theorem reggeWheelerFirstOrderApproximationResidual
   ]
 
 /--
+The exact residual of the first-order approximation under the full deformed
+operator is the quadratic term `-λ² U Ψ₁`.
+
+This strengthens the earlier source-subtracted identity without introducing
+a response operator, Green kernel, asymptotic assumption, or external theorem.
+-/
+theorem
+    reggeWheelerFirstOrderApproximation_exactDeformedResidual
+    {State : Type*}
+    [AddCommGroup State]
+    [Module ℝ State]
+    (D : ReggeWheelerFirstOrderDeviationData State)
+    (lambda : ℝ) :
+    reggeWheelerDeformedOperator
+          D.principalOperator
+          D.potentialInsertion
+          lambda
+          (D.background +
+            lambda • D.firstOrderCorrection) =
+      -(lambda ^ 2) •
+        D.potentialInsertion D.firstOrderCorrection := by
+  change
+    D.principalOperator
+          (D.background +
+            lambda • D.firstOrderCorrection) -
+        lambda •
+          D.potentialInsertion
+            (D.background +
+              lambda • D.firstOrderCorrection) =
+      -(lambda ^ 2) •
+        D.potentialInsertion D.firstOrderCorrection
+  rw [
+    map_add,
+    map_smul,
+    D.backgroundEquation,
+    D.firstOrderEquation
+  ]
+  rw [map_add, map_smul]
+  simp [smul_add, smul_smul, pow_two]
+
+/--
+For nonzero coupling, the first-order approximation is an exact solution of
+the full deformed equation exactly when the potential insertion annihilates
+the first-order correction.
+
+This is a repository-native obstruction theorem: a genuinely nonzero
+second insertion prevents the first-order truncation from being exact.
+-/
+theorem
+    reggeWheelerFirstOrderApproximation_exact_iff
+    {State : Type*}
+    [AddCommGroup State]
+    [Module ℝ State]
+    (D : ReggeWheelerFirstOrderDeviationData State)
+    (lambda : ℝ)
+    (hLambda : lambda ≠ 0) :
+    reggeWheelerDeformedOperator
+          D.principalOperator
+          D.potentialInsertion
+          lambda
+          (D.background +
+            lambda • D.firstOrderCorrection) =
+        0 ↔
+      D.potentialInsertion D.firstOrderCorrection =
+        0 := by
+  rw [
+    reggeWheelerFirstOrderApproximation_exactDeformedResidual
+      D
+      lambda
+  ]
+  constructor
+  · intro hResidual
+    have hScalar :
+        -(lambda ^ 2) ≠ 0 := by
+      exact
+        neg_ne_zero.mpr
+          (pow_ne_zero 2 hLambda)
+    exact
+      (smul_eq_zero.mp hResidual).resolve_left
+        hScalar
+  · intro hInsertion
+    simp [hInsertion]
+
+/--
 Exact deviation of a linear observable on the first-order approximation.
 -/
 theorem reggeWheelerLinearObservableDeviation

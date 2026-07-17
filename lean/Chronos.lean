@@ -494,3 +494,5 @@ import Chronos.Frontier.ReggeWheelerConditionalDeviation
 import Chronos.Frontier.ReggeWheelerBoundedPotentialResponse
 
 import Chronos.Frontier.FiniteSoftMemoryBackreaction
+
+import Chronos.Frontier.ReggeWheelerFlagshipExactResidual
