@@ -496,3 +496,5 @@ import Chronos.Frontier.ReggeWheelerBoundedPotentialResponse
 import Chronos.Frontier.FiniteSoftMemoryBackreaction
 
 import Chronos.Frontier.ReggeWheelerFlagshipExactResidual
+
+import Chronos.Frontier.ScalarLapseNegativeFluid
