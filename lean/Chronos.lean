@@ -498,3 +498,5 @@ import Chronos.Frontier.FiniteSoftMemoryBackreaction
 import Chronos.Frontier.ReggeWheelerFlagshipExactResidual
 
 import Chronos.Frontier.ScalarLapseNegativeFluid
+
+import Chronos.Frontier.FiniteHardSoftHamiltonianChannel
