@@ -150,18 +150,73 @@ def scalarLapseCompactBumpHardyRatio
     compactness *
     dimensionlessWSup
 
-theorem scalarLapseCompactBumpHardyCondition_iff
-    (compactness dimensionlessWSup : ℝ) :
-    scalarLapseCompactBumpHardyRatio
-          compactness
-          dimensionlessWSup <
-        1 ↔
-      16 *
-          Real.pi *
-          compactness *
-          dimensionlessWSup <
-        1 := by
-  rfl
+/--
+A certified interval enclosing a spectral quantity.
+
+Creating a value of this structure requires proofs of both interval
+endpoints. Floating-point output alone does not construct one.
+-/
+structure ScalarLapseCompactBumpSpectralInterval
+    (spectralBottom : ℝ) where
+  lower : ℝ
+  upper : ℝ
+  lower_le_spectralBottom :
+    lower ≤ spectralBottom
+  spectralBottom_le_upper :
+    spectralBottom ≤ upper
+
+/--
+A certified nonnegative lower endpoint excludes negative spectrum.
+-/
+theorem
+    scalarLapseCompactBump_noNegativeSpectrum_of_certifiedInterval
+    {spectralBottom : ℝ}
+    (certificate :
+      ScalarLapseCompactBumpSpectralInterval
+        spectralBottom)
+    (hLower :
+      0 ≤ certificate.lower) :
+    0 ≤ spectralBottom := by
+  exact
+    le_trans
+      hLower
+      certificate.lower_le_spectralBottom
+
+/--
+A strictly positive certified lower endpoint implies a positive
+spectral gap. No such certificate is presently supplied.
+-/
+theorem
+    scalarLapseCompactBump_positiveSpectrum_of_certifiedInterval
+    {spectralBottom : ℝ}
+    (certificate :
+      ScalarLapseCompactBumpSpectralInterval
+        spectralBottom)
+    (hLower :
+      0 < certificate.lower) :
+    0 < spectralBottom := by
+  exact
+    lt_of_lt_of_le
+      hLower
+      certificate.lower_le_spectralBottom
+
+/--
+A strictly negative certified upper endpoint proves negative spectrum.
+No such certificate is presently supplied.
+-/
+theorem
+    scalarLapseCompactBump_negativeSpectrum_of_certifiedInterval
+    {spectralBottom : ℝ}
+    (certificate :
+      ScalarLapseCompactBumpSpectralInterval
+        spectralBottom)
+    (hUpper :
+      certificate.upper < 0) :
+    spectralBottom < 0 := by
+  exact
+    lt_of_le_of_lt
+      certificate.spectralBottom_le_upper
+      hUpper
 
 def scalarLapseNegativeFluidStatus : String :=
   "ALGEBRAIC_ACTION_DENSITY_HAMILTONIAN_NONNEGATIVITY_EXCHANGE_CANCELLATION_LINEARIZED_RESIDUALS_EFFECTIVE_CHARGE_REGISTERED"
