@@ -504,3 +504,5 @@ import Chronos.Frontier.FiniteHardSoftHamiltonianChannel
 import Chronos.Frontier.ReggeWheelerGaugeInvariantMemoryChannel
 
 import Chronos.Frontier.ReggeWheelerOddParityMasterExtraction
+
+import Chronos.Frontier.ReggeWheelerFiniteExchangeMatrixEvolution
