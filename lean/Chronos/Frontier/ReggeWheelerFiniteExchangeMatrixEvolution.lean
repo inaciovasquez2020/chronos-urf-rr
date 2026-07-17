@@ -1178,6 +1178,26 @@ theorem finiteExchangeResidualMatrixExponentialAction_closed
       (finiteExchangeResidualExponentialSeries_hasSum_closed
         H k tau)
 
+
+theorem finiteExchangeResidualMatrixExponentialAction_eq_formal
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    NormedSpace.exp
+        (finiteExchangeSchrodingerGeneratorMatrix H k tau) *ᵥ
+      finiteExchangeResidualKet =
+        finiteExchangeResidualFormalMatrixExponentialAction H k tau := by
+  rw [finiteExchangeResidualMatrixExponentialAction_closed]
+  funext basis
+  cases basis <;>
+    simp [
+      finiteExchangeSchrodingerAngle,
+      finiteExchangeResidualKet,
+      finiteExchangeBrightKet,
+      finiteExchangeResidualFormalMatrixExponentialAction
+    ] <;>
+    ring
+
 def reggeWheelerFiniteExchangeMatrixEvolutionStatus : String :=
   "EXPLICIT_COMPLEX_MATRIX_HERMITIAN_CHARGE_COMMUTING_FORMAL_RESIDUAL_EVOLUTION_AND_RW_BALANCED_PREDICTION"
 
