@@ -492,3 +492,5 @@ import Chronos.Frontier.FiniteHardSoftEmissionChannel
 import Chronos.Frontier.ReggeWheelerConditionalDeviation
 
 import Chronos.Frontier.ReggeWheelerBoundedPotentialResponse
+
+import Chronos.Frontier.FiniteSoftMemoryBackreaction
