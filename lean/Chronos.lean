@@ -500,3 +500,5 @@ import Chronos.Frontier.ReggeWheelerFlagshipExactResidual
 import Chronos.Frontier.ScalarLapseNegativeFluid
 
 import Chronos.Frontier.FiniteHardSoftHamiltonianChannel
+
+import Chronos.Frontier.ReggeWheelerGaugeInvariantMemoryChannel
