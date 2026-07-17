@@ -484,3 +484,5 @@ import Chronos.Frontier.CausalRecordEinsteinRosenGlobalDevelopmentReduction
 import Chronos.Frontier.CausalRecordEinsteinRosenAnalyticDevelopmentInterface
 
 import Chronos.Frontier.CausalRecordEinsteinRosenSobolevBacktrackToolkit
+
+import Chronos.Frontier.ReggeWheelerQuznorEnergyBridge
