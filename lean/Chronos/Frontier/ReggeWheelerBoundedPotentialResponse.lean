@@ -87,10 +87,10 @@ theorem reggeWheelerUnitWindowPotentialInsertion_ne_zero :
           (ℝ → ℝ) →ₗ[ℝ] (ℝ → ℝ) =>
         insertion (fun _ => 1) 0)
       h
-  simpa [
+  simp [
     reggeWheelerUnitWindowPotentialInsertion,
     reggeWheelerUnitWindowPotential
-  ] using hAtOneZero
+  ] at hAtOneZero
 
 /--
 The generic principal operator equipped with the concrete nonzero bounded
