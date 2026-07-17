@@ -660,6 +660,31 @@ theorem reggeWheelerUnitMemoryDiscriminatorGap_eq_half :
   ]
   ring
 
+
+open scoped Matrix Matrix.Norms.Operator
+
+def finiteExchangeSchrodingerGeneratorMatrix
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    FiniteExchangeComplexMatrix :=
+  (-Complex.I * (tau : ℂ)) •
+    finiteExchangeHamiltonianMatrix H k
+
+theorem finiteExchangeMatrixExpSeries_hasSum
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    HasSum
+      (fun n : Nat =>
+        ((n.factorial : ℂ)⁻¹) •
+          (finiteExchangeSchrodingerGeneratorMatrix H k tau) ^ n)
+      (NormedSpace.exp
+        (finiteExchangeSchrodingerGeneratorMatrix H k tau)) := by
+  exact
+    NormedSpace.exp_series_hasSum_exp'
+      (finiteExchangeSchrodingerGeneratorMatrix H k tau)
+
 def reggeWheelerFiniteExchangeMatrixEvolutionStatus : String :=
   "EXPLICIT_COMPLEX_MATRIX_HERMITIAN_CHARGE_COMMUTING_FORMAL_RESIDUAL_EVOLUTION_AND_RW_BALANCED_PREDICTION"
 
