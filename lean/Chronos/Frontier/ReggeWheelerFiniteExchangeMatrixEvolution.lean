@@ -685,6 +685,64 @@ theorem finiteExchangeMatrixExpSeries_hasSum
     NormedSpace.exp_series_hasSum_exp'
       (finiteExchangeSchrodingerGeneratorMatrix H k tau)
 
+
+def finiteExchangeMulVecRightLinearMap
+    (state : FiniteExchangeComplexState) :
+    FiniteExchangeComplexMatrix →ₗ[ℂ]
+      FiniteExchangeComplexState where
+  toFun matrix := matrix *ᵥ state
+  map_add' left right :=
+    Matrix.add_mulVec left right state
+  map_smul' scalar matrix :=
+    Matrix.smul_mulVec scalar matrix state
+
+def finiteExchangeMulVecRightContinuousLinearMap
+    (state : FiniteExchangeComplexState) :
+    FiniteExchangeComplexMatrix →L[ℂ]
+      FiniteExchangeComplexState :=
+  LinearMap.toContinuousLinearMap
+    (finiteExchangeMulVecRightLinearMap state)
+
+@[simp]
+theorem finiteExchangeMulVecRightContinuousLinearMap_apply
+    (state : FiniteExchangeComplexState)
+    (matrix : FiniteExchangeComplexMatrix) :
+    finiteExchangeMulVecRightContinuousLinearMap state matrix =
+      matrix *ᵥ state := by
+  rfl
+
+theorem finiteExchangeResidualMatrixExpSeries_hasSum_expAction
+    (H : FiniteChargeConservingExchangeHamiltonian)
+    (k : Nat)
+    (tau : ℝ) :
+    HasSum
+      (fun n : Nat =>
+        ((n.factorial : ℂ)⁻¹) •
+          ((finiteExchangeSchrodingerGeneratorMatrix H k tau) ^ n *ᵥ
+            finiteExchangeResidualKet))
+      (NormedSpace.exp
+          (finiteExchangeSchrodingerGeneratorMatrix H k tau) *ᵥ
+        finiteExchangeResidualKet) := by
+  have hMapped :
+      HasSum
+        (fun n : Nat =>
+          finiteExchangeMulVecRightContinuousLinearMap
+            finiteExchangeResidualKet
+            (((n.factorial : ℂ)⁻¹) •
+              (finiteExchangeSchrodingerGeneratorMatrix H k tau) ^ n))
+        (finiteExchangeMulVecRightContinuousLinearMap
+          finiteExchangeResidualKet
+          (NormedSpace.exp
+            (finiteExchangeSchrodingerGeneratorMatrix H k tau))) :=
+    (finiteExchangeMulVecRightContinuousLinearMap
+      finiteExchangeResidualKet).hasSum
+        (finiteExchangeMatrixExpSeries_hasSum H k tau)
+
+  simpa only [
+    finiteExchangeMulVecRightContinuousLinearMap_apply,
+    Matrix.smul_mulVec
+  ] using hMapped
+
 def reggeWheelerFiniteExchangeMatrixEvolutionStatus : String :=
   "EXPLICIT_COMPLEX_MATRIX_HERMITIAN_CHARGE_COMMUTING_FORMAL_RESIDUAL_EVOLUTION_AND_RW_BALANCED_PREDICTION"
 
