@@ -1,0 +1,13 @@
+{
+  "archive": "CARBON-20260718T151252Z-001-LAB-HANDOFF-20260718T162152Z.zip",
+  "archive_sha256": "9053cd25bc6f770c8d17894029ac1b00e5eecc88a9f0e28975b09bcc594c3cb3",
+  "archive_size_bytes": 9990,
+  "boundary": "No calibrated CT-density measurements, residual-stress measurements, uncertainty result, or sample-specific no-go bound are asserted.",
+  "checksum_file": "CARBON-20260718T151252Z-001-LAB-HANDOFF-20260718T162152Z.zip.sha256",
+  "next_gate": "Laboratory return of calibrated same-specimen metadata, CT-density data, and residual-stress data.",
+  "registered_at_utc": "2026-07-18T16:24:03.280036+00:00",
+  "sample_id": "CARBON-20260718T151252Z-001",
+  "scientific_result": false,
+  "state": "LAB_HANDOFF_ARCHIVED",
+  "zip_member_count": 10
+}
