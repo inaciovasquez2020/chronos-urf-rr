@@ -1,0 +1,23 @@
+{
+  "created_at_utc": "2026-07-18T15:30:06.439083+00:00",
+  "files": {
+    "README.md": {
+      "sha256": "cf928fc11a05ede18daf847dbbe371ef3bca7a63d7417dd435077e0d8dc101bf",
+      "size_bytes": 796
+    },
+    "ct_density.csv": {
+      "sha256": "977c84fb1c1d7cbeba51f14bf8bf2a1542f61c1e13014a4d3903c5f2d2e0f32a",
+      "size_bytes": 36
+    },
+    "residual_stress.csv": {
+      "sha256": "5f5d56e455aec0a4e0b45cf85b1fb34cc07064a0503f2f380fe4bb671e6c0156",
+      "size_bytes": 76
+    },
+    "sample_metadata.json": {
+      "sha256": "6d791f1873c0d7cb129c17dc9f3ee0ff44da0b5c56d0a02c4e153d0dc87b5562",
+      "size_bytes": 891
+    }
+  },
+  "record_state": "INCOMPLETE",
+  "scientific_result": false
+}
