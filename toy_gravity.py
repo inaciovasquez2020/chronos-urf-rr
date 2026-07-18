@@ -9,6 +9,97 @@ import numpy as np
 from scipy.integrate import solve_bvp
 
 
+def carbon_coupling_from_trace_energy(
+    q_c_toy_j: float,
+    trace_energy_j: float,
+) -> float:
+    """Return beta_C from Q_C^toy = beta_C E_tr."""
+    if not math.isfinite(q_c_toy_j):
+        raise ValueError("q_c_toy_j must be finite")
+    if not math.isfinite(trace_energy_j) or trace_energy_j <= 0.0:
+        raise ValueError("trace_energy_j must be finite and positive")
+    return q_c_toy_j / trace_energy_j
+
+
+def toy_charge_from_carbon_coupling(
+    beta_c: float,
+    trace_energy_j: float,
+) -> float:
+    """Return Q_C^toy from Q_C^toy = beta_C E_tr."""
+    if not math.isfinite(beta_c):
+        raise ValueError("beta_c must be finite")
+    if not math.isfinite(trace_energy_j) or trace_energy_j <= 0.0:
+        raise ValueError("trace_energy_j must be finite and positive")
+    return beta_c * trace_energy_j
+
+
+REJECTED_PHYSICAL_FORCE_ENHANCEMENT = 3.51890277916e-6
+
+
+EXPERIMENTAL_NO_GO_ACCELERATION_M_S2 = 1.65254352794e-51
+REFERENCE_CARBON_MASS_KG = 1000.0
+REFERENCE_OBSERVER_RADIUS_M = 10.0
+REFERENCE_TOY_CHARGE_J = 0.1
+
+
+def normalization_compatible_no_go_acceleration(
+    q_c_toy_j: float,
+    trace_energy_j: float,
+    source_mass_kg: float,
+    observer_radius_m: float,
+    G: float = 6.67430e-11,
+) -> float:
+    """Conditional universal, massless, long-range scalar acceleration."""
+    if source_mass_kg <= 0.0:
+        raise ValueError("source_mass_kg must be positive")
+    if observer_radius_m <= 0.0:
+        raise ValueError("observer_radius_m must be positive")
+    beta_c = carbon_coupling_from_trace_energy(
+        q_c_toy_j,
+        trace_energy_j,
+    )
+    return (
+        2.0
+        * beta_c**2
+        * G
+        * source_mass_kg
+        / observer_radius_m**2
+    )
+
+
+@dataclass(frozen=True)
+class CarbonControlDifferentialErrorBudget:
+    statistical_m_s2: float = 0.0
+    mass_matching_m_s2: float = 0.0
+    position_matching_m_s2: float = 0.0
+    multipole_m_s2: float = 0.0
+    electric_m_s2: float = 0.0
+    magnetic_m_s2: float = 0.0
+    thermal_m_s2: float = 0.0
+    vibration_m_s2: float = 0.0
+    background_gravity_m_s2: float = 0.0
+
+    def __post_init__(self) -> None:
+        for name, value in vars(self).items():
+            if not math.isfinite(value) or value < 0.0:
+                raise ValueError(
+                    f"{name} must be finite and nonnegative"
+                )
+
+    def total_sigma_m_s2(self) -> float:
+        return math.sqrt(
+            sum(value**2 for value in vars(self).values())
+        )
+
+    def satisfies_five_sigma(
+        self,
+        signal_m_s2: float = EXPERIMENTAL_NO_GO_ACCELERATION_M_S2,
+    ) -> bool:
+        if signal_m_s2 <= 0.0:
+            raise ValueError("signal_m_s2 must be positive")
+        return 5.0 * self.total_sigma_m_s2() <= signal_m_s2
+
+
 @dataclass(frozen=True)
 class Parameters:
     # DIMENSIONS
@@ -251,6 +342,7 @@ class ToyGravityModel:
 
     def gravity(self) -> float:
         n_at_x = float(self.fields(self.p.x)[0])
+        # Internal toy observable only; not a physical carbon-force prediction.
 
         # Exact nonlinear lapse correction:
         #
@@ -999,6 +1091,464 @@ class ToyGravityModel:
         )
 
 
+@dataclass(frozen=True)
+class MeasuredCarbonProfiles:
+    """Externally supplied CT density and residual-stress arrays.
+
+    Positive stress values use the pressure sign convention.  No homogeneous
+    density or zero-stress fallback is constructed by this class.
+    """
+
+    ct_radius_m: np.ndarray
+    ct_density_kg_m3: np.ndarray
+    stress_radius_m: np.ndarray
+    residual_radial_stress_pa: np.ndarray
+    residual_tangential_stress_pa: np.ndarray
+
+    def __post_init__(self) -> None:
+        names = (
+            "ct_radius_m",
+            "ct_density_kg_m3",
+            "stress_radius_m",
+            "residual_radial_stress_pa",
+            "residual_tangential_stress_pa",
+        )
+        arrays: dict[str, np.ndarray] = {}
+        for name in names:
+            value = getattr(self, name)
+            if not isinstance(value, np.ndarray):
+                raise TypeError(f"{name} must be a numpy array")
+            array = np.array(value, dtype=float, copy=True)
+            if array.ndim != 1 or array.size < 4:
+                raise ValueError(
+                    f"{name} must be one-dimensional with at least four values"
+                )
+            if not np.all(np.isfinite(array)):
+                raise ValueError(f"{name} must contain only finite values")
+            array.setflags(write=False)
+            arrays[name] = array
+            object.__setattr__(self, name, array)
+
+        if arrays["ct_radius_m"].shape != arrays["ct_density_kg_m3"].shape:
+            raise ValueError("CT radius and density arrays must have equal shape")
+        if (
+            arrays["stress_radius_m"].shape
+            != arrays["residual_radial_stress_pa"].shape
+        ):
+            raise ValueError(
+                "stress radius and radial-stress arrays must have equal shape"
+            )
+        if (
+            arrays["stress_radius_m"].shape
+            != arrays["residual_tangential_stress_pa"].shape
+        ):
+            raise ValueError(
+                "stress radius and tangential-stress arrays must have equal shape"
+            )
+
+        for radius_name in ("ct_radius_m", "stress_radius_m"):
+            radius = arrays[radius_name]
+            if radius[0] != 0.0:
+                raise ValueError(f"{radius_name} must start at zero")
+            if not np.all(np.diff(radius) > 0.0):
+                raise ValueError(f"{radius_name} must be strictly increasing")
+
+        if not math.isclose(
+            float(arrays["ct_radius_m"][-1]),
+            float(arrays["stress_radius_m"][-1]),
+            rel_tol=0.0,
+            abs_tol=1.0e-12,
+        ):
+            raise ValueError(
+                "CT and stress arrays must end at the same sample radius"
+            )
+        if np.any(arrays["ct_density_kg_m3"] <= 0.0):
+            raise ValueError("CT density must be positive")
+
+    @property
+    def radius_m(self) -> float:
+        return float(self.ct_radius_m[-1])
+
+    def density(self, radius_m: np.ndarray) -> np.ndarray:
+        radius = np.asarray(radius_m, dtype=float)
+        return np.where(
+            radius <= self.radius_m,
+            np.interp(
+                radius,
+                self.ct_radius_m,
+                self.ct_density_kg_m3,
+            ),
+            0.0,
+        )
+
+    def radial_stress(self, radius_m: np.ndarray) -> np.ndarray:
+        radius = np.asarray(radius_m, dtype=float)
+        return np.where(
+            radius <= self.radius_m,
+            np.interp(
+                radius,
+                self.stress_radius_m,
+                self.residual_radial_stress_pa,
+            ),
+            0.0,
+        )
+
+    def tangential_stress(self, radius_m: np.ndarray) -> np.ndarray:
+        radius = np.asarray(radius_m, dtype=float)
+        return np.where(
+            radius <= self.radius_m,
+            np.interp(
+                radius,
+                self.stress_radius_m,
+                self.residual_tangential_stress_pa,
+            ),
+            0.0,
+        )
+
+    def mass_kg(self) -> float:
+        return float(
+            4.0
+            * math.pi
+            * np.trapezoid(
+                self.ct_radius_m**2 * self.ct_density_kg_m3,
+                self.ct_radius_m,
+            )
+        )
+
+    def flat_trace_energy_j(self, c: float) -> float:
+        grid = np.unique(
+            np.concatenate(
+                (
+                    self.ct_radius_m,
+                    self.stress_radius_m,
+                )
+            )
+        )
+        trace_density = (
+            self.density(grid) * c**2
+            - self.radial_stress(grid)
+            - 2.0 * self.tangential_stress(grid)
+        )
+        value = float(
+            4.0
+            * math.pi
+            * np.trapezoid(
+                grid**2 * trace_density,
+                grid,
+            )
+        )
+        if value <= 0.0:
+            raise ValueError("integrated trace energy must be positive")
+        return value
+
+
+class DimensionlessRadialCarbonModel:
+    """Full nonlinear static spherical scalar-metric model.
+
+    The prescribed source is anisotropic: CT density rho, radial stress p_r,
+    and tangential stress p_t.  The state is (u, nu, chi, dchi/dx), where
+    x=r/R, u=m/M, h=1-Cu/x, C=2GM/(Rc^2), and
+    chi=phi/(beta_C C).  This scaling retains every nonlinear scalar-gradient
+    term while avoiding underflow at beta_C approximately 10^-21.
+    """
+
+    def __init__(
+        self,
+        profiles: MeasuredCarbonProfiles,
+        q_c_toy_j: float = 0.1,
+        *,
+        G: float = 6.67430e-11,
+        c: float = 299_792_458.0,
+        outer_radius_ratio: float = 20.0,
+    ) -> None:
+        if outer_radius_ratio <= 1.0:
+            raise ValueError("outer_radius_ratio must exceed one")
+        self.profiles = profiles
+        self.q_c_toy_j = float(q_c_toy_j)
+        self.G = float(G)
+        self.c = float(c)
+        self.outer_radius_ratio = float(outer_radius_ratio)
+        self.radius_m = profiles.radius_m
+        self.mass_kg = profiles.mass_kg()
+        if self.mass_kg <= 0.0:
+            raise ValueError("profile mass must be positive")
+        self.compactness = (
+            2.0
+            * self.G
+            * self.mass_kg
+            / (self.radius_m * self.c**2)
+        )
+        if not 0.0 < self.compactness < 1.0:
+            raise ValueError("sample compactness must lie in (0,1)")
+        self.trace_energy_j = profiles.flat_trace_energy_j(self.c)
+        self.beta_c = carbon_coupling_from_trace_energy(
+            self.q_c_toy_j,
+            self.trace_energy_j,
+        )
+        self._x_min = 1.0e-7
+        self._inside_solution = None
+        self._outside_solution = None
+        self._nu_shift = 0.0
+        self._chi_shift = 0.0
+
+    def _source_hats(
+        self,
+        x: np.ndarray,
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+        x_array = np.asarray(x, dtype=float)
+        radius_m = x_array * self.radius_m
+        inside = x_array <= 1.0
+        mass_scale = (
+            4.0
+            * math.pi
+            * self.radius_m**3
+            / self.mass_kg
+        )
+        rho_hat = np.where(
+            inside,
+            mass_scale * self.profiles.density(radius_m),
+            0.0,
+        )
+        stress_scale = mass_scale / self.c**2
+        p_r_hat = np.where(
+            inside,
+            stress_scale * self.profiles.radial_stress(radius_m),
+            0.0,
+        )
+        p_t_hat = np.where(
+            inside,
+            stress_scale * self.profiles.tangential_stress(radius_m),
+            0.0,
+        )
+        return rho_hat, p_r_hat, p_t_hat
+
+    def equations(
+        self,
+        x: float,
+        state: np.ndarray,
+    ) -> np.ndarray:
+        u, nu, chi, chi_prime = state
+        del nu, chi
+        safe_x = max(float(x), self._x_min)
+        h = 1.0 - self.compactness * u / safe_x
+        if h <= 0.0:
+            raise RuntimeError("radial solution crossed h=0")
+
+        rho_hat, p_r_hat, p_t_hat = self._source_hats(
+            np.array([safe_x])
+        )
+        rho_value = float(rho_hat[0])
+        p_r_value = float(p_r_hat[0])
+        p_t_value = float(p_t_hat[0])
+
+        scalar_mass_factor = self.beta_c**2 * self.compactness
+        u_prime = (
+            safe_x**2 * rho_value
+            + scalar_mass_factor
+            * safe_x**2
+            * h
+            * chi_prime**2
+        )
+        h_prime = -self.compactness * (
+            u_prime / safe_x - u / safe_x**2
+        )
+        nu_prime = (
+            0.5
+            * self.compactness
+            * (u + safe_x**3 * p_r_value)
+            / (safe_x**2 * h)
+            + 0.5
+            * self.beta_c**2
+            * self.compactness**2
+            * safe_x
+            * chi_prime**2
+        )
+        trace_hat = rho_value - p_r_value - 2.0 * p_t_value
+        chi_second = (
+            0.5 * trace_hat / h
+            - (
+                2.0 / safe_x
+                + nu_prime
+                + 0.5 * h_prime / h
+            )
+            * chi_prime
+        )
+        return np.array(
+            (
+                u_prime,
+                nu_prime,
+                chi_prime,
+                chi_second,
+            )
+        )
+
+    def _solve_once(self) -> None:
+        from scipy.integrate import solve_ivp
+
+        rho_hat, p_r_hat, p_t_hat = self._source_hats(
+            np.array([self._x_min])
+        )
+        trace_hat = float(
+            rho_hat[0] - p_r_hat[0] - 2.0 * p_t_hat[0]
+        )
+        initial_state = np.array(
+            [
+                float(rho_hat[0]) * self._x_min**3 / 3.0,
+                0.0,
+                trace_hat * self._x_min**2 / 12.0,
+                trace_hat * self._x_min / 6.0,
+            ]
+        )
+
+        inside = solve_ivp(
+            self.equations,
+            (self._x_min, 1.0),
+            initial_state,
+            rtol=1.0e-10,
+            atol=1.0e-12,
+            dense_output=True,
+            max_step=1.0 / 400.0,
+        )
+        if not inside.success:
+            raise RuntimeError(inside.message)
+
+        outside = solve_ivp(
+            self.equations,
+            (1.0, self.outer_radius_ratio),
+            inside.y[:, -1],
+            rtol=1.0e-10,
+            atol=1.0e-12,
+            dense_output=True,
+            max_step=(self.outer_radius_ratio - 1.0) / 400.0,
+        )
+        if not outside.success:
+            raise RuntimeError(outside.message)
+
+        right = outside.y[:, -1]
+        h_right = 1.0 - (
+            self.compactness
+            * right[0]
+            / self.outer_radius_ratio
+        )
+        self._chi_shift = (
+            -right[2]
+            - self.outer_radius_ratio * right[3]
+        )
+        self._nu_shift = 0.5 * math.log(h_right) - right[1]
+        self._inside_solution = inside
+        self._outside_solution = outside
+
+    def solve(self) -> "DimensionlessRadialCarbonModel":
+        for _ in range(4):
+            self._solve_once()
+            trace_energy_j = self.covariant_trace_energy_j()
+            beta_c = carbon_coupling_from_trace_energy(
+                self.q_c_toy_j,
+                trace_energy_j,
+            )
+            previous_beta_c = self.beta_c
+            self.trace_energy_j = trace_energy_j
+            self.beta_c = beta_c
+            if math.isclose(
+                beta_c,
+                previous_beta_c,
+                rel_tol=1.0e-12,
+                abs_tol=0.0,
+            ):
+                return self
+        raise RuntimeError(
+            "carbon-coupling fixed point did not converge"
+        )
+
+    @property
+    def solution_success(self) -> bool:
+        return (
+            self._inside_solution is not None
+            and self._outside_solution is not None
+            and self._inside_solution.success
+            and self._outside_solution.success
+        )
+
+    def fields(
+        self,
+        x: float | np.ndarray,
+    ) -> np.ndarray:
+        if not self.solution_success:
+            raise RuntimeError("solve() must be called first")
+        x_array = np.atleast_1d(np.asarray(x, dtype=float))
+        if np.any(x_array < self._x_min) or np.any(
+            x_array > self.outer_radius_ratio
+        ):
+            raise ValueError(
+                "x lies outside the solved radial interval"
+            )
+
+        result = np.empty((4, x_array.size), dtype=float)
+        inside_mask = x_array <= 1.0
+        if np.any(inside_mask):
+            result[:, inside_mask] = self._inside_solution.sol(
+                x_array[inside_mask]
+            )
+        if np.any(~inside_mask):
+            result[:, ~inside_mask] = self._outside_solution.sol(
+                x_array[~inside_mask]
+            )
+        result[1] += self._nu_shift
+        result[2] += self._chi_shift
+        if np.ndim(x) == 0:
+            return result[:, 0]
+        return result
+
+    def physical_scalar_fields(
+        self,
+        x: float | np.ndarray,
+    ) -> tuple[np.ndarray, np.ndarray]:
+        state = self.fields(x)
+        scale = self.beta_c * self.compactness
+        return scale * state[2], scale * state[3]
+
+    def covariant_trace_energy_j(self) -> float:
+        x = np.linspace(self._x_min, 1.0, 4001)
+        u, nu, _, _ = self.fields(x)
+        h = 1.0 - self.compactness * u / x
+        radius_m = x * self.radius_m
+        trace_density = (
+            self.profiles.density(radius_m) * self.c**2
+            - self.profiles.radial_stress(radius_m)
+            - 2.0 * self.profiles.tangential_stress(radius_m)
+        )
+        value = float(
+            4.0
+            * math.pi
+            * np.trapezoid(
+                np.exp(nu)
+                * radius_m**2
+                * trace_density
+                / np.sqrt(h),
+                radius_m,
+            )
+        )
+        if value <= 0.0:
+            raise RuntimeError(
+                "covariant trace energy became nonpositive"
+            )
+        return value
+
+    def universal_long_range_acceleration_difference(
+        self,
+        observer_radius_m: float,
+    ) -> float:
+        if observer_radius_m <= self.radius_m:
+            raise ValueError("observer must lie outside the sample")
+        return (
+            2.0
+            * self.beta_c**2
+            * self.G
+            * self.mass_kg
+            / observer_radius_m**2
+        )
+
+
 class ToyGravityTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
@@ -1493,6 +2043,113 @@ class ToyGravityTests(unittest.TestCase):
         )
 
 
+    def test_carbon_charge_normalization_map(self) -> None:
+        trace_energy_j = self.p.M * self.p.c**2
+        beta_c = carbon_coupling_from_trace_energy(
+            self.p.Q_C,
+            trace_energy_j,
+        )
+        self.assertEqual(
+            toy_charge_from_carbon_coupling(
+                beta_c,
+                trace_energy_j,
+            ),
+            self.p.Q_C,
+        )
+
+
+    def test_measured_carbon_profiles_require_arrays(self) -> None:
+        radius = np.linspace(0.0, 0.5, 9)
+        density = np.full_like(radius, 1420.0)
+        stress = np.zeros_like(radius)
+        with self.assertRaises(TypeError):
+            MeasuredCarbonProfiles(
+                radius.tolist(),
+                density,
+                radius,
+                stress,
+                stress,
+            )
+        profiles = MeasuredCarbonProfiles(
+            radius,
+            density,
+            radius,
+            stress,
+            stress,
+        )
+        self.assertGreater(profiles.mass_kg(), 0.0)
+        self.assertGreater(
+            profiles.flat_trace_energy_j(self.p.c),
+            0.0,
+        )
+
+
+    def test_full_dimensionless_radial_model(self) -> None:
+        reference_mass_kg = 1000.0
+        reference_density_kg_m3 = 1420.0
+        reference_radius_m = (
+            3.0
+            * reference_mass_kg
+            / (4.0 * math.pi * reference_density_kg_m3)
+        ) ** (1.0 / 3.0)
+        radius = np.linspace(0.0, reference_radius_m, 401)
+        density = np.full_like(
+            radius,
+            reference_density_kg_m3,
+        )
+        stress = np.zeros_like(radius)
+        profiles = MeasuredCarbonProfiles(
+            radius,
+            density,
+            radius,
+            stress,
+            stress,
+        )
+        radial_model = DimensionlessRadialCarbonModel(
+            profiles
+        ).solve()
+        self.assertTrue(radial_model.solution_success)
+        state = radial_model.fields(
+            np.array([1.0e-6, 1.0, 20.0])
+        )
+        self.assertTrue(np.all(np.isfinite(state)))
+        self.assertGreater(radial_model.trace_energy_j, 0.0)
+        self.assertEqual(
+            toy_charge_from_carbon_coupling(
+                radial_model.beta_c,
+                radial_model.trace_energy_j,
+            ),
+            radial_model.q_c_toy_j,
+        )
+
+
+    def test_experimental_no_go_registry(self) -> None:
+        trace_energy_j = (
+            REFERENCE_CARBON_MASS_KG * self.p.c**2
+        )
+        computed = normalization_compatible_no_go_acceleration(
+            REFERENCE_TOY_CHARGE_J,
+            trace_energy_j,
+            REFERENCE_CARBON_MASS_KG,
+            REFERENCE_OBSERVER_RADIUS_M,
+            self.p.G,
+        )
+        self.assertTrue(
+            math.isclose(
+                computed,
+                EXPERIMENTAL_NO_GO_ACCELERATION_M_S2,
+                rel_tol=1.0e-12,
+                abs_tol=0.0,
+            )
+        )
+        budget = CarbonControlDifferentialErrorBudget(
+            statistical_m_s2=(
+                EXPERIMENTAL_NO_GO_ACCELERATION_M_S2 / 10.0
+            )
+        )
+        self.assertTrue(budget.satisfies_five_sigma())
+
+
 def report() -> None:
     model = ToyGravityModel().solve()
     p = model.p
@@ -1527,7 +2184,12 @@ def report() -> None:
 
     print(f"M_EFFECTIVE_KG := {model.effective_mass():.12g}")
     print(f"G_BASE_M_PER_S2 := {model.base_gravity():.12g}")
-    print(f"G_V_M_PER_S2 := {model.gravity():.12g}")
+    print(f"TOY_G_V_M_PER_S2 := {model.gravity():.12g}")
+    print("PHYSICAL_FORCE_ENHANCEMENT := REJECTED")
+    print(
+        "REJECTED_PHYSICAL_FORCE_ENHANCEMENT := "
+        f"{REJECTED_PHYSICAL_FORCE_ENHANCEMENT:.12g}"
+    )
     alpha_exact = model.alpha_exact()
     alpha_coupled_linear = (
         model.alpha_coupled_linear_response()
@@ -1576,9 +2238,22 @@ def report() -> None:
         f"{model.alpha_linear_limit():.12g}"
     )
 
+    print("NORMALIZATION_MAP := Q_C_TOY = BETA_C * E_TR")
     print(
-        "BOUNDARY := positive-energy toy model, "
-        "not a derived carbon-gravity theory"
+        "RADIAL_MODEL_INPUT := "
+        "EXTERNAL_CT_DENSITY_AND_RESIDUAL_STRESS_ARRAYS_REQUIRED"
+    )
+    print(
+        "EXPERIMENTAL_NO_GO_ACCELERATION_M_PER_S2 := "
+        f"{EXPERIMENTAL_NO_GO_ACCELERATION_M_S2:.12g}"
+    )
+    print(
+        "FIVE_SIGMA_DIFFERENTIAL_BUDGET_M_PER_S2 := "
+        f"{EXPERIMENTAL_NO_GO_ACCELERATION_M_S2 / 5.0:.12g}"
+    )
+    print(
+        "BOUNDARY := toy enhancement rejected physically; "
+        "no-go bound is conditional on universal massless long-range coupling"
     )
 
 
