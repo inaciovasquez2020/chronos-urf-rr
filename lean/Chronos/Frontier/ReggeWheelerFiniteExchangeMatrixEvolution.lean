@@ -1198,6 +1198,685 @@ theorem finiteExchangeResidualMatrixExponentialAction_eq_formal
     ] <;>
     ring
 
+
+structure FiniteResolutionDetectorModelSelection where
+  hardEfficiency : ℝ
+  softEfficiency : ℝ
+  referenceEnergy : ℝ
+  softResolution : ℝ
+  hardEfficiency_nonneg : 0 ≤ hardEfficiency
+  softEfficiency_nonneg : 0 ≤ softEfficiency
+  referenceEnergy_pos : 0 < referenceEnergy
+  softResolution_pos : 0 < softResolution
+  selectionAssumption : Prop
+
+def cpmFluxPrefactor (ell : Nat) : ℝ :=
+  ((((ell - 1) * ell * (ell + 1) * (ell + 2) : Nat) : ℝ) /
+    (64 * Real.pi))
+
+def CPMBandEnergy
+    {n : Nat}
+    (ell : Nat)
+    (binWeights : Fin n → ℝ)
+    (frequencyDerivative : Fin n → ℂ) :
+    ℝ :=
+  cpmFluxPrefactor ell *
+    ∑ i, binWeights i * Complex.normSq (frequencyDerivative i)
+
+def FiniteResolutionSoftRecord
+    {n : Nat}
+    (earlyWeights lateWeights : Fin n → ℝ)
+    (samples : Fin n → ℂ) :
+    ℂ :=
+  (∑ i, (lateWeights i : ℂ) * samples i) -
+    ∑ i, (earlyWeights i : ℂ) * samples i
+
+
+def finiteDetectorHardHazard
+    (model : FiniteResolutionDetectorModelSelection)
+    (bandEnergy : ℝ) :
+    ℝ :=
+  model.hardEfficiency * bandEnergy / model.referenceEnergy
+
+def finiteDetectorSoftHazard
+    (model : FiniteResolutionDetectorModelSelection)
+    (softRecord : ℂ) :
+    ℝ :=
+  model.softEfficiency * Complex.normSq softRecord /
+    (2 * model.softResolution ^ 2)
+
+def finiteDetectorTotalHazard
+    (hardHazard softHazard : ℝ) :
+    ℝ :=
+  hardHazard + softHazard
+
+def finiteDetectorTotalProbability
+    (hardHazard softHazard : ℝ) :
+    ℝ :=
+  1 - Real.exp
+    (-(finiteDetectorTotalHazard hardHazard softHazard))
+
+def finiteDetectorHardProbability
+    (hardHazard softHazard : ℝ) :
+    ℝ :=
+  let total :=
+    finiteDetectorTotalHazard hardHazard softHazard
+  if total = 0 then
+    0
+  else
+    hardHazard / total *
+      finiteDetectorTotalProbability hardHazard softHazard
+
+def finiteDetectorSoftProbability
+    (hardHazard softHazard : ℝ) :
+    ℝ :=
+  let total :=
+    finiteDetectorTotalHazard hardHazard softHazard
+  if total = 0 then
+    0
+  else
+    softHazard / total *
+      finiteDetectorTotalProbability hardHazard softHazard
+
+theorem finiteDetectorExclusiveProbability_sum
+    (hardHazard softHazard : ℝ)
+    (hTotal :
+      finiteDetectorTotalHazard hardHazard softHazard ≠ 0) :
+    finiteDetectorHardProbability hardHazard softHazard +
+        finiteDetectorSoftProbability hardHazard softHazard =
+      finiteDetectorTotalProbability hardHazard softHazard := by
+  unfold
+    finiteDetectorHardProbability
+    finiteDetectorSoftProbability
+  simp only [hTotal, if_false]
+  field_simp [hTotal]
+  unfold finiteDetectorTotalHazard
+  ring
+
+theorem finiteDetectorZeroHazard_probabilities :
+    finiteDetectorHardProbability 0 0 = 0 ∧
+      finiteDetectorSoftProbability 0 0 = 0 ∧
+      finiteDetectorTotalProbability 0 0 = 0 := by
+  norm_num [
+    finiteDetectorHardProbability,
+    finiteDetectorSoftProbability,
+    finiteDetectorTotalProbability,
+    finiteDetectorTotalHazard
+  ]
+
+
+def finiteDetectorMatchedFrequency
+    (duration hardHazard softHazard : ℝ) :
+    ℝ :=
+  Real.arcsin
+      (Real.sqrt
+        (finiteDetectorTotalProbability hardHazard softHazard)) /
+    duration
+
+def finiteDetectorMatchedHardMixing
+    (hardHazard softHazard : ℝ) :
+    ℝ :=
+  let total :=
+    finiteDetectorTotalHazard hardHazard softHazard
+  if total = 0 then
+    1
+  else
+    Real.sqrt (hardHazard / total)
+
+def finiteDetectorMatchedSoftMixing
+    (hardHazard softHazard : ℝ) :
+    ℝ :=
+  let total :=
+    finiteDetectorTotalHazard hardHazard softHazard
+  if total = 0 then
+    0
+  else
+    Real.sqrt (softHazard / total)
+
+def finiteDetectorMatchedHardCoupling
+    (duration hardHazard softHazard : ℝ) :
+    ℝ :=
+  finiteDetectorMatchedFrequency
+      duration hardHazard softHazard *
+    finiteDetectorMatchedHardMixing hardHazard softHazard
+
+def finiteDetectorMatchedSoftCoupling
+    (duration hardHazard softHazard : ℝ) :
+    ℝ :=
+  finiteDetectorMatchedFrequency
+      duration hardHazard softHazard *
+    finiteDetectorMatchedSoftMixing hardHazard softHazard
+
+theorem finiteDetectorMatchedMixing_sq_add
+    (hardHazard softHazard : ℝ)
+    (hHard : 0 ≤ hardHazard)
+    (hSoft : 0 ≤ softHazard) :
+    finiteDetectorMatchedHardMixing
+          hardHazard softHazard ^ 2 +
+        finiteDetectorMatchedSoftMixing
+          hardHazard softHazard ^ 2 =
+      1 := by
+  by_cases hTotal :
+      finiteDetectorTotalHazard hardHazard softHazard = 0
+  · simp [
+      finiteDetectorMatchedHardMixing,
+      finiteDetectorMatchedSoftMixing,
+      hTotal
+    ]
+  · have hTotalNonneg :
+        0 ≤ finiteDetectorTotalHazard hardHazard softHazard := by
+      unfold finiteDetectorTotalHazard
+      linarith
+    have hTotalPos :
+        0 < finiteDetectorTotalHazard hardHazard softHazard :=
+      lt_of_le_of_ne hTotalNonneg (Ne.symm hTotal)
+    have hHardRatio :
+        0 ≤
+          hardHazard /
+            finiteDetectorTotalHazard
+              hardHazard softHazard :=
+      div_nonneg hHard (le_of_lt hTotalPos)
+    have hSoftRatio :
+        0 ≤
+          softHazard /
+            finiteDetectorTotalHazard
+              hardHazard softHazard :=
+      div_nonneg hSoft (le_of_lt hTotalPos)
+    unfold
+      finiteDetectorMatchedHardMixing
+      finiteDetectorMatchedSoftMixing
+    simp only [hTotal, if_false]
+    rw [
+      Real.sq_sqrt hHardRatio,
+      Real.sq_sqrt hSoftRatio
+    ]
+    field_simp [hTotal]
+    unfold finiteDetectorTotalHazard
+    ring
+
+theorem finiteDetectorMatchedFrequency_mul_duration
+    (duration hardHazard softHazard : ℝ)
+    (hDuration : duration ≠ 0) :
+    finiteDetectorMatchedFrequency
+          duration hardHazard softHazard *
+        duration =
+      Real.arcsin
+        (Real.sqrt
+          (finiteDetectorTotalProbability
+            hardHazard softHazard)) := by
+  unfold finiteDetectorMatchedFrequency
+  field_simp [hDuration]
+
+theorem finiteDetectorMatchedTransitionProbability
+    (duration hardHazard softHazard : ℝ)
+    (hDuration : duration ≠ 0)
+    (hProbabilityNonneg :
+      0 ≤ finiteDetectorTotalProbability
+        hardHazard softHazard)
+    (hProbabilityLeOne :
+      finiteDetectorTotalProbability
+          hardHazard softHazard ≤
+        1) :
+    Real.sin
+        (finiteDetectorMatchedFrequency
+          duration hardHazard softHazard * duration) ^ 2 =
+      finiteDetectorTotalProbability hardHazard softHazard := by
+  rw [
+    finiteDetectorMatchedFrequency_mul_duration
+      duration hardHazard softHazard hDuration
+  ]
+  have hSqrtNonneg :
+      0 ≤
+        Real.sqrt
+          (finiteDetectorTotalProbability
+            hardHazard softHazard) :=
+    Real.sqrt_nonneg _
+  have hSqrtSq :
+      Real.sqrt
+          (finiteDetectorTotalProbability
+            hardHazard softHazard) ^ 2 =
+        finiteDetectorTotalProbability hardHazard softHazard :=
+    Real.sq_sqrt hProbabilityNonneg
+  have hSqrtLower :
+      -1 ≤
+        Real.sqrt
+          (finiteDetectorTotalProbability
+            hardHazard softHazard) := by
+    linarith
+  have hSqrtUpper :
+      Real.sqrt
+          (finiteDetectorTotalProbability
+            hardHazard softHazard) ≤
+        1 := by
+    nlinarith
+  rw [Real.sin_arcsin hSqrtLower hSqrtUpper]
+  exact hSqrtSq
+
+theorem finiteDetectorMatchedHardProbability
+    (duration hardHazard softHazard : ℝ)
+    (hDuration : duration ≠ 0)
+    (hHard : 0 ≤ hardHazard)
+    (hSoft : 0 ≤ softHazard)
+    (hTotal :
+      finiteDetectorTotalHazard hardHazard softHazard ≠ 0)
+    (hProbabilityNonneg :
+      0 ≤ finiteDetectorTotalProbability
+        hardHazard softHazard)
+    (hProbabilityLeOne :
+      finiteDetectorTotalProbability
+          hardHazard softHazard ≤
+        1) :
+    finiteDetectorMatchedHardMixing
+          hardHazard softHazard ^ 2 *
+        Real.sin
+          (finiteDetectorMatchedFrequency
+            duration hardHazard softHazard * duration) ^ 2 =
+      finiteDetectorHardProbability hardHazard softHazard := by
+  have hTotalNonneg :
+      0 ≤ finiteDetectorTotalHazard hardHazard softHazard := by
+    unfold finiteDetectorTotalHazard
+    linarith
+  have hTotalPos :
+      0 < finiteDetectorTotalHazard hardHazard softHazard :=
+    lt_of_le_of_ne hTotalNonneg (Ne.symm hTotal)
+  have hHardRatio :
+      0 ≤
+        hardHazard /
+          finiteDetectorTotalHazard hardHazard softHazard :=
+    div_nonneg hHard (le_of_lt hTotalPos)
+  rw [
+    finiteDetectorMatchedTransitionProbability
+      duration hardHazard softHazard
+      hDuration hProbabilityNonneg hProbabilityLeOne
+  ]
+  unfold
+    finiteDetectorMatchedHardMixing
+    finiteDetectorHardProbability
+  simp only [hTotal, if_false]
+  rw [Real.sq_sqrt hHardRatio]
+
+theorem finiteDetectorMatchedSoftProbability
+    (duration hardHazard softHazard : ℝ)
+    (hDuration : duration ≠ 0)
+    (hHard : 0 ≤ hardHazard)
+    (hSoft : 0 ≤ softHazard)
+    (hTotal :
+      finiteDetectorTotalHazard hardHazard softHazard ≠ 0)
+    (hProbabilityNonneg :
+      0 ≤ finiteDetectorTotalProbability
+        hardHazard softHazard)
+    (hProbabilityLeOne :
+      finiteDetectorTotalProbability
+          hardHazard softHazard ≤
+        1) :
+    finiteDetectorMatchedSoftMixing
+          hardHazard softHazard ^ 2 *
+        Real.sin
+          (finiteDetectorMatchedFrequency
+            duration hardHazard softHazard * duration) ^ 2 =
+      finiteDetectorSoftProbability hardHazard softHazard := by
+  have hTotalNonneg :
+      0 ≤ finiteDetectorTotalHazard hardHazard softHazard := by
+    unfold finiteDetectorTotalHazard
+    linarith
+  have hTotalPos :
+      0 < finiteDetectorTotalHazard hardHazard softHazard :=
+    lt_of_le_of_ne hTotalNonneg (Ne.symm hTotal)
+  have hSoftRatio :
+      0 ≤
+        softHazard /
+          finiteDetectorTotalHazard hardHazard softHazard :=
+    div_nonneg hSoft (le_of_lt hTotalPos)
+  rw [
+    finiteDetectorMatchedTransitionProbability
+      duration hardHazard softHazard
+      hDuration hProbabilityNonneg hProbabilityLeOne
+  ]
+  unfold
+    finiteDetectorMatchedSoftMixing
+    finiteDetectorSoftProbability
+  simp only [hTotal, if_false]
+  rw [Real.sq_sqrt hSoftRatio]
+
+theorem finiteDetectorMatchedCalibration
+    (duration hardHazard softHazard : ℝ)
+    (hDuration : duration ≠ 0)
+    (hHard : 0 ≤ hardHazard)
+    (hSoft : 0 ≤ softHazard)
+    (hTotal :
+      finiteDetectorTotalHazard hardHazard softHazard ≠ 0)
+    (hProbabilityNonneg :
+      0 ≤ finiteDetectorTotalProbability
+        hardHazard softHazard)
+    (hProbabilityLeOne :
+      finiteDetectorTotalProbability
+          hardHazard softHazard ≤
+        1) :
+    finiteDetectorMatchedHardMixing
+          hardHazard softHazard ^ 2 +
+        finiteDetectorMatchedSoftMixing
+          hardHazard softHazard ^ 2 =
+      1 ∧
+    finiteDetectorMatchedHardMixing
+          hardHazard softHazard ^ 2 *
+        Real.sin
+          (finiteDetectorMatchedFrequency
+            duration hardHazard softHazard * duration) ^ 2 =
+      finiteDetectorHardProbability hardHazard softHazard ∧
+    finiteDetectorMatchedSoftMixing
+          hardHazard softHazard ^ 2 *
+        Real.sin
+          (finiteDetectorMatchedFrequency
+            duration hardHazard softHazard * duration) ^ 2 =
+      finiteDetectorSoftProbability hardHazard softHazard := by
+  exact ⟨
+    finiteDetectorMatchedMixing_sq_add
+      hardHazard softHazard hHard hSoft,
+    finiteDetectorMatchedHardProbability
+      duration hardHazard softHazard
+      hDuration hHard hSoft hTotal
+      hProbabilityNonneg hProbabilityLeOne,
+    finiteDetectorMatchedSoftProbability
+      duration hardHazard softHazard
+      hDuration hHard hSoft hTotal
+      hProbabilityNonneg hProbabilityLeOne
+  ⟩
+
+
+def finiteDetectorMatchedKappa
+    (duration hardHazard softHazard efficiency : ℝ) :
+    ℝ :=
+  finiteDetectorMatchedFrequency
+      duration hardHazard softHazard *
+      Real.sqrt efficiency /
+    Real.sqrt
+      (finiteDetectorTotalHazard hardHazard softHazard)
+
+abbrev GeometrizedScaleDimension := ℤ
+
+def geometrizedDimensionless :
+    GeometrizedScaleDimension :=
+  0
+
+def geometrizedLengthDimension :
+    GeometrizedScaleDimension :=
+  1
+
+def geometrizedTimeDimension :
+    GeometrizedScaleDimension :=
+  1
+
+def geometrizedInverseTimeDimension :
+    GeometrizedScaleDimension :=
+  -1
+
+def geometrizedCPMFieldDimension :
+    GeometrizedScaleDimension :=
+  geometrizedLengthDimension
+
+def geometrizedCPMDerivativeDimension :
+    GeometrizedScaleDimension :=
+  geometrizedCPMFieldDimension -
+    geometrizedTimeDimension
+
+def geometrizedCPMBandEnergyDimension :
+    GeometrizedScaleDimension :=
+  geometrizedCPMDerivativeDimension +
+    geometrizedCPMDerivativeDimension +
+    geometrizedTimeDimension
+
+def geometrizedSoftRecordDimension :
+    GeometrizedScaleDimension :=
+  geometrizedCPMFieldDimension
+
+def geometrizedSoftResolutionDimension :
+    GeometrizedScaleDimension :=
+  geometrizedCPMFieldDimension
+
+def geometrizedNormalizedSoftRecordDimension :
+    GeometrizedScaleDimension :=
+  geometrizedSoftRecordDimension -
+    geometrizedSoftResolutionDimension
+
+def geometrizedHazardDimension :
+    GeometrizedScaleDimension :=
+  geometrizedDimensionless
+
+def geometrizedProbabilityDimension :
+    GeometrizedScaleDimension :=
+  geometrizedDimensionless
+
+def geometrizedMatchedFrequencyDimension :
+    GeometrizedScaleDimension :=
+  geometrizedDimensionless -
+    geometrizedTimeDimension
+
+def geometrizedMixingDimension :
+    GeometrizedScaleDimension :=
+  geometrizedDimensionless
+
+def geometrizedCouplingDimension :
+    GeometrizedScaleDimension :=
+  geometrizedMatchedFrequencyDimension +
+    geometrizedMixingDimension
+
+def geometrizedKappaDimension :
+    GeometrizedScaleDimension :=
+  geometrizedMatchedFrequencyDimension -
+    geometrizedDimensionless
+
+theorem finiteDetectorCalibration_dimensions :
+    geometrizedCPMFieldDimension =
+        geometrizedLengthDimension ∧
+      geometrizedCPMDerivativeDimension =
+        geometrizedDimensionless ∧
+      geometrizedCPMBandEnergyDimension =
+        geometrizedLengthDimension ∧
+      geometrizedSoftRecordDimension =
+        geometrizedLengthDimension ∧
+      geometrizedNormalizedSoftRecordDimension =
+        geometrizedDimensionless ∧
+      geometrizedHazardDimension =
+        geometrizedDimensionless ∧
+      geometrizedProbabilityDimension =
+        geometrizedDimensionless ∧
+      geometrizedMatchedFrequencyDimension =
+        geometrizedInverseTimeDimension ∧
+      geometrizedMixingDimension =
+        geometrizedDimensionless ∧
+      geometrizedCouplingDimension =
+        geometrizedInverseTimeDimension ∧
+      geometrizedKappaDimension =
+        geometrizedInverseTimeDimension := by
+  norm_num [
+    geometrizedCPMFieldDimension,
+    geometrizedCPMDerivativeDimension,
+    geometrizedCPMBandEnergyDimension,
+    geometrizedSoftRecordDimension,
+    geometrizedSoftResolutionDimension,
+    geometrizedNormalizedSoftRecordDimension,
+    geometrizedHazardDimension,
+    geometrizedProbabilityDimension,
+    geometrizedMatchedFrequencyDimension,
+    geometrizedMixingDimension,
+    geometrizedCouplingDimension,
+    geometrizedKappaDimension,
+    geometrizedDimensionless,
+    geometrizedLengthDimension,
+    geometrizedTimeDimension,
+    geometrizedInverseTimeDimension
+  ]
+
+theorem cpmFluxPrefactor_two :
+    cpmFluxPrefactor 2 = 3 / (8 * Real.pi) := by
+  calc
+    cpmFluxPrefactor 2 =
+        (24 : ℝ) / (64 * Real.pi) := by
+      norm_num [cpmFluxPrefactor]
+    _ = 3 / (8 * Real.pi) := by
+      field_simp [Real.pi_ne_zero]
+      norm_num
+
+structure SchwarzschildFiniteDetectorWitness where
+  solarMassCount : Nat
+  ell : Nat
+  durationInMassUnits : ℝ
+  hardHazard : ℝ
+  softHazard : ℝ
+
+def schwarzschildTenSolarMassEllTwoDetectorWitness :
+    SchwarzschildFiniteDetectorWitness where
+  solarMassCount := 10
+  ell := 2
+  durationInMassUnits := 100
+  hardHazard := 1 / 100
+  softHazard := 1 / 400
+
+theorem schwarzschildTenSolarMassEllTwoDetectorWitness_data :
+    schwarzschildTenSolarMassEllTwoDetectorWitness.solarMassCount =
+        10 ∧
+      schwarzschildTenSolarMassEllTwoDetectorWitness.ell =
+        2 ∧
+      schwarzschildTenSolarMassEllTwoDetectorWitness.durationInMassUnits =
+        100 ∧
+      schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard =
+        (1 / 100 : ℝ) ∧
+      schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard =
+        (1 / 400 : ℝ) := by
+  norm_num [schwarzschildTenSolarMassEllTwoDetectorWitness]
+
+theorem schwarzschildTenSolarMassEllTwo_totalHazard :
+    finiteDetectorTotalHazard
+        schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+        schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard =
+      (1 / 80 : ℝ) := by
+  norm_num [
+    schwarzschildTenSolarMassEllTwoDetectorWitness,
+    finiteDetectorTotalHazard
+  ]
+
+theorem schwarzschildTenSolarMassEllTwo_totalProbability :
+    finiteDetectorTotalProbability
+        schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+        schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard =
+      1 - Real.exp (-(1 / 80 : ℝ)) := by
+  norm_num [
+    schwarzschildTenSolarMassEllTwoDetectorWitness,
+    finiteDetectorTotalProbability,
+    finiteDetectorTotalHazard
+  ]
+
+theorem schwarzschildTenSolarMassEllTwo_hardProbability :
+    finiteDetectorHardProbability
+        schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+        schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard =
+      (4 / 5 : ℝ) *
+        (1 - Real.exp (-(1 / 80 : ℝ))) := by
+  norm_num [
+    schwarzschildTenSolarMassEllTwoDetectorWitness,
+    finiteDetectorHardProbability,
+    finiteDetectorTotalProbability,
+    finiteDetectorTotalHazard
+  ]
+
+theorem schwarzschildTenSolarMassEllTwo_softProbability :
+    finiteDetectorSoftProbability
+        schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+        schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard =
+      (1 / 5 : ℝ) *
+        (1 - Real.exp (-(1 / 80 : ℝ))) := by
+  norm_num [
+    schwarzschildTenSolarMassEllTwoDetectorWitness,
+    finiteDetectorSoftProbability,
+    finiteDetectorTotalProbability,
+    finiteDetectorTotalHazard
+  ]
+
+theorem schwarzschildTenSolarMassEllTwo_hardMixing_sq :
+    finiteDetectorMatchedHardMixing
+        schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+        schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard ^ 2 =
+      (4 / 5 : ℝ) := by
+  calc
+    finiteDetectorMatchedHardMixing
+          schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+          schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard ^ 2 =
+        Real.sqrt (4 / 5 : ℝ) ^ 2 := by
+      norm_num [
+        schwarzschildTenSolarMassEllTwoDetectorWitness,
+        finiteDetectorMatchedHardMixing,
+        finiteDetectorTotalHazard
+      ]
+    _ = 4 / 5 := Real.sq_sqrt (by norm_num)
+
+theorem schwarzschildTenSolarMassEllTwo_softMixing_sq :
+    finiteDetectorMatchedSoftMixing
+        schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+        schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard ^ 2 =
+      (1 / 5 : ℝ) := by
+  calc
+    finiteDetectorMatchedSoftMixing
+          schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+          schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard ^ 2 =
+        Real.sqrt (1 / 5 : ℝ) ^ 2 := by
+      norm_num [
+        schwarzschildTenSolarMassEllTwoDetectorWitness,
+        finiteDetectorMatchedSoftMixing,
+        finiteDetectorTotalHazard
+      ]
+    _ = 1 / 5 := Real.sq_sqrt (by norm_num)
+
+theorem schwarzschildTenSolarMassEllTwo_matchedFrequency :
+    finiteDetectorMatchedFrequency
+        schwarzschildTenSolarMassEllTwoDetectorWitness.durationInMassUnits
+        schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+        schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard =
+      Real.arcsin
+          (Real.sqrt
+            (1 - Real.exp (-(1 / 80 : ℝ)))) /
+        100 := by
+  norm_num [
+    schwarzschildTenSolarMassEllTwoDetectorWitness,
+    finiteDetectorMatchedFrequency,
+    finiteDetectorTotalProbability,
+    finiteDetectorTotalHazard
+  ]
+
+theorem schwarzschildTenSolarMassEllTwo_exactCalibration :
+    cpmFluxPrefactor
+          schwarzschildTenSolarMassEllTwoDetectorWitness.ell =
+        3 / (8 * Real.pi) ∧
+      finiteDetectorTotalHazard
+          schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+          schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard =
+        (1 / 80 : ℝ) ∧
+      finiteDetectorMatchedHardMixing
+          schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+          schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard ^ 2 =
+        (4 / 5 : ℝ) ∧
+      finiteDetectorMatchedSoftMixing
+          schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+          schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard ^ 2 =
+        (1 / 5 : ℝ) ∧
+      finiteDetectorHardProbability
+          schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+          schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard =
+        (4 / 5 : ℝ) *
+          (1 - Real.exp (-(1 / 80 : ℝ))) ∧
+      finiteDetectorSoftProbability
+          schwarzschildTenSolarMassEllTwoDetectorWitness.hardHazard
+          schwarzschildTenSolarMassEllTwoDetectorWitness.softHazard =
+        (1 / 5 : ℝ) *
+          (1 - Real.exp (-(1 / 80 : ℝ))) := by
+  exact ⟨
+    cpmFluxPrefactor_two,
+    schwarzschildTenSolarMassEllTwo_totalHazard,
+    schwarzschildTenSolarMassEllTwo_hardMixing_sq,
+    schwarzschildTenSolarMassEllTwo_softMixing_sq,
+    schwarzschildTenSolarMassEllTwo_hardProbability,
+    schwarzschildTenSolarMassEllTwo_softProbability
+  ⟩
+
 def reggeWheelerFiniteExchangeMatrixEvolutionStatus : String :=
   "EXPLICIT_COMPLEX_MATRIX_HERMITIAN_CHARGE_COMMUTING_FORMAL_RESIDUAL_EVOLUTION_AND_RW_BALANCED_PREDICTION"
 
