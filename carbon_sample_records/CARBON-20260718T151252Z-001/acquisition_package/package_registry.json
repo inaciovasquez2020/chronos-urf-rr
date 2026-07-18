@@ -1,0 +1,42 @@
+{
+  "acceptance_gate": "Replace the current metadata and CSV templates with calibrated same-specimen measurements, then run validate_measurement_bundle.py.",
+  "boundary": "No measurement values, uncertainty result, or sample-specific no-go bound are asserted.",
+  "files": {
+    "acquisition_package_manifest.json": {
+      "sha256": "1585d67e42492f1a919adac40a244c9b064ea3e8b1269a600d4fdc6e887e68a7",
+      "size_bytes": 1631
+    },
+    "current_ct_density.csv": {
+      "sha256": "977c84fb1c1d7cbeba51f14bf8bf2a1542f61c1e13014a4d3903c5f2d2e0f32a",
+      "size_bytes": 36
+    },
+    "current_residual_stress.csv": {
+      "sha256": "5f5d56e455aec0a4e0b45cf85b1fb34cc07064a0503f2f380fe4bb671e6c0156",
+      "size_bytes": 76
+    },
+    "current_sample_metadata.json": {
+      "sha256": "38a2705b0f22da3f8a1bbd8b91127a4c8f19bdc45d86b1022ca2ac47a0d0a703",
+      "size_bytes": 701
+    },
+    "deep_search_audit.json": {
+      "sha256": "e0e4400946458c32d937cdffca2ebc255f7d288b37125863f993bc36b3cb5d8d",
+      "size_bytes": 351
+    },
+    "expected_incomplete_validation.txt": {
+      "sha256": "eb0b02da54e177b0d4fef36ac5f0abd9930d585c4660459c5115b31035d85de3",
+      "size_bytes": 61
+    },
+    "measurement_acquisition_protocol.md": {
+      "sha256": "aafa47f4c38f5be3f750b437102a100d0553e6b295b13252b79f8b452cf300c3",
+      "size_bytes": 2151
+    },
+    "validate_measurement_bundle.py": {
+      "sha256": "dfa519947659d9afce8176df1e10372282e45aa3eba5440163d9d18eb4ec1f8b",
+      "size_bytes": 6434
+    }
+  },
+  "registered_at_utc": "2026-07-18T16:03:21.933773+00:00",
+  "sample_id": "CARBON-20260718T151252Z-001",
+  "scientific_result": false,
+  "state": "AWAITING_PHYSICAL_MEASUREMENTS"
+}
