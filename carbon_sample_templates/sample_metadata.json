@@ -1,0 +1,23 @@
+{
+  "sample_id": null,
+  "material": null,
+  "measurement_status": "MEASURED",
+  "shape": "sphere",
+  "mass_kg": null,
+  "mass_uncertainty_kg": null,
+  "radius_m": null,
+  "radius_uncertainty_m": null,
+  "temperature_k": null,
+  "temperature_uncertainty_k": null,
+  "observer_radius_m": null,
+  "observer_radius_uncertainty_m": null,
+  "ct_instrument": null,
+  "ct_calibration_id": null,
+  "ct_calibration_date": null,
+  "density_calibration_method": null,
+  "stress_instrument": null,
+  "stress_calibration_id": null,
+  "stress_calibration_date": null,
+  "acquisition_timestamp": null,
+  "provenance": null
+}
