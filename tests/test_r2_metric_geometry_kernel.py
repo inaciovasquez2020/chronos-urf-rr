@@ -9,6 +9,7 @@ FILES = {
     "geometry": BASE / "R2MetricFillingGeometry.lean",
     "chain_complex": BASE / "R2ChainComplexGeometry.lean",
     "linear_chain_complex": BASE / "R2LinearChainComplexGeometry.lean",
+    "incidence_boundary": BASE / "R2IncidenceBoundaryExtension.lean",
     "support": BASE / "R2BoundarySupportMonotonicity.lean",
     "kernel": BASE / "R2MetricDiameterObstructionKernel.lean",
     "closed_ball": BASE / "R2ClosedBallLocalization.lean",
@@ -162,6 +163,39 @@ def test_linear_chain_complex_uses_actual_linear_maps() -> None:
         assert token in text, token
 
 
+def test_incidence_data_derives_full_linear_boundary_maps() -> None:
+    text = read("incidence_boundary")
+
+    required = (
+        "structure R2IncidenceBoundaryData where",
+        "faceBoundary :",
+        "edgeBoundary :",
+        "geometry_boundary_eq",
+        "face_boundary_cycle",
+        "def boundary2Linear",
+        "def boundary1Linear",
+        "Finsupp.linearCombination",
+        "theorem boundary_squared_zero",
+        "apply Finsupp.lhom_ext",
+        "def toLinearChainComplexGeometry",
+        "theorem fillable_isCycle",
+    )
+
+    for token in required:
+        assert token in text, token
+
+    assert (
+        "boundary_squared_zero :="
+        not in text.split(
+            "structure R2IncidenceBoundaryData where",
+            1,
+        )[1].split(
+            "namespace R2IncidenceBoundaryData",
+            1,
+        )[0]
+    )
+
+
 def test_boundary_support_monotonicity_is_derived() -> None:
     text = read("support")
 
@@ -270,6 +304,7 @@ def test_all_r2_geometry_modules_are_registered() -> None:
         "import Chronos.Frontier.R2Geometry.R2MetricFillingGeometry",
         "import Chronos.Frontier.R2Geometry.R2ChainComplexGeometry",
         "import Chronos.Frontier.R2Geometry.R2LinearChainComplexGeometry",
+        "import Chronos.Frontier.R2Geometry.R2IncidenceBoundaryExtension",
         "import Chronos.Frontier.R2Geometry.R2BoundarySupportMonotonicity",
         "import Chronos.Frontier.R2Geometry.R2MetricDiameterObstructionKernel",
         "import Chronos.Frontier.R2Geometry.R2ClosedBallLocalization",

@@ -15,6 +15,7 @@ import Chronos.Frontier.R2GeneralCrossRootIncidenceInputSurface
 import Chronos.Frontier.R2Geometry.R2MetricFillingGeometry
 import Chronos.Frontier.R2Geometry.R2ChainComplexGeometry
 import Chronos.Frontier.R2Geometry.R2LinearChainComplexGeometry
+import Chronos.Frontier.R2Geometry.R2IncidenceBoundaryExtension
 import Chronos.Frontier.R2Geometry.R2BoundarySupportMonotonicity
 import Chronos.Frontier.R2Geometry.R2MetricDiameterObstructionKernel
 import Chronos.Frontier.R2Geometry.R2ClosedBallLocalization
