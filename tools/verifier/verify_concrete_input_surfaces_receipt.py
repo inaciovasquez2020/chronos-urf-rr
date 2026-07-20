@@ -18,9 +18,9 @@ checks = {
     ],
     "lean/Chronos/Frontier/DiameterSeparationFillingConcreteInputSurface.lean": [
         "def DiameterSeparationFillingConcreteInputSurface",
-        "DiameterFillingNativeObject",
-        "DiameterFillingCompatibility",
-        "monotone_separation_lower_bound",
+        "R2IncidenceFaceChain",
+        "r2IncidenceBoundary2",
+        "r2_cross_root_face_incidence_obstruction",
     ],
     "lean/Chronos/Frontier/UniformLocalTypeCapacityConcreteInputSurface.lean": [
         "def UniformLocalTypeCapacityConcreteInputSurface",
