@@ -11,6 +11,7 @@ FILES = {
     "linear_chain_complex": BASE / "R2LinearChainComplexGeometry.lean",
     "incidence_boundary": BASE / "R2IncidenceBoundaryExtension.lean",
     "vertex_parity_boundary": BASE / "R2VertexParityBoundary.lean",
+    "endpoint_boundary": BASE / "R2EndpointBoundary.lean",
     "support": BASE / "R2BoundarySupportMonotonicity.lean",
     "kernel": BASE / "R2MetricDiameterObstructionKernel.lean",
     "closed_ball": BASE / "R2ClosedBallLocalization.lean",
@@ -229,6 +230,42 @@ def test_vertex_parity_derives_face_and_global_cycle_laws() -> None:
     assert "boundary_squared_zero :" not in structure_body
 
 
+def test_edge_boundaries_are_derived_from_endpoints() -> None:
+    text = read("endpoint_boundary")
+
+    required = (
+        "def r2EndpointChain",
+        "structure R2EndpointBoundaryData where",
+        "edgeSource :",
+        "edgeTarget :",
+        "faceBoundary :",
+        "geometry_boundary_eq",
+        "endpoint_parity :",
+        "def edgeBoundary",
+        "theorem edgeBoundary_eq",
+        "def toVertexParityBoundaryData",
+        "theorem boundary_squared_zero",
+        "theorem fillable_isCycle",
+    )
+
+    for token in required:
+        assert token in text, token
+
+    structure_body = text.split(
+        "structure R2EndpointBoundaryData where",
+        1,
+    )[1].split(
+        "namespace R2EndpointBoundaryData",
+        1,
+    )[0]
+
+    assert "edgeBoundary :" not in structure_body
+    assert "vertex_parity :" not in structure_body
+    assert "boundary_squared_zero :" not in structure_body
+    assert "Finsupp.single source (1 : F2)" in text
+    assert "Finsupp.single target (1 : F2)" in text
+
+
 def test_boundary_support_monotonicity_is_derived() -> None:
     text = read("support")
 
@@ -339,6 +376,7 @@ def test_all_r2_geometry_modules_are_registered() -> None:
         "import Chronos.Frontier.R2Geometry.R2LinearChainComplexGeometry",
         "import Chronos.Frontier.R2Geometry.R2IncidenceBoundaryExtension",
         "import Chronos.Frontier.R2Geometry.R2VertexParityBoundary",
+        "import Chronos.Frontier.R2Geometry.R2EndpointBoundary",
         "import Chronos.Frontier.R2Geometry.R2BoundarySupportMonotonicity",
         "import Chronos.Frontier.R2Geometry.R2MetricDiameterObstructionKernel",
         "import Chronos.Frontier.R2Geometry.R2ClosedBallLocalization",
