@@ -1,36 +1,34 @@
-import Chronos.Frontier.NativeLongChordDiameterCapacityIngredients
 import Chronos.Frontier.R1R2R3IsolatedTargetsConditionalClosure
+import Chronos.Frontier.R2CrossRootFaceIncidenceObstruction
 
 namespace Chronos
 namespace Frontier
 
 def DiameterSeparationFillingConcreteConfiguration : Type :=
-  DiameterFillingNativeObject
+  R2IncidenceFaceChain
 
 def DiameterSeparationFillingConcreteDiameterSeparated
-    (x : DiameterSeparationFillingConcreteConfiguration) : Prop :=
-  DiameterFillingCompatibility x
+    (chain : DiameterSeparationFillingConcreteConfiguration) : Prop :=
+  r2IncidenceBoundary2 chain = r2IncidenceCrossRootBoundary
 
 def DiameterSeparationFillingConcreteFillable
-    (x : DiameterSeparationFillingConcreteConfiguration) : Prop :=
-  x.targetDiameter + x.fillingCost < x.separationFloor
+    (chain : DiameterSeparationFillingConcreteConfiguration) : Prop :=
+  ¬ R2CrossRootFaceIncidenceObstruction chain
 
 theorem diameter_separation_filling_concrete_obstruction :
-    ∀ C,
-      DiameterSeparationFillingConcreteDiameterSeparated C →
-        ¬ DiameterSeparationFillingConcreteFillable C := by
-  intro C hSeparated hFillable
-  exact Nat.not_lt_of_ge
-    (monotone_separation_lower_bound C hSeparated)
-    hFillable
+    ∀ chain,
+      DiameterSeparationFillingConcreteDiameterSeparated chain →
+      ¬ DiameterSeparationFillingConcreteFillable chain := by
+  intro chain hBoundary hLocallyDecomposable
+  exact hLocallyDecomposable
+    (r2_cross_root_face_incidence_obstruction chain hBoundary)
 
 def DiameterSeparationFillingConcreteInputSurface :
-    DiameterSeparationFillingObstructionInputSurface :=
-  DiameterSeparationFillingObstructionInputSurface.mk
-    DiameterSeparationFillingConcreteConfiguration
-    DiameterSeparationFillingConcreteDiameterSeparated
-    DiameterSeparationFillingConcreteFillable
-    diameter_separation_filling_concrete_obstruction
+    DiameterSeparationFillingObstructionInputSurface where
+  Configuration := DiameterSeparationFillingConcreteConfiguration
+  DiameterSeparated := DiameterSeparationFillingConcreteDiameterSeparated
+  Fillable := DiameterSeparationFillingConcreteFillable
+  obstruction := diameter_separation_filling_concrete_obstruction
 
 end Frontier
 end Chronos

@@ -1,22 +1,21 @@
-# R2 diameter/filling compatibility sufficiency
+# R2 cross-root face-incidence sufficiency
 
-Status: `R2_COMPATIBILITY_LOWER_BOUND_CLOSED_PROMOTION_ELIMINATION_OPEN`.
+Status: `R2_CROSS_ROOT_FACE_INCIDENCE_CLOSED_PROMOTION_ELIMINATION_OPEN`.
 
 ## Closed in this packet
 
-- `RepositoryNativeR2DiameterFillingCompatibility`
-- `RepositoryNativeR2SeparationLowerBound`
-- `repository_native_r2_diameter_filling_compatibility_gives_lower_bound`
-- `R2DiameterFillingCompatibilityToPromotionObstructionEliminationTarget`
+- `RepositoryNativeR2CrossRootFaceIncidence`
+- `repository_native_r2_cross_root_face_incidence`
+- `R2CrossRootFaceIncidenceToPromotionObstructionEliminationTarget`
 - `R2DiameterFillingCompatibilitySufficiencyFrontierOpen`
 
 ## Mathematical effect
 
-Repository-native R2 diameter/filling compatibility implies the monotone separation lower bound.
+The finite repository-native R2 cross-root face-incidence obstruction is proved; the bridge to the general R2 promotion certificate remains open.
 
 ## Still open
 
-- `R2DiameterFillingCompatibilityToPromotionObstructionEliminationTarget` proof
+- `R2CrossRootFaceIncidenceToPromotionObstructionEliminationTarget` proof
 - `R2PromotionProofObstructionEliminationCertificate`
 
 ## Boundary

@@ -14,25 +14,25 @@ def test_r2_diameter_filling_compatibility_sufficiency_verifier_passes():
     )
     assert "R2_DIAMETER_FILLING_COMPATIBILITY_SUFFICIENCY_OK" in result.stdout
 
-def test_r2_compatibility_and_lower_bound_are_defined():
+def test_r2_cross_root_face_incidence_package_is_defined():
     text = LEAN.read_text()
-    assert "def RepositoryNativeR2DiameterFillingCompatibility" in text
-    assert "def RepositoryNativeR2SeparationLowerBound" in text
-    assert "∀ x : DiameterFillingNativeObject" in text
+    assert "def RepositoryNativeR2CrossRootFaceIncidence" in text
+    assert "∀ chain : R2IncidenceFaceChain" in text
+    assert "R2CrossRootFaceIncidenceObstruction chain" in text
 
-def test_r2_compatibility_gives_lower_bound_using_existing_lemma():
+def test_r2_cross_root_face_incidence_theorem_uses_packet_obstruction():
     text = LEAN.read_text()
-    assert "theorem repository_native_r2_diameter_filling_compatibility_gives_lower_bound" in text
-    assert "monotone_separation_lower_bound x (hCompat x)" in text
+    assert "theorem repository_native_r2_cross_root_face_incidence" in text
+    assert "r2_cross_root_face_incidence_obstruction" in text
 
-def test_r2_promotion_elimination_target_is_not_proved():
+def test_r2_cross_root_promotion_elimination_target_is_not_proved():
     text = LEAN.read_text()
-    assert "def R2DiameterFillingCompatibilityToPromotionObstructionEliminationTarget" in text
+    assert "def R2CrossRootFaceIncidenceToPromotionObstructionEliminationTarget" in text
     assert "theorem r2_promotion_proof_obstruction_elimination_certificate" not in text
 
 def test_r2_packet_records_remaining_missing_objects():
     data = json.loads(ART.read_text())
-    assert "R2DiameterFillingCompatibilityToPromotionObstructionEliminationTarget proof" in data["still_missing_for_r2_elimination"]
+    assert "R2CrossRootFaceIncidenceToPromotionObstructionEliminationTarget proof" in data["still_missing_for_r2_elimination"]
     assert "R2PromotionProofObstructionEliminationCertificate" in data["still_missing_for_r2_elimination"]
 
 def test_r2_packet_boundary_blocks_overclaims():

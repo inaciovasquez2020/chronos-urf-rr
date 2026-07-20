@@ -1,0 +1,52 @@
+{
+  "schema": "r2_cross_root_face_incidence_packet_v1",
+  "description": "Triangulated cylinder with two rooted boundary cycles. Local face spans are zero, each local cycle quotient has dimension one, and the unique global filling is a connected cross-root face component.",
+  "roots": ["top", "bottom"],
+  "vertices": ["t0", "t1", "t2", "b0", "b1", "b2"],
+  "edges": [
+    {"id": "t01", "endpoints": ["t0", "t1"]},
+    {"id": "t12", "endpoints": ["t1", "t2"]},
+    {"id": "t20", "endpoints": ["t2", "t0"]},
+    {"id": "b01", "endpoints": ["b0", "b1"]},
+    {"id": "b12", "endpoints": ["b1", "b2"]},
+    {"id": "b20", "endpoints": ["b2", "b0"]},
+    {"id": "v0", "endpoints": ["t0", "b0"]},
+    {"id": "v1", "endpoints": ["t1", "b1"]},
+    {"id": "v2", "endpoints": ["t2", "b2"]},
+    {"id": "d0", "endpoints": ["t0", "b1"]},
+    {"id": "d1", "endpoints": ["t1", "b2"]},
+    {"id": "d2", "endpoints": ["t2", "b0"]}
+  ],
+  "faces": [
+    {"id": "f0a", "boundary": ["t01", "v1", "d0"], "root_incidence": ["top"]},
+    {"id": "f0b", "boundary": ["d0", "b01", "v0"], "root_incidence": ["bottom"]},
+    {"id": "f1a", "boundary": ["t12", "v2", "d1"], "root_incidence": ["top"]},
+    {"id": "f1b", "boundary": ["d1", "b12", "v1"], "root_incidence": ["bottom"]},
+    {"id": "f2a", "boundary": ["t20", "v0", "d2"], "root_incidence": ["top"]},
+    {"id": "f2b", "boundary": ["d2", "b20", "v2"], "root_incidence": ["bottom"]}
+  ],
+  "rooted_regions": {
+    "top": {
+      "vertices": ["t0", "t1", "t2"],
+      "edges": ["t01", "t12", "t20"]
+    },
+    "bottom": {
+      "vertices": ["b0", "b1", "b2"],
+      "edges": ["b01", "b12", "b20"]
+    }
+  },
+  "expected_certificate": {
+    "d1_d2_zero": true,
+    "local_quotient_dimensions": {"top": 1, "bottom": 1},
+    "cross_root_system_count": 1,
+    "solvable_cross_root_system_count": 1,
+    "replacement_theorem_holds": true
+  },
+  "does_not_prove": [
+    "the unrestricted Newstein R2 diameter theorem",
+    "the original metric diameter-localization statement",
+    "the Heawood lift pair has this witness-layer incidence structure",
+    "R2PromotionProofObstructionEliminationCertificate",
+    "NON_FACTORISATION unconditionally"
+  ]
+}

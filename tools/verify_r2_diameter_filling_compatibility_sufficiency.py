@@ -8,11 +8,10 @@ DOC = Path("docs/status/R2_DIAMETER_FILLING_COMPATIBILITY_SUFFICIENCY_2026_05_24
 ROOT = Path("lean/Chronos.lean")
 
 REQUIRED_LEAN = [
-    "def RepositoryNativeR2DiameterFillingCompatibility",
-    "def RepositoryNativeR2SeparationLowerBound",
-    "theorem repository_native_r2_diameter_filling_compatibility_gives_lower_bound",
-    "def R2DiameterFillingCompatibilityToPromotionObstructionEliminationTarget",
-    "def R2DiameterFillingCompatibilitySufficiencyFrontierOpen"
+    "def RepositoryNativeR2CrossRootFaceIncidence",
+    "theorem repository_native_r2_cross_root_face_incidence",
+    "def R2CrossRootFaceIncidenceToPromotionObstructionEliminationTarget",
+    "def R2DiameterFillingCompatibilitySufficiencyFrontierOpen",
 ]
 
 BOUNDARY = [
@@ -38,7 +37,7 @@ def main() -> None:
     doc_text = DOC.read_text()
     root_text = ROOT.read_text()
 
-    assert data["status"] == "R2_COMPATIBILITY_LOWER_BOUND_CLOSED_PROMOTION_ELIMINATION_OPEN"
+    assert data["status"] == "R2_CROSS_ROOT_FACE_INCIDENCE_CLOSED_PROMOTION_ELIMINATION_OPEN"
     assert "import Chronos.Frontier.R2DiameterFillingCompatibilitySufficiency" in root_text
 
     for token in REQUIRED_LEAN:
@@ -48,8 +47,8 @@ def main() -> None:
         assert token in lean_text, token
         assert token in art_text, token
 
-    assert "monotone_separation_lower_bound" in lean_text
-    assert "R2DiameterFillingCompatibilityToPromotionObstructionEliminationTarget proof" in art_text
+    assert "r2_cross_root_face_incidence_obstruction" in lean_text
+    assert "R2CrossRootFaceIncidenceToPromotionObstructionEliminationTarget proof" in art_text
     assert "R2PromotionProofObstructionEliminationCertificate" in art_text
 
     for token in BOUNDARY:

@@ -1,16 +1,15 @@
 {
   "artifact": "R2_DIAMETER_FILLING_COMPATIBILITY_SUFFICIENCY_2026_05_24",
-  "status": "R2_COMPATIBILITY_LOWER_BOUND_CLOSED_PROMOTION_ELIMINATION_OPEN",
+  "status": "R2_CROSS_ROOT_FACE_INCIDENCE_CLOSED_PROMOTION_ELIMINATION_OPEN",
   "closed_structural_ingredients": [
-    "RepositoryNativeR2DiameterFillingCompatibility",
-    "RepositoryNativeR2SeparationLowerBound",
-    "repository_native_r2_diameter_filling_compatibility_gives_lower_bound",
-    "R2DiameterFillingCompatibilityToPromotionObstructionEliminationTarget",
+    "RepositoryNativeR2CrossRootFaceIncidence",
+    "repository_native_r2_cross_root_face_incidence",
+    "R2CrossRootFaceIncidenceToPromotionObstructionEliminationTarget",
     "R2DiameterFillingCompatibilitySufficiencyFrontierOpen"
   ],
-  "closed_result": "Repository-native R2 diameter/filling compatibility implies the monotone separation lower bound.",
+  "closed_result": "The finite repository-native R2 cross-root face-incidence obstruction is proved; the bridge to the general R2 promotion certificate remains open.",
   "still_missing_for_r2_elimination": [
-    "R2DiameterFillingCompatibilityToPromotionObstructionEliminationTarget proof",
+    "R2CrossRootFaceIncidenceToPromotionObstructionEliminationTarget proof",
     "R2PromotionProofObstructionEliminationCertificate"
   ],
   "does_not_prove": [
