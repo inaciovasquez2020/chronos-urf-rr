@@ -7,6 +7,7 @@ FRONTIER = ROOT / "lean/Chronos/Frontier.lean"
 
 FILES = {
     "geometry": BASE / "R2MetricFillingGeometry.lean",
+    "chain_complex": BASE / "R2ChainComplexGeometry.lean",
     "support": BASE / "R2BoundarySupportMonotonicity.lean",
     "kernel": BASE / "R2MetricDiameterObstructionKernel.lean",
     "closed_ball": BASE / "R2ClosedBallLocalization.lean",
@@ -109,6 +110,28 @@ def test_metric_geometry_defines_actual_filling_objects() -> None:
         "∃ F, G.boundary2 F = c ∧ Adm F",
         "def Separated",
         "D < dist xLeft xRight",
+    )
+
+    for token in required:
+        assert token in text, token
+
+
+def test_chain_complex_refines_actual_filling_geometry() -> None:
+    text = read("chain_complex")
+
+    required = (
+        "structure R2ChainComplexGeometry where",
+        "geometry : R2FillingGeometry",
+        "Face0 : Type",
+        "boundary1 :",
+        "boundary2_zero",
+        "boundary2_add",
+        "boundary1_zero",
+        "boundary1_add",
+        "boundary_squared_zero",
+        "def IsCycle",
+        "theorem boundary2_isCycle",
+        "theorem fillable_isCycle",
     )
 
     for token in required:
@@ -221,6 +244,7 @@ def test_all_r2_geometry_modules_are_registered() -> None:
 
     required_imports = (
         "import Chronos.Frontier.R2Geometry.R2MetricFillingGeometry",
+        "import Chronos.Frontier.R2Geometry.R2ChainComplexGeometry",
         "import Chronos.Frontier.R2Geometry.R2BoundarySupportMonotonicity",
         "import Chronos.Frontier.R2Geometry.R2MetricDiameterObstructionKernel",
         "import Chronos.Frontier.R2Geometry.R2ClosedBallLocalization",
