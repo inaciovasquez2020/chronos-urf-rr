@@ -1,4 +1,5 @@
 import Mathlib.Data.Fintype.Basic
+import Mathlib.Data.Finset.Card
 
 /-
   Intrinsic carrier classification removes classical by_cases
@@ -18,11 +19,16 @@ structure SemanticCore where
 
 -- Finite case instance
 class FiniteCarrier (C : SemanticCore) : Prop where
-  inst : Fintype C.α
+  finite : Finite C.α
 
 -- Cost is now uniformly defined over regimes
-def cost (C : SemanticCore) [FiniteCarrier C] (p : C.σ) : Nat :=
-  (Finset.univ.filter (fun x => C.eval p x ≠ 0)).card
+noncomputable def cost
+    (C : SemanticCore) [h : FiniteCarrier C] (p : C.σ) : Nat := by
+  classical
+  letI : Finite C.α := h.finite
+  letI : Fintype C.α :=
+    Classical.choice (nonempty_fintype C.α)
+  exact (Finset.univ.filter (fun x => C.eval p x ≠ 0)).card
 
 -- Infinite regime is no longer degenerate; it is structurally excluded from FiniteCarrier
 def cost_infinite (C : SemanticCore) (p : C.σ) : Nat :=
