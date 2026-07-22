@@ -56,6 +56,326 @@ theorem reggeWheelerDeformedOperator_zero
       principalOperator := by
   simp [reggeWheelerDeformedOperator]
 
+-- DERIVED_COUPLED_ODD_PARITY_OPERATOR
+
+/--
+The action-derived two-channel operator
+
+  Lε (ψ, θ) =
+    (D_RW ψ + ε W θ,
+     ε W ψ + D_s θ + ε² Q θ).
+
+The deformation is represented by a coupled operator rather than a freely
+supplied scalar potential insertion.
+-/
+def reggeWheelerDerivedCoupledOperator
+    {State : Type*}
+    [AddCommGroup State]
+    [Module ℝ State]
+    (reggeWheelerOperator scalarOperator coupling scalarCorrection :
+      State →ₗ[ℝ] State)
+    (epsilon : ℝ) :
+    (State × State) →ₗ[ℝ] (State × State) where
+  toFun state :=
+    ( reggeWheelerOperator state.1 +
+        epsilon • coupling state.2,
+      epsilon • coupling state.1 +
+        scalarOperator state.2 +
+        epsilon ^ 2 • scalarCorrection state.2 )
+  map_add' := by
+    intro left right
+    ext <;>
+      simp [add_assoc, add_left_comm, add_comm]
+  map_smul' := by
+    intro scalar state
+    ext <;>
+      simp [smul_add, smul_smul, mul_comm]
+
+-- DERIVED_COUPLED_RESPONSE_INTERFACE
+
+/--
+Primary response carrier for the action-derived coupled system.
+
+This interface contains no freely supplied scalar potential insertion.
+-/
+structure ReggeWheelerDerivedCoupledResponseData
+    (State : Type*)
+    [AddCommGroup State]
+    [Module ℝ State] where
+  reggeWheelerOperator : State →ₗ[ℝ] State
+  scalarOperator : State →ₗ[ℝ] State
+  coupling : State →ₗ[ℝ] State
+  scalarCorrection : State →ₗ[ℝ] State
+  epsilon : ℝ
+  background : State
+  scalarFirstOrder : State
+  gravitationalFirstOrder : State
+  backgroundEquation :
+    reggeWheelerOperator background = 0
+  scalarFirstOrderEquation :
+    scalarOperator scalarFirstOrder =
+      -(coupling background)
+  gravitationalFirstOrderEquation :
+    reggeWheelerOperator gravitationalFirstOrder =
+      -(coupling scalarFirstOrder)
+
+/-- The coupled operator determined by derived response data. -/
+def ReggeWheelerDerivedCoupledResponseData.operator
+    {State : Type*}
+    [AddCommGroup State]
+    [Module ℝ State]
+    (data : ReggeWheelerDerivedCoupledResponseData State) :
+    (State × State) →ₗ[ℝ] (State × State) :=
+  reggeWheelerDerivedCoupledOperator
+    data.reggeWheelerOperator
+    data.scalarOperator
+    data.coupling
+    data.scalarCorrection
+    data.epsilon
+
+-- DERIVED_COUPLED_H2_DOMAIN
+
+/--
+The direct-sum operator domain encoding
+
+  D(Aε) = H²(ℝ) ⊕ H²(ℝ).
+
+`h2Domain` is the repository-side predicate representing membership in
+`H²(ℝ)`.
+-/
+def reggeWheelerDerivedCoupledOperatorDomain
+    {State : Type*}
+    (h2Domain : Set State) :
+    Set (State × State) :=
+  { state | state.1 ∈ h2Domain ∧ state.2 ∈ h2Domain }
+
+/--
+Membership in the coupled domain is exactly componentwise membership in the
+selected H² domain.
+-/
+theorem mem_reggeWheelerDerivedCoupledOperatorDomain_iff
+    {State : Type*}
+    (h2Domain : Set State)
+    (state : State × State) :
+    state ∈ reggeWheelerDerivedCoupledOperatorDomain h2Domain ↔
+      state.1 ∈ h2Domain ∧ state.2 ∈ h2Domain :=
+  Iff.rfl
+
+-- PSI_ONE_FOURTH_DERIVATIVE_CERTIFICATE
+
+/--
+The zero-time derivative identities
+
+  θ₁''(0) = -W p,
+  Ψ₁⁽⁴⁾(0) = -W θ₁''(0).
+-/
+structure ReggeWheelerDerivativeCertificateData
+    (State : Type*)
+    [AddCommGroup State]
+    [Module ℝ State] where
+  coupling : State →ₗ[ℝ] State
+  profile : State
+  scalarSecondDerivativeAtZero : State
+  psiFourthDerivativeAtZero : State
+  scalarSecondDerivativeEquation :
+    scalarSecondDerivativeAtZero =
+      -(coupling profile)
+  psiFourthDerivativeEquation :
+    psiFourthDerivativeAtZero =
+      -(coupling scalarSecondDerivativeAtZero)
+
+/--
+Exact derivative certificate
+
+  Ψ₁⁽⁴⁾(0) = W²p.
+-/
+theorem reggeWheelerPsiOneFourthDerivativeAtZero
+    {State : Type*}
+    [AddCommGroup State]
+    [Module ℝ State]
+    (data : ReggeWheelerDerivativeCertificateData State) :
+    data.psiFourthDerivativeAtZero =
+      data.coupling (data.coupling data.profile) := by
+  calc
+    data.psiFourthDerivativeAtZero =
+        -(data.coupling data.scalarSecondDerivativeAtZero) :=
+      data.psiFourthDerivativeEquation
+    _ = -(data.coupling (-(data.coupling data.profile))) := by
+      rw [data.scalarSecondDerivativeEquation]
+    _ = data.coupling (data.coupling data.profile) := by
+      simp
+
+-- SMALL_TIME_OBSERVABLE_POSITIVITY
+
+/--
+Leading term in the small-time detector expansion
+
+  O_T[Ψ₁] =
+    T⁵ / 120 · ‖Ψ₁⁽⁴⁾(0)‖² + remainder.
+-/
+def reggeWheelerSmallTimeObservableLeadingTerm
+    {State : Type*}
+    [NormedAddCommGroup State]
+    (T : ℝ)
+    (response : State) :
+    ℝ :=
+  T ^ 5 / 120 * ‖response‖ ^ 2
+
+/--
+A nonzero `W²p` and a remainder whose absolute value is strictly smaller than
+the leading term imply
+
+  O_T[Ψ₁] > 0.
+-/
+theorem reggeWheelerSmallTimeObservable_pos
+    {State : Type*}
+    [NormedAddCommGroup State]
+    [NormedSpace ℝ State]
+    (data : ReggeWheelerDerivativeCertificateData State)
+    (T remainder observable : ℝ)
+    (hT : 0 < T)
+    (hResponse :
+      data.coupling (data.coupling data.profile) ≠ 0)
+    (hExpansion :
+      observable =
+        reggeWheelerSmallTimeObservableLeadingTerm
+          T
+          data.psiFourthDerivativeAtZero +
+        remainder)
+    (hRemainder :
+      |remainder| <
+        reggeWheelerSmallTimeObservableLeadingTerm
+          T
+          data.psiFourthDerivativeAtZero) :
+    0 < observable := by
+  have hFourthDerivative :
+      data.psiFourthDerivativeAtZero =
+        data.coupling (data.coupling data.profile) :=
+    reggeWheelerPsiOneFourthDerivativeAtZero data
+
+  have hFourthDerivativeNe :
+      data.psiFourthDerivativeAtZero ≠ 0 := by
+    rw [hFourthDerivative]
+    exact hResponse
+
+  have hNormPos :
+      0 < ‖data.psiFourthDerivativeAtZero‖ :=
+    norm_pos_iff.mpr hFourthDerivativeNe
+
+  have hTimePower :
+      0 < T ^ 5 :=
+    pow_pos hT 5
+
+  have hCoefficient :
+      0 < T ^ 5 / 120 := by
+    positivity
+
+  have hNormSquare :
+      0 < ‖data.psiFourthDerivativeAtZero‖ ^ 2 :=
+    pow_pos hNormPos 2
+
+  have hLeading :
+      0 <
+        reggeWheelerSmallTimeObservableLeadingTerm
+          T
+          data.psiFourthDerivativeAtZero := by
+    unfold reggeWheelerSmallTimeObservableLeadingTerm
+    exact mul_pos hCoefficient hNormSquare
+
+  have hRemainderLower :
+      -reggeWheelerSmallTimeObservableLeadingTerm
+          T
+          data.psiFourthDerivativeAtZero <
+        remainder :=
+    (abs_lt.mp hRemainder).1
+
+  rw [hExpansion]
+  linarith
+
+-- DERIVED_FIRST_ORDER_GRAVITATIONAL_RESIDUAL
+
+/--
+The first-order gravitational approximation in the action-derived coupled
+system satisfies the source-subtracted identity
+
+  D_RW (Ψ₀ + λ Ψ₁) + λ W θ₁ = 0.
+-/
+theorem reggeWheelerDerivedFirstOrderApproximationResidual
+    {State : Type*}
+    [AddCommGroup State]
+    [Module ℝ State]
+    (data : ReggeWheelerDerivedCoupledResponseData State)
+    (lambda : ℝ) :
+    data.reggeWheelerOperator
+          (data.background +
+            lambda • data.gravitationalFirstOrder) +
+        lambda • data.coupling data.scalarFirstOrder =
+      0 := by
+  simp [
+    data.backgroundEquation,
+    data.gravitationalFirstOrderEquation
+  ]
+
+-- DERIVED_COUPLED_EXACT_RESIDUAL
+
+/--
+For the action-derived coupled operator, the truncation
+
+  (Ψ₀ + ε² Ψ₁, ε θ₁)
+
+has zero gravitational residual. Its remaining scalar-channel residual consists
+only of the cubic coupling and scalar-correction terms.
+-/
+theorem reggeWheelerDerivedCoupledApproximation_exactResidual
+    {State : Type*}
+    [AddCommGroup State]
+    [Module ℝ State]
+    (data : ReggeWheelerDerivedCoupledResponseData State) :
+    data.operator
+          ( data.background +
+              data.epsilon ^ 2 • data.gravitationalFirstOrder,
+            data.epsilon • data.scalarFirstOrder ) =
+      ( 0,
+        data.epsilon •
+            data.coupling
+              (data.epsilon ^ 2 • data.gravitationalFirstOrder) +
+          data.epsilon ^ 2 •
+            data.scalarCorrection
+              (data.epsilon • data.scalarFirstOrder) ) := by
+  change
+    ( data.reggeWheelerOperator
+          (data.background +
+            data.epsilon ^ 2 • data.gravitationalFirstOrder) +
+        data.epsilon •
+          data.coupling
+            (data.epsilon • data.scalarFirstOrder),
+      data.epsilon •
+          data.coupling
+            (data.background +
+              data.epsilon ^ 2 • data.gravitationalFirstOrder) +
+        data.scalarOperator
+          (data.epsilon • data.scalarFirstOrder) +
+        data.epsilon ^ 2 •
+          data.scalarCorrection
+            (data.epsilon • data.scalarFirstOrder) ) =
+      ( 0,
+        data.epsilon •
+            data.coupling
+              (data.epsilon ^ 2 • data.gravitationalFirstOrder) +
+          data.epsilon ^ 2 •
+            data.scalarCorrection
+              (data.epsilon • data.scalarFirstOrder) )
+  ext
+  · simp [
+      data.backgroundEquation,
+      data.gravitationalFirstOrderEquation,
+      smul_smul,
+      pow_two
+    ]
+  · simp [
+      data.scalarFirstOrderEquation, smul_add, add_assoc
+    ]
+
 /--
 A nontrivial formal deformation parameter and potential insertion.
 
