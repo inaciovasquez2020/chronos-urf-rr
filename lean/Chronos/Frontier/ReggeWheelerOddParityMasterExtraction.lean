@@ -173,6 +173,101 @@ theorem reggeWheelerOddParityMemoryShift_gaugeInvariant
       rawState
       gaugeParameter
 
+-- DERIVED_COUPLED_ODD_PARITY_MEMORY_SHIFT
+
+/--
+Odd-parity memory response carried by the action-derived coupled system.
+
+The gravitational correction enters at order `ε²`.
+-/
+def reggeWheelerOddParityDerivedFirstOrderMemoryShift
+    (deviation :
+      ReggeWheelerDerivedCoupledResponseData
+        ReggeWheelerOddParityRadialJet)
+    (rMinus rPlus : ℝ) :
+    ℝ :=
+  reggeWheelerOddParityMemoryShift
+    rMinus
+    rPlus
+    (deviation.background +
+      deviation.epsilon ^ 2 •
+        deviation.gravitationalFirstOrder)
+
+-- DERIVED_COUPLED_ODD_PARITY_MEMORY_SHIFT_EXPANSION
+
+/--
+Exact expansion of the action-derived odd-parity memory response:
+
+  M(Ψ₀ + ε² Ψ₁) = M(Ψ₀) + ε² M(Ψ₁).
+-/
+theorem reggeWheelerOddParityDerivedFirstOrderMemoryShift_expansion
+    (deviation :
+      ReggeWheelerDerivedCoupledResponseData
+        ReggeWheelerOddParityRadialJet)
+    (rMinus rPlus : ℝ) :
+    reggeWheelerOddParityDerivedFirstOrderMemoryShift
+        deviation
+        rMinus
+        rPlus =
+      reggeWheelerOddParityMemoryShift
+          rMinus
+          rPlus
+          deviation.background +
+        deviation.epsilon ^ 2 *
+          reggeWheelerOddParityMemoryShift
+            rMinus
+            rPlus
+            deviation.gravitationalFirstOrder := by
+  unfold
+    reggeWheelerOddParityDerivedFirstOrderMemoryShift
+    reggeWheelerOddParityMemoryShift
+  rw [map_add, map_smul]
+  simp [smul_eq_mul]
+
+-- DERIVED_COUPLED_ODD_PARITY_MEMORY_NONZERO
+
+/--
+A nonzero coupling parameter and nonzero correction memory imply that the
+action-derived total memory differs from its background value.
+-/
+theorem reggeWheelerOddParityDerivedFirstOrderMemoryShift_ne_background
+    (deviation :
+      ReggeWheelerDerivedCoupledResponseData
+        ReggeWheelerOddParityRadialJet)
+    (rMinus rPlus : ℝ)
+    (hEpsilon : deviation.epsilon ≠ 0)
+    (hCorrectionMemory :
+      reggeWheelerOddParityMemoryShift
+          rMinus
+          rPlus
+          deviation.gravitationalFirstOrder ≠
+        0) :
+    reggeWheelerOddParityDerivedFirstOrderMemoryShift
+        deviation
+        rMinus
+        rPlus ≠
+      reggeWheelerOddParityMemoryShift
+        rMinus
+        rPlus
+        deviation.background := by
+  rw [
+    reggeWheelerOddParityDerivedFirstOrderMemoryShift_expansion
+  ]
+  intro hEqual
+  have hProduct :
+      deviation.epsilon ^ 2 *
+          reggeWheelerOddParityMemoryShift
+            rMinus
+            rPlus
+            deviation.gravitationalFirstOrder =
+        0 := by
+    linarith
+  exact
+    (mul_ne_zero
+      (pow_ne_zero 2 hEpsilon)
+      hCorrectionMemory)
+      hProduct
+
 def reggeWheelerOddParityFirstOrderMemoryShift
     (deviation :
       ReggeWheelerFirstOrderDeviationData
@@ -331,6 +426,169 @@ def reggeWheelerOddParityMasterExtractionStatus : String :=
 
 def reggeWheelerOddParityMasterExtractionBoundary : String :=
   "RADIAL_JET_INTEGRABILITY_ASYMPTOTIC_BMS_IDENTIFICATION_AND_DIMENSIONFUL_DETECTOR_CALIBRATION_NOT_PROVED"
+
+-- CONCRETE_PROFILE_AND_COUPLING
+
+/--
+Concrete benchmark profile `p`.
+
+It is the already-certified unit-memory odd-parity radial jet.
+-/
+def reggeWheelerOddParityConcreteProfile :
+    ReggeWheelerOddParityRadialJet :=
+  reggeWheelerOddParityUnitMemoryJet
+
+/--
+Concrete benchmark coupling `W`.
+
+This bounded algebraic witness uses the identity coupling. It is not asserted
+to be the coupling obtained from a covariant action.
+-/
+def reggeWheelerOddParityConcreteCoupling :
+    ReggeWheelerOddParityRadialJet →ₗ[ℝ]
+      ReggeWheelerOddParityRadialJet :=
+  LinearMap.id
+
+/-- Exact computation `W (W p) = p`. -/
+theorem reggeWheelerOddParityConcreteCoupling_squared_profile :
+    reggeWheelerOddParityConcreteCoupling
+        (reggeWheelerOddParityConcreteCoupling
+          reggeWheelerOddParityConcreteProfile) =
+      reggeWheelerOddParityConcreteProfile := by
+  rfl
+
+-- CONCRETE_ENDPOINT_SEPARATION
+
+/-- The selected endpoints satisfy `r₋ < r₊`. -/
+theorem reggeWheelerOddParityConcreteEndpoints_lt :
+    (0 : ℝ) < 1 := by
+  norm_num
+
+/--
+The master field of `W (W p)` has unequal values at the selected endpoints.
+-/
+theorem reggeWheelerOddParityConcreteDoubleCoupling_endpoints_ne :
+    reggeWheelerOddParityMasterField
+          (reggeWheelerOddParityConcreteCoupling
+            (reggeWheelerOddParityConcreteCoupling
+              reggeWheelerOddParityConcreteProfile))
+          0 ≠
+      reggeWheelerOddParityMasterField
+          (reggeWheelerOddParityConcreteCoupling
+            (reggeWheelerOddParityConcreteCoupling
+              reggeWheelerOddParityConcreteProfile))
+          1 := by
+  simp [
+    reggeWheelerOddParityConcreteCoupling,
+    reggeWheelerOddParityConcreteProfile,
+    reggeWheelerOddParityUnitMemoryJet_master
+  ]
+
+/-- Consequently, the endpoint memory of `W (W p)` is nonzero. -/
+theorem reggeWheelerOddParityConcreteDoubleCoupling_memory_ne_zero :
+    reggeWheelerOddParityMemoryShift
+          0
+          1
+          (reggeWheelerOddParityConcreteCoupling
+            (reggeWheelerOddParityConcreteCoupling
+              reggeWheelerOddParityConcreteProfile)) ≠
+      0 := by
+  simpa [
+    reggeWheelerOddParityConcreteCoupling,
+    reggeWheelerOddParityConcreteProfile
+  ] using
+    reggeWheelerOddParityUnitMemoryShift_ne_zero
+
+
+-- CONCRETE_W2P_DERIVATIVE_CERTIFICATE
+
+/--
+Concrete derivative data with
+
+  θ₁''(0) = -W p,
+  Ψ₁⁽⁴⁾(0) = W (W p).
+-/
+def reggeWheelerOddParityConcreteDerivativeCertificate :
+    ReggeWheelerDerivativeCertificateData
+      ReggeWheelerOddParityRadialJet where
+  coupling :=
+    reggeWheelerOddParityConcreteCoupling
+  profile :=
+    reggeWheelerOddParityConcreteProfile
+  scalarSecondDerivativeAtZero :=
+    -reggeWheelerOddParityConcreteProfile
+  psiFourthDerivativeAtZero :=
+    reggeWheelerOddParityConcreteProfile
+  scalarSecondDerivativeEquation := by
+    simp [reggeWheelerOddParityConcreteCoupling]
+  psiFourthDerivativeEquation := by
+    simp [reggeWheelerOddParityConcreteCoupling]
+
+/-- The concrete fourth derivative is exactly `W (W p)`. -/
+theorem reggeWheelerOddParityConcretePsiFourthDerivative_eq_W2p :
+    (reggeWheelerOddParityConcreteDerivativeCertificate).psiFourthDerivativeAtZero =
+      reggeWheelerOddParityConcreteCoupling
+        (reggeWheelerOddParityConcreteCoupling
+          reggeWheelerOddParityConcreteProfile) :=
+  reggeWheelerPsiOneFourthDerivativeAtZero
+    reggeWheelerOddParityConcreteDerivativeCertificate
+
+
+-- CONCRETE_DERIVED_MEMORY_RESPONSE
+
+/--
+Concrete coupled response carrier whose gravitational correction is the
+certified `W²p` state.
+-/
+def reggeWheelerOddParityConcreteDerivedResponse :
+    ReggeWheelerDerivedCoupledResponseData
+      ReggeWheelerOddParityRadialJet where
+  reggeWheelerOperator := 0
+  scalarOperator := 0
+  coupling :=
+    reggeWheelerOddParityConcreteCoupling
+  scalarCorrection := 0
+  epsilon := 1
+  background := 0
+  scalarFirstOrder := 0
+  gravitationalFirstOrder :=
+    (reggeWheelerOddParityConcreteDerivativeCertificate).psiFourthDerivativeAtZero
+  backgroundEquation := by
+    simp
+  scalarFirstOrderEquation := by
+    simp [reggeWheelerOddParityConcreteCoupling]
+  gravitationalFirstOrderEquation := by
+    simp [reggeWheelerOddParityConcreteCoupling]
+
+/--
+The concrete derived gauge-invariant memory differs from its background
+memory.
+-/
+theorem
+    reggeWheelerOddParityConcreteDerivedMemoryShift_ne_background :
+    reggeWheelerOddParityDerivedFirstOrderMemoryShift
+          reggeWheelerOddParityConcreteDerivedResponse
+          0
+          1 ≠
+      reggeWheelerOddParityMemoryShift
+        0
+        1
+        reggeWheelerOddParityConcreteDerivedResponse.background := by
+  apply
+    reggeWheelerOddParityDerivedFirstOrderMemoryShift_ne_background
+  · norm_num [reggeWheelerOddParityConcreteDerivedResponse]
+  · change
+      reggeWheelerOddParityMemoryShift
+          0
+          1
+          (reggeWheelerOddParityConcreteDerivativeCertificate).psiFourthDerivativeAtZero ≠
+        0
+    rw [reggeWheelerOddParityConcretePsiFourthDerivative_eq_W2p]
+    exact
+      reggeWheelerOddParityConcreteDoubleCoupling_memory_ne_zero
+
+def reggeWheelerOddParityConcreteDerivedMemoryBoundary : String :=
+  "IDENTITY_COUPLING_BENCHMARK_ONLY_NOT_A_COVARIANT_ACTION_DERIVATION"
 
 end
 
