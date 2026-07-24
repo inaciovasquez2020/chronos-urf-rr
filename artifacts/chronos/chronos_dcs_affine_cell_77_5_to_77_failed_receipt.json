@@ -1,0 +1,56 @@
+{
+  "arithmetic": {
+    "backend": "mpmath 70-decimal affine Taylor recurrence; conservative truncation guard",
+    "boundary": "not a directed-rounding or Lean-kernel certificate",
+    "center_truncation_guard": "1e-12"
+  },
+  "cell": {
+    "interval": [
+      "77",
+      "77.5"
+    ],
+    "order": 12,
+    "orientation": "x=77.5-s, 0<=s<=0.5",
+    "validation": [
+      {
+        "center_truncation_defect_upper": "1E-12",
+        "coefficient_variation_norm": "0.000069206541225541024680396555574770601835579905582274",
+        "column": 0,
+        "inherited_tube_radius": "0.00126",
+        "input_generator_count": 96,
+        "lipschitz_upper": "1",
+        "passed": false,
+        "picard_q_upper": "0.5",
+        "picard_slack": "-0.00015145533444077979333269906924549409306507406175533565858274048212898152927676618607085138",
+        "polynomial_affine_hull_max": "22.583279560065046077717892493210042367734995899419489383098855110534953993222502",
+        "total_defect_upper": "0.00156291066888155958666539813849098818613014812351067131716548096425796305855353237214170276"
+      },
+      {
+        "center_truncation_defect_upper": "1E-12",
+        "coefficient_variation_norm": "0.000069206541225541024680396555574770601835579905582274",
+        "column": 1,
+        "inherited_tube_radius": "0.00126",
+        "input_generator_count": 96,
+        "lipschitz_upper": "1",
+        "passed": false,
+        "picard_q_upper": "0.5",
+        "picard_slack": "-0.00015144651122397342787555380936921716771779034718127679302578164792461754189091384111454720",
+        "polynomial_affine_hull_max": "22.583024577901507201011849099845559345880878494252697917122723904048390690576791",
+        "total_defect_upper": "0.00156289302244794685575110761873843433543558069436255358605156329584923508378182768222909440"
+      }
+    ]
+  },
+  "failure": {
+    "endpoint_x77_constructed": false,
+    "first_failed_condition": "affine Picard tube inclusion with inherited radius 0.00126",
+    "reason": "For both Jost columns, the certified defect upper bound exceeds the inherited tube radius, giving negative Picard slack."
+  },
+  "schema": "chronos.dcs.affine_generators.cell_failure_receipt.v1",
+  "source": {
+    "endpoint_used": "endpoint_x77_5",
+    "generator_count_per_column": 96,
+    "path": "chronos_dcs_affine_generators_x78_cell_78_to_77_5_receipt.json",
+    "sha256": "a726830fc0cb761ac842b90f9f307a4b48f8c05b81c8516a79c2d19bbb4c1036"
+  },
+  "status": "FAIL"
+}

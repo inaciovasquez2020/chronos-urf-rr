@@ -1,0 +1,61 @@
+{
+  "schema": "chronos.dcs.affine_generators.cell_radius_rebuild_receipt.v1",
+  "status": "PASS",
+  "source": {
+    "failed_receipt_path": "chronos_dcs_affine_cell_77_5_to_77_failed_receipt.json",
+    "failed_receipt_sha256": "fa9d13c887dfa951278fffe85d3571e47345e42e38ffb830f31ec6021c32486f",
+    "endpoint_used": "endpoint_x77_5",
+    "source_generator_count_per_column": 96,
+    "source_path": "chronos_dcs_affine_generators_x78_cell_78_to_77_5_receipt.json",
+    "source_sha256": "a726830fc0cb761ac842b90f9f307a4b48f8c05b81c8516a79c2d19bbb4c1036"
+  },
+  "arithmetic": {
+    "backend": "exact Decimal recomputation from preserved defect bounds",
+    "boundary": "not a directed-rounding or Lean-kernel certificate",
+    "structural_change": "tube_radius: 0.00126 -> 0.00157"
+  },
+  "cell": {
+    "interval": [
+      "77",
+      "77.5"
+    ],
+    "orientation": "x=77.5-s, 0<=s<=0.5",
+    "order": 12,
+    "validation": [
+      {
+        "column": 0,
+        "input_generator_count": 96,
+        "polynomial_affine_hull_max": "22.583279560065046077717892493210042367734995899419489383098855110534953993222502",
+        "coefficient_variation_norm": "0.000069206541225541024680396555574770601835579905582274",
+        "center_truncation_defect_upper": "1E-12",
+        "total_defect_upper": "0.00156291066888155958666539813849098818613014812351067131716548096425796305855353237214170276",
+        "tube_radius": "0.00157",
+        "lipschitz_upper": "1",
+        "picard_q_upper": "0.5",
+        "picard_slack": "0.00000354466555922020666730093075450590693492593824466434141725951787101847072323381392914862",
+        "endpoint_error_upper": "0.00101389339510763256493628372288757814607828048032233501524412984077370017378205769420612435",
+        "passed": true
+      },
+      {
+        "column": 1,
+        "input_generator_count": 96,
+        "polynomial_affine_hull_max": "22.583024577901507201011849099845559345880878494252697917122723904048390690576791",
+        "coefficient_variation_norm": "0.000069206541225541024680396555574770601835579905582274",
+        "center_truncation_defect_upper": "1E-12",
+        "total_defect_upper": "0.00156289302244794685575110761873843433543558069436255358605156329584923508378182768222909440",
+        "tube_radius": "0.00157",
+        "lipschitz_upper": "1",
+        "picard_q_upper": "0.5",
+        "picard_slack": "0.00000355348877602657212444619063078283228220965281872320697421835207538245810908615888545280",
+        "endpoint_error_upper": "0.00101388194749079598868453314672793466538552943794934124931268644217847672288727607013667219",
+        "passed": true
+      }
+    ]
+  },
+  "result": {
+    "affine_picard_inclusion_certified": true,
+    "endpoint_x77_exists_as_enclosure": true,
+    "endpoint_x77_generator_vectors_serialized": false,
+    "reason": "Only the affine tube radius changed; both recomputed Picard slacks are strictly positive."
+  }
+}
