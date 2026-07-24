@@ -1,0 +1,5 @@
+RESULT := componentwise interval receipt generated
+JSON_SHA256 := c0402f3739cffb9ae588db98db558aa0bf89d7156cf71b318a0ac463bf6db2c7
+TAIL_RADIUS := 1.11560289165770183366361437202e-32
+RHO0_SIGN_CHECK := lower<0<upper
+BOUNDARY := not yet a Lean-kernel certificate
