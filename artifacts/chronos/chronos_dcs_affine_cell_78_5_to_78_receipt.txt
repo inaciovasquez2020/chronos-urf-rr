@@ -1,0 +1,3 @@
+JSON_SHA256 := bcb13f716faab5874ea3fd161decf8e7e568f1c7e48607746644a2deda7fe8bb
+RESULT := affine Taylor-Picard cell [78,78.5] certified with q <= 0.5 and tube radius 0.00095
+BOUNDARY := executed high-precision receipt; not a Lean-kernel certificate
