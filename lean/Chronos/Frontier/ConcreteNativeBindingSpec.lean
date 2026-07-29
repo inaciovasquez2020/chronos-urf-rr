@@ -67,6 +67,84 @@ theorem concrete_native_binding_theorems_closed :
   exact repository_native_R1_R2_R3_theorems_from_binding_spec concreteNativeBindingSpec
 
 /--
+The concrete two-point R1 edge carrier cannot be identified with the concrete
+singleton R3 quotient-data carrier.
+-/
+theorem concrete_native_r1_edge_not_equiv_r3_quotient_data :
+    ¬ Nonempty (ConcreteNativeR1Edge ≃ ConcreteNativeR3QuotientData) := by
+  intro h
+  rcases h with ⟨e⟩
+  have himage :
+      e ConcreteNativeR1Edge.e1 =
+        e ConcreteNativeR1Edge.e2 := by
+    cases e ConcreteNativeR1Edge.e1
+    cases e ConcreteNativeR1Edge.e2
+    rfl
+  have hedges :
+      ConcreteNativeR1Edge.e1 = ConcreteNativeR1Edge.e2 :=
+    e.injective himage
+  exact
+    (by decide :
+      ConcreteNativeR1Edge.e1 ≠ ConcreteNativeR1Edge.e2) hedges
+
+/--
+The concrete two-point R2 fiber carrier cannot be identified with the concrete
+singleton R3 quotient-data carrier.
+-/
+theorem concrete_native_r2_fiber_not_equiv_r3_quotient_data :
+    ¬ Nonempty (ConcreteNativeR2Fiber ≃ ConcreteNativeR3QuotientData) := by
+  intro h
+  rcases h with ⟨e⟩
+  have himage :
+      e ConcreteNativeR2Fiber.left =
+        e ConcreteNativeR2Fiber.right := by
+    cases e ConcreteNativeR2Fiber.left
+    cases e ConcreteNativeR2Fiber.right
+    rfl
+  have hfibers :
+      ConcreteNativeR2Fiber.left = ConcreteNativeR2Fiber.right :=
+    e.injective himage
+  exact
+    (by decide :
+      ConcreteNativeR2Fiber.left ≠ ConcreteNativeR2Fiber.right) hfibers
+
+/--
+The concrete R1 edge carrier and concrete R2 fiber carrier are equivalent,
+with their distinguished two-point structures matched explicitly.
+-/
+theorem concrete_native_r1_edge_equiv_r2_fiber :
+    Nonempty (ConcreteNativeR1Edge ≃ ConcreteNativeR2Fiber) := by
+  refine ⟨
+    { toFun := fun
+        | ConcreteNativeR1Edge.e1 => ConcreteNativeR2Fiber.left
+        | ConcreteNativeR1Edge.e2 => ConcreteNativeR2Fiber.right
+      invFun := fun
+        | ConcreteNativeR2Fiber.left => ConcreteNativeR1Edge.e1
+        | ConcreteNativeR2Fiber.right => ConcreteNativeR1Edge.e2
+      left_inv := ?_
+      right_inv := ?_ }⟩
+  · intro edge
+    cases edge <;> rfl
+  · intro fiber
+    cases fiber <;> rfl
+
+/--
+No single carrier can be equivalent to all three existing concrete native
+R1, R2, and R3 carrier types.
+-/
+theorem no_common_equivalent_carrier_for_concrete_native_r1_r2_r3 :
+    ¬ ∃ C : Type,
+        Nonempty (ConcreteNativeR1Edge ≃ C) ∧
+        Nonempty (ConcreteNativeR2Fiber ≃ C) ∧
+        Nonempty (ConcreteNativeR3QuotientData ≃ C) := by
+  rintro ⟨C, hR1, _hR2, hR3⟩
+  rcases hR1 with ⟨eR1⟩
+  rcases hR3 with ⟨eR3⟩
+  exact
+    concrete_native_r1_edge_not_equiv_r3_quotient_data
+      ⟨eR1.trans eR3.symm⟩
+
+/--
 A bounded repository-native R1/R2/R3 semantic bundle surface.
 
 This packages only the concrete native R1, R2, and R3 semantic data with their
