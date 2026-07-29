@@ -4,6 +4,7 @@ import Chronos.Frontier.ConcreteNativeR2SemanticData
 import Chronos.Frontier.ConcreteNativeR3SemanticData
 import Chronos.Frontier.NativeBindingAssemblyWitness
 import Chronos.Frontier.R1R2R3IsolatedTargetsConditionalClosure
+import Chronos.Frontier.H41FGLRepositoryNativeK4AdmissibleHistoryCarrierCandidate
 
 namespace Chronos
 namespace Frontier
@@ -208,6 +209,37 @@ theorem concrete_native_nonfactorisation_promotion_allowed :
   exact repository_native_nonfactorisation_promotion_from_binding_spec
     concreteNativeBindingSpec
     concrete_native_binding_supplied
+
+
+/--
+A selected-history concrete native binding retaining the existing concrete R1
+and R2 semantic models while replacing only the singleton R3 model with the
+bounded, non-singleton K4 admissible-history model.
+
+This selected model does not identify its R3 carrier with the externally
+intended FGL quotient.
+-/
+def selectedHistoryConcreteNativeBindingSpec :
+    NewsteinR1R2R3NativeBindingSpec :=
+  { concreteNativeBindingSpec with
+    nativeR3Data :=
+      h41FGLK4SelectedAdmissibleHistoryR3SemanticData
+    r3Correct :=
+      h41FGLK4SelectedAdmissibleHistoryR3SemanticData_correct }
+
+
+/--
+The selected-history binding supplies every native interface field through the
+existing assembly witnesses, while its R3 correctness component is taken from
+the bounded non-singleton selected-history model.
+-/
+theorem selected_history_concrete_native_binding_supplied :
+    NewsteinR1R2R3NativeBindingSupplied
+      selectedHistoryConcreteNativeBindingSpec := by
+  exact
+    native_binding_assembly_supplied
+      { concreteNativeBindingAssemblyData with
+        binding := selectedHistoryConcreteNativeBindingSpec }
 
 end Frontier
 end Chronos

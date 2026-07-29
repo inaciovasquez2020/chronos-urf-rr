@@ -1,4 +1,5 @@
 import Chronos.Frontier.H41FGLRepositoryNativeK4VertexAssignmentCarrierCandidate
+import Chronos.Frontier.R1R2R3SemanticTheoremProofTargets
 
 namespace Chronos
 namespace Frontier
@@ -104,6 +105,93 @@ theorem h41FGLK4SelectedAdmissibleHistory_vertexExt
   intro i
   simpa [h41FGLK4SelectedAdmissibleHistoryObservable] using
     hcoordinates i
+
+/--
+The selected admissible-history carrier has at least two distinct explicit
+histories, witnessed by the constant-zero and constant-one K4 bit vectors.
+-/
+theorem h41FGLK4SelectedAdmissibleHistory_two_distinct :
+    ∃ h0 h1 : H41FGLK4SelectedAdmissibleHistory, h0 ≠ h1 := by
+  let sigma0 : H41FGLK4BitVector := fun _ => 0
+  let sigma1 : H41FGLK4BitVector := fun _ => 1
+  refine ⟨
+    h41FGLK4SelectedAdmissibleHistoryOfBits sigma0,
+    h41FGLK4SelectedAdmissibleHistoryOfBits sigma1,
+    ?_⟩
+  intro historiesEqual
+  have observablesEqual :=
+    congrArg
+      (h41FGLK4SelectedAdmissibleHistoryObservable (0 : Fin 4))
+      historiesEqual
+  have zeroEqualsOne : (0 : ZMod 2) = 1 := by
+    calc
+      (0 : ZMod 2) = sigma0 (0 : Fin 4) := by rfl
+      _ =
+          h41FGLK4SelectedAdmissibleHistoryObservable
+            (0 : Fin 4)
+            (h41FGLK4SelectedAdmissibleHistoryOfBits sigma0) :=
+        (h41FGLK4SelectedAdmissibleHistoryObservable_historyOfBits
+          sigma0
+          (0 : Fin 4)).symm
+      _ =
+          h41FGLK4SelectedAdmissibleHistoryObservable
+            (0 : Fin 4)
+            (h41FGLK4SelectedAdmissibleHistoryOfBits sigma1) :=
+        observablesEqual
+      _ = sigma1 (0 : Fin 4) :=
+        h41FGLK4SelectedAdmissibleHistoryObservable_historyOfBits
+          sigma1
+          (0 : Fin 4)
+      _ = 1 := by rfl
+  exact (by decide : (0 : ZMod 2) ≠ 1) zeroEqualsOne
+
+/--
+The repository-native local-type value of a selected K4 history is the
+cardinality of its active global-vertex support.
+-/
+def h41FGLK4SelectedAdmissibleHistoryLocalType
+    (history : H41FGLK4SelectedAdmissibleHistory) :
+    Nat :=
+  (H41FGLK4ActiveHistoryVertices history.1).card
+
+/--
+Every selected K4 admissible history has local-type value at most four.
+-/
+theorem h41FGLK4SelectedAdmissibleHistoryLocalType_le_four
+    (history : H41FGLK4SelectedAdmissibleHistory) :
+    h41FGLK4SelectedAdmissibleHistoryLocalType history ≤ 4 := by
+  simpa [
+    h41FGLK4SelectedAdmissibleHistoryLocalType,
+    H41FGLK4SelectedHistoryAdmissible
+  ] using history.2
+
+/--
+Repository-native selected-model R3 semantic data carried by bounded K4
+admissible histories.
+
+The dimension is active-support cardinality and the capacity is four. The
+factorisation predicate records the existing selected-history admissibility
+condition. This does not identify the carrier with the external quotient
+`X(𝒫_{4,0,1})`.
+-/
+def h41FGLK4SelectedAdmissibleHistoryR3SemanticData :
+    R3SemanticData where
+  QuotientData := H41FGLK4SelectedAdmissibleHistory
+  C := 4
+  dim := h41FGLK4SelectedAdmissibleHistoryLocalType
+  FactorsThroughBoundedLocalType := fun history =>
+    H41FGLK4SelectedHistoryAdmissible history.1
+
+/--
+The selected-history R3 semantic package satisfies its uniform local-type
+capacity theorem.
+-/
+theorem h41FGLK4SelectedAdmissibleHistoryR3SemanticData_correct :
+    R3UniformLocalTypeCapacityTheorem
+      h41FGLK4SelectedAdmissibleHistoryR3SemanticData := by
+  intro history _hfactor
+  exact
+    h41FGLK4SelectedAdmissibleHistoryLocalType_le_four history
 
 /--
 The carrier predicate for the concrete selected admissible-history model.
