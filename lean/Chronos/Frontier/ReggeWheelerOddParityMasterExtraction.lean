@@ -563,6 +563,145 @@ theorem reggeWheelerSchwarzschildExteriorFactor_ne_zero
 def reggeWheelerSchwarzschildBackgroundBoundary : String :=
   "SCHWARZSCHILD_EXTERIOR_BACKGROUND_AND_POSITIVE_FACTOR_PROVED_ODD_PARITY_METRIC_COMPONENTS_TETRAD_CURVATURE_AND_STRAIN_NOT_PROVED"
 
+
+/--
+Local odd-parity metric mode coefficients in the Regge–Wheeler gauge.
+
+For one radiative spherical-harmonic mode with `ell ≥ 2`, the odd-parity
+metric perturbation is represented locally by:
+
+* `hTimeAngular`, the coefficient of the time-angular component `h_{tA}`;
+* `hRadialAngular`, the coefficient of the radial-angular component `h_{rA}`;
+* `hTensorAngular`, the coefficient of the odd angular tensor component.
+
+The Regge–Wheeler gauge condition is recorded explicitly as
+`hTensorAngular = 0`.
+
+This carrier fixes the component convention but does not yet construct the
+angular harmonic, spacetime tensor, tetrad, curvature, or detector response.
+-/
+structure ReggeWheelerOddParityRWGaugeMetricComponents where
+  background : ReggeWheelerSchwarzschildBackground
+  ell : ℕ
+  radiativeMode : 2 ≤ ell
+  hTimeAngular : ℝ
+  hRadialAngular : ℝ
+  hTensorAngular : ℝ
+  reggeWheelerGauge : hTensorAngular = 0
+
+/--
+The convention-fixed Regge–Wheeler master amplitude
+
+`Ψ_RW = f(r) h_{rA} / r`.
+
+This is an explicit normalization choice for the local odd-parity mode.
+-/
+def reggeWheelerOddParityRWMasterAmplitude
+    (components : ReggeWheelerOddParityRWGaugeMetricComponents) : ℝ :=
+  reggeWheelerSchwarzschildExteriorFactor components.background *
+      components.hRadialAngular /
+    components.background.radius
+
+/--
+The radial-angular metric coefficient reconstructed from a Regge–Wheeler
+master amplitude under the convention
+
+`h_{rA} = r Ψ_RW / f(r)`.
+-/
+def reggeWheelerOddParityRWRadialCoefficientFromMaster
+    (background : ReggeWheelerSchwarzschildBackground)
+    (masterAmplitude : ℝ) : ℝ :=
+  background.radius /
+      reggeWheelerSchwarzschildExteriorFactor background *
+    masterAmplitude
+
+/--
+The convention-fixed radial reconstruction is an exact right inverse of the
+local Regge–Wheeler master normalization on the certified Schwarzschild
+exterior.
+-/
+theorem reggeWheelerOddParityRWGaugeMaster_roundTrip
+    (background : ReggeWheelerSchwarzschildBackground)
+    (masterAmplitude : ℝ) :
+    reggeWheelerSchwarzschildExteriorFactor background *
+          reggeWheelerOddParityRWRadialCoefficientFromMaster
+            background masterAmplitude /
+        background.radius =
+      masterAmplitude := by
+  have hFactor :
+      reggeWheelerSchwarzschildExteriorFactor background ≠ 0 :=
+    reggeWheelerSchwarzschildExteriorFactor_ne_zero background
+  have hRadius : background.radius ≠ 0 :=
+    ne_of_gt
+      (reggeWheelerSchwarzschildBackground_radius_pos background)
+  unfold reggeWheelerOddParityRWRadialCoefficientFromMaster
+  field_simp [hFactor, hRadius]
+  <;> ring
+
+/--
+Construct the local Regge–Wheeler-gauge metric coefficients from:
+
+* a certified Schwarzschild exterior background;
+* one radiative mode `ell ≥ 2`;
+* a freely supplied time-angular coefficient;
+* a Regge–Wheeler master amplitude.
+
+The odd tensor coefficient is fixed to zero by the gauge convention, and the
+radial-angular coefficient is reconstructed by `h_{rA} = r Ψ_RW / f(r)`.
+-/
+def reggeWheelerOddParityRWGaugeMetricComponentsOfMaster
+    (background : ReggeWheelerSchwarzschildBackground)
+    (ell : ℕ)
+    (radiativeMode : 2 ≤ ell)
+    (hTimeAngular masterAmplitude : ℝ) :
+    ReggeWheelerOddParityRWGaugeMetricComponents where
+  background := background
+  ell := ell
+  radiativeMode := radiativeMode
+  hTimeAngular := hTimeAngular
+  hRadialAngular :=
+    reggeWheelerOddParityRWRadialCoefficientFromMaster
+      background masterAmplitude
+  hTensorAngular := 0
+  reggeWheelerGauge := rfl
+
+/--
+The metric-component constructor recovers exactly the supplied
+Regge–Wheeler master amplitude.
+-/
+theorem reggeWheelerOddParityRWGaugeMetricComponentsOfMaster_master
+    (background : ReggeWheelerSchwarzschildBackground)
+    (ell : ℕ)
+    (radiativeMode : 2 ≤ ell)
+    (hTimeAngular masterAmplitude : ℝ) :
+    reggeWheelerOddParityRWMasterAmplitude
+        (reggeWheelerOddParityRWGaugeMetricComponentsOfMaster
+          background ell radiativeMode hTimeAngular masterAmplitude) =
+      masterAmplitude := by
+  simpa [
+    reggeWheelerOddParityRWMasterAmplitude,
+    reggeWheelerOddParityRWGaugeMetricComponentsOfMaster
+  ] using
+    reggeWheelerOddParityRWGaugeMaster_roundTrip
+      background masterAmplitude
+
+/--
+The constructed local metric mode satisfies the Regge–Wheeler gauge
+condition definitionally.
+-/
+theorem reggeWheelerOddParityRWGaugeMetricComponentsOfMaster_tensor_zero
+    (background : ReggeWheelerSchwarzschildBackground)
+    (ell : ℕ)
+    (radiativeMode : 2 ≤ ell)
+    (hTimeAngular masterAmplitude : ℝ) :
+    (reggeWheelerOddParityRWGaugeMetricComponentsOfMaster
+      background ell radiativeMode hTimeAngular masterAmplitude
+    ).hTensorAngular = 0 := by
+  rfl
+
+def reggeWheelerOddParityRWGaugeMetricComponentsBoundary : String :=
+  "LOCAL_RW_GAUGE_MODE_COMPONENTS_AND_PSI_EQ_F_HRADIAL_OVER_R_NORMALIZATION_PROVED_ANGULAR_HARMONIC_TENSOR_TETRAD_CURVATURE_AND_STRAIN_NOT_PROVED"
+
 def reggeWheelerOddParityMetricReconstructionBoundary : String :=
   "CONCRETE_SCHWARZSCHILD_ODD_PARITY_MASTER_NORMALIZATION_METRIC_COMPONENT_RECONSTRUCTION_AND_DETECTOR_FRAME_STRAIN_NOT_PROVED"
 
