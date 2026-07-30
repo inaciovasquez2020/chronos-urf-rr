@@ -505,6 +505,64 @@ theorem reggeWheelerOddParityMasterField_not_injective :
 def reggeWheelerOddParityReconstructionNonuniquenessBoundary : String :=
   "MASTER_PROFILE_ALONE_DOES_NOT_UNIQUELY_RECONSTRUCT_RAW_METRIC_WITHOUT_GAUGE_FIXING_OR_GAUGE_INVARIANT_GEOMETRIC_DATA"
 
+
+/--
+A convention-fixed Schwarzschild exterior background in geometric units
+`G = c = 1`.
+
+The carrier records the geometric mass `M`, areal radius `r`, positivity of
+the mass, and the strict exterior condition `2M < r`.
+-/
+structure ReggeWheelerSchwarzschildBackground where
+  mass : ℝ
+  radius : ℝ
+  mass_pos : 0 < mass
+  exterior : 2 * mass < radius
+
+/--
+The areal radius of a certified Schwarzschild exterior background is positive.
+-/
+theorem reggeWheelerSchwarzschildBackground_radius_pos
+    (background : ReggeWheelerSchwarzschildBackground) :
+    0 < background.radius := by
+  have hTwoMass : 0 < 2 * background.mass := by
+    exact mul_pos (by norm_num) background.mass_pos
+  exact lt_trans hTwoMass background.exterior
+
+/--
+The Schwarzschild exterior factor
+
+`f(r) = (r - 2M) / r`
+
+on the certified exterior background.
+-/
+def reggeWheelerSchwarzschildExteriorFactor
+    (background : ReggeWheelerSchwarzschildBackground) : ℝ :=
+  (background.radius - 2 * background.mass) / background.radius
+
+/--
+The Schwarzschild exterior factor is strictly positive whenever `M > 0` and
+`2M < r`.
+-/
+theorem reggeWheelerSchwarzschildExteriorFactor_pos
+    (background : ReggeWheelerSchwarzschildBackground) :
+    0 < reggeWheelerSchwarzschildExteriorFactor background := by
+  exact div_pos
+    (sub_pos.mpr background.exterior)
+    (reggeWheelerSchwarzschildBackground_radius_pos background)
+
+/--
+The certified exterior factor is nonzero, so its reciprocal is admissible in
+a later Schwarzschild metric-component construction.
+-/
+theorem reggeWheelerSchwarzschildExteriorFactor_ne_zero
+    (background : ReggeWheelerSchwarzschildBackground) :
+    reggeWheelerSchwarzschildExteriorFactor background ≠ 0 :=
+  ne_of_gt (reggeWheelerSchwarzschildExteriorFactor_pos background)
+
+def reggeWheelerSchwarzschildBackgroundBoundary : String :=
+  "SCHWARZSCHILD_EXTERIOR_BACKGROUND_AND_POSITIVE_FACTOR_PROVED_ODD_PARITY_METRIC_COMPONENTS_TETRAD_CURVATURE_AND_STRAIN_NOT_PROVED"
+
 def reggeWheelerOddParityMetricReconstructionBoundary : String :=
   "CONCRETE_SCHWARZSCHILD_ODD_PARITY_MASTER_NORMALIZATION_METRIC_COMPONENT_RECONSTRUCTION_AND_DETECTOR_FRAME_STRAIN_NOT_PROVED"
 
