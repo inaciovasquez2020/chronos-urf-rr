@@ -421,6 +421,47 @@ theorem reggeWheelerOddParityConcreteNonzeroDistinction :
     reggeWheelerOddParityUnitMemoryJet
     reggeWheelerOddParityUnitMemoryShift_ne_zero
 
+
+/--
+Pull a linear reconstruction of the gauge-invariant odd-parity master profile
+back to the repository's raw radial-jet state.
+
+This does not select a physical reconstruction formula. It isolates the exact
+map that a Schwarzschild metric reconstruction must later inhabit.
+-/
+def reggeWheelerOddParityMetricReconstruction
+    {Metric : Type*}
+    [AddCommGroup Metric]
+    [Module ℝ Metric]
+    (reconstruct : (ℝ → ℝ) →ₗ[ℝ] Metric) :
+    ReggeWheelerOddParityRadialJet →ₗ[ℝ] Metric :=
+  reconstruct.comp reggeWheelerOddParityMasterField
+
+/--
+Every linear metric reconstruction pulled back through the concrete
+odd-parity master field is invariant under the encoded odd-parity gauge
+transformation.
+-/
+theorem reggeWheelerOddParityMetricReconstruction_gaugeInvariant
+    {Metric : Type*}
+    [AddCommGroup Metric]
+    [Module ℝ Metric]
+    (reconstruct : (ℝ → ℝ) →ₗ[ℝ] Metric)
+    (rawState : ReggeWheelerOddParityRadialJet)
+    (gaugeParameter : ReggeWheelerOddParityGaugeJet) :
+    reggeWheelerOddParityMetricReconstruction reconstruct
+        (reggeWheelerOddParityGaugeTransform rawState gaugeParameter) =
+      reggeWheelerOddParityMetricReconstruction reconstruct rawState := by
+  change
+    reconstruct
+        (reggeWheelerOddParityMasterField
+          (reggeWheelerOddParityGaugeTransform rawState gaugeParameter)) =
+      reconstruct (reggeWheelerOddParityMasterField rawState)
+  rw [reggeWheelerOddParityMasterField_gaugeInvariant]
+
+def reggeWheelerOddParityMetricReconstructionBoundary : String :=
+  "CONCRETE_SCHWARZSCHILD_ODD_PARITY_MASTER_NORMALIZATION_METRIC_COMPONENT_RECONSTRUCTION_AND_DETECTOR_FRAME_STRAIN_NOT_PROVED"
+
 def reggeWheelerOddParityMasterExtractionStatus : String :=
   "CONCRETE_ODD_PARITY_RADIAL_JET_MASTER_EXTRACTION_MEMORY_AND_NONZERO_DISCRIMINATOR"
 
