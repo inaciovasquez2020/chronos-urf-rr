@@ -636,7 +636,6 @@ theorem reggeWheelerOddParityRWGaugeMaster_roundTrip
       (reggeWheelerSchwarzschildBackground_radius_pos background)
   unfold reggeWheelerOddParityRWRadialCoefficientFromMaster
   field_simp [hFactor, hRadius]
-  <;> ring
 
 /--
 Construct the local Regge–Wheeler-gauge metric coefficients from:
