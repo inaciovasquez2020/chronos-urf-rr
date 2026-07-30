@@ -459,6 +459,52 @@ theorem reggeWheelerOddParityMetricReconstruction_gaugeInvariant
       reconstruct (reggeWheelerOddParityMasterField rawState)
   rw [reggeWheelerOddParityMasterField_gaugeInvariant]
 
+
+/--
+A concrete nontrivial encoded odd-parity gauge parameter.
+-/
+def reggeWheelerOddParityNontrivialGaugeJet :
+    ReggeWheelerOddParityGaugeJet :=
+  (fun _ => 1, fun _ => 0)
+
+/--
+The concrete gauge parameter produces a nonzero raw radial-jet displacement.
+-/
+theorem reggeWheelerOddParityNontrivialGaugeShift_ne_zero :
+    reggeWheelerOddParityGaugeShift
+        reggeWheelerOddParityNontrivialGaugeJet ≠ 0 := by
+  intro hZero
+  have hAtZero :
+      (-1 : ℝ) = 0 := by
+    simpa [
+      reggeWheelerOddParityGaugeShift,
+      reggeWheelerOddParityNontrivialGaugeJet
+    ] using
+      congrArg
+        (fun state : ReggeWheelerOddParityRadialJet => state.1 0)
+        hZero
+  norm_num at hAtZero
+
+/--
+The repository's odd-parity master-field extraction is not injective:
+a nonzero encoded gauge displacement lies in its kernel.
+
+Consequently, the master profile alone cannot uniquely reconstruct the raw
+metric-component carrier without an additional gauge choice or equivalent
+gauge-invariant geometric data.
+-/
+theorem reggeWheelerOddParityMasterField_not_injective :
+    ¬ Function.Injective reggeWheelerOddParityMasterField := by
+  intro hInjective
+  apply reggeWheelerOddParityNontrivialGaugeShift_ne_zero
+  apply hInjective
+  simpa using
+    reggeWheelerOddParityMasterField_gaugeShift_zero
+      reggeWheelerOddParityNontrivialGaugeJet
+
+def reggeWheelerOddParityReconstructionNonuniquenessBoundary : String :=
+  "MASTER_PROFILE_ALONE_DOES_NOT_UNIQUELY_RECONSTRUCT_RAW_METRIC_WITHOUT_GAUGE_FIXING_OR_GAUGE_INVARIANT_GEOMETRIC_DATA"
+
 def reggeWheelerOddParityMetricReconstructionBoundary : String :=
   "CONCRETE_SCHWARZSCHILD_ODD_PARITY_MASTER_NORMALIZATION_METRIC_COMPONENT_RECONSTRUCTION_AND_DETECTOR_FRAME_STRAIN_NOT_PROVED"
 
