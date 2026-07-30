@@ -587,6 +587,127 @@ theorem
     exact
       reggeWheelerOddParityConcreteDoubleCoupling_memory_ne_zero
 
+
+/--
+The concrete double-coupling response is scalarized through the already-defined
+gauge-invariant endpoint memory. Since this response is real-valued, its norm is
+canonical and no norm is assigned to the unrestricted radial-jet function
+space.
+
+The detector expansion and strict remainder estimate remain explicit
+hypotheses.
+-/
+theorem reggeWheelerOddParityConcreteMemorySmallTimeObservable_pos
+    (T remainder observable : ℝ)
+    (hT : 0 < T)
+    (hExpansion :
+      observable =
+        reggeWheelerSmallTimeObservableLeadingTerm
+            T
+            (
+              reggeWheelerOddParityMemoryShift
+                0
+                1
+                (
+                  reggeWheelerOddParityConcreteCoupling
+                    (
+                      reggeWheelerOddParityConcreteCoupling
+                        reggeWheelerOddParityConcreteProfile
+                    )
+                )
+            ) +
+          remainder)
+    (hRemainder :
+      |remainder| <
+        reggeWheelerSmallTimeObservableLeadingTerm
+          T
+          (
+            reggeWheelerOddParityMemoryShift
+              0
+              1
+              (
+                reggeWheelerOddParityConcreteCoupling
+                  (
+                    reggeWheelerOddParityConcreteCoupling
+                      reggeWheelerOddParityConcreteProfile
+                  )
+              )
+          )) :
+    0 < observable := by
+  have hMemoryNormPos :
+      0 <
+        ‖reggeWheelerOddParityMemoryShift
+            0
+            1
+            (
+              reggeWheelerOddParityConcreteCoupling
+                (
+                  reggeWheelerOddParityConcreteCoupling
+                    reggeWheelerOddParityConcreteProfile
+                )
+            )‖ :=
+    norm_pos_iff.mpr
+      reggeWheelerOddParityConcreteDoubleCoupling_memory_ne_zero
+
+  have hCoefficient :
+      0 < T ^ 5 / 120 := by
+    positivity
+
+  have hMemoryNormSquare :
+      0 <
+        ‖reggeWheelerOddParityMemoryShift
+            0
+            1
+            (
+              reggeWheelerOddParityConcreteCoupling
+                (
+                  reggeWheelerOddParityConcreteCoupling
+                    reggeWheelerOddParityConcreteProfile
+                )
+            )‖ ^ 2 :=
+    pow_pos hMemoryNormPos 2
+
+  have hLeading :
+      0 <
+        reggeWheelerSmallTimeObservableLeadingTerm
+          T
+          (
+            reggeWheelerOddParityMemoryShift
+              0
+              1
+              (
+                reggeWheelerOddParityConcreteCoupling
+                  (
+                    reggeWheelerOddParityConcreteCoupling
+                      reggeWheelerOddParityConcreteProfile
+                  )
+              )
+          ) := by
+    unfold reggeWheelerSmallTimeObservableLeadingTerm
+    exact mul_pos hCoefficient hMemoryNormSquare
+
+  have hRemainderLower :
+      -reggeWheelerSmallTimeObservableLeadingTerm
+            T
+            (
+              reggeWheelerOddParityMemoryShift
+                0
+                1
+                (
+                  reggeWheelerOddParityConcreteCoupling
+                    (
+                      reggeWheelerOddParityConcreteCoupling
+                        reggeWheelerOddParityConcreteProfile
+                    )
+                )
+            ) <
+        remainder :=
+    (abs_lt.mp hRemainder).1
+
+  rw [hExpansion]
+  linarith
+
+
 def reggeWheelerOddParityConcreteDerivedMemoryBoundary : String :=
   "IDENTITY_COUPLING_BENCHMARK_ONLY_NOT_A_COVARIANT_ACTION_DERIVATION"
 
