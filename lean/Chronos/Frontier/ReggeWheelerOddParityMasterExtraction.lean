@@ -701,6 +701,292 @@ theorem reggeWheelerOddParityRWGaugeMetricComponentsOfMaster_tensor_zero
 def reggeWheelerOddParityRWGaugeMetricComponentsBoundary : String :=
   "LOCAL_RW_GAUGE_MODE_COMPONENTS_AND_PSI_EQ_F_HRADIAL_OVER_R_NORMALIZATION_PROVED_ANGULAR_HARMONIC_TENSOR_TETRAD_CURVATURE_AND_STRAIN_NOT_PROVED"
 
+
+/--
+Coordinate labels for a local Schwarzschild chart `(t, r, θ, φ)`.
+-/
+inductive ReggeWheelerSpacetimeCoordinate
+  | time
+  | radial
+  | theta
+  | phi
+  deriving DecidableEq
+
+/--
+Coordinate labels intrinsic to the unit two-sphere.
+-/
+inductive ReggeWheelerAngularCoordinate
+  | theta
+  | phi
+  deriving DecidableEq
+
+/--
+Embed an angular coordinate into the local spacetime chart.
+-/
+def reggeWheelerAngularCoordinateToSpacetime :
+    ReggeWheelerAngularCoordinate →
+      ReggeWheelerSpacetimeCoordinate
+  | .theta => .theta
+  | .phi => .phi
+
+/--
+Pointwise scalar-harmonic and derivative data for one radiative mode.
+
+The fields record the data required to construct the odd vector and tensor
+harmonics in a regular local spherical chart. The spherical-harmonic
+eigenvalue equation and global normalization are not asserted here.
+-/
+structure ReggeWheelerOddParityAngularHarmonicValue where
+  ell : ℕ
+  order : ℤ
+  radiativeMode : 2 ≤ ell
+  orderBound : Int.natAbs order ≤ ell
+  theta : ℝ
+  sinTheta_ne_zero : Real.sin theta ≠ 0
+  scalarValue : ℝ
+  dThetaScalar : ℝ
+  dPhiScalar : ℝ
+  dThetaVectorTheta : ℝ
+  dThetaVectorPhi : ℝ
+  dPhiVectorTheta : ℝ
+  dPhiVectorPhi : ℝ
+
+/--
+The odd vector harmonic in the convention
+
+`X_A = - ε_A{}^B D_B Y`.
+
+In local spherical coordinates this gives
+
+`X_θ = -(∂_φ Y) / sin θ`,
+`X_φ = sin θ (∂_θ Y)`.
+-/
+def reggeWheelerOddParityVectorHarmonicValue
+    (harmonic : ReggeWheelerOddParityAngularHarmonicValue) :
+    ReggeWheelerAngularCoordinate → ℝ
+  | .theta =>
+      -(harmonic.dPhiScalar / Real.sin harmonic.theta)
+  | .phi =>
+      Real.sin harmonic.theta * harmonic.dThetaScalar
+
+/--
+Pointwise covariant derivative `D_A X_B` of the odd vector harmonic in the
+unit-sphere coordinate chart.
+
+The derivative fields in the harmonic carrier are ordinary coordinate
+derivatives of the covector components.
+-/
+def reggeWheelerOddParityVectorCovariantDerivative
+    (harmonic : ReggeWheelerOddParityAngularHarmonicValue) :
+    ReggeWheelerAngularCoordinate →
+      ReggeWheelerAngularCoordinate →
+        ℝ
+  | .theta, .theta =>
+      harmonic.dThetaVectorTheta
+  | .theta, .phi =>
+      harmonic.dThetaVectorPhi -
+        (Real.cos harmonic.theta / Real.sin harmonic.theta) *
+          reggeWheelerOddParityVectorHarmonicValue harmonic .phi
+  | .phi, .theta =>
+      harmonic.dPhiVectorTheta -
+        (Real.cos harmonic.theta / Real.sin harmonic.theta) *
+          reggeWheelerOddParityVectorHarmonicValue harmonic .phi
+  | .phi, .phi =>
+      harmonic.dPhiVectorPhi +
+        Real.sin harmonic.theta * Real.cos harmonic.theta *
+          reggeWheelerOddParityVectorHarmonicValue harmonic .theta
+
+/--
+The odd tensor harmonic
+
+`X_AB = (D_A X_B + D_B X_A) / 2`.
+-/
+def reggeWheelerOddParityTensorHarmonicValue
+    (harmonic : ReggeWheelerOddParityAngularHarmonicValue)
+    (left right : ReggeWheelerAngularCoordinate) : ℝ :=
+  (reggeWheelerOddParityVectorCovariantDerivative
+      harmonic left right +
+    reggeWheelerOddParityVectorCovariantDerivative
+      harmonic right left) /
+    2
+
+/--
+The pointwise odd tensor harmonic is symmetric.
+-/
+theorem reggeWheelerOddParityTensorHarmonicValue_symmetric
+    (harmonic : ReggeWheelerOddParityAngularHarmonicValue)
+    (left right : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParityTensorHarmonicValue
+        harmonic left right =
+      reggeWheelerOddParityTensorHarmonicValue
+        harmonic right left := by
+  unfold reggeWheelerOddParityTensorHarmonicValue
+  ring
+
+/--
+A pointwise rank-two spacetime tensor in the local Schwarzschild chart.
+-/
+abbrev ReggeWheelerSpacetimeMetricPerturbationValue :=
+  ReggeWheelerSpacetimeCoordinate →
+    ReggeWheelerSpacetimeCoordinate →
+      ℝ
+
+/--
+Assemble the complete pointwise odd-parity metric perturbation for one
+spherical-harmonic mode:
+
+* `h_tA = hTimeAngular X_A`;
+* `h_rA = hRadialAngular X_A`;
+* `h_AB = hTensorAngular X_AB`;
+* all scalar-sector components vanish.
+
+For the existing Regge–Wheeler-gauge carrier,
+`hTensorAngular = 0`.
+-/
+def reggeWheelerOddParitySpacetimeMetricPerturbation
+    (components : ReggeWheelerOddParityRWGaugeMetricComponents)
+    (harmonic : ReggeWheelerOddParityAngularHarmonicValue) :
+    ReggeWheelerSpacetimeMetricPerturbationValue
+  | .time, .theta =>
+      components.hTimeAngular *
+        reggeWheelerOddParityVectorHarmonicValue
+          harmonic .theta
+  | .theta, .time =>
+      components.hTimeAngular *
+        reggeWheelerOddParityVectorHarmonicValue
+          harmonic .theta
+  | .time, .phi =>
+      components.hTimeAngular *
+        reggeWheelerOddParityVectorHarmonicValue
+          harmonic .phi
+  | .phi, .time =>
+      components.hTimeAngular *
+        reggeWheelerOddParityVectorHarmonicValue
+          harmonic .phi
+  | .radial, .theta =>
+      components.hRadialAngular *
+        reggeWheelerOddParityVectorHarmonicValue
+          harmonic .theta
+  | .theta, .radial =>
+      components.hRadialAngular *
+        reggeWheelerOddParityVectorHarmonicValue
+          harmonic .theta
+  | .radial, .phi =>
+      components.hRadialAngular *
+        reggeWheelerOddParityVectorHarmonicValue
+          harmonic .phi
+  | .phi, .radial =>
+      components.hRadialAngular *
+        reggeWheelerOddParityVectorHarmonicValue
+          harmonic .phi
+  | .theta, .theta =>
+      components.hTensorAngular *
+        reggeWheelerOddParityTensorHarmonicValue
+          harmonic .theta .theta
+  | .theta, .phi =>
+      components.hTensorAngular *
+        reggeWheelerOddParityTensorHarmonicValue
+          harmonic .theta .phi
+  | .phi, .theta =>
+      components.hTensorAngular *
+        reggeWheelerOddParityTensorHarmonicValue
+          harmonic .theta .phi
+  | .phi, .phi =>
+      components.hTensorAngular *
+        reggeWheelerOddParityTensorHarmonicValue
+          harmonic .phi .phi
+  | _, _ => 0
+
+/--
+The assembled odd-parity metric perturbation is symmetric in its spacetime
+indices.
+-/
+theorem reggeWheelerOddParitySpacetimeMetricPerturbation_symmetric
+    (components : ReggeWheelerOddParityRWGaugeMetricComponents)
+    (harmonic : ReggeWheelerOddParityAngularHarmonicValue)
+    (left right : ReggeWheelerSpacetimeCoordinate) :
+    reggeWheelerOddParitySpacetimeMetricPerturbation
+        components harmonic left right =
+      reggeWheelerOddParitySpacetimeMetricPerturbation
+        components harmonic right left := by
+  cases left <;> cases right <;>
+    rfl
+
+/--
+The assembled time-angular components recover the supplied
+Regge–Wheeler coefficient times the odd vector harmonic.
+-/
+theorem reggeWheelerOddParitySpacetimeMetricPerturbation_timeAngular
+    (components : ReggeWheelerOddParityRWGaugeMetricComponents)
+    (harmonic : ReggeWheelerOddParityAngularHarmonicValue)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParitySpacetimeMetricPerturbation
+        components harmonic .time
+        (reggeWheelerAngularCoordinateToSpacetime angular) =
+      components.hTimeAngular *
+        reggeWheelerOddParityVectorHarmonicValue
+          harmonic angular := by
+  cases angular <;>
+    rfl
+
+/--
+The assembled radial-angular components recover the supplied
+Regge–Wheeler coefficient times the odd vector harmonic.
+-/
+theorem reggeWheelerOddParitySpacetimeMetricPerturbation_radialAngular
+    (components : ReggeWheelerOddParityRWGaugeMetricComponents)
+    (harmonic : ReggeWheelerOddParityAngularHarmonicValue)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParitySpacetimeMetricPerturbation
+        components harmonic .radial
+        (reggeWheelerAngularCoordinateToSpacetime angular) =
+      components.hRadialAngular *
+        reggeWheelerOddParityVectorHarmonicValue
+          harmonic angular := by
+  cases angular <;>
+    rfl
+
+/--
+The complete angular-angular block vanishes in the existing
+Regge–Wheeler gauge.
+-/
+theorem reggeWheelerOddParitySpacetimeMetricPerturbation_angularBlock_zero
+    (components : ReggeWheelerOddParityRWGaugeMetricComponents)
+    (harmonic : ReggeWheelerOddParityAngularHarmonicValue)
+    (left right : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParitySpacetimeMetricPerturbation
+        components harmonic
+        (reggeWheelerAngularCoordinateToSpacetime left)
+        (reggeWheelerAngularCoordinateToSpacetime right) =
+      0 := by
+  cases left <;> cases right <;>
+    simp [
+      reggeWheelerOddParitySpacetimeMetricPerturbation,
+      reggeWheelerAngularCoordinateToSpacetime,
+      components.reggeWheelerGauge
+    ]
+
+/--
+The assembled odd-parity perturbation has no scalar-sector `tt`, `tr`, or
+`rr` components.
+-/
+theorem reggeWheelerOddParitySpacetimeMetricPerturbation_scalarBlock_zero
+    (components : ReggeWheelerOddParityRWGaugeMetricComponents)
+    (harmonic : ReggeWheelerOddParityAngularHarmonicValue) :
+    reggeWheelerOddParitySpacetimeMetricPerturbation
+        components harmonic .time .time = 0 ∧
+      reggeWheelerOddParitySpacetimeMetricPerturbation
+        components harmonic .time .radial = 0 ∧
+      reggeWheelerOddParitySpacetimeMetricPerturbation
+        components harmonic .radial .radial = 0 := by
+  constructor
+  · rfl
+  constructor <;>
+    rfl
+
+def reggeWheelerOddParityAngularMetricAssemblyBoundary : String :=
+  "POINTWISE_ODD_VECTOR_TENSOR_HARMONICS_AND_SYMMETRIC_RW_GAUGE_SPACETIME_METRIC_ASSEMBLY_PROVED_GLOBAL_SPHERICAL_HARMONIC_EIGENFUNCTION_NORMALIZATION_ACTION_DERIVATION_TETRAD_CURVATURE_AND_STRAIN_NOT_PROVED"
+
 def reggeWheelerOddParityMetricReconstructionBoundary : String :=
   "CONCRETE_SCHWARZSCHILD_ODD_PARITY_MASTER_NORMALIZATION_METRIC_COMPONENT_RECONSTRUCTION_AND_DETECTOR_FRAME_STRAIN_NOT_PROVED"
 
