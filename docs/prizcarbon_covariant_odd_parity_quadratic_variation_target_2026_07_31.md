@@ -115,3 +115,23 @@ Still open:
 - derive all second variations;
 - form the action Hessian;
 - eliminate nondynamical variables and derive the master equation.
+
+## Closed vacuum CPM scalar-curvature specialization
+
+`PrizcarbonOddParityVacuumCPMLinearizedScalarCurvature.lean` now evaluates
+the general scalar-curvature first-variation contraction on:
+
+- `reggeWheelerOddParityVacuumCPMDerivedMetricFirstJet`;
+- `reggeWheelerSchwarzschildConnectionFirstJetOfFrame`;
+- `reggeWheelerOddParityVacuumCPMDerivedLinearizedConnectionFirstJet`.
+
+It specializes both product-rule contributions and the first-order epsilon
+polynomial. The contraction is not declared to vanish.
+
+Still open:
+
+- componentwise simplification of both specialized Ricci contributions;
+- proof or disproof that their exact sum vanishes;
+- the other seven action-scalar first variations;
+- every second variation;
+- the action Hessian and master-equation derivation.
