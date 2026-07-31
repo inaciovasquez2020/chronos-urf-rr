@@ -91,3 +91,27 @@ The following remain open:
 - derivation of the master equation from the varied action.
 
 No perturbative coefficient or master equation is assumed by the basepoint.
+
+## Closed scalar-curvature first-variation formula
+
+`PrizcarbonOddParityLinearizedScalarCurvature.lean` now defines:
+
+- the background Ricci contraction from the existing Schwarzschild Riemann;
+- the odd-parity linearized Ricci contraction from the existing linearized
+  Riemann;
+- the inverse-metric-variation contribution
+  `δg^{μν} R̄_{μν}`;
+- the Ricci-variation contribution
+  `ḡ^{μν} δR_{μν}`;
+- their sum as the complete scalar-curvature first variation.
+
+The contraction is not defined to be zero.
+
+Still open:
+
+- prove the contraction vanishes for the concrete vacuum odd-parity CPM jet,
+  or compute its nonzero value if it does not vanish;
+- derive the remaining seven action-scalar first variations;
+- derive all second variations;
+- form the action Hessian;
+- eliminate nondynamical variables and derive the master equation.
