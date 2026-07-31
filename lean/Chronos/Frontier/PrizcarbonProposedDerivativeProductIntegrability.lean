@@ -15,8 +15,6 @@ support of the test variation using Mathlib's
 structure ProposedPrizcarbonScalarVariationAnalyticCarrier
     (rawState : ReggeWheelerOddParityRadialJet)
     (variation : ℝ → ℝ) : Prop where
-  variationContinuous :
-    Continuous variation
   variationCompact :
     HasCompactSupport variation
   chiDerivativeContinuous :
@@ -29,12 +27,8 @@ structure ProposedPrizcarbonScalarVariationAnalyticCarrier
     Continuous
       (fun x : ℝ =>
         (fderiv ℝ variation x) 1)
-  variationDifferentiableOnChiSupport :
-    ∀ x ∈
-        tsupport
-          (proposedPrizcarbonRadialWeightedChiCandidate
-            rawState),
-      DifferentiableAt ℝ variation x
+  variationDifferentiable :
+    Differentiable ℝ variation
 
 /--
 Compact support of the test variation implies compact support of its
@@ -52,6 +46,36 @@ theorem proposedPrizcarbon_variationDerivative_compact_of_compactSupport
   exact
     hVariation.variationCompact.fderiv_apply
       (𝕜 := ℝ) (1 : ℝ)
+
+/--
+Global differentiability of the test variation supplies its continuity.
+-/
+theorem proposedPrizcarbon_variation_continuous_of_differentiable
+    (rawState : ReggeWheelerOddParityRadialJet)
+    (variation : ℝ → ℝ)
+    (hVariation :
+      ProposedPrizcarbonScalarVariationAnalyticCarrier
+        rawState variation) :
+    Continuous variation :=
+  hVariation.variationDifferentiable.continuous
+
+/--
+Global differentiability of the test variation supplies differentiability at
+every point in the support of the candidate chi profile.
+-/
+theorem proposedPrizcarbon_variation_differentiableOnChiSupport
+    (rawState : ReggeWheelerOddParityRadialJet)
+    (variation : ℝ → ℝ)
+    (hVariation :
+      ProposedPrizcarbonScalarVariationAnalyticCarrier
+        rawState variation) :
+    ∀ x ∈
+        tsupport
+          (proposedPrizcarbonRadialWeightedChiCandidate
+            rawState),
+      DifferentiableAt ℝ variation x := by
+  intro x _
+  exact hVariation.variationDifferentiable x
 
 /--
 Continuity of the chi derivative and compact support of the test variation
@@ -78,7 +102,8 @@ theorem proposedPrizcarbon_derivativeChiTimesVariation_integrable
                 rawState) x) 1 *
             variation x) :=
     hVariation.chiDerivativeContinuous.mul
-      hVariation.variationContinuous
+      (proposedPrizcarbon_variation_continuous_of_differentiable
+        rawState variation hVariation)
 
   have hCompact :
       HasCompactSupport
@@ -175,7 +200,8 @@ theorem proposedPrizcarbon_radialWeightedChi_firstVariation_of_variationCarrier
       (potential := potential)
       (hAnalytic := hRawAnalytic)
       (hVariationContinuous :=
-        hVariation.variationContinuous)
+        proposedPrizcarbon_variation_continuous_of_differentiable
+          rawState variation hVariation)
       (hPotentialContinuous :=
         hPotentialContinuous)
       (hVariationCompact :=
@@ -188,7 +214,8 @@ theorem proposedPrizcarbon_radialWeightedChi_firstVariation_of_variationCarrier
           rawState variation
           hRawAnalytic hVariation)
       (hVariationDifferentiable :=
-        hVariation.variationDifferentiableOnChiSupport)
+        proposedPrizcarbon_variation_differentiableOnChiSupport
+          rawState variation hVariation)
 
 end
 
