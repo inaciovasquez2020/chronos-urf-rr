@@ -71,3 +71,23 @@ The target must not introduce:
 The action and metric-jet surfaces are encoded, but their metric-to-scalar map
 and action Hessian are absent. The covariant odd-parity reduction therefore
 remains unproved.
+
+## Closed Schwarzschild basepoint
+
+`PrizcarbonSchwarzschildActionScalarBasePoint.lean` now constructs all eight
+action-scalar values at the common Schwarzschild vacuum basepoint.
+
+It also connects that basepoint to the background stored by:
+
+- the existing Regge-Wheeler-gauge odd-parity metric components;
+- the existing CPM third jet used for the metric second jet.
+
+The following remain open:
+
+- epsilon-linear metric-to-scalar contractions;
+- epsilon-quadratic metric-to-scalar contractions;
+- the second metric variation of the action;
+- elimination of nondynamical odd-parity variables;
+- derivation of the master equation from the varied action.
+
+No perturbative coefficient or master equation is assumed by the basepoint.
