@@ -135,3 +135,15 @@ Still open:
 - the other seven action-scalar first variations;
 - every second variation;
 - the action Hessian and master-equation derivation.
+
+## Closed Schwarzschild Ricci contribution
+
+`PrizcarbonSchwarzschildRicciContractionZero.lean` proves componentwise that
+the explicit Schwarzschild Ricci contraction vanishes on the certified
+exterior static frame.
+
+Consequently, the `δg^{μν} R̄_{μν}` contribution vanishes, and the concrete
+vacuum CPM scalar-curvature variation reduces exactly to
+`ḡ^{μν} δR_{μν}`.
+
+The CPM-derived linearized Ricci contraction remains open.
