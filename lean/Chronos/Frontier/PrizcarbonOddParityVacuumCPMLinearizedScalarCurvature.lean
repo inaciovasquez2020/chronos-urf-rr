@@ -172,29 +172,28 @@ theorem
         frame
         cpmJet
         harmonicJet := by
-  simpa [
-    prizcarbonOddParityVacuumCPMScalarCurvatureFirstOrderPolynomial,
+  unfold
+    prizcarbonOddParityVacuumCPMScalarCurvatureFirstOrderPolynomial
+  unfold
     prizcarbonOddParityVacuumCPMLinearizedScalarCurvature
-  ] using
-    (
-      prizcarbonOddParityScalarCurvatureFirstOrderPolynomial_one
-        frame
-        (
-          reggeWheelerOddParityVacuumCPMDerivedMetricFirstJet
-            cpmJet
-            harmonicJet
-        )
-        (
-          reggeWheelerSchwarzschildConnectionFirstJetOfFrame
-            frame
-        )
-        (
-          reggeWheelerOddParityVacuumCPMDerivedLinearizedConnectionFirstJet
-            frame
-            cpmJet
-            harmonicJet
-        )
-    )
+  exact
+    prizcarbonOddParityScalarCurvatureFirstOrderPolynomial_one
+      frame
+      (
+        reggeWheelerOddParityVacuumCPMDerivedMetricFirstJet
+          cpmJet
+          harmonicJet
+      )
+      (
+        reggeWheelerSchwarzschildConnectionFirstJetOfFrame
+          frame
+      )
+      (
+        reggeWheelerOddParityVacuumCPMDerivedLinearizedConnectionFirstJet
+          frame
+          cpmJet
+          harmonicJet
+      )
 
 /--
 The concrete CPM specialization is complete, but no cancellation theorem is

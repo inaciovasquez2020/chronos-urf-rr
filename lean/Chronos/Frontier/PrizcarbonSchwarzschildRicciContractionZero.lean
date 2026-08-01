@@ -137,12 +137,6 @@ theorem prizcarbonSchwarzschildRicciContraction_ofFrame_eq_zero
         (pow_ne_zero 2 hGap)
         (pow_ne_zero 2 (inv_ne_zero hRadius))
 
-  have hTrig :
-      Real.sin frame.polarAngle ^ 2 +
-          Real.cos frame.polarAngle ^ 2 =
-        1 :=
-    Real.sin_sq_add_cos_sq frame.polarAngle
-
   cases left <;>
     cases right <;>
       simp [
@@ -157,23 +151,12 @@ theorem prizcarbonSchwarzschildRicciContraction_ofFrame_eq_zero
         reggeWheelerSchwarzschildConnectionKernelPartial,
         reggeWheelerSchwarzschildInverseMetricDiagonal,
         reggeWheelerSchwarzschildInverseMetricComponentPartial,
-        reggeWheelerSchwarzschildMetricComponent,
         reggeWheelerSchwarzschildMetricPartial,
         reggeWheelerSchwarzschildMetricSecondPartial,
         reggeWheelerSchwarzschildExteriorFactor,
         reggeWheelerSchwarzschildExteriorFactorFirstRadialDerivative,
         reggeWheelerSchwarzschildExteriorFactorRadialDerivative,
         reggeWheelerSchwarzschildExteriorFactorSecondRadialDerivative,
-        hRadius,
-        hGap,
-        hGapLeft,
-        hGapRight,
-        hSin,
-        hFactor,
-        hQuadraticA,
-        hQuadraticB,
-        hQuadraticA_ne,
-        hQuadraticB_ne
       ] <;>
       field_simp [
         hRadius,
@@ -185,8 +168,7 @@ theorem prizcarbonSchwarzschildRicciContraction_ofFrame_eq_zero
         hQuadraticA_ne,
         hQuadraticB_ne
       ] <;>
-      ring_nf at * <;>
-      nlinarith [hTrig]
+      ring_nf at *
 
 /--
 The inverse-metric/background-Ricci contribution in the concrete vacuum CPM
