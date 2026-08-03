@@ -10741,6 +10741,117 @@ theorem
           .radial
           .radial := by
   rfl
+/--
+Every angular coordinate partial of the Schwarzschild background inverse
+radial-radial metric component vanishes:
+
+`∂ₐ ḡ^{rr} = 0`.
+
+The explicit inverse-metric derivative definition has a nonzero radial
+radial-radial branch and sends both angular derivative coordinates to its
+zero fallback branch. No perturbation identity, harmonic identity, vacuum
+equation, connection-product term, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialBackgroundInverseMetricAngularPartialFactor_eq_zero
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerSchwarzschildInverseMetricComponentPartial
+        frame
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial =
+      0 := by
+  cases angular <;>
+    rfl
+/--
+The inverse-metric `.radial` summand in the retained second radial connection
+derivative
+
+`∂ₐ δΓʳ_{rr}`
+
+reduces from four product-rule terms to its first, second, and fourth terms.
+
+The third term vanishes because its background factor is the angular partial
+of the Schwarzschild inverse radial-radial metric component,
+
+`∂ₐ ḡ^{rr} = 0`.
+
+The first, second, and fourth terms are preserved exactly. No remaining factor
+is unfolded, simplified, canceled, combined, or asserted to vanish. The theta
+and phi inverse-metric summands of the second connection derivative remain
+unchanged.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialInverseMetricSummand_eq_firstSecondAndFourthProductRuleTerms
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParityLinearizedChristoffelSummandPartial
+        frame
+        (
+          reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+            cpmJet
+            harmonicJet
+        )
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial
+        .radial
+        .radial =
+      reggeWheelerOddParityLinearizedInverseMetricComponentPartial
+          frame
+          (
+            reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+              cpmJet
+              harmonicJet
+          )
+          (reggeWheelerAngularCoordinateToSpacetime angular)
+          .radial
+          .radial *
+        reggeWheelerSchwarzschildConnectionKernel
+          frame
+          .radial
+          .radial
+          .radial
+      +
+      reggeWheelerOddParityLinearizedInverseMetricComponent
+          frame
+          (
+            reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+              cpmJet
+              harmonicJet
+          ).firstJet
+          .radial
+          .radial *
+        reggeWheelerSchwarzschildConnectionKernelPartial
+          frame
+          (reggeWheelerAngularCoordinateToSpacetime angular)
+          .radial
+          .radial
+          .radial
+      +
+      reggeWheelerSchwarzschildInverseMetricComponent
+          frame
+          .radial
+          .radial *
+        reggeWheelerOddParityPerturbationConnectionKernelPartial
+          (
+            reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+              cpmJet
+              harmonicJet
+          )
+          (reggeWheelerAngularCoordinateToSpacetime angular)
+          .radial
+          .radial
+          .radial := by
+  simp only [
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialInverseMetricSummand_eq_fourProductRuleTerms,
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialBackgroundInverseMetricAngularPartialFactor_eq_zero,
+    zero_mul,
+    add_zero
+  ]
 def
     prizcarbonOddParityVacuumCPMLinearizedRicciTimeTimeDiagonalZeroBoundary :
     String :=
