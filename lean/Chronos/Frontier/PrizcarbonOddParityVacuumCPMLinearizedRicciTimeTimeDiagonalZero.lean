@@ -11494,6 +11494,78 @@ theorem
     mul_zero,
     zero_add
   ]
+/--
+Every angular coordinate partial of the off-diagonal Schwarzschild inverse
+metric component `ḡ^{rθ}` vanishes:
+
+`∂ₐ ḡ^{rθ} = 0`.
+
+The background inverse metric is diagonal, and its derivative table has no
+off-diagonal radial-theta entry. No perturbation identity, harmonic equation,
+vacuum equation, product-rule reduction, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeThetaBackgroundInverseMetricRadialThetaAngularPartialFactor_eq_zero
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerSchwarzschildInverseMetricComponentPartial
+        frame
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .theta =
+      0 := by
+  cases angular <;>
+    rfl
+/--
+The inverse-metric `.theta` summand in the retained second radial connection
+derivative reduces to product-rule term 4 alone.
+
+Product-rule term 3 vanishes because its off-diagonal Schwarzschild inverse
+metric angular-partial factor `∂ₐ ḡ^{rθ}` is zero. Product-rule term 4 is
+preserved exactly and is not unfolded, simplified, canceled, factored, or
+asserted to vanish.
+
+The `.phi` inverse-metric summand remains unchanged. No harmonic eigenvalue,
+vacuum equation, connection-product reduction, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeThetaInverseMetricSummand_eq_fourthProductRuleTerm
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParityLinearizedChristoffelSummandPartial
+        frame
+        (
+          reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+            cpmJet
+            harmonicJet
+        )
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial
+        .radial
+        .theta =
+      reggeWheelerSchwarzschildInverseMetricComponent
+              frame
+              .radial
+              .theta *
+            reggeWheelerOddParityPerturbationConnectionKernelPartial
+              (
+                reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+                  cpmJet
+                  harmonicJet
+              )
+              (reggeWheelerAngularCoordinateToSpacetime angular)
+              .radial
+              .radial
+              .theta := by
+  simp only [
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeThetaInverseMetricSummand_eq_thirdAndFourthProductRuleTerms,
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeThetaBackgroundInverseMetricRadialThetaAngularPartialFactor_eq_zero,
+    zero_mul,
+    zero_add
+  ]
 def
     prizcarbonOddParityVacuumCPMLinearizedRicciTimeTimeDiagonalZeroBoundary :
     String :=
