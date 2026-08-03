@@ -10641,6 +10641,106 @@ theorem
       angular
   ]
   ring
+/--
+The inverse-metric `.radial` summand in the retained second radial connection
+derivative
+
+`∂ₐ δΓʳ_{rr}`
+
+is expanded into the four product-rule terms defining the derivative of the
+linearized Christoffel summand.
+
+The four terms retain, respectively,
+
+1. the linearized inverse-metric partial times the background kernel;
+2. the linearized inverse-metric value times the background-kernel partial;
+3. the background inverse-metric partial times the perturbation kernel;
+4. the background inverse-metric value times the perturbation-kernel partial.
+
+No factor is evaluated and no term is simplified, canceled, combined,
+factored, or asserted to vanish. The theta and phi inverse-metric summands of
+the second connection derivative remain unchanged.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialInverseMetricSummand_eq_fourProductRuleTerms
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParityLinearizedChristoffelSummandPartial
+        frame
+        (
+          reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+            cpmJet
+            harmonicJet
+        )
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial
+        .radial
+        .radial =
+      reggeWheelerOddParityLinearizedInverseMetricComponentPartial
+          frame
+          (
+            reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+              cpmJet
+              harmonicJet
+          )
+          (reggeWheelerAngularCoordinateToSpacetime angular)
+          .radial
+          .radial *
+        reggeWheelerSchwarzschildConnectionKernel
+          frame
+          .radial
+          .radial
+          .radial
+      +
+      reggeWheelerOddParityLinearizedInverseMetricComponent
+          frame
+          (
+            reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+              cpmJet
+              harmonicJet
+          ).firstJet
+          .radial
+          .radial *
+        reggeWheelerSchwarzschildConnectionKernelPartial
+          frame
+          (reggeWheelerAngularCoordinateToSpacetime angular)
+          .radial
+          .radial
+          .radial
+      +
+      reggeWheelerSchwarzschildInverseMetricComponentPartial
+          frame
+          (reggeWheelerAngularCoordinateToSpacetime angular)
+          .radial
+          .radial *
+        reggeWheelerOddParityPerturbationConnectionKernel
+          (
+            reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+              cpmJet
+              harmonicJet
+          ).firstJet
+          .radial
+          .radial
+          .radial
+      +
+      reggeWheelerSchwarzschildInverseMetricComponent
+          frame
+          .radial
+          .radial *
+        reggeWheelerOddParityPerturbationConnectionKernelPartial
+          (
+            reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+              cpmJet
+              harmonicJet
+          )
+          (reggeWheelerAngularCoordinateToSpacetime angular)
+          .radial
+          .radial
+          .radial := by
+  rfl
 def
     prizcarbonOddParityVacuumCPMLinearizedRicciTimeTimeDiagonalZeroBoundary :
     String :=
