@@ -10852,6 +10852,123 @@ theorem
     zero_mul,
     add_zero
   ]
+/--
+The odd-parity CPM linearized inverse-metric radial-radial value vanishes:
+
+`δg^{rr} = 0`.
+
+The proof uses the already established scalar-block theorem for the assembled
+odd-parity spacetime perturbation and extracts its radial-radial conjunct.
+No derivative identity, harmonic identity, vacuum equation,
+connection-product term, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialLinearizedInverseMetricValueFactor_eq_zero
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet) :
+    reggeWheelerOddParityLinearizedInverseMetricComponent
+        frame
+        (
+          reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+            cpmJet
+            harmonicJet
+        ).firstJet
+        .radial
+        .radial =
+      0 := by
+  change
+    -(
+      reggeWheelerSchwarzschildInverseMetricDiagonal frame .radial *
+        (
+          reggeWheelerOddParityVacuumCPMMetricFirstJet
+            cpmJet.secondJet
+            harmonicJet.firstJet
+        ).metricValue .radial .radial *
+        reggeWheelerSchwarzschildInverseMetricDiagonal frame .radial
+    ) = 0
+  rw [reggeWheelerOddParityVacuumCPMMetricFirstJet_metricValue]
+  rw [
+    (
+      reggeWheelerOddParitySpacetimeMetricPerturbation_scalarBlock_zero
+        (reggeWheelerOddParityVacuumCPMMetricComponents cpmJet.secondJet.firstJet)
+        harmonicJet.firstJet.harmonic
+    ).2.2
+  ]
+  simp
+/--
+The inverse-metric `.radial` summand in the retained second radial connection
+derivative
+
+`∂ₐ δΓʳ_{rr}`
+
+reduces from its first, second, and fourth product-rule terms to only its first
+and fourth terms.
+
+The second term vanishes because its linearized inverse-metric radial-radial
+value factor is zero,
+
+`δg^{rr} = 0`.
+
+The first and fourth terms are preserved exactly. No remaining factor is
+unfolded, simplified, canceled, combined, or asserted to vanish. The theta and
+phi inverse-metric summands of the second connection derivative remain
+unchanged.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialInverseMetricSummand_eq_firstAndFourthProductRuleTerms
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParityLinearizedChristoffelSummandPartial
+        frame
+        (
+          reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+            cpmJet
+            harmonicJet
+        )
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial
+        .radial
+        .radial =
+      reggeWheelerOddParityLinearizedInverseMetricComponentPartial
+          frame
+          (
+            reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+              cpmJet
+              harmonicJet
+          )
+          (reggeWheelerAngularCoordinateToSpacetime angular)
+          .radial
+          .radial *
+        reggeWheelerSchwarzschildConnectionKernel
+          frame
+          .radial
+          .radial
+          .radial
+      +
+      reggeWheelerSchwarzschildInverseMetricComponent
+          frame
+          .radial
+          .radial *
+        reggeWheelerOddParityPerturbationConnectionKernelPartial
+          (
+            reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+              cpmJet
+              harmonicJet
+          )
+          (reggeWheelerAngularCoordinateToSpacetime angular)
+          .radial
+          .radial
+          .radial := by
+  simp only [
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialInverseMetricSummand_eq_firstSecondAndFourthProductRuleTerms,
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialLinearizedInverseMetricValueFactor_eq_zero,
+    zero_mul,
+    add_zero
+  ]
 def
     prizcarbonOddParityVacuumCPMLinearizedRicciTimeTimeDiagonalZeroBoundary :
     String :=
