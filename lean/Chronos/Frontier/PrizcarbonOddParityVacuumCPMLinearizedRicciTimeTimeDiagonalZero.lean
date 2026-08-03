@@ -12269,6 +12269,110 @@ prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeCoord
       harmonicJet
       hCompatible
       angular
+/--
+The radial-coordinate contribution to the radial-angular principal linearized
+Ricci derivative is specialized to the theta angular coordinate.
+
+This theorem selects only the theta branch of the already proved explicit
+first-connection derivative angular-case formula. The branch expression is
+retained exactly. No algebraic normalization, factor cancellation, field
+equation, harmonic identity, or new tensor-component expansion is performed.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialContributionTheta_eq_halfExplicitFirstConnectionDerivative
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
+    (hCompatible :
+      prizcarbonOddParityVacuumCPMFrameCompatible
+        frame
+        cpmJet)   :
+prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeCoordinateContribution
+        frame
+        cpmJet
+        harmonicJet
+        hCompatible
+        .theta
+        .radial =
+      (1 / 2 : ℝ) *
+          (
+                (
+                  -(
+                    reggeWheelerSchwarzschildExteriorFactorFirstRadialDerivative
+                          frame *
+                        (
+                          reggeWheelerOddParityVacuumCPMRadialCoefficient
+                              cpmJet.secondJet.firstJet *
+                            reggeWheelerOddParityVectorHarmonicValue
+                              harmonicJet.firstJet.harmonic
+                              .theta
+                        ) *
+                      (
+                        1 /
+                          frame.background.radius ^ 2
+                      )
+                    +
+                    reggeWheelerSchwarzschildExteriorFactor
+                          frame.background *
+                        (
+                          reggeWheelerOddParityVacuumCPMRadialCoefficientRadialDerivative
+                              cpmJet.secondJet *
+                            reggeWheelerOddParityVectorHarmonicValue
+                              harmonicJet.firstJet.harmonic
+                              .theta
+                        ) *
+                      (
+                        1 /
+                          frame.background.radius ^ 2
+                      )
+                    +
+                    reggeWheelerSchwarzschildExteriorFactor
+                          frame.background *
+                        (
+                          reggeWheelerOddParityVacuumCPMRadialCoefficient
+                              cpmJet.secondJet.firstJet *
+                            reggeWheelerOddParityVectorHarmonicValue
+                              harmonicJet.firstJet.harmonic
+                              .theta
+                        ) *
+                      (
+                        -2 /
+                          frame.background.radius ^ 3
+                      )
+                  )
+                ) *
+                    (
+                      2 *
+                        frame.background.radius
+                    )
+                  +
+                  (
+                    -(
+                      reggeWheelerSchwarzschildExteriorFactor
+                            frame.background *
+                          (
+                            reggeWheelerOddParityVacuumCPMRadialCoefficient
+                                cpmJet.secondJet.firstJet *
+                              reggeWheelerOddParityVectorHarmonicValue
+                                harmonicJet.firstJet.harmonic
+                                .theta
+                          ) *
+                        (
+                          1 /
+                            frame.background.radius ^ 2
+                        )
+                    )
+                  ) *
+                    2
+
+          ) := by
+  simpa using
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialContribution_eq_halfExplicitFirstConnectionDerivativeAngularCases
+      frame
+      cpmJet
+      harmonicJet
+      hCompatible
+      .theta
 def
     prizcarbonOddParityVacuumCPMLinearizedRicciTimeTimeDiagonalZeroBoundary :
     String :=
