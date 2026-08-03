@@ -11100,6 +11100,100 @@ theorem
     zero_mul,
     zero_add
   ]
+/--
+Every angular coordinate partial of the odd-parity CPM perturbation connection
+kernel with three radial indices vanishes:
+
+`∂ₐ K[h]_{rrr} = 0`.
+
+After unfolding the perturbation connection kernel partial, all three signed
+terms contain the radial-radial CPM metric second partial. The concrete CPM
+metric-second-partial definition sends that perturbation component to its zero
+fallback branch.
+
+No inverse-metric identity, harmonic eigenvalue, vacuum equation,
+connection-product reduction, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialPerturbationConnectionKernelAngularPartialFactor_eq_zero
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParityPerturbationConnectionKernelPartial
+        (
+          reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+            cpmJet
+            harmonicJet
+        )
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial
+        .radial =
+      0 := by
+  cases angular <;>
+    simp [
+      reggeWheelerAngularCoordinateToSpacetime,
+      reggeWheelerOddParityPerturbationConnectionKernelPartial,
+      reggeWheelerOddParityRWGaugeMetricComponentsOfMaster,
+      reggeWheelerOddParityRWRadialCoefficientFromMaster,
+      reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet,
+      reggeWheelerOddParityVacuumCPMMetricComponents,
+      reggeWheelerOddParityVacuumCPMMetricFirstJet,
+      reggeWheelerOddParityVacuumCPMMetricSecondJet,
+      reggeWheelerOddParityVacuumCPMMetricSecondPartial,
+      reggeWheelerOddParityVacuumCPMRWMaster,
+      reggeWheelerOddParityVacuumCPMTimeCoefficient,
+      reggeWheelerSchwarzschildExteriorFactor
+    ]
+/--
+The inverse-metric `.radial` summand in the retained second radial connection
+derivative vanishes:
+
+`∂ₐ δΓʳ_{rr} |_{ρ = r} = 0`.
+
+The previous reduction leaves only product-rule term 4,
+
+`ḡ^{rr} ∂ₐ K[h]_{rrr}`,
+
+and the perturbation-kernel angular-partial factor has been proved zero. The
+background inverse-metric factor is retained and no division or nonvanishing
+argument is used.
+
+The `.theta` and `.phi` inverse-metric summands of the second connection
+derivative remain unchanged. No harmonic eigenvalue, vacuum equation,
+connection-product reduction, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialInverseMetricSummand_eq_zero
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParityLinearizedChristoffelSummandPartial
+        frame
+        (
+          reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+            cpmJet
+            harmonicJet
+        )
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial
+        .radial
+        .radial =
+      0 := by
+  rw [
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialInverseMetricSummand_eq_fourthProductRuleTerm
+      frame
+      cpmJet
+      harmonicJet
+      angular,
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialPerturbationConnectionKernelAngularPartialFactor_eq_zero
+      cpmJet
+      harmonicJet
+      angular,
+    mul_zero
+  ]
 def
     prizcarbonOddParityVacuumCPMLinearizedRicciTimeTimeDiagonalZeroBoundary :
     String :=
