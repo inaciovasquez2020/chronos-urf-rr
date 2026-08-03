@@ -12071,6 +12071,57 @@ theorem
       frame,
     zero_mul
   ]
+/--
+The complete retained second radial connection derivative in the radial-angular
+principal contribution vanishes.
+
+The existing decomposition expresses it as one half of the sum of the time,
+radial, theta, and phi inverse-metric coordinate summands. Each of those four
+summands has now been proved zero independently. This theorem performs only
+that final substitution and arithmetic normalization.
+
+No new component expansion, perturbation identity, harmonic equation, vacuum
+equation, connection-product reduction, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativePartial_eq_zero
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
+    (angular : ReggeWheelerAngularCoordinate)  :
+reggeWheelerOddParityLinearizedChristoffelPartial
+        frame
+        (
+          reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+            cpmJet
+            harmonicJet
+        )
+        (
+          reggeWheelerAngularCoordinateToSpacetime
+            angular
+        )
+        .radial
+        .radial
+        .radial =
+      0 := by
+  simpa only [
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeTimeInverseMetricSummand_eq_zero,
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeRadialInverseMetricSummand_eq_zero,
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeThetaInverseMetricSummand_eq_zero,
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativePhiInverseMetricSummand_eq_zero,
+    zero_add,
+    add_zero,
+    zero_mul,
+    mul_zero,
+    zero_div,
+    neg_zero,
+    sub_zero
+  ] using
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativePartial_eq_halfFourInverseMetricCoordinateSummands
+      frame
+      cpmJet
+      harmonicJet
+      angular
 def
     prizcarbonOddParityVacuumCPMLinearizedRicciTimeTimeDiagonalZeroBoundary :
     String :=
