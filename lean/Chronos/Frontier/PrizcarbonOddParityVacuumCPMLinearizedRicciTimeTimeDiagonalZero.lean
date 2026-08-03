@@ -10549,6 +10549,98 @@ theorem
     add_zero
   ] using h
 
+/--
+The Schwarzschild background connection kernel with radial, radial, and time
+indices vanishes:
+
+`K̄_{rrt} = 0`.
+
+This follows directly from the static diagonal Schwarzschild metric. No
+perturbation identity, harmonic identity, vacuum equation, connection-product
+term, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeBackgroundConnectionKernelRadialRadialTime_eq_zero
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame) :
+    reggeWheelerSchwarzschildConnectionKernel
+        frame
+        .radial
+        .radial
+        .time =
+      0 := by
+  simp [
+    reggeWheelerSchwarzschildConnectionKernel,
+    reggeWheelerSchwarzschildMetricPartial
+  ]
+/--
+Every angular coordinate partial of the Schwarzschild background connection
+kernel `K̄_{rrt}` vanishes:
+
+`∂ₐ K̄_{rrt} = 0`.
+
+The result is a direct componentwise consequence of the explicit static
+diagonal Schwarzschild metric second partials. No perturbation identity,
+harmonic identity, vacuum equation, connection-product term, or master
+residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeBackgroundConnectionKernelRadialRadialTimeAngularPartial_eq_zero
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerSchwarzschildConnectionKernelPartial
+        frame
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial
+        .time =
+      0 := by
+  cases angular <;>
+    simp [
+      reggeWheelerAngularCoordinateToSpacetime,
+      reggeWheelerSchwarzschildConnectionKernelPartial,
+      reggeWheelerSchwarzschildMetricSecondPartial
+    ]
+/--
+The inverse-metric `.time` summand in the retained second radial connection
+derivative vanishes.
+
+After the existing two-term product-rule reduction, the first term contains
+`K̄_{rrt} = 0` and the second contains `∂ₐ K̄_{rrt} = 0`. The linearized
+inverse-metric factors are retained unchanged. No harmonic identity, vacuum
+equation, connection-product term, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeTimeInverseMetricSummand_eq_zero
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParityLinearizedChristoffelSummandPartial
+        frame
+        (
+          reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+            cpmJet
+            harmonicJet
+        )
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial
+        .radial
+        .time =
+      0 := by
+  rw [
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeTimeInverseMetricSummand_eq_firstTwoProductRuleTerms
+      frame
+      cpmJet
+      harmonicJet
+      angular,
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeBackgroundConnectionKernelRadialRadialTime_eq_zero
+      frame,
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativeBackgroundConnectionKernelRadialRadialTimeAngularPartial_eq_zero
+      frame
+      angular
+  ]
+  ring
 def
     prizcarbonOddParityVacuumCPMLinearizedRicciTimeTimeDiagonalZeroBoundary :
     String :=
