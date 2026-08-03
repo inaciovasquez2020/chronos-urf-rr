@@ -11837,6 +11837,102 @@ theorem
     mul_zero,
     zero_add
   ]
+/--
+Every angular coordinate partial of the Schwarzschild background connection
+kernel with radial, radial, and phi indices vanishes:
+
+`∂ₐ K̄_{rrφ} = 0`.
+
+The two terms differentiating the off-diagonal `rφ` metric component vanish,
+and the remaining angular second partial of the diagonal radial-radial metric
+component vanishes for either angular derivative coordinate.
+
+No perturbation identity, harmonic equation, vacuum equation, product-rule
+reduction, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativePhiBackgroundConnectionKernelRadialRadialPhiAngularPartial_eq_zero
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerSchwarzschildConnectionKernelPartial
+        frame
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial
+        .phi =
+      0 := by
+  cases angular <;>
+    simp [
+      reggeWheelerAngularCoordinateToSpacetime,
+      reggeWheelerSchwarzschildConnectionKernelPartial,
+      reggeWheelerSchwarzschildMetricSecondPartial
+    ]
+/--
+The inverse-metric `.phi` summand in the retained second radial connection
+derivative reduces to product-rule terms 3 and 4.
+
+Product-rule term 2 vanishes because its Schwarzschild background
+connection-kernel angular-partial factor `∂ₐ K̄_{rrφ}` is zero. Product-rule
+terms 3 and 4 are preserved exactly and are not unfolded, simplified,
+canceled, combined, factored, or asserted to vanish.
+
+The time, radial, and theta inverse-metric summands remain proved zero and
+unchanged. No harmonic eigenvalue, vacuum equation, connection-product
+reduction, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativePhiInverseMetricSummand_eq_thirdAndFourthProductRuleTerms
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParityLinearizedChristoffelSummandPartial
+        frame
+        (
+          reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+            cpmJet
+            harmonicJet
+        )
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial
+        .radial
+        .phi =
+      reggeWheelerSchwarzschildInverseMetricComponentPartial
+              frame
+              (reggeWheelerAngularCoordinateToSpacetime angular)
+              .radial
+              .phi *
+            reggeWheelerOddParityPerturbationConnectionKernel
+              (
+                reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+                  cpmJet
+                  harmonicJet
+              ).firstJet
+              .radial
+              .radial
+              .phi
+        +
+        reggeWheelerSchwarzschildInverseMetricComponent
+              frame
+              .radial
+              .phi *
+            reggeWheelerOddParityPerturbationConnectionKernelPartial
+              (
+                reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+                  cpmJet
+                  harmonicJet
+              )
+              (reggeWheelerAngularCoordinateToSpacetime angular)
+              .radial
+              .radial
+              .phi := by
+  simp only [
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativePhiInverseMetricSummand_eq_secondThirdAndFourthProductRuleTerms,
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativePhiBackgroundConnectionKernelRadialRadialPhiAngularPartial_eq_zero,
+    mul_zero,
+    zero_add
+  ]
 def
     prizcarbonOddParityVacuumCPMLinearizedRicciTimeTimeDiagonalZeroBoundary :
     String :=
