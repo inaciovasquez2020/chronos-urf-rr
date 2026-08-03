@@ -12005,6 +12005,72 @@ theorem
     zero_mul,
     zero_add
   ]
+/--
+The off-diagonal Schwarzschild inverse metric component with radial and phi
+indices vanishes:
+
+`ḡ^{rφ} = 0`.
+
+This follows directly from the diagonal background inverse-metric definition.
+No perturbation identity, harmonic equation, vacuum equation, product-rule
+reduction, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativePhiBackgroundInverseMetricRadialPhiValueFactor_eq_zero
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame) :
+    reggeWheelerSchwarzschildInverseMetricComponent
+        frame
+        .radial
+        .phi =
+      0 := by
+  rfl
+/--
+The inverse-metric `.phi` summand in the retained second radial connection
+derivative vanishes:
+
+`∂ₐ δΓʳ_{rr} |_{ρ = φ} = 0`.
+
+The previous reduction leaves only product-rule term 4,
+
+`ḡ^{rφ} ∂ₐ K[h]_{rrφ}`,
+
+and the off-diagonal Schwarzschild inverse-metric factor `ḡ^{rφ}` has been
+proved zero. The perturbation-kernel partial factor is retained and is not
+evaluated.
+
+The time, radial, and theta inverse-metric summands remain proved zero and
+unchanged. No harmonic eigenvalue, vacuum equation, connection-product
+reduction, or master residual is used.
+-/
+theorem
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativePhiInverseMetricSummand_eq_zero
+    (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
+    (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
+    (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
+    (angular : ReggeWheelerAngularCoordinate) :
+    reggeWheelerOddParityLinearizedChristoffelSummandPartial
+        frame
+        (
+          reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet
+            cpmJet
+            harmonicJet
+        )
+        (reggeWheelerAngularCoordinateToSpacetime angular)
+        .radial
+        .radial
+        .radial
+        .phi =
+      0 := by
+  rw [
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativePhiInverseMetricSummand_eq_fourthProductRuleTerm
+      frame
+      cpmJet
+      harmonicJet
+      angular,
+    prizcarbonOddParityVacuumCPMLinearizedRicciRadialAngularPrincipalDerivativeRadialSecondConnectionDerivativePhiBackgroundInverseMetricRadialPhiValueFactor_eq_zero
+      frame,
+    zero_mul
+  ]
 def
     prizcarbonOddParityVacuumCPMLinearizedRicciTimeTimeDiagonalZeroBoundary :
     String :=
