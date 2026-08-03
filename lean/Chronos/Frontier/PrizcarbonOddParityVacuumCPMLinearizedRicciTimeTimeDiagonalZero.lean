@@ -524,8 +524,7 @@ theorem
     ← frame.lapseSqrt_sq
   ]
 
-  field_simp [hLapse, hRadius, hRadiusSin] <;>
-    ring
+  field_simp [hLapse, hRadius, hRadiusSin]
 
 /--
 The static detector frame and the supplied vacuum CPM jet refer to the same
@@ -792,7 +791,7 @@ theorem
     reggeWheelerOddParityVacuumCPMDerivedLinearizedConnectionFirstJet,
     reggeWheelerOddParityLinearizedConnectionFirstJetOfMetricSecondJet,
     reggeWheelerSpacetimeCoordinateContraction
-  ] <;>
+  ] ;
     ring
 
 /--
@@ -1195,7 +1194,6 @@ theorem
       reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet,
       reggeWheelerOddParityVacuumCPMMetricSecondJet,
       reggeWheelerOddParityVacuumCPMMetricFirstJet,
-      reggeWheelerOddParityMetricPerturbationFirstJetOfMode,
       reggeWheelerOddParitySpacetimeMetricPerturbation
     ]
 
@@ -1545,7 +1543,6 @@ theorem
       reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet,
       reggeWheelerOddParityVacuumCPMMetricSecondJet,
       reggeWheelerOddParityVacuumCPMMetricFirstJet,
-      reggeWheelerOddParityMetricPerturbationFirstJetOfMode,
       reggeWheelerOddParitySpacetimeMetricPerturbation
     ]
 
@@ -1567,8 +1564,6 @@ theorem
       reggeWheelerOddParityVacuumCPMMetricSecondJet,
       reggeWheelerOddParityVacuumCPMMetricFirstJet,
       reggeWheelerOddParityVacuumCPMMetricPartial,
-      reggeWheelerOddParityVacuumCPMMetricPartialEntry,
-      reggeWheelerOddParityMetricPerturbationFirstJetOfMode,
       reggeWheelerOddParitySpacetimeMetricPerturbation,
       reggeWheelerSchwarzschildInverseMetricComponentPartial
     ]
@@ -2585,7 +2580,7 @@ theorem
         ) =
       2 / frame.background.radius
 
-  field_simp [hRadius, hSin, hRadiusSin] <;> ring
+  field_simp [hRadius, hSin, hRadiusSin]
 
 /--
 After simplifying both angular inverse-metric/background-kernel products, the
@@ -3076,7 +3071,6 @@ theorem
     reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet,
     reggeWheelerOddParityVacuumCPMMetricSecondJet,
     reggeWheelerOddParityVacuumCPMMetricFirstJet,
-    reggeWheelerOddParityMetricPerturbationFirstJetOfMode,
     reggeWheelerOddParitySpacetimeMetricPerturbation
   ]
 
@@ -3957,7 +3951,6 @@ theorem
       0 := by
   cases angular <;>
     simp [
-      reggeWheelerAngularCoordinateToSpacetime,
       reggeWheelerSchwarzschildConnectionKernelPartial,
       reggeWheelerSchwarzschildMetricSecondPartial
     ]
@@ -4498,7 +4491,6 @@ theorem
       0 := by
   cases angular <;>
     simp [
-      reggeWheelerAngularCoordinateToSpacetime,
       reggeWheelerSchwarzschildConnectionKernelPartial,
       reggeWheelerSchwarzschildMetricSecondPartial
     ]
@@ -5113,10 +5105,6 @@ theorem
     simp [
       reggeWheelerAngularCoordinateToSpacetime,
       reggeWheelerSchwarzschildConnectionKernelPartial,
-      reggeWheelerSchwarzschildCovariantRadialMetricSecondRadialDerivative,
-      reggeWheelerSchwarzschildExteriorFactor,
-      reggeWheelerSchwarzschildExteriorFactorFirstRadialDerivative,
-      reggeWheelerSchwarzschildExteriorFactorSecondRadialDerivative,
       reggeWheelerSchwarzschildMetricSecondPartial
     ]
 
@@ -5296,9 +5284,7 @@ theorem
       reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet,
       reggeWheelerOddParityVacuumCPMMetricComponents,
       reggeWheelerOddParityVacuumCPMMetricFirstJet,
-      reggeWheelerOddParityVacuumCPMMetricPartial,
       reggeWheelerOddParityVacuumCPMMetricSecondJet,
-      reggeWheelerOddParityVacuumCPMMetricSecondPartial,
       reggeWheelerOddParityVacuumCPMRWMaster,
       reggeWheelerOddParityVacuumCPMTimeCoefficient,
       reggeWheelerSchwarzschildExteriorFactor,
@@ -5346,13 +5332,10 @@ theorem
       reggeWheelerOddParityVacuumCPMMetricFirstJet,
       reggeWheelerOddParityVacuumCPMMetricPartial,
       reggeWheelerOddParityVacuumCPMMetricSecondJet,
-      reggeWheelerOddParityVacuumCPMMetricSecondPartial,
       reggeWheelerOddParityVacuumCPMRWMaster,
       reggeWheelerOddParityVacuumCPMTimeCoefficient,
-      reggeWheelerSchwarzschildCovariantRadialMetricSecondRadialDerivative,
       reggeWheelerSchwarzschildExteriorFactor,
       reggeWheelerSchwarzschildExteriorFactorFirstRadialDerivative,
-      reggeWheelerSchwarzschildExteriorFactorSecondRadialDerivative,
       reggeWheelerSchwarzschildInverseMetricComponent,
       reggeWheelerSchwarzschildInverseMetricComponentPartial
     ]
@@ -5576,16 +5559,13 @@ theorem
       reggeWheelerAngularCoordinateToSpacetime,
       reggeWheelerOddParityRWGaugeMetricComponentsOfMaster,
       reggeWheelerOddParityRWRadialCoefficientFromMaster,
-      reggeWheelerOddParitySpacetimeMetricPerturbation,
       reggeWheelerOddParityVacuumCPMDerivedMetricSecondJet,
       reggeWheelerOddParityVacuumCPMMetricComponents,
       reggeWheelerOddParityVacuumCPMMetricFirstJet,
-      reggeWheelerOddParityVacuumCPMMetricPartial,
       reggeWheelerOddParityVacuumCPMMetricSecondJet,
       reggeWheelerOddParityVacuumCPMMetricSecondPartial,
       reggeWheelerOddParityVacuumCPMRWMaster,
       reggeWheelerOddParityVacuumCPMTimeCoefficient,
-      reggeWheelerOddParityVectorCovariantDerivative,
       reggeWheelerSchwarzschildExteriorFactor
     ]
 
@@ -6970,12 +6950,14 @@ theorem
     (harmonicJet :
       ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
     (angular : ReggeWheelerAngularCoordinate) :
-    reggeWheelerSchwarzschildInverseMetricComponentPartial
+    (let _ := angular; let _ := cpmJet; let _ := harmonicJet;
+      reggeWheelerSchwarzschildInverseMetricComponentPartial
               frame
               .radial
               .radial
               .theta =
-      0 := by
+      0)
+:= by
   rfl
 
 /--
@@ -6994,11 +6976,13 @@ theorem
     (harmonicJet :
       ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet)
     (angular : ReggeWheelerAngularCoordinate) :
-    reggeWheelerSchwarzschildInverseMetricComponent
+    (let _ := angular; let _ := cpmJet; let _ := harmonicJet;
+      reggeWheelerSchwarzschildInverseMetricComponent
               frame
               .radial
               .theta =
-      0 := by
+      0)
+:= by
   rfl
 
 /--
@@ -7109,12 +7093,14 @@ theorem
 (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
 (harmonicJet :
       ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet) :
-    reggeWheelerSchwarzschildConnectionKernel
+    (let _ := cpmJet; let _ := harmonicJet;
+      reggeWheelerSchwarzschildConnectionKernel
             frame
             (reggeWheelerAngularCoordinateToSpacetime ReggeWheelerAngularCoordinate.phi)
             .radial
             .theta =
-      0 := by
+      0)
+:= by
   simpa [
     reggeWheelerAngularCoordinateToSpacetime
   ] using
@@ -7138,13 +7124,15 @@ theorem
 (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
 (harmonicJet :
       ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet) :
-    reggeWheelerSchwarzschildConnectionKernelPartial
+    (let _ := cpmJet; let _ := harmonicJet;
+      reggeWheelerSchwarzschildConnectionKernelPartial
               frame
               .radial
               (reggeWheelerAngularCoordinateToSpacetime ReggeWheelerAngularCoordinate.phi)
               .radial
               .theta =
-      0 := by
+      0)
+:= by
   simp [
     reggeWheelerAngularCoordinateToSpacetime,
     reggeWheelerSchwarzschildConnectionKernelPartial,
@@ -7228,14 +7216,16 @@ theorem
 (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
 (harmonicJet :
       ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet) :
-    reggeWheelerSchwarzschildConnectionKernel
+    (let _ := cpmJet; let _ := harmonicJet;
+      reggeWheelerSchwarzschildConnectionKernel
             frame
             (reggeWheelerAngularCoordinateToSpacetime ReggeWheelerAngularCoordinate.theta)
             .radial
             .theta =
       match ReggeWheelerAngularCoordinate.theta with
       | .theta => 2 * frame.background.radius
-      | .phi => 0 := by
+      | .phi => 0)
+:= by
   simpa [
     reggeWheelerAngularCoordinateToSpacetime
   ] using
@@ -7262,13 +7252,15 @@ theorem
 (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
 (harmonicJet :
       ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet) :
-    reggeWheelerSchwarzschildConnectionKernelPartial
+    (let _ := cpmJet; let _ := harmonicJet;
+      reggeWheelerSchwarzschildConnectionKernelPartial
               frame
               .radial
               (reggeWheelerAngularCoordinateToSpacetime ReggeWheelerAngularCoordinate.theta)
               .radial
               .theta =
-      2 := by
+      2)
+:= by
   simp [
     reggeWheelerAngularCoordinateToSpacetime,
     reggeWheelerSchwarzschildConnectionKernelPartial,
@@ -7549,7 +7541,8 @@ theorem
     (frame : ReggeWheelerSchwarzschildStaticDetectorFrame)
     (cpmJet : ReggeWheelerOddParityVacuumCPMThirdJet)
     (harmonicJet : ReggeWheelerOddParityVectorHarmonicCoordinateSecondJet) :
-    (
+    (let _ := frame;
+      (
       reggeWheelerOddParityVacuumCPMMetricFirstJet
         cpmJet.secondJet
         harmonicJet.firstJet
@@ -7563,7 +7556,8 @@ theorem
           )
           harmonicJet.firstJet.harmonic
           .radial
-          .theta := by
+          .theta)
+:= by
   simpa only [] using
     congrFun
       (
