@@ -1,0 +1,56 @@
+{
+  "schema": "chronos.gfe_axial_220_projected_eft_certificate.v1",
+  "date": "2026-08-05",
+  "status": "certified_projected_order_reduced_axial_220_qnm_branch",
+  "scope": {
+    "parity": "axial",
+    "ell": 2,
+    "overtone": 0,
+    "parameter": "epsilon=beta^2/M^4",
+    "epsilon_interval": [0.0, 0.0001],
+    "branch": "projected massless order-reduced EFT",
+    "unreduced_trace_log_spectrum": false
+  },
+  "certificate_hashes": {
+    "beta2_master_source": "456db63014e603502e67f52950ab96debe60877144fee5817811b65008b30754",
+    "structural_order_reduction": "36cdb04856ec68f7eb64f01ecbf306fa75d5a5334264b4dd01f054752debabc7",
+    "normalized_coefficients": "1593f9f75f5dd0c4def5cfbbb60aa5bcd2111c01c1348e71559f3ebed50bbaa6",
+    "canonical_potential": "f21171a9b410fc311832fca2c55e363d90066f0872cbb19dab2e38f2434e5a94",
+    "horizon_frobenius": "bd0d8ee3929506081b1381330e03e7a13f605774585c3837b025f9a7ed3bdb76",
+    "horizon_majorant": "5feeb5e5a47b9a7139f431fc6e31cb861a58fdf4047a76ec04501adcca78746d",
+    "horizon_endpoint": "d0d8dde2f129ad7ddd640af81b1b27cf82ff7c8125bb79d7470252389b555d3e",
+    "horizon_affine_endpoint": "1d17cbf45bd030e7b85cdd6cedd8781dd1b7d1723c5c72519f915f6667ca41ff",
+    "horizon_riccati": "6354eafe4b56c5b12c8dabde074323469578cad36bd74d875c3f7edf96b2da86",
+    "infinity_jost_endpoint": "c93f9076c2d664f4e8f1499eac0b478932a3f34fcebb31ab009a4fabf39c2519",
+    "infinity_riccati": "e6161ac3be6af6b68c2b1130c36fc85ac8d1eebc582fff4690722cee41988c8a",
+    "matching_interval_newton": "756292809ddc9638d045ecdff723896cc38d02a87e02f1581e31ed24353d6147",
+    "epsilon0_tangent_system": "4d4a1a28d2320c66eee4456622fd175f288f6fa93ba716d44d6feb686b88b81a",
+    "epsilon0_endpoint_tangents": "94ec87296b933bf4de3aada5d8bede67a80619f0767410e82767d64d5239d8c1",
+    "epsilon0_tangent_propagation": "505622d2e96a94d41891f09ad623ca66d0cfa11f4ef4561c4051a96a8356f8ef"
+  },
+  "root_tube": {
+    "unique_simple_root_for_each_epsilon": true,
+    "disk_radius": 0.000006666666666666667,
+    "omega_center_at_epsilon_0": [0.3736716812299648, -0.0889623125972544],
+    "omega_center_at_epsilon_mid": [0.3736730482894409, -0.0889630467420723],
+    "omega_center_at_epsilon_max": [0.3736744153489169, -0.0889637808868901],
+    "analytic_error_upper": 0.000025
+  },
+  "implicit_derivative_at_epsilon_0": {
+    "formula": "dOmega/depsilon=-D_epsilon/D_Omega",
+    "center": [0.027340131607167324, -0.014681561963391043],
+    "disk_radius": 0.008950737656596899,
+    "real_lower_bound": 0.018389393950570425,
+    "real_upper_bound": 0.03629086926376422,
+    "imag_lower_bound": -0.02363229961998794,
+    "imag_upper_bound": -0.005730824306794144,
+    "D_Omega_nonzero": true,
+    "real_part_positive": true
+  },
+  "claim_boundary": [
+    "This certificate covers only the projected massless order-reduced axial EFT branch.",
+    "The polar-parity master equation, root, and derivative are not certified here.",
+    "Axial-polar splitting is not certified here.",
+    "The unreduced trace-log spectrum and its additional massive mode are outside this certificate."
+  ]
+}
