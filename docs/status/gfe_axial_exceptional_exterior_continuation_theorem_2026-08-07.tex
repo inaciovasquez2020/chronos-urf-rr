@@ -1,0 +1,157 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+
+\title{Unique Finite-Radius Exterior Continuation of the\\
+Exceptional $\ell=2$ Axial GfE Solution}
+\date{7 August 2026}
+\maketitle
+
+\paragraph{Scope.}
+This theorem builds on the certified convergent exceptional-horizon
+logarithmic Frobenius solution at
+\[
+  \omega=\frac{i}{4M}.
+\]
+It proves unique continuation through every finite radius in the open
+Schwarzschild exterior.  It does not classify the singular endpoint
+$r=\infty$, impose an infinity boundary condition, establish a global
+exceptional mode, or imply physical instability.
+
+\begin{theorem}[No finite-radius obstruction and unique exterior continuation]
+Fix $M>0$ and $\beta\neq0$, and set
+\[
+  \omega=\frac{i}{4M}.
+\]
+For the exact uneliminated $\ell=2$ axial GfE equations, the
+Douglis--Nirenberg derivative staircase is
+\[
+  E_0:\ (H_0^{(4)},H_1^{(3)}),
+  \qquad
+  E_1:\ (H_0^{(3)},H_1^{(2)}).
+\]
+Its exact principal matrix is
+\[
+C(r)=
+\begin{pmatrix}
+-\dfrac{8M\beta^2(r-2M)}{r^4}
+&
+ \dfrac{2\beta^2(r-2M)}{r^4}
+\\[7pt]
+ \dfrac{2\beta^2(r-2M)}{r^4}
+&
+-\dfrac{\beta^2(r-2M)
+(256M^3-128M^2r+r^3)}
+{2Mr^7}
+\end{pmatrix},
+\]
+with determinant
+\[
+  \det C(r)
+  =
+  -\frac{512M^2\beta^4(r-2M)^3}{r^{11}}.
+\]
+Hence
+\[
+  \det C(r)\neq0
+  \qquad
+  \text{for every finite }r>2M.
+\]
+
+More strongly, the equations admit an explicit first-order reduction
+on the whole open exterior that never divides by a coefficient having
+an exterior zero.  The coefficient of $H_0^{(3)}$ in $E_1$ is
+\[
+  a_3(r)
+  =
+  \frac{2\beta^2(r-2M)}{r^4},
+\]
+so $E_1=0$ uniquely solves for $H_0^{(3)}$ at every $r>2M$.
+Differentiating this constraint and combining it with $E_0=0$ gives
+the remaining pivot
+\[
+  \kappa(r)
+  =
+  \frac{256M^2\beta^2(r-2M)^2}{r^7},
+\]
+which is also nonzero for every $r>2M$ and uniquely solves for
+$H_1^{(3)}$.
+
+Therefore, with
+\[
+  Z=
+  (H_0,H_0',H_0'',H_1,H_1',H_1'')^T,
+\]
+the exact uneliminated system is equivalent on $r>2M$ to a linear
+first-order system
+\[
+  Z'(r)=\mathcal A(r)Z(r),
+\]
+whose coefficients are rational functions with no finite poles in the
+open exterior.  In fact the symbolic coefficient census shows that
+all finite coefficient poles lie in
+\[
+  \{0,2M\}.
+\]
+
+Consequently, for every
+\[
+  2M<r_0<R<\infty
+\]
+and every admissible trace $Z(r_0)$, standard linear ODE existence and
+uniqueness gives a unique solution on $[r_0,R]$.  Since $R$ is
+arbitrary, every local solution at $r_0>2M$ extends uniquely through
+every finite exterior radius.
+
+In particular, the previously certified convergent exceptional
+horizon solution extends uniquely from its punctured horizon
+neighborhood to the entire open exterior
+\[
+  2M<r<\infty .
+\]
+\end{theorem}
+
+\paragraph{Proof.}
+The displayed staircase coefficients, determinant, safe pivot
+$a_3$, and differentiated-constraint pivot $\kappa$ are exact symbolic
+consequences of the current canonical GfE source at
+$\omega=i/(4M)$.  The denominator census checks every jet coefficient
+appearing in $E_0$ and $E_1$, as well as the two inverse pivots used in
+the reduction, and finds no finite denominator zero for $r>2M$.
+Thus $\mathcal A(r)$ is continuous, indeed analytic, on every compact
+interval $[r_0,R]\subset(2M,\infty)$.
+
+A linear first-order system with continuous coefficients has a unique
+solution on each such compact interval and cannot develop a
+finite-radius blow-up obstructing continuation.  Uniqueness makes the
+solutions obtained on nested compact intervals agree on overlaps.
+Taking the union over all finite $R$ proves unique continuation on the
+whole open exterior.
+
+The convergent Frobenius theorem supplies a genuine solution on some
+interval $(2M,2M+\rho)$.  Choosing any
+$r_0\in(2M,2M+\rho)$ and applying the preceding continuation result
+extends that same solution uniquely to every finite $r>2M$.
+\qed
+
+\begin{remark}[What remains]
+The endpoint $r=\infty$ is not a finite-radius degeneracy and is not
+covered by compact-interval continuation.  The next unresolved
+problem is therefore to derive the exact infinity asymptotic basis and
+decompose the uniquely continued exceptional solution into the
+allowed and forbidden infinity channels.
+\end{remark}
+
+\begin{remark}[No instability claim]
+Unique exterior continuation does not by itself imply that the
+exceptional solution satisfies an outgoing, decaying, finite-energy,
+or quasinormal boundary condition at infinity.  No global exceptional
+mode or physical instability is asserted here.
+\end{remark}
+
+\end{document}
