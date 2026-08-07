@@ -208,3 +208,143 @@ def test_provenance_claim_chain(tmp_path: Path):
         claim,
         "test_result.py",
     ]
+
+
+def test_tool_server_claim_provenance_without_lean_modules(
+    tmp_path: Path,
+):
+    from research_agent_toolkit.server import (
+        handle_request,
+        tool_definitions,
+    )
+
+    for rel in [
+        "gen.py",
+        "artifact.json",
+        "test_result.py",
+    ]:
+        (tmp_path / rel).write_text("x")
+
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "chains": [
+                    {
+                        "claim": "gfe.claim",
+                        "generator": "gen.py",
+                        "artifact": "artifact.json",
+                        "test": "test_result.py",
+                    }
+                ]
+            }
+        )
+    )
+
+    provenance_tool = next(
+        tool
+        for tool in tool_definitions()
+        if tool["name"] == "provenance"
+    )
+
+    assert provenance_tool["inputSchema"]["required"] == [
+        "manifest"
+    ]
+
+    response = handle_request(
+        {
+            "jsonrpc": "2.0",
+            "id": 7,
+            "method": "tools/call",
+            "params": {
+                "name": "provenance",
+                "arguments": {
+                    "manifest": "manifest.json",
+                },
+            },
+        },
+        root=tmp_path,
+        config=tmp_path / "unused.json",
+        db=tmp_path / "unused.db",
+    )
+
+    assert "error" not in response
+
+    payload = json.loads(
+        response["result"]["content"][0]["text"]
+    )
+
+    assert {
+        (
+            edge["source"],
+            edge["target"],
+            edge["kind"],
+        )
+        for edge in payload["edges"]
+    } == {
+        (
+            "gfe.claim",
+            "gen.py",
+            "claim_to_generator",
+        ),
+        (
+            "gen.py",
+            "artifact.json",
+            "generator_to_artifact",
+        ),
+        (
+            "artifact.json",
+            "test_result.py",
+            "artifact_to_test",
+        ),
+    }
+
+
+def test_tool_server_theorem_provenance_still_requires_modules(
+    tmp_path: Path,
+):
+    from research_agent_toolkit.server import handle_request
+
+    for rel in [
+        "gen.py",
+        "artifact.json",
+        "test_result.py",
+    ]:
+        (tmp_path / rel).write_text("x")
+
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "chains": [
+                    {
+                        "theorem": "Foo.thm",
+                        "generator": "gen.py",
+                        "artifact": "artifact.json",
+                        "test": "test_result.py",
+                    }
+                ]
+            }
+        )
+    )
+
+    response = handle_request(
+        {
+            "jsonrpc": "2.0",
+            "id": 8,
+            "method": "tools/call",
+            "params": {
+                "name": "provenance",
+                "arguments": {
+                    "manifest": "manifest.json",
+                },
+            },
+        },
+        root=tmp_path,
+        config=tmp_path / "unused.json",
+        db=tmp_path / "unused.db",
+    )
+
+    assert response["error"]["message"] == (
+        "theorem provenance requires an exact Lean graph"
+    )

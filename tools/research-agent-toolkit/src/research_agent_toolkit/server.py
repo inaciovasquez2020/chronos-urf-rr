@@ -19,7 +19,7 @@ def tool_definitions() -> list[dict]:
         {"name": "lean_deps", "description": "Compute exact Lean declaration dependencies from elaborated modules.", "inputSchema": {"type": "object", "properties": {"modules": {"type": "array", "items": {"type": "string"}}}, "required": ["modules"]}},
         {"name": "gate", "description": "Evaluate scope, policy, budget, and approval gate rules.", "inputSchema": {"type": "object", "properties": {"action": {"type": "string"}, "paths": {"type": "array", "items": {"type": "string"}}, "candidate": {"type": ["string", "null"]}}, "required": ["action", "paths"]}},
         {"name": "search", "description": "Search the configured local research index.", "inputSchema": {"type": "object", "properties": {"query": {"type": "string"}, "limit": {"type": "integer"}}, "required": ["query"]}},
-        {"name": "provenance", "description": "Build theorem to generator to artifact to test provenance edges.", "inputSchema": {"type": "object", "properties": {"manifest": {"type": "string"}, "modules": {"type": "array", "items": {"type": "string"}}}, "required": ["manifest", "modules"]}},
+        {"name": "provenance", "description": "Build theorem/claim to generator to artifact to test provenance edges.", "inputSchema": {"type": "object", "properties": {"manifest": {"type": "string"}, "modules": {"type": "array", "items": {"type": "string"}}}, "required": ["manifest"]}},
     ]
 
 
@@ -54,8 +54,19 @@ def handle_request(request: dict, *, root: str | Path, config: str | Path, db: s
             elif name == "provenance":
                 manifest_path = (Path(root) / str(args["manifest"])).resolve()
                 manifest_path.relative_to(Path(root).resolve())
-                lean_graph = exact_lean_dependencies(root, list(args["modules"]))
-                result = _content(build_provenance(root, load_manifest(manifest_path), lean_graph).to_dict())
+                modules = list(args.get("modules") or [])
+                lean_graph = (
+                    exact_lean_dependencies(root, modules)
+                    if modules
+                    else None
+                )
+                result = _content(
+                    build_provenance(
+                        root,
+                        load_manifest(manifest_path),
+                        lean_graph,
+                    ).to_dict()
+                )
             else:
                 raise ValueError(f"unknown tool: {name}")
         else:
