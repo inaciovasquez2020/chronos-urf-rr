@@ -569,3 +569,123 @@ diff --git a/gen.py b/gen.py
         capture_output=True,
         check=True,
     ).stdout == ""
+
+
+def test_rat_mutate_cli_routes_write_through_governance(
+    tmp_path: Path,
+):
+    import subprocess
+    import sys
+
+    from research_agent_toolkit.cli import main
+
+    subprocess.run(
+        ["git", "init", "-q"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.email",
+            "rat@example.invalid",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.name",
+            "RAT Test",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    (tmp_path / "gen.py").write_text(
+        "generator\n"
+    )
+    (tmp_path / "artifact.json").write_text(
+        "before\n"
+    )
+    (tmp_path / "test_result.py").write_text(
+        "test\n"
+    )
+    (tmp_path / "manifest.json").write_text(
+        json.dumps(
+            {
+                "chains": [
+                    {
+                        "claim": "gfe.claim",
+                        "generator": "gen.py",
+                        "artifact": "artifact.json",
+                        "test": "test_result.py",
+                    }
+                ]
+            }
+        )
+    )
+
+    subprocess.run(
+        ["git", "add", "-A"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "commit", "-qm", "init"],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    patch_path = (
+        tmp_path.parent
+        / f"{tmp_path.name}-rat-mutate.patch"
+    )
+
+    patch_path.write_text(
+        """\
+diff --git a/artifact.json b/artifact.json
+--- a/artifact.json
++++ b/artifact.json
+@@ -1 +1 @@
+-before
++after
+"""
+    )
+
+    try:
+        rc = main(
+            [
+                "mutate",
+                str(tmp_path),
+                "manifest.json",
+                "artifact.json",
+                "--patch",
+                str(patch_path),
+                "--verifier-json",
+                json.dumps(
+                    [
+                        sys.executable,
+                        "-c",
+                        (
+                            "from pathlib import Path; "
+                            "assert "
+                            "Path('artifact.json').read_text() "
+                            "== 'after\\n'"
+                        ),
+                    ]
+                ),
+            ]
+        )
+    finally:
+        patch_path.unlink(
+            missing_ok=True
+        )
+
+    assert rc == 0
+    assert (
+        tmp_path / "artifact.json"
+    ).read_text() == "after\n"
