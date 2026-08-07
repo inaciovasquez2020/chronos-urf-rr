@@ -147,3 +147,64 @@ def test_tool_server_scan_gate_search(tmp_path: Path):
     assert "VERIFY" in gate_response["result"]["content"][0]["text"]
     search_response = handle_request({"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "search", "arguments": {"query": "dependency graph"}}}, root=tmp_path, config=config, db=db)
     assert "note.md" in search_response["result"]["content"][0]["text"]
+
+
+def test_provenance_claim_chain(tmp_path: Path):
+    from research_agent_toolkit.provenance import (
+        build_provenance,
+        forward_closure,
+    )
+
+    for rel in [
+        "gen.py",
+        "artifact.json",
+        "test_result.py",
+    ]:
+        (tmp_path / rel).write_text("x")
+
+    claim = "gfe.axial.220.projected_eft.claim"
+
+    graph = build_provenance(
+        tmp_path,
+        {
+            "chains": [
+                {
+                    "claim": claim,
+                    "generator": "gen.py",
+                    "artifact": "artifact.json",
+                    "test": "test_result.py",
+                }
+            ]
+        },
+    )
+
+    assert {
+        (edge.source, edge.target, edge.kind)
+        for edge in graph.edges
+    } == {
+        (
+            claim,
+            "gen.py",
+            "claim_to_generator",
+        ),
+        (
+            "gen.py",
+            "artifact.json",
+            "generator_to_artifact",
+        ),
+        (
+            "artifact.json",
+            "test_result.py",
+            "artifact_to_test",
+        ),
+    }
+
+    assert forward_closure(
+        graph,
+        [claim],
+    ) == [
+        "artifact.json",
+        "gen.py",
+        claim,
+        "test_result.py",
+    ]
