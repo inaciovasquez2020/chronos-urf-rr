@@ -348,3 +348,224 @@ def test_tool_server_theorem_provenance_still_requires_modules(
     assert response["error"]["message"] == (
         "theorem provenance requires an exact Lean graph"
     )
+
+
+def test_governed_patch_mutation_uses_provenance_closure(
+    tmp_path: Path,
+):
+    import subprocess
+    import sys
+
+    from research_agent_toolkit.agent_mutation import (
+        governed_patch_mutation,
+    )
+
+    subprocess.run(
+        ["git", "init", "-q"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.email",
+            "rat@example.invalid",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.name",
+            "RAT Test",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    (tmp_path / "gen.py").write_text(
+        "generator\n"
+    )
+    (tmp_path / "artifact.json").write_text(
+        "before\n"
+    )
+    (tmp_path / "test_result.py").write_text(
+        "test\n"
+    )
+    (tmp_path / "manifest.json").write_text(
+        json.dumps(
+            {
+                "chains": [
+                    {
+                        "claim": "gfe.claim",
+                        "generator": "gen.py",
+                        "artifact": "artifact.json",
+                        "test": "test_result.py",
+                    }
+                ]
+            }
+        )
+    )
+
+    subprocess.run(
+        ["git", "add", "-A"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "commit", "-qm", "init"],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    patch = """\
+diff --git a/artifact.json b/artifact.json
+--- a/artifact.json
++++ b/artifact.json
+@@ -1 +1 @@
+-before
++after
+"""
+
+    result = governed_patch_mutation(
+        tmp_path,
+        "manifest.json",
+        "artifact.json",
+        patch,
+        [
+            sys.executable,
+            "-c",
+            (
+                "from pathlib import Path; "
+                "assert Path('artifact.json').read_text() "
+                "== 'after\\n'"
+            ),
+        ],
+    )
+
+    assert result.preserved
+    assert result.phase == "verification"
+    assert result.closure == (
+        "artifact.json",
+        "test_result.py",
+    )
+    assert result.changed_paths == (
+        "artifact.json",
+    )
+    assert (
+        tmp_path / "artifact.json"
+    ).read_text() == "after\n"
+
+
+def test_governed_patch_mutation_reverts_closure_escape(
+    tmp_path: Path,
+):
+    import subprocess
+    import sys
+
+    from research_agent_toolkit.agent_mutation import (
+        governed_patch_mutation,
+    )
+
+    subprocess.run(
+        ["git", "init", "-q"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.email",
+            "rat@example.invalid",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.name",
+            "RAT Test",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    (tmp_path / "gen.py").write_text(
+        "before\n"
+    )
+    (tmp_path / "artifact.json").write_text(
+        "artifact\n"
+    )
+    (tmp_path / "test_result.py").write_text(
+        "test\n"
+    )
+    (tmp_path / "manifest.json").write_text(
+        json.dumps(
+            {
+                "chains": [
+                    {
+                        "claim": "gfe.claim",
+                        "generator": "gen.py",
+                        "artifact": "artifact.json",
+                        "test": "test_result.py",
+                    }
+                ]
+            }
+        )
+    )
+
+    subprocess.run(
+        ["git", "add", "-A"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "commit", "-qm", "init"],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    patch = """\
+diff --git a/gen.py b/gen.py
+--- a/gen.py
++++ b/gen.py
+@@ -1 +1 @@
+-before
++escaped
+"""
+
+    result = governed_patch_mutation(
+        tmp_path,
+        "manifest.json",
+        "artifact.json",
+        patch,
+        [
+            sys.executable,
+            "-c",
+            "raise SystemExit(0)",
+        ],
+    )
+
+    assert not result.preserved
+    assert result.phase == "closure"
+    assert result.returncode == 3
+    assert (
+        tmp_path / "gen.py"
+    ).read_text() == "before\n"
+    assert subprocess.run(
+        [
+            "git",
+            "status",
+            "--porcelain",
+        ],
+        cwd=tmp_path,
+        text=True,
+        capture_output=True,
+        check=True,
+    ).stdout == ""
