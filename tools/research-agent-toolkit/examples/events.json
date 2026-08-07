@@ -1,0 +1,7 @@
+[
+  {
+    "start": "2026-08-08T14:00:00+00:00",
+    "summary": "Run bounded verifier",
+    "description": "Execute the exact verifier for the current dependency closure."
+  }
+]

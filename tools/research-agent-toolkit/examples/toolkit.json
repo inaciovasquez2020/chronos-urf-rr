@@ -1,0 +1,23 @@
+{
+  "scope": {
+    "allow": ["src/**", "tests/**", "proofs/**", "tools/**", "artifacts/**"],
+    "deny": [".git/**", "vendor/**"]
+  },
+  "budgets": {
+    "mutations": 1,
+    "failed_verifications": 1,
+    "tool_calls": 50
+  },
+  "policy": {
+    "forbidden_patterns": [
+      "\\bsorry\\b",
+      "\\badmit\\b",
+      "\\baxiom\\b",
+      "\\bopaque\\b"
+    ]
+  },
+  "gates": {
+    "verify_actions": ["modify", "delete", "theorem_claim", "artifact_regeneration"],
+    "deny_actions": ["disable_verifier", "weaken_test_to_pass"]
+  }
+}
