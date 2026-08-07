@@ -4,6 +4,7 @@ import json
 import sys
 from pathlib import Path
 
+from .agent_mutation import governed_patch_mutation
 from .budgets import Budget
 from .engine import evaluate, load_config
 from .index import search
@@ -20,6 +21,47 @@ def tool_definitions() -> list[dict]:
         {"name": "gate", "description": "Evaluate scope, policy, budget, and approval gate rules.", "inputSchema": {"type": "object", "properties": {"action": {"type": "string"}, "paths": {"type": "array", "items": {"type": "string"}}, "candidate": {"type": ["string", "null"]}}, "required": ["action", "paths"]}},
         {"name": "search", "description": "Search the configured local research index.", "inputSchema": {"type": "object", "properties": {"query": {"type": "string"}, "limit": {"type": "integer"}}, "required": ["query"]}},
         {"name": "provenance", "description": "Build theorem/claim to generator to artifact to test provenance edges.", "inputSchema": {"type": "object", "properties": {"manifest": {"type": "string"}, "modules": {"type": "array", "items": {"type": "string"}}}, "required": ["manifest"]}},
+        {
+            "name": "mutate",
+            "description": (
+                "Sole supported agent research-file write entrypoint; "
+                "apply one unified diff inside a provenance-derived "
+                "dependency closure, verify immediately, and revert "
+                "on the first failure."
+            ),
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "manifest": {
+                        "type": "string",
+                    },
+                    "changed": {
+                        "type": "string",
+                    },
+                    "patch": {
+                        "type": "string",
+                    },
+                    "verifier": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                        },
+                    },
+                    "modules": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                        },
+                    },
+                },
+                "required": [
+                    "manifest",
+                    "changed",
+                    "patch",
+                    "verifier",
+                ],
+            },
+        },
     ]
 
 
@@ -66,6 +108,19 @@ def handle_request(request: dict, *, root: str | Path, config: str | Path, db: s
                         load_manifest(manifest_path),
                         lean_graph,
                     ).to_dict()
+                )
+            elif name == "mutate":
+                result = _content(
+                    governed_patch_mutation(
+                        root,
+                        str(args["manifest"]),
+                        str(args["changed"]),
+                        str(args["patch"]),
+                        list(args["verifier"]),
+                        modules=list(
+                            args.get("modules") or []
+                        ),
+                    )
                 )
             else:
                 raise ValueError(f"unknown tool: {name}")
