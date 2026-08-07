@@ -87,3 +87,38 @@ def test_claim_boundary_preserves_open_polar_and_unreduced_branches() -> None:
     assert "axial-polar splitting" in boundary
     assert "unreduced trace-log" in boundary
     assert "massive mode" in boundary
+
+
+def test_research_agent_toolkit_provenance_binding() -> None:
+    provenance = json.loads(
+        (
+            ROOT
+            / "artifacts/chronos/"
+              "gfe_axial_220_projected_eft_provenance.json"
+        ).read_text(encoding="utf-8")
+    )
+
+    assert provenance["chains"] == [
+        {
+            "artifact": (
+                "artifacts/chronos/"
+                "gfe_axial_220_projected_eft_certificate.json"
+            ),
+            "claim": (
+                "gfe.axial.220.projected_eft."
+                "unique_simple_root_positive_real_epsilon_tangent"
+            ),
+            "generator": (
+                "tools/gfe/"
+                "derive_gfe_axial_quadratic_action.sh"
+            ),
+            "runtime_receipt": (
+                "artifacts/chronos/"
+                "gfe_axial_220_projected_eft_runtime_receipt.txt"
+            ),
+            "test": (
+                "tests/"
+                "test_gfe_axial_220_projected_eft_certificate.py"
+            ),
+        }
+    ]

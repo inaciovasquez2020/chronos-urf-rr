@@ -1,0 +1,12 @@
+{
+  "chains": [
+    {
+      "artifact": "artifacts/chronos/gfe_axial_220_projected_eft_certificate.json",
+      "claim": "gfe.axial.220.projected_eft.unique_simple_root_positive_real_epsilon_tangent",
+      "generator": "tools/gfe/derive_gfe_axial_quadratic_action.sh",
+      "runtime_receipt": "artifacts/chronos/gfe_axial_220_projected_eft_runtime_receipt.txt",
+      "test": "tests/test_gfe_axial_220_projected_eft_certificate.py"
+    }
+  ],
+  "schema": "chronos.research_agent_toolkit.gfe_certificate_provenance.v1"
+}

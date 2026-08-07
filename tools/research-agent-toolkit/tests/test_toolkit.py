@@ -147,3 +147,684 @@ def test_tool_server_scan_gate_search(tmp_path: Path):
     assert "VERIFY" in gate_response["result"]["content"][0]["text"]
     search_response = handle_request({"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "search", "arguments": {"query": "dependency graph"}}}, root=tmp_path, config=config, db=db)
     assert "note.md" in search_response["result"]["content"][0]["text"]
+
+
+def test_provenance_claim_chain(tmp_path: Path):
+    from research_agent_toolkit.provenance import (
+        build_provenance,
+        forward_closure,
+    )
+
+    for rel in [
+        "gen.py",
+        "artifact.json",
+        "test_result.py",
+    ]:
+        (tmp_path / rel).write_text("x")
+
+    claim = "gfe.axial.220.projected_eft.claim"
+
+    graph = build_provenance(
+        tmp_path,
+        {
+            "chains": [
+                {
+                    "claim": claim,
+                    "generator": "gen.py",
+                    "artifact": "artifact.json",
+                    "test": "test_result.py",
+                }
+            ]
+        },
+    )
+
+    assert {
+        (edge.source, edge.target, edge.kind)
+        for edge in graph.edges
+    } == {
+        (
+            claim,
+            "gen.py",
+            "claim_to_generator",
+        ),
+        (
+            "gen.py",
+            "artifact.json",
+            "generator_to_artifact",
+        ),
+        (
+            "artifact.json",
+            "test_result.py",
+            "artifact_to_test",
+        ),
+    }
+
+    assert forward_closure(
+        graph,
+        [claim],
+    ) == [
+        "artifact.json",
+        "gen.py",
+        claim,
+        "test_result.py",
+    ]
+
+
+def test_tool_server_claim_provenance_without_lean_modules(
+    tmp_path: Path,
+):
+    from research_agent_toolkit.server import (
+        handle_request,
+        tool_definitions,
+    )
+
+    for rel in [
+        "gen.py",
+        "artifact.json",
+        "test_result.py",
+    ]:
+        (tmp_path / rel).write_text("x")
+
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "chains": [
+                    {
+                        "claim": "gfe.claim",
+                        "generator": "gen.py",
+                        "artifact": "artifact.json",
+                        "test": "test_result.py",
+                    }
+                ]
+            }
+        )
+    )
+
+    provenance_tool = next(
+        tool
+        for tool in tool_definitions()
+        if tool["name"] == "provenance"
+    )
+
+    assert provenance_tool["inputSchema"]["required"] == [
+        "manifest"
+    ]
+
+    response = handle_request(
+        {
+            "jsonrpc": "2.0",
+            "id": 7,
+            "method": "tools/call",
+            "params": {
+                "name": "provenance",
+                "arguments": {
+                    "manifest": "manifest.json",
+                },
+            },
+        },
+        root=tmp_path,
+        config=tmp_path / "unused.json",
+        db=tmp_path / "unused.db",
+    )
+
+    assert "error" not in response
+
+    payload = json.loads(
+        response["result"]["content"][0]["text"]
+    )
+
+    assert {
+        (
+            edge["source"],
+            edge["target"],
+            edge["kind"],
+        )
+        for edge in payload["edges"]
+    } == {
+        (
+            "gfe.claim",
+            "gen.py",
+            "claim_to_generator",
+        ),
+        (
+            "gen.py",
+            "artifact.json",
+            "generator_to_artifact",
+        ),
+        (
+            "artifact.json",
+            "test_result.py",
+            "artifact_to_test",
+        ),
+    }
+
+
+def test_tool_server_theorem_provenance_still_requires_modules(
+    tmp_path: Path,
+):
+    from research_agent_toolkit.server import handle_request
+
+    for rel in [
+        "gen.py",
+        "artifact.json",
+        "test_result.py",
+    ]:
+        (tmp_path / rel).write_text("x")
+
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "chains": [
+                    {
+                        "theorem": "Foo.thm",
+                        "generator": "gen.py",
+                        "artifact": "artifact.json",
+                        "test": "test_result.py",
+                    }
+                ]
+            }
+        )
+    )
+
+    response = handle_request(
+        {
+            "jsonrpc": "2.0",
+            "id": 8,
+            "method": "tools/call",
+            "params": {
+                "name": "provenance",
+                "arguments": {
+                    "manifest": "manifest.json",
+                },
+            },
+        },
+        root=tmp_path,
+        config=tmp_path / "unused.json",
+        db=tmp_path / "unused.db",
+    )
+
+    assert response["error"]["message"] == (
+        "theorem provenance requires an exact Lean graph"
+    )
+
+
+def test_governed_patch_mutation_uses_provenance_closure(
+    tmp_path: Path,
+):
+    import subprocess
+    import sys
+
+    from research_agent_toolkit.agent_mutation import (
+        governed_patch_mutation,
+    )
+
+    subprocess.run(
+        ["git", "init", "-q"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.email",
+            "rat@example.invalid",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.name",
+            "RAT Test",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    (tmp_path / "gen.py").write_text(
+        "generator\n"
+    )
+    (tmp_path / "artifact.json").write_text(
+        "before\n"
+    )
+    (tmp_path / "test_result.py").write_text(
+        "test\n"
+    )
+    (tmp_path / "manifest.json").write_text(
+        json.dumps(
+            {
+                "chains": [
+                    {
+                        "claim": "gfe.claim",
+                        "generator": "gen.py",
+                        "artifact": "artifact.json",
+                        "test": "test_result.py",
+                    }
+                ]
+            }
+        )
+    )
+
+    subprocess.run(
+        ["git", "add", "-A"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "commit", "-qm", "init"],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    patch = """\
+diff --git a/artifact.json b/artifact.json
+--- a/artifact.json
++++ b/artifact.json
+@@ -1 +1 @@
+-before
++after
+"""
+
+    result = governed_patch_mutation(
+        tmp_path,
+        "manifest.json",
+        "artifact.json",
+        patch,
+        [
+            sys.executable,
+            "-c",
+            (
+                "from pathlib import Path; "
+                "assert Path('artifact.json').read_text() "
+                "== 'after\\n'"
+            ),
+        ],
+    )
+
+    assert result.preserved
+    assert result.phase == "verification"
+    assert result.closure == (
+        "artifact.json",
+        "test_result.py",
+    )
+    assert result.changed_paths == (
+        "artifact.json",
+    )
+    assert (
+        tmp_path / "artifact.json"
+    ).read_text() == "after\n"
+
+
+def test_governed_patch_mutation_reverts_closure_escape(
+    tmp_path: Path,
+):
+    import subprocess
+    import sys
+
+    from research_agent_toolkit.agent_mutation import (
+        governed_patch_mutation,
+    )
+
+    subprocess.run(
+        ["git", "init", "-q"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.email",
+            "rat@example.invalid",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.name",
+            "RAT Test",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    (tmp_path / "gen.py").write_text(
+        "before\n"
+    )
+    (tmp_path / "artifact.json").write_text(
+        "artifact\n"
+    )
+    (tmp_path / "test_result.py").write_text(
+        "test\n"
+    )
+    (tmp_path / "manifest.json").write_text(
+        json.dumps(
+            {
+                "chains": [
+                    {
+                        "claim": "gfe.claim",
+                        "generator": "gen.py",
+                        "artifact": "artifact.json",
+                        "test": "test_result.py",
+                    }
+                ]
+            }
+        )
+    )
+
+    subprocess.run(
+        ["git", "add", "-A"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "commit", "-qm", "init"],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    patch = """\
+diff --git a/gen.py b/gen.py
+--- a/gen.py
++++ b/gen.py
+@@ -1 +1 @@
+-before
++escaped
+"""
+
+    result = governed_patch_mutation(
+        tmp_path,
+        "manifest.json",
+        "artifact.json",
+        patch,
+        [
+            sys.executable,
+            "-c",
+            "raise SystemExit(0)",
+        ],
+    )
+
+    assert not result.preserved
+    assert result.phase == "closure"
+    assert result.returncode == 3
+    assert (
+        tmp_path / "gen.py"
+    ).read_text() == "before\n"
+    assert subprocess.run(
+        [
+            "git",
+            "status",
+            "--porcelain",
+        ],
+        cwd=tmp_path,
+        text=True,
+        capture_output=True,
+        check=True,
+    ).stdout == ""
+
+
+def test_rat_mutate_cli_routes_write_through_governance(
+    tmp_path: Path,
+):
+    import subprocess
+    import sys
+
+    from research_agent_toolkit.cli import main
+
+    subprocess.run(
+        ["git", "init", "-q"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.email",
+            "rat@example.invalid",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.name",
+            "RAT Test",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    (tmp_path / "gen.py").write_text(
+        "generator\n"
+    )
+    (tmp_path / "artifact.json").write_text(
+        "before\n"
+    )
+    (tmp_path / "test_result.py").write_text(
+        "test\n"
+    )
+    (tmp_path / "manifest.json").write_text(
+        json.dumps(
+            {
+                "chains": [
+                    {
+                        "claim": "gfe.claim",
+                        "generator": "gen.py",
+                        "artifact": "artifact.json",
+                        "test": "test_result.py",
+                    }
+                ]
+            }
+        )
+    )
+
+    subprocess.run(
+        ["git", "add", "-A"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "commit", "-qm", "init"],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    patch_path = (
+        tmp_path.parent
+        / f"{tmp_path.name}-rat-mutate.patch"
+    )
+
+    patch_path.write_text(
+        """\
+diff --git a/artifact.json b/artifact.json
+--- a/artifact.json
++++ b/artifact.json
+@@ -1 +1 @@
+-before
++after
+"""
+    )
+
+    try:
+        rc = main(
+            [
+                "mutate",
+                str(tmp_path),
+                "manifest.json",
+                "artifact.json",
+                "--patch",
+                str(patch_path),
+                "--verifier-json",
+                json.dumps(
+                    [
+                        sys.executable,
+                        "-c",
+                        (
+                            "from pathlib import Path; "
+                            "assert "
+                            "Path('artifact.json').read_text() "
+                            "== 'after\\n'"
+                        ),
+                    ]
+                ),
+            ]
+        )
+    finally:
+        patch_path.unlink(
+            missing_ok=True
+        )
+
+    assert rc == 0
+    assert (
+        tmp_path / "artifact.json"
+    ).read_text() == "after\n"
+
+
+def test_tool_server_mutate_is_governed_write_entrypoint(
+    tmp_path: Path,
+):
+    import subprocess
+    import sys
+
+    from research_agent_toolkit.server import (
+        handle_request,
+        tool_definitions,
+    )
+
+    definitions = tool_definitions()
+
+    mutation_tools = [
+        tool["name"]
+        for tool in definitions
+        if "write entrypoint"
+        in tool.get("description", "")
+    ]
+
+    assert mutation_tools == [
+        "mutate"
+    ]
+
+    subprocess.run(
+        ["git", "init", "-q"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.email",
+            "rat@example.invalid",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git",
+            "config",
+            "user.name",
+            "RAT Test",
+        ],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    (tmp_path / "gen.py").write_text(
+        "generator\n"
+    )
+    (tmp_path / "artifact.json").write_text(
+        "before\n"
+    )
+    (tmp_path / "test_result.py").write_text(
+        "test\n"
+    )
+    (tmp_path / "manifest.json").write_text(
+        json.dumps(
+            {
+                "chains": [
+                    {
+                        "claim": "gfe.claim",
+                        "generator": "gen.py",
+                        "artifact": "artifact.json",
+                        "test": "test_result.py",
+                    }
+                ]
+            }
+        )
+    )
+
+    subprocess.run(
+        ["git", "add", "-A"],
+        cwd=tmp_path,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "commit", "-qm", "init"],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    patch = """\
+diff --git a/artifact.json b/artifact.json
+--- a/artifact.json
++++ b/artifact.json
+@@ -1 +1 @@
+-before
++after
+"""
+
+    response = handle_request(
+        {
+            "jsonrpc": "2.0",
+            "id": 11,
+            "method": "tools/call",
+            "params": {
+                "name": "mutate",
+                "arguments": {
+                    "manifest": "manifest.json",
+                    "changed": "artifact.json",
+                    "patch": patch,
+                    "verifier": [
+                        sys.executable,
+                        "-c",
+                        (
+                            "from pathlib import Path; "
+                            "assert "
+                            "Path('artifact.json').read_text() "
+                            "== 'after\\n'"
+                        ),
+                    ],
+                },
+            },
+        },
+        root=tmp_path,
+        config=tmp_path / "unused.json",
+        db=tmp_path / "unused.db",
+    )
+
+    assert "error" not in response
+
+    payload = json.loads(
+        response["result"]["content"][0]["text"]
+    )
+
+    assert payload["preserved"] is True
+    assert payload["closure"] == [
+        "artifact.json",
+        "test_result.py",
+    ]
+    assert (
+        tmp_path / "artifact.json"
+    ).read_text() == "after\n"

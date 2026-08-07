@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from .agent_mutation import governed_patch_mutation
 from .budgets import Budget
 from .calendar_export import export_ics
 from .engine import evaluate, load_config
@@ -43,6 +44,19 @@ def main(argv: list[str] | None = None) -> int:
     pv.add_argument("manifest")
     pv.add_argument("modules", nargs="+")
     pv.add_argument("--out")
+
+    mut = sub.add_parser("mutate")
+    mut.add_argument("root")
+    mut.add_argument("manifest")
+    mut.add_argument("changed")
+    mut.add_argument("--patch", required=True)
+    mut.add_argument("--verifier-json", required=True)
+    mut.add_argument(
+        "--module",
+        dest="modules",
+        action="append",
+        default=[],
+    )
 
     c = sub.add_parser("closure")
     c.add_argument("root")
@@ -105,6 +119,46 @@ def main(argv: list[str] | None = None) -> int:
             Path(args.out).write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
         _json(data)
         return 0
+    if args.cmd == "mutate":
+        verifier = json.loads(
+            args.verifier_json
+        )
+
+        if (
+            not isinstance(verifier, list)
+            or not verifier
+            or not all(
+                isinstance(item, str) and item
+                for item in verifier
+            )
+        ):
+            raise SystemExit(
+                "verifier JSON must be a nonempty "
+                "array of nonempty strings"
+            )
+
+        patch = Path(
+            args.patch
+        ).read_text(
+            encoding="utf-8"
+        )
+
+        result = governed_patch_mutation(
+            args.root,
+            args.manifest,
+            args.changed,
+            patch,
+            verifier,
+            modules=args.modules,
+        )
+
+        _json(result)
+
+        if result.preserved:
+            return 0
+
+        return result.returncode or 1
+
     if args.cmd == "closure":
         _json(reverse_closure(scan(args.root), args.changed))
         return 0
