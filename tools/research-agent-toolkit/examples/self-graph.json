@@ -1,0 +1,185 @@
+{
+  "edges": [
+    {
+      "kind": "literal_ref",
+      "source": "README.md",
+      "target": "examples/toolkit.json"
+    }
+  ],
+  "nodes": [
+    {
+      "language": "markdown",
+      "path": ".pytest_cache/README.md",
+      "symbols": []
+    },
+    {
+      "language": "markdown",
+      "path": "README.md",
+      "symbols": []
+    },
+    {
+      "language": "json",
+      "path": "examples/events.json",
+      "symbols": []
+    },
+    {
+      "language": "json",
+      "path": "examples/toolkit.json",
+      "symbols": []
+    },
+    {
+      "language": "toml",
+      "path": "pyproject.toml",
+      "symbols": []
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/__init__.py",
+      "symbols": []
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/budgets.py",
+      "symbols": [
+        "Budget",
+        "BudgetExceeded",
+        "consume",
+        "remaining"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/calendar_export.py",
+      "symbols": [
+        "_ics_escape",
+        "export_ics"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/cli.py",
+      "symbols": [
+        "_json",
+        "main"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/engine.py",
+      "symbols": [
+        "EngineDecision",
+        "evaluate",
+        "load_config"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/finetune_manifest.py",
+      "symbols": [
+        "prepare_jsonl"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/gates.py",
+      "symbols": [
+        "GateDecision",
+        "classify"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/index.py",
+      "symbols": [
+        "_tokens",
+        "chunks",
+        "cosine",
+        "extract_text",
+        "hashed_embedding",
+        "index_file",
+        "init_db",
+        "search"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/policy.py",
+      "symbols": [
+        "PolicyViolation",
+        "scan_text"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/profile.py",
+      "symbols": [
+        "build_profile"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/receipts.py",
+      "symbols": [
+        "SessionReceipt",
+        "write"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/scanner.py",
+      "symbols": [
+        "Edge",
+        "Graph",
+        "Node",
+        "_language",
+        "_literal_file_refs",
+        "_python_symbols_and_imports",
+        "reverse_closure",
+        "scan",
+        "to_dict",
+        "write"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/scope.py",
+      "symbols": [
+        "ScopeDecision",
+        "check_path",
+        "check_paths"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/trace.py",
+      "symbols": [
+        "Event",
+        "JsonlTracer",
+        "__init__",
+        "emit",
+        "span"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "src/research_agent_toolkit/transaction.py",
+      "symbols": [
+        "VerificationResult",
+        "verified_mutation"
+      ]
+    },
+    {
+      "language": "python",
+      "path": "tests/test_toolkit.py",
+      "symbols": [
+        "mutate",
+        "test_budget",
+        "test_local_index",
+        "test_policy_and_scope",
+        "test_scanner_and_reverse_closure",
+        "test_verified_mutation_reverts_first_failure"
+      ]
+    }
+  ],
+  "root": "/mnt/data/research-agent-toolkit"
+}
