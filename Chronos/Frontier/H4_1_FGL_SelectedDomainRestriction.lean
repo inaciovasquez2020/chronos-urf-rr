@@ -10,10 +10,10 @@ One-point semantic final carrier showing that arbitrary semantic final carriers
 do not necessarily admit separating observables.
 -/
 def H4_1_FGL_ArbitrarySemanticFinalCarrierCounterexample :
-    H4_1_FGL_SemanticFinalCarrier :=
+    H4_1_FGL_SemanticFinalCarrier.{u, v} :=
 {
-  Carrier := Unit,
-  Observation := Unit,
+  Carrier := PUnit,
+  Observation := PUnit,
   FinalHypothesis := fun _ => True,
   FinalGapLeft := fun _ => True,
   FinalGapRight := fun _ => True,
@@ -33,8 +33,8 @@ theorem H4_1_FGL_arbitrary_semantic_final_carrier_separating_observable_refuted 
   intro h
   rcases h H4_1_FGL_ArbitrarySemanticFinalCarrierCounterexample with ⟨W⟩
   have hbad :
-      W.toObservation () ≠ W.toObservation () :=
-    W.separates_final_gap () () True.intro True.intro
+      W.toObservation PUnit.unit ≠ W.toObservation PUnit.unit :=
+    W.separates_final_gap PUnit.unit PUnit.unit True.intro True.intro
   exact hbad rfl
 
 /--
@@ -54,8 +54,8 @@ theorem H4_1_FGL_arbitrary_semantic_final_carrier_selected_instance_refuted :
       (h H4_1_FGL_ArbitrarySemanticFinalCarrierCounterexample)
   rcases hobs with ⟨W⟩
   have hbad :
-      W.toObservation () ≠ W.toObservation () :=
-    W.separates_final_gap () () True.intro True.intro
+      W.toObservation PUnit.unit ≠ W.toObservation PUnit.unit :=
+    W.separates_final_gap PUnit.unit PUnit.unit True.intro True.intro
   exact hbad rfl
 
 /--
