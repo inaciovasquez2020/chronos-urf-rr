@@ -1,0 +1,66 @@
+{
+  "boundary": {
+    "finite_q_interval_newton_through_q_1e_minus_2": "not claimed",
+    "full_theory_220_qnm_tail_transfer": "prohibited",
+    "nonexistence_of_all_deformed_invariant_graphs": "not claimed"
+  },
+  "certified_boxes": {
+    "Im_Omega": [
+      "-891/10000",
+      "-111/1250"
+    ],
+    "Re_Omega": [
+      "467/1250",
+      "1869/5000"
+    ],
+    "eta_star": [
+      "-4957/125000",
+      "-39439/1000000"
+    ],
+    "sqrt15": [
+      "1936491673/500000000",
+      "3872983347/1000000000"
+    ]
+  },
+  "certified_real_part": {
+    "lower_decimal": "0.0016548010633341",
+    "lower_exact": "38126616499218772691/23040000000000000000000",
+    "simple_enclosure": "1/605 < Re(f0) < 1/600",
+    "strictly_positive": true,
+    "upper_decimal": "0.0016646256506907",
+    "upper_exact": "8522883331536517383/5120000000000000000000"
+  },
+  "consequence": "the regular graph center q^2 P2 fails the first surviving Fredholm compatibility condition for all sufficiently small positive q",
+  "crossing_modes": {
+    "adjoint": "(m21, lambda-m11)",
+    "local_transversality": "9/100 < d_xi Re(lambda_inner) < 1/8",
+    "pairing": "(lambda-m11)*d_lambda(characteristic)",
+    "right": "(m12, lambda-m11)^T"
+  },
+  "graph_center": "p_bar(q,x) = q^2 P2(x)",
+  "leading_first_massless_column": {
+    "formula": "I*(a+I*b)/4423680*(313800*a^2+627600*I*a*b-313800*b^2-62760*sqrt(15)*eta-56057)",
+    "real_part_formula": "(-b)*(941400*a^2-313800*b^2-62760*sqrt(15)*eta-56057)/4423680"
+  },
+  "leading_fredholm_order": "q^3",
+  "normalization": {
+    "A_EH": "1/2",
+    "inner_center_at_x4": "mu0 = +/- I*sqrt(12/5)",
+    "moving_inner_center": "mu_pm(x) = +/- I*sqrt(6/(5*f(x)))",
+    "principal_balanced_characteristic_at_x4": "(mu^2 + 12/5)^2"
+  },
+  "residual_structure": {
+    "R2_V0": [
+      "599/36864",
+      "I*(320*Omega^2-51)/(8192*Omega)"
+    ],
+    "R2_V1": [
+      "-523*I*Omega/3072",
+      "(8064*Omega^2-8873)/147456"
+    ],
+    "expansion": "R(q,q^2 P2) = q^2 R2 + O(q^3)",
+    "slow_U_rows_at_R2": "0"
+  },
+  "result": "leading q^3 Fredholm coefficient is uniformly nonzero on the certified q->0 crossing/frequency box",
+  "scope": "corrected AEH=1/2 leading Shadow-of-Infinity Fredholm obstruction for the regular q^2 P2 graph center"
+}
