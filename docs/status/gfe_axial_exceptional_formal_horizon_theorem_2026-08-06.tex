@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+
+\title{Formal All-Orders Exceptional-Horizon Frobenius Continuation\\
+for the $\ell=2$ Axial GfE System}
+\date{6 August 2026}
+\maketitle
+
+\paragraph{Scope.}
+This note records only the formal local exceptional-horizon theorem
+certified symbolically from the canonical GfE axial source. It does not
+claim convergence, analytic continuation to the exterior region, a
+global black-hole mode, or physical instability.
+
+\begin{theorem}[Formal exceptional-horizon continuation]
+Let $M\beta\neq0$ and consider
+\[
+  \omega=\frac{i}{4M},
+  \qquad
+  \alpha=\frac12 .
+\]
+There is a formal logarithmic Frobenius solution of the uneliminated
+$\ell=2$ axial GfE equations of the form
+\[
+  U(x)
+  =
+  x^{1/2}
+  \left[
+    u_0+
+    \sum_{n\ge1}x^n
+      \bigl(u_n+v_n\log x\bigr)
+  \right],
+  \qquad x=r-2M,
+\]
+seeded by
+\[
+  v_1
+  =
+  c_1
+  \begin{pmatrix}
+    1\\-2M
+  \end{pmatrix},
+  \qquad
+  u_0
+  =
+  c_1
+  \begin{pmatrix}
+    3M/5\\6M^2/5
+  \end{pmatrix},
+\]
+and the total-order-two compatibility relation
+\[
+  (u_1)_2
+  =
+  -2M(u_1)_1-\frac{362}{25}Mc_1 .
+\]
+
+For every integer $n\ge3$,
+\[
+A_{nn}
+=
+\begin{pmatrix}
+-\dfrac{\beta^2n(n-1)(2n-3)(2n+1)}{8M^3}
+&
+ \dfrac{\beta^2n(n-1)(2n-3)}{16M^4}
+\\[6pt]
+ \dfrac{\beta^2n(n-1)(2n+1)}{16M^4}
+&
+-\dfrac{\beta^2n(n-1)}{32M^5}
+\end{pmatrix}.
+\]
+It has rank one, with
+\[
+r_n=
+\begin{pmatrix}
+1\\2M(2n+1)
+\end{pmatrix},
+\qquad
+\ell_n=
+\begin{pmatrix}
+1\\2M(2n-3)
+\end{pmatrix}.
+\]
+The adjacent kernel coupling is
+\[
+\gamma_n
+=
+\ell_n^{T}A_{n,n-1}r_{n-1}
+=
+\frac{
+2\beta^2(n-1)^2(12n^2-24n-5)
+}{
+3M^4
+}.
+\]
+Writing $n=m+3$ gives
+\[
+(n-1)^2(12n^2-24n-5)
+=
+(m+2)^2(12m^2+48m+31)>0
+\]
+for every integer $m\ge0$, hence $\gamma_n\neq0$.
+
+The projected logarithmic equation has the form
+\[
+  \ell_n^T R_n+\gamma_n\kappa_{n-1}=0,
+\]
+and therefore uniquely fixes $\kappa_{n-1}$ while leaving a new
+current kernel coefficient $\kappa_n$.
+
+For the non-logarithmic equation, the exponent-derivative source
+$D_{nn}$ satisfies
+\[
+  \ell_n^T D_{nn}r_n=0.
+\]
+Thus the free current logarithmic kernel does not enter the
+non-logarithmic compatibility condition
+\[
+  \ell_n^T T_n+\gamma_n\mu_{n-1}=0.
+\]
+This uniquely fixes $\mu_{n-1}$ while leaving a new current ordinary
+kernel coefficient $\mu_n$.
+
+Hence the logarithmic and non-logarithmic recurrences advance
+inductively to every Laurent order, with no finite-order algebraic
+compatibility obstruction on this exceptional local horizon branch.
+\end{theorem}
+
+\begin{remark}[Exact boundary]
+The theorem is formal and local. It does not establish coefficient
+growth bounds, convergence of the infinite Frobenius series, analytic
+continuation away from the horizon, global black-hole boundary
+conditions, or physical instability.
+\end{remark}
+
+\end{document}
