@@ -48,3 +48,27 @@ rat search --db research.db "dependency graph verifier"
 ## Boundary
 
 This package enforces workflow invariants. It does not prove mathematical claims, validate scientific interpretation, or certify correctness beyond the verifiers you explicitly invoke.
+
+
+## Agent research-file write contract
+
+Automated or AI-initiated research-file writes MUST use the
+`rat mutate` entrypoint, or the tool-server `mutate` method which
+uses the same governed implementation.
+
+`rat mutate` accepts a unified diff, derives the mutable file closure
+from an existing provenance manifest, applies exactly one patch,
+runs the supplied verifier immediately, and restores clean `HEAD`
+on the first mutation, closure, or verification failure.
+
+This requirement applies only to research chains that have been
+explicitly admitted into provenance. Adding another provenance chain
+therefore expands mandatory agent enforcement only to that chain.
+
+Ordinary human Git commands are unchanged. The toolkit does not
+install `pre-commit`, `pre-push`, or other repository-wide Git hooks.
+
+An unrestricted external shell can bypass this contract; mandatory
+enforcement here means that agents using the research-agent-toolkit
+write interface have exactly one supported research-file mutation
+route: `mutate`.
