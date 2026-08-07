@@ -88,6 +88,157 @@ quadrupole contribution.
 \text{pointwise Price tail}.
 \]
 
+## First-order GfE response pair
+
+The Price-law certificate also admits an exact first-order deformation
+test at the GR point.
+
+For the dimensionless \(\ell=2\) zero-energy Schwarzschild operator,
+the canonically horizon-normalized threshold solution is
+
+\[
+f_0(z)=\frac{z^3}{8},
+\qquad
+f_0(2)=1,
+\qquad
+H_0f_0=0.
+\]
+
+Writing
+
+\[
+H_\epsilon=H_0+\epsilon H_1+O(\epsilon^2),
+\]
+
+the exact corrected operator gives
+
+\[
+H_1f_0
+=
+\frac{4(z-2)(231z-524)}{3z^7}.
+\]
+
+In particular,
+
+\[
+(H_1f_0)(3)
+=
+\frac{676}{6561}
+>0.
+\]
+
+For
+
+\[
+A_{2,\epsilon}
+=
+\frac{|f_\epsilon\rangle\langle f_\epsilon|}
+{g_\epsilon^2},
+\]
+
+write
+
+\[
+A_{2,\epsilon}
+=
+A_0+\epsilon A_1+O(\epsilon^2).
+\]
+
+Its first variation is
+
+\[
+A_1
+=
+\frac{|f_1\rangle\langle f_0|
+      +|f_0\rangle\langle f_1|}
+     {g_0^2}
+-
+2\frac{g_1}{g_0}A_0.
+\]
+
+If \(A_1=0\), the diagonal kernel and \(f_0\neq0\) for \(z>2\)
+force
+
+\[
+f_1=\frac{g_1}{g_0}f_0.
+\]
+
+But differentiating the zero-energy equation gives
+
+\[
+H_0f_1=-H_1f_0.
+\]
+
+The proposed proportionality would make the left side vanish, while
+the exact expression above proves \(H_1f_0\not\equiv0\).
+Therefore
+
+\[
+A_1\neq0.
+\]
+
+Consequently the leading Price coefficient has a nonzero first-order
+GfE response,
+
+\[
+\left.
+\partial_\epsilon
+\left(-2880A_{2,\epsilon}\right)
+\right|_{\epsilon=0}
+=
+-2880A_1
+\neq0.
+\]
+
+Independently, the certified axial \((2,2,0)\) quasinormal-mode tangent
+satisfies
+
+\[
+\left.
+\frac{d\Omega_{220}}{d\epsilon}
+\right|_{\epsilon=0}
+\in
+(0.027340131607167324
+-0.014681561963391043\,i)
+\pm
+0.008950737656596899,
+\]
+
+whose real part obeys
+
+\[
+\operatorname{Re}
+\left(
+\left.
+\frac{d\Omega_{220}}{d\epsilon}
+\right|_{\epsilon=0}
+\right)
+\ge
+0.018389393950570425
+>0.
+\]
+
+Thus the corrected GfE black-hole response has a certified nontrivial
+first-order pair
+
+\[
+\boxed{
+\left(
+A_1,
+\left.
+\frac{d\Omega_{220}}{d\epsilon}
+\right|_{\epsilon=0}
+\right),
+}
+\]
+
+with both components nonzero.
+
+This does not yet define a universal scalar relation between the
+late-time tail and the quasinormal frequency. The tail response
+\(A_1\) is operator-valued. A scalar tail/QNM consistency relation
+requires a canonically specified initial-data or detector functional.
+
 ## Scope and boundary
 
 This result concerns the corrected, projected, massless axial GfE operator
