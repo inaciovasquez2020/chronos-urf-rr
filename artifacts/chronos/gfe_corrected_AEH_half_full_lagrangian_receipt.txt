@@ -1,0 +1,12 @@
+RESULT := corrected AEH=1/2 normalized full_lagrangian rebuilt
+NORMALIZATION := L_full=(1/2)L_EH_unit+(5*beta/6)L_Ricci2+beta^2*L_joint
+GATE_1_BETA0_EINSTEIN := passed
+GATE_2_H0R2_COEFFICIENT := 3
+GATE_3_BETA1 := (5/6)*L_Ricci2 exact
+GATE_4_BETA2 := L_joint exact
+BETA_DEGREE := 2
+EULER_EQUATIONS := not constructed
+PQ_BLOCKS := not constructed
+GQQ := not constructed
+JSON_REPORT := /mnt/data/gfe_normalized_rebuild/normalized_action_only/gfe_corrected_AEH_half_full_lagrangian.json
+STOP := requested boundary reached
