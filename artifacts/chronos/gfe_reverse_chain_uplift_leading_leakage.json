@@ -1,0 +1,50 @@
+{
+  "baseline": {
+    "graph": "p_bar(q,x) = q^2 P2(x)",
+    "leading_fredholm_order": "q^3",
+    "status": "Fredholm obstructed near q=0"
+  },
+  "boundary": [
+    "leading inner uplift only",
+    "exact finite-q 4x4 companion lift not yet certified",
+    "complement equation not yet certified",
+    "endpoint admissibility not yet certified",
+    "global invariant manifold not yet proved",
+    "projected 220 QNM/tail transfer remains prohibited"
+  ],
+  "inner_crossing_mode": {
+    "d_lambda_characteristic_abs_sq_interval": [
+      0.012472854534918887,
+      0.014684721551881249
+    ],
+    "lambda_minus_m11_abs_sq_interval": [
+      0.009996389900271352,
+      0.010103578126010626
+    ],
+    "left": "(m21, lambda-m11)",
+    "off_shell_pairing": "(lambda-m11)*d_lambda(characteristic)-characteristic",
+    "on_shell_pairing": "(lambda-m11)*d_lambda(characteristic)",
+    "pairing_abs_sq": {
+      "lower_guard": "2997/25000000",
+      "nonzero": true,
+      "upper_guard": "153/1000000"
+    },
+    "right": "(m12, lambda-m11)^T"
+  },
+  "leading_leakage": {
+    "fredholm_real_enclosure": "1/605 < Re(f0) < 1/600",
+    "massless_column": 0,
+    "normalized_source_magnitude_gt": "2/15",
+    "source": "alpha_x = q^3*f0/(ell^T r) + higher order at alpha=0",
+    "uniformly_nonzero": true
+  },
+  "next_gate": "derive exact finite-q 4x4 right/adjoint companion modes and certify the complement equation",
+  "program": "GfE Reverse-Chain Uplift",
+  "result": "the nonzero q^3 Fredholm obstruction becomes a uniformly nonzero resonant fast-mode source under the rank-one Reverse-Chain Uplift",
+  "uplift": {
+    "ansatz": "Q = p P + alpha r",
+    "exact_identity": "r alpha_x = R(q,p) P + ((G_QQ-p G_PQ)r-r_x) alpha",
+    "projected_amplitude_equation": "(ell^T r) alpha_x = ell^T R(q,p) P + ell^T((G_QQ-p G_PQ)r-r_x) alpha",
+    "rank": 1
+  }
+}
