@@ -1,0 +1,24 @@
+{
+  "boundaries": [
+    "q^2 seed replay remains open",
+    "Bianchi/conservation redundancy remains open",
+    "C_N certification remains open",
+    "Borel resummation remains open",
+    "actual q=1e-2 resummed background remains open",
+    "full-log six-state/rank-two rebuild remains open"
+  ],
+  "curvature_truncation": "none",
+  "d_mu_nu_exact_dag": true,
+  "d_mu_nu_q0_normalization": true,
+  "ef_coordinate_regular_operator": true,
+  "exact_curvature_blocks": true,
+  "exact_dressed_scalar": true,
+  "exact_resolvent_dag": true,
+  "full_log_static_euler_map": "constructed_as_exact_compositional_DAG",
+  "one_form_self_adjoint_relation": "C = A + N*F*B",
+  "phi1_q0": "r*F'(r)+F(r)-1",
+  "phi2_q0": "r*F'(r)+F(r)-1+2*r*F(r)*N'(r)/N(r)",
+  "q0_einstein_reduction": true,
+  "result": "exact full-log static Euler compositional DAG assembled",
+  "static_normalization": true
+}
