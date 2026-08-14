@@ -1,0 +1,11 @@
+GFE_CORRECTED_AEH_HALF_EXACT_PQ_GQQ
+P0_RANK := 4
+Q0_RANK := 2
+P0_IDEMPOTENCE := passed
+LEADING_COMMUTATOR := [G_-1,P0]=G_-1 != 0
+GQQ_EXACT := passed
+GQQ_DETERMINANT := rank 2 for Delta != 0; rank 1 for Delta = 0
+GQQ_INVERSE := passed under ordinary guard and Delta != 0
+HISTORICAL_D_MATCH := corrected-different
+FREDHOLM_OBSTRUCTION := retained
+PAYLOAD_SHA256 := 940a11fb430f9b985407966269e83a15fefdd693973f1a8726d86f7e5cbdf1d2
