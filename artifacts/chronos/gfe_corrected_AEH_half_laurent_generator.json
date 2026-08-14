@@ -1,0 +1,556 @@
+{
+  "certificate": "GFE_CORRECTED_AEH_HALF_GUARDED_LAURENT_GENERATOR",
+  "scope": "exact Laurent structure of the guarded ordinary generator from the corrected AEH=1/2 six-state descriptor",
+  "source_descriptor": "artifacts/chronos/gfe_corrected_AEH_half_euler_generator.json",
+  "source_descriptor_sha256": "c471ef35cf5ecc569e337d67f4265ba64fe8a6b999485fdff2a613e62ad63004",
+  "coefficient_field": "QQ(i)(M,r,lam,omega)",
+  "state_dimension": 6,
+  "representation_identity": "G=H/det(E), H=adj(E)A=P/beta^2, det(E)=beta^2*Q, G=P/Q",
+  "descriptor_determinant_beta_valuation": 3,
+  "adjugate_A_entry_beta_valuations": [
+    [
+      null,
+      3,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      3,
+      null,
+      null,
+      null
+    ],
+    [
+      2,
+      2,
+      3,
+      2,
+      3,
+      3
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      3,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      3
+    ],
+    [
+      2,
+      3,
+      3,
+      2,
+      2,
+      3
+    ]
+  ],
+  "generator_entry_minimum_laurent_orders": [
+    [
+      null,
+      0,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      0,
+      null,
+      null,
+      null
+    ],
+    [
+      -1,
+      -1,
+      0,
+      -1,
+      0,
+      0
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      0,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      0
+    ],
+    [
+      -1,
+      0,
+      0,
+      -1,
+      -1,
+      0
+    ]
+  ],
+  "global_adjugate_A_beta_valuation": 2,
+  "generator_minimum_laurent_order": -1,
+  "principal_part_range": [
+    -1,
+    -1
+  ],
+  "reduced_numerator_beta_coefficients": [
+    [
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "(-200*I*M**3*lam**4*omega + 400*I*M**3*lam**3*omega + 300*I*M**2*lam**4*omega*r - 600*I*M**2*lam**3*omega*r - 150*I*M*lam**4*omega*r**2 + 300*I*M*lam**3*omega*r**2 + 25*I*lam**4*omega*r**3 - 50*I*lam**3*omega*r**3)/(18*r**6)",
+        "(200*I*M**3*lam**4*omega - 400*I*M**3*lam**3*omega - 300*I*M**2*lam**4*omega*r + 600*I*M**2*lam**3*omega*r + 150*I*M*lam**4*omega*r**2 - 300*I*M*lam**3*omega*r**2 - 25*I*lam**4*omega*r**3 + 50*I*lam**3*omega*r**3)/(36*r**5)",
+        "0",
+        "(-400*M**4*lam**5 + 1600*M**4*lam**4 - 1600*M**4*lam**3 + 800*M**3*lam**5*r - 200*M**3*lam**4*omega**2*r**3 - 3200*M**3*lam**4*r + 400*M**3*lam**3*omega**2*r**3 + 3200*M**3*lam**3*r - 600*M**2*lam**5*r**2 + 300*M**2*lam**4*omega**2*r**4 + 2400*M**2*lam**4*r**2 - 600*M**2*lam**3*omega**2*r**4 - 2400*M**2*lam**3*r**2 + 200*M*lam**5*r**3 - 150*M*lam**4*omega**2*r**5 - 800*M*lam**4*r**3 + 300*M*lam**3*omega**2*r**5 + 800*M*lam**3*r**3 - 25*lam**5*r**4 + 25*lam**4*omega**2*r**6 + 100*lam**4*r**4 - 50*lam**3*omega**2*r**6 - 100*lam**3*r**4)/(36*r**8)",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "(-50*M*lam**4*omega**2 + 100*M*lam**3*omega**2 + 25*lam**4*omega**2*r - 50*lam**3*omega**2*r)/(36*r**3)",
+        "0",
+        "0",
+        "(-100*I*M**3*lam**4*omega + 200*I*M**3*lam**3*omega + 100*I*M**2*lam**4*omega*r - 200*I*M**2*lam**3*omega*r - 25*I*M*lam**4*omega*r**2 + 50*I*M*lam**3*omega*r**2)/(18*r**6)",
+        "(200*I*M**3*lam**4*omega - 400*I*M**3*lam**3*omega - 300*I*M**2*lam**4*omega*r + 600*I*M**2*lam**3*omega*r + 150*I*M*lam**4*omega*r**2 - 300*I*M*lam**3*omega*r**2 - 25*I*lam**4*omega*r**3 + 50*I*lam**3*omega*r**3)/(36*r**5)",
+        "0"
+      ]
+    ],
+    [
+      [
+        "0",
+        "(2000*I*M**4*lam**4*omega - 4000*I*M**4*lam**3*omega - 4000*I*M**3*lam**4*omega*r + 8000*I*M**3*lam**3*omega*r + 3000*I*M**2*lam**4*omega*r**2 - 6000*I*M**2*lam**3*omega*r**2 - 1000*I*M*lam**4*omega*r**3 + 2000*I*M*lam**3*omega*r**3 + 125*I*lam**4*omega*r**4 - 250*I*lam**3*omega*r**4)/(216*r**6)",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "(2000*I*M**4*lam**4*omega - 4000*I*M**4*lam**3*omega - 4000*I*M**3*lam**4*omega*r + 8000*I*M**3*lam**3*omega*r + 3000*I*M**2*lam**4*omega*r**2 - 6000*I*M**2*lam**3*omega*r**2 - 1000*I*M*lam**4*omega*r**3 + 2000*I*M*lam**3*omega*r**3 + 125*I*lam**4*omega*r**4 - 250*I*lam**3*omega*r**4)/(216*r**6)",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "(-8080*I*M**4*lam**4*omega + 16160*I*M**4*lam**3*omega + 2500*I*M**3*lam**5*omega*r + 6120*I*M**3*lam**4*omega*r - 22240*I*M**3*lam**3*omega*r - 3500*I*M**2*lam**5*omega*r**2 + 500*I*M**2*lam**4*omega**3*r**4 + 1940*I*M**2*lam**4*omega*r**2 - 1000*I*M**2*lam**3*omega**3*r**4 + 10120*I*M**2*lam**3*omega*r**2 + 1625*I*M*lam**5*omega*r**3 - 500*I*M*lam**4*omega**3*r**5 - 2490*I*M*lam**4*omega*r**3 + 1000*I*M*lam**3*omega**3*r**5 - 1520*I*M*lam**3*omega*r**3 - 250*I*lam**5*omega*r**4 + 125*I*lam**4*omega**3*r**6 + 500*I*lam**4*omega*r**4 - 250*I*lam**3*omega**3*r**6)/(108*r**9)",
+        "(2080*I*M**4*lam**4*omega - 4160*I*M**4*lam**3*omega - 1000*I*M**3*lam**5*omega*r - 1120*I*M**3*lam**4*omega*r + 6240*I*M**3*lam**3*omega*r + 1500*I*M**2*lam**5*omega*r**2 - 500*I*M**2*lam**4*omega**3*r**4 - 1440*I*M**2*lam**4*omega*r**2 + 1000*I*M**2*lam**3*omega**3*r**4 - 3120*I*M**2*lam**3*omega*r**2 - 750*I*M*lam**5*omega*r**3 + 500*I*M*lam**4*omega**3*r**5 + 1240*I*M*lam**4*omega*r**3 - 1000*I*M*lam**3*omega**3*r**5 + 520*I*M*lam**3*omega*r**3 + 125*I*lam**5*omega*r**4 - 125*I*lam**4*omega**3*r**6 - 250*I*lam**4*omega*r**4 + 250*I*lam**3*omega**3*r**6)/(216*r**8)",
+        "(3000*I*M**4*lam**4*omega - 6000*I*M**4*lam**3*omega - 5500*I*M**3*lam**4*omega*r + 11000*I*M**3*lam**3*omega*r + 3750*I*M**2*lam**4*omega*r**2 - 7500*I*M**2*lam**3*omega*r**2 - 1125*I*M*lam**4*omega*r**3 + 2250*I*M*lam**3*omega*r**3 + 125*I*lam**4*omega*r**4 - 250*I*lam**3*omega*r**4)/(108*r**7)",
+        "(19840*M**5*lam**5 - 79360*M**5*lam**4 + 79360*M**5*lam**3 + 2000*M**4*lam**6*r - 51680*M**4*lam**5*r - 14080*M**4*lam**4*omega**2*r**3 + 182720*M**4*lam**4*r + 28160*M**4*lam**3*omega**2*r**3 - 174720*M**4*lam**3*r - 4000*M**3*lam**6*r**2 + 2000*M**3*lam**5*omega**2*r**4 + 53760*M**3*lam**5*r**2 + 19120*M**3*lam**4*omega**2*r**4 - 167040*M**3*lam**4*r**2 - 46240*M**3*lam**3*omega**2*r**4 + 151040*M**3*lam**3*r**2 + 3000*M**2*lam**6*r**3 - 3000*M**2*lam**5*omega**2*r**5 - 27920*M**2*lam**5*r**3 + 500*M**2*lam**4*omega**4*r**7 - 7560*M**2*lam**4*omega**2*r**5 + 75680*M**2*lam**4*r**3 - 1000*M**2*lam**3*omega**4*r**7 + 27120*M**2*lam**3*omega**2*r**5 - 63680*M**2*lam**3*r**3 - 1000*M*lam**6*r**4 + 1500*M*lam**5*omega**2*r**6 + 7240*M*lam**5*r**4 - 500*M*lam**4*omega**4*r**8 + 260*M*lam**4*omega**2*r**6 - 16960*M*lam**4*r**4 + 1000*M*lam**3*omega**4*r**8 - 6520*M*lam**3*omega**2*r**6 + 12960*M*lam**3*r**4 + 125*lam**6*r**5 - 250*lam**5*omega**2*r**7 - 750*lam**5*r**5 + 125*lam**4*omega**4*r**9 + 250*lam**4*omega**2*r**7 + 1500*lam**4*r**5 - 250*lam**3*omega**4*r**9 + 500*lam**3*omega**2*r**7 - 1000*lam**3*r**5)/(216*r**11)",
+        "(-8000*M**5*lam**5 + 32000*M**5*lam**4 - 32000*M**5*lam**3 + 18000*M**4*lam**5*r - 1000*M**4*lam**4*omega**2*r**3 - 72000*M**4*lam**4*r + 2000*M**4*lam**3*omega**2*r**3 + 72000*M**4*lam**3*r - 16000*M**3*lam**5*r**2 + 1500*M**3*lam**4*omega**2*r**4 + 64000*M**3*lam**4*r**2 - 3000*M**3*lam**3*omega**2*r**4 - 64000*M**3*lam**3*r**2 + 7000*M**2*lam**5*r**3 - 750*M**2*lam**4*omega**2*r**5 - 28000*M**2*lam**4*r**3 + 1500*M**2*lam**3*omega**2*r**5 + 28000*M**2*lam**3*r**3 - 1500*M*lam**5*r**4 + 125*M*lam**4*omega**2*r**6 + 6000*M*lam**4*r**4 - 250*M*lam**3*omega**2*r**6 - 6000*M*lam**3*r**4 + 125*lam**5*r**5 - 500*lam**4*r**5 + 500*lam**3*r**5)/(108*r**10)",
+        "(4000*M**5*lam**5 - 16000*M**5*lam**4 + 16000*M**5*lam**3 - 10000*M**4*lam**5*r + 2000*M**4*lam**4*omega**2*r**3 + 40000*M**4*lam**4*r - 4000*M**4*lam**3*omega**2*r**3 - 40000*M**4*lam**3*r + 10000*M**3*lam**5*r**2 - 4000*M**3*lam**4*omega**2*r**4 - 40000*M**3*lam**4*r**2 + 8000*M**3*lam**3*omega**2*r**4 + 40000*M**3*lam**3*r**2 - 5000*M**2*lam**5*r**3 + 3000*M**2*lam**4*omega**2*r**5 + 20000*M**2*lam**4*r**3 - 6000*M**2*lam**3*omega**2*r**5 - 20000*M**2*lam**3*r**3 + 1250*M*lam**5*r**4 - 1000*M*lam**4*omega**2*r**6 - 5000*M*lam**4*r**4 + 2000*M*lam**3*omega**2*r**6 + 5000*M*lam**3*r**4 - 125*lam**5*r**5 + 125*lam**4*omega**2*r**7 + 500*lam**4*r**5 - 250*lam**3*omega**2*r**7 - 500*lam**3*r**5)/(216*r**9)"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "(2000*I*M**4*lam**4*omega - 4000*I*M**4*lam**3*omega - 4000*I*M**3*lam**4*omega*r + 8000*I*M**3*lam**3*omega*r + 3000*I*M**2*lam**4*omega*r**2 - 6000*I*M**2*lam**3*omega*r**2 - 1000*I*M*lam**4*omega*r**3 + 2000*I*M*lam**3*omega*r**3 + 125*I*lam**4*omega*r**4 - 250*I*lam**3*omega*r**4)/(216*r**6)",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "(2000*I*M**4*lam**4*omega - 4000*I*M**4*lam**3*omega - 4000*I*M**3*lam**4*omega*r + 8000*I*M**3*lam**3*omega*r + 3000*I*M**2*lam**4*omega*r**2 - 6000*I*M**2*lam**3*omega*r**2 - 1000*I*M*lam**4*omega*r**3 + 2000*I*M*lam**3*omega*r**3 + 125*I*lam**4*omega*r**4 - 250*I*lam**3*omega*r**4)/(216*r**6)"
+      ],
+      [
+        "(-2460*M**2*lam**4*omega**2 + 4920*M**2*lam**3*omega**2 + 250*M*lam**5*omega**2*r + 980*M*lam**4*omega**2*r - 2960*M*lam**3*omega**2*r - 125*lam**5*omega**2*r**2 + 125*lam**4*omega**4*r**4 + 250*lam**4*omega**2*r**2 - 250*lam**3*omega**4*r**4)/(216*r**6)",
+        "(250*M**2*lam**4*omega**2 - 500*M**2*lam**3*omega**2 - 125*M*lam**4*omega**2*r + 250*M*lam**3*omega**2*r)/(108*r**5)",
+        "(500*M**2*lam**4*omega**2 - 1000*M**2*lam**3*omega**2 - 500*M*lam**4*omega**2*r + 1000*M*lam**3*omega**2*r + 125*lam**4*omega**2*r**2 - 250*lam**3*omega**2*r**2)/(216*r**4)",
+        "(14080*I*M**4*lam**4*omega - 28160*I*M**4*lam**3*omega + 1500*I*M**3*lam**5*omega*r - 26080*I*M**3*lam**4*omega*r + 46160*I*M**3*lam**3*omega*r - 2000*I*M**2*lam**5*omega*r**2 + 750*I*M**2*lam**4*omega**3*r**4 + 17520*I*M**2*lam**4*omega*r**2 - 1500*I*M**2*lam**3*omega**3*r**4 - 27040*I*M**2*lam**3*omega*r**2 + 875*I*M*lam**5*omega*r**3 - 625*I*M*lam**4*omega**3*r**5 - 5000*I*M*lam**4*omega*r**3 + 1250*I*M*lam**3*omega**3*r**5 + 6500*I*M*lam**3*omega*r**3 - 125*I*lam**5*omega*r**4 + 125*I*lam**4*omega**3*r**6 + 500*I*lam**4*omega*r**4 - 250*I*lam**3*omega**3*r**6 - 500*I*lam**3*omega*r**4)/(108*r**9)",
+        "(-28160*I*M**4*lam**4*omega + 56320*I*M**4*lam**3*omega - 1000*I*M**3*lam**5*omega*r + 46240*I*M**3*lam**4*omega*r - 88480*I*M**3*lam**3*omega*r + 1500*I*M**2*lam**5*omega*r**2 - 500*I*M**2*lam**4*omega**3*r**4 - 28120*I*M**2*lam**4*omega*r**2 + 1000*I*M**2*lam**3*omega**3*r**4 + 50240*I*M**2*lam**3*omega*r**2 - 750*I*M*lam**5*omega*r**3 + 500*I*M*lam**4*omega**3*r**5 + 7520*I*M*lam**4*omega*r**3 - 1000*I*M*lam**3*omega**3*r**5 - 12040*I*M*lam**3*omega*r**3 + 125*I*lam**5*omega*r**4 - 125*I*lam**4*omega**3*r**6 - 750*I*lam**4*omega*r**4 + 250*I*lam**3*omega**3*r**6 + 1000*I*lam**3*omega*r**4)/(216*r**8)",
+        "(6000*I*M**4*lam**4*omega - 12000*I*M**4*lam**3*omega - 10000*I*M**3*lam**4*omega*r + 20000*I*M**3*lam**3*omega*r + 6000*I*M**2*lam**4*omega*r**2 - 12000*I*M**2*lam**3*omega*r**2 - 1500*I*M*lam**4*omega*r**3 + 3000*I*M*lam**3*omega*r**3 + 125*I*lam**4*omega*r**4 - 250*I*lam**3*omega*r**4)/(108*r**7)"
+      ]
+    ],
+    [
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "(-2864*I*M**5*lam**4*omega + 5728*I*M**5*lam**3*omega + 5496*I*M**4*lam**4*omega*r - 10992*I*M**4*lam**3*omega*r - 300*I*M**3*lam**5*omega*r**2 - 2748*I*M**3*lam**4*omega*r**2 + 6696*I*M**3*lam**3*omega*r**2 + 300*I*M**2*lam**5*omega*r**3 + 58*I*M**2*lam**4*omega*r**3 - 1316*I*M**2*lam**3*omega*r**3 - 75*I*M*lam**5*omega*r**4 + 150*I*M*lam**4*omega*r**4)/(27*r**12)",
+        "(232*I*M**5*lam**4*omega - 464*I*M**5*lam**3*omega - 600*I*M**4*lam**5*omega*r + 2052*I*M**4*lam**4*omega*r - 1704*I*M**4*lam**3*omega*r + 900*I*M**3*lam**5*omega*r**2 - 3426*I*M**3*lam**4*omega*r**2 + 3252*I*M**3*lam**3*omega*r**2 - 450*I*M**2*lam**5*omega*r**3 + 1771*I*M**2*lam**4*omega*r**3 - 1742*I*M**2*lam**3*omega*r**3 + 75*I*M*lam**5*omega*r**4 - 300*I*M*lam**4*omega*r**4 + 300*I*M*lam**3*omega*r**4)/(27*r**11)",
+        "(400*I*M**5*lam**4*omega - 800*I*M**5*lam**3*omega - 800*I*M**4*lam**4*omega*r + 1600*I*M**4*lam**3*omega*r + 600*I*M**3*lam**4*omega*r**2 - 1200*I*M**3*lam**3*omega*r**2 - 200*I*M**2*lam**4*omega*r**3 + 400*I*M**2*lam**3*omega*r**3 + 25*I*M*lam**4*omega*r**4 - 50*I*M*lam**3*omega*r**4)/(9*r**10)",
+        "(-28192*M**6*lam**5 + 112768*M**6*lam**4 - 112768*M**6*lam**3 + 57384*M**5*lam**5*r - 7896*M**5*lam**4*omega**2*r**3 - 229536*M**5*lam**4*r + 15792*M**5*lam**3*omega**2*r**3 + 229536*M**5*lam**3*r - 43788*M**4*lam**5*r**2 + 15444*M**4*lam**4*omega**2*r**4 + 175152*M**4*lam**4*r**2 - 30888*M**4*lam**3*omega**2*r**4 - 175152*M**4*lam**3*r**2 + 14846*M**3*lam**5*r**3 - 11322*M**3*lam**4*omega**2*r**5 - 59384*M**3*lam**4*r**3 + 22644*M**3*lam**3*omega**2*r**5 + 59384*M**3*lam**3*r**3 - 1887*M**2*lam**5*r**4 + 3687*M**2*lam**4*omega**2*r**6 + 7548*M**2*lam**4*r**4 - 7374*M**2*lam**3*omega**2*r**6 - 7548*M**2*lam**3*r**4 - 450*M*lam**4*omega**2*r**7 + 900*M*lam**3*omega**2*r**7)/(81*r**14)",
+        "(4800*M**6*lam**5 - 19200*M**6*lam**4 + 19200*M**6*lam**3 - 11200*M**5*lam**5*r - 400*M**5*lam**4*omega**2*r**3 + 44800*M**5*lam**4*r + 800*M**5*lam**3*omega**2*r**3 - 44800*M**5*lam**3*r + 10400*M**4*lam**5*r**2 + 800*M**4*lam**4*omega**2*r**4 - 41600*M**4*lam**4*r**2 - 1600*M**4*lam**3*omega**2*r**4 + 41600*M**4*lam**3*r**2 - 4800*M**3*lam**5*r**3 - 600*M**3*lam**4*omega**2*r**5 + 19200*M**3*lam**4*r**3 + 1200*M**3*lam**3*omega**2*r**5 - 19200*M**3*lam**3*r**3 + 1100*M**2*lam**5*r**4 + 200*M**2*lam**4*omega**2*r**6 - 4400*M**2*lam**4*r**4 - 400*M**2*lam**3*omega**2*r**6 + 4400*M**2*lam**3*r**4 - 100*M*lam**5*r**5 - 25*M*lam**4*omega**2*r**7 + 400*M*lam**4*r**5 + 50*M*lam**3*omega**2*r**7 - 400*M*lam**3*r**5)/(9*r**13)",
+        "(-800*M**6*lam**5 + 3200*M**6*lam**4 - 3200*M**6*lam**3 + 2000*M**5*lam**5*r - 8000*M**5*lam**4*r + 8000*M**5*lam**3*r - 2000*M**4*lam**5*r**2 + 8000*M**4*lam**4*r**2 - 8000*M**4*lam**3*r**2 + 1000*M**3*lam**5*r**3 - 4000*M**3*lam**4*r**3 + 4000*M**3*lam**3*r**3 - 250*M**2*lam**5*r**4 + 1000*M**2*lam**4*r**4 - 1000*M**2*lam**3*r**4 + 25*M*lam**5*r**5 - 100*M*lam**4*r**5 + 100*M*lam**3*r**5)/(9*r**12)"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "(3212*M**3*lam**4*omega**2 - 6424*M**3*lam**3*omega**2 + 450*M**2*lam**5*omega**2*r - 2631*M**2*lam**4*omega**2*r + 3462*M**2*lam**3*omega**2*r - 225*M*lam**5*omega**2*r**2 + 450*M*lam**4*omega**2*r**2)/(81*r**9)",
+        "(100*M**3*lam**4*omega**2 - 200*M**3*lam**3*omega**2 - 100*M**2*lam**4*omega**2*r + 200*M**2*lam**3*omega**2*r + 25*M*lam**4*omega**2*r**2 - 50*M*lam**3*omega**2*r**2)/(3*r**8)",
+        "0",
+        "(-43952*I*M**5*lam**4*omega + 87904*I*M**5*lam**3*omega + 7200*I*M**4*lam**5*omega*r + 38552*I*M**4*lam**4*omega*r - 105904*I*M**4*lam**3*omega*r - 9900*I*M**3*lam**5*omega*r**2 - 900*I*M**3*lam**4*omega**3*r**4 + 5212*I*M**3*lam**4*omega*r**2 + 1800*I*M**3*lam**3*omega**3*r**4 + 29176*I*M**3*lam**3*omega*r**2 + 4500*I*M**2*lam**5*omega*r**3 + 900*I*M**2*lam**4*omega**3*r**5 - 12150*I*M**2*lam**4*omega*r**3 - 1800*I*M**2*lam**3*omega**3*r**5 + 6300*I*M**2*lam**3*omega*r**3 - 675*I*M*lam**5*omega*r**4 - 225*I*M*lam**4*omega**3*r**6 + 2700*I*M*lam**4*omega*r**4 + 450*I*M*lam**3*omega**3*r**6 - 2700*I*M*lam**3*omega*r**4)/(81*r**12)",
+        "(75152*I*M**5*lam**4*omega - 150304*I*M**5*lam**3*omega - 1800*I*M**4*lam**5*omega*r - 127628*I*M**4*lam**4*omega*r + 262456*I*M**4*lam**3*omega*r + 2700*I*M**3*lam**5*omega*r**2 + 78464*I*M**3*lam**4*omega*r**2 - 167728*I*M**3*lam**3*omega*r**2 - 1350*I*M**2*lam**5*omega*r**3 - 20319*I*M**2*lam**4*omega*r**3 + 46038*I*M**2*lam**3*omega*r**3 + 225*I*M*lam**5*omega*r**4 + 1800*I*M*lam**4*omega*r**4 - 4500*I*M*lam**3*omega*r**4)/(81*r**11)",
+        "(-1600*I*M**5*lam**4*omega + 3200*I*M**5*lam**3*omega + 3200*I*M**4*lam**4*omega*r - 6400*I*M**4*lam**3*omega*r - 2400*I*M**3*lam**4*omega*r**2 + 4800*I*M**3*lam**3*omega*r**2 + 800*I*M**2*lam**4*omega*r**3 - 1600*I*M**2*lam**3*omega*r**3 - 100*I*M*lam**4*omega*r**4 + 200*I*M*lam**3*omega*r**4)/(9*r**10)"
+      ]
+    ],
+    [
+      [
+        "0",
+        "(-640*I*M**6*lam**4*omega + 1280*I*M**6*lam**3*omega + 1280*I*M**5*lam**4*omega*r - 2560*I*M**5*lam**3*omega*r - 960*I*M**4*lam**4*omega*r**2 + 1920*I*M**4*lam**3*omega*r**2 + 320*I*M**3*lam**4*omega*r**3 - 640*I*M**3*lam**3*omega*r**3 - 40*I*M**2*lam**4*omega*r**4 + 80*I*M**2*lam**3*omega*r**4)/(9*r**12)",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "(-640*I*M**6*lam**4*omega + 1280*I*M**6*lam**3*omega + 1280*I*M**5*lam**4*omega*r - 2560*I*M**5*lam**3*omega*r - 960*I*M**4*lam**4*omega*r**2 + 1920*I*M**4*lam**3*omega*r**2 + 320*I*M**3*lam**4*omega*r**3 - 640*I*M**3*lam**3*omega*r**3 - 40*I*M**2*lam**4*omega*r**4 + 80*I*M**2*lam**3*omega*r**4)/(9*r**12)",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "(26240*I*M**6*lam**4*omega - 52480*I*M**6*lam**3*omega - 4800*I*M**5*lam**5*omega*r - 29760*I*M**5*lam**4*omega*r + 78720*I*M**5*lam**3*omega*r + 7200*I*M**4*lam**5*omega*r**2 - 960*I*M**4*lam**4*omega**3*r**4 + 5280*I*M**4*lam**4*omega*r**2 + 1920*I*M**4*lam**3*omega**3*r**4 - 39360*I*M**4*lam**3*omega*r**2 - 3600*I*M**3*lam**5*omega*r**3 + 960*I*M**3*lam**4*omega**3*r**5 + 3920*I*M**3*lam**4*omega*r**3 - 1920*I*M**3*lam**3*omega**3*r**5 + 6560*I*M**3*lam**3*omega*r**3 + 600*I*M**2*lam**5*omega*r**4 - 240*I*M**2*lam**4*omega**3*r**6 - 1200*I*M**2*lam**4*omega*r**4 + 480*I*M**2*lam**3*omega**3*r**6)/(27*r**15)",
+        "(-5440*I*M**6*lam**4*omega + 10880*I*M**6*lam**3*omega + 1920*I*M**5*lam**5*omega*r + 2400*I*M**5*lam**4*omega*r - 12480*I*M**5*lam**3*omega*r - 2880*I*M**4*lam**5*omega*r**2 + 480*I*M**4*lam**4*omega**3*r**4 + 4560*I*M**4*lam**4*omega*r**2 - 960*I*M**4*lam**3*omega**3*r**4 + 2400*I*M**4*lam**3*omega*r**2 + 1440*I*M**3*lam**5*omega*r**3 - 480*I*M**3*lam**4*omega**3*r**5 - 3640*I*M**3*lam**4*omega*r**3 + 960*I*M**3*lam**3*omega**3*r**5 + 1520*I*M**3*lam**3*omega*r**3 - 240*I*M**2*lam**5*omega*r**4 + 120*I*M**2*lam**4*omega**3*r**6 + 720*I*M**2*lam**4*omega*r**4 - 240*I*M**2*lam**3*omega**3*r**6 - 480*I*M**2*lam**3*omega*r**4)/(27*r**14)",
+        "(-2560*I*M**6*lam**4*omega + 5120*I*M**6*lam**3*omega + 4800*I*M**5*lam**4*omega*r - 9600*I*M**5*lam**3*omega*r - 3360*I*M**4*lam**4*omega*r**2 + 6720*I*M**4*lam**3*omega*r**2 + 1040*I*M**3*lam**4*omega*r**3 - 2080*I*M**3*lam**3*omega*r**3 - 120*I*M**2*lam**4*omega*r**4 + 240*I*M**2*lam**3*omega*r**4)/(9*r**13)",
+        "(6400*M**7*lam**5 - 25600*M**7*lam**4 + 25600*M**7*lam**3 - 5760*M**6*lam**6*r + 20160*M**6*lam**5*r + 62400*M**6*lam**4*omega**2*r**3 - 11520*M**6*lam**4*r - 124800*M**6*lam**3*omega**2*r**3 - 11520*M**6*lam**3*r + 11520*M**5*lam**6*r**2 - 5760*M**5*lam**5*omega**2*r**4 - 57120*M**5*lam**5*r**2 - 93600*M**5*lam**4*omega**2*r**4 + 90240*M**5*lam**4*r**2 + 210240*M**5*lam**3*omega**2*r**4 - 44160*M**5*lam**3*r**2 - 8640*M**4*lam**6*r**3 + 8640*M**4*lam**5*omega**2*r**5 + 47440*M**4*lam**5*r**3 - 1440*M**4*lam**4*omega**4*r**7 + 46800*M**4*lam**4*omega**2*r**5 - 86080*M**4*lam**4*r**3 + 2880*M**4*lam**3*omega**4*r**7 - 128160*M**4*lam**3*omega**2*r**5 + 51520*M**4*lam**3*r**3 + 2880*M**3*lam**6*r**4 - 4320*M**3*lam**5*omega**2*r**6 - 16680*M**3*lam**5*r**4 + 1440*M**3*lam**4*omega**4*r**8 - 7800*M**3*lam**4*omega**2*r**6 + 32160*M**3*lam**4*r**4 - 2880*M**3*lam**3*omega**4*r**8 + 32880*M**3*lam**3*omega**2*r**6 - 20640*M**3*lam**3*r**4 - 360*M**2*lam**6*r**5 + 720*M**2*lam**5*omega**2*r**7 + 2160*M**2*lam**5*r**5 - 360*M**2*lam**4*omega**4*r**9 - 4320*M**2*lam**4*r**5 + 720*M**2*lam**3*omega**4*r**9 - 2880*M**2*lam**3*omega**2*r**7 + 2880*M**2*lam**3*r**5)/(81*r**17)",
+        "(-2560*M**7*lam**5 + 10240*M**7*lam**4 - 10240*M**7*lam**3 + 6400*M**6*lam**5*r + 1280*M**6*lam**4*omega**2*r**3 - 25600*M**6*lam**4*r - 2560*M**6*lam**3*omega**2*r**3 + 25600*M**6*lam**3*r - 6400*M**5*lam**5*r**2 - 2240*M**5*lam**4*omega**2*r**4 + 25600*M**5*lam**4*r**2 + 4480*M**5*lam**3*omega**2*r**4 - 25600*M**5*lam**3*r**2 + 3200*M**4*lam**5*r**3 + 1440*M**4*lam**4*omega**2*r**5 - 12800*M**4*lam**4*r**3 - 2880*M**4*lam**3*omega**2*r**5 + 12800*M**4*lam**3*r**3 - 800*M**3*lam**5*r**4 - 400*M**3*lam**4*omega**2*r**6 + 3200*M**3*lam**4*r**4 + 800*M**3*lam**3*omega**2*r**6 - 3200*M**3*lam**3*r**4 + 80*M**2*lam**5*r**5 + 40*M**2*lam**4*omega**2*r**7 - 320*M**2*lam**4*r**5 - 80*M**2*lam**3*omega**2*r**7 + 320*M**2*lam**3*r**5)/(9*r**16)",
+        "(-640*M**6*lam**4*omega**2 + 1280*M**6*lam**3*omega**2 + 1280*M**5*lam**4*omega**2*r - 2560*M**5*lam**3*omega**2*r - 960*M**4*lam**4*omega**2*r**2 + 1920*M**4*lam**3*omega**2*r**2 + 320*M**3*lam**4*omega**2*r**3 - 640*M**3*lam**3*omega**2*r**3 - 40*M**2*lam**4*omega**2*r**4 + 80*M**2*lam**3*omega**2*r**4)/(9*r**12)"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "(-640*I*M**6*lam**4*omega + 1280*I*M**6*lam**3*omega + 1280*I*M**5*lam**4*omega*r - 2560*I*M**5*lam**3*omega*r - 960*I*M**4*lam**4*omega*r**2 + 1920*I*M**4*lam**3*omega*r**2 + 320*I*M**3*lam**4*omega*r**3 - 640*I*M**3*lam**3*omega*r**3 - 40*I*M**2*lam**4*omega*r**4 + 80*I*M**2*lam**3*omega*r**4)/(9*r**12)",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "(-640*I*M**6*lam**4*omega + 1280*I*M**6*lam**3*omega + 1280*I*M**5*lam**4*omega*r - 2560*I*M**5*lam**3*omega*r - 960*I*M**4*lam**4*omega*r**2 + 1920*I*M**4*lam**3*omega*r**2 + 320*I*M**3*lam**4*omega*r**3 - 640*I*M**3*lam**3*omega*r**3 - 40*I*M**2*lam**4*omega*r**4 + 80*I*M**2*lam**3*omega*r**4)/(9*r**12)"
+      ],
+      [
+        "(15520*M**4*lam**4*omega**2 - 31040*M**4*lam**3*omega**2 + 720*M**3*lam**5*omega**2*r - 10320*M**3*lam**4*omega**2*r + 17760*M**3*lam**3*omega**2*r - 360*M**2*lam**5*omega**2*r**2 - 360*M**2*lam**4*omega**4*r**4 + 720*M**2*lam**4*omega**2*r**2 + 720*M**2*lam**3*omega**4*r**4)/(81*r**12)",
+        "(800*M**4*lam**4*omega**2 - 1600*M**4*lam**3*omega**2 - 880*M**3*lam**4*omega**2*r + 1760*M**3*lam**3*omega**2*r + 240*M**2*lam**4*omega**2*r**2 - 480*M**2*lam**3*omega**2*r**2)/(9*r**11)",
+        "(-160*M**4*lam**4*omega**2 + 320*M**4*lam**3*omega**2 + 160*M**3*lam**4*omega**2*r - 320*M**3*lam**3*omega**2*r - 40*M**2*lam**4*omega**2*r**2 + 80*M**2*lam**3*omega**2*r**2)/(9*r**10)",
+        "(-229120*I*M**6*lam**4*omega + 458240*I*M**6*lam**3*omega + 14400*I*M**5*lam**5*omega*r + 280960*I*M**5*lam**4*omega*r - 619520*I*M**5*lam**3*omega*r - 20160*I*M**4*lam**5*omega*r**2 - 7200*I*M**4*lam**4*omega**3*r**4 - 86080*I*M**4*lam**4*omega*r**2 + 14400*I*M**4*lam**3*omega**3*r**4 + 252800*I*M**4*lam**3*omega*r**2 + 9360*I*M**3*lam**5*omega*r**3 + 6480*I*M**3*lam**4*omega**3*r**5 - 10080*I*M**3*lam**4*omega*r**3 - 12960*I*M**3*lam**3*omega**3*r**5 - 17280*I*M**3*lam**3*omega*r**3 - 1440*I*M**2*lam**5*omega*r**4 - 1440*I*M**2*lam**4*omega**3*r**6 + 5760*I*M**2*lam**4*omega*r**4 + 2880*I*M**2*lam**3*omega**3*r**6 - 5760*I*M**2*lam**3*omega*r**4)/(81*r**15)",
+        "(328960*I*M**6*lam**4*omega - 657920*I*M**6*lam**3*omega - 2880*I*M**5*lam**5*omega*r - 552640*I*M**5*lam**4*omega*r + 1116800*I*M**5*lam**3*omega*r + 4320*I*M**4*lam**5*omega*r**2 + 1440*I*M**4*lam**4*omega**3*r**4 + 337600*I*M**4*lam**4*omega*r**2 - 2880*I*M**4*lam**3*omega**3*r**4 - 692480*I*M**4*lam**3*omega*r**2 - 2160*I*M**3*lam**5*omega*r**3 - 1440*I*M**3*lam**4*omega**3*r**5 - 87600*I*M**3*lam**4*omega*r**3 + 2880*I*M**3*lam**3*omega**3*r**5 + 183840*I*M**3*lam**3*omega*r**3 + 360*I*M**2*lam**5*omega*r**4 + 360*I*M**2*lam**4*omega**3*r**6 + 7920*I*M**2*lam**4*omega*r**4 - 720*I*M**2*lam**3*omega**3*r**6 - 17280*I*M**2*lam**3*omega*r**4)/(81*r**14)",
+        "(-8960*I*M**6*lam**4*omega + 17920*I*M**6*lam**3*omega + 16640*I*M**5*lam**4*omega*r - 33280*I*M**5*lam**3*omega*r - 11520*I*M**4*lam**4*omega*r**2 + 23040*I*M**4*lam**3*omega*r**2 + 3520*I*M**3*lam**4*omega*r**3 - 7040*I*M**3*lam**3*omega*r**3 - 400*I*M**2*lam**4*omega*r**4 + 800*I*M**2*lam**3*omega*r**4)/(9*r**13)"
+      ]
+    ],
+    [
+      [
+        "0",
+        "(-2048*I*M**7*lam**4*omega + 4096*I*M**7*lam**3*omega + 4096*I*M**6*lam**4*omega*r - 8192*I*M**6*lam**3*omega*r - 3072*I*M**5*lam**4*omega*r**2 + 6144*I*M**5*lam**3*omega*r**2 + 1024*I*M**4*lam**4*omega*r**3 - 2048*I*M**4*lam**3*omega*r**3 - 128*I*M**3*lam**4*omega*r**4 + 256*I*M**3*lam**3*omega*r**4)/(27*r**15)",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "(-2048*I*M**7*lam**4*omega + 4096*I*M**7*lam**3*omega + 4096*I*M**6*lam**4*omega*r - 8192*I*M**6*lam**3*omega*r - 3072*I*M**5*lam**4*omega*r**2 + 6144*I*M**5*lam**3*omega*r**2 + 1024*I*M**4*lam**4*omega*r**3 - 2048*I*M**4*lam**3*omega*r**3 - 128*I*M**3*lam**4*omega*r**4 + 256*I*M**3*lam**3*omega*r**4)/(27*r**15)",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "(43008*I*M**7*lam**4*omega - 86016*I*M**7*lam**3*omega - 5120*I*M**6*lam**5*omega*r - 58368*I*M**6*lam**4*omega*r + 137216*I*M**6*lam**3*omega*r + 8704*I*M**5*lam**5*omega*r**2 - 1024*I*M**5*lam**4*omega**3*r**4 + 18944*I*M**5*lam**4*omega*r**2 + 2048*I*M**5*lam**3*omega**3*r**4 - 72704*I*M**5*lam**3*omega*r**2 - 4864*I*M**4*lam**5*omega*r**3 + 1024*I*M**4*lam**4*omega**3*r**5 + 3328*I*M**4*lam**4*omega*r**3 - 2048*I*M**4*lam**3*omega**3*r**5 + 12800*I*M**4*lam**3*omega*r**3 + 896*I*M**3*lam**5*omega*r**4 - 256*I*M**3*lam**4*omega**3*r**6 - 1792*I*M**3*lam**4*omega*r**4 + 512*I*M**3*lam**3*omega**3*r**6)/(27*r**18)",
+        "(-9216*I*M**7*lam**4*omega + 18432*I*M**7*lam**3*omega + 4096*I*M**6*lam**5*omega*r - 512*I*M**6*lam**4*omega*r - 15360*I*M**6*lam**3*omega*r - 6144*I*M**5*lam**5*omega*r**2 + 512*I*M**5*lam**4*omega**3*r**4 + 14592*I*M**5*lam**4*omega*r**2 - 1024*I*M**5*lam**3*omega**3*r**4 - 4608*I*M**5*lam**3*omega*r**2 + 3072*I*M**4*lam**5*omega*r**3 - 512*I*M**4*lam**4*omega**3*r**5 - 9600*I*M**4*lam**4*omega*r**3 + 1024*I*M**4*lam**3*omega**3*r**5 + 6912*I*M**4*lam**3*omega*r**3 - 512*I*M**3*lam**5*omega*r**4 + 128*I*M**3*lam**4*omega**3*r**6 + 1792*I*M**3*lam**4*omega*r**4 - 256*I*M**3*lam**3*omega**3*r**6 - 1536*I*M**3*lam**3*omega*r**4)/(27*r**17)",
+        "(-12288*I*M**7*lam**4*omega + 24576*I*M**7*lam**3*omega + 23552*I*M**6*lam**4*omega*r - 47104*I*M**6*lam**3*omega*r - 16896*I*M**5*lam**4*omega*r**2 + 33792*I*M**5*lam**3*omega*r**2 + 5376*I*M**4*lam**4*omega*r**3 - 10752*I*M**4*lam**3*omega*r**3 - 640*I*M**3*lam**4*omega*r**4 + 1280*I*M**3*lam**3*omega*r**4)/(27*r**16)",
+        "(118784*M**8*lam**5 - 475136*M**8*lam**4 + 475136*M**8*lam**3 - 6144*M**7*lam**6*r - 205824*M**7*lam**5*r + 101376*M**7*lam**4*omega**2*r**3 + 897024*M**7*lam**4*r - 202752*M**7*lam**3*omega**2*r**3 - 921600*M**7*lam**3*r + 12288*M**6*lam**6*r**2 - 6144*M**6*lam**5*omega**2*r**4 + 112128*M**6*lam**5*r**2 - 164352*M**6*lam**4*omega**2*r**4 - 595968*M**6*lam**4*r**2 + 353280*M**6*lam**3*omega**2*r**4 + 645120*M**6*lam**3*r**2 - 9216*M**5*lam**6*r**3 + 9216*M**5*lam**5*omega**2*r**5 - 7936*M**5*lam**5*r**3 - 1536*M**5*lam**4*omega**4*r**7 + 94464*M**5*lam**4*omega**2*r**5 + 142336*M**5*lam**4*r**3 + 3072*M**5*lam**3*omega**4*r**7 - 225792*M**5*lam**3*omega**2*r**5 - 179200*M**5*lam**3*r**3 + 3072*M**4*lam**6*r**4 - 4608*M**4*lam**5*omega**2*r**6 - 10368*M**4*lam**5*r**4 + 1536*M**4*lam**4*omega**4*r**8 - 21888*M**4*lam**4*omega**2*r**6 + 4608*M**4*lam**4*r**4 - 3072*M**4*lam**3*omega**4*r**8 + 62208*M**4*lam**3*omega**2*r**6 + 7680*M**4*lam**3*r**4 - 384*M**3*lam**6*r**5 + 768*M**3*lam**5*omega**2*r**7 + 2304*M**3*lam**5*r**5 - 384*M**3*lam**4*omega**4*r**9 + 1536*M**3*lam**4*omega**2*r**7 - 4608*M**3*lam**4*r**5 + 768*M**3*lam**3*omega**4*r**9 - 6144*M**3*lam**3*omega**2*r**7 + 3072*M**3*lam**3*r**5)/(81*r**20)",
+        "(-57344*M**8*lam**5 + 229376*M**8*lam**4 - 229376*M**8*lam**3 + 135168*M**7*lam**5*r + 8192*M**7*lam**4*omega**2*r**3 - 540672*M**7*lam**4*r - 16384*M**7*lam**3*omega**2*r**3 + 540672*M**7*lam**3*r - 126976*M**6*lam**5*r**2 - 15360*M**6*lam**4*omega**2*r**4 + 507904*M**6*lam**4*r**2 + 30720*M**6*lam**3*omega**2*r**4 - 507904*M**6*lam**3*r**2 + 59392*M**5*lam**5*r**3 + 10752*M**5*lam**4*omega**2*r**5 - 237568*M**5*lam**4*r**3 - 21504*M**5*lam**3*omega**2*r**5 + 237568*M**5*lam**3*r**3 - 13824*M**4*lam**5*r**4 - 3328*M**4*lam**4*omega**2*r**6 + 55296*M**4*lam**4*r**4 + 6656*M**4*lam**3*omega**2*r**6 - 55296*M**4*lam**3*r**4 + 1280*M**3*lam**5*r**5 + 384*M**3*lam**4*omega**2*r**7 - 5120*M**3*lam**4*r**5 - 768*M**3*lam**3*omega**2*r**7 + 5120*M**3*lam**3*r**5)/(27*r**19)",
+        "(8192*M**8*lam**5 - 32768*M**8*lam**4 + 32768*M**8*lam**3 - 20480*M**7*lam**5*r - 2048*M**7*lam**4*omega**2*r**3 + 81920*M**7*lam**4*r + 4096*M**7*lam**3*omega**2*r**3 - 81920*M**7*lam**3*r + 20480*M**6*lam**5*r**2 + 4096*M**6*lam**4*omega**2*r**4 - 81920*M**6*lam**4*r**2 - 8192*M**6*lam**3*omega**2*r**4 + 81920*M**6*lam**3*r**2 - 10240*M**5*lam**5*r**3 - 3072*M**5*lam**4*omega**2*r**5 + 40960*M**5*lam**4*r**3 + 6144*M**5*lam**3*omega**2*r**5 - 40960*M**5*lam**3*r**3 + 2560*M**4*lam**5*r**4 + 1024*M**4*lam**4*omega**2*r**6 - 10240*M**4*lam**4*r**4 - 2048*M**4*lam**3*omega**2*r**6 + 10240*M**4*lam**3*r**4 - 256*M**3*lam**5*r**5 - 128*M**3*lam**4*omega**2*r**7 + 1024*M**3*lam**4*r**5 + 256*M**3*lam**3*omega**2*r**7 - 1024*M**3*lam**3*r**5)/(27*r**18)"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "(-2048*I*M**7*lam**4*omega + 4096*I*M**7*lam**3*omega + 4096*I*M**6*lam**4*omega*r - 8192*I*M**6*lam**3*omega*r - 3072*I*M**5*lam**4*omega*r**2 + 6144*I*M**5*lam**3*omega*r**2 + 1024*I*M**4*lam**4*omega*r**3 - 2048*I*M**4*lam**3*omega*r**3 - 128*I*M**3*lam**4*omega*r**4 + 256*I*M**3*lam**3*omega*r**4)/(27*r**15)",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "(-2048*I*M**7*lam**4*omega + 4096*I*M**7*lam**3*omega + 4096*I*M**6*lam**4*omega*r - 8192*I*M**6*lam**3*omega*r - 3072*I*M**5*lam**4*omega*r**2 + 6144*I*M**5*lam**3*omega*r**2 + 1024*I*M**4*lam**4*omega*r**3 - 2048*I*M**4*lam**3*omega*r**3 - 128*I*M**3*lam**4*omega*r**4 + 256*I*M**3*lam**3*omega*r**4)/(27*r**15)"
+      ],
+      [
+        "(13568*M**5*lam**4*omega**2 - 27136*M**5*lam**3*omega**2 + 384*M**4*lam**5*omega**2*r - 8640*M**4*lam**4*omega**2*r + 15744*M**4*lam**3*omega**2*r - 192*M**3*lam**5*omega**2*r**2 - 384*M**3*lam**4*omega**4*r**4 + 384*M**3*lam**4*omega**2*r**2 + 768*M**3*lam**3*omega**4*r**4)/(81*r**15)",
+        "(1792*M**5*lam**4*omega**2 - 3584*M**5*lam**3*omega**2 - 2048*M**4*lam**4*omega**2*r + 4096*M**4*lam**3*omega**2*r + 576*M**3*lam**4*omega**2*r**2 - 1152*M**3*lam**3*omega**2*r**2)/(27*r**14)",
+        "(-512*M**5*lam**4*omega**2 + 1024*M**5*lam**3*omega**2 + 512*M**4*lam**4*omega**2*r - 1024*M**4*lam**3*omega**2*r - 128*M**3*lam**4*omega**2*r**2 + 256*M**3*lam**3*omega**2*r**2)/(27*r**13)",
+        "(-207872*I*M**7*lam**4*omega + 415744*I*M**7*lam**3*omega + 9216*I*M**6*lam**5*omega*r + 267776*I*M**6*lam**4*omega*r - 572416*I*M**6*lam**3*omega*r - 13056*I*M**5*lam**5*omega*r**2 - 6912*I*M**5*lam**4*omega**3*r**4 - 96512*I*M**5*lam**4*omega*r**2 + 13824*I*M**5*lam**3*omega**3*r**4 + 245248*I*M**5*lam**3*omega*r**2 + 6144*I*M**4*lam**5*omega*r**3 + 6144*I*M**4*lam**4*omega**3*r**5 - 384*I*M**4*lam**4*omega*r**3 - 12288*I*M**4*lam**3*omega**3*r**5 - 23808*I*M**4*lam**3*omega*r**3 - 960*I*M**3*lam**5*omega*r**4 - 1344*I*M**3*lam**4*omega**3*r**6 + 3840*I*M**3*lam**4*omega*r**4 + 2688*I*M**3*lam**3*omega**3*r**6 - 3840*I*M**3*lam**3*omega*r**4)/(81*r**18)",
+        "(287744*I*M**7*lam**4*omega - 575488*I*M**7*lam**3*omega - 1536*I*M**6*lam**5*omega*r - 482048*I*M**6*lam**4*omega*r + 970240*I*M**6*lam**3*omega*r + 2304*I*M**5*lam**5*omega*r**2 + 1536*I*M**5*lam**4*omega**3*r**4 + 293888*I*M**5*lam**4*omega*r**2 - 3072*I*M**5*lam**3*omega**3*r**4 - 596992*I*M**5*lam**3*omega*r**2 - 1152*I*M**4*lam**5*omega*r**3 - 1536*I*M**4*lam**4*omega**3*r**5 - 76224*I*M**4*lam**4*omega*r**3 + 3072*I*M**4*lam**3*omega**3*r**5 + 157056*I*M**4*lam**3*omega*r**3 + 192*I*M**3*lam**5*omega*r**4 + 384*I*M**3*lam**4*omega**3*r**6 + 6912*I*M**3*lam**4*omega*r**4 - 768*I*M**3*lam**3*omega**3*r**6 - 14592*I*M**3*lam**3*omega*r**4)/(81*r**17)",
+        "(-24576*I*M**7*lam**4*omega + 49152*I*M**7*lam**3*omega + 45056*I*M**6*lam**4*omega*r - 90112*I*M**6*lam**3*omega*r - 30720*I*M**5*lam**4*omega*r**2 + 61440*I*M**5*lam**3*omega*r**2 + 9216*I*M**4*lam**4*omega*r**3 - 18432*I*M**4*lam**3*omega*r**3 - 1024*I*M**3*lam**4*omega*r**4 + 2048*I*M**3*lam**3*omega*r**4)/(27*r**16)"
+      ]
+    ]
+  ],
+  "reduced_denominator_beta_coefficients": [
+    "0",
+    "(2000*I*M**4*lam**4*omega - 4000*I*M**4*lam**3*omega - 4000*I*M**3*lam**4*omega*r + 8000*I*M**3*lam**3*omega*r + 3000*I*M**2*lam**4*omega*r**2 - 6000*I*M**2*lam**3*omega*r**2 - 1000*I*M*lam**4*omega*r**3 + 2000*I*M*lam**3*omega*r**3 + 125*I*lam**4*omega*r**4 - 250*I*lam**3*omega*r**4)/(216*r**6)",
+    "0",
+    "(-640*I*M**6*lam**4*omega + 1280*I*M**6*lam**3*omega + 1280*I*M**5*lam**4*omega*r - 2560*I*M**5*lam**3*omega*r - 960*I*M**4*lam**4*omega*r**2 + 1920*I*M**4*lam**3*omega*r**2 + 320*I*M**3*lam**4*omega*r**3 - 640*I*M**3*lam**3*omega*r**3 - 40*I*M**2*lam**4*omega*r**4 + 80*I*M**2*lam**3*omega*r**4)/(9*r**12)",
+    "(-2048*I*M**7*lam**4*omega + 4096*I*M**7*lam**3*omega + 4096*I*M**6*lam**4*omega*r - 8192*I*M**6*lam**3*omega*r - 3072*I*M**5*lam**4*omega*r**2 + 6144*I*M**5*lam**3*omega*r**2 + 1024*I*M**4*lam**4*omega*r**3 - 2048*I*M**4*lam**3*omega*r**3 - 128*I*M**3*lam**4*omega*r**4 + 256*I*M**3*lam**3*omega*r**4)/(27*r**15)"
+  ],
+  "regular_denominator_beta_coefficients": [
+    "(2000*I*M**4*lam**4*omega - 4000*I*M**4*lam**3*omega - 4000*I*M**3*lam**4*omega*r + 8000*I*M**3*lam**3*omega*r + 3000*I*M**2*lam**4*omega*r**2 - 6000*I*M**2*lam**3*omega*r**2 - 1000*I*M*lam**4*omega*r**3 + 2000*I*M*lam**3*omega*r**3 + 125*I*lam**4*omega*r**4 - 250*I*lam**3*omega*r**4)/(216*r**6)",
+    "0",
+    "(-640*I*M**6*lam**4*omega + 1280*I*M**6*lam**3*omega + 1280*I*M**5*lam**4*omega*r - 2560*I*M**5*lam**3*omega*r - 960*I*M**4*lam**4*omega*r**2 + 1920*I*M**4*lam**3*omega*r**2 + 320*I*M**3*lam**4*omega*r**3 - 640*I*M**3*lam**3*omega*r**3 - 40*I*M**2*lam**4*omega*r**4 + 80*I*M**2*lam**3*omega*r**4)/(9*r**12)",
+    "(-2048*I*M**7*lam**4*omega + 4096*I*M**7*lam**3*omega + 4096*I*M**6*lam**4*omega*r - 8192*I*M**6*lam**3*omega*r - 3072*I*M**5*lam**4*omega*r**2 + 6144*I*M**5*lam**3*omega*r**2 + 1024*I*M**4*lam**4*omega*r**3 - 2048*I*M**4*lam**3*omega*r**3 - 128*I*M**3*lam**4*omega*r**4 + 256*I*M**3*lam**3*omega*r**4)/(27*r**15)"
+  ],
+  "regular_denominator_at_zero": "(2000*I*M**4*lam**4*omega - 4000*I*M**4*lam**3*omega - 4000*I*M**3*lam**4*omega*r + 8000*I*M**3*lam**3*omega*r + 3000*I*M**2*lam**4*omega*r**2 - 6000*I*M**2*lam**3*omega*r**2 - 1000*I*M*lam**4*omega*r**3 + 2000*I*M*lam**3*omega*r**3 + 125*I*lam**4*omega*r**4 - 250*I*lam**3*omega*r**4)/(216*r**6)",
+  "inverse_regular_denominator_recurrence": "t_0=1/d_0; t_n=-(1/d_0)*sum_{j=1}^{min(n,deg(d))} d_j*t_{n-j}",
+  "all_orders_convolution": "G_k=sum_{j=0}^{deg(P)} P_j*t_{k+1-j}, with t_n=0 for n<0",
+  "laurent_coefficients": {
+    "G_-1": [
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "-12/(10*M - 5*r)",
+        "6*r/(10*M - 5*r)",
+        "0",
+        "(12*I*M*lam - 24*I*M - 6*I*lam*r + 6*I*omega**2*r**3 + 12*I*r)/(10*M*omega*r**2 - 5*omega*r**3)",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "6*I*omega*r**3/(40*M**3 - 60*M**2*r + 30*M*r**2 - 5*r**3)",
+        "0",
+        "0",
+        "-12*M/(20*M**2 - 20*M*r + 5*r**2)",
+        "6*r/(10*M - 5*r)",
+        "0"
+      ]
+    ],
+    "G_0": [
+      [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "(-808*M**2 + 250*M*lam*r + 304*M*r - 100*lam*r**2 + 50*omega**2*r**4)/(100*M**2*r**3 - 100*M*r**4 + 25*r**5)",
+        "(104*M**2 - 50*M*lam*r - 52*M*r + 25*lam*r**2 - 25*omega**2*r**4)/(100*M**2*r**2 - 100*M*r**3 + 25*r**4)",
+        "(6*M - 2*r)/(2*M*r - r**2)",
+        "(-992*I*M**3*lam + 1984*I*M**3 - 100*I*M**2*lam**2*r + 1392*I*M**2*lam*r + 704*I*M**2*omega**2*r**3 - 2384*I*M**2*r + 100*I*M*lam**2*r**2 - 100*I*M*lam*omega**2*r**4 - 648*I*M*lam*r**2 - 452*I*M*omega**2*r**4 + 896*I*M*r**2 - 25*I*lam**2*r**3 + 50*I*lam*omega**2*r**5 + 100*I*lam*r**3 - 25*I*omega**4*r**7 + 50*I*omega**2*r**5 - 100*I*r**3)/(100*M**2*omega*r**5 - 100*M*omega*r**6 + 25*omega*r**7)",
+        "(16*I*M**2*lam - 32*I*M**2 - 12*I*M*lam*r + 2*I*M*omega**2*r**3 + 24*I*M*r + 2*I*lam*r**2 - 4*I*r**2)/(2*M*omega*r**4 - omega*r**5)",
+        "(-2*I*M*lam + 4*I*M + I*lam*r - I*omega**2*r**3 - 2*I*r)/(omega*r**3)"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1"
+      ],
+      [
+        "(492*I*M**2*omega - 50*I*M*lam*omega*r - 296*I*M*omega*r + 25*I*lam*omega*r**2 - 25*I*omega**3*r**4)/(400*M**4 - 800*M**3*r + 600*M**2*r**2 - 200*M*r**3 + 25*r**4)",
+        "-2*I*M*omega*r/(8*M**3 - 12*M**2*r + 6*M*r**2 - r**3)",
+        "-I*omega*r**2/(4*M**2 - 4*M*r + r**2)",
+        "(2816*M**3 + 300*M**2*lam*r - 3208*M**2*r - 250*M*lam*r**2 + 150*M*omega**2*r**4 + 1100*M*r**2 + 50*lam*r**3 - 50*omega**2*r**5 - 100*r**3)/(200*M**3*r**3 - 300*M**2*r**4 + 150*M*r**5 - 25*r**6)",
+        "(-1408*M**2 - 50*M*lam*r + 804*M*r + 25*lam*r**2 - 25*omega**2*r**4 - 100*r**2)/(100*M**2*r**2 - 100*M*r**3 + 25*r**4)",
+        "(12*M - 2*r)/(2*M*r - r**2)"
+      ]
+    ],
+    "G_1": [
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "(-10336*M**3 + 7568*M**2*r - 600*M*lam*r**2)/(500*M**2*r**6 - 500*M*r**7 + 125*r**8)",
+        "(1384*M**2 - 600*M*lam*r + 1200*M*r)/(250*M*r**5 - 125*r**6)",
+        "24*M/(5*r**4)",
+        "(35104*I*M**3*lam - 70208*I*M**3 - 18552*I*M**2*lam*r + 11352*I*M**2*omega**2*r**3 + 37104*I*M**2*r - 3600*I*M*omega**2*r**4)/(750*M*omega*r**8 - 375*omega*r**9)",
+        "(-288*I*M**2*lam + 576*I*M**2 + 96*I*M*lam*r + 24*I*M*omega**2*r**3 - 192*I*M*r)/(5*omega*r**7)",
+        "(48*I*M**2*lam - 96*I*M**2 - 24*I*M*lam*r + 48*I*M*r)/(5*omega*r**6)"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "(-18784*I*M**3*omega - 3600*I*M**2*lam*omega*r + 10392*I*M**2*omega*r + 1800*I*M*lam*omega*r**2)/(6000*M**4*r**3 - 12000*M**3*r**4 + 9000*M**2*r**5 - 3000*M*r**6 + 375*r**7)",
+        "-72*I*M*omega/(20*M**2*r**2 - 20*M*r**3 + 5*r**4)",
+        "0",
+        "(-94816*M**3 + 14400*M**2*lam*r + 18000*M**2*r - 5400*M*lam*r**2 - 1800*M*omega**2*r**4 + 10800*M*r**2)/(1500*M**2*r**6 - 1500*M*r**7 + 375*r**8)",
+        "(157216*M**3 - 3600*M**2*lam*r - 115608*M**2*r + 1800*M*lam*r**2 + 18000*M*r**2)/(1500*M**2*r**5 - 1500*M*r**6 + 375*r**7)",
+        "-96*M/(5*r**4)"
+      ]
+    ]
+  },
+  "ordinary_generator_guard": [
+    "M != 0",
+    "r != 0",
+    "r-2*M != 0",
+    "lam != 0",
+    "beta != 0",
+    "descriptor_determinant != 0"
+  ],
+  "local_analytic_domain": "for fixed guarded parameters, a sufficiently small punctured beta-neighborhood on which d(beta) != 0",
+  "exact_checks": {
+    "det_E_identity": true,
+    "E_times_H_equals_det_E_times_A": true,
+    "det_E_beta_valuation": true,
+    "regular_denominator_at_zero_nonzero": true,
+    "laurent_through_G_1_reconstruction": true,
+    "principal_part_exact_order": true,
+    "descriptor_guard_unchanged": true,
+    "gr_reduction_preserved_at_euler_descriptor_level": true
+  },
+  "payload_sha256": "8e8d6608e4fde1a8fbc47eb1f6b13ab6179458e723f9c79487ec0201e7599992"
+}
