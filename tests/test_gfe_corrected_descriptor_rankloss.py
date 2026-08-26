@@ -391,6 +391,180 @@ def test_horizon_special_frequency_n2_reordered_consistency() -> None:
         assert sp.factor(sp.cancel(condition.subs(solved))) == 0
 
 
+def test_horizon_special_frequency_n3_compatibility_rank() -> None:
+    """At n=3, test whether the two lower free amplitudes are fixed."""
+    data = json.loads(ARTIFACT.read_text())
+    M, beta, lam, omega, r = _symbols()
+    x, p, L = sp.symbols("x p L")
+    a0, a1, a2, a3, b0, b1, b2, b3 = sp.symbols(
+        "a0 a1 a2 a3 b0 b1 b2 b3"
+    )
+    c1, c2, c3, d1, d2, d3 = sp.symbols("c1 c2 c3 d1 d2 d3")
+    jets = {
+        **{f"h0r{j}": sp.symbols(f"h0r{j}") for j in range(5)},
+        **{f"h1r{j}": sp.symbols(f"h1r{j}") for j in range(5)},
+    }
+    locals_ = {
+        "M": M,
+        "beta": beta,
+        "lam": lam,
+        "omega": omega,
+        "r": r,
+        "I": sp.I,
+        **jets,
+    }
+
+    def falling(q: sp.Expr, order: int) -> sp.Expr:
+        return sp.prod(q - k for k in range(order))
+
+    def log_jet(q: sp.Expr, order: int) -> sp.Expr:
+        coeff = falling(q, order)
+        return coeff * L + sp.diff(coeff, p)
+
+    h0_ord = ((a0, 0), (a1, 1), (a2, 2), (a3, 3))
+    h0_log = ((c1, 1), (c2, 2), (c3, 3))
+    h1_ord = ((b0, 0), (b1, 1), (b2, 2), (b3, 3))
+    h1_log = ((d1, 1), (d2, 2), (d3, 3))
+
+    jet_subs = {
+        jets[f"h0r{j}"]: (
+            sum(coeff * falling(p + k, j) * x ** (k - j) for coeff, k in h0_ord)
+            + sum(coeff * log_jet(p + k, j) * x ** (k - j) for coeff, k in h0_log)
+        )
+        for j in range(5)
+    }
+    jet_subs.update({
+        jets[f"h1r{j}"]: (
+            sum(
+                coeff * falling(p + k - 1, j) * x ** (k - 1 - j)
+                for coeff, k in h1_ord
+            )
+            + sum(
+                coeff * log_jet(p + k - 1, j) * x ** (k - 1 - j)
+                for coeff, k in h1_log
+            )
+        )
+        for j in range(5)
+    })
+
+    special = {
+        p: sp.Rational(1, 2),
+        omega: sp.I / (4 * M),
+        b0: 2 * M * a0,
+    }
+    lower_coefficients = []
+    n3_conditions = []
+
+    for equation_text in data["euler_equations"]:
+        equation = sp.sympify(equation_text, locals=locals_)
+        trial = sp.together(equation.subs(r, 2 * M + x).subs(jet_subs))
+        numerator, denominator = sp.fraction(trial)
+        numerator_poly = sp.Poly(sp.expand(numerator), x)
+        denominator_poly = sp.Poly(sp.expand(denominator), x)
+
+        numerator_order = min(monomial[0] for monomial, _ in numerator_poly.terms())
+        denominator_order = min(monomial[0] for monomial, _ in denominator_poly.terms())
+        numerators = [numerator_poly.nth(numerator_order + k) for k in range(4)]
+        denominators = [denominator_poly.nth(denominator_order + k) for k in range(4)]
+
+        quotient = []
+        for k in range(4):
+            lower = sum(
+                denominators[j] * quotient[k - j]
+                for j in range(1, k + 1)
+            )
+            quotient.append(sp.cancel((numerators[k] - lower) / denominators[0]))
+
+        q0 = sp.factor(sp.cancel(quotient[0].subs(special)))
+        q1 = sp.expand(sp.cancel(quotient[1].subs(special)))
+        q2 = sp.expand(sp.cancel(quotient[2].subs(special)))
+        q3 = sp.expand(sp.cancel(quotient[3].subs(special)))
+        assert q0 == 0
+        for coefficient in (q1, q2, q3):
+            assert sp.Poly(coefficient, L).degree() <= 1
+        lower_coefficients.extend((q1, q2))
+        n3_conditions.append(sp.cancel(q3.coeff(L, 1)))
+        n3_conditions.append(sp.cancel(q3.subs(L, 0)))
+
+    A = 5 * M**2 + beta
+    P = (
+        144 * M**4
+        - 30 * M**2 * beta * lam
+        + 30 * M**2 * beta
+        - 19 * beta**2 * lam
+        + 38 * beta**2
+    )
+    R = (
+        -86400 * M**6 * lam
+        + 116640 * M**6
+        + 22140 * M**4 * beta * lam
+        - 49212 * M**4 * beta
+        + 19350 * M**2 * beta**2 * lam**2
+        - 59970 * M**2 * beta**2 * lam
+        + 42720 * M**2 * beta**2
+        - 2675 * beta**3 * lam**2
+        + 12044 * beta**3 * lam
+        - 13604 * beta**3
+    )
+    c1_forced = 5 * a0 * beta * (lam - 2) / (12 * M * A)
+    d1_forced = -2 * M * c1_forced
+    b1_forced = (
+        -2 * M * a1
+        + a0 * ((300 * M**2 - 95 * beta) * lam - 510 * M**2 + 208 * beta)
+        / (15 * A)
+    )
+    d2_forced = (
+        10 * M * c2
+        + 5 * a0 * (lam - 2) * P / (36 * M * A**2)
+    )
+    b2_forced = (
+        10 * M * a2
+        + 4 * M * c2
+        + a1 * P / (3 * beta * A)
+        + a0 * R / (360 * M * beta * A**2)
+    )
+    forced = {
+        c1: c1_forced,
+        d1: d1_forced,
+        b1: b1_forced,
+        d2: d2_forced,
+        b2: b2_forced,
+    }
+
+    for coefficient in lower_coefficients:
+        assert sp.factor(sp.cancel(coefficient.subs(forced))) == 0
+
+    reduced = [sp.factor(sp.cancel(condition.subs(forced))) for condition in n3_conditions]
+    log_e0, plain_e0, log_e1, plain_e1 = reduced
+
+    d3_pivot = sp.factor(sp.cancel(sp.diff(log_e0, d3)))
+    assert d3_pivot != 0
+    d3_solution = sp.cancel(-log_e0.subs(d3, 0) / sp.diff(log_e0, d3))
+    compatibility_log = sp.factor(sp.cancel(log_e1.subs(d3, d3_solution)))
+
+    plain_e0_after_d3 = sp.cancel(plain_e0.subs(d3, d3_solution))
+    b3_pivot = sp.factor(sp.cancel(sp.diff(plain_e0_after_d3, b3)))
+    assert b3_pivot != 0
+    b3_solution = sp.cancel(
+        -plain_e0_after_d3.subs(b3, 0) / sp.diff(plain_e0_after_d3, b3)
+    )
+    compatibility_plain = sp.factor(
+        sp.cancel(plain_e1.subs(d3, d3_solution).subs(b3, b3_solution))
+    )
+
+    new_variables = {a3, b3, c3, d3}
+    assert not (compatibility_log.free_symbols & new_variables)
+    assert not (compatibility_plain.free_symbols & new_variables)
+    assert compatibility_log != 0
+    assert compatibility_plain != 0
+
+    compatibility_matrix, _ = sp.linear_eq_to_matrix(
+        (compatibility_log, compatibility_plain), (a2, c2)
+    )
+    determinant = sp.factor(sp.cancel(compatibility_matrix.det()))
+    assert determinant != 0
+
+
 def test_backtrack_boundary_is_not_overclaimed() -> None:
     """The local certificate does not decide the horizon-selected branch.
 
