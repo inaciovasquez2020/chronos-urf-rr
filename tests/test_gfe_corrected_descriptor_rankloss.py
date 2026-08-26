@@ -146,6 +146,118 @@ def test_horizon_ingoing_frobenius_leading_relation() -> None:
         assert sp.factor(sp.cancel(leading.subs(physical))) == 0
 
 
+def test_horizon_ingoing_frobenius_n1_recurrence_is_guarded_solvable() -> None:
+    """Derive the n=1 recurrence and prove its 2x2 system is guarded invertible."""
+    data = json.loads(ARTIFACT.read_text())
+    M, beta, lam, omega, r = _symbols()
+    x, p, a0, a1, b0, b1 = sp.symbols("x p a0 a1 b0 b1")
+    jets = {
+        **{f"h0r{j}": sp.symbols(f"h0r{j}") for j in range(5)},
+        **{f"h1r{j}": sp.symbols(f"h1r{j}") for j in range(5)},
+    }
+    locals_ = {
+        "M": M,
+        "beta": beta,
+        "lam": lam,
+        "omega": omega,
+        "r": r,
+        "I": sp.I,
+        **jets,
+    }
+
+    def falling(q: sp.Expr, order: int) -> sp.Expr:
+        return sp.prod(q - k for k in range(order))
+
+    jet_subs = {
+        jets[f"h0r{j}"]: (
+            a0 * falling(p, j) * x ** (-j)
+            + a1 * falling(p + 1, j) * x ** (1 - j)
+        )
+        for j in range(5)
+    }
+    jet_subs.update({
+        jets[f"h1r{j}"]: (
+            b0 * falling(p - 1, j) * x ** (-j - 1)
+            + b1 * falling(p, j) * x ** (-j)
+        )
+        for j in range(5)
+    })
+
+    physical = {p: -2 * sp.I * M * omega, b0: 2 * M * a0}
+    next_conditions = []
+
+    for equation_text in data["euler_equations"]:
+        equation = sp.sympify(equation_text, locals=locals_)
+        trial = sp.together(equation.subs(r, 2 * M + x).subs(jet_subs))
+        numerator, denominator = sp.fraction(trial)
+        numerator_poly = sp.Poly(sp.expand(numerator), x)
+        denominator_poly = sp.Poly(sp.expand(denominator), x)
+
+        numerator_order = min(monomial[0] for monomial, _ in numerator_poly.terms())
+        denominator_order = min(monomial[0] for monomial, _ in denominator_poly.terms())
+        n0 = numerator_poly.nth(numerator_order)
+        n1 = numerator_poly.nth(numerator_order + 1)
+        d0 = denominator_poly.nth(denominator_order)
+        d1 = denominator_poly.nth(denominator_order + 1)
+
+        leading = sp.cancel(n0 / d0)
+        next_coefficient = sp.cancel((n1 * d0 - n0 * d1) / d0**2)
+        assert sp.factor(sp.cancel(leading.subs(physical))) == 0
+        next_conditions.append(sp.factor(sp.cancel(next_coefficient.subs(physical))))
+
+    coefficient_matrix, source = sp.linear_eq_to_matrix(next_conditions, (a1, b1))
+    determinant = sp.factor(sp.cancel(coefficient_matrix.det()))
+    assert determinant != 0
+
+    # The horizon-to-r_c problem already assumes M>0, beta>0, ell>=2
+    # (hence lam>2), omega!=0, and an exterior descriptor root r_c>2M.
+    # At the horizon the two principal finite-beta factors become proportional
+    # to 2*beta-5*M**2 and beta+5*M**2.  Strip exactly those guarded factors;
+    # no additional zero surface is admissible in the n=1 determinant.
+    guarded_factors = [
+        M,
+        beta,
+        lam,
+        lam - 2,
+        omega,
+        2 * beta - 5 * M**2,
+        beta + 5 * M**2,
+    ]
+
+    def strip_guarded_polynomial_factors(expr: sp.Expr) -> sp.Expr:
+        remaining = sp.factor(expr)
+        generators = (M, beta, lam, omega)
+        for guard in guarded_factors:
+            while True:
+                quotient, remainder = sp.div(
+                    sp.Poly(remaining, *generators, domain=sp.QQ_I),
+                    sp.Poly(guard, *generators, domain=sp.QQ_I),
+                )
+                if remainder != 0:
+                    break
+                remaining = sp.factor(quotient.as_expr())
+        return remaining
+
+    determinant_numerator, determinant_denominator = sp.fraction(determinant)
+    numerator_residual = strip_guarded_polynomial_factors(determinant_numerator)
+    denominator_residual = strip_guarded_polynomial_factors(determinant_denominator)
+
+    assert not numerator_residual.free_symbols, (
+        "unguarded n=1 recurrence zero factor: "
+        f"{sp.factor(numerator_residual)}; determinant={determinant}"
+    )
+    assert not denominator_residual.free_symbols, (
+        "unguarded n=1 recurrence pole factor: "
+        f"{sp.factor(denominator_residual)}; determinant={determinant}"
+    )
+    assert numerator_residual != 0
+    assert denominator_residual != 0
+
+    solution = coefficient_matrix.inv() * source
+    assert solution.shape == (2, 1)
+    assert all(sp.cancel(entry).has(a1, b1) is False for entry in solution)
+
+
 def test_backtrack_boundary_is_not_overclaimed() -> None:
     """The local certificate does not decide the horizon-selected branch.
 
