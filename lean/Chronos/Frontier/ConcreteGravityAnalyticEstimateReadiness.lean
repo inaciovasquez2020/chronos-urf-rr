@@ -125,6 +125,101 @@ theorem restrictedMassCompactnessBridge_of_hawkingMass_le_energy
     _ = (2 / S.areaRadius) * E_grav data * S.areaRadius := by
       field_simp [ne_of_gt S.areaRadius_pos]
 
+/--
+Charge-reduced DFM-MKC background state used only to identify the restricted
+cosmological energy object.  The fields mirror the canonical DFM-MKC branch:
+positive `alpha`, `beta`, and scale factor, with nonzero radial field `phi`.
+-/
+structure RestrictedDFMMKCEnergyState where
+  alpha : ℝ
+  beta : ℝ
+  scaleFactor : ℝ
+  phi : ℝ
+  phiDot : ℝ
+  qTheta : ℝ
+  rhoStar : ℝ
+  mPhiSquared : ℝ
+  lambdaPhi : ℝ
+  visibleEnergyDensity : ℝ
+  cosmologicalConstant : ℝ
+  newtonG : ℝ
+  hubble : ℝ
+  alpha_pos : 0 < alpha
+  beta_pos : 0 < beta
+  scaleFactor_pos : 0 < scaleFactor
+  phi_ne_zero : phi ≠ 0
+  newtonG_pos : 0 < newtonG
+
+/-- Canonical DFM-MKC potential `U(phi)`. -/
+def dfmMkcPotential (x : RestrictedDFMMKCEnergyState) : ℝ :=
+  x.rhoStar
+    + (1 / 2 : ℝ) * x.mPhiSquared * x.phi ^ 2
+    + (1 / 4 : ℝ) * x.lambdaPhi * x.phi ^ 4
+
+/--
+Canonical charge-reduced DFM-MKC dark-sector energy density.
+-/
+def dfmMkcEnergyDensity (x : RestrictedDFMMKCEnergyState) : ℝ :=
+  (1 / 2 : ℝ) * x.alpha * x.phiDot ^ 2
+    + x.qTheta ^ 2 /
+      (2 * x.beta * x.scaleFactor ^ 6 * x.phi ^ 2)
+    + dfmMkcPotential x
+
+/--
+Geometrized total FLRW energy density used by the `2m/r` normalization:
+`G * (rho_visible + rho_DFM-MKC) + Lambda/(8*pi)`.
+This is the restricted meaning assigned to `E_grav`; it is not ADM or Bondi
+mass and does not alter the general `E_grav` interface outside this branch.
+-/
+def dfmMkcGeometrizedTotalEnergyDensity
+    (x : RestrictedDFMMKCEnergyState) : ℝ :=
+  x.newtonG * (x.visibleEnergyDensity + dfmMkcEnergyDensity x)
+    + x.cosmologicalConstant / (8 * Real.pi)
+
+/--
+Weakest concrete DFM-MKC/FLRW comparison package used here: the selected
+surface is a round symmetry sphere in the spatially flat FLRW branch, the
+DFM-MKC Friedmann equation holds, and the abstract `E_grav` control is
+identified with the geometrized DFM-MKC total energy density above.
+-/
+def RestrictedDFMMKCHawkingComparisonHypotheses
+    (data : SelectedEinsteinMatterCauchyData)
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW : Prop)
+    (roundSymmetrySphere : Prop) : Prop :=
+  spatiallyFlatFLRW ∧
+    roundSymmetrySphere ∧
+    S.closed ∧
+    S.compact ∧
+    S.smooth ∧
+    S.embedded ∧
+    x.hubble ^ 2 =
+      x.cosmologicalConstant / 3
+        + (8 * Real.pi * x.newtonG / 3) *
+          (x.visibleEnergyDensity + dfmMkcEnergyDensity x) ∧
+    E_grav data = dfmMkcGeometrizedTotalEnergyDensity x
+
+/--
+Exact external GR lemma still missing on the DFM-MKC route.  In spherical
+symmetry the intended bridge is Hawking mass = Misner-Sharp mass, followed by
+the spatially flat FLRW Misner-Sharp energy formula.  No theorem providing
+that bridge exists in either repository at this checkpoint.
+
+This target is deliberately an inequality, sufficient for the later gate
+estimate, and does not prove `ConcreteGravityCoerciveEstimate`.
+-/
+def RestrictedHawkingMassEnergyControl
+    (data : SelectedEinsteinMatterCauchyData)
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW : Prop)
+    (roundSymmetrySphere : Prop) : Prop :=
+  RestrictedDFMMKCHawkingComparisonHypotheses
+      data S x spatiallyFlatFLRW roundSymmetrySphere →
+    S.hawkingMass ≤
+      (4 * Real.pi / 3) * S.areaRadius ^ 3 * E_grav data
+
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
   status : String
