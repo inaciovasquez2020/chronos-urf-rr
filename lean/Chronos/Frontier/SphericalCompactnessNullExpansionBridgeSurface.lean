@@ -32,6 +32,44 @@ structure RealSphericalHawkingMassBinding
       sphericalHawkingMassGlnNegTwo
         S.areaRadius outgoingExpansion ingoingExpansion
 
+/-- Outgoing null expansion `theta_+ = 2 l(r_A) / r_A`. -/
+def normalizedSphericalOutgoingExpansion
+    (areaRadius outgoingArealDerivative : ℝ) : ℝ :=
+  2 * outgoingArealDerivative / areaRadius
+
+/-- Ingoing null expansion `theta_- = 2 n(r_A) / r_A`. -/
+def normalizedSphericalIngoingExpansion
+    (areaRadius ingoingArealDerivative : ℝ) : ℝ :=
+  2 * ingoingArealDerivative / areaRadius
+
+/--
+Areal-radius gradient norm in the `g(l,n) = -2` null normalization:
+`grad(r_A)^2 = - l(r_A) n(r_A)`.
+-/
+def normalizedSphericalArealGradientNormSq
+    (outgoingArealDerivative ingoingArealDerivative : ℝ) : ℝ :=
+  -(outgoingArealDerivative * ingoingArealDerivative)
+
+/--
+The normalized real null expansions recover the areal-radius gradient norm:
+`r_A^2 * theta_+ * theta_- / 4 = - grad(r_A)^2`.
+-/
+theorem normalizedSphericalExpansionProduct_eq_neg_arealGradientNormSq
+    (areaRadius outgoingArealDerivative ingoingArealDerivative : ℝ)
+    (hr : areaRadius ≠ 0) :
+    areaRadius ^ 2 *
+        normalizedSphericalOutgoingExpansion
+          areaRadius outgoingArealDerivative *
+        normalizedSphericalIngoingExpansion
+          areaRadius ingoingArealDerivative / 4 =
+      - normalizedSphericalArealGradientNormSq
+          outgoingArealDerivative ingoingArealDerivative := by
+  unfold normalizedSphericalOutgoingExpansion
+    normalizedSphericalIngoingExpansion
+    normalizedSphericalArealGradientNormSq
+  field_simp [hr]
+  <;> ring
+
 /--
 Repository-native bridge input from the spherical compactness threshold
 `arealRadius <= 2 * misnerSharpMass` to the null-expansion sign condition.
