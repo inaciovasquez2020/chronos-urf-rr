@@ -91,6 +91,21 @@ def RestrictedMassCompactnessBridge
   restrictedHypotheses →
     2 * S.hawkingMass ≤ C * E_grav data * S.areaRadius
 
+/--
+Positive area-radius turns the scalar mass/compactness bridge into the
+restricted quasi-local gate control by division by `S.areaRadius`.
+-/
+theorem restrictedQLGateMassControl_of_massCompactnessBridge
+    (restrictedHypotheses : Prop)
+    (C : ℝ)
+    (data : SelectedEinsteinMatterCauchyData)
+    (S : AdmissibleQuasiLocalSurface data)
+    (hbridge : RestrictedMassCompactnessBridge restrictedHypotheses C data S) :
+    RestrictedQLGateMassControl restrictedHypotheses C data S := by
+  intro hrestricted
+  change 2 * S.hawkingMass / S.areaRadius ≤ C * E_grav data
+  exact (div_le_iff₀ S.areaRadius_pos).2 (hbridge hrestricted)
+
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
   status : String
