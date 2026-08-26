@@ -60,4 +60,147 @@ theorem perturbedAreaRadius_eq_newtonianSpatialPotential
   unfold dfmMkcNewtonianGaugeAreaRadiusCorrection
   ring
 
+/--
+Evaluated first derivatives of the Newtonian spatial potential on the selected
+round sphere.  `physicalRadialDerivative` means `(1/a) partial_chi Psi` on the
+flat-FLRW background, so no extra scale-factor conversion is hidden below.
+-/
+structure DFMMKCNewtonianGaugeSphericalPotentialDerivatives where
+  cosmicTimeDerivative : ℝ
+  physicalRadialDerivative : ℝ
+
+/--
+First variation of the outgoing normalized areal derivative
+`l(R) = H R + 1` in the cosmic-time Newtonian gauge.
+-/
+def dfmMkcNewtonianGaugeOutgoingArealDerivativeCorrection
+    (areaRadius hubble lapsePotential spatialPotential
+      spatialPotentialCosmicTimeDerivative
+      spatialPotentialPhysicalRadialDerivative : ℝ) : ℝ :=
+  -areaRadius *
+    (hubble * (lapsePotential + spatialPotential)
+      + spatialPotentialCosmicTimeDerivative
+      + spatialPotentialPhysicalRadialDerivative)
+
+/--
+First variation of the ingoing normalized areal derivative
+`n(R) = H R - 1` in the same normalization.
+-/
+def dfmMkcNewtonianGaugeIngoingArealDerivativeCorrection
+    (areaRadius hubble lapsePotential spatialPotential
+      spatialPotentialCosmicTimeDerivative
+      spatialPotentialPhysicalRadialDerivative : ℝ) : ℝ :=
+  -areaRadius *
+    (hubble * (lapsePotential + spatialPotential)
+      + spatialPotentialCosmicTimeDerivative
+      - spatialPotentialPhysicalRadialDerivative)
+
+/--
+First variation of a normalized spherical expansion `theta = 2 D(R) / R`.
+-/
+def normalizedSphericalExpansionFirstVariation
+    (areaRadius backgroundArealDerivative
+      areaRadiusCorrection arealDerivativeCorrection : ℝ) : ℝ :=
+  2 * arealDerivativeCorrection / areaRadius
+    - normalizedSphericalOutgoingExpansion
+        areaRadius backgroundArealDerivative *
+      areaRadiusCorrection / areaRadius
+
+/--
+Derived outgoing null-expansion correction from the Newtonian lapse/spatial
+potentials and the two evaluated derivatives of `Psi`.
+-/
+def dfmMkcNewtonianGaugeOutgoingExpansionCorrection
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (D : DFMMKCNewtonianGaugeSphericalPotentialDerivatives) : ℝ :=
+  normalizedSphericalExpansionFirstVariation
+    S.areaRadius (x.hubble * S.areaRadius + 1)
+    (dfmMkcNewtonianGaugeAreaRadiusCorrection
+      S.areaRadius P.newtonianSpatialPotential)
+    (dfmMkcNewtonianGaugeOutgoingArealDerivativeCorrection
+      S.areaRadius x.hubble
+      P.newtonianLapsePotential P.newtonianSpatialPotential
+      D.cosmicTimeDerivative D.physicalRadialDerivative)
+
+/--
+Derived ingoing null-expansion correction from the same Newtonian-gauge data.
+-/
+def dfmMkcNewtonianGaugeIngoingExpansionCorrection
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (D : DFMMKCNewtonianGaugeSphericalPotentialDerivatives) : ℝ :=
+  normalizedSphericalExpansionFirstVariation
+    S.areaRadius (x.hubble * S.areaRadius - 1)
+    (dfmMkcNewtonianGaugeAreaRadiusCorrection
+      S.areaRadius P.newtonianSpatialPotential)
+    (dfmMkcNewtonianGaugeIngoingArealDerivativeCorrection
+      S.areaRadius x.hubble
+      P.newtonianLapsePotential P.newtonianSpatialPotential
+      D.cosmicTimeDerivative D.physicalRadialDerivative)
+
+/-- Closed first-order formula for the outgoing expansion correction. -/
+theorem dfmMkcNewtonianGaugeOutgoingExpansionCorrection_eq
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (D : DFMMKCNewtonianGaugeSphericalPotentialDerivatives) :
+    dfmMkcNewtonianGaugeOutgoingExpansionCorrection S x P D =
+      -2 *
+        (x.hubble * P.newtonianLapsePotential
+          + D.cosmicTimeDerivative
+          + D.physicalRadialDerivative
+          - P.newtonianSpatialPotential / S.areaRadius) := by
+  unfold dfmMkcNewtonianGaugeOutgoingExpansionCorrection
+    normalizedSphericalExpansionFirstVariation
+    dfmMkcNewtonianGaugeAreaRadiusCorrection
+    dfmMkcNewtonianGaugeOutgoingArealDerivativeCorrection
+    normalizedSphericalOutgoingExpansion
+  field_simp [ne_of_gt S.areaRadius_pos]
+  <;> ring
+
+/-- Closed first-order formula for the ingoing expansion correction. -/
+theorem dfmMkcNewtonianGaugeIngoingExpansionCorrection_eq
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (D : DFMMKCNewtonianGaugeSphericalPotentialDerivatives) :
+    dfmMkcNewtonianGaugeIngoingExpansionCorrection S x P D =
+      -2 *
+        (x.hubble * P.newtonianLapsePotential
+          + D.cosmicTimeDerivative
+          - D.physicalRadialDerivative
+          + P.newtonianSpatialPotential / S.areaRadius) := by
+  unfold dfmMkcNewtonianGaugeIngoingExpansionCorrection
+    normalizedSphericalExpansionFirstVariation
+    dfmMkcNewtonianGaugeAreaRadiusCorrection
+    dfmMkcNewtonianGaugeIngoingArealDerivativeCorrection
+    normalizedSphericalOutgoingExpansion
+  field_simp [ne_of_gt S.areaRadius_pos]
+  <;> ring
+
+/--
+Binding of the carrier's two previously free null-expansion corrections to the
+normalized Newtonian-gauge first variations above.
+-/
+structure DFMMKCNewtonianGaugeSphericalNullExpansionBinding
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (_A : DFMMKCNewtonianGaugeSphericalAreaRadiusBinding S x P)
+    (D : DFMMKCNewtonianGaugeSphericalPotentialDerivatives) where
+  outgoingExpansionCorrection_eq :
+    P.outgoingExpansionCorrection =
+      dfmMkcNewtonianGaugeOutgoingExpansionCorrection S x P D
+  ingoingExpansionCorrection_eq :
+    P.ingoingExpansionCorrection =
+      dfmMkcNewtonianGaugeIngoingExpansionCorrection S x P D
+
 end Chronos.Frontier
