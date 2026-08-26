@@ -125,56 +125,6 @@ theorem restrictedMassCompactnessBridge_of_hawkingMass_le_energy
     _ = (2 / S.areaRadius) * E_grav data * S.areaRadius := by
       field_simp [ne_of_gt S.areaRadius_pos]
 
-/--
-Weakest concrete Riemannian comparison route isolated by the repository:
-time-symmetric data, a regular connected outward-minimizing quasi-local
-surface, an asymptotically flat exterior with nonnegative scalar curvature,
-and an explicit identification of `E_grav` with the ADM mass.  The exterior
-geometric predicates remain parameters because those differential-geometric
-notions are not yet represented by repository-native Lean structures.
--/
-def RestrictedHawkingADMComparisonHypotheses
-    (data : SelectedEinsteinMatterCauchyData)
-    (S : AdmissibleQuasiLocalSurface data)
-    (admMass : ℝ)
-    (asymptoticallyFlatExterior : Prop)
-    (nonnegativeScalarCurvatureExterior : Prop)
-    (surfaceConnected : Prop)
-    (surfaceOutwardMinimizing : Prop) : Prop :=
-  (∀ p i j, data.secondFundamentalForm p i j = 0) ∧
-    S.closed ∧
-    S.compact ∧
-    S.smooth ∧
-    S.embedded ∧
-    S.twoDimensional ∧
-    S.spacelike ∧
-    asymptoticallyFlatExterior ∧
-    nonnegativeScalarCurvatureExterior ∧
-    surfaceConnected ∧
-    surfaceOutwardMinimizing ∧
-    E_grav data = admMass
-
-/--
-Exact external GR/Riemannian-geometry lemma still required on the restricted
-ADM route.  A weak inverse-mean-curvature-flow/Hawking-mass monotonicity
-argument is the intended source, but no such theorem is proved in this
-repository.  This declaration only isolates the missing proposition and does
-not prove it or `ConcreteGravityCoerciveEstimate`.
--/
-def RestrictedHawkingMassEnergyControl
-    (data : SelectedEinsteinMatterCauchyData)
-    (S : AdmissibleQuasiLocalSurface data)
-    (admMass : ℝ)
-    (asymptoticallyFlatExterior : Prop)
-    (nonnegativeScalarCurvatureExterior : Prop)
-    (surfaceConnected : Prop)
-    (surfaceOutwardMinimizing : Prop) : Prop :=
-  RestrictedHawkingADMComparisonHypotheses
-      data S admMass asymptoticallyFlatExterior
-      nonnegativeScalarCurvatureExterior surfaceConnected
-      surfaceOutwardMinimizing →
-    S.hawkingMass ≤ E_grav data
-
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
   status : String
