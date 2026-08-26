@@ -4,8 +4,7 @@ namespace Chronos.Frontier
 
 /--
 Typed interface for the selected Einstein-matter Cauchy data used by the
-concrete gravity estimate program.  This introduces the data class only;
-`Flux_boundary` remains a separate later obligation.
+concrete gravity estimate program.
 -/
 structure SelectedEinsteinMatterCauchyData where
   point : Type
@@ -51,6 +50,12 @@ def QL_gate
 /-- Named curvature-energy control on the selected Einstein-matter data. -/
 def E_grav (data : SelectedEinsteinMatterCauchyData) : ℝ :=
   data.curvatureEnergyControl
+
+/-- Named nonnegative boundary-flux control for an admissible quasi-local surface. -/
+def Flux_boundary
+    (data : SelectedEinsteinMatterCauchyData)
+    (_S : AdmissibleQuasiLocalSurface data) : ℝ :=
+  data.boundaryFluxControl
 
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
