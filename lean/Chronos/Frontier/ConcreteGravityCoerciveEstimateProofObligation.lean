@@ -146,6 +146,100 @@ theorem concreteGravityCoerciveEstimate_of_expandingFlatFLRWSubHubbleSphere
       (mul_le_mul_of_nonneg_right hC hE)
       (Flux_boundary data S))
 
+/--
+Lean-side Hubble-floor interface for the repository's prepared positive-alpha
+DFM-MKC family on the physical interval `0 <= z <= 2.33`.  The cosmology
+certificate states `H_DFM >= H_L >= H_floor > 0` throughout this interval.
+This structure records only that already-identified floor for one state; it does
+not re-prove the cosmology continuation theorem in Lean.
+-/
+structure PreparedAlphaDFMMKCHubbleFloor
+    (HStar : ℝ)
+    (x : RestrictedDFMMKCEnergyState) where
+  redshift : ℝ
+  redshift_nonnegative : 0 ≤ redshift
+  redshift_le_prepared_max : redshift ≤ (233 / 100 : ℝ)
+  floor_positive : 0 < HStar
+  hubble_ge_floor : HStar ≤ x.hubble
+
+/--
+Class-wide coefficient supplied by a common prepared-family Hubble floor.
+For fixed `HStar`, this coefficient is independent of both the state `x` and the
+surface `S`.
+-/
+def dfmMkcPreparedAlphaCStarStar (HStar : ℝ) : ℝ :=
+  (8 * Real.pi / 3) * (1 / HStar) ^ 2
+
+/--
+A prepared-family Hubble floor bounds the state-wise sub-Hubble coefficient by
+the class-wide coefficient `C_** = (8*pi/3) * HStar^-2`.
+-/
+theorem dfmMkcExpandingFlatFLRWCStar_le_preparedAlphaCStarStar
+    (x : RestrictedDFMMKCEnergyState)
+    (HStar : ℝ)
+    (hfloor : PreparedAlphaDFMMKCHubbleFloor HStar x) :
+    dfmMkcExpandingFlatFLRWCStar x ≤
+      dfmMkcPreparedAlphaCStarStar HStar := by
+  have hH : 0 < x.hubble :=
+    lt_of_lt_of_le hfloor.floor_positive hfloor.hubble_ge_floor
+  have hinv : 1 / x.hubble ≤ 1 / HStar := by
+    exact (div_le_div_iff₀ hH hfloor.floor_positive).2 (by
+      simpa using hfloor.hubble_ge_floor)
+  have hinvH0 : 0 ≤ 1 / x.hubble := by
+    positivity
+  have hinvStar0 : 0 ≤ 1 / HStar := by
+    positivity
+  have hsq : (1 / x.hubble) ^ 2 ≤ (1 / HStar) ^ 2 := by
+    have hprod :
+        0 ≤ ((1 / HStar) - (1 / x.hubble)) *
+          ((1 / HStar) + (1 / x.hubble)) :=
+      mul_nonneg (sub_nonneg.mpr hinv) (add_nonneg hinvStar0 hinvH0)
+    nlinarith
+  have hk : 0 ≤ (8 * Real.pi / 3 : ℝ) := by
+    positivity
+  unfold dfmMkcExpandingFlatFLRWCStar dfmMkcPreparedAlphaCStarStar
+  exact mul_le_mul_of_nonneg_left hsq hk
+
+/--
+For every prepared-alpha DFM-MKC state in `0 <= z <= 2.33` sharing the same
+positive Hubble floor `HStar`, the expanding flat-FLRW sub-Hubble spherical
+coercive estimate holds with one class-wide coefficient
+`C_** = (8*pi/3) * HStar^-2`.
+-/
+theorem concreteGravityCoerciveEstimate_of_preparedAlphaHubbleFloor
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (G : FlatFLRWSphericalExpansionBinding
+      S x spatiallyFlatFLRW roundSymmetrySphere B)
+    (HStar : ℝ)
+    (hfloor : PreparedAlphaDFMMKCHubbleFloor HStar x)
+    (hsub : ExpandingFlatFLRWSubHubbleSphere
+      S x spatiallyFlatFLRW roundSymmetrySphere B G)
+    (hrestricted :
+      RestrictedDFMMKCHawkingComparisonHypotheses
+        data S x spatiallyFlatFLRW roundSymmetrySphere) :
+    ConcreteGravityCoerciveEstimate
+      (dfmMkcPreparedAlphaCStarStar HStar) data S := by
+  have hlocal :
+      ConcreteGravityCoerciveEstimate
+        (dfmMkcExpandingFlatFLRWCStar x) data S :=
+    concreteGravityCoerciveEstimate_of_expandingFlatFLRWSubHubbleSphere
+      S x spatiallyFlatFLRW roundSymmetrySphere B G hsub hrestricted
+  have hC :
+      dfmMkcExpandingFlatFLRWCStar x ≤
+        dfmMkcPreparedAlphaCStarStar HStar :=
+    dfmMkcExpandingFlatFLRWCStar_le_preparedAlphaCStarStar x HStar hfloor
+  have hE : 0 ≤ E_grav data := by
+    simpa [E_grav] using data.curvatureEnergyControl_nonnegative
+  unfold ConcreteGravityCoerciveEstimate at hlocal ⊢
+  exact hlocal.trans
+    (add_le_add_right
+      (mul_le_mul_of_nonneg_right hC hE)
+      (Flux_boundary data S))
+
 structure ConcreteGravityCoerciveEstimateProofObligation where
   id : String
   status : String
