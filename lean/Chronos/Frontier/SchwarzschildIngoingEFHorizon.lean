@@ -78,6 +78,34 @@ theorem schwarzschildOutgoingNullExpansion_eq_zero_iff
     field_simp [hM0]
     ring
 
+theorem schwarzschildOutgoingNullExpansion_pos_iff
+    (metric : SchwarzschildIngoingEFMetric)
+    {r : ℝ}
+    (hr : 0 < r) :
+    0 < schwarzschildOutgoingNullExpansion metric r ↔
+      schwarzschildHorizonRadius metric < r := by
+  constructor
+  · intro h
+    unfold schwarzschildOutgoingNullExpansion at h
+    rcases (div_pos_iff.mp h) with hpos | hneg
+    · have hratio : 2 * metric.mass / r < 1 := by
+        unfold schwarzschildEFFactor at hpos
+        linarith [hpos.1]
+      have hmass : 2 * metric.mass < r :=
+        (div_lt_one hr).mp hratio
+      simpa [schwarzschildHorizonRadius] using hmass
+    · linarith [hr, hneg.2]
+  · intro h
+    have hmass : 2 * metric.mass < r := by
+      simpa [schwarzschildHorizonRadius] using h
+    have hratio : 2 * metric.mass / r < 1 :=
+      (div_lt_one hr).2 hmass
+    have hfactor : 0 < schwarzschildEFFactor metric r := by
+      unfold schwarzschildEFFactor
+      linarith
+    unfold schwarzschildOutgoingNullExpansion
+    exact div_pos hfactor hr
+
 end
 
 end Chronos.Frontier
