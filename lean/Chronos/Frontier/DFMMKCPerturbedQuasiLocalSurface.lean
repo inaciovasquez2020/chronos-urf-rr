@@ -120,4 +120,157 @@ structure DFMMKCFirstOrderSphericalHawkingGeometryBinding
           P.areaRadiusCorrection P.outgoingExpansionCorrection
           P.ingoingExpansionCorrection
 
+/-- First variation of `m_MS = r_A/2 * (1 - grad(r_A)^2)`. -/
+def sphericalMisnerSharpMassFirstVariation
+    (areaRadius arealGradientNormSq
+      areaRadiusCorrection arealGradientNormSqCorrection : ℝ) : ℝ :=
+  areaRadiusCorrection / 2 * (1 - arealGradientNormSq)
+    - areaRadius / 2 * arealGradientNormSqCorrection
+
+/--
+The Hawking formula and the Misner-Sharp formula agree when the areal-gradient
+scalar is reconstructed from the same normalized spherical expansion product.
+-/
+theorem sphericalHawkingMass_eq_misnerSharp_from_expansions
+    (areaRadius outgoingExpansion ingoingExpansion : ℝ) :
+    sphericalHawkingMassGlnNegTwo
+        areaRadius outgoingExpansion ingoingExpansion =
+      sphericalMisnerSharpMassFromArealGradient
+        areaRadius
+        (sphericalArealGradientNormSqFromExpansions
+          areaRadius outgoingExpansion ingoingExpansion) := by
+  unfold sphericalHawkingMassGlnNegTwo
+    sphericalMisnerSharpMassFromArealGradient
+    sphericalArealGradientNormSqFromExpansions
+  ring
+
+/--
+The first variation of the Hawking formula is exactly the first variation of
+the Misner-Sharp formula when the linearized expansion-product/areal-gradient
+relation is used.
+-/
+theorem sphericalHawkingMassFirstVariation_eq_misnerSharp
+    (areaRadius outgoingExpansion ingoingExpansion
+      areaRadiusCorrection outgoingExpansionCorrection
+      ingoingExpansionCorrection : ℝ) :
+    sphericalHawkingMassFirstVariation
+        areaRadius outgoingExpansion ingoingExpansion
+        areaRadiusCorrection outgoingExpansionCorrection
+        ingoingExpansionCorrection =
+      sphericalMisnerSharpMassFirstVariation
+        areaRadius
+        (sphericalArealGradientNormSqFromExpansions
+          areaRadius outgoingExpansion ingoingExpansion)
+        areaRadiusCorrection
+        (-sphericalExpansionProductFirstVariation
+          areaRadius outgoingExpansion ingoingExpansion
+          areaRadiusCorrection outgoingExpansionCorrection
+          ingoingExpansionCorrection) := by
+  unfold sphericalHawkingMassFirstVariation
+    sphericalMisnerSharpMassFirstVariation
+    sphericalArealGradientNormSqFromExpansions
+    sphericalExpansionProductFirstVariation
+  ring
+
+/--
+First-order Misner-Sharp binding using the same areal-gradient correction as the
+Hawking geometry binding.  It remains a spherical linearized object.
+-/
+structure DFMMKCFirstOrderSphericalMisnerSharpGeometryBinding
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (_H : DFMMKCFirstOrderSphericalHawkingGeometryBinding
+      S x roundSymmetrySphere B P) where
+  perturbedMisnerSharpMass_eq :
+    P.perturbedMisnerSharpMass =
+      sphericalMisnerSharpMassFromArealGradient
+          S.areaRadius
+          (sphericalArealGradientNormSqFromExpansions
+            S.areaRadius B.outgoingExpansion B.ingoingExpansion)
+        + P.epsilon *
+          sphericalMisnerSharpMassFirstVariation
+            S.areaRadius
+            (sphericalArealGradientNormSqFromExpansions
+              S.areaRadius B.outgoingExpansion B.ingoingExpansion)
+            P.areaRadiusCorrection P.arealGradientNormSqCorrection
+
+/--
+The two first-order spherical mass constructions agree exactly.
+-/
+theorem firstOrderPerturbedHawkingMass_eq_misnerSharp
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (H : DFMMKCFirstOrderSphericalHawkingGeometryBinding
+      S x roundSymmetrySphere B P)
+    (M : DFMMKCFirstOrderSphericalMisnerSharpGeometryBinding
+      S x roundSymmetrySphere B P H) :
+    P.perturbedHawkingMass = P.perturbedMisnerSharpMass := by
+  rw [H.perturbedHawkingMass_eq, M.perturbedMisnerSharpMass_eq]
+  rw [B.hawkingMass_eq]
+  rw [sphericalHawkingMass_eq_misnerSharp_from_expansions]
+  rw [H.arealGradientNormSqCorrection_eq]
+  rw [sphericalHawkingMassFirstVariation_eq_misnerSharp]
+
+/--
+Exact first-order stability identity: the Hawking-mass displacement is
+`|epsilon|` times the absolute first variation.
+-/
+theorem firstOrderPerturbedHawkingMass_stability_eq
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (H : DFMMKCFirstOrderSphericalHawkingGeometryBinding
+      S x roundSymmetrySphere B P) :
+    |P.perturbedHawkingMass - S.hawkingMass| =
+      |P.epsilon| *
+        |sphericalHawkingMassFirstVariation
+          S.areaRadius B.outgoingExpansion B.ingoingExpansion
+          P.areaRadiusCorrection P.outgoingExpansionCorrection
+          P.ingoingExpansionCorrection| := by
+  have hdiff :
+      P.perturbedHawkingMass - S.hawkingMass =
+        P.epsilon *
+          sphericalHawkingMassFirstVariation
+            S.areaRadius B.outgoingExpansion B.ingoingExpansion
+            P.areaRadiusCorrection P.outgoingExpansionCorrection
+            P.ingoingExpansionCorrection := by
+    rw [H.perturbedHawkingMass_eq]
+    ring
+  rw [hdiff, abs_mul]
+
+/--
+Because the carrier restricts `|epsilon| <= 1`, the first-order mass departure
+is bounded by the absolute first-variation coefficient itself.
+-/
+theorem firstOrderPerturbedHawkingMass_stability_le
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (H : DFMMKCFirstOrderSphericalHawkingGeometryBinding
+      S x roundSymmetrySphere B P) :
+    |P.perturbedHawkingMass - S.hawkingMass| ≤
+      |sphericalHawkingMassFirstVariation
+        S.areaRadius B.outgoingExpansion B.ingoingExpansion
+        P.areaRadiusCorrection P.outgoingExpansionCorrection
+        P.ingoingExpansionCorrection| := by
+  rw [firstOrderPerturbedHawkingMass_stability_eq
+    S x roundSymmetrySphere B P H]
+  exact mul_le_mul_of_nonneg_right
+    P.epsilon_abs_le_one
+    (abs_nonneg _)
+
 end Chronos.Frontier
