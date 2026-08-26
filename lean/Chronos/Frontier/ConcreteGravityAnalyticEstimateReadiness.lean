@@ -25,6 +25,8 @@ structure SelectedEinsteinMatterCauchyData where
 
 /--
 Typed admissible quasi-local surface inside one selected Cauchy datum.
+The Hawking mass and positive area-radius observables are recorded so that a
+later numerical compactness gate can be defined without adding extra arguments.
 No numerical collapse functional is defined here.
 -/
 structure AdmissibleQuasiLocalSurface
@@ -37,6 +39,9 @@ structure AdmissibleQuasiLocalSurface
   embedded : Prop
   twoDimensional : Prop
   spacelike : Prop
+  hawkingMass : Real
+  areaRadius : Real
+  areaRadius_pos : 0 < areaRadius
 
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
