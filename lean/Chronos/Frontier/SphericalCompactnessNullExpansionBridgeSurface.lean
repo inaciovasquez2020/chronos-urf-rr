@@ -220,6 +220,92 @@ theorem restrictedHawkingMassEnergyControl_of_flatFLRW_spherical_binding
       S x spatiallyFlatFLRW)
 
 /--
+Under the concrete DFM-MKC flat-FLRW comparison package and the real spherical
+bindings, Hawking mass is exactly the enclosed geometrized DFM-MKC energy of
+the round sphere.
+-/
+theorem hawkingMass_eq_dfmMkcEnclosedEnergy_of_flatFLRW_spherical_binding
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (G : FlatFLRWSphericalExpansionBinding
+      S x spatiallyFlatFLRW roundSymmetrySphere B)
+    (hrestricted :
+      RestrictedDFMMKCHawkingComparisonHypotheses
+        data S x spatiallyFlatFLRW roundSymmetrySphere) :
+    S.hawkingMass =
+      (4 * Real.pi / 3) * S.areaRadius ^ 3 * E_grav data := by
+  rcases hrestricted with
+    ⟨hflat, hround, hclosed, hcompact, hsmooth, hembedded, hfriedmann, henergy⟩
+  have hhawking :
+      S.hawkingMass = dfmMkcFLRWMisnerSharpMass S x :=
+    restrictedHawkingMisnerSharpSphericalBridge_of_flatFLRW_binding
+      S x spatiallyFlatFLRW roundSymmetrySphere B G hround
+  have hmisnerSharp :
+      dfmMkcFLRWMisnerSharpMass S x =
+        (4 * Real.pi / 3) * S.areaRadius ^ 3 *
+          dfmMkcGeometrizedTotalEnergyDensity x :=
+    dfmMkcFLRWMisnerSharpMass_eq_enclosedEnergy S x hfriedmann
+  calc
+    S.hawkingMass = dfmMkcFLRWMisnerSharpMass S x := hhawking
+    _ = (4 * Real.pi / 3) * S.areaRadius ^ 3 *
+        dfmMkcGeometrizedTotalEnergyDensity x := hmisnerSharp
+    _ = (4 * Real.pi / 3) * S.areaRadius ^ 3 * E_grav data := by
+      rw [henergy]
+
+/--
+The restricted DFM-MKC flat-FLRW spherical branch has an exact quasi-local gate
+identity.  This is stronger than the previously recorded one-sided mass
+control, but the coefficient remains surface-dependent through `r_A^2`.
+-/
+theorem qlGate_eq_dfmMkcEnergy_of_flatFLRW_spherical_binding
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (G : FlatFLRWSphericalExpansionBinding
+      S x spatiallyFlatFLRW roundSymmetrySphere B)
+    (hrestricted :
+      RestrictedDFMMKCHawkingComparisonHypotheses
+        data S x spatiallyFlatFLRW roundSymmetrySphere) :
+    QL_gate data S =
+      (8 * Real.pi / 3) * S.areaRadius ^ 2 * E_grav data := by
+  unfold QL_gate
+  rw [hawkingMass_eq_dfmMkcEnclosedEnergy_of_flatFLRW_spherical_binding
+    S x spatiallyFlatFLRW roundSymmetrySphere B G hrestricted]
+  field_simp [ne_of_gt S.areaRadius_pos]
+  <;> ring
+
+/--
+Restricted proved instance of the concrete coercive inequality.  The coefficient
+is `C(S) = (8*pi/3) r_A^2`; nonnegative boundary flux upgrades the exact gate
+identity to the repository's `ConcreteGravityCoerciveEstimate` proposition.
+This is not a uniform or unrestricted coercive estimate.
+-/
+theorem concreteGravityCoerciveEstimate_of_flatFLRW_spherical_binding
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (G : FlatFLRWSphericalExpansionBinding
+      S x spatiallyFlatFLRW roundSymmetrySphere B)
+    (hrestricted :
+      RestrictedDFMMKCHawkingComparisonHypotheses
+        data S x spatiallyFlatFLRW roundSymmetrySphere) :
+    ConcreteGravityCoerciveEstimate
+      ((8 * Real.pi / 3) * S.areaRadius ^ 2) data S := by
+  unfold ConcreteGravityCoerciveEstimate
+  rw [qlGate_eq_dfmMkcEnergy_of_flatFLRW_spherical_binding
+    S x spatiallyFlatFLRW roundSymmetrySphere B G hrestricted]
+  have hflux : 0 ≤ Flux_boundary data S := by
+    simpa [Flux_boundary] using data.boundaryFluxControl_nonnegative
+  exact le_add_of_nonneg_right hflux
+
+/--
 Repository-native bridge input from the spherical compactness threshold
 `arealRadius <= 2 * misnerSharpMass` to the null-expansion sign condition.
 
