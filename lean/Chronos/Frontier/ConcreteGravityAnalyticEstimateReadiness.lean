@@ -106,6 +106,25 @@ theorem restrictedQLGateMassControl_of_massCompactnessBridge
   change 2 * S.hawkingMass / S.areaRadius ≤ C * E_grav data
   exact (div_le_iff₀ S.areaRadius_pos).2 (hbridge hrestricted)
 
+/--
+At the geometric coefficient `2 / r_A`, a Hawking-mass bound by the selected
+energy control is sufficient for the restricted scalar compactness bridge.
+This is purely algebraic and does not prove the Hawking-mass bound itself.
+-/
+theorem restrictedMassCompactnessBridge_of_hawkingMass_le_energy
+    (restrictedHypotheses : Prop)
+    (data : SelectedEinsteinMatterCauchyData)
+    (S : AdmissibleQuasiLocalSurface data)
+    (hmass : restrictedHypotheses → S.hawkingMass ≤ E_grav data) :
+    RestrictedMassCompactnessBridge
+      restrictedHypotheses (2 / S.areaRadius) data S := by
+  intro hrestricted
+  calc
+    2 * S.hawkingMass ≤ 2 * E_grav data := by
+      exact mul_le_mul_of_nonneg_left (hmass hrestricted) (by norm_num)
+    _ = (2 / S.areaRadius) * E_grav data * S.areaRadius := by
+      field_simp [ne_of_gt S.areaRadius_pos]
+
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
   status : String
