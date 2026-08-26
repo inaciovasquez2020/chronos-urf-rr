@@ -48,4 +48,76 @@ structure DFMMKCPerturbedQuasiLocalSurfaceCarrier
   perturbedArealGradientNormSq : ℝ
   perturbedMisnerSharpMass : ℝ
 
+/--
+Areal-gradient scalar reconstructed from real spherical null expansions in the
+fixed `g(l,n) = -2` normalization.
+-/
+def sphericalArealGradientNormSqFromExpansions
+    (areaRadius outgoingExpansion ingoingExpansion : ℝ) : ℝ :=
+  -(areaRadius ^ 2 * outgoingExpansion * ingoingExpansion / 4)
+
+/-- First variation of `r_A^2 * theta_+ * theta_- / 4`. -/
+def sphericalExpansionProductFirstVariation
+    (areaRadius outgoingExpansion ingoingExpansion
+      areaRadiusCorrection outgoingExpansionCorrection
+      ingoingExpansionCorrection : ℝ) : ℝ :=
+  areaRadius * areaRadiusCorrection * outgoingExpansion * ingoingExpansion / 2
+    + areaRadius ^ 2 *
+      (outgoingExpansionCorrection * ingoingExpansion
+        + outgoingExpansion * ingoingExpansionCorrection) / 4
+
+/--
+First variation of the round-sphere Hawking mass
+`m_H = r_A/2 + r_A^3 theta_+ theta_-/8`.
+-/
+def sphericalHawkingMassFirstVariation
+    (areaRadius outgoingExpansion ingoingExpansion
+      areaRadiusCorrection outgoingExpansionCorrection
+      ingoingExpansionCorrection : ℝ) : ℝ :=
+  areaRadiusCorrection / 2
+    + (3 * areaRadius ^ 2 * areaRadiusCorrection *
+        outgoingExpansion * ingoingExpansion
+      + areaRadius ^ 3 *
+        (outgoingExpansionCorrection * ingoingExpansion
+          + outgoingExpansion * ingoingExpansionCorrection)) / 8
+
+/--
+First-order spherical Hawking/areal-geometry binding for a DFM-MKC perturbation.
+The perturbed quantities are the linear truncations about the already-bound
+round background surface.  This does not assert that the Newtonian-gauge field
+variables determine the correction coefficients; that map remains a separate
+geometric obligation.
+-/
+structure DFMMKCFirstOrderSphericalHawkingGeometryBinding
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x) where
+  perturbedOutgoingExpansion_eq :
+    P.perturbedOutgoingExpansion =
+      B.outgoingExpansion + P.epsilon * P.outgoingExpansionCorrection
+  perturbedIngoingExpansion_eq :
+    P.perturbedIngoingExpansion =
+      B.ingoingExpansion + P.epsilon * P.ingoingExpansionCorrection
+  arealGradientNormSqCorrection_eq :
+    P.arealGradientNormSqCorrection =
+      -sphericalExpansionProductFirstVariation
+        S.areaRadius B.outgoingExpansion B.ingoingExpansion
+        P.areaRadiusCorrection P.outgoingExpansionCorrection
+        P.ingoingExpansionCorrection
+  perturbedArealGradientNormSq_eq :
+    P.perturbedArealGradientNormSq =
+      sphericalArealGradientNormSqFromExpansions
+          S.areaRadius B.outgoingExpansion B.ingoingExpansion
+        + P.epsilon * P.arealGradientNormSqCorrection
+  perturbedHawkingMass_eq :
+    P.perturbedHawkingMass =
+      S.hawkingMass + P.epsilon *
+        sphericalHawkingMassFirstVariation
+          S.areaRadius B.outgoingExpansion B.ingoingExpansion
+          P.areaRadiusCorrection P.outgoingExpansionCorrection
+          P.ingoingExpansionCorrection
+
 end Chronos.Frontier
