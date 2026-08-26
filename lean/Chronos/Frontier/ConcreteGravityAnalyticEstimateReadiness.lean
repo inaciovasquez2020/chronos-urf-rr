@@ -79,6 +79,18 @@ def RestrictedQLGateMassControl
     (S : AdmissibleQuasiLocalSurface data) : Prop :=
   restrictedHypotheses → QL_gate data S ≤ C * E_grav data
 
+/--
+Scalar Hawking-mass/area-radius bridge underlying the restricted gate control.
+This is a target proposition only; no geometric or analytic proof is supplied.
+-/
+def RestrictedMassCompactnessBridge
+    (restrictedHypotheses : Prop)
+    (C : ℝ)
+    (data : SelectedEinsteinMatterCauchyData)
+    (S : AdmissibleQuasiLocalSurface data) : Prop :=
+  restrictedHypotheses →
+    2 * S.hawkingMass ≤ C * E_grav data * S.areaRadius
+
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
   status : String
