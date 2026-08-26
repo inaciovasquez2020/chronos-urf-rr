@@ -254,6 +254,52 @@ def RestrictedDFMMKCFLRWMisnerSharpEnergyIdentity
         dfmMkcGeometrizedTotalEnergyDensity x
 
 /--
+Canonical geometrized Misner-Sharp mass for a round sphere on the spatially
+flat FLRW branch, `m_MS = r_A^3 H^2 / 2`.
+-/
+def dfmMkcFLRWMisnerSharpMass
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState) : ℝ :=
+  (1 / 2 : ℝ) * S.areaRadius ^ 3 * x.hubble ^ 2
+
+/--
+For the canonical flat-FLRW Misner-Sharp mass, the DFM-MKC Friedmann equation
+proves the enclosed-energy identity exactly.  This is the algebraic FLRW step;
+it does not prove the Hawking/Misner-Sharp spherical geometry identity.
+-/
+theorem dfmMkcFLRWMisnerSharpMass_eq_enclosedEnergy
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (hfriedmann :
+      x.hubble ^ 2 =
+        x.cosmologicalConstant / 3
+          + (8 * Real.pi * x.newtonG / 3) *
+            (x.visibleEnergyDensity + dfmMkcEnergyDensity x)) :
+    dfmMkcFLRWMisnerSharpMass S x =
+      (4 * Real.pi / 3) * S.areaRadius ^ 3 *
+        dfmMkcGeometrizedTotalEnergyDensity x := by
+  simp only [dfmMkcFLRWMisnerSharpMass, hfriedmann,
+    dfmMkcGeometrizedTotalEnergyDensity]
+  field_simp [Real.pi_ne_zero]
+  <;> ring
+
+/--
+The canonical flat-FLRW mass therefore supplies the previously abstract
+DFM-MKC Misner-Sharp energy bridge whenever spatial flatness is assumed.
+-/
+theorem restrictedDFMMKCFLRWMisnerSharpEnergyIdentity_for_canonicalMass
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW : Prop) :
+    RestrictedDFMMKCFLRWMisnerSharpEnergyIdentity
+      S x (dfmMkcFLRWMisnerSharpMass S x) spatiallyFlatFLRW := by
+  intro _ hfriedmann
+  exact dfmMkcFLRWMisnerSharpMass_eq_enclosedEnergy S x hfriedmann
+
+/--
 Composition theorem only: if the Hawking/Misner-Sharp spherical bridge and the
 DFM-MKC FLRW Misner-Sharp energy identity are available, then the restricted
 Hawking-mass/energy control follows.  This proves only the logical composition;
