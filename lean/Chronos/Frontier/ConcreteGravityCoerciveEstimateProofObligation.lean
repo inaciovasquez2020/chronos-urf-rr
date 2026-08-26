@@ -1,4 +1,45 @@
+import Chronos.Frontier.ConcreteGravityAnalyticEstimateReadiness
+
 namespace Chronos.Frontier
+
+/--
+The current restricted DFM-MKC comparison package does not supply an upper
+bound on `S.areaRadius`.  From any witness of the package, replacing only the
+positive area-radius field by an arbitrarily large positive value preserves all
+of the comparison hypotheses.
+
+This blocks the specific route from the proved surface-dependent coefficient
+`C(S) = (8*pi/3) * r_A^2` to a surface-independent constant unless an additional
+radius-control hypothesis is added or a different estimate removes the radius
+factor.
+-/
+theorem restrictedDFMMKCHawkingComparisonHypotheses_admits_arbitrarily_large_areaRadius
+    (data : SelectedEinsteinMatterCauchyData)
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW roundSymmetrySphere : Prop)
+    (hrestricted :
+      RestrictedDFMMKCHawkingComparisonHypotheses
+        data S x spatiallyFlatFLRW roundSymmetrySphere)
+    (R : ℝ) :
+    ∃ S' : AdmissibleQuasiLocalSurface data,
+      RestrictedDFMMKCHawkingComparisonHypotheses
+          data S' x spatiallyFlatFLRW roundSymmetrySphere ∧
+        R < S'.areaRadius := by
+  let r : ℝ := |R| + 1
+  have hr : 0 < r := by
+    dsimp [r]
+    positivity
+  let S' : AdmissibleQuasiLocalSurface data :=
+    { S with
+      areaRadius := r
+      areaRadius_pos := hr }
+  refine ⟨S', ?_, ?_⟩
+  · simpa [RestrictedDFMMKCHawkingComparisonHypotheses, S'] using hrestricted
+  · change R < r
+    dsimp [r]
+    have hRabs : R ≤ |R| := le_abs_self R
+    linarith
 
 structure ConcreteGravityCoerciveEstimateProofObligation where
   id : String
