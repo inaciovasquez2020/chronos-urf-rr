@@ -23,6 +23,21 @@ structure SelectedEinsteinMatterCauchyData where
   boundaryFluxControl : Real
   boundaryFluxControl_nonnegative : 0 ≤ boundaryFluxControl
 
+/--
+Typed admissible quasi-local surface inside one selected Cauchy datum.
+No numerical collapse functional is defined here.
+-/
+structure AdmissibleQuasiLocalSurface
+    (data : SelectedEinsteinMatterCauchyData) where
+  surfacePoint : Type
+  inclusion : surfacePoint → data.point
+  closed : Prop
+  compact : Prop
+  smooth : Prop
+  embedded : Prop
+  twoDimensional : Prop
+  spacelike : Prop
+
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
   status : String
