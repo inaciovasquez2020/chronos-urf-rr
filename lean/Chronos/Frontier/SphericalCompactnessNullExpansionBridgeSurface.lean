@@ -1,8 +1,36 @@
 import Chronos.Frontier.SphericalCollapseGateThresholdSurface
 import Chronos.Frontier.SphericalNullExpansionCriterionSurface
+import Chronos.Frontier.ConcreteGravityAnalyticEstimateReadiness
 
 namespace Chronos
 namespace Frontier
+
+/--
+Real-valued Hawking mass of a round symmetry sphere in the null-normal
+normalization `g(l,n) = -2`.
+-/
+def sphericalHawkingMassGlnNegTwo
+    (areaRadius outgoingExpansion ingoingExpansion : ℝ) : ℝ :=
+  areaRadius / 2 *
+    (1 + areaRadius ^ 2 * outgoingExpansion * ingoingExpansion / 4)
+
+/--
+Binding from the previously free `S.hawkingMass` scalar to the real round-sphere
+Hawking formula in the fixed `g(l,n) = -2` normalization.  This records the
+chosen normalization and round-sphere formula only; it does not yet derive the
+expansions from an areal-radius gradient.
+-/
+structure RealSphericalHawkingMassBinding
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (roundSymmetrySphere : Prop) where
+  outgoingExpansion : ℝ
+  ingoingExpansion : ℝ
+  round : roundSymmetrySphere
+  hawkingMass_eq :
+    S.hawkingMass =
+      sphericalHawkingMassGlnNegTwo
+        S.areaRadius outgoingExpansion ingoingExpansion
 
 /--
 Repository-native bridge input from the spherical compactness threshold
