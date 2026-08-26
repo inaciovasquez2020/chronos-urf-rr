@@ -57,6 +57,16 @@ def Flux_boundary
     (_S : AdmissibleQuasiLocalSurface data) : ℝ :=
   data.boundaryFluxControl
 
+/--
+Typed proposition for the concrete gravity coercive estimate at constant `C`.
+This states the analytic target only and supplies no proof of the inequality.
+-/
+def ConcreteGravityCoerciveEstimate
+    (C : ℝ)
+    (data : SelectedEinsteinMatterCauchyData)
+    (S : AdmissibleQuasiLocalSurface data) : Prop :=
+  QL_gate data S ≤ C * E_grav data + Flux_boundary data S
+
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
   status : String
