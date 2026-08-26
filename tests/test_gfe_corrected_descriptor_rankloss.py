@@ -78,6 +78,74 @@ def test_principal_null_direction_at_descriptor_surface() -> None:
     assert sp.factor(principal_c[0, 0] - A_c) == 0
 
 
+def test_horizon_ingoing_frobenius_leading_relation() -> None:
+    """Certify the exact leading ingoing Frobenius relation at r=2M.
+
+    With Fourier convention exp(-I*omega*t), horizon regularity in ingoing
+    Eddington-Finkelstein coordinates v=t+r_* gives the Schwarzschild-radial
+    weights
+
+        h0 ~ x^p a0,
+        h1 ~ x^(p-1) b0,
+        p = -2 I M omega,
+        b0 = 2 M a0,
+
+    where x=r-2M.  The test derives the generic leading Euler coefficients
+    from the stored exact equations, then checks that this nonzero ingoing
+    pair annihilates both leading indicial conditions.  It does not propagate
+    the branch to r_c and does not evaluate the crossing functional.
+    """
+    data = json.loads(ARTIFACT.read_text())
+    M, beta, lam, omega, r = _symbols()
+    x, p, a0, b0 = sp.symbols("x p a0 b0")
+    jets = {
+        **{f"h0r{j}": sp.symbols(f"h0r{j}") for j in range(5)},
+        **{f"h1r{j}": sp.symbols(f"h1r{j}") for j in range(5)},
+    }
+    locals_ = {
+        "M": M,
+        "beta": beta,
+        "lam": lam,
+        "omega": omega,
+        "r": r,
+        "I": sp.I,
+        **jets,
+    }
+
+    def falling(q: sp.Expr, order: int) -> sp.Expr:
+        return sp.prod(q - k for k in range(order))
+
+    jet_subs = {
+        jets[f"h0r{j}"]: a0 * falling(p, j) * x ** (-j)
+        for j in range(5)
+    }
+    jet_subs.update({
+        jets[f"h1r{j}"]: b0 * falling(p - 1, j) * x ** (-j - 1)
+        for j in range(5)
+    })
+
+    physical = {p: -2 * sp.I * M * omega, b0: 2 * M * a0}
+
+    for equation_text in data["euler_equations"]:
+        equation = sp.sympify(equation_text, locals=locals_)
+        trial = sp.together(equation.subs(r, 2 * M + x).subs(jet_subs))
+        numerator, denominator = sp.fraction(trial)
+        numerator_poly = sp.Poly(sp.expand(numerator), x)
+        denominator_poly = sp.Poly(sp.expand(denominator), x)
+
+        numerator_order = min(monomial[0] for monomial, _ in numerator_poly.terms())
+        denominator_order = min(monomial[0] for monomial, _ in denominator_poly.terms())
+        leading = sp.cancel(
+            numerator_poly.nth(numerator_order)
+            / denominator_poly.nth(denominator_order)
+        )
+
+        # The leading indicial condition is genuine before selecting the
+        # physical ingoing relation, and is killed exactly by that relation.
+        assert leading != 0
+        assert sp.factor(sp.cancel(leading.subs(physical))) == 0
+
+
 def test_backtrack_boundary_is_not_overclaimed() -> None:
     """The local certificate does not decide the horizon-selected branch.
 
