@@ -348,6 +348,48 @@ def test_horizon_special_frequency_n2_reordered_consistency() -> None:
     assert sp.factor(sp.cancel(sp.diff(log_e0, d2) - pivot)) == 0
     assert sp.factor(sp.cancel(sp.diff(plain_e0, b2) - pivot)) == 0
 
+    P = (
+        144 * M**4
+        - 30 * M**2 * beta * lam
+        + 30 * M**2 * beta
+        - 19 * beta**2 * lam
+        + 38 * beta**2
+    )
+    d2_explicit = (
+        10 * M * c2
+        + 5 * a0 * (lam - 2) * P / (36 * M * A**2)
+    )
+    d2_from_pivot = sp.cancel(-log_e0.subs(d2, 0) / sp.diff(log_e0, d2))
+    assert sp.factor(sp.cancel(d2_from_pivot - d2_explicit)) == 0
+
+    R = (
+        -86400 * M**6 * lam
+        + 116640 * M**6
+        + 22140 * M**4 * beta * lam
+        - 49212 * M**4 * beta
+        + 19350 * M**2 * beta**2 * lam**2
+        - 59970 * M**2 * beta**2 * lam
+        + 42720 * M**2 * beta**2
+        - 2675 * beta**3 * lam**2
+        + 12044 * beta**3 * lam
+        - 13604 * beta**3
+    )
+    b2_explicit = (
+        10 * M * a2
+        + 4 * M * c2
+        + a1 * P / (3 * beta * A)
+        + a0 * R / (360 * M * beta * A**2)
+    )
+    plain_after_d2 = sp.cancel(plain_e0.subs(d2, d2_explicit))
+    b2_from_pivot = sp.cancel(
+        -plain_after_d2.subs(b2, 0) / sp.diff(plain_after_d2, b2)
+    )
+    assert sp.factor(sp.cancel(b2_from_pivot - b2_explicit)) == 0
+
+    solved = {d2: d2_explicit, b2: b2_explicit}
+    for condition in reduced:
+        assert sp.factor(sp.cancel(condition.subs(solved))) == 0
+
 
 def test_backtrack_boundary_is_not_overclaimed() -> None:
     """The local certificate does not decide the horizon-selected branch.
