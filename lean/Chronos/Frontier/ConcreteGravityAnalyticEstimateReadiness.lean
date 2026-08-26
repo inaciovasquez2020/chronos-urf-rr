@@ -1,4 +1,27 @@
+import Mathlib
+
 namespace Chronos.Frontier
+
+/--
+Typed interface for the selected Einstein-matter Cauchy data used by the
+concrete gravity estimate program.  This introduces the data class only;
+`QL_gate`, `E_grav`, and `Flux_boundary` remain separate later obligations.
+-/
+structure SelectedEinsteinMatterCauchyData where
+  point : Type
+  spatialMetric : point → Fin 3 → Fin 3 → Real
+  secondFundamentalForm : point → Fin 3 → Fin 3 → Real
+  matterEnergyDensity : point → Real
+  matterMomentumDensity : point → Fin 3 → Real
+  gaugeFixed : Prop
+  einsteinMatterConstraintsSatisfied : Prop
+  regularityOrder : Nat
+  requiredRegularity : Nat
+  regularity_sufficient : requiredRegularity ≤ regularityOrder
+  curvatureEnergyControl : Real
+  curvatureEnergyControl_nonnegative : 0 ≤ curvatureEnergyControl
+  boundaryFluxControl : Real
+  boundaryFluxControl_nonnegative : 0 ≤ boundaryFluxControl
 
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
