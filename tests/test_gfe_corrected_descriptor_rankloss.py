@@ -146,6 +146,82 @@ def test_horizon_ingoing_frobenius_leading_relation() -> None:
         assert sp.factor(sp.cancel(leading.subs(physical))) == 0
 
 
+def test_horizon_ingoing_frobenius_n1_log_resonance() -> None:
+    """Test only whether an x^(p+1) log(x) term cancels the n=1 obstruction."""
+    data = json.loads(ARTIFACT.read_text())
+    M, beta, lam, omega, r = _symbols()
+    x, p, a0, b0, c1, d1, L = sp.symbols("x p a0 b0 c1 d1 L")
+    jets = {
+        **{f"h0r{j}": sp.symbols(f"h0r{j}") for j in range(5)},
+        **{f"h1r{j}": sp.symbols(f"h1r{j}") for j in range(5)},
+    }
+    locals_ = {
+        "M": M,
+        "beta": beta,
+        "lam": lam,
+        "omega": omega,
+        "r": r,
+        "I": sp.I,
+        **jets,
+    }
+
+    def falling(q: sp.Expr, order: int) -> sp.Expr:
+        return sp.prod(q - k for k in range(order))
+
+    def log_jet(q: sp.Expr, order: int) -> sp.Expr:
+        coeff = falling(q, order)
+        return coeff * L + sp.diff(coeff, p)
+
+    jet_subs = {
+        jets[f"h0r{j}"]: (
+            a0 * falling(p, j) * x ** (-j)
+            + c1 * log_jet(p + 1, j) * x ** (1 - j)
+        )
+        for j in range(5)
+    }
+    jet_subs.update({
+        jets[f"h1r{j}"]: (
+            b0 * falling(p - 1, j) * x ** (-j - 1)
+            + d1 * log_jet(p, j) * x ** (-j)
+        )
+        for j in range(5)
+    })
+
+    physical = {p: -2 * sp.I * M * omega, b0: 2 * M * a0}
+    conditions = []
+
+    for equation_text in data["euler_equations"]:
+        equation = sp.sympify(equation_text, locals=locals_)
+        trial = sp.together(equation.subs(r, 2 * M + x).subs(jet_subs))
+        numerator, denominator = sp.fraction(trial)
+        numerator_poly = sp.Poly(sp.expand(numerator), x)
+        denominator_poly = sp.Poly(sp.expand(denominator), x)
+
+        numerator_order = min(monomial[0] for monomial, _ in numerator_poly.terms())
+        denominator_order = min(monomial[0] for monomial, _ in denominator_poly.terms())
+        n0 = numerator_poly.nth(numerator_order)
+        n1 = numerator_poly.nth(numerator_order + 1)
+        d0 = denominator_poly.nth(denominator_order)
+        d1_den = denominator_poly.nth(denominator_order + 1)
+
+        leading = sp.cancel(n0 / d0)
+        next_coefficient = sp.cancel((n1 * d0 - n0 * d1_den) / d0**2)
+        assert sp.factor(sp.cancel(leading.subs(physical))) == 0
+
+        next_physical = sp.expand(sp.factor(sp.cancel(next_coefficient.subs(physical))))
+        conditions.append(sp.factor(sp.cancel(next_physical.coeff(L, 1))))
+        conditions.append(sp.factor(sp.cancel(next_physical.subs(L, 0))))
+
+    solution = sp.linsolve(conditions, (c1, d1))
+    assert solution != sp.EmptySet, f"n=1 logarithmic resonance system is inconsistent: {conditions}"
+    candidate = next(iter(solution))
+    substitutions = {c1: candidate[0], d1: candidate[1]}
+    assert all(
+        sp.factor(sp.cancel(condition.subs(substitutions, simultaneous=True))) == 0
+        for condition in conditions
+    )
+
+
 def test_backtrack_boundary_is_not_overclaimed() -> None:
     """The local certificate does not decide the horizon-selected branch.
 
