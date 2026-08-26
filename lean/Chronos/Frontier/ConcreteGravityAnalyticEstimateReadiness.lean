@@ -67,6 +67,18 @@ def ConcreteGravityCoerciveEstimate
     (S : AdmissibleQuasiLocalSurface data) : Prop :=
   QL_gate data S ≤ C * E_grav data + Flux_boundary data S
 
+/--
+Restricted quasi-local gate-to-mass control target.  The exact stationary,
+asymptotic-flatness, symmetry, sign, and decay hypotheses remain abstract here
+and must be supplied before any theorem can use this target.
+-/
+def RestrictedQLGateMassControl
+    (restrictedHypotheses : Prop)
+    (C : ℝ)
+    (data : SelectedEinsteinMatterCauchyData)
+    (S : AdmissibleQuasiLocalSurface data) : Prop :=
+  restrictedHypotheses → QL_gate data S ≤ C * E_grav data
+
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
   status : String
