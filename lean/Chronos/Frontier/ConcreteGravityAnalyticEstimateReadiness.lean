@@ -220,6 +220,78 @@ def RestrictedHawkingMassEnergyControl
     S.hawkingMass ≤
       (4 * Real.pi / 3) * S.areaRadius ^ 3 * E_grav data
 
+/--
+External spherical-geometry bridge: on a round symmetry sphere, the Hawking
+mass agrees with a selected Misner-Sharp mass.  This proposition is typed only;
+no proof of the GR identity is supplied here.
+-/
+def RestrictedHawkingMisnerSharpSphericalBridge
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (misnerSharpMass : ℝ)
+    (roundSymmetrySphere : Prop) : Prop :=
+  roundSymmetrySphere → S.hawkingMass = misnerSharpMass
+
+/--
+External DFM-MKC FLRW bridge: spatial flatness plus the repository's
+charge-reduced Friedmann equation identifies the selected Misner-Sharp mass
+with the enclosed geometrized DFM-MKC total energy of the round sphere.
+This proposition is typed only; its geometric derivation is not supplied.
+-/
+def RestrictedDFMMKCFLRWMisnerSharpEnergyIdentity
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (misnerSharpMass : ℝ)
+    (spatiallyFlatFLRW : Prop) : Prop :=
+  spatiallyFlatFLRW →
+    x.hubble ^ 2 =
+      x.cosmologicalConstant / 3
+        + (8 * Real.pi * x.newtonG / 3) *
+          (x.visibleEnergyDensity + dfmMkcEnergyDensity x) →
+    misnerSharpMass =
+      (4 * Real.pi / 3) * S.areaRadius ^ 3 *
+        dfmMkcGeometrizedTotalEnergyDensity x
+
+/--
+Composition theorem only: if the Hawking/Misner-Sharp spherical bridge and the
+DFM-MKC FLRW Misner-Sharp energy identity are available, then the restricted
+Hawking-mass/energy control follows.  This proves only the logical composition;
+it does not prove either external bridge and does not prove the unrestricted
+coercive estimate.
+-/
+theorem restrictedHawkingMassEnergyControl_of_misnerSharp_bridges
+    (data : SelectedEinsteinMatterCauchyData)
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW : Prop)
+    (roundSymmetrySphere : Prop)
+    (misnerSharpMass : ℝ)
+    (hHawking :
+      RestrictedHawkingMisnerSharpSphericalBridge
+        S misnerSharpMass roundSymmetrySphere)
+    (hMisnerSharp :
+      RestrictedDFMMKCFLRWMisnerSharpEnergyIdentity
+        S x misnerSharpMass spatiallyFlatFLRW) :
+    RestrictedHawkingMassEnergyControl
+      data S x spatiallyFlatFLRW roundSymmetrySphere := by
+  intro hrestricted
+  rcases hrestricted with
+    ⟨hflat, hround, hclosed, hcompact, hsmooth, hembedded, hfriedmann, henergy⟩
+  have hhawkingMass : S.hawkingMass = misnerSharpMass := hHawking hround
+  have hmisnerSharpEnergy :
+      misnerSharpMass =
+        (4 * Real.pi / 3) * S.areaRadius ^ 3 *
+          dfmMkcGeometrizedTotalEnergyDensity x :=
+    hMisnerSharp hflat hfriedmann
+  calc
+    S.hawkingMass = misnerSharpMass := hhawkingMass
+    _ = (4 * Real.pi / 3) * S.areaRadius ^ 3 *
+        dfmMkcGeometrizedTotalEnergyDensity x := hmisnerSharpEnergy
+    _ = (4 * Real.pi / 3) * S.areaRadius ^ 3 * E_grav data := by
+      rw [henergy]
+    _ ≤ (4 * Real.pi / 3) * S.areaRadius ^ 3 * E_grav data := le_rfl
+
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
   status : String
