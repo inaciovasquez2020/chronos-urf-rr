@@ -240,6 +240,104 @@ theorem concreteGravityCoerciveEstimate_of_preparedAlphaHubbleFloor
       (mul_le_mul_of_nonneg_right hC hE)
       (Flux_boundary data S))
 
+/--
+First wider DFM-MKC state-class interface: a positive Hubble floor with no
+prepared-alpha or redshift restriction.  This does not assert that every
+DFM-MKC state has such a floor; it isolates the exact condition under which the
+prepared-family coefficient argument extends to a broader flat-FLRW state class.
+-/
+structure DFMMKCHubbleFloor
+    (HStar : ℝ)
+    (x : RestrictedDFMMKCEnergyState) where
+  floor_positive : 0 < HStar
+  hubble_ge_floor : HStar ≤ x.hubble
+
+/-- Every prepared-alpha Hubble-floor witness supplies the wider floor data. -/
+def PreparedAlphaDFMMKCHubbleFloor.toDFMMKCHubbleFloor
+    {HStar : ℝ}
+    {x : RestrictedDFMMKCEnergyState}
+    (hfloor : PreparedAlphaDFMMKCHubbleFloor HStar x) :
+    DFMMKCHubbleFloor HStar x :=
+  { floor_positive := hfloor.floor_positive
+    hubble_ge_floor := hfloor.hubble_ge_floor }
+
+/--
+Class-wide coefficient for any DFM-MKC flat-FLRW state class sharing the same
+positive Hubble floor.
+-/
+def dfmMkcHubbleFloorCStarStar (HStar : ℝ) : ℝ :=
+  (8 * Real.pi / 3) * (1 / HStar) ^ 2
+
+/--
+A general DFM-MKC Hubble floor bounds the state-wise sub-Hubble coefficient by
+the same class-wide `C_**`.
+-/
+theorem dfmMkcExpandingFlatFLRWCStar_le_hubbleFloorCStarStar
+    (x : RestrictedDFMMKCEnergyState)
+    (HStar : ℝ)
+    (hfloor : DFMMKCHubbleFloor HStar x) :
+    dfmMkcExpandingFlatFLRWCStar x ≤
+      dfmMkcHubbleFloorCStarStar HStar := by
+  have hH : 0 < x.hubble :=
+    lt_of_lt_of_le hfloor.floor_positive hfloor.hubble_ge_floor
+  have hinv : 1 / x.hubble ≤ 1 / HStar := by
+    exact (div_le_div_iff₀ hH hfloor.floor_positive).2 (by
+      simpa using hfloor.hubble_ge_floor)
+  have hinvH0 : 0 ≤ 1 / x.hubble := by
+    positivity
+  have hinvStar0 : 0 ≤ 1 / HStar := by
+    positivity
+  have hsq : (1 / x.hubble) ^ 2 ≤ (1 / HStar) ^ 2 := by
+    have hprod :
+        0 ≤ ((1 / HStar) - (1 / x.hubble)) *
+          ((1 / HStar) + (1 / x.hubble)) :=
+      mul_nonneg (sub_nonneg.mpr hinv) (add_nonneg hinvStar0 hinvH0)
+    nlinarith
+  have hk : 0 ≤ (8 * Real.pi / 3 : ℝ) := by
+    positivity
+  unfold dfmMkcExpandingFlatFLRWCStar dfmMkcHubbleFloorCStarStar
+  exact mul_le_mul_of_nonneg_left hsq hk
+
+/--
+First wider state-class promotion: any DFM-MKC flat-FLRW state sharing the same
+positive Hubble floor satisfies the sub-Hubble spherical coercive estimate with
+one state-independent coefficient `C_**`.  The spherical and flat-FLRW bindings
+remain essential; no perturbative or nonspherical promotion is claimed.
+-/
+theorem concreteGravityCoerciveEstimate_of_dfmMkcHubbleFloor
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (G : FlatFLRWSphericalExpansionBinding
+      S x spatiallyFlatFLRW roundSymmetrySphere B)
+    (HStar : ℝ)
+    (hfloor : DFMMKCHubbleFloor HStar x)
+    (hsub : ExpandingFlatFLRWSubHubbleSphere
+      S x spatiallyFlatFLRW roundSymmetrySphere B G)
+    (hrestricted :
+      RestrictedDFMMKCHawkingComparisonHypotheses
+        data S x spatiallyFlatFLRW roundSymmetrySphere) :
+    ConcreteGravityCoerciveEstimate
+      (dfmMkcHubbleFloorCStarStar HStar) data S := by
+  have hlocal :
+      ConcreteGravityCoerciveEstimate
+        (dfmMkcExpandingFlatFLRWCStar x) data S :=
+    concreteGravityCoerciveEstimate_of_expandingFlatFLRWSubHubbleSphere
+      S x spatiallyFlatFLRW roundSymmetrySphere B G hsub hrestricted
+  have hC :
+      dfmMkcExpandingFlatFLRWCStar x ≤
+        dfmMkcHubbleFloorCStarStar HStar :=
+    dfmMkcExpandingFlatFLRWCStar_le_hubbleFloorCStarStar x HStar hfloor
+  have hE : 0 ≤ E_grav data := by
+    simpa [E_grav] using data.curvatureEnergyControl_nonnegative
+  unfold ConcreteGravityCoerciveEstimate at hlocal ⊢
+  exact hlocal.trans
+    (add_le_add_right
+      (mul_le_mul_of_nonneg_right hC hE)
+      (Flux_boundary data S))
+
 structure ConcreteGravityCoerciveEstimateProofObligation where
   id : String
   status : String
