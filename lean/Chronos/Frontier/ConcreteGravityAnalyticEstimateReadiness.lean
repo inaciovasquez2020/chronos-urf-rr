@@ -5,7 +5,7 @@ namespace Chronos.Frontier
 /--
 Typed interface for the selected Einstein-matter Cauchy data used by the
 concrete gravity estimate program.  This introduces the data class only;
-`QL_gate`, `E_grav`, and `Flux_boundary` remain separate later obligations.
+`E_grav` and `Flux_boundary` remain separate later obligations.
 -/
 structure SelectedEinsteinMatterCauchyData where
   point : Type
@@ -26,8 +26,7 @@ structure SelectedEinsteinMatterCauchyData where
 /--
 Typed admissible quasi-local surface inside one selected Cauchy datum.
 The Hawking mass and positive area-radius observables are recorded so that a
-later numerical compactness gate can be defined without adding extra arguments.
-No numerical collapse functional is defined here.
+numerical compactness gate can be defined without adding extra arguments.
 -/
 structure AdmissibleQuasiLocalSurface
     (data : SelectedEinsteinMatterCauchyData) where
@@ -42,6 +41,12 @@ structure AdmissibleQuasiLocalSurface
   hawkingMass : Real
   areaRadius : Real
   areaRadius_pos : 0 < areaRadius
+
+/-- Dimensionless quasi-local compactness gate in the normalization `2 m_H / r_A`. -/
+def QL_gate
+    (data : SelectedEinsteinMatterCauchyData)
+    (S : AdmissibleQuasiLocalSurface data) : ℝ :=
+  2 * S.hawkingMass / S.areaRadius
 
 structure ConcreteGravityAnalyticEstimateReadiness where
   id : String
