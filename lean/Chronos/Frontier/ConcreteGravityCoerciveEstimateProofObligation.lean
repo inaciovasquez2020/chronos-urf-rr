@@ -1,4 +1,4 @@
-import Chronos.Frontier.ConcreteGravityAnalyticEstimateReadiness
+import Chronos.Frontier.SphericalCompactnessNullExpansionBridgeSurface
 
 namespace Chronos.Frontier
 
@@ -40,6 +40,111 @@ theorem restrictedDFMMKCHawkingComparisonHypotheses_admits_arbitrarily_large_are
     dsimp [r]
     have hRabs : R ≤ |R| := le_abs_self R
     linarith
+
+/--
+Physically selected bounded-surface subclass for the expanding flat-FLRW branch.
+The DFM-MKC background uses the expanding Friedmann branch.  In the real
+`g(l,n) = -2` spherical normalization, requiring the ingoing null expansion to
+be nonpositive selects round spheres on or inside the flat-FLRW Hubble/apparent-
+horizon scale.  No arbitrary external radius cap is introduced.
+-/
+def ExpandingFlatFLRWSubHubbleSphere
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (_G : FlatFLRWSphericalExpansionBinding
+      S x spatiallyFlatFLRW roundSymmetrySphere B) : Prop :=
+  0 < x.hubble ∧ B.ingoingExpansion ≤ 0
+
+/--
+On the expanding flat-FLRW spherical binding, `theta_- <= 0` gives the geometric
+Hubble-radius cap `r_A <= 1/H`.
+-/
+theorem areaRadius_le_inv_hubble_of_expandingFlatFLRWSubHubbleSphere
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (G : FlatFLRWSphericalExpansionBinding
+      S x spatiallyFlatFLRW roundSymmetrySphere B)
+    (hsub : ExpandingFlatFLRWSubHubbleSphere
+      S x spatiallyFlatFLRW roundSymmetrySphere B G) :
+    S.areaRadius ≤ 1 / x.hubble := by
+  rcases hsub with ⟨hH, htheta⟩
+  rw [G.ingoing_eq] at htheta
+  unfold normalizedSphericalIngoingExpansion at htheta
+  have hscaled : 2 * (x.hubble * S.areaRadius - 1) ≤ 0 := by
+    have h := (div_le_iff₀ S.areaRadius_pos).1 htheta
+    simpa using h
+  have hHr : x.hubble * S.areaRadius ≤ 1 := by
+    nlinarith
+  apply (le_div_iff₀ hH).2
+  simpa [mul_comm] using hHr
+
+/--
+Surface-independent coefficient for a fixed expanding DFM-MKC FLRW state,
+obtained from the geometric Hubble-radius cap `R_* = 1/H`.
+-/
+def dfmMkcExpandingFlatFLRWCStar
+    (x : RestrictedDFMMKCEnergyState) : ℝ :=
+  (8 * Real.pi / 3) * (1 / x.hubble) ^ 2
+
+/--
+For the expanding sub-Hubble spherical subclass, the previously proved
+surface-dependent coefficient is bounded by the state-wise constant
+`C_* = (8*pi/3) * H^-2`.  This is surface-independent for fixed `x`; no uniform
+lower bound on `H` across all DFM-MKC states is asserted.
+-/
+theorem concreteGravityCoerciveEstimate_of_expandingFlatFLRWSubHubbleSphere
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (spatiallyFlatFLRW roundSymmetrySphere : Prop)
+    (B : RealSphericalHawkingMassBinding S roundSymmetrySphere)
+    (G : FlatFLRWSphericalExpansionBinding
+      S x spatiallyFlatFLRW roundSymmetrySphere B)
+    (hsub : ExpandingFlatFLRWSubHubbleSphere
+      S x spatiallyFlatFLRW roundSymmetrySphere B G)
+    (hrestricted :
+      RestrictedDFMMKCHawkingComparisonHypotheses
+        data S x spatiallyFlatFLRW roundSymmetrySphere) :
+    ConcreteGravityCoerciveEstimate
+      (dfmMkcExpandingFlatFLRWCStar x) data S := by
+  have hrBound : S.areaRadius ≤ 1 / x.hubble :=
+    areaRadius_le_inv_hubble_of_expandingFlatFLRWSubHubbleSphere
+      S x spatiallyFlatFLRW roundSymmetrySphere B G hsub
+  rcases hsub with ⟨hH, _⟩
+  have hr0 : 0 ≤ S.areaRadius := le_of_lt S.areaRadius_pos
+  have hInv0 : 0 ≤ 1 / x.hubble := by
+    positivity
+  have hsq : S.areaRadius ^ 2 ≤ (1 / x.hubble) ^ 2 := by
+    have hprod :
+        0 ≤ ((1 / x.hubble) - S.areaRadius) *
+          ((1 / x.hubble) + S.areaRadius) :=
+      mul_nonneg (sub_nonneg.mpr hrBound) (add_nonneg hInv0 hr0)
+    nlinarith
+  have hk : 0 ≤ (8 * Real.pi / 3 : ℝ) := by
+    positivity
+  have hC :
+      (8 * Real.pi / 3) * S.areaRadius ^ 2 ≤
+        dfmMkcExpandingFlatFLRWCStar x := by
+    unfold dfmMkcExpandingFlatFLRWCStar
+    exact mul_le_mul_of_nonneg_left hsq hk
+  have hE : 0 ≤ E_grav data := by
+    simpa [E_grav] using data.curvatureEnergyControl_nonnegative
+  have hlocal :
+      ConcreteGravityCoerciveEstimate
+        ((8 * Real.pi / 3) * S.areaRadius ^ 2) data S :=
+    concreteGravityCoerciveEstimate_of_flatFLRW_spherical_binding
+      S x spatiallyFlatFLRW roundSymmetrySphere B G hrestricted
+  unfold ConcreteGravityCoerciveEstimate at hlocal ⊢
+  exact hlocal.trans
+    (add_le_add_right
+      (mul_le_mul_of_nonneg_right hC hE)
+      (Flux_boundary data S))
 
 structure ConcreteGravityCoerciveEstimateProofObligation where
   id : String
