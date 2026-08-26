@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import warnings
-
 import sympy as sp
 
 from tests import test_gfe_corrected_descriptor_rankloss as rankloss
@@ -51,9 +49,10 @@ def test_n3_compatibility_determinant_factor_and_physical_zero_locus(monkeypatch
     assert beta_exceptional.subs(M, M_pos).is_positive is True
 
 
-def test_n3_exceptional_rank_diagnostic(monkeypatch) -> None:
-    """Expose the exceptional n=3 matrix and source for the bounded rank certificate."""
-    M, beta, _, _, _ = rankloss._symbols()
+def test_n3_exceptional_rank_one_and_surviving_compatibility(monkeypatch) -> None:
+    """Certify the exact rank-one n=3 system on beta=90*M^2/31."""
+    M, beta, lam, _, _ = rankloss._symbols()
+    a0 = sp.Symbol("a0")
     original_linear_eq_to_matrix = sp.linear_eq_to_matrix
     captured = []
 
@@ -65,6 +64,7 @@ def test_n3_exceptional_rank_diagnostic(monkeypatch) -> None:
     monkeypatch.setattr(sp, "linear_eq_to_matrix", recording_linear_eq_to_matrix)
     rankloss.test_horizon_special_frequency_n3_compatibility_rank()
     matrix, source = captured[-1]
+
     beta_exceptional = 90 * M**2 / 31
     matrix_exceptional = matrix.applyfunc(
         lambda entry: sp.factor(sp.cancel(entry.subs(beta, beta_exceptional)))
@@ -73,10 +73,35 @@ def test_n3_exceptional_rank_diagnostic(monkeypatch) -> None:
         lambda entry: sp.factor(sp.cancel(entry.subs(beta, beta_exceptional)))
     )
 
+    pivot = 1000 * lam * (lam - 2) / (961 * M)
+    expected_matrix = sp.Matrix([[0, 0], [0, pivot]])
+    assert matrix_exceptional == expected_matrix
     assert sp.factor(sp.cancel(matrix_exceptional.det())) == 0
-    assert matrix_exceptional != sp.zeros(2, 2)
-    warnings.warn(
-        "N3_EXCEPTIONAL_MATRIX=" + repr(matrix_exceptional)
-        + ";N3_EXCEPTIONAL_SOURCE=" + repr(source_exceptional),
-        stacklevel=1,
+    assert sp.factor(sp.cancel(matrix_exceptional[1, 1] - pivot)) == 0
+
+    # With M != 0, lam != 0, and lam - 2 != 0, the displayed pivot is
+    # nonzero, hence the exceptional coefficient matrix has rank exactly one.
+    assert sp.factor(pivot) == 1000 * lam * (lam - 2) / (961 * M)
+
+    compatibility = source_exceptional[0]
+    expected_compatibility = (
+        5
+        * a0
+        * lam
+        * (lam - 2) ** 2
+        * (196575 * lam - 770891)
+        / (18458888 * M**3)
     )
+    assert sp.factor(sp.cancel(compatibility - expected_compatibility)) == 0
+    assert compatibility != 0
+
+    # The zero coefficient row therefore survives as source compatibility.
+    # On the nontrivial branch a0 != 0 and under the existing lam guards,
+    # its only remaining root is lam = 770891/196575.
+    stripped = sp.cancel(
+        compatibility
+        * 18458888 * M**3
+        / (5 * a0 * lam * (lam - 2) ** 2)
+    )
+    assert sp.factor(stripped - (196575 * lam - 770891)) == 0
+    assert sp.solve(stripped, lam) == [sp.Rational(770891, 196575)]
