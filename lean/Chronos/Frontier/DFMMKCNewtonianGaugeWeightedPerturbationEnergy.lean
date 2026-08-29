@@ -81,9 +81,10 @@ theorem dfmMkcNewtonianGauge_abs_lapseTerm_le_controlEnergy
 /--
 For every fixed background state with nonzero Hubble parameter, the current
 carrier interfaces admit a lapse-only family whose analytic perturbation
-control energy exceeds any prescribed real threshold.  The witness keeps
-`epsilon = 1`, realizes `Psi` by the identically zero field with genuine zero
-derivatives, and varies only the free Newtonian lapse potential.
+control energy exceeds any prescribed real threshold.  The existential
+conclusion records explicitly that the witness has `epsilon = 1`, realizes
+`Psi` by the identically zero field with genuine zero derivatives, and varies
+only the free Newtonian lapse potential.
 
 Thus no finite bound depending only on the fixed background data can control
 this perturbation energy without an additional dynamical Einstein-matter
@@ -97,7 +98,8 @@ theorem dfmMkcNewtonianGauge_controlEnergy_unbounded_in_lapse
     (B : ℝ) :
     ∃ (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
       (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P),
-      B < dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy S x P R := by
+      P.epsilon = 1 ∧
+        B < dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy S x P R := by
   let c : ℝ := x.hubble ^ 2 * S.areaRadius ^ 3
   have hc : 0 < c := by
     dsimp [c]
@@ -142,25 +144,26 @@ theorem dfmMkcNewtonianGauge_controlEnergy_unbounded_in_lapse
     spatialPotentialAtSurface := by simp [F, P]
     arealRadius_eq := by simp
   }
-  refine ⟨P, R, ?_⟩
-  have hlower :=
-    dfmMkcNewtonianGauge_abs_lapseTerm_le_controlEnergy S x P R
-  have hscale : c * phi = |B| + 1 := by
-    dsimp [phi]
-    field_simp [hcne]
-  have hnonneg : 0 ≤ |B| + 1 := by positivity
-  have hlapse :
-      |-x.hubble ^ 2 * S.areaRadius ^ 3 * P.newtonianLapsePotential| =
-        |B| + 1 := by
-    change |-x.hubble ^ 2 * S.areaRadius ^ 3 * phi| = |B| + 1
-    rw [show -x.hubble ^ 2 * S.areaRadius ^ 3 * phi = -(c * phi) by
-      dsimp [c]
-      ring]
-    rw [abs_neg, hscale, abs_of_nonneg hnonneg]
-  rw [hlapse] at hlower
-  have hB : B < |B| + 1 := by
-    have hle : B ≤ |B| := le_abs_self B
-    linarith
-  exact lt_of_lt_of_le hB hlower
+  refine ⟨P, R, ?_, ?_⟩
+  · rfl
+  · have hlower :=
+      dfmMkcNewtonianGauge_abs_lapseTerm_le_controlEnergy S x P R
+    have hscale : c * phi = |B| + 1 := by
+      dsimp [phi]
+      field_simp [hcne]
+    have hnonneg : 0 ≤ |B| + 1 := by positivity
+    have hlapse :
+        |-x.hubble ^ 2 * S.areaRadius ^ 3 * P.newtonianLapsePotential| =
+          |B| + 1 := by
+      change |-x.hubble ^ 2 * S.areaRadius ^ 3 * phi| = |B| + 1
+      rw [show -x.hubble ^ 2 * S.areaRadius ^ 3 * phi = -(c * phi) by
+        dsimp [c]
+        ring]
+      rw [abs_neg, hscale, abs_of_nonneg hnonneg]
+    rw [hlapse] at hlower
+    have hB : B < |B| + 1 := by
+      have hle : B ≤ |B| := le_abs_self B
+      linarith
+    exact lt_of_lt_of_le hB hlower
 
 end Chronos.Frontier
