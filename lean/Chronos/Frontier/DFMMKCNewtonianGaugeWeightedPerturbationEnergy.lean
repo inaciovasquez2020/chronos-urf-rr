@@ -47,4 +47,35 @@ theorem dfmMkcNewtonianGaugeGateWeightedPerturbationNorm_le_controlEnergy
       dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy S x P R := by
   rfl
 
+/--
+The lapse-potential contribution is a necessary component of the analytic
+perturbation control energy.  Consequently any future absorption estimate for
+the full control energy must, in particular, control this term; no linearized
+Einstein or matter equation is assumed here.
+-/
+theorem dfmMkcNewtonianGauge_abs_lapseTerm_le_controlEnergy
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P) :
+    |-x.hubble ^ 2 * S.areaRadius ^ 3 * P.newtonianLapsePotential| ≤
+      dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy S x P R := by
+  unfold dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy
+    dfmMkcNewtonianGaugeGateWeightedPerturbationNorm
+  have hrad :
+      0 ≤ |S.areaRadius ^ 2 *
+        R.toSphericalPotentialDerivatives.physicalRadialDerivative| :=
+    abs_nonneg _
+  have htime :
+      0 ≤ |-x.hubble * S.areaRadius ^ 3 *
+        R.toSphericalPotentialDerivatives.cosmicTimeDerivative| :=
+    abs_nonneg _
+  have hpsi :
+      0 ≤ |(S.hawkingMass -
+        (3 / 2 : ℝ) * x.hubble ^ 2 * S.areaRadius ^ 3) *
+        (R.spatialPotentialField.potential R.cosmicTime R.comovingRadius)| :=
+    abs_nonneg _
+  linarith
+
 end Chronos.Frontier
