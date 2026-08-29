@@ -78,4 +78,89 @@ theorem dfmMkcNewtonianGauge_abs_lapseTerm_le_controlEnergy
     abs_nonneg _
   linarith
 
+/--
+For every fixed background state with nonzero Hubble parameter, the current
+carrier interfaces admit a lapse-only family whose analytic perturbation
+control energy exceeds any prescribed real threshold.  The witness keeps
+`epsilon = 1`, realizes `Psi` by the identically zero field with genuine zero
+derivatives, and varies only the free Newtonian lapse potential.
+
+Thus no finite bound depending only on the fixed background data can control
+this perturbation energy without an additional dynamical Einstein-matter
+hypothesis tying the lapse potential to the background energy.
+-/
+theorem dfmMkcNewtonianGauge_controlEnergy_unbounded_in_lapse
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (hH : x.hubble ≠ 0)
+    (B : ℝ) :
+    ∃ (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+      (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P),
+      B < dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy S x P R := by
+  let c : ℝ := x.hubble ^ 2 * S.areaRadius ^ 3
+  have hc : 0 < c := by
+    dsimp [c]
+    exact mul_pos (sq_pos_of_ne_zero hH) (pow_pos S.areaRadius_pos 3)
+  have hcne : c ≠ 0 := ne_of_gt hc
+  let phi : ℝ := (|B| + 1) / c
+  let P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x := {
+    epsilon := 1
+    epsilon_abs_le_one := by norm_num
+    waveNumberSquared := 0
+    waveNumberSquared_nonnegative := by norm_num
+    newtonianLapsePotential := phi
+    newtonianSpatialPotential := 0
+    newtonianSpatialPotentialTimeDerivative := 0
+    areaRadiusCorrection := 0
+    outgoingExpansionCorrection := 0
+    ingoingExpansionCorrection := 0
+    hawkingMassCorrection := 0
+    perturbedAreaRadius := S.areaRadius
+    perturbedOutgoingExpansion := 0
+    perturbedIngoingExpansion := 0
+    perturbedHawkingMass := 0
+    perturbedAreaRadius_eq := by simp
+    perturbedAreaRadius_pos := S.areaRadius_pos
+  }
+  let F : DFMMKCNewtonianGaugeSphericalPotentialField := {
+    potential := fun _ _ => 0
+    cosmicTimeDerivative := fun _ _ => 0
+    comovingRadialDerivative := fun _ _ => 0
+    hasCosmicTimeDerivative := by
+      intro t χ
+      simpa using (hasDerivAt_const (x := t) (c := (0 : ℝ)))
+    hasComovingRadialDerivative := by
+      intro t χ
+      simpa using (hasDerivAt_const (x := χ) (c := (0 : ℝ)))
+  }
+  let R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P := {
+    spatialPotentialField := F
+    cosmicTime := 0
+    comovingRadius := 0
+    arealRadius := 0
+    spatialPotentialAtSurface := by simp [F, P]
+    arealRadius_eq := by simp
+  }
+  refine ⟨P, R, ?_⟩
+  have hlower :=
+    dfmMkcNewtonianGauge_abs_lapseTerm_le_controlEnergy S x P R
+  have hscale : c * phi = |B| + 1 := by
+    dsimp [phi]
+    field_simp [hcne]
+  have hnonneg : 0 ≤ |B| + 1 := by positivity
+  have hlapse :
+      |-x.hubble ^ 2 * S.areaRadius ^ 3 * P.newtonianLapsePotential| =
+        |B| + 1 := by
+    change |-x.hubble ^ 2 * S.areaRadius ^ 3 * phi| = |B| + 1
+    rw [show -x.hubble ^ 2 * S.areaRadius ^ 3 * phi = -(c * phi) by
+      dsimp [c]
+      ring]
+    rw [abs_neg, hscale, abs_of_nonneg hnonneg]
+  rw [hlapse] at hlower
+  have hB : B < |B| + 1 := by
+    have hle : B ≤ |B| := le_abs_self B
+    linarith
+  exact lt_of_lt_of_le hB hlower
+
 end Chronos.Frontier
