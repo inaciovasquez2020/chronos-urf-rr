@@ -1,4 +1,4 @@
-import Chronos.Frontier.DFMMKCNewtonianGaugeGateErrorBound
+import Chronos.Frontier.DFMMKCNewtonianGaugeSharpGateNorm
 
 namespace Chronos.Frontier
 
