@@ -263,7 +263,7 @@ structure DFMMKCNewtonianGaugeRadialMomentumRecoveryBinding
     (C : DFMMKCNewtonianGaugeMomentumConstraintConvention)
     (L : DFMMKCNewtonianGaugeRadialMomentumConstraintLaw S x P R C) where
   anchorRadius : ℝ
-  anchor_le_surface : anchorRadius ≤ R.arealRadius
+  anchor_le_surface : anchorRadius ≤ S.areaRadius
   radialDerivative : ℝ → ℝ
   radialSource : ℝ → ℝ
   hasRadialDerivativeWithin :
