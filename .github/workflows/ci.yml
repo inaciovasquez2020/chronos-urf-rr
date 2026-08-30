@@ -18,6 +18,11 @@ jobs:
           elan default leanprover/lean4:stable
           lake --version
 
+      - name: Fetch mathlib cache
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake exe cache get || true
+
       - name: Build Lean project
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
