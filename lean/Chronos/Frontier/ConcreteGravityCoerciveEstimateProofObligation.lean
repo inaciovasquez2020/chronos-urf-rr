@@ -288,7 +288,7 @@ theorem dfmMkcExpandingFlatFLRWCStar_le_hubbleFloorCStarStar
   have hinvH0 : 0 ≤ 1 / x.hubble := by
     positivity
   have hinvStar0 : 0 ≤ 1 / HStar := by
-    positivity
+    exact div_nonneg (by norm_num) (le_of_lt hfloor.floor_positive)
   have hsq : (1 / x.hubble) ^ 2 ≤ (1 / HStar) ^ 2 := by
     have hprod :
         0 ≤ ((1 / HStar) - (1 / x.hubble)) *
