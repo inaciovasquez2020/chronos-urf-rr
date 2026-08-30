@@ -8,7 +8,7 @@ first-order gate numerator and in the scalar Einstein momentum constraint.
 No Einstein equation is assumed here; this is only the coefficient-exact
 algebraic combination already present in the gate numerator.
 -/
-def dfmMkcNewtonianGaugeMomentumCombination
+noncomputable def dfmMkcNewtonianGaugeMomentumCombination
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
