@@ -168,7 +168,7 @@ Class-wide coefficient supplied by a common prepared-family Hubble floor.
 For fixed `HStar`, this coefficient is independent of both the state `x` and the
 surface `S`.
 -/
-def dfmMkcPreparedAlphaCStarStar (HStar : ℝ) : ℝ :=
+noncomputable def dfmMkcPreparedAlphaCStarStar (HStar : ℝ) : ℝ :=
   (8 * Real.pi / 3) * (1 / HStar) ^ 2
 
 /--
