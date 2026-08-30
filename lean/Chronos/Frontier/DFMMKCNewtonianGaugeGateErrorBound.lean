@@ -69,7 +69,7 @@ No scalar/vector/matter perturbation slot absent from that numerator is added,
 and the `Psi` coefficient is combined exactly with the background Hawking mass
 rather than bounded twice.
 -/
-def dfmMkcNewtonianGaugeGateWeightedPerturbationNorm
+noncomputable def dfmMkcNewtonianGaugeGateWeightedPerturbationNorm
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
