@@ -10,7 +10,7 @@ replaced by the explicit positive background-radius lower bound
 
 This is valid under the already-used strict relative-radius smallness condition.
 -/
-def dfmMkcNewtonianGaugeBackgroundRadiusWeightedGateErrorBound
+noncomputable def dfmMkcNewtonianGaugeBackgroundRadiusWeightedGateErrorBound
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
