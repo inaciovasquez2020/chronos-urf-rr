@@ -33,7 +33,7 @@ structure RealSphericalHawkingMassBinding
         S.areaRadius outgoingExpansion ingoingExpansion
 
 /-- Outgoing null expansion `theta_+ = 2 l(r_A) / r_A`. -/
-def normalizedSphericalOutgoingExpansion
+noncomputable def normalizedSphericalOutgoingExpansion
     (areaRadius outgoingArealDerivative : ℝ) : ℝ :=
   2 * outgoingArealDerivative / areaRadius
 
