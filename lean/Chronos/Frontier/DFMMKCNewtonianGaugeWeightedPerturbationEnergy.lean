@@ -149,6 +149,7 @@ theorem dfmMkcNewtonianGauge_controlEnergy_unbounded_in_lapse
     spatialPotentialField := F
     cosmicTime := 0
     comovingRadius := 0
+    spatialPotential_eq := by simp [F, P]
   }
   refine ⟨P, R, ?_, ?_⟩
   · rfl
