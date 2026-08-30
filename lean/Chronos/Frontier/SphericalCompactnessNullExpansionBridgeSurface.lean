@@ -71,7 +71,7 @@ theorem normalizedSphericalExpansionProduct_eq_neg_arealGradientNormSq
   <;> ring
 
 /-- Geometrized Misner-Sharp mass written through the areal-gradient norm. -/
-def sphericalMisnerSharpMassFromArealGradient
+noncomputable def sphericalMisnerSharpMassFromArealGradient
     (areaRadius arealGradientNormSq : ℝ) : ℝ :=
   areaRadius / 2 * (1 - arealGradientNormSq)
 
