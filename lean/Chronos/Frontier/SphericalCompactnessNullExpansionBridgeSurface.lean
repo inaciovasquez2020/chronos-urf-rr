@@ -38,7 +38,7 @@ noncomputable def normalizedSphericalOutgoingExpansion
   2 * outgoingArealDerivative / areaRadius
 
 /-- Ingoing null expansion `theta_- = 2 n(r_A) / r_A`. -/
-def normalizedSphericalIngoingExpansion
+noncomputable def normalizedSphericalIngoingExpansion
     (areaRadius ingoingArealDerivative : ℝ) : ℝ :=
   2 * ingoingArealDerivative / areaRadius
 
