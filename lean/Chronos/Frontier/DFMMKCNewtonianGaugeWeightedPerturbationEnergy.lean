@@ -243,7 +243,7 @@ theorem dfmMkcNewtonianGauge_radialMomentumProfile_surfaceValue
     (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
     (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P)
     (Q : DFMMKCNewtonianGaugeMomentumCombinationRadialProfile S x P R) :
-    Q.profile R.arealRadius =
+    Q.profile S.areaRadius =
       dfmMkcNewtonianGaugeMomentumCombination S x P R := by
   exact Q.surfaceValue_eq
 
