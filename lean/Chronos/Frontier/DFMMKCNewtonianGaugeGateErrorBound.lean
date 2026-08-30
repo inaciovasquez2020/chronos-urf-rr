@@ -144,7 +144,7 @@ theorem abs_hawkingVariation_add_massPsi_le_weightedPerturbationNorm
     ring
   rw [hrepr]
   calc
-    |a + b + c + d| ≤ |a + b + c| + |d| := abs_add _ _
+    |a + b + c + d| ≤ |a + b + c| + |d| := abs_add_le _ _
     _ ≤ (|a + b| + |c|) + |d| := by
       exact add_le_add_right (abs_add _ _) _
     _ ≤ ((|a| + |b|) + |c|) + |d| := by
