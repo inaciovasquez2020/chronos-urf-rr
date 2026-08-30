@@ -44,7 +44,9 @@ theorem dfmMkcNewtonianGaugeWeightedGateErrorBound_le_backgroundRadiusBound
       dfmMkcNewtonianGaugeGateWeightedPerturbationNorm S x P R
   have hnum : 0 ≤ numerator := by
     dsimp [numerator]
-    positivity
+    exact mul_nonneg
+      (mul_nonneg (show (0 : ℝ) ≤ 2 by norm_num) (abs_nonneg P.epsilon))
+      (dfmMkcNewtonianGaugeGateWeightedPerturbationNorm_nonnegative S x P R)
   unfold dfmMkcNewtonianGaugeWeightedGateErrorBound
     dfmMkcNewtonianGaugeBackgroundRadiusWeightedGateErrorBound
   change numerator / P.perturbedAreaRadius ≤
