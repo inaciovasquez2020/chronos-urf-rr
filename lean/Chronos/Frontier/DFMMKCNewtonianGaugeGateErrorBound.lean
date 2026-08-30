@@ -146,7 +146,7 @@ theorem abs_hawkingVariation_add_massPsi_le_weightedPerturbationNorm
   calc
     |a + b + c + d| ≤ |a + b + c| + |d| := abs_add_le _ _
     _ ≤ (|a + b| + |c|) + |d| := by
-      exact add_le_add_right (abs_add_le _ _) _
+      exact add_le_add_right (abs_add_le (a + b) c) |d|
     _ ≤ ((|a| + |b|) + |c|) + |d| := by
       exact add_le_add_right (add_le_add_right (abs_add _ _) _) _
     _ = dfmMkcNewtonianGaugeGateWeightedPerturbationNorm S x P R := by
