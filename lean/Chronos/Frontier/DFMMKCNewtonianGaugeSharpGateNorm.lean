@@ -187,4 +187,106 @@ theorem dfmMkcNewtonianGauge_abs_momentumGateTerm_eq_boundSource
             B.spatialDirection)| := by
   rw [B.momentumCombination_eq_source]
 
+/--
+A momentum-constraint convention fixes the two pieces that were previously
+collapsed into the free `coupling`: the source sign and normalization.  The
+sign is required to be one of the two orientation conventions `+1` or `-1`.
+The normalization is explicit data because the present Cauchy carrier does not
+encode a Newton constant or a geometrized-unit convention.
+-/
+structure DFMMKCNewtonianGaugeMomentumConstraintConvention where
+  sourceSign : ℝ
+  normalization : ℝ
+  sourceSign_fixed : sourceSign = 1 ∨ sourceSign = -1
+
+/-- The coefficient fixed by a chosen momentum-constraint convention. -/
+def DFMMKCNewtonianGaugeMomentumConstraintConvention.coupling
+    (C : DFMMKCNewtonianGaugeMomentumConstraintConvention) : ℝ :=
+  C.sourceSign * C.normalization
+
+/--
+Typed radial projection of the already-existing matter momentum density at a
+chosen point of the admissible quasi-local surface.
+-/
+structure DFMMKCRadialMomentumProjection
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data) where
+  surfacePoint : S.surfacePoint
+  radialDirection : Fin 3
+
+/-- Evaluate the typed matter momentum density in the selected radial direction. -/
+def DFMMKCRadialMomentumProjection.source
+    {data : SelectedEinsteinMatterCauchyData}
+    {S : AdmissibleQuasiLocalSurface data}
+    (Q : DFMMKCRadialMomentumProjection S) : ℝ :=
+  data.matterMomentumDensity
+    (S.inclusion Q.surfacePoint)
+    Q.radialDirection
+
+/--
+Repository-native linearized Einstein-matter momentum-constraint law for the
+current Newtonian-gauge carrier.  Unlike the earlier generic binding, the
+coefficient is not a free field: it is fixed by an explicit sign/normalization
+convention, and the source is reached through a typed radial projection.
+
+This structure is the exact dynamical law object; constructing an instance is
+still the physical Einstein-matter obligation.  No instance is fabricated from
+`einsteinMatterConstraintsSatisfied` alone.
+-/
+structure DFMMKCNewtonianGaugeLinearizedMomentumConstraintLaw
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P)
+    (C : DFMMKCNewtonianGaugeMomentumConstraintConvention) where
+  projection : DFMMKCRadialMomentumProjection S
+  gaugeFixed : data.gaugeFixed
+  constraintsSatisfied : data.einsteinMatterConstraintsSatisfied
+  momentumConstraint_eq_radialSource :
+    dfmMkcNewtonianGaugeMomentumCombination S x P R =
+      C.coupling * projection.source
+
+/--
+The fixed-convention law specializes canonically to the previous generic
+binding, with no remaining free coefficient.
+-/
+def DFMMKCNewtonianGaugeLinearizedMomentumConstraintLaw.toBinding
+    {data : SelectedEinsteinMatterCauchyData}
+    {S : AdmissibleQuasiLocalSurface data}
+    {x : RestrictedDFMMKCEnergyState}
+    {P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x}
+    {R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P}
+    {C : DFMMKCNewtonianGaugeMomentumConstraintConvention}
+    (L : DFMMKCNewtonianGaugeLinearizedMomentumConstraintLaw S x P R C) :
+    DFMMKCNewtonianGaugeMomentumConstraintBinding S x P R :=
+  {
+    surfacePoint := L.projection.surfacePoint
+    spatialDirection := L.projection.radialDirection
+    coupling := C.coupling
+    gaugeFixed := L.gaugeFixed
+    constraintsSatisfied := L.constraintsSatisfied
+    momentumCombination_eq_source := by
+      simpa [DFMMKCRadialMomentumProjection.source] using
+        L.momentumConstraint_eq_radialSource
+  }
+
+/--
+With a fixed-convention momentum law, the gate's momentum term rewrites
+exactly to the typed radial matter source.
+-/
+theorem dfmMkcNewtonianGauge_abs_momentumGateTerm_eq_fixedRadialSource
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P)
+    (C : DFMMKCNewtonianGaugeMomentumConstraintConvention)
+    (L : DFMMKCNewtonianGaugeLinearizedMomentumConstraintLaw S x P R C) :
+    |-x.hubble * S.areaRadius ^ 3 *
+        dfmMkcNewtonianGaugeMomentumCombination S x P R| =
+      |-x.hubble * S.areaRadius ^ 3 *
+        (C.coupling * L.projection.source)| := by
+  rw [L.momentumConstraint_eq_radialSource]
+
 end Chronos.Frontier
