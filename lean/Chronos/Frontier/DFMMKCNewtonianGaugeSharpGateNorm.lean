@@ -22,7 +22,7 @@ Sharper coefficient-exact gate norm obtained by keeping
 `PsiDot + H Phi` together instead of applying the triangle inequality to its
 two summands separately.
 -/
-def dfmMkcNewtonianGaugeGateSharpPerturbationNorm
+noncomputable def dfmMkcNewtonianGaugeGateSharpPerturbationNorm
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
