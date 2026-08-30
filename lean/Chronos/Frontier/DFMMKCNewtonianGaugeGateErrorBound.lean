@@ -7,7 +7,7 @@ Closed first-order Hawking-mass variation after substituting the spherical
 Newtonian-gauge areal-radius and null-expansion corrections into the already
 proved differential of the round-sphere Hawking formula.
 -/
-def dfmMkcNewtonianGaugeClosedHawkingMassFirstVariation
+noncomputable def dfmMkcNewtonianGaugeClosedHawkingMassFirstVariation
     (areaRadius hubble lapsePotential spatialPotential
       spatialPotentialCosmicTimeDerivative
       spatialPotentialPhysicalRadialDerivative : ℝ) : ℝ :=
