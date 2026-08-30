@@ -8,7 +8,7 @@ perturbed gate after substituting
 `R_epsilon = R (1 - epsilon Psi)` and
 `m_epsilon = m + epsilon delta m`.
 -/
-def dfmMkcNewtonianGaugeFirstOrderGateCorrection
+noncomputable def dfmMkcNewtonianGaugeFirstOrderGateCorrection
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
