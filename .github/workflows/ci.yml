@@ -23,6 +23,11 @@ jobs:
           export PATH="$HOME/.elan/bin:$PATH"
           lake build
 
+      - name: Audit gravity theorem axioms
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake env lean lean/GravityAxiomAudit.lean
+
       - name: Verify operator norm perturbation boundary
         run: python3 tools/verifier/verify_operator_norm_perturbation_boundary.py
 
