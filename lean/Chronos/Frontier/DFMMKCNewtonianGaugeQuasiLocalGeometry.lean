@@ -257,7 +257,7 @@ The previously used evaluated derivative carrier is recovered canonically from
 an actual field realization.  Its radial entry is the physical, not comoving,
 derivative, matching the convention already used in the null-expansion proof.
 -/
-def DFMMKCNewtonianGaugePerturbationFieldRealization.toSphericalPotentialDerivatives
+noncomputable def DFMMKCNewtonianGaugePerturbationFieldRealization.toSphericalPotentialDerivatives
     {data : SelectedEinsteinMatterCauchyData}
     {S : AdmissibleQuasiLocalSurface data}
     {x : RestrictedDFMMKCEnergyState}
