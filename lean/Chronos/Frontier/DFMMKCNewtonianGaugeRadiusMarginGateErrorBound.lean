@@ -183,9 +183,10 @@ theorem dfmMkcPerturbedCoerciveEstimate_of_hubbleFloor_newtonianGauge_margin
     dfmMkcNewtonianGaugeWeightedGateErrorBound_le_marginBound
       S x P A R qStar M
   unfold DFMMKCPerturbedCoerciveEstimate at hraw ⊢
-  exact hraw.trans
-    (add_le_add_left herr
-      (dfmMkcHubbleFloorCStarStar HStar * E_grav data
-        + Flux_boundary data S))
+  exact hraw.trans (by
+    simpa [add_comm] using
+      (add_le_add_left herr
+        (dfmMkcHubbleFloorCStarStar HStar * E_grav data
+          + Flux_boundary data S)))
 
 end Chronos.Frontier
