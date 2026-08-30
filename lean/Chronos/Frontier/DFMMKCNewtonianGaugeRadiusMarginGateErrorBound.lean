@@ -49,7 +49,7 @@ pointwise perturbation size:
 
 `R_A * (1 - qStar)`.
 -/
-def dfmMkcNewtonianGaugeMarginWeightedGateErrorBound
+noncomputable def dfmMkcNewtonianGaugeMarginWeightedGateErrorBound
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
