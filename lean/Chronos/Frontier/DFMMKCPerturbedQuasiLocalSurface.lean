@@ -52,7 +52,7 @@ structure DFMMKCPerturbedQuasiLocalSurfaceCarrier
 Areal-gradient scalar reconstructed from real spherical null expansions in the
 fixed `g(l,n) = -2` normalization.
 -/
-def sphericalArealGradientNormSqFromExpansions
+noncomputable def sphericalArealGradientNormSqFromExpansions
     (areaRadius outgoingExpansion ingoingExpansion : ℝ) : ℝ :=
   -(areaRadius ^ 2 * outgoingExpansion * ingoingExpansion / 4)
 
