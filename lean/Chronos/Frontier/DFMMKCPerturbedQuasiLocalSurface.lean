@@ -57,7 +57,7 @@ noncomputable def sphericalArealGradientNormSqFromExpansions
   -(areaRadius ^ 2 * outgoingExpansion * ingoingExpansion / 4)
 
 /-- First variation of `r_A^2 * theta_+ * theta_- / 4`. -/
-def sphericalExpansionProductFirstVariation
+noncomputable def sphericalExpansionProductFirstVariation
     (areaRadius outgoingExpansion ingoingExpansion
       areaRadiusCorrection outgoingExpansionCorrection
       ingoingExpansionCorrection : ℝ) : ℝ :=
