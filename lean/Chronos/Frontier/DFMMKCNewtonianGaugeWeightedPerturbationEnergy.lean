@@ -113,7 +113,6 @@ theorem dfmMkcNewtonianGauge_controlEnergy_unbounded_in_lapse
     waveNumberSquared_nonnegative := by norm_num
     newtonianLapsePotential := phi
     newtonianSpatialPotential := 0
-    newtonianSpatialPotentialTimeDerivative := 0
     areaRadiusCorrection := 0
     outgoingExpansionCorrection := 0
     ingoingExpansionCorrection := 0
