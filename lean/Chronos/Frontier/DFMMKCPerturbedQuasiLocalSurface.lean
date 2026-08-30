@@ -269,9 +269,23 @@ theorem firstOrderPerturbedHawkingMass_stability_le
         P.ingoingExpansionCorrection| := by
   rw [firstOrderPerturbedHawkingMass_stability_eq
     S x roundSymmetrySphere B P H]
-  exact mul_le_mul_of_nonneg_right
-    P.epsilon_abs_le_one
-    (abs_nonneg _)
+  calc
+    |P.epsilon| *
+        |sphericalHawkingMassFirstVariation
+          S.areaRadius B.outgoingExpansion B.ingoingExpansion
+          P.areaRadiusCorrection P.outgoingExpansionCorrection
+          P.ingoingExpansionCorrection| ≤
+      1 *
+        |sphericalHawkingMassFirstVariation
+          S.areaRadius B.outgoingExpansion B.ingoingExpansion
+          P.areaRadiusCorrection P.outgoingExpansionCorrection
+          P.ingoingExpansionCorrection| :=
+      mul_le_mul_of_nonneg_right P.epsilon_abs_le_one (abs_nonneg _)
+    _ =
+        |sphericalHawkingMassFirstVariation
+          S.areaRadius B.outgoingExpansion B.ingoingExpansion
+          P.areaRadiusCorrection P.outgoingExpansionCorrection
+          P.ingoingExpansionCorrection| := by ring
 
 /-- First-order quasi-local gate carried by the perturbed spherical surface. -/
 def DFMMKCPerturbedQLGate
