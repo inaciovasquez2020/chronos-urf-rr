@@ -21,7 +21,7 @@ jobs:
       - name: Build Lean project
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
-          lake build
+          lake build Chronos
 
       - name: Verify operator norm perturbation boundary
         run: python3 tools/verifier/verify_operator_norm_perturbation_boundary.py
