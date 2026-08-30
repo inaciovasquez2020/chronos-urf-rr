@@ -68,7 +68,7 @@ noncomputable def sphericalExpansionProductFirstVariation
 
 /--
 First variation of the round-sphere Hawking mass
-`m_H = r_A/2 + r_A^3 theta_+ theta_-/8`.
+`m_H = r_A/2 + r_A^3 theta_+ theta_- / 8`.
 -/
 def sphericalHawkingMassFirstVariation
     (areaRadius outgoingExpansion ingoingExpansion
