@@ -42,7 +42,7 @@ structure AdmissibleQuasiLocalSurface
   areaRadius_pos : 0 < areaRadius
 
 /-- Dimensionless quasi-local compactness gate in the normalization `2 m_H / r_A`. -/
-def QL_gate
+noncomputable def QL_gate
     (data : SelectedEinsteinMatterCauchyData)
     (S : AdmissibleQuasiLocalSurface data) : ℝ :=
   2 * S.hawkingMass / S.areaRadius
