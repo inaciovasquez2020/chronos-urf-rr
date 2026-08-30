@@ -131,7 +131,7 @@ theorem dfmMkcNewtonianGaugeGateSharpPerturbationNorm_le_weighted
             P.newtonianLapsePotential) by
       unfold dfmMkcNewtonianGaugeMomentumCombination
       ring]
-    exact abs_add _ _
+    exact abs_add_le _ _
   unfold dfmMkcNewtonianGaugeGateSharpPerturbationNorm
     dfmMkcNewtonianGaugeGateWeightedPerturbationNorm
   linarith
