@@ -13,7 +13,7 @@ This is an analytic control quantity, not a claim of a separately conserved
 stress-energy.  Its weights are exactly those already present in the proved
 quasi-local gate numerator bound.
 -/
-def dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy
+noncomputable def dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
