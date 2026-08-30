@@ -256,7 +256,7 @@ structure DFMMKCHubbleFloor
 /-- Every prepared-alpha Hubble-floor witness supplies the wider floor data. -/
 def PreparedAlphaDFMMKCHubbleFloor.toDFMMKCHubbleFloor
     {HStar : ℝ}
-    {x : RestrictedDFMMKCEnergyState)
+    {x : RestrictedDFMMKCEnergyState}
     (hfloor : PreparedAlphaDFMMKCHubbleFloor HStar x) :
     DFMMKCHubbleFloor HStar x :=
   { floor_positive := hfloor.floor_positive
