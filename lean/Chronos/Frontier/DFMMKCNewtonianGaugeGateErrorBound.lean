@@ -149,7 +149,7 @@ theorem abs_hawkingVariation_add_massPsi_le_weightedPerturbationNorm
       simpa [add_comm] using
         (add_le_add_right (abs_add_le (a + b) c) |d|)
     _ ≤ ((|a| + |b|) + |c|) + |d| := by
-      exact add_le_add_right (add_le_add_right (abs_add _ _) _) _
+      linarith [abs_add_le a b]
     _ = dfmMkcNewtonianGaugeGateWeightedPerturbationNorm S x P R := by
       rfl
 
