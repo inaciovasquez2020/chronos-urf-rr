@@ -158,7 +158,7 @@ Norm-based gate error.  The multiplicative factor is the exact positive
 perturbed-radius factor `2 |epsilon| / R_epsilon`; no additional denominator
 loss is introduced.
 -/
-def dfmMkcNewtonianGaugeWeightedGateErrorBound
+noncomputable def dfmMkcNewtonianGaugeWeightedGateErrorBound
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
