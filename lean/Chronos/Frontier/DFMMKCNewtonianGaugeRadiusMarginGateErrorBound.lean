@@ -80,7 +80,8 @@ theorem dfmMkcNewtonianGaugeBackgroundRadiusBound_le_marginBound
       dfmMkcNewtonianGaugeGateWeightedPerturbationNorm S x P R
   have hnum : 0 ≤ numerator := by
     dsimp [numerator]
-    positivity
+    exact mul_nonneg (by positivity)
+      (dfmMkcNewtonianGaugeGateWeightedPerturbationNorm_nonnegative S x P R)
   have hsmall :
       dfmMkcNewtonianGaugeRelativeRadiusPerturbation S x P < 1 :=
     dfmMkcNewtonianGaugeRelativeRadiusMargin_implies_small
