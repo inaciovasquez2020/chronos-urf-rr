@@ -267,7 +267,7 @@ def PreparedAlphaDFMMKCHubbleFloor.toDFMMKCHubbleFloor
 Class-wide coefficient for any DFM-MKC flat-FLRW state class sharing the same
 positive Hubble floor.
 -/
-def dfmMkcHubbleFloorCStarStar (HStar : ℝ) : ℝ :=
+noncomputable def dfmMkcHubbleFloorCStarStar (HStar : ℝ) : ℝ :=
   (8 * Real.pi / 3) * (1 / HStar) ^ 2
 
 /--
