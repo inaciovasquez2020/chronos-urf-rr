@@ -171,7 +171,7 @@ Geometrized total FLRW energy density used by the `2m/r` normalization:
 This is the restricted meaning assigned to `E_grav`; it is not ADM or Bondi
 mass and does not alter the general `E_grav` interface outside this branch.
 -/
-def dfmMkcGeometrizedTotalEnergyDensity
+noncomputable def dfmMkcGeometrizedTotalEnergyDensity
     (x : RestrictedDFMMKCEnergyState) : ℝ :=
   x.newtonG * (x.visibleEnergyDensity + dfmMkcEnergyDensity x)
     + x.cosmologicalConstant / (8 * Real.pi)
