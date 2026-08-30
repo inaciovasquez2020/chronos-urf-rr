@@ -9,7 +9,7 @@ namespace Frontier
 Real-valued Hawking mass of a round symmetry sphere in the null-normal
 normalization `g(l,n) = -2`.
 -/
-def sphericalHawkingMassGlnNegTwo
+noncomputable def sphericalHawkingMassGlnNegTwo
     (areaRadius outgoingExpansion ingoingExpansion : ℝ) : ℝ :=
   areaRadius / 2 *
     (1 + areaRadius ^ 2 * outgoingExpansion * ingoingExpansion / 4)
