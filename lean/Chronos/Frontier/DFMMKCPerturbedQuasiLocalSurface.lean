@@ -121,7 +121,7 @@ structure DFMMKCFirstOrderSphericalHawkingGeometryBinding
           P.ingoingExpansionCorrection
 
 /-- First variation of `m_MS = r_A/2 * (1 - grad(r_A)^2)`. -/
-def sphericalMisnerSharpMassFirstVariation
+noncomputable def sphericalMisnerSharpMassFirstVariation
     (areaRadius arealGradientNormSq
       areaRadiusCorrection arealGradientNormSqCorrection : ℝ) : ℝ :=
   areaRadiusCorrection / 2 * (1 - arealGradientNormSq)
