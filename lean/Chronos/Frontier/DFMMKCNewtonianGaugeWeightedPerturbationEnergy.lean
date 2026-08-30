@@ -194,7 +194,7 @@ structure DFMMKCNewtonianGaugeMomentumCombinationRadialProfile
     profile S.areaRadius =
       dfmMkcNewtonianGaugeMomentumCombination S x P R
   hasRadialDerivative :
-    HasDerivAt profile radialDerivative R.arealRadius
+    HasDerivAt profile radialDerivative S.areaRadius
 
 /--
 Gradient-faithful local scalar momentum constraint for the existing typed
