@@ -88,7 +88,7 @@ theorem areaRadius_le_inv_hubble_of_expandingFlatFLRWSubHubbleSphere
 Surface-independent coefficient for a fixed expanding DFM-MKC FLRW state,
 obtained from the geometric Hubble-radius cap `R_* = 1/H`.
 -/
-def dfmMkcExpandingFlatFLRWCStar
+noncomputable def dfmMkcExpandingFlatFLRWCStar
     (x : RestrictedDFMMKCEnergyState) : ℝ :=
   (8 * Real.pi / 3) * (1 / x.hubble) ^ 2
 
