@@ -155,8 +155,10 @@ theorem dfmMkcPerturbedCoerciveEstimate_of_hubbleFloor_newtonianGauge
   unfold ConcreteGravityCoerciveEstimate at hbase
   unfold DFMMKCPerturbedCoerciveEstimate
   exact hgate.trans
-    (add_le_add_right hbase
-      (dfmMkcNewtonianGaugeFirstOrderGateStabilityError
-        S x roundSymmetrySphere B P))
+    (by
+      simpa [add_comm] using
+        (add_le_add_right hbase
+          (dfmMkcNewtonianGaugeFirstOrderGateStabilityError
+            S x roundSymmetrySphere B P)))
 
 end Chronos.Frontier
