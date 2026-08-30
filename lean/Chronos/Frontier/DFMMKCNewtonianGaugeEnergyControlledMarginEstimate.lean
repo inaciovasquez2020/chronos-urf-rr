@@ -176,4 +176,115 @@ theorem dfmMkcPerturbedQLGate_le_hubbleFloor_add_absorbedEnergy
           + Flux_boundary data S := by
       ring
 
+/--
+The current abstract Newtonian-gauge carrier class cannot satisfy the proposed
+perturbation-energy absorption bound uniformly with any fixed real coefficient
+`kappa`.  For every explicit radius margin `0 ≤ qStar < 1`, a nonzero-Hubble
+background admits a lapse-only witness with `epsilon = 1` and `Psi = 0`; hence
+its relative-radius perturbation is zero and satisfies the margin, while its
+analytic perturbation control energy is large enough to violate the absorption
+inequality strictly.
+
+This is a no-go theorem for the present carrier hypotheses only.  It does not
+rule out absorption after adding genuine linearized Einstein-matter dynamics
+that constrain the lapse potential.
+-/
+theorem dfmMkcNewtonianGauge_currentCarrier_violates_uniform_absorption
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (hH : x.hubble ≠ 0)
+    (qStar kappa : ℝ)
+    (hqStar_nonnegative : 0 ≤ qStar)
+    (hqStar_lt_one : qStar < 1) :
+    ∃ (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+      (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P),
+      DFMMKCNewtonianGaugeRelativeRadiusMargin S x P qStar ∧
+        P.epsilon = 1 ∧
+          kappa * S.areaRadius * (1 - qStar) * E_grav data <
+            2 * |P.epsilon| *
+              dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy S x P R := by
+  let target : ℝ :=
+    kappa * S.areaRadius * (1 - qStar) * E_grav data / 2
+  let c : ℝ := x.hubble ^ 2 * S.areaRadius ^ 3
+  have hc : 0 < c := by
+    dsimp [c]
+    exact mul_pos (sq_pos_of_ne_zero hH) (pow_pos S.areaRadius_pos 3)
+  have hcne : c ≠ 0 := ne_of_gt hc
+  let phi : ℝ := (|target| + 1) / c
+  let P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x := {
+    epsilon := 1
+    epsilon_abs_le_one := by norm_num
+    waveNumberSquared := 0
+    waveNumberSquared_nonnegative := by norm_num
+    newtonianLapsePotential := phi
+    newtonianSpatialPotential := 0
+    newtonianSpatialPotentialTimeDerivative := 0
+    areaRadiusCorrection := 0
+    outgoingExpansionCorrection := 0
+    ingoingExpansionCorrection := 0
+    hawkingMassCorrection := 0
+    perturbedAreaRadius := S.areaRadius
+    perturbedOutgoingExpansion := 0
+    perturbedIngoingExpansion := 0
+    perturbedHawkingMass := 0
+    perturbedAreaRadius_eq := by simp
+    perturbedAreaRadius_pos := S.areaRadius_pos
+  }
+  let F : DFMMKCNewtonianGaugeSphericalPotentialField := {
+    potential := fun _ _ => 0
+    cosmicTimeDerivative := fun _ _ => 0
+    comovingRadialDerivative := fun _ _ => 0
+    hasCosmicTimeDerivative := by
+      intro t χ
+      simpa using (hasDerivAt_const (x := t) (c := (0 : ℝ)))
+    hasComovingRadialDerivative := by
+      intro t χ
+      simpa using (hasDerivAt_const (x := χ) (c := (0 : ℝ)))
+  }
+  let R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P := {
+    spatialPotentialField := F
+    cosmicTime := 0
+    comovingRadius := 0
+    arealRadius := 0
+    spatialPotentialAtSurface := by simp [F, P]
+    arealRadius_eq := by simp
+  }
+  let M : DFMMKCNewtonianGaugeRelativeRadiusMargin S x P qStar := {
+    relative_le_margin := by
+      simpa [dfmMkcNewtonianGaugeRelativeRadiusPerturbation, P] using
+        hqStar_nonnegative
+    margin_lt_one := hqStar_lt_one
+  }
+  refine ⟨P, R, M, ?_, ?_⟩
+  · rfl
+  · have hlower :=
+      dfmMkcNewtonianGauge_abs_lapseTerm_le_controlEnergy S x P R
+    have hscale : c * phi = |target| + 1 := by
+      dsimp [phi]
+      field_simp [hcne]
+    have hnonneg : 0 ≤ |target| + 1 := by positivity
+    have hlapse :
+        |-x.hubble ^ 2 * S.areaRadius ^ 3 * P.newtonianLapsePotential| =
+          |target| + 1 := by
+      change |-x.hubble ^ 2 * S.areaRadius ^ 3 * phi| = |target| + 1
+      rw [show -x.hubble ^ 2 * S.areaRadius ^ 3 * phi = -(c * phi) by
+        dsimp [c]
+        ring]
+      rw [abs_neg, hscale, abs_of_nonneg hnonneg]
+    rw [hlapse] at hlower
+    have htarget : target < |target| + 1 := by
+      have hle : target ≤ |target| := le_abs_self target
+      linarith
+    have henergy :
+        target <
+          dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy S x P R :=
+      lt_of_lt_of_le htarget hlower
+    have hscaled :
+        kappa * S.areaRadius * (1 - qStar) * E_grav data <
+          2 * dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy S x P R := by
+      dsimp [target] at henergy
+      linarith
+    simpa [P] using hscaled
+
 end Chronos.Frontier
