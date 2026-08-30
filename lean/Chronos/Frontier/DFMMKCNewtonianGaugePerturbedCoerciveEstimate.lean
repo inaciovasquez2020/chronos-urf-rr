@@ -24,7 +24,7 @@ noncomputable def dfmMkcNewtonianGaugeFirstOrderGateCorrection
     (S.areaRadius * (1 - P.epsilon * P.newtonianSpatialPotential))
 
 /-- Absolute gate error carried by the exact rational first-order correction. -/
-def dfmMkcNewtonianGaugeFirstOrderGateStabilityError
+noncomputable def dfmMkcNewtonianGaugeFirstOrderGateStabilityError
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
