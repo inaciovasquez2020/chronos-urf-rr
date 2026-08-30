@@ -98,11 +98,12 @@ theorem perturbedQLGate_le_background_add_newtonianStabilityError
   rw [perturbedQLGate_eq_background_add_newtonianCorrection
     S x roundSymmetrySphere B P A H hsmall]
   unfold dfmMkcNewtonianGaugeFirstOrderGateStabilityError
-  exact add_le_add_left
-    (le_abs_self
-      (dfmMkcNewtonianGaugeFirstOrderGateCorrection
-        S x roundSymmetrySphere B P))
-    (QL_gate data S)
+  simpa [add_comm] using
+    (add_le_add_left
+      (le_abs_self
+        (dfmMkcNewtonianGaugeFirstOrderGateCorrection
+          S x roundSymmetrySphere B P))
+      (QL_gate data S))
 
 /--
 DFM-MKC `C_**` propagation for a nonzero Newtonian areal-radius perturbation.
