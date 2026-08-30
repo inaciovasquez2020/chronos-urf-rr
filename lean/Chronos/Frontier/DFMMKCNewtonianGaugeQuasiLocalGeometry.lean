@@ -110,7 +110,7 @@ noncomputable def normalizedSphericalExpansionFirstVariation
 Derived outgoing null-expansion correction from the Newtonian lapse/spatial
 potentials and the two evaluated derivatives of `Psi`.
 -/
-def dfmMkcNewtonianGaugeOutgoingExpansionCorrection
+noncomputable def dfmMkcNewtonianGaugeOutgoingExpansionCorrection
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
