@@ -151,7 +151,7 @@ structure RestrictedDFMMKCEnergyState where
   newtonG_pos : 0 < newtonG
 
 /-- Canonical DFM-MKC potential `U(phi)`. -/
-def dfmMkcPotential (x : RestrictedDFMMKCEnergyState) : ℝ :=
+noncomputable def dfmMkcPotential (x : RestrictedDFMMKCEnergyState) : ℝ :=
   x.rhoStar
     + (1 / 2 : ℝ) * x.mPhiSquared * x.phi ^ 2
     + (1 / 4 : ℝ) * x.lambdaPhi * x.phi ^ 4
