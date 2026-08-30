@@ -202,7 +202,7 @@ theorem dfmMkcNewtonianGaugeFirstOrderGateStabilityError_le_weightedBound
   rw [abs_div, abs_mul, abs_mul]
   simp only [abs_of_nonneg (show 0 ≤ (2 : ℝ) by norm_num),
     abs_of_pos P.perturbedAreaRadius_pos]
-  apply (div_le_div_iff₀ P.perturbedAreaRadius_pos).2
+  apply (div_le_div_iff₀ P.perturbedAreaRadius_pos P.perturbedAreaRadius_pos).2
   exact mul_le_mul_of_nonneg_left hnum
     (mul_nonneg (by norm_num) (abs_nonneg P.epsilon))
 
