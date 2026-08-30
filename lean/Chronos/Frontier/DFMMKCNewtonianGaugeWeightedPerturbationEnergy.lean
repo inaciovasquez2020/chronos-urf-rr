@@ -191,7 +191,7 @@ structure DFMMKCNewtonianGaugeMomentumCombinationRadialProfile
   profile : ℝ → ℝ
   radialDerivative : ℝ
   surfaceValue_eq :
-    profile R.arealRadius =
+    profile S.areaRadius =
       dfmMkcNewtonianGaugeMomentumCombination S x P R
   hasRadialDerivative :
     HasDerivAt profile radialDerivative R.arealRadius
