@@ -98,7 +98,7 @@ def dfmMkcNewtonianGaugeIngoingArealDerivativeCorrection
 /--
 First variation of a normalized spherical expansion `theta = 2 D(R) / R`.
 -/
-def normalizedSphericalExpansionFirstVariation
+noncomputable def normalizedSphericalExpansionFirstVariation
     (areaRadius backgroundArealDerivative
       areaRadiusCorrection arealDerivativeCorrection : ℝ) : ℝ :=
   2 * arealDerivativeCorrection / areaRadius
