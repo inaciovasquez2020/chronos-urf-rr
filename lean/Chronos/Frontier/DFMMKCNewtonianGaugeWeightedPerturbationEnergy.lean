@@ -149,7 +149,6 @@ theorem dfmMkcNewtonianGauge_controlEnergy_unbounded_in_lapse
     spatialPotentialField := F
     cosmicTime := 0
     comovingRadius := 0
-    arealRadius := 0
     spatialPotentialAtSurface := by simp [F, P]
     arealRadius_eq := by simp
   }
