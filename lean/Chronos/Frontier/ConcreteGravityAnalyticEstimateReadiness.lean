@@ -159,7 +159,7 @@ noncomputable def dfmMkcPotential (x : RestrictedDFMMKCEnergyState) : ℝ :=
 /--
 Canonical charge-reduced DFM-MKC dark-sector energy density.
 -/
-def dfmMkcEnergyDensity (x : RestrictedDFMMKCEnergyState) : ℝ :=
+noncomputable def dfmMkcEnergyDensity (x : RestrictedDFMMKCEnergyState) : ℝ :=
   (1 / 2 : ℝ) * x.alpha * x.phiDot ^ 2
     + x.qTheta ^ 2 /
       (2 * x.beta * x.scaleFactor ^ 6 * x.phi ^ 2)
