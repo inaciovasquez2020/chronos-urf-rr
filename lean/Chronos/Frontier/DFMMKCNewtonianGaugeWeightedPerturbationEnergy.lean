@@ -166,4 +166,78 @@ theorem dfmMkcNewtonianGauge_controlEnergy_unbounded_in_lapse
       linarith
     exact lt_of_lt_of_le hB hlower
 
+/--
+A local radial profile for the scalar combination `PsiDot + H Phi`.
+
+The current carrier evaluates that combination only at the selected surface.
+The scalar `0i` Einstein equation sourced by a momentum-density *component*
+acts on a spatial derivative of this combination, so a derivative-faithful
+interface needs an actual local radial profile rather than a direct scalar-to-
+vector-component identification.
+-/
+structure DFMMKCNewtonianGaugeMomentumCombinationRadialProfile
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P) where
+  profile : ℝ → ℝ
+  radialDerivative : ℝ
+  surfaceValue_eq :
+    profile R.arealRadius =
+      dfmMkcNewtonianGaugeMomentumCombination S x P R
+  hasRadialDerivative :
+    HasDerivAt profile radialDerivative R.arealRadius
+
+/--
+Gradient-faithful local scalar momentum constraint for the existing typed
+matter momentum-density component.
+
+The source coefficient remains fixed by
+`DFMMKCNewtonianGaugeMomentumConstraintConvention`; no numerical gravitational
+normalization is invented here.  Unlike the direct scalar source binding, this
+law equates the *radial derivative* of `PsiDot + H Phi` to the selected radial
+momentum-density component.
+-/
+structure DFMMKCNewtonianGaugeRadialMomentumConstraintLaw
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P)
+    (C : DFMMKCNewtonianGaugeMomentumConstraintConvention) where
+  momentumProfile :
+    DFMMKCNewtonianGaugeMomentumCombinationRadialProfile S x P R
+  projection : DFMMKCRadialMomentumProjection S
+  gaugeFixed : data.gaugeFixed
+  constraintsSatisfied : data.einsteinMatterConstraintsSatisfied
+  radialDerivative_eq_radialSource :
+    momentumProfile.radialDerivative =
+      C.coupling * projection.source
+
+/-- The radial momentum law exposes its fixed-convention source identity. -/
+theorem dfmMkcNewtonianGauge_radialMomentumDerivative_eq_fixedRadialSource
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P)
+    (C : DFMMKCNewtonianGaugeMomentumConstraintConvention)
+    (L : DFMMKCNewtonianGaugeRadialMomentumConstraintLaw S x P R C) :
+    L.momentumProfile.radialDerivative =
+      C.coupling * L.projection.source := by
+  exact L.radialDerivative_eq_radialSource
+
+/-- The local radial profile recovers the exact gate combination at the surface. -/
+theorem dfmMkcNewtonianGauge_radialMomentumProfile_surfaceValue
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P)
+    (Q : DFMMKCNewtonianGaugeMomentumCombinationRadialProfile S x P R) :
+    Q.profile R.arealRadius =
+      dfmMkcNewtonianGaugeMomentumCombination S x P R := by
+  exact Q.surfaceValue_eq
+
 end Chronos.Frontier
