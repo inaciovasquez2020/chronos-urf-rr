@@ -98,7 +98,7 @@ theorem abs_hawkingVariation_add_massPsi_le_sharpPerturbationNorm
   calc
     |a + b + d| ≤ |a + b| + |d| := abs_add_le _ _
     _ ≤ (|a| + |b|) + |d| := by
-      exact add_le_add_right (abs_add _ _) _
+      exact add_le_add_left (abs_add_le a b) |d|
     _ = dfmMkcNewtonianGaugeGateSharpPerturbationNorm S x P R := by
       rfl
 
