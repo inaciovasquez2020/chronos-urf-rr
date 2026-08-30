@@ -257,7 +257,7 @@ def RestrictedDFMMKCFLRWMisnerSharpEnergyIdentity
 Canonical geometrized Misner-Sharp mass for a round sphere on the spatially
 flat FLRW branch, `m_MS = r_A^3 H^2 / 2`.
 -/
-def dfmMkcFLRWMisnerSharpMass
+noncomputable def dfmMkcFLRWMisnerSharpMass
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState) : ℝ :=
