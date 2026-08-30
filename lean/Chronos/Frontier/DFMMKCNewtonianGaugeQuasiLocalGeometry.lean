@@ -228,7 +228,7 @@ structure DFMMKCNewtonianGaugeSphericalPotentialField where
 Physical radial derivative on the flat-FLRW background:
 `D_r Psi = a^-1 partial_chi Psi`.
 -/
-def DFMMKCNewtonianGaugeSphericalPotentialField.physicalRadialDerivativeAt
+noncomputable def DFMMKCNewtonianGaugeSphericalPotentialField.physicalRadialDerivativeAt
     (F : DFMMKCNewtonianGaugeSphericalPotentialField)
     (x : RestrictedDFMMKCEnergyState)
     (t chi : ℝ) : ℝ :=
