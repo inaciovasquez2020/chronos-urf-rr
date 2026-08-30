@@ -290,7 +290,7 @@ theorem DFMMKCNewtonianGaugePerturbationFieldRealization.cosmicTimeDerivative_ha
 theorem DFMMKCNewtonianGaugePerturbationFieldRealization.comovingRadialDerivative_hasDerivAt
     {data : SelectedEinsteinMatterCauchyData}
     {S : AdmissibleQuasiLocalSurface data}
-    {x : RestrictedDFMMKCPerturbedQuasiLocalSurfaceCarrier S x}
+    {x : RestrictedDFMMKCEnergyState}
     {P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x}
     (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P) :
     HasDerivAt
