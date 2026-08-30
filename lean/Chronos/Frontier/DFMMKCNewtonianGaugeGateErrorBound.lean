@@ -204,7 +204,7 @@ theorem dfmMkcNewtonianGaugeFirstOrderGateStabilityError_le_weightedBound
     abs_of_pos P.perturbedAreaRadius_pos]
   apply (div_le_div_iff₀ P.perturbedAreaRadius_pos P.perturbedAreaRadius_pos).2
   exact mul_le_mul_of_nonneg_left hnum
-    (mul_nonneg (by norm_num) (abs_nonneg P.epsilon))
+    (mul_nonneg (show (0 : ℝ) ≤ 2 by norm_num) (abs_nonneg P.epsilon))
 
 /--
 `C_**` propagation with the explicit rational gate error replaced by the
