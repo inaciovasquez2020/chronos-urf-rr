@@ -136,4 +136,55 @@ theorem dfmMkcNewtonianGaugeGateSharpPerturbationNorm_le_weighted
     dfmMkcNewtonianGaugeGateWeightedPerturbationNorm
   linarith
 
+/--
+Typed surface-local binding for the scalar Newtonian-gauge momentum
+combination.  It records the weakest missing dynamical interface: a chosen
+surface point and spatial direction, an explicit normalization coefficient,
+proof that the selected gauge and Einstein-matter constraints hold, and the
+exact source identity relating `PsiDot + H Phi` to the corresponding component
+of the already-typed matter momentum density.
+
+No value or sign for `coupling` is assumed here, and no existence claim is
+made for this structure.
+-/
+structure DFMMKCNewtonianGaugeMomentumConstraintBinding
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P) where
+  surfacePoint : S.surfacePoint
+  spatialDirection : Fin 3
+  coupling : ℝ
+  gaugeFixed : data.gaugeFixed
+  constraintsSatisfied : data.einsteinMatterConstraintsSatisfied
+  momentumCombination_eq_source :
+    dfmMkcNewtonianGaugeMomentumCombination S x P R =
+      coupling *
+        data.matterMomentumDensity
+          (S.inclusion surfacePoint)
+          spatialDirection
+
+/--
+Once a momentum-constraint binding is supplied, the middle term of the sharp
+gate norm rewrites exactly to the typed matter-momentum source.  This is only
+an algebraic consequence of the binding and does not assert that such a
+binding exists for the current carrier.
+-/
+theorem dfmMkcNewtonianGauge_abs_momentumGateTerm_eq_boundSource
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P)
+    (B : DFMMKCNewtonianGaugeMomentumConstraintBinding S x P R) :
+    |-x.hubble * S.areaRadius ^ 3 *
+        dfmMkcNewtonianGaugeMomentumCombination S x P R| =
+      |-x.hubble * S.areaRadius ^ 3 *
+        (B.coupling *
+          data.matterMomentumDensity
+            (S.inclusion B.surfacePoint)
+            B.spatialDirection)| := by
+  rw [B.momentumCombination_eq_source]
+
 end Chronos.Frontier
