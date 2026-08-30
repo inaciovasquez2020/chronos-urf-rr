@@ -128,7 +128,7 @@ noncomputable def dfmMkcNewtonianGaugeOutgoingExpansionCorrection
 /--
 Derived ingoing null-expansion correction from the same Newtonian-gauge data.
 -/
-def dfmMkcNewtonianGaugeIngoingExpansionCorrection
+noncomputable def dfmMkcNewtonianGaugeIngoingExpansionCorrection
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -290,7 +290,7 @@ theorem DFMMKCNewtonianGaugePerturbationFieldRealization.cosmicTimeDerivative_ha
 theorem DFMMKCNewtonianGaugePerturbationFieldRealization.comovingRadialDerivative_hasDerivAt
     {data : SelectedEinsteinMatterCauchyData}
     {S : AdmissibleQuasiLocalSurface data}
-    {x : RestrictedDFMMKCEnergyState}
+    {x : RestrictedDFMMKCPerturbedQuasiLocalSurfaceCarrier S x}
     {P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x}
     (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P) :
     HasDerivAt
