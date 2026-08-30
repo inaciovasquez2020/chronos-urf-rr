@@ -116,7 +116,6 @@ theorem dfmMkcNewtonianGauge_controlEnergy_unbounded_in_lapse
     areaRadiusCorrection := 0
     outgoingExpansionCorrection := 0
     ingoingExpansionCorrection := 0
-    hawkingMassCorrection := 0
     perturbedAreaRadius := S.areaRadius
     perturbedOutgoingExpansion := 0
     perturbedIngoingExpansion := 0
