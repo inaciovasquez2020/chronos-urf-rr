@@ -288,7 +288,7 @@ theorem firstOrderPerturbedHawkingMass_stability_le
           P.ingoingExpansionCorrection| := by ring
 
 /-- First-order quasi-local gate carried by the perturbed spherical surface. -/
-def DFMMKCPerturbedQLGate
+noncomputable def DFMMKCPerturbedQLGate
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
