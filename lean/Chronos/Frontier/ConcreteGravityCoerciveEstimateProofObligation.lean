@@ -335,10 +335,11 @@ theorem concreteGravityCoerciveEstimate_of_dfmMkcHubbleFloor
   have hE : 0 ≤ E_grav data := by
     simpa [E_grav] using data.curvatureEnergyControl_nonnegative
   unfold ConcreteGravityCoerciveEstimate at hlocal ⊢
-  exact hlocal.trans
-    (add_le_add_right
-      (mul_le_mul_of_nonneg_right hC hE)
-      (Flux_boundary data S))
+  exact hlocal.trans (by
+    simpa [add_comm] using
+      (add_le_add_right
+        (mul_le_mul_of_nonneg_right hC hE)
+        (Flux_boundary data S)))
 
 structure ConcreteGravityCoerciveEstimateProofObligation where
   id : String
