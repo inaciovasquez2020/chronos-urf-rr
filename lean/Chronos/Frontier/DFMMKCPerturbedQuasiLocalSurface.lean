@@ -470,9 +470,10 @@ theorem dfmMkcPerturbedCoerciveEstimate_of_hubbleFloor_fixedAreaRadius
       hfloor hsub hrestricted
   unfold ConcreteGravityCoerciveEstimate at hbase
   unfold DFMMKCPerturbedCoerciveEstimate
-  exact hgate.trans
-    (add_le_add_right hbase
-      (dfmMkcFirstOrderHawkingGateError
-        S x roundSymmetrySphere B P))
+  exact hgate.trans (by
+    simpa [add_comm] using
+      (add_le_add_right hbase
+        (dfmMkcFirstOrderHawkingGateError
+          S x roundSymmetrySphere B P)))
 
 end Chronos.Frontier
