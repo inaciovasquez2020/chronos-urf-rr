@@ -141,10 +141,11 @@ theorem concreteGravityCoerciveEstimate_of_expandingFlatFLRWSubHubbleSphere
     concreteGravityCoerciveEstimate_of_flatFLRW_spherical_binding
       S x spatiallyFlatFLRW roundSymmetrySphere B G hrestricted
   unfold ConcreteGravityCoerciveEstimate at hlocal ⊢
-  exact hlocal.trans
-    (add_le_add_right
-      (mul_le_mul_of_nonneg_right hC hE)
-      (Flux_boundary data S))
+  exact hlocal.trans (by
+    simpa [add_comm] using
+      (add_le_add_right
+        (mul_le_mul_of_nonneg_right hC hE)
+        (Flux_boundary data S)))
 
 /--
 Lean-side Hubble-floor interface for the repository's prepared positive-alpha
