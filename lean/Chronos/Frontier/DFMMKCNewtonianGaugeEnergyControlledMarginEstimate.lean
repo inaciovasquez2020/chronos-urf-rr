@@ -225,7 +225,6 @@ theorem dfmMkcNewtonianGauge_currentCarrier_violates_uniform_absorption
     areaRadiusCorrection := 0
     outgoingExpansionCorrection := 0
     ingoingExpansionCorrection := 0
-    hawkingMassCorrection := 0
     perturbedAreaRadius := S.areaRadius
     perturbedOutgoingExpansion := 0
     perturbedIngoingExpansion := 0
