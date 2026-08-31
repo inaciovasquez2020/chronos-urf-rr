@@ -222,13 +222,24 @@ theorem dfmMkcNewtonianGauge_currentCarrier_violates_uniform_absorption
     waveNumberSquared_nonnegative := by norm_num
     newtonianLapsePotential := phi
     newtonianSpatialPotential := 0
+    deltaScalarField := 0
+    deltaScalarFieldPrime := 0
+    deltaPhaseField := 0
+    deltaPhaseFieldPrime := 0
+    deltaTemporalVector := 0
+    deltaLongitudinalVector := 0
+    deltaMatterDensityContrast := 0
+    matterVelocityDivergence := 0
     areaRadiusCorrection := 0
     outgoingExpansionCorrection := 0
     ingoingExpansionCorrection := 0
+    arealGradientNormSqCorrection := 0
     perturbedAreaRadius := S.areaRadius
     perturbedOutgoingExpansion := 0
     perturbedIngoingExpansion := 0
     perturbedHawkingMass := 0
+    perturbedArealGradientNormSq := 0
+    perturbedMisnerSharpMass := 0
     perturbedAreaRadius_eq := by simp
     perturbedAreaRadius_pos := S.areaRadius_pos
   }
