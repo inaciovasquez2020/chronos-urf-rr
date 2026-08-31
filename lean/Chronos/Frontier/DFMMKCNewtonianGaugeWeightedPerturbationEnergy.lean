@@ -379,7 +379,9 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
     _ ≤ |L.momentumProfile.profile B.anchorRadius|
           + |C.coupling| * B.sourceBound *
               (S.areaRadius - B.anchorRadius) := by
-      exact add_le_add_left hsegmentAbs _
+      simpa [add_comm] using
+        (add_le_add_left hsegmentAbs
+          |L.momentumProfile.profile B.anchorRadius|)
 
 /--
 Finished sharp-gate middle-term estimate obtained by combining the anchored
