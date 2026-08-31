@@ -371,7 +371,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
             L.momentumProfile.profile B.anchorRadius : ℝ)
   calc
     |dfmMkcNewtonianGaugeMomentumCombination S x P R| =
-        |L.momentumProfile.profile R.arealRadius| := by
+        |L.momentumProfile.profile S.areaRadius| := by
       rw [L.momentumProfile.surfaceValue_eq]
     _ ≤ |L.momentumProfile.profile B.anchorRadius|
           + |L.momentumProfile.profile R.arealRadius -
