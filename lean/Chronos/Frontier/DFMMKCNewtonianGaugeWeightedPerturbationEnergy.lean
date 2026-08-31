@@ -269,7 +269,7 @@ structure DFMMKCNewtonianGaugeRadialMomentumRecoveryBinding
   hasRadialDerivativeWithin :
     ∀ r ∈ Set.Icc anchorRadius S.areaRadius,
       HasDerivWithinAt L.momentumProfile.profile (radialDerivative r)
-        (Set.Icc anchorRadius R.arealRadius) r
+        (Set.Icc anchorRadius S.areaRadius) r
   radialDerivative_eq_source :
     ∀ r ∈ Set.Icc anchorRadius R.arealRadius,
       radialDerivative r = C.coupling * radialSource r
