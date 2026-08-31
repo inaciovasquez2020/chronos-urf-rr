@@ -343,7 +343,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
       |L.momentumProfile.profile S.areaRadius -
           L.momentumProfile.profile B.anchorRadius| ≤
         (|C.coupling| * B.sourceBound) *
-          (R.arealRadius - B.anchorRadius) := by
+          (S.areaRadius - B.anchorRadius) := by
     simpa only [Real.norm_eq_abs] using hsegment
   have htri :
       |L.momentumProfile.profile R.arealRadius| ≤
