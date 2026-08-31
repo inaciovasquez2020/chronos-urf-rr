@@ -258,6 +258,7 @@ theorem dfmMkcNewtonianGauge_currentCarrier_violates_uniform_absorption
     spatialPotentialField := F
     cosmicTime := 0
     comovingRadius := 0
+    spatialPotential_eq := by simp [F, P]
   }
   let M : DFMMKCNewtonianGaugeRelativeRadiusMargin S x P qStar := {
     relative_le_margin := by
