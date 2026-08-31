@@ -321,7 +321,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
     |dfmMkcNewtonianGaugeMomentumCombination S x P R| ≤
       |L.momentumProfile.profile B.anchorRadius|
         + |C.coupling| * B.sourceBound *
-            (R.arealRadius - B.anchorRadius) := by
+            (S.areaRadius - B.anchorRadius) := by
   have hsurface : R.arealRadius ∈ Set.Icc B.anchorRadius R.arealRadius :=
     ⟨B.anchor_le_surface, le_rfl⟩
   have hbound :
