@@ -258,7 +258,6 @@ theorem dfmMkcNewtonianGauge_currentCarrier_violates_uniform_absorption
     spatialPotentialField := F
     cosmicTime := 0
     comovingRadius := 0
-    arealRadius := 0
     spatialPotentialAtSurface := by simp [F, P]
     arealRadius_eq := by simp
   }
