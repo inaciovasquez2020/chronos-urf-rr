@@ -96,10 +96,11 @@ theorem dfmMkcPerturbedCoerciveEstimate_of_hubbleFloor_newtonianGauge_energy
     dfmMkcNewtonianGaugeMarginWeightedGateErrorBound_le_energyBound
       S x P R qStar M
   unfold DFMMKCPerturbedCoerciveEstimate at hraw ⊢
-  exact hraw.trans
-    (add_le_add_left herr
-      (dfmMkcHubbleFloorCStarStar HStar * E_grav data
-        + Flux_boundary data S))
+  exact hraw.trans (by
+    simpa [add_comm] using
+      (add_le_add_left herr
+        (dfmMkcHubbleFloorCStarStar HStar * E_grav data
+          + Flux_boundary data S)))
 
 /--
 Exact algebraic reduction of the remaining absorption step.  If the scaled
