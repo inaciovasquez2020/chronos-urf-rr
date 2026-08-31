@@ -18,10 +18,20 @@ jobs:
           elan default leanprover/lean4:stable
           lake --version
 
+      - name: Fetch mathlib cache
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake exe cache get || true
+
       - name: Build Lean project
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
           lake build
+
+      - name: Audit gravity theorem axioms
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake lean lean/GravityAxiomAudit.lean
 
       - name: Verify operator norm perturbation boundary
         run: python3 tools/verifier/verify_operator_norm_perturbation_boundary.py

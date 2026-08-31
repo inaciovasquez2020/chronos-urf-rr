@@ -7,7 +7,7 @@ namespace Chronos.Frontier
 The qStar-margin gate error with the coefficient-exact weighted perturbation
 norm replaced by the weakest analytic perturbation control energy.
 -/
-def dfmMkcNewtonianGaugeMarginPerturbationEnergyGateErrorBound
+noncomputable def dfmMkcNewtonianGaugeMarginPerturbationEnergyGateErrorBound
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -45,7 +45,8 @@ theorem dfmMkcNewtonianGaugeMarginWeightedGateErrorBound_le_energyBound
   unfold dfmMkcNewtonianGaugeMarginWeightedGateErrorBound
     dfmMkcNewtonianGaugeMarginPerturbationEnergyGateErrorBound
   exact (div_le_div_iff₀ hden hden).2
-    (mul_le_mul_of_nonneg_left hnorm hscale)
+    (mul_le_mul_of_nonneg_right
+      (mul_le_mul_of_nonneg_left hnorm hscale) (le_of_lt hden))
 
 /--
 The spherical first-order DFM-MKC qStar-margin coercive estimate with its
@@ -95,10 +96,11 @@ theorem dfmMkcPerturbedCoerciveEstimate_of_hubbleFloor_newtonianGauge_energy
     dfmMkcNewtonianGaugeMarginWeightedGateErrorBound_le_energyBound
       S x P R qStar M
   unfold DFMMKCPerturbedCoerciveEstimate at hraw ⊢
-  exact hraw.trans
-    (add_le_add_left herr
-      (dfmMkcHubbleFloorCStarStar HStar * E_grav data
-        + Flux_boundary data S))
+  exact hraw.trans (by
+    simpa [add_comm] using
+      (add_le_add_left herr
+        (dfmMkcHubbleFloorCStarStar HStar * E_grav data
+          + Flux_boundary data S)))
 
 /--
 Exact algebraic reduction of the remaining absorption step.  If the scaled
@@ -168,10 +170,11 @@ theorem dfmMkcPerturbedQLGate_le_hubbleFloor_add_absorbedEnergy
               S x P R qStar := hraw
     _ ≤ dfmMkcHubbleFloorCStarStar HStar * E_grav data
           + Flux_boundary data S
-          + kappa * E_grav data :=
-      add_le_add_left herr
-        (dfmMkcHubbleFloorCStarStar HStar * E_grav data
-          + Flux_boundary data S)
+          + kappa * E_grav data := by
+      simpa [add_comm] using
+        (add_le_add_left herr
+          (dfmMkcHubbleFloorCStarStar HStar * E_grav data
+            + Flux_boundary data S))
     _ = (dfmMkcHubbleFloorCStarStar HStar + kappa) * E_grav data
           + Flux_boundary data S := by
       ring
@@ -219,15 +222,24 @@ theorem dfmMkcNewtonianGauge_currentCarrier_violates_uniform_absorption
     waveNumberSquared_nonnegative := by norm_num
     newtonianLapsePotential := phi
     newtonianSpatialPotential := 0
-    newtonianSpatialPotentialTimeDerivative := 0
+    deltaScalarField := 0
+    deltaScalarFieldPrime := 0
+    deltaPhaseField := 0
+    deltaPhaseFieldPrime := 0
+    deltaTemporalVector := 0
+    deltaLongitudinalVector := 0
+    deltaMatterDensityContrast := 0
+    matterVelocityDivergence := 0
     areaRadiusCorrection := 0
     outgoingExpansionCorrection := 0
     ingoingExpansionCorrection := 0
-    hawkingMassCorrection := 0
+    arealGradientNormSqCorrection := 0
     perturbedAreaRadius := S.areaRadius
     perturbedOutgoingExpansion := 0
     perturbedIngoingExpansion := 0
     perturbedHawkingMass := 0
+    perturbedArealGradientNormSq := 0
+    perturbedMisnerSharpMass := 0
     perturbedAreaRadius_eq := by simp
     perturbedAreaRadius_pos := S.areaRadius_pos
   }
@@ -246,9 +258,7 @@ theorem dfmMkcNewtonianGauge_currentCarrier_violates_uniform_absorption
     spatialPotentialField := F
     cosmicTime := 0
     comovingRadius := 0
-    arealRadius := 0
-    spatialPotentialAtSurface := by simp [F, P]
-    arealRadius_eq := by simp
+    spatialPotential_eq := by simp [F, P]
   }
   let M : DFMMKCNewtonianGaugeRelativeRadiusMargin S x P qStar := {
     relative_le_margin := by

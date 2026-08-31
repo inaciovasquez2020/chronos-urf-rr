@@ -98,7 +98,7 @@ def dfmMkcNewtonianGaugeIngoingArealDerivativeCorrection
 /--
 First variation of a normalized spherical expansion `theta = 2 D(R) / R`.
 -/
-def normalizedSphericalExpansionFirstVariation
+noncomputable def normalizedSphericalExpansionFirstVariation
     (areaRadius backgroundArealDerivative
       areaRadiusCorrection arealDerivativeCorrection : ℝ) : ℝ :=
   2 * arealDerivativeCorrection / areaRadius
@@ -110,7 +110,7 @@ def normalizedSphericalExpansionFirstVariation
 Derived outgoing null-expansion correction from the Newtonian lapse/spatial
 potentials and the two evaluated derivatives of `Psi`.
 -/
-def dfmMkcNewtonianGaugeOutgoingExpansionCorrection
+noncomputable def dfmMkcNewtonianGaugeOutgoingExpansionCorrection
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -128,7 +128,7 @@ def dfmMkcNewtonianGaugeOutgoingExpansionCorrection
 /--
 Derived ingoing null-expansion correction from the same Newtonian-gauge data.
 -/
-def dfmMkcNewtonianGaugeIngoingExpansionCorrection
+noncomputable def dfmMkcNewtonianGaugeIngoingExpansionCorrection
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -228,7 +228,7 @@ structure DFMMKCNewtonianGaugeSphericalPotentialField where
 Physical radial derivative on the flat-FLRW background:
 `D_r Psi = a^-1 partial_chi Psi`.
 -/
-def DFMMKCNewtonianGaugeSphericalPotentialField.physicalRadialDerivativeAt
+noncomputable def DFMMKCNewtonianGaugeSphericalPotentialField.physicalRadialDerivativeAt
     (F : DFMMKCNewtonianGaugeSphericalPotentialField)
     (x : RestrictedDFMMKCEnergyState)
     (t chi : ℝ) : ℝ :=
@@ -257,7 +257,7 @@ The previously used evaluated derivative carrier is recovered canonically from
 an actual field realization.  Its radial entry is the physical, not comoving,
 derivative, matching the convention already used in the null-expansion proof.
 -/
-def DFMMKCNewtonianGaugePerturbationFieldRealization.toSphericalPotentialDerivatives
+noncomputable def DFMMKCNewtonianGaugePerturbationFieldRealization.toSphericalPotentialDerivatives
     {data : SelectedEinsteinMatterCauchyData}
     {S : AdmissibleQuasiLocalSurface data}
     {x : RestrictedDFMMKCEnergyState}

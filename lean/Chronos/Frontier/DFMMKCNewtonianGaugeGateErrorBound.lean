@@ -7,7 +7,7 @@ Closed first-order Hawking-mass variation after substituting the spherical
 Newtonian-gauge areal-radius and null-expansion corrections into the already
 proved differential of the round-sphere Hawking formula.
 -/
-def dfmMkcNewtonianGaugeClosedHawkingMassFirstVariation
+noncomputable def dfmMkcNewtonianGaugeClosedHawkingMassFirstVariation
     (areaRadius hubble lapsePotential spatialPotential
       spatialPotentialCosmicTimeDerivative
       spatialPotentialPhysicalRadialDerivative : ℝ) : ℝ :=
@@ -69,7 +69,7 @@ No scalar/vector/matter perturbation slot absent from that numerator is added,
 and the `Psi` coefficient is combined exactly with the background Hawking mass
 rather than bounded twice.
 -/
-def dfmMkcNewtonianGaugeGateWeightedPerturbationNorm
+noncomputable def dfmMkcNewtonianGaugeGateWeightedPerturbationNorm
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -144,11 +144,12 @@ theorem abs_hawkingVariation_add_massPsi_le_weightedPerturbationNorm
     ring
   rw [hrepr]
   calc
-    |a + b + c + d| ≤ |a + b + c| + |d| := abs_add _ _
+    |a + b + c + d| ≤ |a + b + c| + |d| := abs_add_le _ _
     _ ≤ (|a + b| + |c|) + |d| := by
-      exact add_le_add_right (abs_add _ _) _
+      simpa [add_comm] using
+        (add_le_add_right (abs_add_le (a + b) c) |d|)
     _ ≤ ((|a| + |b|) + |c|) + |d| := by
-      exact add_le_add_right (add_le_add_right (abs_add _ _) _) _
+      linarith [abs_add_le a b]
     _ = dfmMkcNewtonianGaugeGateWeightedPerturbationNorm S x P R := by
       rfl
 
@@ -157,7 +158,7 @@ Norm-based gate error.  The multiplicative factor is the exact positive
 perturbed-radius factor `2 |epsilon| / R_epsilon`; no additional denominator
 loss is introduced.
 -/
-def dfmMkcNewtonianGaugeWeightedGateErrorBound
+noncomputable def dfmMkcNewtonianGaugeWeightedGateErrorBound
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -201,9 +202,11 @@ theorem dfmMkcNewtonianGaugeFirstOrderGateStabilityError_le_weightedBound
   rw [abs_div, abs_mul, abs_mul]
   simp only [abs_of_nonneg (show 0 ≤ (2 : ℝ) by norm_num),
     abs_of_pos P.perturbedAreaRadius_pos]
-  apply (div_le_div_iff₀ P.perturbedAreaRadius_pos).2
-  exact mul_le_mul_of_nonneg_left hnum
-    (mul_nonneg (by norm_num) (abs_nonneg P.epsilon))
+  apply (div_le_div_iff₀ P.perturbedAreaRadius_pos P.perturbedAreaRadius_pos).2
+  exact mul_le_mul_of_nonneg_right
+    (mul_le_mul_of_nonneg_left hnum
+      (mul_nonneg (show (0 : ℝ) ≤ 2 by norm_num) (abs_nonneg P.epsilon)))
+    (le_of_lt P.perturbedAreaRadius_pos)
 
 /--
 `C_**` propagation with the explicit rational gate error replaced by the
@@ -254,9 +257,10 @@ theorem dfmMkcPerturbedCoerciveEstimate_of_hubbleFloor_newtonianGauge_weightedNo
     dfmMkcNewtonianGaugeFirstOrderGateStabilityError_le_weightedBound
       S x spatiallyFlatFLRW roundSymmetrySphere B G P A R N
   unfold DFMMKCPerturbedCoerciveEstimate at hraw ⊢
-  exact hraw.trans
-    (add_le_add_left herr
-      (dfmMkcHubbleFloorCStarStar HStar * E_grav data
-        + Flux_boundary data S))
+  exact hraw.trans (by
+    simpa [add_comm] using
+      (add_le_add_left herr
+        (dfmMkcHubbleFloorCStarStar HStar * E_grav data
+          + Flux_boundary data S)))
 
 end Chronos.Frontier

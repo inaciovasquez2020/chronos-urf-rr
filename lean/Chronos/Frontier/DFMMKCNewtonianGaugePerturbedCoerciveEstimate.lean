@@ -8,7 +8,7 @@ perturbed gate after substituting
 `R_epsilon = R (1 - epsilon Psi)` and
 `m_epsilon = m + epsilon delta m`.
 -/
-def dfmMkcNewtonianGaugeFirstOrderGateCorrection
+noncomputable def dfmMkcNewtonianGaugeFirstOrderGateCorrection
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -24,7 +24,7 @@ def dfmMkcNewtonianGaugeFirstOrderGateCorrection
     (S.areaRadius * (1 - P.epsilon * P.newtonianSpatialPotential))
 
 /-- Absolute gate error carried by the exact rational first-order correction. -/
-def dfmMkcNewtonianGaugeFirstOrderGateStabilityError
+noncomputable def dfmMkcNewtonianGaugeFirstOrderGateStabilityError
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -98,11 +98,12 @@ theorem perturbedQLGate_le_background_add_newtonianStabilityError
   rw [perturbedQLGate_eq_background_add_newtonianCorrection
     S x roundSymmetrySphere B P A H hsmall]
   unfold dfmMkcNewtonianGaugeFirstOrderGateStabilityError
-  exact add_le_add_left
-    (le_abs_self
-      (dfmMkcNewtonianGaugeFirstOrderGateCorrection
-        S x roundSymmetrySphere B P))
-    (QL_gate data S)
+  simpa [add_comm] using
+    (add_le_add_left
+      (le_abs_self
+        (dfmMkcNewtonianGaugeFirstOrderGateCorrection
+          S x roundSymmetrySphere B P))
+      (QL_gate data S))
 
 /--
 DFM-MKC `C_**` propagation for a nonzero Newtonian areal-radius perturbation.
@@ -154,8 +155,10 @@ theorem dfmMkcPerturbedCoerciveEstimate_of_hubbleFloor_newtonianGauge
   unfold ConcreteGravityCoerciveEstimate at hbase
   unfold DFMMKCPerturbedCoerciveEstimate
   exact hgate.trans
-    (add_le_add_right hbase
-      (dfmMkcNewtonianGaugeFirstOrderGateStabilityError
-        S x roundSymmetrySphere B P))
+    (by
+      simpa [add_comm] using
+        (add_le_add_right hbase
+          (dfmMkcNewtonianGaugeFirstOrderGateStabilityError
+            S x roundSymmetrySphere B P)))
 
 end Chronos.Frontier

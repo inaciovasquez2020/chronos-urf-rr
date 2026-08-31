@@ -9,7 +9,7 @@ namespace Frontier
 Real-valued Hawking mass of a round symmetry sphere in the null-normal
 normalization `g(l,n) = -2`.
 -/
-def sphericalHawkingMassGlnNegTwo
+noncomputable def sphericalHawkingMassGlnNegTwo
     (areaRadius outgoingExpansion ingoingExpansion : ℝ) : ℝ :=
   areaRadius / 2 *
     (1 + areaRadius ^ 2 * outgoingExpansion * ingoingExpansion / 4)
@@ -33,12 +33,12 @@ structure RealSphericalHawkingMassBinding
         S.areaRadius outgoingExpansion ingoingExpansion
 
 /-- Outgoing null expansion `theta_+ = 2 l(r_A) / r_A`. -/
-def normalizedSphericalOutgoingExpansion
+noncomputable def normalizedSphericalOutgoingExpansion
     (areaRadius outgoingArealDerivative : ℝ) : ℝ :=
   2 * outgoingArealDerivative / areaRadius
 
 /-- Ingoing null expansion `theta_- = 2 n(r_A) / r_A`. -/
-def normalizedSphericalIngoingExpansion
+noncomputable def normalizedSphericalIngoingExpansion
     (areaRadius ingoingArealDerivative : ℝ) : ℝ :=
   2 * ingoingArealDerivative / areaRadius
 
@@ -71,7 +71,7 @@ theorem normalizedSphericalExpansionProduct_eq_neg_arealGradientNormSq
   <;> ring
 
 /-- Geometrized Misner-Sharp mass written through the areal-gradient norm. -/
-def sphericalMisnerSharpMassFromArealGradient
+noncomputable def sphericalMisnerSharpMassFromArealGradient
     (areaRadius arealGradientNormSq : ℝ) : ℝ :=
   areaRadius / 2 * (1 - arealGradientNormSq)
 

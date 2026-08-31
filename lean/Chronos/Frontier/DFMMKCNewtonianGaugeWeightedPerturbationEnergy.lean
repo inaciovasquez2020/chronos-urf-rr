@@ -13,7 +13,7 @@ This is an analytic control quantity, not a claim of a separately conserved
 stress-energy.  Its weights are exactly those already present in the proved
 quasi-local gate numerator bound.
 -/
-def dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy
+noncomputable def dfmMkcNewtonianGaugeWeightedPerturbationControlEnergy
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -113,15 +113,24 @@ theorem dfmMkcNewtonianGauge_controlEnergy_unbounded_in_lapse
     waveNumberSquared_nonnegative := by norm_num
     newtonianLapsePotential := phi
     newtonianSpatialPotential := 0
-    newtonianSpatialPotentialTimeDerivative := 0
+    deltaScalarField := 0
+    deltaScalarFieldPrime := 0
+    deltaPhaseField := 0
+    deltaPhaseFieldPrime := 0
+    deltaTemporalVector := 0
+    deltaLongitudinalVector := 0
+    deltaMatterDensityContrast := 0
+    matterVelocityDivergence := 0
     areaRadiusCorrection := 0
     outgoingExpansionCorrection := 0
     ingoingExpansionCorrection := 0
-    hawkingMassCorrection := 0
+    arealGradientNormSqCorrection := 0
     perturbedAreaRadius := S.areaRadius
     perturbedOutgoingExpansion := 0
     perturbedIngoingExpansion := 0
     perturbedHawkingMass := 0
+    perturbedArealGradientNormSq := 0
+    perturbedMisnerSharpMass := 0
     perturbedAreaRadius_eq := by simp
     perturbedAreaRadius_pos := S.areaRadius_pos
   }
@@ -140,9 +149,7 @@ theorem dfmMkcNewtonianGauge_controlEnergy_unbounded_in_lapse
     spatialPotentialField := F
     cosmicTime := 0
     comovingRadius := 0
-    arealRadius := 0
-    spatialPotentialAtSurface := by simp [F, P]
-    arealRadius_eq := by simp
+    spatialPotential_eq := by simp [F, P]
   }
   refine ⟨P, R, ?_, ?_⟩
   · rfl
@@ -184,10 +191,10 @@ structure DFMMKCNewtonianGaugeMomentumCombinationRadialProfile
   profile : ℝ → ℝ
   radialDerivative : ℝ
   surfaceValue_eq :
-    profile R.arealRadius =
+    profile S.areaRadius =
       dfmMkcNewtonianGaugeMomentumCombination S x P R
   hasRadialDerivative :
-    HasDerivAt profile radialDerivative R.arealRadius
+    HasDerivAt profile radialDerivative S.areaRadius
 
 /--
 Gradient-faithful local scalar momentum constraint for the existing typed
@@ -236,7 +243,7 @@ theorem dfmMkcNewtonianGauge_radialMomentumProfile_surfaceValue
     (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
     (R : DFMMKCNewtonianGaugePerturbationFieldRealization S x P)
     (Q : DFMMKCNewtonianGaugeMomentumCombinationRadialProfile S x P R) :
-    Q.profile R.arealRadius =
+    Q.profile S.areaRadius =
       dfmMkcNewtonianGaugeMomentumCombination S x P R := by
   exact Q.surfaceValue_eq
 
@@ -256,22 +263,22 @@ structure DFMMKCNewtonianGaugeRadialMomentumRecoveryBinding
     (C : DFMMKCNewtonianGaugeMomentumConstraintConvention)
     (L : DFMMKCNewtonianGaugeRadialMomentumConstraintLaw S x P R C) where
   anchorRadius : ℝ
-  anchor_le_surface : anchorRadius ≤ R.arealRadius
+  anchor_le_surface : anchorRadius ≤ S.areaRadius
   radialDerivative : ℝ → ℝ
   radialSource : ℝ → ℝ
   hasRadialDerivativeWithin :
-    ∀ r ∈ Set.Icc anchorRadius R.arealRadius,
+    ∀ r ∈ Set.Icc anchorRadius S.areaRadius,
       HasDerivWithinAt L.momentumProfile.profile (radialDerivative r)
-        (Set.Icc anchorRadius R.arealRadius) r
+        (Set.Icc anchorRadius S.areaRadius) r
   radialDerivative_eq_source :
-    ∀ r ∈ Set.Icc anchorRadius R.arealRadius,
+    ∀ r ∈ Set.Icc anchorRadius S.areaRadius,
       radialDerivative r = C.coupling * radialSource r
   surfaceSource_eq :
-    radialSource R.arealRadius = L.projection.source
+    radialSource S.areaRadius = L.projection.source
   sourceBound : ℝ
   sourceBound_nonnegative : 0 ≤ sourceBound
   source_abs_le :
-    ∀ r ∈ Set.Ico anchorRadius R.arealRadius,
+    ∀ r ∈ Set.Ico anchorRadius S.areaRadius,
       |radialSource r| ≤ sourceBound
 
 /-- The interval source profile is compatible with the local surface law. -/
@@ -284,14 +291,14 @@ theorem dfmMkcNewtonianGauge_radialMomentumRecovery_surfaceDerivative
     (C : DFMMKCNewtonianGaugeMomentumConstraintConvention)
     (L : DFMMKCNewtonianGaugeRadialMomentumConstraintLaw S x P R C)
     (B : DFMMKCNewtonianGaugeRadialMomentumRecoveryBinding S x P R C L) :
-    B.radialDerivative R.arealRadius =
+    B.radialDerivative S.areaRadius =
       L.momentumProfile.radialDerivative := by
-  have hsurface : R.arealRadius ∈ Set.Icc B.anchorRadius R.arealRadius :=
+  have hsurface : S.areaRadius ∈ Set.Icc B.anchorRadius S.areaRadius :=
     ⟨B.anchor_le_surface, le_rfl⟩
   calc
-    B.radialDerivative R.arealRadius =
-        C.coupling * B.radialSource R.arealRadius :=
-      B.radialDerivative_eq_source R.arealRadius hsurface
+    B.radialDerivative S.areaRadius =
+        C.coupling * B.radialSource S.areaRadius :=
+      B.radialDerivative_eq_source S.areaRadius hsurface
     _ = C.coupling * L.projection.source := by rw [B.surfaceSource_eq]
     _ = L.momentumProfile.radialDerivative := by
       symm
@@ -314,54 +321,67 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
     |dfmMkcNewtonianGaugeMomentumCombination S x P R| ≤
       |L.momentumProfile.profile B.anchorRadius|
         + |C.coupling| * B.sourceBound *
-            (R.arealRadius - B.anchorRadius) := by
-  have hsurface : R.arealRadius ∈ Set.Icc B.anchorRadius R.arealRadius :=
+            (S.areaRadius - B.anchorRadius) := by
+  have hsurface : S.areaRadius ∈ Set.Icc B.anchorRadius S.areaRadius :=
     ⟨B.anchor_le_surface, le_rfl⟩
   have hbound :
-      ∀ r ∈ Set.Ico B.anchorRadius R.arealRadius,
+      ∀ r ∈ Set.Ico B.anchorRadius S.areaRadius,
         ‖B.radialDerivative r‖ ≤ |C.coupling| * B.sourceBound := by
     intro r hr
-    have hrcc : r ∈ Set.Icc B.anchorRadius R.arealRadius :=
+    have hrcc : r ∈ Set.Icc B.anchorRadius S.areaRadius :=
       ⟨hr.1, le_of_lt hr.2⟩
     rw [B.radialDerivative_eq_source r hrcc, Real.norm_eq_abs, abs_mul]
     exact mul_le_mul_of_nonneg_left (B.source_abs_le r hr) (abs_nonneg _)
   have hsegment :
-      ‖L.momentumProfile.profile R.arealRadius -
+      ‖L.momentumProfile.profile S.areaRadius -
           L.momentumProfile.profile B.anchorRadius‖ ≤
         (|C.coupling| * B.sourceBound) *
-          (R.arealRadius - B.anchorRadius) := by
+          (S.areaRadius - B.anchorRadius) := by
     exact norm_image_sub_le_of_norm_deriv_le_segment'
-      B.hasRadialDerivativeWithin hbound R.arealRadius hsurface
+      B.hasRadialDerivativeWithin hbound S.areaRadius hsurface
   have hsegmentAbs :
-      |L.momentumProfile.profile R.arealRadius -
+      |L.momentumProfile.profile S.areaRadius -
           L.momentumProfile.profile B.anchorRadius| ≤
         (|C.coupling| * B.sourceBound) *
-          (R.arealRadius - B.anchorRadius) := by
+          (S.areaRadius - B.anchorRadius) := by
     simpa only [Real.norm_eq_abs] using hsegment
   have htri :
-      |L.momentumProfile.profile R.arealRadius| ≤
+      |L.momentumProfile.profile S.areaRadius| ≤
         |L.momentumProfile.profile B.anchorRadius|
-          + |L.momentumProfile.profile R.arealRadius -
+          + |L.momentumProfile.profile S.areaRadius -
               L.momentumProfile.profile B.anchorRadius| := by
     have hdecomp :
-        L.momentumProfile.profile R.arealRadius =
+        L.momentumProfile.profile S.areaRadius =
           L.momentumProfile.profile B.anchorRadius +
-            (L.momentumProfile.profile R.arealRadius -
+            (L.momentumProfile.profile S.areaRadius -
               L.momentumProfile.profile B.anchorRadius) := by
       ring
-    rw [hdecomp]
-    exact abs_add _ _
+    calc
+      |L.momentumProfile.profile S.areaRadius| =
+          |L.momentumProfile.profile B.anchorRadius +
+            (L.momentumProfile.profile S.areaRadius -
+              L.momentumProfile.profile B.anchorRadius)| :=
+        congrArg (fun y : ℝ => |y|) hdecomp
+      _ ≤ |L.momentumProfile.profile B.anchorRadius| +
+          |L.momentumProfile.profile S.areaRadius -
+            L.momentumProfile.profile B.anchorRadius| :=
+        abs_add_le
+          (L.momentumProfile.profile B.anchorRadius : ℝ)
+          (L.momentumProfile.profile S.areaRadius -
+            L.momentumProfile.profile B.anchorRadius : ℝ)
   calc
     |dfmMkcNewtonianGaugeMomentumCombination S x P R| =
-        |L.momentumProfile.profile R.arealRadius| := by
+        |L.momentumProfile.profile S.areaRadius| := by
       rw [L.momentumProfile.surfaceValue_eq]
     _ ≤ |L.momentumProfile.profile B.anchorRadius|
-          + |L.momentumProfile.profile R.arealRadius -
+          + |L.momentumProfile.profile S.areaRadius -
               L.momentumProfile.profile B.anchorRadius| := htri
     _ ≤ |L.momentumProfile.profile B.anchorRadius|
           + |C.coupling| * B.sourceBound *
-              (R.arealRadius - B.anchorRadius) := by
-      exact add_le_add_left hsegmentAbs _
+              (S.areaRadius - B.anchorRadius) := by
+      simpa [add_comm] using
+        (add_le_add_left hsegmentAbs
+          |L.momentumProfile.profile B.anchorRadius|)
 
 /--
 Finished sharp-gate middle-term estimate obtained by combining the anchored
@@ -381,7 +401,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumGateTerm_le_anchor_add_sourceControl
       |-x.hubble * S.areaRadius ^ 3| *
         (|L.momentumProfile.profile B.anchorRadius|
           + |C.coupling| * B.sourceBound *
-              (R.arealRadius - B.anchorRadius)) := by
+              (S.areaRadius - B.anchorRadius)) := by
   have hcombo :=
     dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
       S x P R C L B
@@ -394,7 +414,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumGateTerm_le_anchor_add_sourceControl
     _ ≤ |-x.hubble * S.areaRadius ^ 3| *
         (|L.momentumProfile.profile B.anchorRadius|
           + |C.coupling| * B.sourceBound *
-              (R.arealRadius - B.anchorRadius)) :=
+              (S.areaRadius - B.anchorRadius)) :=
       mul_le_mul_of_nonneg_left hcombo (abs_nonneg _)
 
 end Chronos.Frontier

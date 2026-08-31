@@ -8,7 +8,7 @@ first-order gate numerator and in the scalar Einstein momentum constraint.
 No Einstein equation is assumed here; this is only the coefficient-exact
 algebraic combination already present in the gate numerator.
 -/
-def dfmMkcNewtonianGaugeMomentumCombination
+noncomputable def dfmMkcNewtonianGaugeMomentumCombination
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -22,7 +22,7 @@ Sharper coefficient-exact gate norm obtained by keeping
 `PsiDot + H Phi` together instead of applying the triangle inequality to its
 two summands separately.
 -/
-def dfmMkcNewtonianGaugeGateSharpPerturbationNorm
+noncomputable def dfmMkcNewtonianGaugeGateSharpPerturbationNorm
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -96,9 +96,9 @@ theorem abs_hawkingVariation_add_massPsi_le_sharpPerturbationNorm
     ring
   rw [hrepr]
   calc
-    |a + b + d| ≤ |a + b| + |d| := abs_add _ _
+    |a + b + d| ≤ |a + b| + |d| := abs_add_le _ _
     _ ≤ (|a| + |b|) + |d| := by
-      exact add_le_add_right (abs_add _ _) _
+      exact add_le_add_left (abs_add_le a b) |d|
     _ = dfmMkcNewtonianGaugeGateSharpPerturbationNorm S x P R := by
       rfl
 
@@ -131,7 +131,7 @@ theorem dfmMkcNewtonianGaugeGateSharpPerturbationNorm_le_weighted
             P.newtonianLapsePotential) by
       unfold dfmMkcNewtonianGaugeMomentumCombination
       ring]
-    exact abs_add _ _
+    exact abs_add_le _ _
   unfold dfmMkcNewtonianGaugeGateSharpPerturbationNorm
     dfmMkcNewtonianGaugeGateWeightedPerturbationNorm
   linarith

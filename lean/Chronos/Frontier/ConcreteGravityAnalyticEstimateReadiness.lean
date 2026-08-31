@@ -42,7 +42,7 @@ structure AdmissibleQuasiLocalSurface
   areaRadius_pos : 0 < areaRadius
 
 /-- Dimensionless quasi-local compactness gate in the normalization `2 m_H / r_A`. -/
-def QL_gate
+noncomputable def QL_gate
     (data : SelectedEinsteinMatterCauchyData)
     (S : AdmissibleQuasiLocalSurface data) : ℝ :=
   2 * S.hawkingMass / S.areaRadius
@@ -151,7 +151,7 @@ structure RestrictedDFMMKCEnergyState where
   newtonG_pos : 0 < newtonG
 
 /-- Canonical DFM-MKC potential `U(phi)`. -/
-def dfmMkcPotential (x : RestrictedDFMMKCEnergyState) : ℝ :=
+noncomputable def dfmMkcPotential (x : RestrictedDFMMKCEnergyState) : ℝ :=
   x.rhoStar
     + (1 / 2 : ℝ) * x.mPhiSquared * x.phi ^ 2
     + (1 / 4 : ℝ) * x.lambdaPhi * x.phi ^ 4
@@ -159,7 +159,7 @@ def dfmMkcPotential (x : RestrictedDFMMKCEnergyState) : ℝ :=
 /--
 Canonical charge-reduced DFM-MKC dark-sector energy density.
 -/
-def dfmMkcEnergyDensity (x : RestrictedDFMMKCEnergyState) : ℝ :=
+noncomputable def dfmMkcEnergyDensity (x : RestrictedDFMMKCEnergyState) : ℝ :=
   (1 / 2 : ℝ) * x.alpha * x.phiDot ^ 2
     + x.qTheta ^ 2 /
       (2 * x.beta * x.scaleFactor ^ 6 * x.phi ^ 2)
@@ -171,7 +171,7 @@ Geometrized total FLRW energy density used by the `2m/r` normalization:
 This is the restricted meaning assigned to `E_grav`; it is not ADM or Bondi
 mass and does not alter the general `E_grav` interface outside this branch.
 -/
-def dfmMkcGeometrizedTotalEnergyDensity
+noncomputable def dfmMkcGeometrizedTotalEnergyDensity
     (x : RestrictedDFMMKCEnergyState) : ℝ :=
   x.newtonG * (x.visibleEnergyDensity + dfmMkcEnergyDensity x)
     + x.cosmologicalConstant / (8 * Real.pi)
@@ -257,7 +257,7 @@ def RestrictedDFMMKCFLRWMisnerSharpEnergyIdentity
 Canonical geometrized Misner-Sharp mass for a round sphere on the spatially
 flat FLRW branch, `m_MS = r_A^3 H^2 / 2`.
 -/
-def dfmMkcFLRWMisnerSharpMass
+noncomputable def dfmMkcFLRWMisnerSharpMass
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState) : ℝ :=

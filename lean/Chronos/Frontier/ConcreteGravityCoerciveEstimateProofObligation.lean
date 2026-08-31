@@ -88,7 +88,7 @@ theorem areaRadius_le_inv_hubble_of_expandingFlatFLRWSubHubbleSphere
 Surface-independent coefficient for a fixed expanding DFM-MKC FLRW state,
 obtained from the geometric Hubble-radius cap `R_* = 1/H`.
 -/
-def dfmMkcExpandingFlatFLRWCStar
+noncomputable def dfmMkcExpandingFlatFLRWCStar
     (x : RestrictedDFMMKCEnergyState) : ℝ :=
   (8 * Real.pi / 3) * (1 / x.hubble) ^ 2
 
@@ -141,10 +141,11 @@ theorem concreteGravityCoerciveEstimate_of_expandingFlatFLRWSubHubbleSphere
     concreteGravityCoerciveEstimate_of_flatFLRW_spherical_binding
       S x spatiallyFlatFLRW roundSymmetrySphere B G hrestricted
   unfold ConcreteGravityCoerciveEstimate at hlocal ⊢
-  exact hlocal.trans
-    (add_le_add_right
-      (mul_le_mul_of_nonneg_right hC hE)
-      (Flux_boundary data S))
+  exact hlocal.trans (by
+    simpa [add_comm] using
+      (add_le_add_right
+        (mul_le_mul_of_nonneg_right hC hE)
+        (Flux_boundary data S)))
 
 /--
 Lean-side Hubble-floor interface for the repository's prepared positive-alpha
@@ -167,7 +168,7 @@ Class-wide coefficient supplied by a common prepared-family Hubble floor.
 For fixed `HStar`, this coefficient is independent of both the state `x` and the
 surface `S`.
 -/
-def dfmMkcPreparedAlphaCStarStar (HStar : ℝ) : ℝ :=
+noncomputable def dfmMkcPreparedAlphaCStarStar (HStar : ℝ) : ℝ :=
   (8 * Real.pi / 3) * (1 / HStar) ^ 2
 
 /--
@@ -188,7 +189,7 @@ theorem dfmMkcExpandingFlatFLRWCStar_le_preparedAlphaCStarStar
   have hinvH0 : 0 ≤ 1 / x.hubble := by
     positivity
   have hinvStar0 : 0 ≤ 1 / HStar := by
-    positivity
+    exact div_nonneg (by norm_num) (le_of_lt hfloor.floor_positive)
   have hsq : (1 / x.hubble) ^ 2 ≤ (1 / HStar) ^ 2 := by
     have hprod :
         0 ≤ ((1 / HStar) - (1 / x.hubble)) *
@@ -235,10 +236,11 @@ theorem concreteGravityCoerciveEstimate_of_preparedAlphaHubbleFloor
   have hE : 0 ≤ E_grav data := by
     simpa [E_grav] using data.curvatureEnergyControl_nonnegative
   unfold ConcreteGravityCoerciveEstimate at hlocal ⊢
-  exact hlocal.trans
-    (add_le_add_right
-      (mul_le_mul_of_nonneg_right hC hE)
-      (Flux_boundary data S))
+  exact hlocal.trans (by
+    simpa [add_comm] using
+      (add_le_add_right
+        (mul_le_mul_of_nonneg_right hC hE)
+        (Flux_boundary data S)))
 
 /--
 First wider DFM-MKC state-class interface: a positive Hubble floor with no
@@ -265,7 +267,7 @@ def PreparedAlphaDFMMKCHubbleFloor.toDFMMKCHubbleFloor
 Class-wide coefficient for any DFM-MKC flat-FLRW state class sharing the same
 positive Hubble floor.
 -/
-def dfmMkcHubbleFloorCStarStar (HStar : ℝ) : ℝ :=
+noncomputable def dfmMkcHubbleFloorCStarStar (HStar : ℝ) : ℝ :=
   (8 * Real.pi / 3) * (1 / HStar) ^ 2
 
 /--
@@ -286,7 +288,7 @@ theorem dfmMkcExpandingFlatFLRWCStar_le_hubbleFloorCStarStar
   have hinvH0 : 0 ≤ 1 / x.hubble := by
     positivity
   have hinvStar0 : 0 ≤ 1 / HStar := by
-    positivity
+    exact div_nonneg (by norm_num) (le_of_lt hfloor.floor_positive)
   have hsq : (1 / x.hubble) ^ 2 ≤ (1 / HStar) ^ 2 := by
     have hprod :
         0 ≤ ((1 / HStar) - (1 / x.hubble)) *
@@ -333,10 +335,11 @@ theorem concreteGravityCoerciveEstimate_of_dfmMkcHubbleFloor
   have hE : 0 ≤ E_grav data := by
     simpa [E_grav] using data.curvatureEnergyControl_nonnegative
   unfold ConcreteGravityCoerciveEstimate at hlocal ⊢
-  exact hlocal.trans
-    (add_le_add_right
-      (mul_le_mul_of_nonneg_right hC hE)
-      (Flux_boundary data S))
+  exact hlocal.trans (by
+    simpa [add_comm] using
+      (add_le_add_right
+        (mul_le_mul_of_nonneg_right hC hE)
+        (Flux_boundary data S)))
 
 structure ConcreteGravityCoerciveEstimateProofObligation where
   id : String

@@ -49,7 +49,7 @@ pointwise perturbation size:
 
 `R_A * (1 - qStar)`.
 -/
-def dfmMkcNewtonianGaugeMarginWeightedGateErrorBound
+noncomputable def dfmMkcNewtonianGaugeMarginWeightedGateErrorBound
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
@@ -80,7 +80,8 @@ theorem dfmMkcNewtonianGaugeBackgroundRadiusBound_le_marginBound
       dfmMkcNewtonianGaugeGateWeightedPerturbationNorm S x P R
   have hnum : 0 ≤ numerator := by
     dsimp [numerator]
-    positivity
+    exact mul_nonneg (by positivity)
+      (dfmMkcNewtonianGaugeGateWeightedPerturbationNorm_nonnegative S x P R)
   have hsmall :
       dfmMkcNewtonianGaugeRelativeRadiusPerturbation S x P < 1 :=
     dfmMkcNewtonianGaugeRelativeRadiusMargin_implies_small
@@ -182,9 +183,10 @@ theorem dfmMkcPerturbedCoerciveEstimate_of_hubbleFloor_newtonianGauge_margin
     dfmMkcNewtonianGaugeWeightedGateErrorBound_le_marginBound
       S x P A R qStar M
   unfold DFMMKCPerturbedCoerciveEstimate at hraw ⊢
-  exact hraw.trans
-    (add_le_add_left herr
-      (dfmMkcHubbleFloorCStarStar HStar * E_grav data
-        + Flux_boundary data S))
+  exact hraw.trans (by
+    simpa [add_comm] using
+      (add_le_add_left herr
+        (dfmMkcHubbleFloorCStarStar HStar * E_grav data
+          + Flux_boundary data S)))
 
 end Chronos.Frontier
