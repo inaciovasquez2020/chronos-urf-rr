@@ -170,10 +170,11 @@ theorem dfmMkcPerturbedQLGate_le_hubbleFloor_add_absorbedEnergy
               S x P R qStar := hraw
     _ ≤ dfmMkcHubbleFloorCStarStar HStar * E_grav data
           + Flux_boundary data S
-          + kappa * E_grav data :=
-      add_le_add_left herr
-        (dfmMkcHubbleFloorCStarStar HStar * E_grav data
-          + Flux_boundary data S)
+          + kappa * E_grav data := by
+      simpa [add_comm] using
+        (add_le_add_left herr
+          (dfmMkcHubbleFloorCStarStar HStar * E_grav data
+            + Flux_boundary data S))
     _ = (dfmMkcHubbleFloorCStarStar HStar + kappa) * E_grav data
           + Flux_boundary data S := by
       ring
