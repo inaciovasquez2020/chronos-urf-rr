@@ -291,7 +291,7 @@ theorem dfmMkcNewtonianGauge_radialMomentumRecovery_surfaceDerivative
     (C : DFMMKCNewtonianGaugeMomentumConstraintConvention)
     (L : DFMMKCNewtonianGaugeRadialMomentumConstraintLaw S x P R C)
     (B : DFMMKCNewtonianGaugeRadialMomentumRecoveryBinding S x P R C L) :
-    B.radialDerivative R.arealRadius =
+    B.radialDerivative S.areaRadius =
       L.momentumProfile.radialDerivative := by
   have hsurface : R.arealRadius ∈ Set.Icc B.anchorRadius R.arealRadius :=
     ⟨B.anchor_le_surface, le_rfl⟩
