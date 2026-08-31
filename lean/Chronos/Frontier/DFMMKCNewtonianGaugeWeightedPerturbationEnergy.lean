@@ -278,7 +278,7 @@ structure DFMMKCNewtonianGaugeRadialMomentumRecoveryBinding
   sourceBound : ℝ
   sourceBound_nonnegative : 0 ≤ sourceBound
   source_abs_le :
-    ∀ r ∈ Set.Ico anchorRadius R.arealRadius,
+    ∀ r ∈ Set.Ico anchorRadius S.areaRadius,
       |radialSource r| ≤ sourceBound
 
 /-- The interval source profile is compatible with the local surface law. -/
