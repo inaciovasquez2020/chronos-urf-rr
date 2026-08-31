@@ -298,7 +298,7 @@ theorem dfmMkcNewtonianGauge_radialMomentumRecovery_surfaceDerivative
   calc
     B.radialDerivative S.areaRadius =
         C.coupling * B.radialSource S.areaRadius :=
-      B.radialDerivative_eq_source R.arealRadius hsurface
+      B.radialDerivative_eq_source S.areaRadius hsurface
     _ = C.coupling * L.projection.source := by rw [B.surfaceSource_eq]
     _ = L.momentumProfile.radialDerivative := by
       symm
