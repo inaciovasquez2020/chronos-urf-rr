@@ -274,7 +274,7 @@ structure DFMMKCNewtonianGaugeRadialMomentumRecoveryBinding
     ∀ r ∈ Set.Icc anchorRadius S.areaRadius,
       radialDerivative r = C.coupling * radialSource r
   surfaceSource_eq :
-    radialSource R.arealRadius = L.projection.source
+    radialSource S.areaRadius = L.projection.source
   sourceBound : ℝ
   sourceBound_nonnegative : 0 ≤ sourceBound
   source_abs_le :
