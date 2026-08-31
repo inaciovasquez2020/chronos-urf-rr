@@ -293,7 +293,7 @@ theorem dfmMkcNewtonianGauge_radialMomentumRecovery_surfaceDerivative
     (B : DFMMKCNewtonianGaugeRadialMomentumRecoveryBinding S x P R C L) :
     B.radialDerivative S.areaRadius =
       L.momentumProfile.radialDerivative := by
-  have hsurface : R.arealRadius ∈ Set.Icc B.anchorRadius S.areaRadius :=
+  have hsurface : S.areaRadius ∈ Set.Icc B.anchorRadius S.areaRadius :=
     ⟨B.anchor_le_surface, le_rfl⟩
   calc
     B.radialDerivative R.arealRadius =
