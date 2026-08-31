@@ -325,7 +325,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
   have hsurface : S.areaRadius ∈ Set.Icc B.anchorRadius S.areaRadius :=
     ⟨B.anchor_le_surface, le_rfl⟩
   have hbound :
-      ∀ r ∈ Set.Ico B.anchorRadius R.arealRadius,
+      ∀ r ∈ Set.Ico B.anchorRadius S.areaRadius,
         ‖B.radialDerivative r‖ ≤ |C.coupling| * B.sourceBound := by
     intro r hr
     have hrcc : r ∈ Set.Icc B.anchorRadius R.arealRadius :=
