@@ -7,7 +7,7 @@ namespace Chronos.Frontier
 The qStar-margin gate error with the coefficient-exact weighted perturbation
 norm replaced by the weakest analytic perturbation control energy.
 -/
-def dfmMkcNewtonianGaugeMarginPerturbationEnergyGateErrorBound
+noncomputable def dfmMkcNewtonianGaugeMarginPerturbationEnergyGateErrorBound
     {data : SelectedEinsteinMatterCauchyData}
     (S : AdmissibleQuasiLocalSurface data)
     (x : RestrictedDFMMKCEnergyState)
