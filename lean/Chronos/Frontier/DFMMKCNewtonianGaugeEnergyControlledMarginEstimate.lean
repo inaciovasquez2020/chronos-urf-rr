@@ -45,7 +45,8 @@ theorem dfmMkcNewtonianGaugeMarginWeightedGateErrorBound_le_energyBound
   unfold dfmMkcNewtonianGaugeMarginWeightedGateErrorBound
     dfmMkcNewtonianGaugeMarginPerturbationEnergyGateErrorBound
   exact (div_le_div_iff₀ hden hden).2
-    (mul_le_mul_of_nonneg_left hnorm hscale)
+    (mul_le_mul_of_nonneg_right
+      (mul_le_mul_of_nonneg_left hnorm hscale) (le_of_lt hden))
 
 /--
 The spherical first-order DFM-MKC qStar-margin coercive estimate with its
