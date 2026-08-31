@@ -357,10 +357,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
               L.momentumProfile.profile B.anchorRadius) := by
       ring
     rw [hdecomp]
-    exact abs_add_le
-      (L.momentumProfile.profile B.anchorRadius : ℝ)
-      (L.momentumProfile.profile S.areaRadius -
-        L.momentumProfile.profile B.anchorRadius : ℝ)
+    exact abs_add _ _
   calc
     |dfmMkcNewtonianGaugeMomentumCombination S x P R| =
         |L.momentumProfile.profile R.arealRadius| := by
