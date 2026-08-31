@@ -338,7 +338,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
         (|C.coupling| * B.sourceBound) *
           (S.areaRadius - B.anchorRadius) := by
     exact norm_image_sub_le_of_norm_deriv_le_segment'
-      B.hasRadialDerivativeWithin hbound R.arealRadius hsurface
+      B.hasRadialDerivativeWithin hbound S.areaRadius hsurface
   have hsegmentAbs :
       |L.momentumProfile.profile R.arealRadius -
           L.momentumProfile.profile B.anchorRadius| ≤
