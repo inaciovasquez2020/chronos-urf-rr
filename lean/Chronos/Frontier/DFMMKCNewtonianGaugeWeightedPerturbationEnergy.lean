@@ -374,7 +374,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
         |L.momentumProfile.profile S.areaRadius| := by
       rw [L.momentumProfile.surfaceValue_eq]
     _ ≤ |L.momentumProfile.profile B.anchorRadius|
-          + |L.momentumProfile.profile R.arealRadius -
+          + |L.momentumProfile.profile S.areaRadius -
               L.momentumProfile.profile B.anchorRadius| := htri
     _ ≤ |L.momentumProfile.profile B.anchorRadius|
           + |C.coupling| * B.sourceBound *
