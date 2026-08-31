@@ -351,7 +351,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
           + |L.momentumProfile.profile S.areaRadius -
               L.momentumProfile.profile B.anchorRadius| := by
     have hdecomp :
-        L.momentumProfile.profile R.arealRadius =
+        L.momentumProfile.profile S.areaRadius =
           L.momentumProfile.profile B.anchorRadius +
             (L.momentumProfile.profile R.arealRadius -
               L.momentumProfile.profile B.anchorRadius) := by
