@@ -333,7 +333,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
     rw [B.radialDerivative_eq_source r hrcc, Real.norm_eq_abs, abs_mul]
     exact mul_le_mul_of_nonneg_left (B.source_abs_le r hr) (abs_nonneg _)
   have hsegment :
-      ‖L.momentumProfile.profile R.arealRadius -
+      ‖L.momentumProfile.profile S.areaRadius -
           L.momentumProfile.profile B.anchorRadius‖ ≤
         (|C.coupling| * B.sourceBound) *
           (R.arealRadius - B.anchorRadius) := by
