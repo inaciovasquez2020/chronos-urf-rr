@@ -414,7 +414,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumGateTerm_le_anchor_add_sourceControl
     _ ≤ |-x.hubble * S.areaRadius ^ 3| *
         (|L.momentumProfile.profile B.anchorRadius|
           + |C.coupling| * B.sourceBound *
-              (R.arealRadius - B.anchorRadius)) :=
+              (S.areaRadius - B.anchorRadius)) :=
       mul_le_mul_of_nonneg_left hcombo (abs_nonneg _)
 
 end Chronos.Frontier
