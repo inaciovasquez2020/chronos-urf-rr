@@ -328,7 +328,7 @@ theorem dfmMkcNewtonianGauge_abs_momentumCombination_le_anchor_add_sourceControl
       ∀ r ∈ Set.Ico B.anchorRadius S.areaRadius,
         ‖B.radialDerivative r‖ ≤ |C.coupling| * B.sourceBound := by
     intro r hr
-    have hrcc : r ∈ Set.Icc B.anchorRadius R.arealRadius :=
+    have hrcc : r ∈ Set.Icc B.anchorRadius S.areaRadius :=
       ⟨hr.1, le_of_lt hr.2⟩
     rw [B.radialDerivative_eq_source r hrcc, Real.norm_eq_abs, abs_mul]
     exact mul_le_mul_of_nonneg_left (B.source_abs_le r hr) (abs_nonneg _)
