@@ -3,6 +3,61 @@ import Chronos.Frontier.DFMMKCNewtonianGaugeWeightedPerturbationEnergy
 namespace Chronos.Frontier
 
 /--
+Background areal radius of a flat-FLRW round sphere at fixed cosmic time:
+`R = a * chi`.
+
+The scale factor is frozen while differentiating in the radial coordinate.
+This is the coordinate normalization underlying the repository's existing
+physical-radial convention `(1 / a) * partial_chi`.
+-/
+noncomputable def dfmMkcFlatFLRWArealRadiusAtFixedTime
+    (x : RestrictedDFMMKCEnergyState)
+    (chi : ℝ) : ℝ :=
+  x.scaleFactor * chi
+
+/-- At fixed time, the areal-radius/comoving-radius Jacobian is exactly `a`. -/
+theorem dfmMkcFlatFLRWArealRadiusAtFixedTime_hasDerivAt
+    (x : RestrictedDFMMKCEnergyState)
+    (chi : ℝ) :
+    HasDerivAt (dfmMkcFlatFLRWArealRadiusAtFixedTime x)
+      x.scaleFactor chi := by
+  simpa [dfmMkcFlatFLRWArealRadiusAtFixedTime] using
+    (hasDerivAt_id chi).const_mul x.scaleFactor
+
+/--
+Convert a comoving radial derivative to the physical/areal radial derivative
+at fixed cosmic time.
+-/
+noncomputable def dfmMkcFlatFLRWPhysicalRadialDerivativeFromComoving
+    (x : RestrictedDFMMKCEnergyState)
+    (comovingRadialDerivative : ℝ) : ℝ :=
+  comovingRadialDerivative / x.scaleFactor
+
+/-- The positive scale factor makes the radial derivative conversion invertible. -/
+theorem dfmMkcFlatFLRW_scaleFactor_mul_physicalRadialDerivativeFromComoving
+    (x : RestrictedDFMMKCEnergyState)
+    (comovingRadialDerivative : ℝ) :
+    x.scaleFactor *
+        dfmMkcFlatFLRWPhysicalRadialDerivativeFromComoving
+          x comovingRadialDerivative =
+      comovingRadialDerivative := by
+  unfold dfmMkcFlatFLRWPhysicalRadialDerivativeFromComoving
+  field_simp [ne_of_gt x.scaleFactor_pos]
+
+/--
+The charge-reduced radial normalization is exactly the convention already used
+by the Newtonian-gauge spherical potential realization.
+-/
+theorem dfmMkcFlatFLRWPhysicalRadialDerivativeFromComoving_agreesWithNewtonianGauge
+    (F : DFMMKCNewtonianGaugeSphericalPotentialField)
+    (x : RestrictedDFMMKCEnergyState)
+    (t chi : ℝ) :
+    dfmMkcFlatFLRWPhysicalRadialDerivativeFromComoving
+        x (F.comovingRadialDerivative t chi) =
+      F.physicalRadialDerivativeAt x t chi := by
+  rfl
+
+/--
 Surface-local action-source binding for the charge-reduced DFM-MKC scalar
 momentum potential.
 
