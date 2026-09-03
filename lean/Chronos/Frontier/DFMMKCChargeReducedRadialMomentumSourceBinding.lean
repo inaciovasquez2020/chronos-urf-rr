@@ -64,4 +64,61 @@ structure DFMMKCChargeReducedRadialMomentumSourceBinding
       projectionSign * projectionNormalization *
         momentumPotentialRadialDerivative
 
+/--
+Interval extension of the charge-reduced DFM-MKC action-source identity.
+
+This deliberately carries no `sourceBound` and no `source_abs_le` field.  It
+only states that, on the same closed radial-interval geometry used by the
+Newtonian-gauge recovery argument, the realized radial momentum source is the
+signed, positively normalized radial derivative of the charge-reduced momentum
+potential.  The derivative at the selected surface is tied back to the
+surface-local binding above.
+-/
+structure DFMMKCChargeReducedRadialMomentumSourceIntervalBinding
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (Q : DFMMKCChargeReducedRadialMomentumSourceBinding S x P) where
+  anchorRadius : ℝ
+  anchor_le_surface : anchorRadius ≤ S.areaRadius
+  radialSource : ℝ → ℝ
+  momentumPotentialRadialDerivative : ℝ → ℝ
+  hasMomentumPotentialRadialDerivativeWithin :
+    ∀ r ∈ Set.Icc anchorRadius S.areaRadius,
+      HasDerivWithinAt Q.momentumPotentialProfile
+        (momentumPotentialRadialDerivative r)
+        (Set.Icc anchorRadius S.areaRadius) r
+  radialSource_eq :
+    ∀ r ∈ Set.Icc anchorRadius S.areaRadius,
+      radialSource r =
+        Q.projectionSign * Q.projectionNormalization *
+          momentumPotentialRadialDerivative r
+  surfaceDerivative_eq :
+    momentumPotentialRadialDerivative S.areaRadius =
+      Q.momentumPotentialRadialDerivative
+
+/-- The interval action-source profile recovers the typed local source. -/
+theorem dfmMkcChargeReducedRadialMomentumSourceIntervalBinding_surfaceSource_eq
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (Q : DFMMKCChargeReducedRadialMomentumSourceBinding S x P)
+    (B : DFMMKCChargeReducedRadialMomentumSourceIntervalBinding S x P Q) :
+    B.radialSource S.areaRadius = Q.projection.source := by
+  have hsurface : S.areaRadius ∈ Set.Icc B.anchorRadius S.areaRadius :=
+    ⟨B.anchor_le_surface, le_rfl⟩
+  calc
+    B.radialSource S.areaRadius =
+        Q.projectionSign * Q.projectionNormalization *
+          B.momentumPotentialRadialDerivative S.areaRadius :=
+      B.radialSource_eq S.areaRadius hsurface
+    _ = Q.projectionSign * Q.projectionNormalization *
+          Q.momentumPotentialRadialDerivative := by
+      rw [B.surfaceDerivative_eq]
+    _ = Q.projection.source := by
+      symm
+      exact Q.projectedMatterMomentum_eq
+
 end Chronos.Frontier
