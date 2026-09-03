@@ -121,4 +121,27 @@ theorem dfmMkcChargeReducedRadialMomentumSourceIntervalBinding_surfaceSource_eq
       symm
       exact Q.projectedMatterMomentum_eq
 
+/--
+On the interval, taking absolute values removes the unresolved projection sign.
+Thus the magnitude of the realized radial matter source is exactly the positive
+projection normalization times the magnitude of the radial derivative of the
+charge-reduced momentum potential.
+-/
+theorem dfmMkcChargeReducedRadialMomentumSourceIntervalBinding_abs_source_eq
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (Q : DFMMKCChargeReducedRadialMomentumSourceBinding S x P)
+    (B : DFMMKCChargeReducedRadialMomentumSourceIntervalBinding S x P Q)
+    (r : ℝ)
+    (hr : r ∈ Set.Icc B.anchorRadius S.areaRadius) :
+    |B.radialSource r| =
+      Q.projectionNormalization * |B.momentumPotentialRadialDerivative r| := by
+  rw [B.radialSource_eq r hr, abs_mul, abs_mul,
+    abs_of_pos Q.projectionNormalization_pos]
+  rcases Q.projectionSign_fixed with hsign | hsign
+  · rw [hsign, abs_one, one_mul]
+  · rw [hsign, abs_neg, abs_one, one_mul]
+
 end Chronos.Frontier
