@@ -74,6 +74,9 @@ jobs:
       - name: Expose accumulation cone transfer coefficients
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_cone_coefficients.py
 
+      - name: Certify accumulation invariant growth cone
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_invariant_cone.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
