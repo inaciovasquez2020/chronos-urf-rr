@@ -13,9 +13,10 @@ The two-sided ratio cone places the physical top-log coefficient vector between
 fixed exponential multiples of (n!)^2.  Hence, under the standard formal-series
 convention |c_n| <= C A^n (n!)^s, its exact minimal Gevrey exponent is 2.
 Dividing the exact finite-lag recurrence by (n!)^2 gives the order-2 Borel
-coordinate recurrence and certifies a strictly positive local Borel radius.
-Every tail inequality is reduced to positivity of a shifted exact rational
-polynomial; no floating-point inequalities are used.
+coordinate recurrence.  The same cone isolates the dominant lag-one kernel
+coefficient and proves an O(1/n) ratio error, fixing the exact local Borel
+radius at 5/18.  Every tail inequality is reduced to positivity of a shifted
+exact rational polynomial; no floating-point inequalities are used.
 """
 from __future__ import annotations
 
@@ -223,6 +224,22 @@ def main() -> None:
     assert_tail_nonnegative(kernel_dom-kernel_rem-q,n,N,"kernel lower cone")
     assert_tail_nonnegative(Q-kernel_dom-kernel_rem,n,N,"kernel upper cone")
 
+    # Exact ratio limit.  Under the invariant cone the physical sign-normalized
+    # ratio differs from the lag-one dominant coefficient by at most kernel_rem.
+    # The dominant coefficient approaches 18/5 from below, and the combined
+    # error is bounded by 20/n on the full certified tail.
+    ratio_target = sp.Rational(18,5)
+    dominant_gap = simp(ratio_target-kernel_dom)
+    assert_tail_nonnegative(dominant_gap,n,N,"kernel dominant 18/5 gap")
+    ratio_error_envelope = simp(dominant_gap+kernel_rem)
+    ratio_error_C = sp.Rational(20)
+    assert_tail_nonnegative(
+        ratio_error_C/n-ratio_error_envelope,
+        n,
+        N,
+        "kernel ratio O(1/n) convergence envelope",
+    )
+
     # Absolute range bound; no sign assumption on xi is needed.
     range_abs = sp.Integer(0)
     for j in range(1,J+1):
@@ -241,6 +258,8 @@ def main() -> None:
     print("RANGE_KERNEL_CONE := abs(xi_n/kappa_n) <= 1/n^3")
     print("PREFIX_CERTIFIED := full lag history 51<=n<=60 lies in kernel/range cone")
     print("TAIL_INVARIANCE := exact rational inequalities certified for every integer n>=61")
+    print("KERNEL_RATIO_ERROR_BOUND := abs(a_n/(n^2*a_(n-1))-18/5) <= 20/n for n>=61")
+    print("KERNEL_RATIO_LIMIT := a_n/(n^2*a_(n-1)) -> 18/5")
     print("FACTORIAL_LOWER_BOUND := abs(kappa_n) >= abs(kappa_60)*2^(n-60)*(n!/60!)^2 for n>=60")
     print("FACTORIAL_UPPER_BOUND := abs(kappa_n) <= abs(kappa_60)*5^(n-60)*(n!/60!)^2 for n>=60")
     print("TOP_LOG_VECTOR_GEVREY_DEFINITION := |c_n| <= C*A^n*(n!)^s")
@@ -250,14 +269,14 @@ def main() -> None:
     print("ORDER2_BOREL_COORDINATES := Xi_n=xi_n/(n!)^2; K_n=kappa_n/(n!)^2")
     print("ORDER2_BOREL_TRANSFER := each lag-j coefficient is divided by [n*(n-1)*...*(n-j+1)]^2")
     print("ORDER2_BOREL_PREFIX_RECURRENCE := exact for 10<=n<=60")
-    print("ORDER2_BOREL_KERNEL_RATIO_CONE := 2 <= abs(K_n/K_(n-1)) <= 5 for n>=61")
-    print("ORDER2_BOREL_KERNEL_RADIUS := 1/5 <= R <= 1/2")
-    print("ORDER2_BOREL_TOP_LOG_RADIUS := 1/5 <= R <= 1/2")
-    print("ORDER2_BOREL_LOCAL_CONVERGENCE := certified")
+    print("ORDER2_BOREL_SIGNED_KERNEL_RATIO_LIMIT := K_n/K_(n-1) -> -18/5")
+    print("ORDER2_BOREL_KERNEL_RADIUS := 5/18")
+    print("ORDER2_BOREL_TOP_LOG_RADIUS := 5/18")
+    print("ORDER2_BOREL_LOCAL_CONVERGENCE := certified with exact radius")
     print("PHYSICAL_FACTORIAL_SECTOR := nonzero")
     print("TOP_LOG_POWER_SERIES_RADIUS := 0")
     print("ACCUMULATION_POINT_CONVERGENT_FROBENIUS := ruled out for the physical top-log branch")
-    print("BOUNDARY := local order-2 Borel convergence only; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
+    print("BOUNDARY := exact local order-2 Borel radius only; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
 
 
 if __name__ == "__main__":
