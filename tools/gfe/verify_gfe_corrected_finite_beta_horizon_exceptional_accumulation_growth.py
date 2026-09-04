@@ -7,9 +7,10 @@ all-order exceptional horizon branch.  It derives the finite-lag Euler symbol
 directly from the exact Euler artifact, clears the analytic x-denominator, and
 computes the large-n degree of the induced transfer coefficients.
 
-A bounded-transfer outcome closes the standard geometric majorant.  A positive
-transfer degree is reported as a precise rescaling boundary rather than being
-silently promoted to convergence.
+A bounded-transfer outcome closes the standard geometric majorant.  When the
+forward-solved kernel coordinate has positive polynomial growth, the verifier
+also factors the highest-degree lag polynomial before selecting any rescaling
+or finite-difference normal form.
 """
 from __future__ import annotations
 
@@ -32,6 +33,16 @@ def degree_at_infinity(expr: sp.Expr, n: sp.Symbol) -> int:
         return -10**6
     num, den = sp.fraction(expr)
     return sp.Poly(num, n, domain="EX").degree() - sp.Poly(den, n, domain="EX").degree()
+
+
+def leading_at_infinity(expr: sp.Expr, n: sp.Symbol) -> sp.Expr:
+    expr = simp(expr)
+    if expr == 0:
+        return sp.Integer(0)
+    num, den = sp.fraction(expr)
+    num_poly = sp.Poly(num, n, domain="EX")
+    den_poly = sp.Poly(den, n, domain="EX")
+    return simp(num_poly.LC() / den_poly.LC())
 
 
 def assert_no_integer_poles(expr: sp.Expr, n: sp.Symbol) -> None:
@@ -66,6 +77,7 @@ def main() -> None:
 
     x = sp.symbols("x", positive=True)
     n = sp.symbols("n", integer=True, positive=True)
+    z = sp.symbols("z")
     a, b = sp.symbols("a b")
 
     trial = {}
@@ -187,9 +199,7 @@ def main() -> None:
         X_kap[j] = simp(-((sp.Matrix([[block[0, 0], block[0, 1]]]) * rvec(n - j))[0]) / A00)
 
     # The compatibility equation at order n+1 fixes the current kernel
-    # coordinate kappa_n.  This is the same exact finite-lag elimination used
-    # in the older repository convergence certificate, but re-derived here
-    # from the corrected Euler artifact and specialized beta=5 M^2/2.
+    # coordinate kappa_n.
     ell_next = lvec(n + 1)
     C1n = matrix_simp(Cj[1].subs(p, alpha + n))
     gamma_next = simp((ell_next.T * C1n * rvec(n))[0])
@@ -242,6 +252,29 @@ def main() -> None:
         degree_rows.append((j, row))
         max_transfer_degree = max(max_transfer_degree, *row)
 
+    # Forward-solving the singular rank-one recurrence produces O(n^2)
+    # kernel self-transfer.  Before interpreting that as factorial growth,
+    # factor the complete degree-two lag polynomial: leading terms from
+    # different lags can cancel as a finite-difference operator.
+    kernel_self_degree2_coeffs: dict[int, sp.Expr] = {}
+    for j in range(1, J + 1):
+        expr = K_kap.get(j, 0)
+        if degree_at_infinity(expr, n) == 2:
+            kernel_self_degree2_coeffs[j] = leading_at_infinity(expr, n)
+    kernel_self_degree2_poly = sp.factor(
+        sum(coeff * z**j for j, coeff in kernel_self_degree2_coeffs.items())
+    )
+    if not kernel_self_degree2_coeffs:
+        raise AssertionError("expected degree-two kernel self-transfer disappeared")
+
+    kernel_cross_degree1_poly = sp.factor(
+        sum(
+            leading_at_infinity(K_xi.get(j, 0), n) * z**j
+            for j in range(1, J + 1)
+            if degree_at_infinity(K_xi.get(j, 0), n) == 1
+        )
+    )
+
     Dpj = [matrix_simp(block.diff(p)) for block in Cj]
     max_derivative_degree = max(
         sp.Poly(entry, p, domain="EX").degree()
@@ -276,32 +309,21 @@ def main() -> None:
             + str(degrees[3])
         )
     print("MAX_LOG_TRANSFER_DEGREE := " + str(max_transfer_degree))
+    print("KERNEL_SELF_DEGREE2_COEFFICIENTS := " + sp.sstr(kernel_self_degree2_coeffs))
+    print("KERNEL_SELF_DEGREE2_LAG_POLYNOMIAL := " + sp.sstr(kernel_self_degree2_poly))
+    print("KERNEL_CROSS_DEGREE1_LAG_POLYNOMIAL := " + sp.sstr(kernel_cross_degree1_poly))
     print("NONLOG_EXPONENT_DERIVATIVE_MAX_P_DEGREE := " + str(max_derivative_degree))
 
     if max_transfer_degree <= 0:
         print("BOUNDED_LOG_TRANSFER := certified for integer n>=3")
-        print(
-            "LOG_MAJORANT := finite lag + pole-free bounded transfer closes a geometric coefficient majorant"
-        )
-        print(
-            "NONLOG_MAJORANT := polynomial exponent-derivative forcing is absorbed by an arbitrarily small enlargement of the geometric base"
-        )
         print("ACCUMULATION_POINT_CONVERGENCE := certified locally on a fixed log branch")
         print("RESULT := beta=5*M**2/2 exceptional logarithmic Frobenius convergence proved")
-        print(
-            "BOUNDARY := no explicit optimal radius; no horizon-to-r_c continuation; no C_phys; no global Chronos closure"
-        )
+        print("BOUNDARY := no explicit optimal radius; no horizon-to-r_c continuation; no C_phys; no global Chronos closure")
         print("NEXT_ROUTE := extend the transfer bound uniformly to generic beta>0 and the isolated beta_n resonance cases")
     else:
-        print(
-            "ACCUMULATION_POINT_CONVERGENCE := not yet closed in the unscaled kernel coordinate"
-        )
-        print(
-            "BOUNDARY := positive polynomial transfer growth remains after analytic denominator clearing"
-        )
-        print(
-            "NEXT_ROUTE := rescale only the kernel coordinate by n^d with d=MAX_LOG_TRANSFER_DEGREE and recompute the transfer"
-        )
+        print("ACCUMULATION_POINT_CONVERGENCE := not yet closed by an absolute forward-transfer majorant")
+        print("BOUNDARY := degree-two kernel self-transfer requires its factored lag cancellation to be incorporated")
+        print("NEXT_ROUTE := derive the finite-difference normal form from KERNEL_SELF_DEGREE2_LAG_POLYNOMIAL before choosing any coordinate rescaling")
 
 
 if __name__ == "__main__":
