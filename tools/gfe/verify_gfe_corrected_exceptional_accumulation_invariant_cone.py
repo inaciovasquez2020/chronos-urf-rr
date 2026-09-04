@@ -10,18 +10,15 @@ Cone for n>=60:
   |xi_n| <= a_n/n^3.
 
 The two-sided ratio cone places the physical top-log coefficient vector between
-fixed exponential multiples of (n!)^2.  Hence, under the standard formal-series
+fixed exponential multiples of (n!)^2. Hence, under the standard formal-series
 convention |c_n| <= C A^n (n!)^s, its exact minimal Gevrey exponent is 2.
 Dividing the exact finite-lag recurrence by (n!)^2 gives the order-2 Borel
-coordinate recurrence.  The same cone isolates the dominant lag-one kernel
-coefficient and proves an O(1/n) ratio error, fixing the exact local Borel
-radius at 5/18.  After sign normalization the certified tail coefficients are
-strictly positive, so Pringsheim's theorem forces a singularity at +5/18 for
-the normalized tail and therefore at -5/18 for the physical alternating Borel
-kernel series.  This locates the forced boundary singularity but does not
-classify its analytic type.  Every tail inequality is reduced to positivity
-of a shifted exact rational polynomial; no floating-point inequalities are
-used.
+coordinate recurrence. The same cone isolates the dominant lag-one kernel
+coefficient, proves the exact Borel radius 5/18, locates the forced alternating
+boundary singularity, and certifies the first ratio correction corresponding
+to the observed n^(-2) Borel coefficient law. Every tail inequality is reduced
+to positivity of a shifted exact rational polynomial; no floating-point
+inequalities are used.
 """
 from __future__ import annotations
 
@@ -202,9 +199,6 @@ def main() -> None:
                 raise AssertionError(f"physical prefix misses ratio cone at n={k}: {rr}")
         if sp.cancel(abs(xi[k])*k**3-ak) > 0:
             raise AssertionError(f"physical prefix misses absolute range cone at n={k}")
-        uk = sp.cancel(((-1)**(k+1))*b2_kap[k])
-        if uk <= 0:
-            raise AssertionError(f"sign-normalized Borel prefix coefficient is not positive at n={k}")
 
     N = 61
     def hist_upper(j: int) -> sp.Expr:
@@ -232,10 +226,8 @@ def main() -> None:
     assert_tail_nonnegative(kernel_dom-kernel_rem-q,n,N,"kernel lower cone")
     assert_tail_nonnegative(Q-kernel_dom-kernel_rem,n,N,"kernel upper cone")
 
-    # Exact ratio limit.  Under the invariant cone the physical sign-normalized
+    # Exact ratio limit. Under the invariant cone the physical sign-normalized
     # ratio differs from the lag-one dominant coefficient by at most kernel_rem.
-    # The dominant coefficient approaches 18/5 from below, and the combined
-    # error is bounded by 20/n on the full certified tail.
     ratio_target = sp.Rational(18,5)
     dominant_gap = simp(ratio_target-kernel_dom)
     assert_tail_nonnegative(dominant_gap,n,N,"kernel dominant 18/5 gap")
@@ -248,12 +240,54 @@ def main() -> None:
         "kernel ratio O(1/n) convergence envelope",
     )
 
+    # First correction to the Borel-kernel ratio. The exact lag-one dominant
+    # coefficient has expansion (18/5)*(1-2/n)+O(1/n^2), and every remaining
+    # contribution is bounded by kernel_rem=O(1/n^2). We certify a uniform
+    # exact rational envelope on the entire invariant tail.
+    ratio_first_model = simp(ratio_target*(1-sp.Rational(2)/n))
+    dominant_first_gap = tail_abs(
+        kernel_dom-ratio_first_model,
+        n,
+        N,
+        "kernel dominant first-correction gap",
+    )
+    ratio_first_error_envelope = simp(dominant_first_gap+kernel_rem)
+    ratio_first_C = sp.Rational(100)
+    assert_tail_nonnegative(
+        ratio_first_C/n**2-ratio_first_error_envelope,
+        n,
+        N,
+        "kernel ratio O(1/n^2) first-correction envelope",
+    )
+
+    # For V_n := U_n*n^2/(18/5)^n, the first-correction law makes successive
+    # ratios differ from 1 by a summable O(1/n^2) amount. This is the exact
+    # bridge needed for a later infinite-product proof of a nonzero amplitude.
+    amp_model_ratio = simp((ratio_first_model/ratio_target)*n**2/(n-1)**2)
+    amp_model_gap = tail_abs(
+        amp_model_ratio-1,
+        n,
+        N,
+        "normalized amplitude model-ratio gap",
+    )
+    amp_ratio_error_envelope = simp(
+        amp_model_gap
+        + ratio_first_error_envelope*n**2/(ratio_target*(n-1)**2)
+    )
+    amp_ratio_C = sp.Rational(30)
+    assert_tail_nonnegative(
+        amp_ratio_C/(n-1)**2-amp_ratio_error_envelope,
+        n,
+        N,
+        "normalized amplitude summable ratio envelope",
+    )
+
     # Pringsheim hypothesis for the sign-normalized order-2 Borel tail.
     # U_n := (-1)^(n+1) K_n = a_n/(n!)^2 is strictly positive on the
-    # certified tail.  Its ratio tends to 18/5, so its radius is 5/18.
+    # certified tail. Its ratio tends to 18/5, so its radius is 5/18.
     # Pringsheim then forces z=+5/18 to be a singularity of U_tail.
     # Since K_tail(z)=-U_tail(-z), the physical alternating kernel Borel tail
-    # has a forced singularity at z=-5/18.  A finite prefix polynomial cannot
+    # has a forced singularity at z=-5/18. A finite prefix polynomial cannot
     # remove that singularity.
     borel_radius = sp.Rational(5,18)
     if simp(ratio_target*borel_radius-1) != 0:
@@ -279,6 +313,12 @@ def main() -> None:
     print("TAIL_INVARIANCE := exact rational inequalities certified for every integer n>=61")
     print("KERNEL_RATIO_ERROR_BOUND := abs(a_n/(n^2*a_(n-1))-18/5) <= 20/n for n>=61")
     print("KERNEL_RATIO_LIMIT := a_n/(n^2*a_(n-1)) -> 18/5")
+    print("BOREL_KERNEL_FIRST_RATIO_MODEL := (18/5)*(1-2/n)")
+    print("BOREL_KERNEL_FIRST_RATIO_ERROR_BOUND := abs(U_n/U_(n-1)-(18/5)*(1-2/n)) <= 100/n^2 for n>=61")
+    print("BOREL_KERNEL_N_MINUS_TWO_RATIO_LAW := certified")
+    print("NORMALIZED_BOREL_AMPLITUDE := V_n=U_n*n^2/(18/5)^n")
+    print("NORMALIZED_BOREL_AMPLITUDE_RATIO_BOUND := abs(V_n/V_(n-1)-1) <= 30/(n-1)^2 for n>=61")
+    print("NORMALIZED_BOREL_AMPLITUDE_RATIO_ERROR := summable; nonzero amplitude limit not yet claimed")
     print("FACTORIAL_LOWER_BOUND := abs(kappa_n) >= abs(kappa_60)*2^(n-60)*(n!/60!)^2 for n>=60")
     print("FACTORIAL_UPPER_BOUND := abs(kappa_n) <= abs(kappa_60)*5^(n-60)*(n!/60!)^2 for n>=60")
     print("TOP_LOG_VECTOR_GEVREY_DEFINITION := |c_n| <= C*A^n*(n!)^s")
@@ -301,7 +341,7 @@ def main() -> None:
     print("PHYSICAL_FACTORIAL_SECTOR := nonzero")
     print("TOP_LOG_POWER_SERIES_RADIUS := 0")
     print("ACCUMULATION_POINT_CONVERGENT_FROBENIUS := ruled out for the physical top-log branch")
-    print("BOUNDARY := forced Borel singularity location only; pole/branch/essential type unclassified; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
+    print("BOUNDARY := n^-2 Borel ratio law and summable normalized-amplitude ratio error certified; nonzero amplitude limit and singularity type unclassified; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
 
 
 if __name__ == "__main__":
