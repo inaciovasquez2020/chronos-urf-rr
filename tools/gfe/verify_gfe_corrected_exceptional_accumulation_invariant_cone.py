@@ -12,6 +12,8 @@ Cone for n>=60:
 The two-sided ratio cone places the physical top-log coefficient vector between
 fixed exponential multiples of (n!)^2.  Hence, under the standard formal-series
 convention |c_n| <= C A^n (n!)^s, its exact minimal Gevrey exponent is 2.
+Dividing the exact finite-lag recurrence by (n!)^2 gives the order-2 Borel
+coordinate recurrence and certifies a strictly positive local Borel radius.
 Every tail inequality is reduced to positivity of a shifted exact rational
 polynomial; no floating-point inequalities are used.
 """
@@ -123,6 +125,33 @@ def main() -> None:
         K_xi[lag]=simp(K_xi.get(lag,0)-(ell_next.T*block*E)[0]/gamma)
         K_kap[lag]=simp(K_kap.get(lag,0)-(ell_next.T*block*rvec(n+1-j))[0]/gamma)
 
+    # Exact order-2 Borel transform in recurrence coordinates:
+    #   Xi_n = xi_n/(n!)^2, K_n = kappa_n/(n!)^2.
+    # A lag-j source coefficient therefore acquires
+    #   ((n-j)!/n!)^2 = 1/[n(n-1)...(n-j+1)]^2.
+    def falling_n(j: int) -> sp.Expr:
+        out = sp.Integer(1)
+        for s in range(j):
+            out *= n - s
+        return sp.expand(out)
+
+    B2_X_xi, B2_X_kap, B2_K_xi, B2_K_kap = {}, {}, {}, {}
+    for j in range(1,J+1):
+        fall = falling_n(j)
+        scale = simp(1/fall**2)
+        B2_X_xi[j] = simp(scale*X_xi.get(j,0))
+        B2_X_kap[j] = simp(scale*X_kap.get(j,0))
+        B2_K_xi[j] = simp(scale*K_xi.get(j,0))
+        B2_K_kap[j] = simp(scale*K_kap.get(j,0))
+        for original, transformed, label in [
+            (X_xi.get(j,0), B2_X_xi[j], f"B2_X_xi_{j}"),
+            (X_kap.get(j,0), B2_X_kap[j], f"B2_X_kap_{j}"),
+            (K_xi.get(j,0), B2_K_xi[j], f"B2_K_xi_{j}"),
+            (K_kap.get(j,0), B2_K_kap[j], f"B2_K_kap_{j}"),
+        ]:
+            if simp(transformed*fall**2-original) != 0:
+                raise AssertionError(label + " failed exact factorial rescaling identity")
+
     xi = {0:sp.Rational(0), 1:sp.Rational(20,27)}
     kap = {0:sp.Rational(0), 1:sp.Rational(-5,27)}
     def val(tab, k):
@@ -138,6 +167,20 @@ def main() -> None:
             xv += ev(X_xi.get(j,0),k)*val(xi,k-j)+ev(X_kap.get(j,0),k)*val(kap,k-j)
             kv += ev(K_xi.get(j,0),k)*val(xi,k-j)+ev(K_kap.get(j,0),k)*val(kap,k-j)
         xi[k]=sp.cancel(xv); kap[k]=sp.cancel(kv)
+
+    # Check the transformed recurrence against the exact physical prefix once
+    # all ten lags are active.
+    b2_xi = {k: sp.cancel(xi[k]/sp.factorial(k)**2) for k in range(61)}
+    b2_kap = {k: sp.cancel(kap[k]/sp.factorial(k)**2) for k in range(61)}
+    for k in range(J,61):
+        xv=sp.Rational(0); kv=sp.Rational(0)
+        for j in range(1,J+1):
+            xv += ev(B2_X_xi.get(j,0),k)*b2_xi[k-j] + ev(B2_X_kap.get(j,0),k)*b2_kap[k-j]
+            kv += ev(B2_K_xi.get(j,0),k)*b2_xi[k-j] + ev(B2_K_kap.get(j,0),k)*b2_kap[k-j]
+        if sp.cancel(xv-b2_xi[k]) != 0:
+            raise AssertionError(f"order-2 Borel xi recurrence fails at n={k}")
+        if sp.cancel(kv-b2_kap[k]) != 0:
+            raise AssertionError(f"order-2 Borel kappa recurrence fails at n={k}")
 
     q = sp.Rational(2)
     Q = sp.Rational(5)
@@ -204,10 +247,17 @@ def main() -> None:
     print("TOP_LOG_VECTOR_GEVREY_2 := certified")
     print("TOP_LOG_VECTOR_NOT_GEVREY_S_LT_2 := certified from the factorial lower bound")
     print("TOP_LOG_VECTOR_MINIMAL_GEVREY_EXPONENT := 2")
+    print("ORDER2_BOREL_COORDINATES := Xi_n=xi_n/(n!)^2; K_n=kappa_n/(n!)^2")
+    print("ORDER2_BOREL_TRANSFER := each lag-j coefficient is divided by [n*(n-1)*...*(n-j+1)]^2")
+    print("ORDER2_BOREL_PREFIX_RECURRENCE := exact for 10<=n<=60")
+    print("ORDER2_BOREL_KERNEL_RATIO_CONE := 2 <= abs(K_n/K_(n-1)) <= 5 for n>=61")
+    print("ORDER2_BOREL_KERNEL_RADIUS := 1/5 <= R <= 1/2")
+    print("ORDER2_BOREL_TOP_LOG_RADIUS := 1/5 <= R <= 1/2")
+    print("ORDER2_BOREL_LOCAL_CONVERGENCE := certified")
     print("PHYSICAL_FACTORIAL_SECTOR := nonzero")
     print("TOP_LOG_POWER_SERIES_RADIUS := 0")
     print("ACCUMULATION_POINT_CONVERGENT_FROBENIUS := ruled out for the physical top-log branch")
-    print("BOUNDARY := accumulation coupling only; no Borel summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
+    print("BOUNDARY := local order-2 Borel convergence only; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
 
 
 if __name__ == "__main__":
