@@ -66,7 +66,7 @@ jobs:
         run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_exceptional_full_formal.py
 
       - name: Audit exceptional accumulation-point coefficient growth
-        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_exceptional_accumulation_growth.py
+        run: python3 tools/gfe/run_gfe_corrected_exceptional_accumulation_newton.py
 
       - name: Run remaining Python verifiers
         run: |
