@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
-"""Verify the weighted horizon Frobenius system of the exact finite-beta odd equations.
+"""Verify the weighted horizon Frobenius structure of the exact finite-beta odd equations.
 
 This verifier starts from the hash-locked corrected AEH=1/2 Fourier-radial
-Euler artifact.  It does not use the perturbative beta expansion or a
+Euler artifact. It does not use the perturbative beta expansion or a
 hand-entered master equation.
 
-Near the Schwarzschild horizon x = r - 2 M, regular ingoing odd metric data in
-Schwarzschild coordinates have the weighted Frobenius form
+Near the Schwarzschild horizon x = r - 2 M, the natural Schwarzschild-coordinate
+ingoing weights are
 
     h0 ~ A x^p,
-    h1 ~ B x^(p-1).
+    h1 ~ B x^(p-1),
 
-The one-power offset is the coordinate Jacobian carried by the radial metric
-component.  The leading weighted Euler matrix is constrained (rank deficient),
-so the exponent is selected by a subleading solvability condition.  For the
-physical ingoing exponent p = -2 i M omega the shifted leading matrix can lose
-rank again, so the verifier also checks the full first-correction residual and
-does not treat a vanishing projected compatibility scalar as sufficient.
+with p = -2 i M omega for the exp(-i omega t) convention. The leading weighted
+Euler matrix is constrained. At the physical ingoing exponent the n=1 shifted
+leading matrix vanishes completely, so a projected scalar compatibility test is
+not sufficient: the full first-correction source must vanish for an ordinary
+pure-power Frobenius series to continue.
+
+The exact finite-beta equations instead produce a nonzero beta^2 obstruction
+proportional to lambda(lambda-2). This verifier certifies that obstruction and
+therefore deliberately does NOT claim a pure-power finite-beta ingoing series.
 """
 from __future__ import annotations
 
@@ -190,21 +193,21 @@ def derive_weighted_horizon_frobenius_system() -> tuple[
     ):
         raise AssertionError("constructed shifted left-kernel vector is invalid")
 
-    compatibility = sp.factor(
+    projected_compatibility = sp.factor(
         sp.cancel((left_null.T * subleading * seed)[0])
     )
-    return row_orders, leading, subleading, compatibility
+    return row_orders, leading, subleading, projected_compatibility
 
 
 def main() -> None:
-    row_orders, leading, subleading, compatibility = (
+    row_orders, leading, subleading, projected_compatibility = (
         derive_weighted_horizon_frobenius_system()
     )
 
-    if compatibility == 0:
+    if projected_compatibility == 0:
         raise AssertionError(
-            "first subleading horizon compatibility is identically zero; "
-            "one more Frobenius order is required"
+            "projected subleading compatibility is identically zero; "
+            "unexpected loss of the symbolic diagnostic"
         )
 
     physical_ingoing_exponent = -2 * I * M * omega
@@ -223,48 +226,74 @@ def main() -> None:
     physical_shifted_leading = _simplified_matrix(
         leading.subs(p, physical_ingoing_exponent + 1)
     )
+    if not _is_zero_matrix(physical_shifted_leading):
+        raise AssertionError(
+            "expected n=1 rank-zero resonance at the physical ingoing exponent; "
+            f"shifted={physical_shifted_leading.tolist()}"
+        )
+
     physical_first_residual = _simplified_matrix(
         subleading.subs(p, physical_ingoing_exponent) * physical_seed
     )
-
-    if _is_zero_matrix(physical_shifted_leading):
-        if not _is_zero_matrix(physical_first_residual):
-            raise AssertionError(
-                "physical ingoing exponent hits an n=1 horizon resonance, "
-                "but the full first-correction residual does not vanish; "
-                f"residual={physical_first_residual.tolist()}"
-            )
-        recurrence_status = (
-            "n=1 shifted leading matrix vanishes and full source vanishes; "
-            "next Frobenius order required"
+    expected_obstruction = sp.Matrix(
+        [
+            -5 * beta**2 * lam * (lam - 2) / (144 * M**4),
+            -5 * beta**2 * lam * (lam - 2) / (288 * M**5),
+        ]
+    )
+    expected_obstruction = _simplified_matrix(expected_obstruction)
+    obstruction_difference = _simplified_matrix(
+        physical_first_residual - expected_obstruction
+    )
+    if not _is_zero_matrix(obstruction_difference):
+        raise AssertionError(
+            "finite-beta n=1 obstruction changed; "
+            f"actual={physical_first_residual.tolist()}, "
+            f"expected={expected_obstruction.tolist()}"
         )
-    else:
-        physical_residual = sp.factor(
-            sp.cancel(compatibility.subs(p, physical_ingoing_exponent))
-        )
-        if physical_residual != 0:
-            raise AssertionError(
-                "exact finite-beta subleading horizon compatibility does not "
-                "annihilate the expected horizon-regular ingoing exponent; "
-                f"residual={sp.sstr(physical_residual)}"
-            )
-        recurrence_status = "n=1 compatibility passed without rank-zero resonance"
 
-    print("GFE_CORRECTED_FINITE_BETA_HORIZON_FROBENIUS")
+    gr_limit_residual = _simplified_matrix(physical_first_residual.subs(beta, 0))
+    if not _is_zero_matrix(gr_limit_residual):
+        raise AssertionError(
+            "finite-beta horizon obstruction does not vanish in the GR limit; "
+            f"residual={gr_limit_residual.tolist()}"
+        )
+
+    flagship_ell2_residual = _simplified_matrix(physical_first_residual.subs(lam, 6))
+    expected_flagship = _simplified_matrix(
+        sp.Matrix(
+            [
+                -5 * beta**2 / (6 * M**4),
+                -5 * beta**2 / (12 * M**5),
+            ]
+        )
+    )
+    if not _is_zero_matrix(_simplified_matrix(flagship_ell2_residual - expected_flagship)):
+        raise AssertionError(
+            "ell=2 (lambda=6) horizon obstruction specialization changed; "
+            f"actual={flagship_ell2_residual.tolist()}"
+        )
+
+    print("GFE_CORRECTED_FINITE_BETA_HORIZON_FROBENIUS_OBSTRUCTION")
     print(f"SOURCE := {SOURCE.relative_to(ROOT)}")
     print("WEIGHTS := h0:x^p, h1:x^(p-1)")
     print(f"ROW_ORDERS := {row_orders}")
-    print("LEADING_MATRIX :=")
-    for row in leading.tolist():
-        print("  [" + ", ".join(sp.sstr(entry) for entry in row) + "]")
-    print("SUBLEADING_MATRIX :=")
-    for row in subleading.tolist():
-        print("  [" + ", ".join(sp.sstr(entry) for entry in row) + "]")
-    print(f"FROBENIUS_COMPATIBILITY := {sp.sstr(compatibility)}")
     print("PHYSICAL_INGOING_EXPONENT := -2*I*M*omega")
     print("PHYSICAL_INGOING_SEED := [1, 2*M]")
-    print(f"PHYSICAL_N1_RESONANCE := {_is_zero_matrix(physical_shifted_leading)}")
-    print(f"PHYSICAL_N1_STATUS := {recurrence_status}")
+    print("PHYSICAL_N1_SHIFTED_LEADING_RANK := 0")
+    print(
+        "PHYSICAL_N1_OBSTRUCTION := ["
+        + ", ".join(sp.sstr(value) for value in physical_first_residual)
+        + "]"
+    )
+    print("PURE_POWER_FINITE_BETA_FROBENIUS := obstructed when beta*lambda*(lambda-2) != 0")
+    print("GR_LIMIT_BETA_ZERO := obstruction vanishes")
+    print(
+        "FLAGSHIP_ELL2_LAMBDA6_OBSTRUCTION := ["
+        + ", ".join(sp.sstr(value) for value in flagship_ell2_residual)
+        + "]"
+    )
+    print("NEXT_ROUTE := test logarithmic/generalized Frobenius correction at n=1")
 
 
 if __name__ == "__main__":
