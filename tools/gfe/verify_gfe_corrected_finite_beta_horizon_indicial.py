@@ -19,11 +19,13 @@ pure-power Frobenius series to continue.
 
 The exact finite-beta equations instead produce a nonzero beta^2 obstruction
 proportional to lambda(lambda-2). This verifier certifies that obstruction and
-then tests the weakest generalized repair: an x^(p+1) log(x) correction. Since
-L(p+1)=0, its non-log contribution is L'(p+1) times the logarithmic coefficient.
-The derivative matrix has rank one, and the obstruction lies outside its image
-generically. The one-log repair can survive only on the exceptional frequency
-4 M omega = i (or on the already-degenerate beta*lambda*(lambda-2)=0 sectors).
+then tests generalized repairs at the same n=1 resonance. A single
+x^(p+1) log(x) correction is generically obstructed because L'(p+1) has rank
+one and misses the source direction. The minimal log^2 chain is therefore
+tested next. For a coefficient c of log^2(x), the log equation requires
+L'(p+1)c=0, while the constant equation gains L''(p+1)c. The verifier checks
+whether that kernel lift supplies the missing direction and, when it does,
+constructs an exact one-log coefficient completing the n=1 cancellation.
 """
 from __future__ import annotations
 
@@ -133,6 +135,22 @@ def _simplified_matrix(matrix: sp.Matrix) -> sp.Matrix:
 
 def _is_zero_matrix(matrix: sp.Matrix) -> bool:
     return all(sp.factor(sp.cancel(value)) == 0 for value in matrix)
+
+
+def _rank_one_preimage(matrix: sp.Matrix, target: sp.Matrix) -> sp.Matrix:
+    """Construct an exact preimage after target membership has been verified."""
+    for column_index in range(2):
+        column = matrix[:, column_index]
+        for row_index in range(2):
+            pivot = sp.factor(sp.cancel(column[row_index]))
+            if pivot == 0:
+                continue
+            scale = sp.factor(sp.cancel(target[row_index] / pivot))
+            coefficient = sp.zeros(2, 1)
+            coefficient[column_index] = scale
+            if _is_zero_matrix(_simplified_matrix(matrix * coefficient - target)):
+                return _simplified_matrix(coefficient)
+    raise AssertionError("target was expected in rank-one image but no preimage was found")
 
 
 def derive_weighted_horizon_frobenius_system() -> tuple[
@@ -345,6 +363,63 @@ def main() -> None:
             f"residual={sp.sstr(exceptional_frequency_residual)}"
         )
 
+    # Minimal log^2 generalized chain at the same n=1 resonance:
+    #   c log^2(x) + b log(x) + a1.
+    # Because L(q*)=0, the log coefficient requires 2 L'(q*) c = 0, so c
+    # must lie in ker L'. The constant equation is
+    #   R1 + L''(q*) c + L'(q*) b = 0.
+    log2_kernel = _simplified_matrix(_right_kernel_vector(log_matrix))
+    if not _is_zero_matrix(_simplified_matrix(log_matrix * log2_kernel)):
+        raise AssertionError("constructed log^2 kernel vector is invalid")
+
+    log2_matrix = _simplified_matrix(
+        leading.diff(p, 2).subs(p, resonant_exponent)
+    )
+    log2_kernel_lift = _simplified_matrix(log2_matrix * log2_kernel)
+    log2_kernel_lift_pairing = sp.factor(
+        sp.cancel((log_left_null.T * log2_kernel_lift)[0])
+    )
+    if log2_kernel_lift_pairing == 0:
+        raise AssertionError(
+            "log^2 kernel lift does not enlarge the one-log image; "
+            "minimal generalized chain remains obstructed"
+        )
+
+    log2_scale = sp.factor(
+        sp.cancel(-log_image_obstruction / log2_kernel_lift_pairing)
+    )
+    log2_coefficient = _simplified_matrix(log2_scale * log2_kernel)
+    log2_log_residual = _simplified_matrix(2 * log_matrix * log2_coefficient)
+    if not _is_zero_matrix(log2_log_residual):
+        raise AssertionError(
+            "constructed log^2 coefficient violates the n=1 log equation; "
+            f"residual={log2_log_residual.tolist()}"
+        )
+
+    after_log2_constant = _simplified_matrix(
+        physical_first_residual + log2_matrix * log2_coefficient
+    )
+    after_log2_image_obstruction = sp.factor(
+        sp.cancel((log_left_null.T * after_log2_constant)[0])
+    )
+    if after_log2_image_obstruction != 0:
+        raise AssertionError(
+            "log^2 lift failed to move the constant residual into im L'; "
+            f"pairing={sp.sstr(after_log2_image_obstruction)}"
+        )
+
+    log_coefficient = _rank_one_preimage(log_matrix, -after_log2_constant)
+    generalized_n1_residual = _simplified_matrix(
+        physical_first_residual
+        + log2_matrix * log2_coefficient
+        + log_matrix * log_coefficient
+    )
+    if not _is_zero_matrix(generalized_n1_residual):
+        raise AssertionError(
+            "minimal log^2 generalized Frobenius chain did not cancel n=1; "
+            f"residual={generalized_n1_residual.tolist()}"
+        )
+
     print("GFE_CORRECTED_FINITE_BETA_HORIZON_FROBENIUS_OBSTRUCTION")
     print(f"SOURCE := {SOURCE.relative_to(ROOT)}")
     print("WEIGHTS := h0:x^p, h1:x^(p-1)")
@@ -376,7 +451,28 @@ def main() -> None:
         + sp.sstr(flagship_log_image_obstruction)
     )
     print("EXCEPTIONAL_ONE_LOG_FREQUENCY := omega = I/(4*M)")
-    print("NEXT_ROUTE := test exceptional-frequency one-log solve or higher-log generalized Frobenius chain")
+    print(
+        "LOG2_N1_KERNEL := ["
+        + ", ".join(sp.sstr(value) for value in log2_kernel)
+        + "]"
+    )
+    print(
+        "LOG2_N1_KERNEL_LIFT_PAIRING := "
+        + sp.sstr(log2_kernel_lift_pairing)
+    )
+    print(f"LOG2_N1_SCALE := {sp.sstr(log2_scale)}")
+    print(
+        "LOG2_N1_COEFFICIENT := ["
+        + ", ".join(sp.sstr(value) for value in log2_coefficient)
+        + "]"
+    )
+    print(
+        "LOG_N1_COEFFICIENT_AFTER_LOG2 := ["
+        + ", ".join(sp.sstr(value) for value in log_coefficient)
+        + "]"
+    )
+    print("MINIMAL_LOG2_N1_CHAIN := exact cancellation verified")
+    print("NEXT_ROUTE := test horizon admissibility of the forced logarithmic branch before any horizon-to-r_c propagation")
 
 
 if __name__ == "__main__":
