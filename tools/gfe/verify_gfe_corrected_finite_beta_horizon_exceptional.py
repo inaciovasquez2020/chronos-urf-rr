@@ -110,11 +110,15 @@ def main() -> None:
     adjacent = matrix_simp(B1.subs(p, alpha + n - 1))
     gamma = simp((l_n.T * adjacent * r_prev)[0])
     expected_gamma = simp(
-        2 * beta**2 * (n - 1) ** 2 * (12 * n**2 - 24 * n - 5) / (3 * M**4)
+        -2
+        * beta
+        * (n - 1) ** 2
+        * (6 * (5 * M**2 - 2 * beta) * n * (n - 2) + 5 * beta)
+        / (3 * M**4)
     )
     if simp(gamma - expected_gamma) != 0:
         raise AssertionError(
-            "corrected exceptional adjacent kernel coupling changed; "
+            "corrected exceptional adjacent kernel coupling changed after exact repair; "
             f"actual={sp.sstr(gamma)}"
         )
 
@@ -179,21 +183,16 @@ def main() -> None:
         )
 
     m = sp.symbols("m", integer=True, nonnegative=True)
-    shifted = sp.expand(((n - 1) ** 2 * (12 * n**2 - 24 * n - 5)).subs(n, m + 3))
-    expected_shifted = (m + 2) ** 2 * (12 * m**2 + 48 * m + 31)
+    shifted = sp.expand(
+        (6 * (5 * M**2 - 2 * beta) * n * (n - 2) + 5 * beta).subs(n, m + 3)
+    )
+    expected_shifted = sp.expand(
+        6 * (5 * M**2 - 2 * beta) * (m + 3) * (m + 1) + 5 * beta
+    )
     if sp.expand(shifted - expected_shifted) != 0:
-        raise AssertionError("exceptional nonvanishing polynomial identity changed")
+        raise AssertionError("corrected exceptional shifted coupling identity changed")
 
     compatibility_det = simp(gamma**2)
-    expected_det = simp(
-        4
-        * beta**4
-        * (n - 1) ** 4
-        * (12 * n**2 - 24 * n - 5) ** 2
-        / (9 * M**8)
-    )
-    if simp(compatibility_det - expected_det) != 0:
-        raise AssertionError("exceptional all-orders compatibility determinant changed")
 
     print("GFE_CORRECTED_FINITE_BETA_EXCEPTIONAL_HORIZON_FORMAL_RECURRENCE")
     print("SOURCE := artifacts/chronos/gfe_corrected_AEH_half_euler_generator.json")
@@ -207,10 +206,9 @@ def main() -> None:
     print("LOG_KERNEL_DECOUPLING := 0")
     print("ORDER_TWO_COMPATIBILITY := passed")
     print("COMPATIBILITY_DETERMINANT := " + sp.sstr(compatibility_det))
-    print("NONVANISHING_FOR_INTEGER_N_GE_3 := certified")
-    print("FORMAL_EXCEPTIONAL_LOG_FROBENIUS := extends to every Laurent order")
-    print("BOUNDARY := convergence and corrected finite-radius connection to r_c are not proved by this verifier")
-    print("NEXT_ROUTE := prove convergence from the corrected row-scaled symbol, then propagate to the corrected rank-loss surface r_c")
+    print("BOUNDARY := nonvanishing of the corrected adjacent coupling for the intended beta domain is not yet proved")
+    print("FORMAL_EXCEPTIONAL_LOG_FROBENIUS := not yet promoted to every Laurent order")
+    print("NEXT_ROUTE := derive the first corrected low-order coefficient mismatch, then prove the corrected coupling nonvanishing domain")
 
 
 if __name__ == "__main__":
