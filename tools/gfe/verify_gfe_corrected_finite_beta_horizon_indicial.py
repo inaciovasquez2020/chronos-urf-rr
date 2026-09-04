@@ -21,11 +21,10 @@ The exact finite-beta equations instead produce a nonzero beta^2 obstruction
 proportional to lambda(lambda-2). This verifier certifies that obstruction and
 then tests generalized repairs at the same n=1 resonance. A single
 x^(p+1) log(x) correction is generically obstructed because L'(p+1) has rank
-one and misses the source direction. The minimal log^2 chain is therefore
-tested next. For a coefficient c of log^2(x), the log equation requires
-L'(p+1)c=0, while the constant equation gains L''(p+1)c. The verifier checks
-whether that kernel lift supplies the missing direction and, when it does,
-constructs an exact one-log coefficient completing the n=1 cancellation.
+one and misses the source direction. The minimal log^2 chain also fails: its
+log equation forces the log^2 coefficient into ker L', and L'' maps that kernel
+back into im L'. Therefore the log^2 term cannot change the one-log quotient
+obstruction. No pure-power, one-log, or minimal log^2 continuation is claimed.
 """
 from __future__ import annotations
 
@@ -368,6 +367,9 @@ def main() -> None:
     # Because L(q*)=0, the log coefficient requires 2 L'(q*) c = 0, so c
     # must lie in ker L'. The constant equation is
     #   R1 + L''(q*) c + L'(q*) b = 0.
+    # Exact computation shows L''(q*) maps ker L' back into im L'. Thus a
+    # log^2 term cannot alter the one-dimensional quotient obstruction already
+    # detected by the left-null vector of L'.
     log2_kernel = _simplified_matrix(_right_kernel_vector(log_matrix))
     if not _is_zero_matrix(_simplified_matrix(log_matrix * log2_kernel)):
         raise AssertionError("constructed log^2 kernel vector is invalid")
@@ -379,45 +381,10 @@ def main() -> None:
     log2_kernel_lift_pairing = sp.factor(
         sp.cancel((log_left_null.T * log2_kernel_lift)[0])
     )
-    if log2_kernel_lift_pairing == 0:
+    if log2_kernel_lift_pairing != 0:
         raise AssertionError(
-            "log^2 kernel lift does not enlarge the one-log image; "
-            "minimal generalized chain remains obstructed"
-        )
-
-    log2_scale = sp.factor(
-        sp.cancel(-log_image_obstruction / log2_kernel_lift_pairing)
-    )
-    log2_coefficient = _simplified_matrix(log2_scale * log2_kernel)
-    log2_log_residual = _simplified_matrix(2 * log_matrix * log2_coefficient)
-    if not _is_zero_matrix(log2_log_residual):
-        raise AssertionError(
-            "constructed log^2 coefficient violates the n=1 log equation; "
-            f"residual={log2_log_residual.tolist()}"
-        )
-
-    after_log2_constant = _simplified_matrix(
-        physical_first_residual + log2_matrix * log2_coefficient
-    )
-    after_log2_image_obstruction = sp.factor(
-        sp.cancel((log_left_null.T * after_log2_constant)[0])
-    )
-    if after_log2_image_obstruction != 0:
-        raise AssertionError(
-            "log^2 lift failed to move the constant residual into im L'; "
-            f"pairing={sp.sstr(after_log2_image_obstruction)}"
-        )
-
-    log_coefficient = _rank_one_preimage(log_matrix, -after_log2_constant)
-    generalized_n1_residual = _simplified_matrix(
-        physical_first_residual
-        + log2_matrix * log2_coefficient
-        + log_matrix * log_coefficient
-    )
-    if not _is_zero_matrix(generalized_n1_residual):
-        raise AssertionError(
-            "minimal log^2 generalized Frobenius chain did not cancel n=1; "
-            f"residual={generalized_n1_residual.tolist()}"
+            "log^2 kernel lift unexpectedly leaves im L'; "
+            f"pairing={sp.sstr(log2_kernel_lift_pairing)}"
         )
 
     print("GFE_CORRECTED_FINITE_BETA_HORIZON_FROBENIUS_OBSTRUCTION")
@@ -457,22 +424,19 @@ def main() -> None:
         + "]"
     )
     print(
-        "LOG2_N1_KERNEL_LIFT_PAIRING := "
-        + sp.sstr(log2_kernel_lift_pairing)
-    )
-    print(f"LOG2_N1_SCALE := {sp.sstr(log2_scale)}")
-    print(
-        "LOG2_N1_COEFFICIENT := ["
-        + ", ".join(sp.sstr(value) for value in log2_coefficient)
+        "LOG2_N1_KERNEL_LIFT := ["
+        + ", ".join(sp.sstr(value) for value in log2_kernel_lift)
         + "]"
     )
+    print("LOG2_N1_KERNEL_LIFT_PAIRING := 0")
     print(
-        "LOG_N1_COEFFICIENT_AFTER_LOG2 := ["
-        + ", ".join(sp.sstr(value) for value in log_coefficient)
-        + "]"
+        "MINIMAL_LOG2_N1_CHAIN := cannot change the one-log quotient obstruction"
     )
-    print("MINIMAL_LOG2_N1_CHAIN := exact cancellation verified")
-    print("NEXT_ROUTE := test horizon admissibility of the forced logarithmic branch before any horizon-to-r_c propagation")
+    print(
+        "LOG2_FINITE_BETA_FROBENIUS := obstructed whenever "
+        "beta*lambda*(lambda-2)*(4*M*omega-I) != 0"
+    )
+    print("NEXT_ROUTE := test the log^3 generalized Frobenius chain, where L''' is the first remaining possible new quotient direction")
 
 
 if __name__ == "__main__":
