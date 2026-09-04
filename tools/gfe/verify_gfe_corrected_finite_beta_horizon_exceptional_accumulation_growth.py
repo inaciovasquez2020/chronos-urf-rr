@@ -2,15 +2,13 @@
 """Audit coefficient growth at the exceptional accumulation coupling beta=5 M^2/2.
 
 Scope: corrected AEH=1/2 Euler system, ell=2, lambda=6,
-omega=i/(4M), alpha=1/2.  This is the first convergence diagnostic for the
-all-order exceptional horizon branch.  It derives the finite-lag Euler symbol
-directly from the exact Euler artifact, clears the analytic x-denominator, and
-computes the large-n degree of the induced transfer coefficients.
+omega=i/(4M), alpha=1/2.  This convergence diagnostic derives the finite-lag
+Euler symbol directly from the exact Euler artifact, clears the analytic
+x-denominator, computes the large-n transfer degrees, factors the degree-two
+kernel lag polynomial, and classifies its Newton-polygon balances.
 
-A bounded-transfer outcome closes the standard geometric majorant.  When the
-forward-solved kernel coordinate has positive polynomial growth, the verifier
-also factors the highest-degree lag polynomial before selecting any rescaling
-or finite-difference normal form.
+The result still does not decide whether the fixed physical logarithmic seed has
+zero amplitude in the factorial sector; that is kept as the next boundary.
 """
 from __future__ import annotations
 
@@ -64,6 +62,24 @@ def assert_no_integer_poles(expr: sp.Expr, n: sp.Symbol) -> None:
             raise AssertionError(f"transfer coefficient has an integer pole at n={root}")
 
 
+def upper_hull(points: list[tuple[int, int]]) -> list[tuple[int, int]]:
+    """Upper concave hull with slopes weakly decreasing from left to right."""
+    hull: list[tuple[int, int]] = []
+    for point in points:
+        while len(hull) >= 2:
+            x0, y0 = hull[-2]
+            x1, y1 = hull[-1]
+            x2, y2 = point
+            lhs = (y1 - y0) * (x2 - x1)
+            rhs = (y2 - y1) * (x1 - x0)
+            if lhs < rhs:
+                hull.pop()
+            else:
+                break
+        hull.append(point)
+    return hull
+
+
 def main() -> None:
     equations, h = base._parse_equations()
 
@@ -101,9 +117,6 @@ def main() -> None:
 
     q0, q1 = specialized
 
-    # Row scaling by x^3 and x^2 removes the certified horizon orders.  The
-    # remaining common rational x-denominator must be analytic and nonzero at
-    # x=0 before a Frobenius majorant can be discussed.
     F = matrix_simp(
         sp.Matrix(
             [
@@ -189,8 +202,6 @@ def main() -> None:
     if A00 == 0:
         raise AssertionError("chosen rank-one complement has zero leading coefficient")
 
-    # v_n = xi_n E + kappa_n r_n.  First-row inversion gives xi_n from the
-    # finite set of lagged xi/kappa coordinates.
     X_xi: dict[int, sp.Expr] = {}
     X_kap: dict[int, sp.Expr] = {}
     for j in range(1, J + 1):
@@ -198,8 +209,6 @@ def main() -> None:
         X_xi[j] = simp(-block[0, 0] / A00)
         X_kap[j] = simp(-((sp.Matrix([[block[0, 0], block[0, 1]]]) * rvec(n - j))[0]) / A00)
 
-    # The compatibility equation at order n+1 fixes the current kernel
-    # coordinate kappa_n.
     ell_next = lvec(n + 1)
     C1n = matrix_simp(Cj[1].subs(p, alpha + n))
     gamma_next = simp((ell_next.T * C1n * rvec(n))[0])
@@ -239,6 +248,7 @@ def main() -> None:
 
     degree_rows = []
     max_transfer_degree = -10**6
+    kappa_degree_profile = {0: 0}
     for j in range(1, J + 1):
         row_exprs = [
             X_xi.get(j, 0),
@@ -251,11 +261,9 @@ def main() -> None:
         row = [degree_at_infinity(expr, n) for expr in row_exprs]
         degree_rows.append((j, row))
         max_transfer_degree = max(max_transfer_degree, *row)
+        if K_kap.get(j, 0) != 0:
+            kappa_degree_profile[j] = row[3]
 
-    # Forward-solving the singular rank-one recurrence produces O(n^2)
-    # kernel self-transfer.  Before interpreting that as factorial growth,
-    # factor the complete degree-two lag polynomial: leading terms from
-    # different lags can cancel as a finite-difference operator.
     kernel_self_degree2_coeffs: dict[int, sp.Expr] = {}
     for j in range(1, J + 1):
         expr = K_kap.get(j, 0)
@@ -264,8 +272,12 @@ def main() -> None:
     kernel_self_degree2_poly = sp.factor(
         sum(coeff * z**j for j, coeff in kernel_self_degree2_coeffs.items())
     )
-    if not kernel_self_degree2_coeffs:
-        raise AssertionError("expected degree-two kernel self-transfer disappeared")
+    expected_degree2_poly = simp(
+        -3 * z * (2 * M + z) ** 2 * (12 * M**2 + 6 * M * z + z**2)
+        / (40 * M**5)
+    )
+    if simp(kernel_self_degree2_poly - expected_degree2_poly) != 0:
+        raise AssertionError("degree-two lag polynomial factorization changed")
 
     kernel_cross_degree1_poly = sp.factor(
         sum(
@@ -274,6 +286,56 @@ def main() -> None:
             if degree_at_infinity(K_xi.get(j, 0), n) == 1
         )
     )
+
+    # Newton polygon for the scalar kernel recurrence after eliminating the
+    # range coordinate.  The current term has degree 0; lagged self-transfer
+    # degrees are read exactly from K_kap.  The upper hull exposes a slope-2
+    # edge of horizontal length one (the possible (n!)^2 sector), a slope-zero
+    # edge of length four (four geometric sectors), and two decaying edges.
+    profile_points = sorted(kappa_degree_profile.items())
+    hull = upper_hull(profile_points)
+    expected_hull = [(0, 0), (1, 2), (5, 2), (8, 0), (10, -2)]
+    if hull != expected_hull:
+        raise AssertionError(f"kernel Newton polygon changed: {hull}")
+    hull_slopes = [
+        sp.Rational(y1 - y0, x1 - x0)
+        for (x0, y0), (x1, y1) in zip(hull, hull[1:])
+    ]
+    expected_slopes = [sp.Integer(2), sp.Integer(0), sp.Rational(-2, 3), sp.Integer(-1)]
+    if hull_slopes != expected_slopes:
+        raise AssertionError(f"kernel Newton slopes changed: {hull_slopes}")
+
+    factorial_base = simp(kernel_self_degree2_coeffs[1])
+    if simp(factorial_base + sp.Rational(18, 5) / M) != 0:
+        raise AssertionError("slope-two leading factorial base changed")
+
+    sqrt3 = sp.sqrt(3)
+    nonzero_edge_roots = [
+        -2 * M,
+        -2 * M,
+        M * (-3 + I * sqrt3),
+        M * (-3 - I * sqrt3),
+    ]
+    edge_poly_without_zero = simp(kernel_self_degree2_poly / z)
+    for root in nonzero_edge_roots:
+        if simp(edge_poly_without_zero.subs(z, root)) != 0:
+            raise AssertionError(f"geometric edge root changed: {sp.sstr(root)}")
+
+    geometric_ratios = [
+        simp(1 / nonzero_edge_roots[0]),
+        simp(1 / nonzero_edge_roots[1]),
+        simp(1 / nonzero_edge_roots[2]),
+        simp(1 / nonzero_edge_roots[3]),
+    ]
+    expected_ratios = [
+        -1 / (2 * M),
+        -1 / (2 * M),
+        (-3 - I * sqrt3) / (12 * M),
+        (-3 + I * sqrt3) / (12 * M),
+    ]
+    for actual, expected in zip(geometric_ratios, expected_ratios):
+        if simp(actual - expected) != 0:
+            raise AssertionError("geometric ratio classification changed")
 
     Dpj = [matrix_simp(block.diff(p)) for block in Cj]
     max_derivative_degree = max(
@@ -285,7 +347,7 @@ def main() -> None:
     if max_derivative_degree > 3:
         raise AssertionError("exponent-derivative forcing degree exceeds three")
 
-    print("GFE_CORRECTED_EXCEPTIONAL_ACCUMULATION_POINT_GROWTH_AUDIT")
+    print("GFE_CORRECTED_EXCEPTIONAL_ACCUMULATION_POINT_NEWTON_AUDIT")
     print("SOURCE := artifacts/chronos/gfe_corrected_AEH_half_euler_generator.json")
     print("SECTOR := ell=2; lambda=6; omega=I/(4*M); alpha=1/2")
     print("BETA_ACCUMULATION := 5*M**2/2")
@@ -312,18 +374,17 @@ def main() -> None:
     print("KERNEL_SELF_DEGREE2_COEFFICIENTS := " + sp.sstr(kernel_self_degree2_coeffs))
     print("KERNEL_SELF_DEGREE2_LAG_POLYNOMIAL := " + sp.sstr(kernel_self_degree2_poly))
     print("KERNEL_CROSS_DEGREE1_LAG_POLYNOMIAL := " + sp.sstr(kernel_cross_degree1_poly))
+    print("KERNEL_NEWTON_UPPER_HULL := " + sp.sstr(hull))
+    print("KERNEL_NEWTON_SLOPES := " + sp.sstr(hull_slopes))
+    print("SLOPE2_EDGE_LENGTH := 1")
+    print("SLOPE2_FORMAL_FACTORIAL_BASE := " + sp.sstr(factorial_base))
+    print("SLOPE0_EDGE_LENGTH := 4")
+    print("SLOPE0_NONZERO_LAG_ROOTS := [" + ", ".join(sp.sstr(v) for v in nonzero_edge_roots) + "]")
+    print("SLOPE0_GEOMETRIC_RATIOS := [" + ", ".join(sp.sstr(v) for v in geometric_ratios) + "]")
     print("NONLOG_EXPONENT_DERIVATIVE_MAX_P_DEGREE := " + str(max_derivative_degree))
-
-    if max_transfer_degree <= 0:
-        print("BOUNDED_LOG_TRANSFER := certified for integer n>=3")
-        print("ACCUMULATION_POINT_CONVERGENCE := certified locally on a fixed log branch")
-        print("RESULT := beta=5*M**2/2 exceptional logarithmic Frobenius convergence proved")
-        print("BOUNDARY := no explicit optimal radius; no horizon-to-r_c continuation; no C_phys; no global Chronos closure")
-        print("NEXT_ROUTE := extend the transfer bound uniformly to generic beta>0 and the isolated beta_n resonance cases")
-    else:
-        print("ACCUMULATION_POINT_CONVERGENCE := not yet closed by an absolute forward-transfer majorant")
-        print("BOUNDARY := degree-two kernel self-transfer requires its factored lag cancellation to be incorporated")
-        print("NEXT_ROUTE := derive the finite-difference normal form from KERNEL_SELF_DEGREE2_LAG_POLYNOMIAL before choosing any coordinate rescaling")
+    print("ACCUMULATION_POINT_CONVERGENCE := undecided for the fixed physical seed")
+    print("BOUNDARY := one slope-2 factorial sector exists algebraically; it is not yet known whether the physical logarithmic seed excites it")
+    print("NEXT_ROUTE := propagate the exact physical top-log seed and test its projection onto the slope-2 sector")
 
 
 if __name__ == "__main__":
