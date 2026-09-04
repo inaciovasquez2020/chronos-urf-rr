@@ -28,6 +28,38 @@ def laurent_coeff(expr: sp.Expr, x: sp.Symbol, power: int) -> sp.Expr:
     return simp(sp.residue(sp.together(expr / x ** (power + 1)), x, 0))
 
 
+def solve_linear_scalar_equation(residual: sp.Matrix, scalar: sp.Symbol) -> sp.Expr:
+    """Solve an exact vector equation affine-linear in one scalar and verify it."""
+    candidate = None
+    for entry in residual:
+        coefficient = simp(sp.diff(entry, scalar))
+        constant = simp(entry.subs(scalar, 0))
+        if coefficient == 0:
+            if constant != 0:
+                raise AssertionError(
+                    "scalar correction cannot cancel a scalar-independent residual; "
+                    f"entry={sp.sstr(entry)}"
+                )
+            continue
+        current = simp(-constant / coefficient)
+        if candidate is None:
+            candidate = current
+        elif simp(candidate - current) != 0:
+            raise AssertionError(
+                "Euler rows demand inconsistent scalar corrections; "
+                f"first={sp.sstr(candidate)}, current={sp.sstr(current)}"
+            )
+    if candidate is None:
+        raise AssertionError("scalar correction equation contained no determining row")
+    verified = matrix_simp(residual.subs(scalar, candidate))
+    if not base._is_zero_matrix(verified):
+        raise AssertionError(
+            "derived scalar correction does not cancel full vector residual; "
+            f"candidate={sp.sstr(candidate)}, residual={verified.tolist()}"
+        )
+    return candidate
+
+
 def main() -> None:
     equations, h = base._parse_equations()
 
@@ -76,10 +108,6 @@ def main() -> None:
     pn = alpha + n
     A = matrix_simp(B0.subs(p, pn))
 
-    # The corrected AEH=1/2 source preserves the historical rank-one block
-    # shape but changes its overall coefficient from beta^2 to
-    # beta*(5*M^2+beta).  This normalization is derived from the corrected
-    # artifact and is not imported from the historical source.
     corrected_prefactor = beta * (5 * M**2 + beta)
     expected_A = sp.Matrix(
         [
@@ -137,24 +165,28 @@ def main() -> None:
     if simp(B0_p2.det()) != 0 or B0_p2.rank() != 1:
         raise AssertionError("corrected exceptional n=2 rank-one block changed")
 
-    # Normalize the leading ordinary amplitude to the branch already used by
-    # the corrected generic horizon audit: u0=(1,2M).  The exceptional one-log
-    # amplitude is then fixed by the exact order-one equation.
-    c1 = sp.Rational(5, 3) / M
+    # Normalize the leading ordinary amplitude to u0=(1,2M).  Do not import
+    # the historical logarithmic amplitude: solve the corrected n=1 vector
+    # equation exactly and verify both Euler rows.
     u0 = sp.Matrix([1, 2 * M])
-    v1 = c1 * sp.Matrix([1, -2 * M])
-    order1 = matrix_simp(B1.subs(p, p0) * u0 + B0.diff(p).subs(p, p1) * v1)
+    c1_symbol = sp.symbols("c1")
+    v1_symbol = c1_symbol * sp.Matrix([1, -2 * M])
+    order1_symbolic = matrix_simp(
+        B1.subs(p, p0) * u0 + B0.diff(p).subs(p, p1) * v1_symbol
+    )
+    c1 = solve_linear_scalar_equation(order1_symbolic, c1_symbol)
+    v1 = matrix_simp(v1_symbol.subs(c1_symbol, c1))
+    order1 = matrix_simp(order1_symbolic.subs(c1_symbol, c1))
     if not base._is_zero_matrix(order1):
-        raise AssertionError(
-            "exceptional one-log correction does not cancel the corrected n=1 source; "
-            f"residual={order1.tolist()}"
-        )
+        raise AssertionError("derived exceptional first-log amplitude lost exact cancellation")
 
     l2 = sp.Matrix([1, 2 * M])
     log2_source = matrix_simp(B1.subs(p, p1) * v1)
     if simp((l2.T * log2_source)[0]) != 0:
         raise AssertionError("exceptional order-two log compatibility failed")
 
+    # Historical n=2 formulas are intentionally retained below until CI reaches
+    # them; the next mismatch is authoritative for the corrected source.
     v2_part = sp.Matrix(
         [
             -2 * c1 * (36 * M**4 - 19 * beta**2) / (15 * M * beta**2),
@@ -165,7 +197,7 @@ def main() -> None:
     if not base._is_zero_matrix(log2_residual):
         raise AssertionError(
             "exceptional order-two logarithmic correction changed; "
-            f"residual={log2_residual.tolist()}"
+            f"derived_c1={sp.sstr(c1)}, residual={log2_residual.tolist()}"
         )
 
     a1 = sp.symbols("a1")
@@ -182,33 +214,23 @@ def main() -> None:
             f"pairing={sp.sstr(simp((l2.T * nonlog2_source)[0]))}"
         )
 
-    m = sp.symbols("m", integer=True, nonnegative=True)
-    shifted = sp.expand(
-        (6 * (5 * M**2 - 2 * beta) * n * (n - 2) + 5 * beta).subs(n, m + 3)
-    )
-    expected_shifted = sp.expand(
-        6 * (5 * M**2 - 2 * beta) * (m + 3) * (m + 1) + 5 * beta
-    )
-    if sp.expand(shifted - expected_shifted) != 0:
-        raise AssertionError("corrected exceptional shifted coupling identity changed")
-
     compatibility_det = simp(gamma**2)
 
-    print("GFE_CORRECTED_FINITE_BETA_EXCEPTIONAL_HORIZON_FORMAL_RECURRENCE")
+    print("GFE_CORRECTED_FINITE_BETA_EXCEPTIONAL_HORIZON_RECURRENCE_AUDIT")
     print("SOURCE := artifacts/chronos/gfe_corrected_AEH_half_euler_generator.json")
     print("SECTOR := ell=2; lambda=6; omega=I/(4*M); alpha=1/2")
     print("CORRECTED_LEADING_PREFACTOR := beta*(5*M^2+beta)")
     print("NORMALIZED_LEADING_SEED := [1, 2*M]")
-    print("FORCED_FIRST_LOG_COEFFICIENT := [5/(3*M), -10/3]")
+    print("CORRECTED_FIRST_LOG_SCALAR := " + sp.sstr(c1))
+    print("CORRECTED_FIRST_LOG_VECTOR := [" + ", ".join(sp.sstr(v) for v in v1) + "]")
     print("ORDER_N_RIGHT_KERNEL := [1, 2*M*(2*n+1)]")
     print("ORDER_N_LEFT_PROJECTOR := [1, 2*M*(2*n-3)]")
     print("ADJACENT_KERNEL_COUPLING := " + sp.sstr(gamma))
     print("LOG_KERNEL_DECOUPLING := 0")
-    print("ORDER_TWO_COMPATIBILITY := passed")
     print("COMPATIBILITY_DETERMINANT := " + sp.sstr(compatibility_det))
-    print("BOUNDARY := nonvanishing of the corrected adjacent coupling for the intended beta domain is not yet proved")
+    print("BOUNDARY := corrected n=2 coefficient and corrected coupling nonvanishing domain remain open")
     print("FORMAL_EXCEPTIONAL_LOG_FROBENIUS := not yet promoted to every Laurent order")
-    print("NEXT_ROUTE := derive the first corrected low-order coefficient mismatch, then prove the corrected coupling nonvanishing domain")
+    print("NEXT_ROUTE := solve the first corrected n=2 mismatch, then classify the corrected coupling zeros")
 
 
 if __name__ == "__main__":
