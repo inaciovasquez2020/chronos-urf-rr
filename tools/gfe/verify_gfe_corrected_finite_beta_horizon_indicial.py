@@ -13,10 +13,10 @@ Schwarzschild coordinates have the weighted Frobenius form
 
 The one-power offset is the coordinate Jacobian carried by the radial metric
 component.  The leading weighted Euler matrix is constrained (rank deficient),
-so the exponent is selected by the first subleading solvability condition.
-The physical ingoing exponent for the exp(-i omega t) convention is
-p = -2 i M omega.  This verifier tests that exponent against the exact
-finite-beta equations rather than assuming it.
+so the exponent is selected by a subleading solvability condition.  For the
+physical ingoing exponent p = -2 i M omega the shifted leading matrix can lose
+rank again, so the verifier also checks the full first-correction residual and
+does not treat a vanishing projected compatibility scalar as sufficient.
 """
 from __future__ import annotations
 
@@ -120,6 +120,14 @@ def _left_kernel_vector(matrix: sp.Matrix) -> sp.Matrix:
     raise AssertionError("shifted leading weighted horizon matrix is identically zero")
 
 
+def _simplified_matrix(matrix: sp.Matrix) -> sp.Matrix:
+    return matrix.applyfunc(lambda value: sp.factor(sp.cancel(value)))
+
+
+def _is_zero_matrix(matrix: sp.Matrix) -> bool:
+    return all(sp.factor(sp.cancel(value)) == 0 for value in matrix)
+
+
 def derive_weighted_horizon_frobenius_system() -> tuple[
     list[int], sp.Matrix, sp.Matrix, sp.Expr
 ]:
@@ -160,8 +168,8 @@ def derive_weighted_horizon_frobenius_system() -> tuple[
             elif weighted_order == leading_order + 1:
                 subleading[equation_index, field] += lead * falling
 
-    leading = leading.applyfunc(lambda value: sp.factor(sp.cancel(value)))
-    subleading = subleading.applyfunc(lambda value: sp.factor(sp.cancel(value)))
+    leading = _simplified_matrix(leading)
+    subleading = _simplified_matrix(subleading)
 
     leading_determinant = sp.factor(sp.cancel(leading.det()))
     if leading_determinant != 0:
@@ -174,9 +182,7 @@ def derive_weighted_horizon_frobenius_system() -> tuple[
     if any(sp.factor(sp.cancel(value)) != 0 for value in leading * seed):
         raise AssertionError("constructed leading right-kernel vector is invalid")
 
-    shifted_leading = leading.subs(p, p + 1).applyfunc(
-        lambda value: sp.factor(sp.cancel(value))
-    )
+    shifted_leading = _simplified_matrix(leading.subs(p, p + 1))
     left_null = _left_kernel_vector(shifted_leading)
     if any(
         sp.factor(sp.cancel(value)) != 0
@@ -202,15 +208,47 @@ def main() -> None:
         )
 
     physical_ingoing_exponent = -2 * I * M * omega
-    physical_residual = sp.factor(
-        sp.cancel(compatibility.subs(p, physical_ingoing_exponent))
+    physical_seed = sp.Matrix([1, 2 * M])
+    physical_leading = _simplified_matrix(
+        leading.subs(p, physical_ingoing_exponent)
     )
-    if physical_residual != 0:
+    physical_seed_residual = _simplified_matrix(physical_leading * physical_seed)
+    if not _is_zero_matrix(physical_seed_residual):
         raise AssertionError(
-            "exact finite-beta subleading horizon compatibility does not "
-            "annihilate the expected horizon-regular ingoing exponent; "
-            f"residual={sp.sstr(physical_residual)}"
+            "expected ingoing seed (A0,B0)=(1,2M) is not in the exact "
+            "finite-beta leading horizon kernel; "
+            f"residual={physical_seed_residual.tolist()}"
         )
+
+    physical_shifted_leading = _simplified_matrix(
+        leading.subs(p, physical_ingoing_exponent + 1)
+    )
+    physical_first_residual = _simplified_matrix(
+        subleading.subs(p, physical_ingoing_exponent) * physical_seed
+    )
+
+    if _is_zero_matrix(physical_shifted_leading):
+        if not _is_zero_matrix(physical_first_residual):
+            raise AssertionError(
+                "physical ingoing exponent hits an n=1 horizon resonance, "
+                "but the full first-correction residual does not vanish; "
+                f"residual={physical_first_residual.tolist()}"
+            )
+        recurrence_status = (
+            "n=1 shifted leading matrix vanishes and full source vanishes; "
+            "next Frobenius order required"
+        )
+    else:
+        physical_residual = sp.factor(
+            sp.cancel(compatibility.subs(p, physical_ingoing_exponent))
+        )
+        if physical_residual != 0:
+            raise AssertionError(
+                "exact finite-beta subleading horizon compatibility does not "
+                "annihilate the expected horizon-regular ingoing exponent; "
+                f"residual={sp.sstr(physical_residual)}"
+            )
+        recurrence_status = "n=1 compatibility passed without rank-zero resonance"
 
     print("GFE_CORRECTED_FINITE_BETA_HORIZON_FROBENIUS")
     print(f"SOURCE := {SOURCE.relative_to(ROOT)}")
@@ -224,7 +262,9 @@ def main() -> None:
         print("  [" + ", ".join(sp.sstr(entry) for entry in row) + "]")
     print(f"FROBENIUS_COMPATIBILITY := {sp.sstr(compatibility)}")
     print("PHYSICAL_INGOING_EXPONENT := -2*I*M*omega")
-    print("PHYSICAL_INGOING_ROOT := passed")
+    print("PHYSICAL_INGOING_SEED := [1, 2*M]")
+    print(f"PHYSICAL_N1_RESONANCE := {_is_zero_matrix(physical_shifted_leading)}")
+    print(f"PHYSICAL_N1_STATUS := {recurrence_status}")
 
 
 if __name__ == "__main__":
