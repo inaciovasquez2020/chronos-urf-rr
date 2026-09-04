@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Audit the discrete exceptional beta_n resonance surfaces.
+"""Certify the discrete exceptional beta_n resonance lift.
 
 Scope: corrected AEH=1/2 Euler system, ell=2, lambda=6,
 omega=i/(4M), alpha=1/2.  The nonresonant all-order recurrence loses its
-adjacent-kernel coupling gamma_n on beta=beta_n.  This verifier computes the
-next generalized-log derivative lift exactly, directly from the Euler artifact.
-It does not claim convergence or horizon-to-r_c propagation.
+adjacent-kernel coupling gamma_n on beta=beta_n.  This verifier proves that one
+additional logarithmic degree supplies a nonzero derivative lift at every
+integer resonance order n>=3.  It remains a formal-series result: no
+convergence or horizon-to-r_c propagation is claimed.
 """
 from __future__ import annotations
 
@@ -39,6 +40,8 @@ def main() -> None:
 
     x = sp.symbols("x", positive=True)
     n = sp.symbols("n", integer=True, positive=True)
+    m = sp.symbols("m", integer=True, nonnegative=True)
+    log_degree = sp.symbols("log_degree", integer=True, positive=True)
     a, b = sp.symbols("a b")
 
     trial = {}
@@ -82,7 +85,8 @@ def main() -> None:
     l_n = sp.Matrix([1, 2 * M * (2 * n - 3)])
     r_prev = sp.Matrix([1, 2 * M * (2 * n - 1)])
 
-    beta_n = simp(30 * M**2 * n * (n - 2) / (12 * n * (n - 2) - 5))
+    resonance_den = sp.expand(12 * n * (n - 2) - 5)
+    beta_n = simp(30 * M**2 * n * (n - 2) / resonance_den)
     substitutions = {beta: beta_n}
 
     A_res = matrix_simp(A.subs(substitutions))
@@ -101,8 +105,6 @@ def main() -> None:
     kappa_res = simp(-corrected_prefactor_res * n * (n - 1) / (32 * M**5))
 
     # On gamma_n=0, the adjacent previous-kernel source lies in range(A_n).
-    # Solve A_n y_n = -B1(p_{n-1}) r_{n-1} with the same exact rank-one
-    # range solver used in the nonresonant induction.
     resonance_source = matrix_simp(adjacent_res * r_prev)
     if simp((l_n.T * resonance_source)[0]) != 0:
         raise AssertionError("resonant adjacent-kernel source is not range-compatible")
@@ -111,26 +113,89 @@ def main() -> None:
     if not base._is_zero_matrix(matrix_simp(A_res * y_res + resonance_source)):
         raise AssertionError("resonant range lift y_n does not solve A_n y_n=-B1 r_{n-1}")
 
-    # Raising the previous coefficient by one logarithmic degree produces,
-    # after solving the top-log range equation, the next projected lift
+    # If the previous kernel coefficient is raised by one logarithmic degree,
+    # solving its top-log range equation with y_res produces the next projected
+    # derivative lift
     #
-    #   delta_n = l_n^T [ B0'(p_n) y_n + B1'(p_{n-1}) r_{n-1} ].
+    #   delta_n = l_n^T [B0'(p_n)y_n + B1'(p_{n-1})r_{n-1}].
     #
-    # A nonzero delta_n means the resonance does not obstruct the formal
-    # branch: the extra log-degree amplitude replaces the vanished gamma_n.
+    # A degree-d log monomial carries the nonzero scalar d*delta_n into the
+    # next-lower log compatibility equation.
     derivative_lift_vector = matrix_simp(D0_res * y_res + D1_res * r_prev)
     delta_res = simp((l_n.T * derivative_lift_vector)[0])
-    if delta_res == 0:
+
+    quartic = sp.expand(18 * n**4 - 170 * n**3 + 379 * n**2 - 277 * n + 30)
+    expected_delta = simp(
+        -75 * n * (n - 2) * quartic / resonance_den**2
+    )
+    if simp(delta_res - expected_delta) != 0:
         raise AssertionError(
-            "first generalized-log derivative lift vanishes identically on beta_n; "
-            "a higher lift is required"
+            "exceptional resonance derivative lift changed; "
+            f"actual={sp.sstr(delta_res)}"
         )
 
-    numerator, denominator = sp.fraction(sp.cancel(delta_res))
-    numerator = sp.factor(numerator)
-    denominator = sp.factor(denominator)
+    # Exact integer nonvanishing certificate.  Directly check n=3..6.  For
+    # n=m+7, m>=0, every coefficient of Q(m+7) is strictly positive.
+    small_values = [sp.expand(quartic.subs(n, j)) for j in range(3, 7)]
+    expected_small = [-522, -1286, -1880, -1380]
+    if small_values != expected_small:
+        raise AssertionError(
+            "quartic small-order resonance classification changed; "
+            f"actual={small_values}"
+        )
 
-    print("GFE_CORRECTED_FINITE_BETA_EXCEPTIONAL_DISCRETE_RESONANCE_LIFT_AUDIT")
+    shifted_quartic = sp.expand(quartic.subs(n, m + 7))
+    expected_shifted = 18 * m**4 + 334 * m**3 + 2101 * m**2 + 4735 * m + 1570
+    if sp.expand(shifted_quartic - expected_shifted) != 0:
+        raise AssertionError("shifted quartic positivity certificate changed")
+    shifted_coeffs = sp.Poly(shifted_quartic, m).all_coeffs()
+    if shifted_coeffs != [18, 334, 2101, 4735, 1570]:
+        raise AssertionError("shifted quartic coefficients changed")
+    if not all(int(c) > 0 for c in shifted_coeffs):
+        raise AssertionError("shifted quartic lost coefficientwise positivity")
+
+    # Mechanically verify the generic compatibility solver supplied by d*delta_n.
+    # All previously fixed contributions at the next-lower log degree are an
+    # arbitrary source S.  The extra previous-kernel amplitude tau is uniquely
+    # fixed when d>=1 and delta_n!=0, after which the exact rank-one range solver
+    # supplies the current coefficient.
+    s0, s1, tau = sp.symbols("s0 s1 tau")
+    S = sp.Matrix([s0, s1])
+    projected_source = simp((l_n.T * S)[0])
+    lifted_projection = simp(
+        (l_n.T * (S + log_degree * tau * derivative_lift_vector))[0]
+    )
+    tau_solution = simp(-projected_source / (log_degree * delta_res))
+    if simp(lifted_projection.subs(tau, tau_solution)) != 0:
+        raise AssertionError("generalized-log resonance amplitude does not cancel compatibility")
+
+    compatible_lifted_source = matrix_simp(
+        (S + log_degree * tau * derivative_lift_vector).subs(tau, tau_solution)
+    )
+    current_particular = sp.Matrix(
+        [0, simp(-compatible_lifted_source[1] / kappa_res)]
+    )
+    if not base._is_zero_matrix(
+        matrix_simp(A_res * current_particular + compatible_lifted_source)
+    ):
+        raise AssertionError("generalized-log resonant compatible source lost range solution")
+
+    # The resonance surfaces are pairwise distinct in the physical M>0 sector.
+    # beta_n-beta_{n+1} has a strictly positive numerator and denominators for
+    # every integer n>=3, so any fixed beta encounters at most one such order.
+    beta_next = simp(
+        30 * M**2 * (n + 1) * (n - 1) /
+        (12 * (n + 1) * (n - 1) - 5)
+    )
+    resonance_spacing = simp(beta_n - beta_next)
+    expected_spacing = simp(
+        150 * M**2 * (2 * n - 1) /
+        ((12 * n**2 - 24 * n - 5) * (12 * n**2 - 17))
+    )
+    if simp(resonance_spacing - expected_spacing) != 0:
+        raise AssertionError("discrete resonance spacing formula changed")
+
+    print("GFE_CORRECTED_FINITE_BETA_EXCEPTIONAL_DISCRETE_RESONANCE_LOG_LIFT_CERTIFIED")
     print("SOURCE := artifacts/chronos/gfe_corrected_AEH_half_euler_generator.json")
     print("SECTOR := ell=2; lambda=6; omega=I/(4*M); alpha=1/2")
     print("RESONANCE_ORDER := integer n>=3")
@@ -138,11 +203,17 @@ def main() -> None:
     print("ADJACENT_KERNEL_COUPLING_ON_BETA_N := 0")
     print("RESONANT_RANGE_LIFT_Y_N := [" + ", ".join(sp.sstr(v) for v in y_res) + "]")
     print("DERIVATIVE_LIFT_DELTA_N := " + sp.sstr(delta_res))
-    print("DERIVATIVE_LIFT_NUMERATOR := " + sp.sstr(numerator))
-    print("DERIVATIVE_LIFT_DENOMINATOR := " + sp.sstr(denominator))
-    print("STRUCTURAL_INTERPRETATION := one additional log degree is the first candidate replacement for vanished gamma_n")
-    print("BOUNDARY := nonvanishing for every integer n>=3 not yet classified; no convergence or global propagation claim")
-    print("NEXT_ROUTE := classify zeros of delta_n for integer n>=3 and certify generalized-log resonance solvability if none occur")
+    print("DELTA_QUARTIC_Q_N := " + sp.sstr(quartic))
+    print("Q_3_TO_6 := " + sp.sstr(small_values))
+    print("Q_M_PLUS_7 := " + sp.sstr(shifted_quartic) + " with m>=0")
+    print("INTEGER_NONVANISHING := delta_n != 0 for every integer n>=3 under the nondegenerate M guard")
+    print("LOG2_TO_LOG1_RESONANCE_STEP := uniquely solvable through 2*delta_n")
+    print("LOG1_TO_ORDINARY_RESONANCE_STEP := uniquely solvable through delta_n")
+    print("RESONANCE_SPACING := beta_n-beta_(n+1) = " + sp.sstr(resonance_spacing))
+    print("PAIRWISE_DISTINCT_RESONANCES := certified for physical M>0 and integer n>=3")
+    print("FORMAL_RESONANCE_CLASSIFICATION := each beta_n surface creates one extra logarithmic degree, not an obstruction")
+    print("BOUNDARY := formal-series result only; convergence and horizon-to-r_c propagation remain open")
+    print("NEXT_ROUTE := combine nonresonant induction with the single-resonance log lift, then attack convergence of the exceptional horizon series")
 
 
 if __name__ == "__main__":
