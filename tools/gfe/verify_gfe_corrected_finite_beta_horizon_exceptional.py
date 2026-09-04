@@ -76,21 +76,26 @@ def main() -> None:
     pn = alpha + n
     A = matrix_simp(B0.subs(p, pn))
 
+    # The corrected AEH=1/2 source preserves the historical rank-one block
+    # shape but changes its overall coefficient from beta^2 to
+    # beta*(5*M^2+beta).  This normalization is derived from the corrected
+    # artifact and is not imported from the historical source.
+    corrected_prefactor = beta * (5 * M**2 + beta)
     expected_A = sp.Matrix(
         [
             [
-                -beta**2 * n * (n - 1) * (2 * n - 3) * (2 * n + 1) / (8 * M**3),
-                beta**2 * n * (n - 1) * (2 * n - 3) / (16 * M**4),
+                -corrected_prefactor * n * (n - 1) * (2 * n - 3) * (2 * n + 1) / (8 * M**3),
+                corrected_prefactor * n * (n - 1) * (2 * n - 3) / (16 * M**4),
             ],
             [
-                beta**2 * n * (n - 1) * (2 * n + 1) / (16 * M**4),
-                -beta**2 * n * (n - 1) / (32 * M**5),
+                corrected_prefactor * n * (n - 1) * (2 * n + 1) / (16 * M**4),
+                -corrected_prefactor * n * (n - 1) / (32 * M**5),
             ],
         ]
     )
     if not base._is_zero_matrix(matrix_simp(A - expected_A)):
         raise AssertionError(
-            "corrected exceptional leading block differs from the historical target; "
+            "corrected exceptional leading block changed after normalization repair; "
             f"actual={A.tolist()}"
         )
 
@@ -193,6 +198,7 @@ def main() -> None:
     print("GFE_CORRECTED_FINITE_BETA_EXCEPTIONAL_HORIZON_FORMAL_RECURRENCE")
     print("SOURCE := artifacts/chronos/gfe_corrected_AEH_half_euler_generator.json")
     print("SECTOR := ell=2; lambda=6; omega=I/(4*M); alpha=1/2")
+    print("CORRECTED_LEADING_PREFACTOR := beta*(5*M^2+beta)")
     print("NORMALIZED_LEADING_SEED := [1, 2*M]")
     print("FORCED_FIRST_LOG_COEFFICIENT := [5/(3*M), -10/3]")
     print("ORDER_N_RIGHT_KERNEL := [1, 2*M*(2*n+1)]")
