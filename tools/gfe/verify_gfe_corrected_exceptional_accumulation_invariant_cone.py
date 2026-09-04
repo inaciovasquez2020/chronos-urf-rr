@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Attempt an exact invariant growth cone for the physical accumulation branch.
+"""Certify an exact invariant growth cone for the physical accumulation branch.
 
 Sector: M=1, beta=5/2, omega=i/4, ell=2, lambda=6, alpha=1/2.
 The finite-lag transfer is re-derived from the corrected Euler artifact.
@@ -9,10 +9,11 @@ Cone for n>=60:
   2 <= a_n/(n^2 a_{n-1}) <= 5,
   |xi_n| <= a_n/n^3.
 
-If invariant, the lower ratio bound gives factorial growth and hence zero
-radius of convergence for the physical top-log coefficient series at the
-accumulation coupling. Every tail inequality is reduced to positivity of a
-shifted exact rational polynomial; no floating-point inequalities are used.
+The two-sided ratio cone places the physical top-log coefficient vector between
+fixed exponential multiples of (n!)^2.  Hence, under the standard formal-series
+convention |c_n| <= C A^n (n!)^s, its exact minimal Gevrey exponent is 2.
+Every tail inequality is reduced to positivity of a shifted exact rational
+polynomial; no floating-point inequalities are used.
 """
 from __future__ import annotations
 
@@ -198,10 +199,15 @@ def main() -> None:
     print("PREFIX_CERTIFIED := full lag history 51<=n<=60 lies in kernel/range cone")
     print("TAIL_INVARIANCE := exact rational inequalities certified for every integer n>=61")
     print("FACTORIAL_LOWER_BOUND := abs(kappa_n) >= abs(kappa_60)*2^(n-60)*(n!/60!)^2 for n>=60")
+    print("FACTORIAL_UPPER_BOUND := abs(kappa_n) <= abs(kappa_60)*5^(n-60)*(n!/60!)^2 for n>=60")
+    print("TOP_LOG_VECTOR_GEVREY_DEFINITION := |c_n| <= C*A^n*(n!)^s")
+    print("TOP_LOG_VECTOR_GEVREY_2 := certified")
+    print("TOP_LOG_VECTOR_NOT_GEVREY_S_LT_2 := certified from the factorial lower bound")
+    print("TOP_LOG_VECTOR_MINIMAL_GEVREY_EXPONENT := 2")
     print("PHYSICAL_FACTORIAL_SECTOR := nonzero")
     print("TOP_LOG_POWER_SERIES_RADIUS := 0")
     print("ACCUMULATION_POINT_CONVERGENT_FROBENIUS := ruled out for the physical top-log branch")
-    print("BOUNDARY := accumulation coupling only; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
+    print("BOUNDARY := accumulation coupling only; no Borel summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
 
 
 if __name__ == "__main__":
