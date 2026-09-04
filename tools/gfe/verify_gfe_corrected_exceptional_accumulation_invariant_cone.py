@@ -261,8 +261,7 @@ def main() -> None:
     )
 
     # For V_n := U_n*n^2/(18/5)^n, the first-correction law makes successive
-    # ratios differ from 1 by a summable O(1/n^2) amount. This is the exact
-    # bridge needed for a later infinite-product proof of a nonzero amplitude.
+    # ratios differ from 1 by a summable O(1/n^2) amount.
     amp_model_ratio = simp((ratio_first_model/ratio_target)*n**2/(n-1)**2)
     amp_model_gap = tail_abs(
         amp_model_ratio-1,
@@ -281,6 +280,50 @@ def main() -> None:
         N,
         "normalized amplitude summable ratio envelope",
     )
+
+    # Close the normalized amplitude by an elementary infinite-product
+    # argument.  The pointwise majorant telescopes because
+    #   1/(n-1)^2 <= 1/[(n-2)(n-1)] = 1/(n-2)-1/(n-1).
+    # Hence the full ratio-error tail from n=61 is at most 30/59 < 1.
+    # For finite products, prod(1-d_j) >= 1-sum d_j and, when sum d_j<1,
+    # prod(1+d_j) <= 1/(1-sum d_j).  The same expansion gives the relative
+    # Cauchy bound S/(1-S) for a tail with total majorant S.
+    amp_telescoper = simp(amp_ratio_C*(1/(n-2)-1/(n-1)))
+    assert_tail_nonnegative(
+        amp_telescoper-amp_ratio_C/(n-1)**2,
+        n,
+        N,
+        "normalized amplitude telescoping majorant",
+    )
+    amp_total_tail_bound = sp.Rational(30,59)
+    if not (sp.Rational(0) < amp_total_tail_bound < sp.Rational(1)):
+        raise AssertionError("normalized amplitude total tail bound must lie in (0,1)")
+    amp_lower_factor = simp(1-amp_total_tail_bound)
+    amp_upper_factor = simp(1/(1-amp_total_tail_bound))
+    if amp_lower_factor != sp.Rational(29,59):
+        raise AssertionError("normalized amplitude lower product factor changed")
+    if amp_upper_factor != sp.Rational(59,29):
+        raise AssertionError("normalized amplitude upper product factor changed")
+
+    U60 = sp.cancel((-1)**61 * kap[60] / sp.factorial(60)**2)
+    V60 = sp.cancel(U60 * 60**2 / ratio_target**60)
+    if V60 <= 0:
+        raise AssertionError("physical normalized Borel amplitude at n=60 is not positive")
+
+    cauchy_tail_sum = simp(amp_ratio_C/(n-1))
+    cauchy_relative_bound = simp(cauchy_tail_sum/(1-cauchy_tail_sum))
+    if simp(cauchy_relative_bound-sp.Rational(30)/(n-31)) != 0:
+        raise AssertionError("normalized amplitude Cauchy relative bound changed")
+    assert_tail_nonnegative(
+        1-cauchy_tail_sum,
+        n,
+        N,
+        "normalized amplitude Cauchy denominator",
+    )
+
+    # Therefore V_n is Cauchy in R, converges to A_phys, and the uniform lower
+    # product bound keeps A_phys strictly positive.  This gives the exact
+    # coefficient asymptotic K_n ~ -A_phys*(-18/5)^n/n^2.
 
     # Pringsheim hypothesis for the sign-normalized order-2 Borel tail.
     # U_n := (-1)^(n+1) K_n = a_n/(n!)^2 is strictly positive on the
@@ -318,7 +361,12 @@ def main() -> None:
     print("BOREL_KERNEL_N_MINUS_TWO_RATIO_LAW := certified")
     print("NORMALIZED_BOREL_AMPLITUDE := V_n=U_n*n^2/(18/5)^n")
     print("NORMALIZED_BOREL_AMPLITUDE_RATIO_BOUND := abs(V_n/V_(n-1)-1) <= 30/(n-1)^2 for n>=61")
-    print("NORMALIZED_BOREL_AMPLITUDE_RATIO_ERROR := summable; nonzero amplitude limit not yet claimed")
+    print("NORMALIZED_BOREL_AMPLITUDE_TELESCOPING_MAJORANT := 30/(n-1)^2 <= 30*(1/(n-2)-1/(n-1))")
+    print("NORMALIZED_BOREL_AMPLITUDE_TOTAL_TAIL_BOUND := sum_(n>=61) 30/(n-1)^2 <= 30/59 < 1")
+    print("NORMALIZED_BOREL_AMPLITUDE_GLOBAL_BOUNDS := (29/59)*V_60 <= V_n <= (59/29)*V_60 for n>=60")
+    print("NORMALIZED_BOREL_AMPLITUDE_CAUCHY_BOUND := abs(V_m/V_n-1) <= 30/(n-31) for m>n>=61")
+    print("NORMALIZED_BOREL_AMPLITUDE_LIMIT := V_n -> A_phys with 0 < A_phys < infinity")
+    print("BOREL_KERNEL_COEFFICIENT_ASYMPTOTIC := K_n ~ -A_phys*(-18/5)^n/n^2")
     print("FACTORIAL_LOWER_BOUND := abs(kappa_n) >= abs(kappa_60)*2^(n-60)*(n!/60!)^2 for n>=60")
     print("FACTORIAL_UPPER_BOUND := abs(kappa_n) <= abs(kappa_60)*5^(n-60)*(n!/60!)^2 for n>=60")
     print("TOP_LOG_VECTOR_GEVREY_DEFINITION := |c_n| <= C*A^n*(n!)^s")
@@ -341,7 +389,7 @@ def main() -> None:
     print("PHYSICAL_FACTORIAL_SECTOR := nonzero")
     print("TOP_LOG_POWER_SERIES_RADIUS := 0")
     print("ACCUMULATION_POINT_CONVERGENT_FROBENIUS := ruled out for the physical top-log branch")
-    print("BOUNDARY := n^-2 Borel ratio law and summable normalized-amplitude ratio error certified; nonzero amplitude limit and singularity type unclassified; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
+    print("BOUNDARY := nonzero normalized Borel amplitude limit and exact n^-2 coefficient asymptotic certified; singularity type unclassified; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
 
 
 if __name__ == "__main__":
