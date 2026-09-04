@@ -132,9 +132,6 @@ def main() -> None:
             - (ell_next.T * block * rvec(n + 1 - j))[0] / gamma_next
         )
 
-    # Physical top-log seed at beta=5/2, M=1:
-    # v_1 = (5/9, -10/9).  In v_n = xi_n E + kappa_n r_n this is
-    # xi_1=20/27, kappa_1=-5/27.  There is no log coefficient at n=0.
     xi: dict[int, sp.Rational] = {0: sp.Rational(0), 1: sp.Rational(20, 27)}
     kap: dict[int, sp.Rational] = {0: sp.Rational(0), 1: sp.Rational(-5, 27)}
 
@@ -149,7 +146,7 @@ def main() -> None:
             raise AssertionError("unit-mass transfer retained symbolic parameters")
         return sp.Rational(out)
 
-    N = 50
+    N = 60
     for k in range(2, N + 1):
         xi_k = sp.Rational(0)
         kap_k = sp.Rational(0)
@@ -161,8 +158,6 @@ def main() -> None:
         xi[k] = sp.cancel(xi_k)
         kap[k] = sp.cancel(kap_k)
 
-    # The independently derived n=2 logarithmic particular has first/range
-    # coordinate 1412/2025 at M=1; the kernel freedom does not change xi_2.
     expected_xi2 = sp.Rational(1412, 2025)
     if xi[2] != expected_xi2:
         raise AssertionError(
@@ -174,10 +169,14 @@ def main() -> None:
         raise AssertionError("physical top-log kernel coordinate vanished in the audited prefix")
 
     factorial_base = sp.Rational(-18, 5)
-    checkpoints = [8, 12, 20, 30, 40, 50]
+    checkpoints = [8, 12, 20, 30, 40, 50, 60]
     ratios: dict[int, sp.Expr] = {}
+    amplitudes: dict[int, sp.Expr] = {}
     for k in checkpoints:
         ratios[k] = sp.cancel(kap[k] / (k**2 * kap[k - 1]))
+        amplitudes[k] = sp.cancel(
+            kap[k] * k**2 / (factorial_base**k * sp.factorial(k) ** 2)
+        )
 
     print("GFE_CORRECTED_EXCEPTIONAL_ACCUMULATION_PHYSICAL_SEED_PREFIX")
     print("SOURCE := artifacts/chronos/gfe_corrected_AEH_half_euler_generator.json")
@@ -188,6 +187,7 @@ def main() -> None:
     print("PHYSICAL_TOP_LOG_XI_N2 := " + sp.sstr(xi[2]))
     print("EXPECTED_XI_N2 := 1412/2025")
     print("SLOPE2_FORMAL_FACTORIAL_BASE := -18/5")
+    print("TESTED_FACTORIAL_POWER := n^(-2)")
     for k in checkpoints:
         print(
             "SCALED_KERNEL_RATIO_N_"
@@ -201,10 +201,16 @@ def main() -> None:
             + " := "
             + sp.sstr(sp.N(ratios[k] - factorial_base, 24))
         )
-    print("PREFIX_NONVANISHING := kappa_n != 0 for 2<=n<=50")
+        print(
+            "FACTORIAL_NORMALIZED_AMPLITUDE_N_"
+            + str(k)
+            + " := "
+            + sp.sstr(sp.N(amplitudes[k], 24))
+        )
+    print("PREFIX_NONVANISHING := kappa_n != 0 for 2<=n<=60")
     print("FINITE_PREFIX_ONLY := True")
     print("FACTORIAL_SECTOR_AMPLITUDE := not yet proved from finite-prefix data")
-    print("NEXT_ROUTE := derive an invariant tail bound for the factorial-normalized recurrence and certify nonzero asymptotic amplitude")
+    print("NEXT_ROUTE := derive a rigorous tail enclosure for the n^(-2) factorial-normalized amplitude")
 
 
 if __name__ == "__main__":
