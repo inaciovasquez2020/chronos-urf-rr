@@ -6,7 +6,9 @@ omega=i/(4M), beta=5 M^2/2.  We use the dimensionless unit-mass
 normalization M=1 and derive the finite-lag recurrence directly from the exact
 Euler artifact.  This is a finite-prefix diagnostic only: it tests whether the
 physical top-log sequence exhibits the slope-two factorial signature found by
-the Newton audit.  It does not by itself prove the asymptotic sector amplitude.
+the Newton audit and exposes the tail contribution pattern needed for a
+rigorous invariant-cone proof.  It does not by itself prove the asymptotic
+sector amplitude.
 """
 from __future__ import annotations
 
@@ -172,11 +174,29 @@ def main() -> None:
     checkpoints = [8, 12, 20, 30, 40, 50, 60]
     ratios: dict[int, sp.Expr] = {}
     amplitudes: dict[int, sp.Expr] = {}
+    range_kernel: dict[int, sp.Expr] = {}
     for k in checkpoints:
         ratios[k] = sp.cancel(kap[k] / (k**2 * kap[k - 1]))
         amplitudes[k] = sp.cancel(
             kap[k] * k**2 / (factorial_base**k * sp.factorial(k) ** 2)
         )
+        range_kernel[k] = sp.cancel(xi[k] / kap[k])
+
+    tail_k = N
+    kernel_contributions: list[tuple[int, sp.Expr, sp.Expr]] = []
+    for j in range(1, J + 1):
+        from_xi = sp.cancel(
+            eval_at(K_xi.get(j, 0), tail_k) * value(xi, tail_k - j) / kap[tail_k]
+        )
+        from_kap = sp.cancel(
+            eval_at(K_kap.get(j, 0), tail_k) * value(kap, tail_k - j) / kap[tail_k]
+        )
+        kernel_contributions.append((j, from_xi, from_kap))
+    contribution_sum = sp.cancel(
+        sum(from_xi + from_kap for _, from_xi, from_kap in kernel_contributions)
+    )
+    if contribution_sum != 1:
+        raise AssertionError("kernel contribution decomposition no longer sums exactly to one")
 
     print("GFE_CORRECTED_EXCEPTIONAL_ACCUMULATION_PHYSICAL_SEED_PREFIX")
     print("SOURCE := artifacts/chronos/gfe_corrected_AEH_half_euler_generator.json")
@@ -189,12 +209,7 @@ def main() -> None:
     print("SLOPE2_FORMAL_FACTORIAL_BASE := -18/5")
     print("TESTED_FACTORIAL_POWER := n^(-2)")
     for k in checkpoints:
-        print(
-            "SCALED_KERNEL_RATIO_N_"
-            + str(k)
-            + " := "
-            + sp.sstr(sp.N(ratios[k], 24))
-        )
+        print("SCALED_KERNEL_RATIO_N_" + str(k) + " := " + sp.sstr(sp.N(ratios[k], 24)))
         print(
             "SCALED_KERNEL_RATIO_ERROR_N_"
             + str(k)
@@ -207,10 +222,26 @@ def main() -> None:
             + " := "
             + sp.sstr(sp.N(amplitudes[k], 24))
         )
+        print(
+            "RANGE_TO_KERNEL_RATIO_N_"
+            + str(k)
+            + " := "
+            + sp.sstr(sp.N(range_kernel[k], 24))
+        )
+    for j, from_xi, from_kap in kernel_contributions:
+        print(
+            "KERNEL_TAIL_FRACTIONS_N_60_LAG_"
+            + str(j)
+            + " := from_xi "
+            + sp.sstr(sp.N(from_xi, 24))
+            + "; from_kappa "
+            + sp.sstr(sp.N(from_kap, 24))
+        )
+    print("KERNEL_TAIL_FRACTION_SUM_N_60 := 1")
     print("PREFIX_NONVANISHING := kappa_n != 0 for 2<=n<=60")
     print("FINITE_PREFIX_ONLY := True")
     print("FACTORIAL_SECTOR_AMPLITUDE := not yet proved from finite-prefix data")
-    print("NEXT_ROUTE := derive a rigorous tail enclosure for the n^(-2) factorial-normalized amplitude")
+    print("NEXT_ROUTE := use the exact tail fractions to choose and certify an invariant alternating-growth cone")
 
 
 if __name__ == "__main__":
