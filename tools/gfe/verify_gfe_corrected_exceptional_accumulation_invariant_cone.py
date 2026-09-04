@@ -6,13 +6,12 @@ The finite-lag transfer is re-derived from the corrected Euler artifact.
 
 Cone for n>=60:
   a_n := (-1)^n kappa_n > 0,
-  b_n := (-1)^(n+1) xi_n >= 0,
   2 <= a_n/(n^2 a_{n-1}) <= 5,
-  b_n <= a_n/n^3.
+  |xi_n| <= a_n/n^3.
 
 If invariant, the lower ratio bound gives factorial growth and hence zero
 radius of convergence for the physical top-log coefficient series at the
-accumulation coupling.  Every tail inequality is reduced to positivity of a
+accumulation coupling. Every tail inequality is reduced to positivity of a
 shifted exact rational polynomial; no floating-point inequalities are used.
 """
 from __future__ import annotations
@@ -123,7 +122,6 @@ def main() -> None:
         K_xi[lag]=simp(K_xi.get(lag,0)-(ell_next.T*block*E)[0]/gamma)
         K_kap[lag]=simp(K_kap.get(lag,0)-(ell_next.T*block*rvec(n+1-j))[0]/gamma)
 
-    # Exact physical prefix, identical to the independently registered seed audit.
     xi = {0:sp.Rational(0), 1:sp.Rational(20,27)}
     kap = {0:sp.Rational(0), 1:sp.Rational(-5,27)}
     def val(tab, k):
@@ -140,26 +138,22 @@ def main() -> None:
             kv += ev(K_xi.get(j,0),k)*val(xi,k-j)+ev(K_kap.get(j,0),k)*val(kap,k-j)
         xi[k]=sp.cancel(xv); kap[k]=sp.cancel(kv)
 
-    # Tail cone begins with the full lag history needed to compute n=61.
     q = sp.Rational(2)
     Q = sp.Rational(5)
     Ccone = sp.Rational(1)
     for k in range(51,61):
         ak = (-1)**k * kap[k]
-        bk = (-1)**(k+1) * xi[k]
-        if ak <= 0 or bk < 0:
-            raise AssertionError(f"physical prefix misses sign cone at n={k}")
+        if ak <= 0:
+            raise AssertionError(f"physical prefix misses kernel sign cone at n={k}")
         if k >= 52:
             ap = (-1)**(k-1) * kap[k-1]
             rr = sp.cancel(ak/(k**2*ap))
             if not (q <= rr <= Q):
                 raise AssertionError(f"physical prefix misses ratio cone at n={k}: {rr}")
-        if sp.cancel(bk*k**3-ak) > 0:
-            raise AssertionError(f"physical prefix misses range cone at n={k}")
+        if sp.cancel(abs(xi[k])*k**3-ak) > 0:
+            raise AssertionError(f"physical prefix misses absolute range cone at n={k}")
 
     N = 61
-
-    # For a_{n-j}/a_{n-1}, j=1 gives 1.  For j>=2 use only the ratio cone.
     def hist_upper(j: int) -> sp.Expr:
         if j == 1:
             return sp.Integer(1)
@@ -168,52 +162,40 @@ def main() -> None:
             prod *= (n-s)**2
         return simp(1/(q**(j-1)*prod))
 
-    # Determine exact coefficient signs on the whole tail and use absolute
-    # values for a conservative invariant enclosure.
     absKxi={j:tail_abs(K_xi.get(j,0),n,N,f"Kxi{j}") for j in range(1,J+1)}
     absKkap={j:tail_abs(K_kap.get(j,0),n,N,f"Kkap{j}") for j in range(1,J+1)}
     absXxi={j:tail_abs(X_xi.get(j,0),n,N,f"Xxi{j}") for j in range(1,J+1)}
     absXkap={j:tail_abs(X_kap.get(j,0),n,N,f"Xkap{j}") for j in range(1,J+1)}
 
-    # Dominant kernel lag j=1 in alternating coordinates.
     kernel_dom = simp(-K_kap[1]/n**2)
     assert_tail_nonnegative(kernel_dom,n,N,"kernel dominant coefficient")
-
     kernel_rem = sp.Integer(0)
     for j in range(1,J+1):
         hu=hist_upper(j)
-        # |b_{n-j}| <= a_{n-j}/(n-j)^3.
         kernel_rem += absKxi[j]*hu/((n-j)**3*n**2)
         if j >= 2:
             kernel_rem += absKkap[j]*hu/n**2
     kernel_rem=simp(kernel_rem)
-
     assert_tail_nonnegative(kernel_dom-kernel_rem-q,n,N,"kernel lower cone")
     assert_tail_nonnegative(Q-kernel_dom-kernel_rem,n,N,"kernel upper cone")
 
-    # Range coordinate in alternating variables.  Its dominant source is the
-    # j=1 kappa term.  Bound every other term absolutely.
-    range_dom = simp(X_kap[1])
-    assert_tail_nonnegative(range_dom,n,N,"range dominant coefficient")
-    range_rem = absXxi[1]/(n-1)**3
-    for j in range(2,J+1):
+    # Absolute range bound; no sign assumption on xi is needed.
+    range_abs = sp.Integer(0)
+    for j in range(1,J+1):
         hu=hist_upper(j)
-        range_rem += absXkap[j]*hu + absXxi[j]*hu/(n-j)**3
-    range_rem=simp(range_rem)
-    assert_tail_nonnegative(range_dom-range_rem,n,N,"range sign cone")
-
-    # Since a_n >= q*n^2*a_{n-1}, it suffices to prove
-    # b_n/a_{n-1} <= C*q/n for b_n <= C*a_n/n^3.
-    assert_tail_nonnegative(Ccone*q/n-range_dom-range_rem,n,N,"range magnitude cone")
+        range_abs += absXkap[j]*hu + absXxi[j]*hu/(n-j)**3
+    range_abs=simp(range_abs)
+    # a_n >= q*n^2*a_{n-1}; therefore this sufficient inequality preserves
+    # |xi_n| <= a_n/n^3.
+    assert_tail_nonnegative(Ccone*q/n-range_abs,n,N,"absolute range magnitude cone")
 
     print("GFE_CORRECTED_EXCEPTIONAL_ACCUMULATION_INVARIANT_CONE_CERTIFIED")
     print("SECTOR := M=1; beta=5/2; omega=I/4; ell=2; lambda=6; alpha=1/2")
     print("TAIL_START := 61")
     print("KERNEL_SIGN := (-1)^n*kappa_n > 0")
-    print("RANGE_SIGN := (-1)^(n+1)*xi_n >= 0")
     print("FACTORIAL_RATIO_CONE := 2 <= (-1)^n*kappa_n/(n^2*(-1)^(n-1)*kappa_(n-1)) <= 5")
     print("RANGE_KERNEL_CONE := abs(xi_n/kappa_n) <= 1/n^3")
-    print("PREFIX_CERTIFIED := full lag history 51<=n<=60 lies in cone")
+    print("PREFIX_CERTIFIED := full lag history 51<=n<=60 lies in kernel/range cone")
     print("TAIL_INVARIANCE := exact rational inequalities certified for every integer n>=61")
     print("FACTORIAL_LOWER_BOUND := abs(kappa_n) >= abs(kappa_60)*2^(n-60)*(n!/60!)^2 for n>=60")
     print("PHYSICAL_FACTORIAL_SECTOR := nonzero")
