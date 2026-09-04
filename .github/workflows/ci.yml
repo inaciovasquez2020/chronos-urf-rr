@@ -47,6 +47,9 @@ jobs:
       - name: Audit minimal log3 finite-beta horizon chain
         run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_log3.py
 
+      - name: Audit minimal log4 finite-beta horizon chain
+        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_log4.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
