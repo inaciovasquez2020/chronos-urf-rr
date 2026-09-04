@@ -60,6 +60,24 @@ def solve_linear_scalar_equation(residual: sp.Matrix, scalar: sp.Symbol) -> sp.E
     return candidate
 
 
+def solve_affine_scalar_expression(expr: sp.Expr, scalar: sp.Symbol) -> sp.Expr:
+    """Solve an exact affine scalar equation expr=0 for scalar and verify it."""
+    coefficient = simp(sp.diff(expr, scalar))
+    if coefficient == 0:
+        raise AssertionError(
+            "ordinary compatibility does not determine the selected scalar; "
+            f"expr={sp.sstr(expr)}"
+        )
+    constant = simp(expr.subs(scalar, 0))
+    candidate = simp(-constant / coefficient)
+    if simp(expr.subs(scalar, candidate)) != 0:
+        raise AssertionError(
+            "derived affine scalar relation does not cancel compatibility; "
+            f"candidate={sp.sstr(candidate)}"
+        )
+    return candidate
+
+
 def main() -> None:
     equations, h = base._parse_equations()
 
@@ -190,22 +208,26 @@ def main() -> None:
     if not base._is_zero_matrix(log2_residual):
         raise AssertionError("derived exceptional n=2 logarithmic coefficient lost cancellation")
 
-    # Retain the historical u1 affine relation only until the next exact
-    # ordinary n=2 compatibility check; do not promote it a priori.
-    a1 = sp.symbols("a1")
-    u1 = sp.Matrix([a1, -2 * M * a1 - sp.Rational(362, 25) * M * c1])
-    nonlog2_source = matrix_simp(
-        B1.subs(p, p1) * u1
+    # The ordinary n=1 coefficient u1 is genuinely two-component free because
+    # B0(p1)=0.  Do not import the historical affine relation.  Instead derive
+    # the unique n=2 compatibility relation directly from the corrected source.
+    a1, b1 = sp.symbols("a1 b1")
+    u1_symbolic = sp.Matrix([a1, b1])
+    nonlog2_source_symbolic = matrix_simp(
+        B1.subs(p, p1) * u1_symbolic
         + B2.subs(p, p0) * u0
         + B0.diff(p).subs(p, p2) * v2_part
         + B1.diff(p).subs(p, p1) * v1
     )
+    ordinary_n2_pairing_symbolic = simp((l2.T * nonlog2_source_symbolic)[0])
+    b1_relation = solve_affine_scalar_expression(ordinary_n2_pairing_symbolic, b1)
+    u1 = matrix_simp(u1_symbolic.subs(b1, b1_relation))
+    nonlog2_source = matrix_simp(nonlog2_source_symbolic.subs(b1, b1_relation))
     ordinary_n2_pairing = simp((l2.T * nonlog2_source)[0])
     if ordinary_n2_pairing != 0:
         raise AssertionError(
-            "exceptional total-order-two ordinary compatibility changed; "
-            f"derived_c1={sp.sstr(c1)}, derived_d2={sp.sstr(d2)}, "
-            f"pairing={sp.sstr(ordinary_n2_pairing)}"
+            "derived corrected ordinary n=2 compatibility relation failed; "
+            f"b1={sp.sstr(b1_relation)}, pairing={sp.sstr(ordinary_n2_pairing)}"
         )
 
     compatibility_det = simp(gamma**2)
@@ -218,14 +240,16 @@ def main() -> None:
     print("CORRECTED_FIRST_LOG_SCALAR := " + sp.sstr(c1))
     print("CORRECTED_FIRST_LOG_VECTOR := [" + ", ".join(sp.sstr(v) for v in v1) + "]")
     print("CORRECTED_N2_LOG_PARTICULAR := [" + ", ".join(sp.sstr(v) for v in v2_part) + "]")
+    print("CORRECTED_N2_ORDINARY_RELATION := b1 = " + sp.sstr(b1_relation))
+    print("CORRECTED_N2_ORDINARY_VECTOR := [" + ", ".join(sp.sstr(v) for v in u1) + "]")
     print("ORDER_N_RIGHT_KERNEL := [1, 2*M*(2*n+1)]")
     print("ORDER_N_LEFT_PROJECTOR := [1, 2*M*(2*n-3)]")
     print("ADJACENT_KERNEL_COUPLING := " + sp.sstr(gamma))
     print("LOG_KERNEL_DECOUPLING := 0")
     print("COMPATIBILITY_DETERMINANT := " + sp.sstr(compatibility_det))
-    print("BOUNDARY := corrected ordinary n=2 affine relation and corrected coupling nonvanishing domain remain open")
-    print("FORMAL_EXCEPTIONAL_LOG_FROBENIUS := not yet promoted to every Laurent order")
-    print("NEXT_ROUTE := solve the corrected ordinary n=2 compatibility relation, then classify the corrected coupling zeros")
+    print("BOUNDARY := corrected coupling nonvanishing domain and all-order recurrence remain open")
+    print("FORMAL_EXCEPTIONAL_LOG_FROBENIUS := verified through total order n=2 only")
+    print("NEXT_ROUTE := classify the corrected adjacent-kernel coupling zeros for n>=2")
 
 
 if __name__ == "__main__":
