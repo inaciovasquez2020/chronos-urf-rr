@@ -168,6 +168,37 @@ def main() -> None:
             f"actual={sp.sstr(gamma)}"
         )
 
+    # Exact zero classification for the adjacent-kernel coupling.  For n=2 the
+    # nondegenerate beta!=0 coupling is -10 beta^2/(3 M^4).  For every integer
+    # n>=3, after removing the already-guarded beta and n-1 factors, the sole
+    # remaining zero lies on the discrete surface
+    #
+    #   beta_n = 30 M^2 n(n-2)/(12 n(n-2)-5).
+    #
+    # This is an algebraic classification; positivity/integer guards are kept as
+    # the theorem boundary rather than inferred numerically.
+    k = sp.expand(n * (n - 2))
+    coupling_bracket = simp(30 * M**2 * k - (12 * k - 5) * beta)
+    gamma_from_bracket = simp(
+        -2 * beta * (n - 1) ** 2 * coupling_bracket / (3 * M**4)
+    )
+    if simp(gamma - gamma_from_bracket) != 0:
+        raise AssertionError("coupling zero-classification factorization changed")
+
+    gamma_n2 = simp(gamma.subs(n, 2))
+    expected_gamma_n2 = simp(-10 * beta**2 / (3 * M**4))
+    if simp(gamma_n2 - expected_gamma_n2) != 0:
+        raise AssertionError(
+            "n=2 exceptional coupling changed; "
+            f"actual={sp.sstr(gamma_n2)}"
+        )
+
+    beta_resonance = simp(30 * M**2 * k / (12 * k - 5))
+    if simp(coupling_bracket.subs(beta, beta_resonance)) != 0:
+        raise AssertionError("higher exceptional coupling resonance formula changed")
+    if simp(gamma.subs(beta, beta_resonance)) != 0:
+        raise AssertionError("higher exceptional coupling does not vanish on classified surface")
+
     D_nn = matrix_simp(B0.diff(p).subs(p, pn))
     if simp((l_n.T * D_nn * r_n)[0]) != 0:
         raise AssertionError("corrected exceptional log-kernel decoupling changed")
@@ -245,11 +276,14 @@ def main() -> None:
     print("ORDER_N_RIGHT_KERNEL := [1, 2*M*(2*n+1)]")
     print("ORDER_N_LEFT_PROJECTOR := [1, 2*M*(2*n-3)]")
     print("ADJACENT_KERNEL_COUPLING := " + sp.sstr(gamma))
+    print("N2_ADJACENT_KERNEL_COUPLING := " + sp.sstr(gamma_n2))
+    print("HIGHER_COUPLING_RESONANCE_BETA_N := " + sp.sstr(beta_resonance) + " for integer n>=3")
     print("LOG_KERNEL_DECOUPLING := 0")
     print("COMPATIBILITY_DETERMINANT := " + sp.sstr(compatibility_det))
-    print("BOUNDARY := corrected coupling nonvanishing domain and all-order recurrence remain open")
+    print("COUPLING_ZERO_CLASSIFICATION := n=2 nonzero for beta!=0; n>=3 zeros only on beta=beta_n under nondegenerate guards")
+    print("BOUNDARY := recurrence on the discrete beta_n resonance surfaces and all-order nonresonant induction remain open")
     print("FORMAL_EXCEPTIONAL_LOG_FROBENIUS := verified through total order n=2 only")
-    print("NEXT_ROUTE := classify the corrected adjacent-kernel coupling zeros for n>=2")
+    print("NEXT_ROUTE := prove the all-order recurrence off the discrete beta_n resonance set")
 
 
 if __name__ == "__main__":
