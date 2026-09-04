@@ -19,7 +19,11 @@ pure-power Frobenius series to continue.
 
 The exact finite-beta equations instead produce a nonzero beta^2 obstruction
 proportional to lambda(lambda-2). This verifier certifies that obstruction and
-therefore deliberately does NOT claim a pure-power finite-beta ingoing series.
+then tests the weakest generalized repair: an x^(p+1) log(x) correction. Since
+L(p+1)=0, its non-log contribution is L'(p+1) times the logarithmic coefficient.
+The derivative matrix has rank one, and the obstruction lies outside its image
+generically. The one-log repair can survive only on the exceptional frequency
+4 M omega = i (or on the already-degenerate beta*lambda*(lambda-2)=0 sectors).
 """
 from __future__ import annotations
 
@@ -223,9 +227,8 @@ def main() -> None:
             f"residual={physical_seed_residual.tolist()}"
         )
 
-    physical_shifted_leading = _simplified_matrix(
-        leading.subs(p, physical_ingoing_exponent + 1)
-    )
+    resonant_exponent = physical_ingoing_exponent + 1
+    physical_shifted_leading = _simplified_matrix(leading.subs(p, resonant_exponent))
     if not _is_zero_matrix(physical_shifted_leading):
         raise AssertionError(
             "expected n=1 rank-zero resonance at the physical ingoing exponent; "
@@ -276,6 +279,72 @@ def main() -> None:
             f"actual={flagship_ell2_residual.tolist()}"
         )
 
+    # Weakest generalized repair: add x^(p+1) log(x) times a coefficient vector.
+    # At the resonance L(p+1)=0, the non-log contribution of that term is
+    # dL/dp evaluated at p+1. Thus the one-log correction exists only if
+    # -physical_first_residual lies in the image of this derivative matrix.
+    log_matrix = _simplified_matrix(leading.diff(p).subs(p, resonant_exponent))
+    log_matrix_determinant = sp.factor(sp.cancel(log_matrix.det()))
+    if log_matrix_determinant != 0:
+        raise AssertionError(
+            "expected rank-one logarithmic correction matrix; "
+            f"det={sp.sstr(log_matrix_determinant)}"
+        )
+    if _is_zero_matrix(log_matrix):
+        raise AssertionError("logarithmic correction matrix unexpectedly vanished")
+
+    log_left_null = sp.Matrix([omega, 2 * M * omega - I])
+    log_left_null_residual = _simplified_matrix(log_left_null.T * log_matrix)
+    if not _is_zero_matrix(log_left_null_residual):
+        raise AssertionError(
+            "polynomial left-null vector for logarithmic correction matrix changed; "
+            f"residual={log_left_null_residual.tolist()}"
+        )
+
+    log_image_obstruction = sp.factor(
+        sp.cancel((log_left_null.T * physical_first_residual)[0])
+    )
+    expected_log_image_obstruction = sp.factor(
+        -5
+        * beta**2
+        * lam
+        * (lam - 2)
+        * (4 * M * omega - I)
+        / (288 * M**5)
+    )
+    if sp.factor(sp.cancel(log_image_obstruction - expected_log_image_obstruction)) != 0:
+        raise AssertionError(
+            "one-log image obstruction changed; "
+            f"actual={sp.sstr(log_image_obstruction)}, "
+            f"expected={sp.sstr(expected_log_image_obstruction)}"
+        )
+
+    flagship_log_image_obstruction = sp.factor(
+        sp.cancel(log_image_obstruction.subs(lam, 6))
+    )
+    expected_flagship_log_image_obstruction = sp.factor(
+        -5 * beta**2 * (4 * M * omega - I) / (12 * M**5)
+    )
+    if sp.factor(
+        sp.cancel(
+            flagship_log_image_obstruction
+            - expected_flagship_log_image_obstruction
+        )
+    ) != 0:
+        raise AssertionError(
+            "ell=2 one-log image obstruction changed; "
+            f"actual={sp.sstr(flagship_log_image_obstruction)}"
+        )
+
+    exceptional_frequency_residual = sp.factor(
+        sp.cancel(log_image_obstruction.subs(omega, I / (4 * M)))
+    )
+    if exceptional_frequency_residual != 0:
+        raise AssertionError(
+            "one-log obstruction does not vanish at exceptional frequency; "
+            f"residual={sp.sstr(exceptional_frequency_residual)}"
+        )
+
     print("GFE_CORRECTED_FINITE_BETA_HORIZON_FROBENIUS_OBSTRUCTION")
     print(f"SOURCE := {SOURCE.relative_to(ROOT)}")
     print("WEIGHTS := h0:x^p, h1:x^(p-1)")
@@ -295,7 +364,19 @@ def main() -> None:
         + ", ".join(sp.sstr(value) for value in flagship_ell2_residual)
         + "]"
     )
-    print("NEXT_ROUTE := test logarithmic/generalized Frobenius correction at n=1")
+    print("LOG_N1_CORRECTION_MATRIX_RANK := 1")
+    print("LOG_N1_LEFT_NULL := [omega, 2*M*omega - I]")
+    print(f"LOG_N1_IMAGE_OBSTRUCTION := {sp.sstr(log_image_obstruction)}")
+    print(
+        "ONE_LOG_FINITE_BETA_FROBENIUS := obstructed when "
+        "beta*lambda*(lambda-2)*(4*M*omega-I) != 0"
+    )
+    print(
+        "FLAGSHIP_ELL2_ONE_LOG_OBSTRUCTION := "
+        + sp.sstr(flagship_log_image_obstruction)
+    )
+    print("EXCEPTIONAL_ONE_LOG_FREQUENCY := omega = I/(4*M)")
+    print("NEXT_ROUTE := test exceptional-frequency one-log solve or higher-log generalized Frobenius chain")
 
 
 if __name__ == "__main__":
