@@ -15,8 +15,13 @@ convention |c_n| <= C A^n (n!)^s, its exact minimal Gevrey exponent is 2.
 Dividing the exact finite-lag recurrence by (n!)^2 gives the order-2 Borel
 coordinate recurrence.  The same cone isolates the dominant lag-one kernel
 coefficient and proves an O(1/n) ratio error, fixing the exact local Borel
-radius at 5/18.  Every tail inequality is reduced to positivity of a shifted
-exact rational polynomial; no floating-point inequalities are used.
+radius at 5/18.  After sign normalization the certified tail coefficients are
+strictly positive, so Pringsheim's theorem forces a singularity at +5/18 for
+the normalized tail and therefore at -5/18 for the physical alternating Borel
+kernel series.  This locates the forced boundary singularity but does not
+classify its analytic type.  Every tail inequality is reduced to positivity
+of a shifted exact rational polynomial; no floating-point inequalities are
+used.
 """
 from __future__ import annotations
 
@@ -197,6 +202,9 @@ def main() -> None:
                 raise AssertionError(f"physical prefix misses ratio cone at n={k}: {rr}")
         if sp.cancel(abs(xi[k])*k**3-ak) > 0:
             raise AssertionError(f"physical prefix misses absolute range cone at n={k}")
+        uk = sp.cancel(((-1)**(k+1))*b2_kap[k])
+        if uk <= 0:
+            raise AssertionError(f"sign-normalized Borel prefix coefficient is not positive at n={k}")
 
     N = 61
     def hist_upper(j: int) -> sp.Expr:
@@ -240,6 +248,17 @@ def main() -> None:
         "kernel ratio O(1/n) convergence envelope",
     )
 
+    # Pringsheim hypothesis for the sign-normalized order-2 Borel tail.
+    # U_n := (-1)^(n+1) K_n = a_n/(n!)^2 is strictly positive on the
+    # certified tail.  Its ratio tends to 18/5, so its radius is 5/18.
+    # Pringsheim then forces z=+5/18 to be a singularity of U_tail.
+    # Since K_tail(z)=-U_tail(-z), the physical alternating kernel Borel tail
+    # has a forced singularity at z=-5/18.  A finite prefix polynomial cannot
+    # remove that singularity.
+    borel_radius = sp.Rational(5,18)
+    if simp(ratio_target*borel_radius-1) != 0:
+        raise AssertionError("exact Borel radius is not reciprocal to the certified ratio limit")
+
     # Absolute range bound; no sign assumption on xi is needed.
     range_abs = sp.Integer(0)
     for j in range(1,J+1):
@@ -273,10 +292,16 @@ def main() -> None:
     print("ORDER2_BOREL_KERNEL_RADIUS := 5/18")
     print("ORDER2_BOREL_TOP_LOG_RADIUS := 5/18")
     print("ORDER2_BOREL_LOCAL_CONVERGENCE := certified with exact radius")
+    print("PRINGSHEIM_NORMALIZED_TAIL := U_n=(-1)^(n+1)*K_n>0 on the certified tail")
+    print("PRINGSHEIM_NORMALIZED_RADIUS := 5/18")
+    print("PRINGSHEIM_FORCED_NORMALIZED_SINGULARITY := z=+5/18")
+    print("PHYSICAL_BOREL_KERNEL_TAIL_RELATION := K_tail(z)=-U_tail(-z)")
+    print("PHYSICAL_BOREL_FORCED_SINGULARITY := z=-5/18")
+    print("PHYSICAL_BOREL_SINGULARITY_TYPE := unclassified")
     print("PHYSICAL_FACTORIAL_SECTOR := nonzero")
     print("TOP_LOG_POWER_SERIES_RADIUS := 0")
     print("ACCUMULATION_POINT_CONVERGENT_FROBENIUS := ruled out for the physical top-log branch")
-    print("BOUNDARY := exact local order-2 Borel radius only; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
+    print("BOUNDARY := forced Borel singularity location only; pole/branch/essential type unclassified; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
 
 
 if __name__ == "__main__":
