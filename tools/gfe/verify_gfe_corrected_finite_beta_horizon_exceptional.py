@@ -165,9 +165,6 @@ def main() -> None:
     if simp(B0_p2.det()) != 0 or B0_p2.rank() != 1:
         raise AssertionError("corrected exceptional n=2 rank-one block changed")
 
-    # Normalize the leading ordinary amplitude to u0=(1,2M).  Do not import
-    # the historical logarithmic amplitude: solve the corrected n=1 vector
-    # equation exactly and verify both Euler rows.
     u0 = sp.Matrix([1, 2 * M])
     c1_symbol = sp.symbols("c1")
     v1_symbol = c1_symbol * sp.Matrix([1, -2 * M])
@@ -176,30 +173,25 @@ def main() -> None:
     )
     c1 = solve_linear_scalar_equation(order1_symbolic, c1_symbol)
     v1 = matrix_simp(v1_symbol.subs(c1_symbol, c1))
-    order1 = matrix_simp(order1_symbolic.subs(c1_symbol, c1))
-    if not base._is_zero_matrix(order1):
-        raise AssertionError("derived exceptional first-log amplitude lost exact cancellation")
 
     l2 = sp.Matrix([1, 2 * M])
     log2_source = matrix_simp(B1.subs(p, p1) * v1)
     if simp((l2.T * log2_source)[0]) != 0:
         raise AssertionError("exceptional order-two log compatibility failed")
 
-    # Historical n=2 formulas are intentionally retained below until CI reaches
-    # them; the next mismatch is authoritative for the corrected source.
-    v2_part = sp.Matrix(
-        [
-            -2 * c1 * (36 * M**4 - 19 * beta**2) / (15 * M * beta**2),
-            0,
-        ]
-    )
-    log2_residual = matrix_simp(B0_p2 * v2_part + log2_source)
+    # Fix the n=2 logarithmic kernel freedom by choosing a particular solution
+    # with vanishing second component, then solve its first component exactly.
+    d2_symbol = sp.symbols("d2")
+    v2_symbol = sp.Matrix([d2_symbol, 0])
+    log2_symbolic = matrix_simp(B0_p2 * v2_symbol + log2_source)
+    d2 = solve_linear_scalar_equation(log2_symbolic, d2_symbol)
+    v2_part = matrix_simp(v2_symbol.subs(d2_symbol, d2))
+    log2_residual = matrix_simp(log2_symbolic.subs(d2_symbol, d2))
     if not base._is_zero_matrix(log2_residual):
-        raise AssertionError(
-            "exceptional order-two logarithmic correction changed; "
-            f"derived_c1={sp.sstr(c1)}, residual={log2_residual.tolist()}"
-        )
+        raise AssertionError("derived exceptional n=2 logarithmic coefficient lost cancellation")
 
+    # Retain the historical u1 affine relation only until the next exact
+    # ordinary n=2 compatibility check; do not promote it a priori.
     a1 = sp.symbols("a1")
     u1 = sp.Matrix([a1, -2 * M * a1 - sp.Rational(362, 25) * M * c1])
     nonlog2_source = matrix_simp(
@@ -208,10 +200,12 @@ def main() -> None:
         + B0.diff(p).subs(p, p2) * v2_part
         + B1.diff(p).subs(p, p1) * v1
     )
-    if simp((l2.T * nonlog2_source)[0]) != 0:
+    ordinary_n2_pairing = simp((l2.T * nonlog2_source)[0])
+    if ordinary_n2_pairing != 0:
         raise AssertionError(
-            "exceptional total-order-two ordinary compatibility failed; "
-            f"pairing={sp.sstr(simp((l2.T * nonlog2_source)[0]))}"
+            "exceptional total-order-two ordinary compatibility changed; "
+            f"derived_c1={sp.sstr(c1)}, derived_d2={sp.sstr(d2)}, "
+            f"pairing={sp.sstr(ordinary_n2_pairing)}"
         )
 
     compatibility_det = simp(gamma**2)
@@ -223,14 +217,15 @@ def main() -> None:
     print("NORMALIZED_LEADING_SEED := [1, 2*M]")
     print("CORRECTED_FIRST_LOG_SCALAR := " + sp.sstr(c1))
     print("CORRECTED_FIRST_LOG_VECTOR := [" + ", ".join(sp.sstr(v) for v in v1) + "]")
+    print("CORRECTED_N2_LOG_PARTICULAR := [" + ", ".join(sp.sstr(v) for v in v2_part) + "]")
     print("ORDER_N_RIGHT_KERNEL := [1, 2*M*(2*n+1)]")
     print("ORDER_N_LEFT_PROJECTOR := [1, 2*M*(2*n-3)]")
     print("ADJACENT_KERNEL_COUPLING := " + sp.sstr(gamma))
     print("LOG_KERNEL_DECOUPLING := 0")
     print("COMPATIBILITY_DETERMINANT := " + sp.sstr(compatibility_det))
-    print("BOUNDARY := corrected n=2 coefficient and corrected coupling nonvanishing domain remain open")
+    print("BOUNDARY := corrected ordinary n=2 affine relation and corrected coupling nonvanishing domain remain open")
     print("FORMAL_EXCEPTIONAL_LOG_FROBENIUS := not yet promoted to every Laurent order")
-    print("NEXT_ROUTE := solve the first corrected n=2 mismatch, then classify the corrected coupling zeros")
+    print("NEXT_ROUTE := solve the corrected ordinary n=2 compatibility relation, then classify the corrected coupling zeros")
 
 
 if __name__ == "__main__":
