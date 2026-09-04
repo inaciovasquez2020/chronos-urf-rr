@@ -71,6 +71,9 @@ jobs:
       - name: Propagate physical accumulation top-log seed
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_physical_seed.py
 
+      - name: Expose accumulation cone transfer coefficients
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_cone_coefficients.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
