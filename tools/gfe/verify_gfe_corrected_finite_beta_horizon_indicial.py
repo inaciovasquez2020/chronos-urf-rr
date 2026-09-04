@@ -235,17 +235,17 @@ def main() -> None:
     physical_first_residual = _simplified_matrix(
         subleading.subs(p, physical_ingoing_exponent) * physical_seed
     )
-    expected_obstruction = sp.Matrix(
-        [
-            -5 * beta**2 * lam * (lam - 2) / (144 * M**4),
-            -5 * beta**2 * lam * (lam - 2) / (288 * M**5),
-        ]
+    expected_obstruction = _simplified_matrix(
+        sp.Matrix(
+            [
+                -5 * beta**2 * lam * (lam - 2) / (144 * M**4),
+                -5 * beta**2 * lam * (lam - 2) / (288 * M**5),
+            ]
+        )
     )
-    expected_obstruction = _simplified_matrix(expected_obstruction)
-    obstruction_difference = _simplified_matrix(
-        physical_first_residual - expected_obstruction
-    )
-    if not _is_zero_matrix(obstruction_difference):
+    if not _is_zero_matrix(
+        _simplified_matrix(physical_first_residual - expected_obstruction)
+    ):
         raise AssertionError(
             "finite-beta n=1 obstruction changed; "
             f"actual={physical_first_residual.tolist()}, "
@@ -268,7 +268,9 @@ def main() -> None:
             ]
         )
     )
-    if not _is_zero_matrix(_simplified_matrix(flagship_ell2_residual - expected_flagship)):
+    if not _is_zero_matrix(
+        _simplified_matrix(flagship_ell2_residual - expected_flagship)
+    ):
         raise AssertionError(
             "ell=2 (lambda=6) horizon obstruction specialization changed; "
             f"actual={flagship_ell2_residual.tolist()}"
