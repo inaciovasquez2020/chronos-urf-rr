@@ -59,6 +59,9 @@ jobs:
       - name: Certify exceptional all-order formal recurrence
         run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_exceptional_all_order.py
 
+      - name: Audit exceptional discrete resonance lift
+        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_exceptional_resonance_lift.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
