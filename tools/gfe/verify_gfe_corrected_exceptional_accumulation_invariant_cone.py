@@ -5,7 +5,7 @@ Sector: M=1, beta=5/2, omega=i/4, ell=2, lambda=6, alpha=1/2.
 The finite-lag transfer is re-derived from the corrected Euler artifact.
 
 Cone for n>=60:
-  a_n := (-1)^n kappa_n > 0,
+  a_n := (-1)^(n+1) kappa_n > 0,
   2 <= a_n/(n^2 a_{n-1}) <= 5,
   |xi_n| <= a_n/n^3.
 
@@ -142,11 +142,11 @@ def main() -> None:
     Q = sp.Rational(5)
     Ccone = sp.Rational(1)
     for k in range(51,61):
-        ak = (-1)**k * kap[k]
+        ak = (-1)**(k+1) * kap[k]
         if ak <= 0:
             raise AssertionError(f"physical prefix misses kernel sign cone at n={k}")
         if k >= 52:
-            ap = (-1)**(k-1) * kap[k-1]
+            ap = (-1)**k * kap[k-1]
             rr = sp.cancel(ak/(k**2*ap))
             if not (q <= rr <= Q):
                 raise AssertionError(f"physical prefix misses ratio cone at n={k}: {rr}")
@@ -192,8 +192,8 @@ def main() -> None:
     print("GFE_CORRECTED_EXCEPTIONAL_ACCUMULATION_INVARIANT_CONE_CERTIFIED")
     print("SECTOR := M=1; beta=5/2; omega=I/4; ell=2; lambda=6; alpha=1/2")
     print("TAIL_START := 61")
-    print("KERNEL_SIGN := (-1)^n*kappa_n > 0")
-    print("FACTORIAL_RATIO_CONE := 2 <= (-1)^n*kappa_n/(n^2*(-1)^(n-1)*kappa_(n-1)) <= 5")
+    print("KERNEL_SIGN := (-1)^(n+1)*kappa_n > 0")
+    print("FACTORIAL_RATIO_CONE := 2 <= (-1)^(n+1)*kappa_n/(n^2*(-1)^n*kappa_(n-1)) <= 5")
     print("RANGE_KERNEL_CONE := abs(xi_n/kappa_n) <= 1/n^3")
     print("PREFIX_CERTIFIED := full lag history 51<=n<=60 lies in kernel/range cone")
     print("TAIL_INVARIANCE := exact rational inequalities certified for every integer n>=61")
