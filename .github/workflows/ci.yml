@@ -41,6 +41,9 @@ jobs:
           python3 -m pip install --disable-pip-version-check sympy pytest
           python3 -m pytest -q tests/test_gfe_corrected_descriptor_rankloss.py
 
+      - name: Verify exact finite-beta horizon indicial system
+        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_indicial.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
