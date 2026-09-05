@@ -8,11 +8,12 @@ Dependencies already enforced earlier in CI:
   * the refined oscillatory power blocks have spacing exactly one;
   * the G2 resonance audit certifies that both k=1 resonant obstructions vanish.
 
-This verifier checks the remaining structural hypotheses for the formal
-projected recurrence.  It proves that the exact generator is analytic in
-s=1/r at s=0, constructs the constant refined eigen/power basis, removes the
-cross-exponential 1/r terms by a near-identity gauge T(s)=I+s P1, and
-classifies every positive-integer same-exponential power difference.
+This verifier independently rechecks those two G2 obstruction values, then
+checks the remaining structural hypotheses for the formal projected recurrence.
+It proves that the exact generator is analytic in s=1/r at s=0, constructs the
+constant refined eigen/power basis, removes the cross-exponential 1/r terms by
+a near-identity gauge T(s)=I+s P1, and classifies every positive-integer
+same-exponential power difference.
 
 After the leading seed equation, the projected coefficient recurrence at
 inverse-r order k has same-exponential denominator
@@ -21,9 +22,9 @@ inverse-r order k has same-exponential denominator
 
 Hence an obstruction can occur only when nu_j-nu_i is a positive integer k.
 The exact classification below shows that the only such cases are the two
-oscillatory high->low k=1 pairs, and the preceding G2 audit certifies both
-compatibilities as zero.  Therefore the pure inverse-r formal recurrence is
-solvable to all orders for all six channels.
+oscillatory high->low k=1 pairs, and this verifier recomputes both exact
+compatibility values as zero. Therefore the pure inverse-r formal recurrence
+is solvable to all orders for all six channels.
 
 No actual asymptotic-basis existence theorem and no projection of the physical
 horizon solution onto these channels is claimed here.
@@ -48,7 +49,7 @@ def main() -> None:
     r, G = ch.reconstruct_generator()
 
     # The exact rational generator must admit a full Taylor expansion in
-    # s=1/r around infinity.  This is stronger than checking only G0,G1,G2.
+    # s=1/r around infinity. This is stronger than checking only G0,G1,G2.
     s = sp.symbols("s")
     analytic_entries = 0
     for value in G:
@@ -106,9 +107,10 @@ def main() -> None:
     if any(value != 0 for value in ms(Sinv * G0 * S - D0)):
         raise AssertionError("refined constant basis no longer diagonalizes G_inf")
 
-    B1 = ms(Sinv * G1 * S)
+    B = ms(Sinv * G * S)
+    B1 = g2.coefficient_at_power(ms(B - D0), r, -1)
 
-    # Remove only cross-exponential 1/r couplings.  Distinct exponential
+    # Remove only cross-exponential 1/r couplings. Distinct exponential
     # rates give nonzero homological denominators mu_i-mu_j.
     P1 = sp.zeros(6, 6)
     cross_gap_count = 0
@@ -133,6 +135,29 @@ def main() -> None:
     if simp(T.det().subs(s, 0) - 1) != 0:
         raise AssertionError("near-identity normal-form gauge is not invertible at infinity")
 
+    # Recompute the exact second normal-form layer and the two k=1 resonant
+    # compatibility values. This makes the all-order gate self-contained
+    # rather than relying only on the ordering of CI steps.
+    rem2 = ms(B - D0 - B1 / r)
+    if g2.max_infinity_power(rem2, r) != -2:
+        raise AssertionError("refined generator no longer has exact 1/r^2 next layer")
+    B2 = g2.coefficient_at_power(rem2, r, -2)
+    N2 = ms(
+        B2
+        + B1 * P1
+        - P1 * B1
+        - P1 * D0 * P1
+        + P1 * P1 * D0
+        + P1
+    )
+    plus_obstruction = simp(N2[2, 3])
+    minus_obstruction = simp(N2[4, 5])
+    if plus_obstruction != 0 or minus_obstruction != 0:
+        raise AssertionError(
+            "k=1 oscillatory resonance obstruction reappeared: "
+            f"plus={sp.sstr(plus_obstruction)}, minus={sp.sstr(minus_obstruction)}"
+        )
+
     # Classify all positive-integer power differences inside equal-mu blocks.
     # These are exactly the possible projected recurrence resonances k>=1.
     resonances: list[tuple[str, str, int]] = []
@@ -151,17 +176,11 @@ def main() -> None:
     if resonances != expected_resonances:
         raise AssertionError(f"same-mu positive-integer resonance set changed: {resonances}")
 
-    # The immediately preceding exact G2 verifier certifies the compatibility
-    # values for precisely these two k=1 equations:
-    #
-    #   OSCILLATORY_PLUS_K1_RESONANT_OBSTRUCTION  = 0
-    #   OSCILLATORY_MINUS_K1_RESONANT_OBSTRUCTION = 0.
-    #
-    # Once those two equations are compatible, every later projected
+    # Once those two k=1 equations are compatible, every later projected
     # denominator is nonzero because there are no further positive-integer
-    # differences in the same exponential block.  The complement component
+    # differences in the same exponential block. The complement component
     # is solved uniquely at every order by (mu I-G_inf) on the direct sum of
-    # all other eigenspaces.  This closes the formal induction.
+    # all other eigenspaces. This closes the formal induction.
 
     print("GFE_CORRECTED_EXCEPTIONAL_ACCUMULATION_EXTERIOR_INFINITY_FORMAL_BASIS_CERTIFIED")
     print("SECTOR := M=1; beta=5/2; omega=I/4; ell=2; lambda=6")
@@ -175,7 +194,9 @@ def main() -> None:
     print("FIRST_NORMAL_FORM_LAYER := diag(power exponents)/r")
     print("NEAR_IDENTITY_GAUGE := T(s)=I+s*P1 with det(T(0))=1")
     print(f"POSITIVE_INTEGER_SAME_EXPONENTIAL_RESONANCES := {resonances}")
-    print("K1_RESONANCE_COMPATIBILITY_DEPENDENCY := preceding G2 audit certifies both exact obstruction values equal zero")
+    print(f"OSCILLATORY_PLUS_K1_RESONANT_OBSTRUCTION_RECHECK := {sp.sstr(plus_obstruction)}")
+    print(f"OSCILLATORY_MINUS_K1_RESONANT_OBSTRUCTION_RECHECK := {sp.sstr(minus_obstruction)}")
+    print("K1_RESONANCE_COMPATIBILITY := both exact obstruction values recomputed as zero")
     print("HIGH_OSCILLATORY_RESONANT_NORMALIZATION := free low-channel coefficient at k=1 may be set to zero")
     print("POST_K1_PROJECTED_DENOMINATORS := nonzero for every integer k>=2 in every same-exponential block")
     print("COMPLEMENT_SOLVER := (mu*I-G_inf) is invertible on the direct sum of all other exponential eigenspaces")
