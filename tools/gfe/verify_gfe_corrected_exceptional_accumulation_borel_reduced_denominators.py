@@ -9,14 +9,16 @@ with theta=z d/dz.  This verifier reconstructs that reduction independently
 from the same hash-locked Euler artifact and inspects *every* coefficient of
 every theta power in the reduced rows.
 
-The goal is deliberately narrower than analytic continuation: certify that the
-lower-order rational coefficients introduce no finite pole away from z=0.
-Together with the already certified reduced row-leading determinant
+Although the third elementary row multiplier contains 1/z, exact cancellation
+removes that apparent pole from the final reduced rows.  The result certified
+here is therefore stronger than the row-transform audit: every reduced-row
+coefficient is polynomial in z.  Together with the already certified reduced
+row-leading determinant
 
   625*z*(18*z+5)/64,
 
-this isolates -5/18 as the only nonzero row-leading degeneracy while keeping
-z=0 separate as the rational row-transform pole.
+this leaves no lower-order coefficient poles and isolates -5/18 as the only
+nonzero row-leading degeneracy.  No analytic-continuation claim is made here.
 """
 from __future__ import annotations
 
@@ -163,25 +165,21 @@ def denominator_data(rows: list[list[sp.Expr]], z: sp.Symbol, theta: sp.Symbol) 
                 global_lcm = sp.lcm(global_lcm, den_poly.monic())
         row_lcms.append(sp.factor(row_lcm.as_expr()))
 
-    if nonconstant_denominators == 0:
-        raise AssertionError("expected the certified z=0 row-transform pole to survive")
+    # The previous CI diagnostic established that the apparent 1/z multiplier
+    # cancels from the final rows.  Make that stronger statement authoritative:
+    # every theta coefficient of both reduced rows is polynomial in z.
+    if nonconstant_denominators != 0:
+        raise AssertionError(
+            f"unexpected reduced-row rational denominators survived: {nonconstant_denominators}"
+        )
+    if global_lcm != sp.Poly(1, z, domain="QQ"):
+        raise AssertionError(f"reduced-row denominator LCM changed: {global_lcm.as_expr()}")
+    if any(value != 1 for value in row_lcms):
+        raise AssertionError(f"row denominator LCM changed: {row_lcms}")
+    if max_origin_pole_order != 0:
+        raise AssertionError(f"unexpected origin pole order survived: {max_origin_pole_order}")
 
-    # Complete clearing check: multiplying by the exact global denominator must
-    # make every coefficient polynomial in z, coefficient-by-coefficient in theta.
-    global_expr = sp.factor(global_lcm.as_expr())
-    for row in rows:
-        for entry in row:
-            if rr.is_zero_expr(entry):
-                continue
-            poly_theta = sp.Poly(sp.expand(global_expr * entry), theta, domain="EX")
-            for _, coeff in poly_theta.terms():
-                _, den = sp.fraction(sp.cancel(sp.together(coeff)))
-                if sp.Poly(den, z, domain="QQ").degree() > 0:
-                    raise AssertionError(
-                        "global reduced-row denominator failed to clear a lower-order coefficient"
-                    )
-
-    return row_lcms, global_expr, nonconstant_denominators, max_origin_pole_order
+    return row_lcms, sp.Integer(1), nonconstant_denominators, max_origin_pole_order
 
 
 def main() -> None:
@@ -208,14 +206,15 @@ def main() -> None:
     print(f"ORE_REDUCTION_STEPS := {len(steps)}")
     print(f"ROW_DENOMINATOR_LCMS := {[sp.sstr(value) for value in row_lcms]}")
     print(f"GLOBAL_REDUCED_ROW_DENOMINATOR_LCM := {sp.sstr(global_lcm)}")
-    print("COMPLETE_LOWER_ORDER_DENOMINATOR_SUPPORT := {z=0}")
+    print("COMPLETE_REDUCED_ROW_DENOMINATOR_SUPPORT := empty")
     print(f"NONCONSTANT_DENOMINATOR_COEFFICIENT_COUNT := {nonconstant_count}")
     print(f"MAX_ORIGIN_POLE_ORDER_IN_REDUCED_ROWS := {max_origin_pole_order}")
-    print("LOWER_ORDER_FINITE_POLES_AWAY_FROM_ORIGIN := none")
+    print("ROW_TRANSFORM_1_OVER_Z_POLE := cancels exactly from final reduced rows")
+    print("LOWER_ORDER_FINITE_COEFFICIENT_POLES := none")
     print("REDUCED_ROW_LEADING_DETERMINANT := 625*z*(18*z+5)/64")
     print("REDUCED_ROW_LEADING_ZERO_SET := {0,-5/18}")
     print("NONZERO_ROW_LEADING_DEGENERACY := -5/18")
-    print("BOUNDARY := complete reduced-row rational denominator support certified; first-order meromorphic system, genuine-singularity classification, analytic continuation, and Laplace summability remain unproved")
+    print("BOUNDARY := reduced rows polynomial in z coefficient-by-coefficient; first-order system, genuine-singularity classification, analytic continuation, and Laplace summability remain unproved")
 
 
 if __name__ == "__main__":
