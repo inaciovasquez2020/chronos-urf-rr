@@ -80,6 +80,9 @@ jobs:
       - name: Certify one-sided Borel boundary asymptotic
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_boundary_asymptotic.py
 
+      - name: Certify cleared order-2 Borel operator
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_operator.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
