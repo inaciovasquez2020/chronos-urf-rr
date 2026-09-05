@@ -6,7 +6,7 @@ Sector: M=1, beta=5/2, omega=i/4, ell=2, lambda=6.
 The preceding asymptotic-integration gate certifies six actual linearly
 independent positive-real-axis infinity solutions with leading channels
 
-    exp(mu_j r) r^(nu_j) (v_j + o(1)).
+    exp(mu_j r) r^(nu_j) exp(-d2_j/r) (v_j + o(1)).
 
 Hence every exterior solution, in particular the uniquely reconstructed
 physical horizon branch Y_phys, has a unique constant coefficient vector
@@ -15,10 +15,11 @@ physical horizon branch Y_phys, has a unique constant coefficient vector
               C_+low, C_+high, C_-low, C_-high).
 
 This verifier executes that exact gate, checks the real exponential/power
-growth hierarchy, and records the exact coefficient-vanishing conditions for
-several purely asymptotic classes.  It deliberately does NOT assign an
-"outgoing" convention to either oscillatory sign, and it does not evaluate
-any connection coefficient.
+growth hierarchy, classifies the refined +/- oscillatory phase stationary
+radii, and records the exact coefficient-vanishing conditions for several
+purely asymptotic classes.  It deliberately does NOT assign an "outgoing"
+convention to either oscillatory sign, and it does not evaluate any connection
+coefficient.
 """
 from __future__ import annotations
 
@@ -57,6 +58,11 @@ def real_part(value: sp.Expr) -> sp.Expr:
     return simp(re)
 
 
+def imag_part(value: sp.Expr) -> sp.Expr:
+    _re, im = sp.expand_complex(value).as_real_imag()
+    return simp(im)
+
+
 def main() -> None:
     # Execute the exact actual-basis gate so this projection interface cannot
     # silently outlive or drift away from the theorem that supplies the basis.
@@ -75,7 +81,8 @@ def main() -> None:
 
     mus = parse_expr_list(prior_output, "EXPONENTIAL_RATES")
     nus = parse_expr_list(prior_output, "POWER_EXPONENTS")
-    if len(mus) != 6 or len(nus) != 6:
+    d2s = parse_expr_list(prior_output, "SECOND_NORMAL_FORM_D2_DIAGONAL")
+    if len(mus) != 6 or len(nus) != 6 or len(d2s) != 6:
         raise AssertionError("expected six actual infinity channels")
 
     re_mu = [real_part(x) for x in mus]
@@ -95,16 +102,70 @@ def main() -> None:
     if re_nu != expected_re_nu:
         raise AssertionError(f"real power hierarchy changed: {re_nu}")
 
-    # The two oscillatory frequencies must be opposite and nonzero.  This is
-    # what prevents a nontrivial high/low conjugate pair from becoming a
-    # genuinely decaying asymptotic channel by cancellation.
+    # The two oscillatory frequencies are opposite and nonzero.  At the
+    # principal D0+D1/r level this gives a globally nonstationary +/- phase:
+    #
+    #   Delta'(r) = sqrt(167)/10 + 142*sqrt(167)/(1670*r) > sqrt(167)/10
+    #
+    # for every r>0.  The certified D2/r^2 refinement contributes an additional
+    # c/r^2 term, so the full diagonal-model phase must be classified separately.
     q = sp.sqrt(167) / 20
+    a = sp.Rational(71, 1670) * sp.sqrt(167)
     if simp(mus[2] - sp.I * q) != 0 or simp(mus[3] - sp.I * q) != 0:
         raise AssertionError("positive oscillatory frequency changed")
     if simp(mus[4] + sp.I * q) != 0 or simp(mus[5] + sp.I * q) != 0:
         raise AssertionError("negative oscillatory frequency changed")
     if q.is_positive is not True:
         raise AssertionError("oscillatory frequency magnitude is not certified positive")
+
+    phase_gap = simp(imag_part(mus[2] - mus[4]))
+    log_phase_gap = simp(imag_part(nus[2] - nus[4]))
+    if simp(phase_gap - sp.sqrt(167) / 10) != 0:
+        raise AssertionError(f"principal oscillatory phase gap changed: {phase_gap}")
+    if simp(log_phase_gap - 2 * a) != 0:
+        raise AssertionError(f"logarithmic oscillatory phase gap changed: {log_phase_gap}")
+    if phase_gap.is_positive is not True or log_phase_gap.is_positive is not True:
+        raise AssertionError("principal +/- phase coefficients are not certified positive")
+
+    r = sp.symbols("r", positive=True)
+    expected_stationary = {
+        (2, 4): -sp.Rational(71, 167) + 3 * sp.sqrt(19605) / 167,
+        (2, 5): -sp.Rational(71, 167) + sp.sqrt(4861545) / 1002,
+        (3, 4): -sp.Rational(71, 167) + sp.sqrt(4861545) / 1002,
+        (3, 5): -sp.Rational(71, 167) + sp.sqrt(3371070) / 1002,
+    }
+    stationary_data: list[tuple[int, int, sp.Expr, sp.Expr]] = []
+    exterior_stationary_pairs: list[tuple[int, int]] = []
+    for pair, expected_root in expected_stationary.items():
+        i, j = pair
+        if simp(imag_part(mus[i] - mus[j]) - phase_gap) != 0:
+            raise AssertionError(f"cross-sign exponential phase gap changed at {pair}")
+        if simp(imag_part(nus[i] - nus[j]) - log_phase_gap) != 0:
+            raise AssertionError(f"cross-sign logarithmic phase gap changed at {pair}")
+
+        c = simp(imag_part(d2s[i] - d2s[j]))
+        if c.is_negative is not True:
+            raise AssertionError(f"refined D2 phase coefficient is not negative at {pair}: {c}")
+
+        discriminant = simp(log_phase_gap**2 - 4 * phase_gap * c)
+        root = simp((-log_phase_gap + sp.sqrt(discriminant)) / (2 * phase_gap))
+        if simp(root - expected_root) != 0:
+            raise AssertionError(
+                f"refined stationary radius changed at {pair}: {sp.sstr(root)}"
+            )
+        if sp.simplify(root > 0) is not sp.true:
+            raise AssertionError(f"expected positive stationary radius at {pair}: {root}")
+
+        stationary_data.append((i, j, c, root))
+        if sp.simplify(root > 2) is sp.true:
+            exterior_stationary_pairs.append(pair)
+        elif sp.simplify(root < 2) is not sp.true:
+            raise AssertionError(f"stationary radius location relative to r=2 undecided at {pair}: {root}")
+
+    if exterior_stationary_pairs != [(2, 4)]:
+        raise AssertionError(
+            f"refined exterior stationary-pair classification changed: {exterior_stationary_pairs}"
+        )
 
     names = [
         "C_grow",
@@ -138,6 +199,19 @@ def main() -> None:
     print("CONNECTION_DEFINITION := C_phys=Phi_inf(r)^(-1)Y_phys(r); independent of r on the common exterior domain")
     print(f"REAL_EXPONENTIAL_RATES := {[sp.sstr(x) for x in re_mu]}")
     print(f"REAL_POWER_EXPONENTS := {[sp.sstr(x) for x in re_nu]}")
+    print(f"PRINCIPAL_PLUS_MINUS_PHASE_GAP := {sp.sstr(phase_gap)}")
+    print(f"PRINCIPAL_PLUS_MINUS_LOG_PHASE_GAP := {sp.sstr(log_phase_gap)}")
+    print("PRINCIPAL_PLUS_MINUS_PHASE_VELOCITY := sqrt(167)/10 + 142*sqrt(167)/(1670*r)")
+    print("PRINCIPAL_PLUS_MINUS_GLOBAL_NONSTATIONARITY := certified for every r>0 at the D0+D1/r level")
+    print(
+        "REFINED_D2_PLUS_MINUS_STATIONARY_RADII := "
+        f"{[(i, j, sp.sstr(c), sp.sstr(root)) for i, j, c, root in stationary_data]}"
+    )
+    print("REFINED_D2_PHYSICAL_EXTERIOR_STATIONARY_PAIRS := [(OSCILLATORY_PLUS_LOW,OSCILLATORY_MINUS_LOW)]")
+    print(
+        "REFINED_D2_LOW_LOW_STATIONARY_RADIUS := "
+        f"{sp.sstr(expected_stationary[(2, 4)])} > 2"
+    )
     print(f"SUBEXPONENTIAL_CONDITION := zero coefficients {subexponential_zero}")
     print(f"BOUNDED_CONDITION := zero coefficients {bounded_zero}")
     print(f"DECAYING_TO_ZERO_CONDITION := zero coefficients {decaying_zero}")
@@ -145,7 +219,7 @@ def main() -> None:
     print("BOUNDEDNESS_EXTRA_OBSTRUCTIONS := C_plus_high and C_minus_high")
     print("DECAY_EXTRA_OBSTRUCTIONS := C_plus_low and C_minus_low in addition to the boundedness obstructions")
     print("OUTGOING_CONVENTION := intentionally undefined; no oscillatory sign is labeled outgoing/ingoing by this verifier")
-    print("BOUNDARY := canonical connection coefficients and asymptotic vanishing interfaces only; no coefficient value/nonvanishing certificate and no global exceptional-mode conclusion")
+    print("BOUNDARY := principal +/- phase is globally nonstationary, but the refined D2 low/low diagonal-model pair has one stationary point in r>2; no connection coefficient value/nonvanishing certificate and no global exceptional-mode conclusion")
 
 
 if __name__ == "__main__":
