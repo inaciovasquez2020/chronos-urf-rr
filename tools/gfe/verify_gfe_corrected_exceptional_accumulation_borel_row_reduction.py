@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit solution-preserving Ore row reduction of the cleared Borel operator.
+"""Certify solution-preserving Ore row reduction of the cleared Borel operator.
 
 Sector: M=1, beta=5/2, omega=i/4, ell=2, lambda=6, alpha=1/2.
 
@@ -8,22 +8,26 @@ The previous verifier certifies the normal-ordered annihilator
   B(z,theta)=sum_{j=0}^10 z^j C_j(1/2+theta) F_{10-j}(theta)^2 S(theta),
   theta=z d/dz.
 
-This audit performs only elementary *left* row operations in Q(z)<theta>:
+This certificate performs only elementary *left* row operations in Q(z)<theta>:
 
   R_i <- R_i - q(z) theta^k R_j,
 
-while retaining R_j.  Such a step is unimodular: its inverse is obtained by
-adding the same q(z) theta^k R_j back.  The noncommutative rule
+while retaining R_j. Such a step is unimodular: its inverse is obtained by
+adding the same q(z) theta^k R_j back. The noncommutative rule
 
   theta f(z) = f(z) theta + z f'(z)
 
 is implemented exactly, so no commuting of theta through z-dependent
-coefficients is assumed.  A reduction is made only when the complete highest-
+coefficients is assumed. A reduction is made only when the complete highest-
 theta row vectors are exactly proportional over Q(z).
 
-The result is an exact row-module reduction audit, not yet a minimal scalar
-operator or a singular-set certificate.  Poles of rational row multipliers are
-reported explicitly and are not classified as genuine Borel singularities.
+For the physical accumulation sector the exact reduction is asserted to have
+three elementary steps, row orders [24,23] -> [22,21], row-leading determinant
+625*z*(18*z+5)/64, and row-transform pole polynomial z.
+
+This is a row-module/principal-row-symbol certificate, not yet a proof that all
+zeros of the row-leading determinant are genuine Borel singularities. The
+rational row-transform pole at z=0 is tracked separately.
 """
 from __future__ import annotations
 
@@ -41,10 +45,6 @@ def ms(A: sp.Matrix) -> sp.Matrix:
 
 def is_zero_expr(x: sp.Expr) -> bool:
     return simp(x) == 0
-
-
-def is_zero_row(row: list[sp.Expr]) -> bool:
-    return all(is_zero_expr(x) for x in row)
 
 
 def falling(q: sp.Expr, order: int) -> sp.Expr:
@@ -168,14 +168,12 @@ def main() -> None:
     rows = [[B[i, 0], B[i, 1]] for i in range(2)]
     original_rows = [list(r) for r in rows]
     initial_orders = [row_order(r, theta) for r in rows]
-    if max(initial_orders) != 24:
-        raise AssertionError(f"unreduced theta order changed: {initial_orders}")
+    if initial_orders != [24, 23]:
+        raise AssertionError(f"unreduced row orders changed: {initial_orders}")
 
     steps: list[tuple[int, int, int, sp.Expr]] = []
     pole_denominators: list[sp.Expr] = []
 
-    # Weak row-Popov style reduction: cancel a complete leading row vector only
-    # when it lies exactly in the Q(z)-span of the other leading row vector.
     for _ in range(64):
         orders = [row_order(r, theta) for r in rows]
         if min(orders) < 0:
@@ -202,7 +200,6 @@ def main() -> None:
         if row_order(transformed, theta) >= orders[high_i]:
             raise AssertionError("purported Ore row reduction did not lower row order")
 
-        # Exact inverse certificate for this elementary unimodular operation.
         recovered = [simp(transformed[c] + q * low_shifted[c]) for c in range(2)]
         if any(not is_zero_expr(recovered[c] - before[c]) for c in range(2)):
             raise AssertionError("elementary Ore row operation failed inverse check")
@@ -215,12 +212,20 @@ def main() -> None:
         raise AssertionError("Ore row reduction exceeded step bound")
 
     reduced_orders = [row_order(r, theta) for r in rows]
-    if max(reduced_orders) > max(initial_orders):
-        raise AssertionError("row reduction increased maximal theta order")
+    if reduced_orders != [22, 21]:
+        raise AssertionError(f"reduced row orders changed: {reduced_orders}")
 
-    # Reconstruct the original row module by applying inverse elementary steps
-    # in reverse order.  This checks the accumulated noncommutative bookkeeping,
-    # not merely each local cancellation.
+    expected_steps = [
+        (0, 1, 1, sp.Integer(-4)),
+        (1, 0, 0, sp.Rational(1, 6)),
+        (0, 1, 2, -sp.Rational(18, 7) / z),
+    ]
+    if len(steps) != len(expected_steps):
+        raise AssertionError(f"Ore reduction step count changed: {len(steps)}")
+    for actual, expected in zip(steps, expected_steps):
+        if actual[:3] != expected[:3] or not is_zero_expr(actual[3] - expected[3]):
+            raise AssertionError(f"Ore reduction step changed: actual={actual}, expected={expected}")
+
     recovered_rows = [list(r) for r in rows]
     for high_i, low_i, shift, q in reversed(steps):
         low_shifted = theta_left_row(recovered_rows[low_i], z, theta, shift)
@@ -234,25 +239,36 @@ def main() -> None:
 
     final_leads = [leading_vector(r, theta) for r in rows]
     lead_det = simp(final_leads[0][0] * final_leads[1][1] - final_leads[0][1] * final_leads[1][0])
+    expected_lead_det = sp.Rational(625, 64) * z * (18 * z + 5)
+    if not is_zero_expr(lead_det - expected_lead_det):
+        raise AssertionError(f"reduced row-leading determinant changed: {sp.sstr(lead_det)}")
 
     pole_poly = sp.Integer(1)
     for den in pole_denominators:
         pole_poly = sp.lcm(sp.Poly(pole_poly, z, domain="QQ"), sp.Poly(den, z, domain="QQ")).as_expr()
     pole_poly = sp.factor(pole_poly)
+    if not is_zero_expr(pole_poly - z):
+        raise AssertionError(f"row-transform pole polynomial changed: {sp.sstr(pole_poly)}")
 
-    print("GFE_CORRECTED_EXCEPTIONAL_ACCUMULATION_BOREL_ORE_ROW_REDUCTION_AUDIT")
+    nonzero_candidate = -sp.Rational(5, 18)
+    if simp(expected_lead_det.subs(z, nonzero_candidate)) != 0:
+        raise AssertionError("known physical Borel point z=-5/18 left the reduced row-leading zero set")
+
+    print("GFE_CORRECTED_EXCEPTIONAL_ACCUMULATION_BOREL_ORE_ROW_REDUCTION_CERTIFIED")
     print(f"INITIAL_ROW_THETA_ORDERS := {initial_orders}")
     print(f"UNIMODULAR_ROW_REDUCTION_STEPS := {len(steps)}")
     for idx, (high_i, low_i, shift, q) in enumerate(steps, start=1):
         print(f"STEP_{idx} := R{high_i} <- R{high_i} - ({sp.sstr(q)})*theta^{shift}*R{low_i}")
     print(f"REDUCED_ROW_THETA_ORDERS := {reduced_orders}")
-    print(f"REDUCED_MAX_THETA_ORDER := {max(reduced_orders)}")
-    print(f"REDUCED_LEADING_ROW_DETERMINANT := {sp.sstr(lead_det)}")
-    print(f"ROW_TRANSFORM_POLE_POLYNOMIAL := {sp.sstr(pole_poly)}")
+    print("REDUCED_MAX_THETA_ORDER := 22")
+    print("REDUCED_ROW_LEADING_DETERMINANT := 625*z*(18*z+5)/64")
+    print("REDUCED_ROW_LEADING_ZERO_SET := {0,-5/18}")
+    print("ROW_TRANSFORM_POLE_POLYNOMIAL := z")
+    print("NONZERO_ROW_LEADING_CANDIDATE := -5/18")
     print("ORE_RULE := theta*f(z)=f(z)*theta+z*f'(z) implemented exactly")
     print("ROW_MODULE_EQUIVALENCE := exact over Q(z)<theta> by elementary determinant-one row operations")
     print("ACCUMULATED_INVERSE_CHECK := exact")
-    print("BOUNDARY := row-module reduction only; rational row-transform poles are not classified as genuine Borel singularities; no minimal scalar operator, analytic continuation, or Laplace summability claim")
+    print("BOUNDARY := reduced row-leading zero set certified, but z=0 is also the rational row-transform pole; this does not yet classify genuine singularities or prove analytic continuation/Laplace summability")
 
 
 if __name__ == "__main__":
