@@ -77,6 +77,9 @@ jobs:
       - name: Certify accumulation invariant growth cone
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_invariant_cone.py
 
+      - name: Certify one-sided Borel boundary asymptotic
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_boundary_asymptotic.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
