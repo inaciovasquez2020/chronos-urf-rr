@@ -34,6 +34,7 @@ structure CycleOverlapIncidence (G : GraphDatum) (R : Nat) where
 structure F2WeightedOverlapRelation (G : GraphDatum) (R : Nat) where
   coeff : CycleOverlapIncidence G R → F2
   finite_support : Prop
+  rank : Nat
 
 def ColapR (G : GraphDatum) (R : Nat) : Type :=
   F2WeightedOverlapRelation G R
