@@ -101,6 +101,9 @@ jobs:
       - name: Audit Borel infinity Newton symbol
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_infinity_newton.py
 
+      - name: Certify weighted positive-ray Borel growth
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_positive_ray_weighted_growth.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
