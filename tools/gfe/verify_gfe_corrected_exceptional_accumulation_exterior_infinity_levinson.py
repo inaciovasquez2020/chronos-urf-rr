@@ -9,9 +9,9 @@ The preceding infinity gates certify an exact refined basis with
     D1 = diag(nu_j),
 
 and a near-identity first gauge which removes every cross-exponential 1/r
-coupling.  This verifier reconstructs that gauge directly from the exact
-physical-space generator and certifies the two hypotheses needed by the
-classical Levinson asymptotic-integration theorem:
+coupling. This verifier reconstructs that gauge directly from the exact
+physical-space generator and certifies the hypotheses needed by the classical
+Levinson asymptotic-integration theorem:
 
   1. after the first gauge the perturbation of
 
@@ -19,11 +19,34 @@ classical Levinson asymptotic-integration theorem:
 
      is O(r^-2), hence belongs to L^1 on a sufficiently large positive ray;
 
-  2. Lambda satisfies Levinson's pairwise dichotomy condition.  In fact the
+  2. the first gauge is analytic and asymptotically invertible at infinity;
+
+  3. Lambda satisfies Levinson's pairwise dichotomy condition. In fact the
      real part of every pairwise diagonal difference has a fixed sign for
      every r>=2, so the dichotomy constants may be chosen K=0.
 
-This file certifies theorem hypotheses only.  It does not promote the formal
+The O(r^-2) conclusion is checked without forming the expensive full symbolic
+inverse of the gauge. Writing
+
+    B = D0 + B1/r + R2,     R2 = O(r^-2),
+    T1 = I + P1/r,
+
+and using the exact first-layer identity
+
+    B1 + D0 P1 - P1 D0 = D1,
+
+the numerator in
+
+    T1 Z' = (B T1 - T1') Z
+
+relative to Lambda is exactly
+
+    R2 (I + P1/r) + (B1 P1 + P1 - P1 D1)/r^2,
+
+which is O(r^-2). Since T1 -> I, T1^-1 is bounded on some tail and the
+transformed remainder is O(r^-2) as well.
+
+This file certifies theorem hypotheses only. It does not promote the formal
 channels to an actual asymptotic fundamental matrix and does not project the
 physical horizon solution onto infinity channels.
 """
@@ -106,32 +129,18 @@ def main() -> None:
     if any(value != 0 for value in ms(first_layer - D1)):
         raise AssertionError("first infinity normal-form layer is no longer diagonal")
 
-    # If Y = S*T1*Z with T1=I+P1/r, then
-    #
-    #   T1 Z' = (B*T1 - T1')Z.
-    #
-    # Since T1'=-P1/r^2, the numerator of the perturbation relative to
-    # Lambda=D0+D1/r is the exact rational matrix below.  Avoiding an exact
-    # symbolic inverse keeps this verifier narrow: det(T1)->1 proves T1^-1 is
-    # bounded on some tail, so an O(r^-2) numerator gives an O(r^-2)
-    # transformed perturbation.
-    T1 = sp.eye(6) + P1 / r
-    defect = ms(B * T1 + P1 / r**2 - T1 * (D0 + D1 / r))
-    defect_power = g2.max_infinity_power(defect, r)
-    if defect_power > -2:
-        raise AssertionError(
-            f"first-gauge defect is not L1-order at infinity: power={defect_power}"
-        )
+    # Exact source-bound remainder before the first gauge. The preceding
+    # channel calculation already exposes this layer; recompute it here so
+    # the Levinson gate is self-contained.
+    R2 = ms(B - D0 - B1 / r)
+    r2_power = g2.max_infinity_power(R2, r)
+    if r2_power > -2:
+        raise AssertionError(f"pre-gauge remainder is not O(r^-2): power={r2_power}")
 
-    det_tail = simp(T1.det().subs(r, 1 / s))
-    det_at_zero = simp(det_tail.subs(s, 0))
-    if det_at_zero != 1:
-        raise AssertionError(
-            f"near-identity gauge determinant does not tend to one: {sp.sstr(det_at_zero)}"
-        )
-
-    analytic_defect_entries = 0
-    for value in defect:
+    # Every nonzero R2 entry must be analytic in s=1/r at s=0. Together with
+    # r2_power<=-2 this makes R2=s^2*A(s) for an analytic matrix A near zero.
+    analytic_r2_entries = 0
+    for value in R2:
         value = simp(value)
         if value == 0:
             continue
@@ -139,12 +148,28 @@ def main() -> None:
         _num, den = sp.fraction(at_s)
         if simp(den.subs(s, 0)) == 0:
             raise AssertionError(
-                "first-gauge defect lost analyticity at infinity: "
-                + sp.sstr(value)
+                "pre-gauge remainder lost analyticity at infinity: " + sp.sstr(value)
             )
-        analytic_defect_entries += 1
+        analytic_r2_entries += 1
 
-    # Exact real parts of the diagonal principal coefficients.  Recheck them
+    # Exact algebraic defect identity. The constant r^-2 coefficient contains
+    # no hidden r-dependence. Therefore
+    #
+    #   defect = R2*(I+P1/r) + C2/r^2 = O(r^-2).
+    C2 = ms(B1 * P1 + P1 - P1 * D1)
+    if any(r in value.free_symbols for value in C2):
+        raise AssertionError("first-gauge r^-2 defect coefficient depends on r")
+
+    # T1(s)=I+s P1 is analytic and T1(0)=I exactly. Hence det T1(0)=1 and by
+    # continuity T1 is invertible with bounded inverse on some s-tail.
+    T1_s = sp.eye(6) + s * P1
+    if any(value != 0 for value in ms(T1_s.subs(s, 0) - sp.eye(6))):
+        raise AssertionError("near-identity gauge does not tend exactly to I")
+    t1_det_at_infinity = sp.Integer(1)
+
+    transformed_remainder_power = -2
+
+    # Exact real parts of the diagonal principal coefficients. Recheck them
     # against the symbolic channel values so the dichotomy calculation is
     # source-bound rather than a detached hard-coded table.
     re_mus = [
@@ -169,12 +194,13 @@ def main() -> None:
         if simp(sp.re(nus[i]) - re_nus[i]) != 0:
             raise AssertionError(f"real power exponent changed in channel {i}")
 
-    # For Lambda_i-Lambda_j the real derivative is A+B/r.  Show it has a
-    # fixed sign for every r>=2.  Therefore every integral
+    # For Lambda_i-Lambda_j the real derivative is A+B/r. Show it has a
+    # fixed sign for every r>=2. Therefore every integral
     # int_t^x Re(Lambda_i-Lambda_j) is either >=0 or <=0, which is Levinson's
-    # dichotomy condition with K=0.
+    # pairwise dichotomy condition with K=0.
     dichotomy: list[tuple[str, str, str]] = []
     ordered_pair_count = 0
+    zero_real_gap_pairs = 0
     for i in range(6):
         for j in range(6):
             if i == j:
@@ -201,6 +227,7 @@ def main() -> None:
                 sign = "<=0"
             else:
                 sign = "=0"
+                zero_real_gap_pairs += 1
 
             dichotomy.append((names[i], names[j], sign))
             ordered_pair_count += 1
@@ -214,12 +241,15 @@ def main() -> None:
     print(f"EXPONENTIAL_RATES := {[sp.sstr(x) for x in mus]}")
     print(f"POWER_EXPONENTS := {[sp.sstr(x) for x in nus]}")
     print(f"FIRST_GAUGE_CROSS_EXPONENTIAL_ENTRIES_REMOVED := {removed}")
-    print(f"FIRST_GAUGE_DEFECT_MAX_INFINITY_POWER := {defect_power}")
-    print(f"FIRST_GAUGE_DEFECT_ANALYTIC_NONZERO_ENTRIES := {analytic_defect_entries}")
-    print("FIRST_GAUGE_DETERMINANT_AT_INFINITY := 1")
-    print("TRANSFORMED_REMAINDER := T1^-1*defect = O(r^-2) on a sufficiently large positive ray")
+    print(f"PRE_GAUGE_REMAINDER_MAX_INFINITY_POWER := {r2_power}")
+    print(f"PRE_GAUGE_REMAINDER_ANALYTIC_NONZERO_ENTRIES := {analytic_r2_entries}")
+    print("FIRST_GAUGE_DEFECT_IDENTITY := R2*(I+P1/r)+(B1*P1+P1-P1*D1)/r^2")
+    print(f"FIRST_GAUGE_TRANSFORMED_REMAINDER_MAX_INFINITY_POWER := {transformed_remainder_power}")
+    print(f"FIRST_GAUGE_DETERMINANT_AT_INFINITY := {t1_det_at_infinity}")
+    print("FIRST_GAUGE_TAIL_INVERTIBILITY := T1(s) analytic with T1(0)=I, hence bounded inverse on some tail")
     print("L1_PERTURBATION := certified because O(r^-2) is integrable on [R,infinity)")
     print(f"LEVINSON_DICHOTOMY_ORDERED_PAIR_COUNT := {ordered_pair_count}")
+    print(f"LEVINSON_ZERO_REAL_GAP_ORDERED_PAIR_COUNT := {zero_real_gap_pairs}")
     print("LEVINSON_DICHOTOMY_RAY := r>=2")
     print("LEVINSON_DICHOTOMY_CONSTANT := K=0 for every ordered channel pair")
     print(f"LEVINSON_PAIRWISE_SIGNS := {dichotomy}")
