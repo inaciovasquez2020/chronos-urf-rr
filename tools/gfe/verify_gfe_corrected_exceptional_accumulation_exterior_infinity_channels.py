@@ -194,7 +194,7 @@ def main() -> None:
         _R, _L, H = dual_restriction(G0, G1, eigenvalue, multiplicity)
         total_dimension += multiplicity
         nu = sp.symbols("nu")
-        h_charpoly = sp.factor(H.charpoly(nu).as_expr())
+        h_charpoly = sp.factor((nu * sp.eye(multiplicity) - H).det())
         # Count geometric dimensions of every algebraic power root when SymPy
         # can factor them explicitly.  The discriminant check below handles
         # the 2x2 blocks without requiring numerical roots.
