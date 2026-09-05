@@ -1,0 +1,438 @@
+#!/usr/bin/env python3
+"""Certify an exact invariant growth cone for the physical accumulation branch.
+
+Sector: M=1, beta=5/2, omega=i/4, ell=2, lambda=6, alpha=1/2.
+The finite-lag transfer is re-derived from the corrected Euler artifact.
+
+Cone for n>=60:
+  a_n := (-1)^(n+1) kappa_n > 0,
+  2 <= a_n/(n^2 a_{n-1}) <= 5,
+  |xi_n| <= a_n/n^3.
+
+The two-sided ratio cone places the physical top-log coefficient vector between
+fixed exponential multiples of (n!)^2. Hence, under the standard formal-series
+convention |c_n| <= C A^n (n!)^s, its exact minimal Gevrey exponent is 2.
+Dividing the exact finite-lag recurrence by (n!)^2 gives the order-2 Borel
+coordinate recurrence. The same cone isolates the dominant lag-one kernel
+coefficient, proves the exact Borel radius 5/18, locates the forced alternating
+boundary singularity, certifies the n^(-2) coefficient law with nonzero
+amplitude, and extracts its dilogarithmic boundary profile. Every tail
+inequality is reduced to positivity of a shifted exact rational polynomial;
+no floating-point inequalities are used.
+"""
+from __future__ import annotations
+
+import sympy as sp
+import verify_gfe_corrected_finite_beta_horizon_indicial as base
+
+
+def simp(z: sp.Expr) -> sp.Expr:
+    return sp.factor(sp.cancel(sp.together(z)))
+
+
+def ms(A: sp.Matrix) -> sp.Matrix:
+    return A.applyfunc(simp)
+
+
+def shifted_nonnegative(poly_expr: sp.Expr, n: sp.Symbol, N: int) -> bool:
+    m = sp.symbols("m", nonnegative=True)
+    poly = sp.Poly(sp.expand(poly_expr.subs(n, m + N)), m, domain=sp.QQ)
+    return all(c >= 0 for c in poly.all_coeffs())
+
+
+def assert_tail_nonnegative(expr: sp.Expr, n: sp.Symbol, N: int, label: str) -> None:
+    expr = sp.cancel(sp.together(expr))
+    num, den = sp.fraction(expr)
+    if not shifted_nonnegative(num, n, N):
+        raise AssertionError(label + " numerator is not coefficientwise nonnegative after tail shift")
+    if not shifted_nonnegative(den, n, N):
+        raise AssertionError(label + " denominator is not coefficientwise nonnegative after tail shift")
+
+
+def tail_abs(expr: sp.Expr, n: sp.Symbol, N: int, label: str) -> sp.Expr:
+    expr = simp(expr)
+    try:
+        assert_tail_nonnegative(expr, n, N, label + " positive")
+        return expr
+    except AssertionError:
+        assert_tail_nonnegative(-expr, n, N, label + " negative")
+        return simp(-expr)
+
+
+def main() -> None:
+    equations, h = base._parse_equations()
+    p = base.p
+    x = sp.symbols("x", positive=True)
+    n = sp.symbols("n", integer=True, positive=True)
+    a, b = sp.symbols("a b")
+
+    trial = {}
+    for order in range(5):
+        trial[h[0][order]] = a * base._falling(p, order) / x**order
+        trial[h[1][order]] = b * base._falling(p - 1, order) / x ** (order + 1)
+
+    specialized = []
+    for equation in equations:
+        q = equation.xreplace(trial).subs({
+            base.r: 2 + x,
+            base.M: 1,
+            base.omega: base.I / 4,
+            base.lam: 6,
+            base.beta: sp.Rational(5, 2),
+        })
+        specialized.append(simp(q))
+    q0, q1 = specialized
+
+    F = ms(sp.Matrix([
+        [sp.diff(simp(x**3*q0), a), sp.diff(simp(x**3*q0), b)],
+        [sp.diff(simp(x**2*q1), a), sp.diff(simp(x**2*q1), b)],
+    ]))
+    Dp = sp.Poly(1, x, domain="EX")
+    for entry in F:
+        _, den = sp.fraction(simp(entry))
+        Dp = sp.lcm(Dp, sp.Poly(den, x, domain="EX").monic())
+    D = simp(Dp.as_expr() / Dp.as_expr().subs(x, 0))
+    C = ms(D * F)
+    J = max(sp.Poly(entry, x, domain="EX").degree() for entry in C if entry != 0)
+    Cj = [ms(sp.Matrix([
+        [sp.Poly(C[row,col], x, domain="EX").coeff_monomial(x**j) for col in range(2)]
+        for row in range(2)
+    ])) for j in range(J+1)]
+    if J != 10:
+        raise AssertionError(f"finite lag changed: {J}")
+
+    alpha = sp.Rational(1,2)
+    A = ms(Cj[0].subs(p, alpha+n))
+    A00 = simp(A[0,0])
+    E = sp.Matrix([1,0])
+    rvec = lambda k: sp.Matrix([1, 2*(2*k+1)])
+    lvec = lambda k: sp.Matrix([1, 2*(2*k-3)])
+
+    X_xi, X_kap = {}, {}
+    for j in range(1,J+1):
+        block = ms(Cj[j].subs(p, alpha+n-j))
+        X_xi[j] = simp(-block[0,0]/A00)
+        X_kap[j] = simp(-((sp.Matrix([[block[0,0],block[0,1]]])*rvec(n-j))[0])/A00)
+
+    ell_next = lvec(n+1)
+    C1n = ms(Cj[1].subs(p, alpha+n))
+    gamma = simp((ell_next.T*C1n*rvec(n))[0])
+    if simp(gamma + sp.Rational(125,6)*n**2) != 0:
+        raise AssertionError("accumulation gamma changed")
+    cxi = simp((ell_next.T*C1n*E)[0])
+    K_xi = {j:simp(-cxi*X_xi[j]/gamma) for j in range(1,J+1)}
+    K_kap = {j:simp(-cxi*X_kap[j]/gamma) for j in range(1,J+1)}
+    for j in range(2,J+1):
+        lag=j-1
+        block=ms(Cj[j].subs(p, alpha+n+1-j))
+        K_xi[lag]=simp(K_xi.get(lag,0)-(ell_next.T*block*E)[0]/gamma)
+        K_kap[lag]=simp(K_kap.get(lag,0)-(ell_next.T*block*rvec(n+1-j))[0]/gamma)
+
+    # Exact order-2 Borel transform in recurrence coordinates:
+    #   Xi_n = xi_n/(n!)^2, K_n = kappa_n/(n!)^2.
+    # A lag-j source coefficient therefore acquires
+    #   ((n-j)!/n!)^2 = 1/[n(n-1)...(n-j+1)]^2.
+    def falling_n(j: int) -> sp.Expr:
+        out = sp.Integer(1)
+        for s in range(j):
+            out *= n - s
+        return sp.expand(out)
+
+    B2_X_xi, B2_X_kap, B2_K_xi, B2_K_kap = {}, {}, {}, {}
+    for j in range(1,J+1):
+        fall = falling_n(j)
+        scale = simp(1/fall**2)
+        B2_X_xi[j] = simp(scale*X_xi.get(j,0))
+        B2_X_kap[j] = simp(scale*X_kap.get(j,0))
+        B2_K_xi[j] = simp(scale*K_xi.get(j,0))
+        B2_K_kap[j] = simp(scale*K_kap.get(j,0))
+        for original, transformed, label in [
+            (X_xi.get(j,0), B2_X_xi[j], f"B2_X_xi_{j}"),
+            (X_kap.get(j,0), B2_X_kap[j], f"B2_X_kap_{j}"),
+            (K_xi.get(j,0), B2_K_xi[j], f"B2_K_xi_{j}"),
+            (K_kap.get(j,0), B2_K_kap[j], f"B2_K_kap_{j}"),
+        ]:
+            if simp(transformed*fall**2-original) != 0:
+                raise AssertionError(label + " failed exact factorial rescaling identity")
+
+    xi = {0:sp.Rational(0), 1:sp.Rational(20,27)}
+    kap = {0:sp.Rational(0), 1:sp.Rational(-5,27)}
+    def val(tab, k):
+        return sp.Rational(0) if k < 0 else tab.get(k, sp.Rational(0))
+    def ev(expr, k):
+        out=sp.cancel(expr.subs(n,k))
+        if out.free_symbols:
+            raise AssertionError("symbolic parameter survived unit-mass specialization")
+        return sp.Rational(out)
+    for k in range(2,61):
+        xv=sp.Rational(0); kv=sp.Rational(0)
+        for j in range(1,J+1):
+            xv += ev(X_xi.get(j,0),k)*val(xi,k-j)+ev(X_kap.get(j,0),k)*val(kap,k-j)
+            kv += ev(K_xi.get(j,0),k)*val(xi,k-j)+ev(K_kap.get(j,0),k)*val(kap,k-j)
+        xi[k]=sp.cancel(xv); kap[k]=sp.cancel(kv)
+
+    # Check the transformed recurrence against the exact physical prefix once
+    # all ten lags are active.
+    b2_xi = {k: sp.cancel(xi[k]/sp.factorial(k)**2) for k in range(61)}
+    b2_kap = {k: sp.cancel(kap[k]/sp.factorial(k)**2) for k in range(61)}
+    for k in range(J,61):
+        xv=sp.Rational(0); kv=sp.Rational(0)
+        for j in range(1,J+1):
+            xv += ev(B2_X_xi.get(j,0),k)*b2_xi[k-j] + ev(B2_X_kap.get(j,0),k)*b2_kap[k-j]
+            kv += ev(B2_K_xi.get(j,0),k)*b2_xi[k-j] + ev(B2_K_kap.get(j,0),k)*b2_kap[k-j]
+        if sp.cancel(xv-b2_xi[k]) != 0:
+            raise AssertionError(f"order-2 Borel xi recurrence fails at n={k}")
+        if sp.cancel(kv-b2_kap[k]) != 0:
+            raise AssertionError(f"order-2 Borel kappa recurrence fails at n={k}")
+
+    q = sp.Rational(2)
+    Q = sp.Rational(5)
+    Ccone = sp.Rational(1)
+    for k in range(51,61):
+        ak = (-1)**(k+1) * kap[k]
+        if ak <= 0:
+            raise AssertionError(f"physical prefix misses kernel sign cone at n={k}")
+        if k >= 52:
+            ap = (-1)**k * kap[k-1]
+            rr = sp.cancel(ak/(k**2*ap))
+            if not (q <= rr <= Q):
+                raise AssertionError(f"physical prefix misses ratio cone at n={k}: {rr}")
+        if sp.cancel(abs(xi[k])*k**3-ak) > 0:
+            raise AssertionError(f"physical prefix misses absolute range cone at n={k}")
+
+    N = 61
+    def hist_upper(j: int) -> sp.Expr:
+        if j == 1:
+            return sp.Integer(1)
+        prod = sp.Integer(1)
+        for s in range(1,j):
+            prod *= (n-s)**2
+        return simp(1/(q**(j-1)*prod))
+
+    absKxi={j:tail_abs(K_xi.get(j,0),n,N,f"Kxi{j}") for j in range(1,J+1)}
+    absKkap={j:tail_abs(K_kap.get(j,0),n,N,f"Kkap{j}") for j in range(1,J+1)}
+    absXxi={j:tail_abs(X_xi.get(j,0),n,N,f"Xxi{j}") for j in range(1,J+1)}
+    absXkap={j:tail_abs(X_kap.get(j,0),n,N,f"Xkap{j}") for j in range(1,J+1)}
+
+    kernel_dom = simp(-K_kap[1]/n**2)
+    assert_tail_nonnegative(kernel_dom,n,N,"kernel dominant coefficient")
+    kernel_rem = sp.Integer(0)
+    for j in range(1,J+1):
+        hu=hist_upper(j)
+        kernel_rem += absKxi[j]*hu/((n-j)**3*n**2)
+        if j >= 2:
+            kernel_rem += absKkap[j]*hu/n**2
+    kernel_rem=simp(kernel_rem)
+    assert_tail_nonnegative(kernel_dom-kernel_rem-q,n,N,"kernel lower cone")
+    assert_tail_nonnegative(Q-kernel_dom-kernel_rem,n,N,"kernel upper cone")
+
+    # Exact ratio limit. Under the invariant cone the physical sign-normalized
+    # ratio differs from the lag-one dominant coefficient by at most kernel_rem.
+    ratio_target = sp.Rational(18,5)
+    dominant_gap = simp(ratio_target-kernel_dom)
+    assert_tail_nonnegative(dominant_gap,n,N,"kernel dominant 18/5 gap")
+    ratio_error_envelope = simp(dominant_gap+kernel_rem)
+    ratio_error_C = sp.Rational(20)
+    assert_tail_nonnegative(
+        ratio_error_C/n-ratio_error_envelope,
+        n,
+        N,
+        "kernel ratio O(1/n) convergence envelope",
+    )
+
+    # First correction to the Borel-kernel ratio. The exact lag-one dominant
+    # coefficient has expansion (18/5)*(1-2/n)+O(1/n^2), and every remaining
+    # contribution is bounded by kernel_rem=O(1/n^2). We certify a uniform
+    # exact rational envelope on the entire invariant tail.
+    ratio_first_model = simp(ratio_target*(1-sp.Rational(2)/n))
+    dominant_first_gap = tail_abs(
+        kernel_dom-ratio_first_model,
+        n,
+        N,
+        "kernel dominant first-correction gap",
+    )
+    ratio_first_error_envelope = simp(dominant_first_gap+kernel_rem)
+    ratio_first_C = sp.Rational(100)
+    assert_tail_nonnegative(
+        ratio_first_C/n**2-ratio_first_error_envelope,
+        n,
+        N,
+        "kernel ratio O(1/n^2) first-correction envelope",
+    )
+
+    # For V_n := U_n*n^2/(18/5)^n, the first-correction law makes successive
+    # ratios differ from 1 by a summable O(1/n^2) amount.
+    amp_model_ratio = simp((ratio_first_model/ratio_target)*n**2/(n-1)**2)
+    amp_model_gap = tail_abs(
+        amp_model_ratio-1,
+        n,
+        N,
+        "normalized amplitude model-ratio gap",
+    )
+    amp_ratio_error_envelope = simp(
+        amp_model_gap
+        + ratio_first_error_envelope*n**2/(ratio_target*(n-1)**2)
+    )
+    amp_ratio_C = sp.Rational(30)
+    assert_tail_nonnegative(
+        amp_ratio_C/(n-1)**2-amp_ratio_error_envelope,
+        n,
+        N,
+        "normalized amplitude summable ratio envelope",
+    )
+
+    # Close the normalized amplitude by an elementary infinite-product
+    # argument. The pointwise majorant telescopes because
+    #   1/(n-1)^2 <= 1/[(n-2)(n-1)] = 1/(n-2)-1/(n-1).
+    # Hence the full ratio-error tail from n=61 is at most 30/59 < 1.
+    # For finite products, prod(1-d_j) >= 1-sum d_j and, when sum d_j<1,
+    # prod(1+d_j) <= 1/(1-sum d_j). The same expansion gives the relative
+    # Cauchy bound S/(1-S) for a tail with total majorant S.
+    amp_telescoper = simp(amp_ratio_C*(1/(n-2)-1/(n-1)))
+    assert_tail_nonnegative(
+        amp_telescoper-amp_ratio_C/(n-1)**2,
+        n,
+        N,
+        "normalized amplitude telescoping majorant",
+    )
+    amp_total_tail_bound = sp.Rational(30,59)
+    if not (sp.Rational(0) < amp_total_tail_bound < sp.Rational(1)):
+        raise AssertionError("normalized amplitude total tail bound must lie in (0,1)")
+    amp_lower_factor = simp(1-amp_total_tail_bound)
+    amp_upper_factor = simp(1/(1-amp_total_tail_bound))
+    if amp_lower_factor != sp.Rational(29,59):
+        raise AssertionError("normalized amplitude lower product factor changed")
+    if amp_upper_factor != sp.Rational(59,29):
+        raise AssertionError("normalized amplitude upper product factor changed")
+
+    U60 = sp.cancel((-1)**61 * kap[60] / sp.factorial(60)**2)
+    V60 = sp.cancel(U60 * 60**2 / ratio_target**60)
+    if V60 <= 0:
+        raise AssertionError("physical normalized Borel amplitude at n=60 is not positive")
+
+    cauchy_tail_sum = simp(amp_ratio_C/(n-1))
+    cauchy_relative_bound = simp(cauchy_tail_sum/(1-cauchy_tail_sum))
+    if simp(cauchy_relative_bound-sp.Rational(30)/(n-31)) != 0:
+        raise AssertionError("normalized amplitude Cauchy relative bound changed")
+    assert_tail_nonnegative(
+        1-cauchy_tail_sum,
+        n,
+        N,
+        "normalized amplitude Cauchy denominator",
+    )
+
+    # Letting m->infinity in the relative Cauchy estimate and using the global
+    # upper product bound gives an explicit O(1/n) amplitude remainder:
+    #   |V_n-A_phys| <= (1770/29)*V_60/(n-31).
+    # Since n/(n-31) <= 61/30 for n>=61, the Borel-kernel coefficient remainder
+    # after subtracting the leading n^-2 term is O((18/5)^n/n^3).
+    amp_limit_abs_factor = simp(amp_upper_factor*amp_ratio_C)
+    if amp_limit_abs_factor != sp.Rational(1770,29):
+        raise AssertionError("normalized amplitude O(1/n) factor changed")
+    assert_tail_nonnegative(
+        sp.Rational(61,30)/n**3 - 1/(n**2*(n-31)),
+        n,
+        N,
+        "Borel coefficient n^-3 remainder conversion",
+    )
+    coeff_remainder_factor = simp(amp_limit_abs_factor*sp.Rational(61,30))
+    if coeff_remainder_factor != sp.Rational(3599,29):
+        raise AssertionError("Borel coefficient n^-3 remainder factor changed")
+
+    # The coefficient asymptotic therefore admits a boundary-regular splitting
+    #   K(z) = P_60(z) - A_phys*Li_2(-(18/5)z) + R(z),
+    # where P_60 is a finite polynomial and the tail coefficients of R satisfy
+    #   |R_n| <= (3599/29)*V_60*(18/5)^n/n^3.
+    # On |z|<=5/18 this gives absolute uniform majorants C/n^3 for R and
+    # C*(18/5)/n^2 for R', so R and R' extend continuously to the closed disk.
+    # The dilogarithmic derivative is A_phys*log(1+(18/5)z)/z, whose logarithm
+    # hits zero argument at z=-5/18. The C^1 remainder and finite polynomial
+    # cannot cancel that logarithmic radial-derivative divergence.
+    Aphys = sp.symbols("A_phys", positive=True)
+    z = sp.symbols("z")
+    dilog_lead = -Aphys*sp.polylog(2,-ratio_target*z)
+    dilog_derivative = sp.expand_func(sp.diff(dilog_lead,z))
+    expected_dilog_derivative = Aphys*sp.log(1+ratio_target*z)/z
+    if sp.simplify(dilog_derivative-expected_dilog_derivative) != 0:
+        raise AssertionError("dilogarithmic derivative identity changed")
+    borel_radius = sp.Rational(5,18)
+    physical_boundary = -borel_radius
+    if simp(1+ratio_target*physical_boundary) != 0:
+        raise AssertionError("physical Borel boundary is not the dilogarithmic endpoint")
+
+    # Pringsheim hypothesis for the sign-normalized order-2 Borel tail.
+    # U_n := (-1)^(n+1) K_n = a_n/(n!)^2 is strictly positive on the
+    # certified tail. Its ratio tends to 18/5, so its radius is 5/18.
+    # Pringsheim then forces z=+5/18 to be a singularity of U_tail.
+    # Since K_tail(z)=-U_tail(-z), the physical alternating kernel Borel tail
+    # has a forced singularity at z=-5/18. A finite prefix polynomial cannot
+    # remove that singularity.
+    if simp(ratio_target*borel_radius-1) != 0:
+        raise AssertionError("exact Borel radius is not reciprocal to the certified ratio limit")
+
+    # Absolute range bound; no sign assumption on xi is needed.
+    range_abs = sp.Integer(0)
+    for j in range(1,J+1):
+        hu=hist_upper(j)
+        range_abs += absXkap[j]*hu + absXxi[j]*hu/(n-j)**3
+    range_abs=simp(range_abs)
+    # a_n >= q*n^2*a_{n-1}; therefore this sufficient inequality preserves
+    # |xi_n| <= a_n/n^3.
+    assert_tail_nonnegative(Ccone*q/n-range_abs,n,N,"absolute range magnitude cone")
+
+    print("GFE_CORRECTED_EXCEPTIONAL_ACCUMULATION_INVARIANT_CONE_CERTIFIED")
+    print("SECTOR := M=1; beta=5/2; omega=I/4; ell=2; lambda=6; alpha=1/2")
+    print("TAIL_START := 61")
+    print("KERNEL_SIGN := (-1)^(n+1)*kappa_n > 0")
+    print("FACTORIAL_RATIO_CONE := 2 <= (-1)^(n+1)*kappa_n/(n^2*(-1)^n*kappa_(n-1)) <= 5")
+    print("RANGE_KERNEL_CONE := abs(xi_n/kappa_n) <= 1/n^3")
+    print("PREFIX_CERTIFIED := full lag history 51<=n<=60 lies in kernel/range cone")
+    print("TAIL_INVARIANCE := exact rational inequalities certified for every integer n>=61")
+    print("KERNEL_RATIO_ERROR_BOUND := abs(a_n/(n^2*a_(n-1))-18/5) <= 20/n for n>=61")
+    print("KERNEL_RATIO_LIMIT := a_n/(n^2*a_(n-1)) -> 18/5")
+    print("BOREL_KERNEL_FIRST_RATIO_MODEL := (18/5)*(1-2/n)")
+    print("BOREL_KERNEL_FIRST_RATIO_ERROR_BOUND := abs(U_n/U_(n-1)-(18/5)*(1-2/n)) <= 100/n^2 for n>=61")
+    print("BOREL_KERNEL_N_MINUS_TWO_RATIO_LAW := certified")
+    print("NORMALIZED_BOREL_AMPLITUDE := V_n=U_n*n^2/(18/5)^n")
+    print("NORMALIZED_BOREL_AMPLITUDE_RATIO_BOUND := abs(V_n/V_(n-1)-1) <= 30/(n-1)^2 for n>=61")
+    print("NORMALIZED_BOREL_AMPLITUDE_TELESCOPING_MAJORANT := 30/(n-1)^2 <= 30*(1/(n-2)-1/(n-1))")
+    print("NORMALIZED_BOREL_AMPLITUDE_TOTAL_TAIL_BOUND := sum_(n>=61) 30/(n-1)^2 <= 30/59 < 1")
+    print("NORMALIZED_BOREL_AMPLITUDE_GLOBAL_BOUNDS := (29/59)*V_60 <= V_n <= (59/29)*V_60 for n>=60")
+    print("NORMALIZED_BOREL_AMPLITUDE_CAUCHY_BOUND := abs(V_m/V_n-1) <= 30/(n-31) for m>n>=61")
+    print("NORMALIZED_BOREL_AMPLITUDE_LIMIT := V_n -> A_phys with 0 < A_phys < infinity")
+    print("NORMALIZED_BOREL_AMPLITUDE_LIMIT_RATE := abs(V_n-A_phys) <= (1770/29)*V_60/(n-31) for n>=61")
+    print("BOREL_KERNEL_COEFFICIENT_ASYMPTOTIC := K_n ~ -A_phys*(-18/5)^n/n^2")
+    print("BOREL_KERNEL_COEFFICIENT_REMAINDER := abs(K_n+A_phys*(-18/5)^n/n^2) <= (3599/29)*V_60*(18/5)^n/n^3 for n>=61")
+    print("BOREL_KERNEL_DILOG_SPLITTING := K(z)=P_60(z)-A_phys*Li_2(-(18/5)z)+R(z)")
+    print("BOREL_KERNEL_REMAINDER_CLOSED_DISK := R coefficients O((18/5)^n/n^3); R and R' absolutely uniformly convergent on |z|<=5/18")
+    print("BOREL_KERNEL_DILOG_DERIVATIVE := d[-A_phys*Li_2(-(18/5)z)]/dz = A_phys*log(1+(18/5)z)/z")
+    print("PHYSICAL_BOREL_BOUNDARY_VALUE := finite at z=-5/18")
+    print("PHYSICAL_BOREL_BOUNDARY_DERIVATIVE := logarithmically divergent along the interior real radius at z=-5/18")
+    print("PHYSICAL_BOREL_BOUNDARY_PROFILE := dilogarithmic leading profile with C^1 remainder")
+    print("FACTORIAL_LOWER_BOUND := abs(kappa_n) >= abs(kappa_60)*2^(n-60)*(n!/60!)^2 for n>=60")
+    print("FACTORIAL_UPPER_BOUND := abs(kappa_n) <= abs(kappa_60)*5^(n-60)*(n!/60!)^2 for n>=60")
+    print("TOP_LOG_VECTOR_GEVREY_DEFINITION := |c_n| <= C*A^n*(n!)^s")
+    print("TOP_LOG_VECTOR_GEVREY_2 := certified")
+    print("TOP_LOG_VECTOR_NOT_GEVREY_S_LT_2 := certified from the factorial lower bound")
+    print("TOP_LOG_VECTOR_MINIMAL_GEVREY_EXPONENT := 2")
+    print("ORDER2_BOREL_COORDINATES := Xi_n=xi_n/(n!)^2; K_n=kappa_n/(n!)^2")
+    print("ORDER2_BOREL_TRANSFER := each lag-j coefficient is divided by [n*(n-1)*...*(n-j+1)]^2")
+    print("ORDER2_BOREL_PREFIX_RECURRENCE := exact for 10<=n<=60")
+    print("ORDER2_BOREL_SIGNED_KERNEL_RATIO_LIMIT := K_n/K_(n-1) -> -18/5")
+    print("ORDER2_BOREL_KERNEL_RADIUS := 5/18")
+    print("ORDER2_BOREL_TOP_LOG_RADIUS := 5/18")
+    print("ORDER2_BOREL_LOCAL_CONVERGENCE := certified with exact radius")
+    print("PRINGSHEIM_NORMALIZED_TAIL := U_n=(-1)^(n+1)*K_n>0 on the certified tail")
+    print("PRINGSHEIM_NORMALIZED_RADIUS := 5/18")
+    print("PRINGSHEIM_FORCED_NORMALIZED_SINGULARITY := z=+5/18")
+    print("PHYSICAL_BOREL_KERNEL_TAIL_RELATION := K_tail(z)=-U_tail(-z)")
+    print("PHYSICAL_BOREL_FORCED_SINGULARITY := z=-5/18")
+    print("PHYSICAL_BOREL_SINGULARITY_TYPE := dilogarithmic boundary profile; no analytic-continuation classification claimed")
+    print("PHYSICAL_FACTORIAL_SECTOR := nonzero")
+    print("TOP_LOG_POWER_SERIES_RADIUS := 0")
+    print("ACCUMULATION_POINT_CONVERGENT_FROBENIUS := ruled out for the physical top-log branch")
+    print("BOUNDARY := O(1/n) amplitude rate, n^-3 coefficient remainder, and dilogarithmic boundary profile certified; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
+
+
+if __name__ == "__main__":
+    main()
