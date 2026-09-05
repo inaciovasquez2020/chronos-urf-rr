@@ -134,6 +134,9 @@ jobs:
       - name: Certify infinity asymptotic integration
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_asymptotic_integration.py
 
+      - name: Certify infinity projection interface
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_projection_interface.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
