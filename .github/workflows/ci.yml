@@ -125,6 +125,9 @@ jobs:
       - name: Audit physical-space infinity G2 resonance
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_g2_resonance.py
 
+      - name: Certify all-order formal infinity channels
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_formal_basis.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
