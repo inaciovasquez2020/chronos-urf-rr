@@ -107,6 +107,9 @@ jobs:
       - name: Certify accumulation rank-loss coalescence
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_rankloss_coalescence.py
 
+      - name: Certify ordinary Borel companion
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_ordinary_companion.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
