@@ -15,10 +15,10 @@ convention |c_n| <= C A^n (n!)^s, its exact minimal Gevrey exponent is 2.
 Dividing the exact finite-lag recurrence by (n!)^2 gives the order-2 Borel
 coordinate recurrence. The same cone isolates the dominant lag-one kernel
 coefficient, proves the exact Borel radius 5/18, locates the forced alternating
-boundary singularity, and certifies the first ratio correction corresponding
-to the observed n^(-2) Borel coefficient law. Every tail inequality is reduced
-to positivity of a shifted exact rational polynomial; no floating-point
-inequalities are used.
+boundary singularity, certifies the n^(-2) coefficient law with nonzero
+amplitude, and extracts its dilogarithmic boundary profile. Every tail
+inequality is reduced to positivity of a shifted exact rational polynomial;
+no floating-point inequalities are used.
 """
 from __future__ import annotations
 
@@ -282,11 +282,11 @@ def main() -> None:
     )
 
     # Close the normalized amplitude by an elementary infinite-product
-    # argument.  The pointwise majorant telescopes because
+    # argument. The pointwise majorant telescopes because
     #   1/(n-1)^2 <= 1/[(n-2)(n-1)] = 1/(n-2)-1/(n-1).
     # Hence the full ratio-error tail from n=61 is at most 30/59 < 1.
     # For finite products, prod(1-d_j) >= 1-sum d_j and, when sum d_j<1,
-    # prod(1+d_j) <= 1/(1-sum d_j).  The same expansion gives the relative
+    # prod(1+d_j) <= 1/(1-sum d_j). The same expansion gives the relative
     # Cauchy bound S/(1-S) for a tail with total majorant S.
     amp_telescoper = simp(amp_ratio_C*(1/(n-2)-1/(n-1)))
     assert_tail_nonnegative(
@@ -321,9 +321,44 @@ def main() -> None:
         "normalized amplitude Cauchy denominator",
     )
 
-    # Therefore V_n is Cauchy in R, converges to A_phys, and the uniform lower
-    # product bound keeps A_phys strictly positive.  This gives the exact
-    # coefficient asymptotic K_n ~ -A_phys*(-18/5)^n/n^2.
+    # Letting m->infinity in the relative Cauchy estimate and using the global
+    # upper product bound gives an explicit O(1/n) amplitude remainder:
+    #   |V_n-A_phys| <= (1770/29)*V_60/(n-31).
+    # Since n/(n-31) <= 61/30 for n>=61, the Borel-kernel coefficient remainder
+    # after subtracting the leading n^-2 term is O((18/5)^n/n^3).
+    amp_limit_abs_factor = simp(amp_upper_factor*amp_ratio_C)
+    if amp_limit_abs_factor != sp.Rational(1770,29):
+        raise AssertionError("normalized amplitude O(1/n) factor changed")
+    assert_tail_nonnegative(
+        sp.Rational(61,30)/n**3 - 1/(n**2*(n-31)),
+        n,
+        N,
+        "Borel coefficient n^-3 remainder conversion",
+    )
+    coeff_remainder_factor = simp(amp_limit_abs_factor*sp.Rational(61,30))
+    if coeff_remainder_factor != sp.Rational(3599,29):
+        raise AssertionError("Borel coefficient n^-3 remainder factor changed")
+
+    # The coefficient asymptotic therefore admits a boundary-regular splitting
+    #   K(z) = P_60(z) - A_phys*Li_2(-(18/5)z) + R(z),
+    # where P_60 is a finite polynomial and the tail coefficients of R satisfy
+    #   |R_n| <= (3599/29)*V_60*(18/5)^n/n^3.
+    # On |z|<=5/18 this gives absolute uniform majorants C/n^3 for R and
+    # C*(18/5)/n^2 for R', so R and R' extend continuously to the closed disk.
+    # The dilogarithmic derivative is A_phys*log(1+(18/5)z)/z, whose logarithm
+    # hits zero argument at z=-5/18. The C^1 remainder and finite polynomial
+    # cannot cancel that logarithmic radial-derivative divergence.
+    Aphys = sp.symbols("A_phys", positive=True)
+    z = sp.symbols("z")
+    dilog_lead = -Aphys*sp.polylog(2,-ratio_target*z)
+    dilog_derivative = sp.expand_func(sp.diff(dilog_lead,z))
+    expected_dilog_derivative = Aphys*sp.log(1+ratio_target*z)/z
+    if sp.simplify(dilog_derivative-expected_dilog_derivative) != 0:
+        raise AssertionError("dilogarithmic derivative identity changed")
+    borel_radius = sp.Rational(5,18)
+    physical_boundary = -borel_radius
+    if simp(1+ratio_target*physical_boundary) != 0:
+        raise AssertionError("physical Borel boundary is not the dilogarithmic endpoint")
 
     # Pringsheim hypothesis for the sign-normalized order-2 Borel tail.
     # U_n := (-1)^(n+1) K_n = a_n/(n!)^2 is strictly positive on the
@@ -332,7 +367,6 @@ def main() -> None:
     # Since K_tail(z)=-U_tail(-z), the physical alternating kernel Borel tail
     # has a forced singularity at z=-5/18. A finite prefix polynomial cannot
     # remove that singularity.
-    borel_radius = sp.Rational(5,18)
     if simp(ratio_target*borel_radius-1) != 0:
         raise AssertionError("exact Borel radius is not reciprocal to the certified ratio limit")
 
@@ -366,7 +400,15 @@ def main() -> None:
     print("NORMALIZED_BOREL_AMPLITUDE_GLOBAL_BOUNDS := (29/59)*V_60 <= V_n <= (59/29)*V_60 for n>=60")
     print("NORMALIZED_BOREL_AMPLITUDE_CAUCHY_BOUND := abs(V_m/V_n-1) <= 30/(n-31) for m>n>=61")
     print("NORMALIZED_BOREL_AMPLITUDE_LIMIT := V_n -> A_phys with 0 < A_phys < infinity")
+    print("NORMALIZED_BOREL_AMPLITUDE_LIMIT_RATE := abs(V_n-A_phys) <= (1770/29)*V_60/(n-31) for n>=61")
     print("BOREL_KERNEL_COEFFICIENT_ASYMPTOTIC := K_n ~ -A_phys*(-18/5)^n/n^2")
+    print("BOREL_KERNEL_COEFFICIENT_REMAINDER := abs(K_n+A_phys*(-18/5)^n/n^2) <= (3599/29)*V_60*(18/5)^n/n^3 for n>=61")
+    print("BOREL_KERNEL_DILOG_SPLITTING := K(z)=P_60(z)-A_phys*Li_2(-(18/5)z)+R(z)")
+    print("BOREL_KERNEL_REMAINDER_CLOSED_DISK := R coefficients O((18/5)^n/n^3); R and R' absolutely uniformly convergent on |z|<=5/18")
+    print("BOREL_KERNEL_DILOG_DERIVATIVE := d[-A_phys*Li_2(-(18/5)z)]/dz = A_phys*log(1+(18/5)z)/z")
+    print("PHYSICAL_BOREL_BOUNDARY_VALUE := finite at z=-5/18")
+    print("PHYSICAL_BOREL_BOUNDARY_DERIVATIVE := logarithmically divergent along the interior real radius at z=-5/18")
+    print("PHYSICAL_BOREL_BOUNDARY_PROFILE := dilogarithmic leading profile with C^1 remainder")
     print("FACTORIAL_LOWER_BOUND := abs(kappa_n) >= abs(kappa_60)*2^(n-60)*(n!/60!)^2 for n>=60")
     print("FACTORIAL_UPPER_BOUND := abs(kappa_n) <= abs(kappa_60)*5^(n-60)*(n!/60!)^2 for n>=60")
     print("TOP_LOG_VECTOR_GEVREY_DEFINITION := |c_n| <= C*A^n*(n!)^s")
@@ -385,11 +427,11 @@ def main() -> None:
     print("PRINGSHEIM_FORCED_NORMALIZED_SINGULARITY := z=+5/18")
     print("PHYSICAL_BOREL_KERNEL_TAIL_RELATION := K_tail(z)=-U_tail(-z)")
     print("PHYSICAL_BOREL_FORCED_SINGULARITY := z=-5/18")
-    print("PHYSICAL_BOREL_SINGULARITY_TYPE := unclassified")
+    print("PHYSICAL_BOREL_SINGULARITY_TYPE := dilogarithmic boundary profile; no analytic-continuation classification claimed")
     print("PHYSICAL_FACTORIAL_SECTOR := nonzero")
     print("TOP_LOG_POWER_SERIES_RADIUS := 0")
     print("ACCUMULATION_POINT_CONVERGENT_FROBENIUS := ruled out for the physical top-log branch")
-    print("BOUNDARY := nonzero normalized Borel amplitude limit and exact n^-2 coefficient asymptotic certified; singularity type unclassified; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
+    print("BOUNDARY := O(1/n) amplitude rate, n^-3 coefficient remainder, and dilogarithmic boundary profile certified; no Borel continuation or Laplace summability claim; generic beta convergence not classified; no horizon-to-r_c map; no C_phys; no global Chronos closure")
 
 
 if __name__ == "__main__":
