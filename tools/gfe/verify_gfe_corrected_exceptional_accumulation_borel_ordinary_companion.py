@@ -14,11 +14,12 @@ where B_p differentiates only C_j(p) with respect to p; the factorial clearing
 and coordinate map are p-independent.
 
 This verifier applies the same three certified left Ore row operations to B and
-B_p, constructs the triangular inhomogeneous 44+44 first-order system, checks
-origin compatibility for the normalized ordinary seed, proves positive-ray
-continuation hypotheses, and transfers the previously certified weighted
-exp(B*sqrt(t)) homogeneous estimate to the ordinary companion by variation of
-constants with polynomial forcing.
+B_p, reduces every higher log jet back to the already-certified 44-state
+homogeneous first-order system, constructs the triangular inhomogeneous 44+44
+system, checks origin compatibility for the normalized ordinary seed, proves
+positive-ray continuation hypotheses, and transfers the previously certified
+weighted exp(B*sqrt(t)) homogeneous estimate to the ordinary companion by
+variation of constants with polynomial forcing.
 
 The normalization a1=0 fixes the one free ordinary n=1 homogeneous parameter;
 it is an existence normalization, not a uniqueness claim for all generalized
@@ -112,27 +113,66 @@ def apply_certified_row_transform(
     return rows, prows
 
 
+def theta_state_row(
+    functional: list[sp.Expr], z: sp.Symbol,
+    top_u: list[sp.Expr], top_v: list[sp.Expr]
+) -> list[sp.Expr]:
+    """Represent theta(functional*Y_L) again on the certified 44-state Y_L."""
+    if len(functional) != 44:
+        raise AssertionError("homogeneous state functional dimension changed")
+    out = [rr.simp(z * sp.diff(value, z)) for value in functional]
+    for k in range(21):
+        out[k + 1] = rr.simp(out[k + 1] + functional[k])
+        vk = 22 + k
+        out[vk + 1] = rr.simp(out[vk + 1] + functional[vk])
+    for j in range(44):
+        out[j] = rr.simp(
+            out[j] + functional[21] * top_u[j] + functional[43] * top_v[j]
+        )
+    return out
+
+
+def log_jet_rule(
+    component: int, order: int, z: sp.Symbol,
+    top_u: list[sp.Expr], top_v: list[sp.Expr],
+    cache: dict[tuple[int, int], list[sp.Expr]],
+) -> list[sp.Expr]:
+    """Reduce theta^order Xi_L or K_L to the certified 44-state exactly."""
+    key = (component, order)
+    if key in cache:
+        return cache[key]
+    if component not in (0, 1) or order < 0:
+        raise AssertionError("invalid log-jet request")
+    if order <= 21:
+        row = [sp.Integer(0)] * 44
+        row[(0 if component == 0 else 22) + order] = sp.Integer(1)
+    elif order == 22:
+        row = list(top_u if component == 0 else top_v)
+    else:
+        row = theta_state_row(
+            log_jet_rule(component, order - 1, z, top_u, top_v, cache),
+            z, top_u, top_v,
+        )
+    cache[key] = row
+    return row
+
+
 def operator_on_log_state(
     row: list[sp.Expr], z: sp.Symbol, theta: sp.Symbol,
     top_u: list[sp.Expr], top_v: list[sp.Expr]
 ) -> list[sp.Expr]:
     out = [sp.Integer(0)] * 44
+    cache: dict[tuple[int, int], list[sp.Expr]] = {}
     for component, expr in enumerate(row):
         if rr.is_zero_expr(expr):
             continue
         poly = sp.Poly(sp.expand(expr), theta, domain="EX")
         for (k,), coeff in poly.terms():
             coeff = rr.simp(coeff)
-            if k <= 21:
-                out[(0 if component == 0 else 22) + k] = rr.simp(
-                    out[(0 if component == 0 else 22) + k] + coeff
-                )
-            elif k == 22:
-                rule = top_u if component == 0 else top_v
-                for j in range(44):
+            rule = log_jet_rule(component, int(k), z, top_u, top_v, cache)
+            for j in range(44):
+                if not rr.is_zero_expr(rule[j]):
                     out[j] = rr.simp(out[j] + coeff * rule[j])
-            else:
-                raise AssertionError(f"forcing operator requires theta^{k} log jet beyond certified state")
     return out
 
 
@@ -176,8 +216,8 @@ def main() -> None:
     B, Bp, z, theta = build_unreduced_and_p_derivative()
     rows, prows = apply_certified_row_transform(B, Bp, z, theta)
     p_orders = [rr.row_order(row, theta) for row in prows]
-    if max(p_orders) > 22:
-        raise AssertionError(f"reduced exponent-derivative rows exceed 22-jet state: {p_orders}")
+    if p_orders != [25, 23]:
+        raise AssertionError(f"reduced exponent-derivative row orders changed: {p_orders}")
 
     # Existing exact homogeneous top-jet system.
     z0, top_u, top_v, constraint = origin.build_top_rules()
@@ -185,10 +225,19 @@ def main() -> None:
         raise AssertionError("origin helper symbol mismatch")
     row0, row1 = rows
     prow0, prow1 = prows
-    drow1 = rr.theta_left_row(row1, z, theta, 1)
     dprow1 = rr.theta_left_row(prow1, z, theta, 1)
-    if max(rr.row_order(prow0, theta), rr.row_order(dprow1, theta)) > 22:
-        raise AssertionError("inhomogeneous top equations exceed 22-jet log state")
+    max_forcing_jet = max(rr.row_order(prow0, theta), rr.row_order(dprow1, theta))
+    if max_forcing_jet != 25:
+        raise AssertionError(f"inhomogeneous forcing jet order changed: {max_forcing_jet}")
+
+    # Certify that the required theta^23..theta^25 log jets reduce exactly to
+    # the existing 44-state rather than enlarging the dynamical system.
+    cache: dict[tuple[int, int], list[sp.Expr]] = {}
+    for component in (0, 1):
+        for k in range(22, max_forcing_jet + 1):
+            rule = log_jet_rule(component, k, z, top_u, top_v, cache)
+            if len(rule) != 44:
+                raise AssertionError("higher log-jet reduction changed state dimension")
 
     lead0 = rr.leading_vector(row0, theta)
     lead1 = rr.leading_vector(row1, theta)
@@ -274,7 +323,6 @@ def main() -> None:
     worst_force_power, forcing_C, forcing_Q = weighted_forcing_bound(force_u, force_v, z)
 
     # Import the exact homogeneous weighted constant already certified by wg.
-    # Recompute it only through the public exact values encoded by that theorem.
     Cstar = sp.Rational(108169036987421079299, 14745600)
     Bsqrt = 2 * Cstar
     if Bsqrt != sp.Rational(108169036987421079299, 7372800):
@@ -285,6 +333,8 @@ def main() -> None:
     print("ORDER2_BOREL_ORDINARY_EQUATION := B*U_O + B_p*U_L = 0")
     print("B_P_DEFINITION := derivative in Euler exponent p of C_j(p) only; clearing factors and S(theta) are p-independent")
     print(f"REDUCED_B_P_ROW_ORDERS := {p_orders}")
+    print(f"MAX_LOG_FORCING_JET_ORDER := {max_forcing_jet}")
+    print("HIGHER_LOG_JET_REDUCTION := theta^23..theta^25 reduced exactly to the certified 44-state by repeated theta-system propagation")
     print("TRIANGULAR_FIRST_ORDER_STATE_DIMENSION := 88")
     print(f"THETA_FORCING_DENOMINATOR_LCM := {sp.sstr(forcing_lcm)}")
     print(f"THETA_FORCING_NONCONSTANT_DENOMINATOR_COUNT := {forcing_nonconstant}")
