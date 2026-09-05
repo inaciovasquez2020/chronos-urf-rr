@@ -16,7 +16,8 @@ physical horizon branch Y_phys, has a unique constant coefficient vector
 
 This verifier executes that exact gate, checks the real exponential/power
 growth hierarchy, classifies the refined +/- oscillatory phase stationary
-radii, and records the exact coefficient-vanishing conditions for several
+radii, certifies full refined cross-sign phase separation on the Levinson
+tail, and records the exact coefficient-vanishing conditions for several
 purely asymptotic classes.  It deliberately does NOT assign an "outgoing"
 convention to either oscillatory sign, and it does not evaluate any connection
 coefficient.
@@ -127,15 +128,20 @@ def main() -> None:
     if phase_gap.is_positive is not True or log_phase_gap.is_positive is not True:
         raise AssertionError("principal +/- phase coefficients are not certified positive")
 
-    r = sp.symbols("r", positive=True)
+    levinson_tail_line = certified_line(prior_output, "LEVINSON_DICHOTOMY_UNIVERSAL_TAIL")
+    if levinson_tail_line != "r >= 92":
+        raise AssertionError(f"Levinson universal tail changed: {levinson_tail_line}")
+    levinson_tail = sp.Integer(92)
+
     expected_stationary = {
         (2, 4): -sp.Rational(71, 167) + 3 * sp.sqrt(19605) / 167,
         (2, 5): -sp.Rational(71, 167) + sp.sqrt(4861545) / 1002,
         (3, 4): -sp.Rational(71, 167) + sp.sqrt(4861545) / 1002,
         (3, 5): -sp.Rational(71, 167) + sp.sqrt(3371070) / 1002,
     }
-    stationary_data: list[tuple[int, int, sp.Expr, sp.Expr]] = []
+    stationary_data: list[tuple[int, int, sp.Expr, sp.Expr, sp.Expr]] = []
     exterior_stationary_pairs: list[tuple[int, int]] = []
+    tail_separated_pairs: list[tuple[int, int]] = []
     for pair, expected_root in expected_stationary.items():
         i, j = pair
         if simp(imag_part(mus[i] - mus[j]) - phase_gap) != 0:
@@ -149,14 +155,37 @@ def main() -> None:
 
         discriminant = simp(log_phase_gap**2 - 4 * phase_gap * c)
         root = simp((-log_phase_gap + sp.sqrt(discriminant)) / (2 * phase_gap))
+        negative_root = simp((-log_phase_gap - sp.sqrt(discriminant)) / (2 * phase_gap))
         if simp(root - expected_root) != 0:
             raise AssertionError(
                 f"refined stationary radius changed at {pair}: {sp.sstr(root)}"
             )
         if sp.simplify(root > 0) is not sp.true:
             raise AssertionError(f"expected positive stationary radius at {pair}: {root}")
+        if sp.simplify(negative_root < 0) is not sp.true:
+            raise AssertionError(f"expected negative second stationary root at {pair}: {negative_root}")
 
-        stationary_data.append((i, j, c, root))
+        # For the full refined phase velocity
+        #
+        #   v_ij(r) = phase_gap + log_phase_gap/r + c/r^2,
+        #
+        # the D1+D2 correction has the sign of log_phase_gap*r+c.  Its unique
+        # positive zero is -c/log_phase_gap.  Showing that zero lies before the
+        # certified Levinson tail proves v_ij(r)>phase_gap there.  Reversing the
+        # ordered pair negates v_ij, so the same statement is an absolute-value
+        # lower bound for both orientations.
+        correction_zero = simp(-c / log_phase_gap)
+        if sp.simplify(correction_zero > 0) is not sp.true:
+            raise AssertionError(f"expected positive D1+D2 correction zero at {pair}: {correction_zero}")
+        if sp.simplify(correction_zero < levinson_tail) is not sp.true:
+            raise AssertionError(
+                f"D1+D2 correction zero did not lie before Levinson tail at {pair}: {correction_zero}"
+            )
+        if sp.simplify(log_phase_gap * levinson_tail + c > 0) is not sp.true:
+            raise AssertionError(f"refined phase correction is not positive at tail start for {pair}")
+        tail_separated_pairs.append(pair)
+
+        stationary_data.append((i, j, c, root, correction_zero))
         if sp.simplify(root > 2) is sp.true:
             exterior_stationary_pairs.append(pair)
         elif sp.simplify(root < 2) is not sp.true:
@@ -166,6 +195,8 @@ def main() -> None:
         raise AssertionError(
             f"refined exterior stationary-pair classification changed: {exterior_stationary_pairs}"
         )
+    if tail_separated_pairs != list(expected_stationary):
+        raise AssertionError(f"refined tail separation classification changed: {tail_separated_pairs}")
 
     names = [
         "C_grow",
@@ -204,14 +235,16 @@ def main() -> None:
     print("PRINCIPAL_PLUS_MINUS_PHASE_VELOCITY := sqrt(167)/10 + 142*sqrt(167)/(1670*r)")
     print("PRINCIPAL_PLUS_MINUS_GLOBAL_NONSTATIONARITY := certified for every r>0 at the D0+D1/r level")
     print(
-        "REFINED_D2_PLUS_MINUS_STATIONARY_RADII := "
-        f"{[(i, j, sp.sstr(c), sp.sstr(root)) for i, j, c, root in stationary_data]}"
+        "REFINED_D2_PLUS_MINUS_STATIONARY_DATA := "
+        f"{[(i, j, sp.sstr(c), sp.sstr(root), sp.sstr(correction_zero)) for i, j, c, root, correction_zero in stationary_data]}"
     )
     print("REFINED_D2_PHYSICAL_EXTERIOR_STATIONARY_PAIRS := [(OSCILLATORY_PLUS_LOW,OSCILLATORY_MINUS_LOW)]")
     print(
         "REFINED_D2_LOW_LOW_STATIONARY_RADIUS := "
         f"{sp.sstr(expected_stationary[(2, 4)])} > 2"
     )
+    print("REFINED_PLUS_MINUS_LEVINSON_TAIL := r >= 92")
+    print("REFINED_PLUS_MINUS_TAIL_PHASE_SEPARATION := all four cross-sign pairs have |phase velocity| > sqrt(167)/10 for every r>=92")
     print(f"SUBEXPONENTIAL_CONDITION := zero coefficients {subexponential_zero}")
     print(f"BOUNDED_CONDITION := zero coefficients {bounded_zero}")
     print(f"DECAYING_TO_ZERO_CONDITION := zero coefficients {decaying_zero}")
@@ -219,7 +252,7 @@ def main() -> None:
     print("BOUNDEDNESS_EXTRA_OBSTRUCTIONS := C_plus_high and C_minus_high")
     print("DECAY_EXTRA_OBSTRUCTIONS := C_plus_low and C_minus_low in addition to the boundedness obstructions")
     print("OUTGOING_CONVENTION := intentionally undefined; no oscillatory sign is labeled outgoing/ingoing by this verifier")
-    print("BOUNDARY := principal +/- phase is globally nonstationary, but the refined D2 low/low diagonal-model pair has one stationary point in r>2; no connection coefficient value/nonvanishing certificate and no global exceptional-mode conclusion")
+    print("BOUNDARY := full refined cross-sign phase separation is certified on the Levinson tail despite one low/low stationary point near the horizon; no connection coefficient value/nonvanishing certificate and no global exceptional-mode conclusion")
 
 
 if __name__ == "__main__":
