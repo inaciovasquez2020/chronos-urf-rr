@@ -42,6 +42,13 @@ def ColapR (G : GraphDatum) (R : Nat) : Type :=
 def ColapRankBoundedAt (_X : FO4HomogeneousInput) (C : Nat) : Prop :=
   ∃ rank : Nat, rank ≤ C
 
+structure TypeReplicationRankProfile where
+  cycleOverlapRank : Nat
+  localTypeCount : Nat
+  maxWithinTypeRank : Nat
+  rank_decomposition_bound :
+    cycleOverlapRank ≤ localTypeCount * maxWithinTypeRank
+
 def FO4CycleOverlapRankBoundProblem : Prop :=
   ∀ Δ R : Nat,
     ∃ C : Nat,
