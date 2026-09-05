@@ -34,12 +34,33 @@ structure CycleOverlapIncidence (G : GraphDatum) (R : Nat) where
 structure F2WeightedOverlapRelation (G : GraphDatum) (R : Nat) where
   coeff : CycleOverlapIncidence G R → F2
   finite_support : Prop
+  rank : Nat
 
 def ColapR (G : GraphDatum) (R : Nat) : Type :=
   F2WeightedOverlapRelation G R
 
 def ColapRankBoundedAt (_X : FO4HomogeneousInput) (C : Nat) : Prop :=
   ∃ rank : Nat, rank ≤ C
+
+structure TypeReplicationRankProfile where
+  cycleOverlapRank : Nat
+  localTypeCount : Nat
+  maxWithinTypeRank : Nat
+  rank_decomposition_bound :
+    cycleOverlapRank ≤ localTypeCount * maxWithinTypeRank
+
+def TypeReplicationHomogeneous (P : TypeReplicationRankProfile) : Prop :=
+  P.localTypeCount = 1
+
+theorem corrected_oblivion_atom_type_diversity
+    (P : TypeReplicationRankProfile)
+    (hlarge : P.maxWithinTypeRank < P.cycleOverlapRank) :
+    ¬ TypeReplicationHomogeneous P := by
+  intro hhom
+  change P.localTypeCount = 1 at hhom
+  have hbound := P.rank_decomposition_bound
+  rw [hhom, Nat.one_mul] at hbound
+  exact (not_lt_of_ge hbound) hlarge
 
 def FO4CycleOverlapRankBoundProblem : Prop :=
   ∀ Δ R : Nat,
