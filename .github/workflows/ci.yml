@@ -113,6 +113,9 @@ jobs:
       - name: Certify double-Laplace horizon reconstruction
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_double_laplace.py
 
+      - name: Certify finite-radius exterior continuation
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_continuation.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
