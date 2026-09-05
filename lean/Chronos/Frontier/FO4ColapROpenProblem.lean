@@ -49,6 +49,9 @@ structure TypeReplicationRankProfile where
   rank_decomposition_bound :
     cycleOverlapRank ≤ localTypeCount * maxWithinTypeRank
 
+def TypeReplicationHomogeneous (P : TypeReplicationRankProfile) : Prop :=
+  P.localTypeCount = 1
+
 def FO4CycleOverlapRankBoundProblem : Prop :=
   ∀ Δ R : Nat,
     ∃ C : Nat,
