@@ -23,6 +23,7 @@ def F2.mul : F2 → F2 → F2
   | one, one => one
 
 structure RadiusRCycleWitness (G : GraphDatum) where
+  center : G.vertex
   support : G.vertex → Prop
   radius_R_local : Prop
   cycle_witness : Prop
