@@ -48,6 +48,15 @@ structure FO4RankTypeSignature
   typeCount : Nat
   typeOf : Fin ρ.rank → Fin typeCount
 
+structure FO4BoundedFiberEncoding
+    (X : FO4HomogeneousInput)
+    (ρ : ColapR X.G X.R)
+    (σ : FO4RankTypeSignature X ρ) where
+  fiberBound : Nat
+  fiberSlot : Fin ρ.rank → Fin fiberBound
+  encoding_injective :
+    Function.Injective (fun i => (σ.typeOf i, fiberSlot i))
+
 theorem type_diversity_of_bounded_fiber_estimate
     {witnessRank typeCount fiberBound : Nat}
     (hbound : witnessRank ≤ fiberBound * typeCount)
