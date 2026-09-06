@@ -2,37 +2,83 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
 
-\title{Information Complexity Lower Bound for Tseitin Formulas}
+\title{Lifted Communication Lower Bound for Tseitin Search}
 \author{Inacio F. Vasquez}
 \date{}
 
 \newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
 
 \begin{document}
 \maketitle
 
-Let $G$ be a constant-degree expander on $n$ vertices.
-Let $TS(G,f)$ be the associated Tseitin formula.
+\section*{Certified Scope}
 
-\begin{theorem}
-Under any balanced partition of edges and
-uniform product distribution $\mu$,
+Let $G$ be a sufficiently strong constant-degree expander on $n$ vertices,
+and let $\ell:V(G)\to\{0,1\}$ have odd total parity.  Write
+$\mathrm{Search}_{\mathrm{Tse}(G,\ell)}$ for the associated falsified-constraint
+search problem.
 
+The unlifted claim previously stated in this manuscript,
 \[
-IC_\mu(\mathrm{Search}_{TS(G,f)}) = \Omega(n).
+IC_\mu(\mathrm{Search}_{\mathrm{Tse}(G,\ell)})=\Omega(n),
 \]
+for an arbitrary balanced edge partition and product distribution $\mu$, is
+not established by the critical-block-sensitivity literature and is therefore
+withdrawn.
+
+\section*{Known Lifted Communication Lower Bound}
+
+Let $\mathrm{VER}:\mathbb Z_4\times\mathbb Z_4\to\{0,1\}$ denote the constant-size
+versatile gadget used in the communication lifting theorem.
+
+\begin{theorem}[G\"o\"os--Pitassi, lifted Tseitin consequence]
+There exists a constant-degree graph $G$ on $n$ vertices such that, for every
+odd labelling $\ell$ and every partition $(X,Y)$ of the variables, any
+bounded-error randomized two-party communication protocol solving
+\[
+\mathrm{Search}_{X,Y}
+\bigl(\mathrm{Tse}(G,\ell)\circ \mathrm{VER}^{|E(G)|}\bigr)
+\]
+requires
+\[
+\Omega\!\left(\frac{n}{\log n}\right)
+\]
+bits of communication.
 \end{theorem}
 
-\begin{proof}[Sketch]
-Expansion guarantees existence of
-a vertex set $S$ with
-$|\partial_E(S)| = \Theta(n)$.
-The search problem embeds the parity
-of $\partial_E(S)$,
-whose information complexity under product
-distribution is $\Omega(n)$.
-Hence the search problem
-inherits the same lower bound.
-\end{proof}
+The route is via critical block sensitivity: sufficiently strong
+constant-degree expanders satisfy
+\[
+\operatorname{cbs}(\mathrm{Search}_{\mathrm{Tse}(G,\ell)})
+=\Omega\!\left(\frac{n}{\log n}\right),
+\]
+and the two-party gadget lift preserves this as a randomized communication
+lower bound up to constants.
+
+\begin{remark}[Information-complexity boundary]
+A lower bound on randomized communication complexity does not, by itself,
+imply the same lower bound on information complexity, since information cost
+is upper bounded by communication cost.  Any theorem asserting
+\[
+IC_\mu(\mathrm{Search}_{\mathrm{Tse}}\circ \mathrm{VER}^{|E|})
+=\Omega(n/\log n)
+\]
+therefore requires a separate information-complexity argument and is not
+claimed here.
+\end{remark}
+
+\begin{remark}[Resolution-size boundary]
+This lifted communication lower bound is not yet a DAG-like resolution-size
+lower bound.  A separate DAG-compatible lifting or transfer theorem is needed
+to convert the communication lower bound into a lower bound on general
+resolution length.
+\end{remark}
+
+\section*{References for the audited statement}
+
+M. G\"o\"os and T. Pitassi,
+\emph{Communication Lower Bounds via Critical Block Sensitivity},
+SIAM Journal on Computing 47(5), 2018, 1778--1806.
 
 \end{document}

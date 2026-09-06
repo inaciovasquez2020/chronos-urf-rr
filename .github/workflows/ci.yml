@@ -23,6 +23,13 @@ jobs:
           export PATH="$HOME/.elan/bin:$PATH"
           lake exe cache get || true
 
+      - name: Compile corrected Oblivion frontier
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake lean lean/Chronos/Frontier/FO4ColapROpenProblem.lean
+          lake lean lean/Chronos/Frontier/FO4SemanticCompletenessToColapRankControl.lean
+          lake lean lean/Chronos/Frontier/ClauseDualDistanceDepthReduction.lean
+
       - name: Build Lean project
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
@@ -40,6 +47,102 @@ jobs:
         run: |
           python3 -m pip install --disable-pip-version-check sympy pytest
           python3 -m pytest -q tests/test_gfe_corrected_descriptor_rankloss.py
+
+      - name: Verify exact finite-beta horizon indicial system
+        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_indicial.py
+
+      - name: Audit minimal log3 finite-beta horizon chain
+        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_log3.py
+
+      - name: Audit minimal log4 finite-beta horizon chain
+        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_log4.py
+
+      - name: Certify all finite-log finite-beta horizon obstruction
+        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_all_finite_logs.py
+
+      - name: Verify corrected exceptional horizon recurrence
+        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_exceptional.py
+
+      - name: Certify exceptional all-order formal recurrence
+        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_exceptional_all_order.py
+
+      - name: Audit exceptional discrete resonance lift
+        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_exceptional_resonance_lift.py
+
+      - name: Certify full exceptional formal horizon coverage
+        run: python3 tools/gfe/verify_gfe_corrected_finite_beta_horizon_exceptional_full_formal.py
+
+      - name: Audit exceptional accumulation-point coefficient growth
+        run: python3 tools/gfe/run_gfe_corrected_exceptional_accumulation_newton.py
+
+      - name: Propagate physical accumulation top-log seed
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_physical_seed.py
+
+      - name: Expose accumulation cone transfer coefficients
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_cone_coefficients.py
+
+      - name: Certify accumulation invariant growth cone
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_invariant_cone.py
+
+      - name: Certify one-sided Borel boundary asymptotic
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_boundary_asymptotic.py
+
+      - name: Certify cleared order-2 Borel operator
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_operator.py
+
+      - name: Audit Ore row reduction of Borel operator
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_row_reduction.py
+
+      - name: Certify reduced Borel denominator support
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_reduced_denominators.py
+
+      - name: Certify constrained Borel first-order system
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_first_order_system.py
+
+      - name: Certify physical Borel origin removability
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_origin_removability.py
+
+      - name: Certify positive-ray Borel continuation
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_positive_ray_continuation.py
+
+      - name: Audit Borel infinity Newton symbol
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_infinity_newton.py
+
+      - name: Certify weighted positive-ray Borel growth
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_positive_ray_weighted_growth.py
+
+      - name: Certify accumulation rank-loss coalescence
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_rankloss_coalescence.py
+
+      - name: Certify ordinary Borel companion
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_ordinary_companion.py
+
+      - name: Certify double-Laplace horizon reconstruction
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_double_laplace.py
+
+      - name: Certify finite-radius exterior continuation
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_continuation.py
+
+      - name: Audit physical-space infinity generator symbol
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_symbol.py
+
+      - name: Certify physical-space infinity channel data
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_channels.py
+
+      - name: Audit physical-space infinity G2 resonance
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_g2_resonance.py
+
+      - name: Certify all-order formal infinity channels
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_formal_basis.py
+
+      - name: Certify infinity Levinson hypotheses
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_levinson.py
+
+      - name: Certify infinity asymptotic integration
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_asymptotic_integration.py
+
+      - name: Certify infinity projection interface
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_projection_interface.py
 
       - name: Run remaining Python verifiers
         run: |

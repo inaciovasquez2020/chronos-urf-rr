@@ -3,20 +3,66 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{geometry}
 
-\newtheorem{theorem}{Theorem}
+\newtheorem{boundary}{Boundary}
+
+\title{Resolution Width and EntropyDepth: Audited Boundary}
+\author{URF Toolkit}
+\date{\today}
 
 \begin{document}
+\maketitle
 
-\section{Alignment with EntropyDepth}
+\section{No Automatic Width--Entropy Transfer}
 
-\begin{theorem}[Width–Entropy Alignment]
-Let $F_n$ be a Tseitin family on constant-degree expanders.
-Then any refinement process respecting resolution locality
-must incur EntropyDepth
+Let $F_n$ be a Tseitin family on constant-degree expanders.  The standard
+proof-complexity results give
 \[
-ED(F_n) \ge c n
+W(F_n)=\Omega(n)
 \]
-for some constant $c>0$.
-\end{theorem}
+and hence exponential general resolution size by the Ben-Sasson--Wigderson
+size--width theorem.
+
+These statements concern resolution refutations.  They do not, without an
+additional simulation theorem, imply a lower bound for a separate
+refinement-process invariant called EntropyDepth.
+
+\begin{boundary}[Retired alignment claim]
+The previously stated theorem
+\[
+ED(F_n)\ge c n
+\]
+for every ``refinement process respecting resolution locality'' is withdrawn.
+The phrase ``respecting resolution locality'' did not specify a formal
+simulation from such a process to a resolution refutation, nor an inequality
+relating EntropyDepth to resolution width.  Therefore the width lower bound
+cannot be transferred to EntropyDepth by definition alone.
+\end{boundary}
+
+\section{Weakest Missing Bridge}
+
+Any future width-to-EntropyDepth statement must first provide explicit data:
+
+\begin{enumerate}
+\item a formal class of refinement processes $\mathcal A$;
+\item a map sending every successful process $A\in\mathcal A$ on $F$ to a
+      resolution refutation $\Pi_A$ of $F$;
+\item a proved quantitative inequality relating the width of $\Pi_A$ to the
+      claimed EntropyDepth cost of $A$.
+\end{enumerate}
+
+Only after these objects are defined and proved can a resolution width lower
+bound be transported to an EntropyDepth lower bound.
+
+\section{Current Endpoint}
+
+For the Tseitin expander family the unconditional endpoint retained by this
+bridge is
+\[
+W(F_n)=\Omega(n)
+\qquad\Longrightarrow\qquad
+\operatorname{Size}_{\mathrm{Res}}(F_n)=2^{\Omega(n)}.
+\]
+No EntropyDepth, unrestricted algorithmic-time, P versus NP, or Clay-problem
+closure is claimed.
 
 \end{document}
