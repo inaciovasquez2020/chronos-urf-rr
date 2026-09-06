@@ -90,6 +90,17 @@ theorem type_diversity_of_bounded_fiber_estimate
       | succ n =>
           exact Nat.succ_le_succ (Nat.succ_le_succ (Nat.zero_le n))
 
+theorem type_diversity_of_bounded_fiber_encoding
+    {X : FO4HomogeneousInput}
+    {ρ : ColapR X.G X.R}
+    {σ : FO4RankTypeSignature X ρ}
+    (h : FO4BoundedFiberEncoding X ρ σ)
+    (hlarge : h.fiberBound < ρ.rank) :
+    2 ≤ σ.typeCount := by
+  apply type_diversity_of_bounded_fiber_estimate
+  · simpa [Nat.mul_comm] using rank_le_typeCount_mul_fiberBound h
+  · exact hlarge
+
 def FO4CycleOverlapRankBoundProblem : Prop :=
   ∀ Δ R : Nat,
     ∃ C : Nat,
