@@ -1,5 +1,6 @@
 import Mathlib.Data.Fintype.Card
 import Mathlib.Data.List.Basic
+import Chronos.Transcript
 
 namespace Chronos
 namespace Frontier
@@ -327,6 +328,18 @@ theorem exact_supported_parity_computation_requires_round_budget
   exact Nat.le_trans
     (exact_supported_parity_computation_requires_depth P T hexact)
     hbudget
+
+/--
+The current repository-native `buildTranscript` is definitionally independent
+of both Boolean inputs: every invocation returns the same empty transcript.
+This certifies why it cannot yet supply the query-tree compilation hypothesis.
+-/
+theorem repository_buildTranscript_input_independent
+    {V : Type} {R : Nat}
+    (h1 h2 g1 g2 : V → Bool) :
+    Chronos.buildTranscript (_R := R) h1 h2 =
+      Chronos.buildTranscript (_R := R) g1 g2 := by
+  rfl
 
 def FrontierStatus : String :=
   "DETERMINISTIC_ADAPTIVE_CLAUSE_DUAL_DEPTH_WALL"
