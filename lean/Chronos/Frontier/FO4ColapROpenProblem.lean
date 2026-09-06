@@ -1,4 +1,5 @@
 import Chronos.Frontier.FO4HomogeneousOpenProblem
+import Mathlib.Data.Fintype.Card
 
 namespace Chronos
 namespace Frontier
@@ -56,6 +57,18 @@ structure FO4BoundedFiberEncoding
   fiberSlot : Fin ρ.rank → Fin fiberBound
   encoding_injective :
     Function.Injective (fun i => (σ.typeOf i, fiberSlot i))
+
+theorem rank_le_typeCount_mul_fiberBound
+    {X : FO4HomogeneousInput}
+    {ρ : ColapR X.G X.R}
+    {σ : FO4RankTypeSignature X ρ}
+    (h : FO4BoundedFiberEncoding X ρ σ) :
+    ρ.rank ≤ σ.typeCount * h.fiberBound := by
+  have hcard :=
+    Fintype.card_le_of_injective
+      (fun i : Fin ρ.rank => (σ.typeOf i, h.fiberSlot i))
+      h.encoding_injective
+  simpa [Fintype.card_prod] using hcard
 
 theorem type_diversity_of_bounded_fiber_estimate
     {witnessRank typeCount fiberBound : Nat}
