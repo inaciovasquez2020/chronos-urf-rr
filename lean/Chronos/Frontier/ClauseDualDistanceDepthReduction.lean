@@ -244,14 +244,58 @@ theorem eval_eq_of_agree_queriesOn
 
 end ClauseQueryTree
 
+/--
+Deterministic adaptive parity wall.  Any clause-query tree whose worst-case
+query depth is strictly smaller than the parity-support size has two inputs
+which reach the same output leaf while the supported target parity differs.
+-/
+theorem adaptive_query_tree_leaves_opposite_parity_pair
+    {m d : Nat} {α : Type}
+    (P : SupportedParityTarget m d)
+    (T : ClauseQueryTree m α)
+    (hdepth : ClauseQueryTree.depth T < d) :
+    ∃ x y : Fin m → Bool,
+      ClauseQueryTree.eval T x = ClauseQueryTree.eval T y ∧
+      P.target x ≠ P.target y := by
+  let x : Fin m → Bool := fun _ => false
+  let path : List (Fin m) := ClauseQueryTree.queriesOn T x
+  have hpath_le : path.length ≤ ClauseQueryTree.depth T := by
+    simpa [path] using ClauseQueryTree.queriesOn_length_le_depth T x
+  have hpath_lt : path.length < d := Nat.lt_of_le_of_lt hpath_le hdepth
+  let queries : Fin path.length → Fin m := fun j => path.get j
+  rcases exists_unqueried_support_coordinate P.support queries hpath_lt with ⟨i, hi⟩
+  let y : Fin m → Bool := flipClauseBit x (P.support.coord i)
+  have hagree :
+      ∀ q : Fin m, q ∈ ClauseQueryTree.queriesOn T x → x q = y q := by
+    intro q hmem
+    have hmemPath : q ∈ path := by
+      simpa [path] using hmem
+    rcases List.mem_iff_get.mp hmemPath with ⟨j, hj⟩
+    have hsneq : P.support.coord i ≠ q := by
+      intro hsq
+      apply hi j
+      calc
+        P.support.coord i = q := hsq
+        _ = path.get j := hj.symm
+    have hne : q ≠ P.support.coord i := fun h => hsneq h.symm
+    simp [y, flipClauseBit, hne]
+  have heval : ClauseQueryTree.eval T x = ClauseQueryTree.eval T y :=
+    ClauseQueryTree.eval_eq_of_agree_queriesOn T x y hagree
+  have hyTarget : P.target y = !(P.target x) := by
+    simpa [y] using P.flip_support_changes x i
+  have htarget : P.target x ≠ P.target y := by
+    rw [hyTarget]
+    cases h : P.target x <;> simp [h]
+  exact ⟨x, y, heval, htarget⟩
+
 def FrontierStatus : String :=
-  "CONDITIONAL_CLAUSE_DUAL_DEPTH_REDUCTION"
+  "DETERMINISTIC_ADAPTIVE_CLAUSE_DUAL_DEPTH_WALL"
 
 def Boundary : String :=
-  "The arithmetic depth reduction, parity-support query pigeonhole, fixed-query opposite-parity collision, and deterministic adaptive-query path semantics are proved. The adaptive parity collision theorem and probability/constant-bias transcript lift are not yet proved; no unconditional EntropyDepth, Oblivion, P vs NP, or Clay-problem closure is claimed."
+  "The arithmetic depth reduction, parity-support query pigeonhole, fixed-query collision, adaptive query-path semantics, and deterministic adaptive opposite-parity collision are proved. A corollary from exact parity computation to depth >= d and any randomized/constant-bias transcript lift remain to be proved; no unconditional EntropyDepth, Oblivion, P vs NP, or Clay-problem closure is claimed."
 
 def NextMissingLemma : String :=
-  "AdaptiveParityQueryTreeWall: combine queriesOn_length_le_depth, List.mem_iff_get, exists_unqueried_support_coordinate, and eval_eq_of_agree_queriesOn to construct two same-leaf inputs of opposite supported parity whenever tree depth < d."
+  "Derive depth >= d for any deterministic adaptive tree computing a SupportedParityTarget exactly, then decide whether the target application needs a randomized/constant-bias lifting theorem."
 
 end ClauseDualDistanceDepthReduction
 end Frontier
