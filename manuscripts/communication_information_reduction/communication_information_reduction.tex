@@ -2,11 +2,12 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
 
-\title{Information Complexity Implies Resolution Length Lower Bounds}
+\title{Information Complexity Gives a Resolution Length--Space Tradeoff}
 \author{Inacio F. Vasquez}
 \date{}
 
 \newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
 
 \begin{document}
 \maketitle
@@ -14,34 +15,68 @@
 \section*{Reduction}
 
 Let $F$ be an unsatisfiable CNF and
-$\mathrm{Search}_F$ its associated search problem.
+$\mathrm{Search}_F$ its associated falsified-clause search problem.
+Fix a partition of the variables between two parties and a distribution $\mu$
+on total assignments.
 
-\begin{theorem}
-For any product distribution $\mu$,
+Let $\pi$ be a resolution refutation of $F$ with length $L(\pi)$ and
+clause space $S(\pi)$.
+
+\begin{theorem}[Space-sensitive proof-to-communication reduction]
+The transcript-information complexity of the search problem satisfies
 \[
 IC_\mu(\mathrm{Search}_F)
-\le O(\log L(F)).
+\le O\!\left(S(\pi)\log L(\pi)\right).
 \]
 \end{theorem}
 
-\begin{proof}[Sketch]
-A resolution refutation of length $L$
-induces a deterministic protocol
-that walks the refutation DAG.
-Each resolution pivot requires
-one bit of communication.
-Balancing the DAG gives depth $O(\log L)$.
-Hence communication complexity
-$CC(F) \le O(\log L)$.
-Since information complexity
-is bounded by communication complexity,
-the result follows.
+\begin{proof}[Reduction sketch]
+Use the standard space-sensitive simulation of a resolution refutation by a
+deterministic two-party protocol for the falsified-clause search problem.
+A length-$L$ refutation executable in clause space $S$ yields a protocol of
+communication cost $O(S\log L)$ (and $O(\log L)$ rounds).
+For any input distribution $\mu$, transcript information is at most transcript
+entropy, which in turn is at most the worst-case number of communicated bits.
+Therefore
+\[
+IC_\mu(\mathrm{Search}_F)
+\le CC(\mathrm{Search}_F)
+\le O(S(\pi)\log L(\pi)).
+\]
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}[Length--space consequence]
+Every resolution refutation $\pi$ satisfies
 \[
-L(F) \ge 2^{\Omega(IC_\mu(\mathrm{Search}_F))}.
+S(\pi)\log L(\pi)
+\ge \Omega\!\left(IC_\mu(\mathrm{Search}_F)\right).
+\]
+In particular, when $S(\pi)>0$,
+\[
+L(\pi)
+\ge
+2^{\Omega\!\left(IC_\mu(\mathrm{Search}_F)/S(\pi)\right)}.
 \]
 \end{corollary}
+
+\section*{Audit boundary}
+
+The stronger size-only implication
+\[
+IC_\mu(\mathrm{Search}_F)\le O(\log L(F))
+\]
+does not follow from general DAG-like resolution merely by ``balancing the
+DAG.''  Resolution size and depth can exhibit nontrivial tradeoffs, so the
+space factor cannot be silently discarded in the general reduction.
+
+Consequently, even a linear information-complexity lower bound
+$IC_\mu(\mathrm{Search}_F)=\Omega(n)$ gives only
+\[
+L(\pi)\ge 2^{\Omega(n/S(\pi))}
+\]
+through this route.  An exponential resolution-length lower bound therefore
+requires an additional suitable upper bound on the relevant proof space, or a
+different reduction that genuinely controls length without this space loss.
+No such additional theorem is claimed here.
 
 \end{document}

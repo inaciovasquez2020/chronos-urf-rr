@@ -2,37 +2,112 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
 
-\title{Information Complexity Lower Bound for Tseitin Formulas}
+\title{Raw Tseitin Edge-Partition Search Reduces to Universal Relation}
 \author{Inacio F. Vasquez}
 \date{}
 
 \newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
 
 \begin{document}
 \maketitle
 
-Let $G$ be a constant-degree expander on $n$ vertices.
-Let $TS(G,f)$ be the associated Tseitin formula.
-
-\begin{theorem}
-Under any balanced partition of edges and
-uniform product distribution $\mu$,
-
+Let $G=(V,E)$ be a finite graph with $|V|=n$, and let
+$f:V\to\{0,1\}$ have odd parity.  Let $TS(G,f)$ be the associated
+Tseitin contradiction.  Partition the edge variables arbitrarily as
 \[
-IC_\mu(\mathrm{Search}_{TS(G,f)}) = \Omega(n).
+E=E_A\sqcup E_B,
 \]
+with Alice receiving the assignment on $E_A$ and Bob the assignment on
+$E_B$.
+
+\section*{Reduction to Universal Relation}
+
+For a total edge assignment $x$, define the two vertex strings
+$a,b\in\{0,1\}^{V}$ by
+\[
+a_v
+:=
+\bigoplus_{\substack{e\in E_A\\ e\ni v}} x_e,
+\qquad
+b_v
+:=
+f(v)\oplus
+\bigoplus_{\substack{e\in E_B\\ e\ni v}} x_e.
+\]
+
+\begin{theorem}[Raw Tseitin search is a Universal-Relation instance]
+A vertex $v$ violates its Tseitin parity constraint if and only if
+\[
+a_v\ne b_v.
+\]
+Moreover $a\ne b$ for every total edge assignment.
 \end{theorem}
 
-\begin{proof}[Sketch]
-Expansion guarantees existence of
-a vertex set $S$ with
-$|\partial_E(S)| = \Theta(n)$.
-The search problem embeds the parity
-of $\partial_E(S)$,
-whose information complexity under product
-distribution is $\Omega(n)$.
-Hence the search problem
-inherits the same lower bound.
+\begin{proof}
+The Tseitin constraint at $v$ is
+\[
+\bigoplus_{e\ni v}x_e=f(v).
+\]
+Splitting the incident edges between $E_A$ and $E_B$ shows that this
+constraint fails exactly when $a_v\ne b_v$.
+
+It remains to prove that some such vertex always exists.  XOR over all
+vertices.  Every edge variable appears exactly twice in the total incidence
+sum, so all edge contributions cancel.  Therefore
+\[
+\bigoplus_{v\in V}(a_v\oplus b_v)
+=
+\bigoplus_{v\in V} f(v)
+=1.
+\]
+Hence $a$ and $b$ differ in at least one coordinate.
+Thus finding a violated Tseitin vertex is exactly an instance of the
+Universal Relation: given distinct Boolean strings, find a coordinate on
+which they differ.
 \end{proof}
+
+\begin{corollary}[Randomized communication upper bound]
+The public-coin randomized communication complexity of raw edge-partition
+Tseitin search is polylogarithmic in $n$; in particular the standard
+Universal-Relation protocol gives
+\[
+R^{\mathrm{pub}}(\mathrm{Search}_{TS(G,f)})
+\le O(\log^2 n).
+\]
+If $TS(G,f)$ is expanded into constant-width CNF on a constant-degree graph,
+then after a violated vertex is found only $O(1)$ additional communication is
+needed to identify a violated local CNF clause.
+\end{corollary}
+
+\begin{corollary}[Information-complexity consequence]
+For any input distribution $\mu$, any transcript-information complexity
+obtained by infimizing over such randomized protocols satisfies
+\[
+IC_\mu(\mathrm{Search}_{TS(G,f)})
+\le O(\log^2 n).
+\]
+\end{corollary}
+
+\section*{Audit boundary}
+
+The previously stated claim
+\[
+IC_\mu(\mathrm{Search}_{TS(G,f)})=\Omega(n)
+\]
+for raw Tseitin search under an arbitrary balanced edge partition and a
+uniform product distribution is therefore false under the standard
+randomized information-complexity interpretation.  Expansion and balance do
+not repair this raw model: the reduction above works for every graph and every
+edge partition.
+
+Known strong communication lower bounds for Tseitin in proof complexity use
+an appropriate \emph{lifted} communication problem or another strengthened
+search model.  Such a lifted theorem must be stated with its gadget,
+distribution, and communication model explicitly; it cannot be substituted
+for the raw edge-partition problem treated here.
+
+No resolution-size lower bound, P vs NP conclusion, or Clay-problem closure is
+claimed by this note.
 
 \end{document}

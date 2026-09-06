@@ -2,7 +2,7 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
 
-\title{Communication Information Complexity as the Surviving Information-Theoretic Route}
+\title{Communication Information Complexity: Raw Tseitin Closed, Lifted Route Open}
 \author{Inacio F. Vasquez}
 \date{}
 
@@ -22,30 +22,64 @@ Define $\mathrm{Search}_F(A)$ to output a violated clause under assignment $A$.
 Fix a partition $X \cup Y$ of variables.
 
 \begin{definition}
-The information complexity of $\mathrm{Search}_F$ under distribution $\mu$ is
-
+The transcript-information quantity used in this note is
 \[
 IC_\mu(\mathrm{Search}_F)
 =
 \inf_{\Pi}
-I_\mu(A ; \mathrm{Transcript}_\Pi(A)).
+I_\mu(A ; \mathrm{Transcript}_\Pi(A)),
 \]
+where the infimum is taken over the protocol class specified by the intended
+communication model.
 \end{definition}
 
-\section*{Structural Claim}
+\section*{Raw Tseitin Boundary}
 
-\begin{theorem}
-For Tseitin formulas on constant-degree expanders,
+For the direct edge-variable partition of a Tseitin contradiction, Alice and
+Bob can each compress their local edge assignment to a vertex-parity string.
+A violated Tseitin vertex is exactly a coordinate where these two strings
+differ.  Thus raw Tseitin search reduces to the Universal Relation.
 
+Consequently, in the standard public-coin randomized communication model,
 \[
-IC_\mu(\mathrm{Search}_{TS(G,f)}) = \Omega(n).
+IC_\mu(\mathrm{Search}_{TS(G,f)})
+\le O(\log^2 n)
 \]
-\end{theorem}
+for every input distribution $\mu$ through the standard polylogarithmic
+Universal-Relation protocol.  In particular, the previously stated raw claim
+\[
+IC_\mu(\mathrm{Search}_{TS(G,f)})=\Omega(n)
+\]
+is not valid in this model.  Expansion and a balanced edge partition do not
+remove this obstruction.
 
-\noindent
-This invariant does not collapse under multiplicity,
-is not support-symmetric,
-and survives the impossibility theorem
-for transcript-based entropy measures.
+\section*{Surviving Candidate Route}
+
+Strong Tseitin communication lower bounds in proof complexity are obtained
+for an appropriately \emph{lifted} search problem rather than for the raw
+edge partition.  A valid information-complexity route must therefore specify
+an explicit gadget $g$, distribution $\mu$, and protocol model, and prove a
+lower bound of the form
+\[
+IC_\mu(\mathrm{Search}_{TS(G,f)}\circ g)\ge L(n)
+\]
+inside that exact model.
+
+Only after such a lower bound is established may it be combined with a
+proof-to-communication simulation.  For general DAG-like resolution, the
+currently audited simulation is space-sensitive:
+\[
+IC_\mu(\mathrm{Search}_F)
+\le O(S(\pi)\log L(\pi)).
+\]
+Hence this route naturally yields a length--space tradeoff unless a stronger
+proof-system-specific reduction is supplied.
+
+\section*{Status}
+
+The raw Tseitin linear-information claim is closed negatively.  The lifted
+information-complexity route remains an explicit open target; no linear lifted
+IC theorem is asserted here.  No unconditional resolution-size lower bound,
+P vs NP conclusion, or Clay-problem closure follows from this pivot note.
 
 \end{document}
