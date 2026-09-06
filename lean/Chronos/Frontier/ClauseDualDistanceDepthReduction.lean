@@ -288,6 +288,29 @@ theorem adaptive_query_tree_leaves_opposite_parity_pair
     cases h : P.target x <;> simp [h]
   exact ⟨x, y, heval, htarget⟩
 
+/--
+Exact deterministic computation of a target with a `d`-coordinate parity
+support requires worst-case adaptive query depth at least `d`.
+-/
+theorem exact_supported_parity_computation_requires_depth
+    {m d : Nat}
+    (P : SupportedParityTarget m d)
+    (T : ClauseQueryTree m Bool)
+    (hexact : ∀ x : Fin m → Bool, ClauseQueryTree.eval T x = P.target x) :
+    d ≤ ClauseQueryTree.depth T := by
+  cases Nat.lt_or_ge (ClauseQueryTree.depth T) d with
+  | inl hlt =>
+      rcases adaptive_query_tree_leaves_opposite_parity_pair P T hlt with
+        ⟨x, y, heval, htarget⟩
+      have hsame : P.target x = P.target y := by
+        calc
+          P.target x = ClauseQueryTree.eval T x := (hexact x).symm
+          _ = ClauseQueryTree.eval T y := heval
+          _ = P.target y := hexact y
+      exact (htarget hsame).elim
+  | inr hge =>
+      exact hge
+
 def FrontierStatus : String :=
   "DETERMINISTIC_ADAPTIVE_CLAUSE_DUAL_DEPTH_WALL"
 
