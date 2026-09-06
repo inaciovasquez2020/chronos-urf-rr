@@ -1,4 +1,5 @@
 import Mathlib.Data.Fintype.Card
+import Mathlib.Data.List.Basic
 
 namespace Chronos
 namespace Frontier
@@ -153,14 +154,104 @@ theorem fixed_queries_leave_opposite_parity_pair
     rw [hy]
     cases h : P.target x <;> simp [h]
 
+/-- A deterministic adaptive decision tree querying clause-side Boolean coordinates. -/
+inductive ClauseQueryTree (m : Nat) (α : Type) where
+  | leaf : α → ClauseQueryTree m α
+  | node : Fin m → ClauseQueryTree m α → ClauseQueryTree m α → ClauseQueryTree m α
+
+namespace ClauseQueryTree
+
+/-- Maximum number of queries on any root-to-leaf path. -/
+def depth {m : Nat} {α : Type} : ClauseQueryTree m α → Nat
+  | .leaf _ => 0
+  | .node _ left right => Nat.succ (Nat.max (depth left) (depth right))
+
+/-- Evaluate the adaptive query tree on one Boolean instance. -/
+def eval {m : Nat} {α : Type} : ClauseQueryTree m α → (Fin m → Bool) → α
+  | .leaf value, _ => value
+  | .node query left right, x =>
+      match x query with
+      | false => eval left x
+      | true => eval right x
+
+/-- Ordered query path followed by one Boolean instance. -/
+def queriesOn {m : Nat} {α : Type} : ClauseQueryTree m α → (Fin m → Bool) → List (Fin m)
+  | .leaf _, _ => []
+  | .node query left right, x =>
+      match x query with
+      | false => query :: queriesOn left x
+      | true => query :: queriesOn right x
+
+/-- Every realized query path has length at most the tree depth. -/
+theorem queriesOn_length_le_depth
+    {m : Nat} {α : Type}
+    (T : ClauseQueryTree m α)
+    (x : Fin m → Bool) :
+    (queriesOn T x).length ≤ depth T := by
+  induction T with
+  | leaf value =>
+      simp [queriesOn, depth]
+  | node query left right ihLeft ihRight =>
+      cases hq : x query with
+      | false =>
+          simpa [queriesOn, depth, hq] using
+            Nat.succ_le_succ (Nat.le_trans ihLeft (Nat.le_max_left _ _))
+      | true =>
+          simpa [queriesOn, depth, hq] using
+            Nat.succ_le_succ (Nat.le_trans ihRight (Nat.le_max_right _ _))
+
+/--
+If `y` agrees with `x` on every coordinate queried along the path followed by
+`x`, then the adaptive tree follows the same branches and returns the same output.
+-/
+theorem eval_eq_of_agree_queriesOn
+    {m : Nat} {α : Type}
+    (T : ClauseQueryTree m α) :
+    ∀ x y : Fin m → Bool,
+      (∀ q : Fin m, q ∈ queriesOn T x → x q = y q) →
+      eval T x = eval T y := by
+  induction T with
+  | leaf value =>
+      intro x y hagree
+      rfl
+  | node query left right ihLeft ihRight =>
+      intro x y hagree
+      cases hx : x query with
+      | false =>
+          have hq : x query = y query :=
+            hagree query (by simp [queriesOn, hx])
+          have hy : y query = false := by
+            calc
+              y query = x query := hq.symm
+              _ = false := hx
+          have hsub :
+              ∀ q : Fin m, q ∈ queriesOn left x → x q = y q := by
+            intro q hmem
+            exact hagree q (by simp [queriesOn, hx, hmem])
+          simpa [eval, hx, hy] using ihLeft x y hsub
+      | true =>
+          have hq : x query = y query :=
+            hagree query (by simp [queriesOn, hx])
+          have hy : y query = true := by
+            calc
+              y query = x query := hq.symm
+              _ = true := hx
+          have hsub :
+              ∀ q : Fin m, q ∈ queriesOn right x → x q = y q := by
+            intro q hmem
+            exact hagree q (by simp [queriesOn, hx, hmem])
+          simpa [eval, hx, hy] using ihRight x y hsub
+
+end ClauseQueryTree
+
 def FrontierStatus : String :=
   "CONDITIONAL_CLAUSE_DUAL_DEPTH_REDUCTION"
 
 def Boundary : String :=
-  "The arithmetic depth reduction, parity-support query pigeonhole, and fixed-query opposite-parity collision are proved. The adaptive decision-tree transport and probability/constant-bias transcript statement are not proved here; no unconditional EntropyDepth, Oblivion, P vs NP, or Clay-problem closure is claimed."
+  "The arithmetic depth reduction, parity-support query pigeonhole, fixed-query opposite-parity collision, and deterministic adaptive-query path semantics are proved. The adaptive parity collision theorem and probability/constant-bias transcript lift are not yet proved; no unconditional EntropyDepth, Oblivion, P vs NP, or Clay-problem closure is claimed."
 
 def NextMissingLemma : String :=
-  "AdaptiveParityQueryTreeWall: prove that a deterministic adaptive clause-query tree of depth < d has two inputs following the same leaf with opposite supported parity; then lift, if needed, to randomized/constant-bias transcript semantics."
+  "AdaptiveParityQueryTreeWall: combine queriesOn_length_le_depth, List.mem_iff_get, exists_unqueried_support_coordinate, and eval_eq_of_agree_queriesOn to construct two same-leaf inputs of opposite supported parity whenever tree depth < d."
 
 end ClauseDualDistanceDepthReduction
 end Frontier
