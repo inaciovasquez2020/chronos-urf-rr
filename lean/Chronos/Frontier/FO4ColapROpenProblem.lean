@@ -39,8 +39,8 @@ structure F2WeightedOverlapRelation (G : GraphDatum) (R : Nat) where
 def ColapR (G : GraphDatum) (R : Nat) : Type :=
   F2WeightedOverlapRelation G R
 
-def ColapRankBoundedAt (_X : FO4HomogeneousInput) (C : Nat) : Prop :=
-  ∃ rank : Nat, rank ≤ C
+def ColapRankBoundedAt (X : FO4HomogeneousInput) (C : Nat) : Prop :=
+  ∀ ρ : ColapR X.G X.R, ρ.rank ≤ C
 
 def FO4CycleOverlapRankBoundProblem : Prop :=
   ∀ Δ R : Nat,
