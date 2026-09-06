@@ -311,14 +311,31 @@ theorem exact_supported_parity_computation_requires_depth
   | inr hge =>
       exact hge
 
+/--
+If an `r`-round clause-local computation with per-round query budget `q`
+compiles to a deterministic query tree of depth at most `r*q`, exact
+computation of a `d`-supported parity target forces `d ≤ r*q`.
+-/
+theorem exact_supported_parity_computation_requires_round_budget
+    {m d : Nat}
+    (P : SupportedParityTarget m d)
+    (T : ClauseQueryTree m Bool)
+    (rounds perRoundSupport : Nat)
+    (hbudget : ClauseQueryTree.depth T ≤ rounds * perRoundSupport)
+    (hexact : ∀ x : Fin m → Bool, ClauseQueryTree.eval T x = P.target x) :
+    d ≤ rounds * perRoundSupport := by
+  exact Nat.le_trans
+    (exact_supported_parity_computation_requires_depth P T hexact)
+    hbudget
+
 def FrontierStatus : String :=
   "DETERMINISTIC_ADAPTIVE_CLAUSE_DUAL_DEPTH_WALL"
 
 def Boundary : String :=
-  "The arithmetic depth reduction, parity-support query pigeonhole, fixed-query collision, adaptive query-path semantics, and deterministic adaptive opposite-parity collision are proved. A corollary from exact parity computation to depth >= d and any randomized/constant-bias transcript lift remain to be proved; no unconditional EntropyDepth, Oblivion, P vs NP, or Clay-problem closure is claimed."
+  "The arithmetic depth reduction, parity-support query pigeonhole, fixed-query collision, adaptive query-path semantics, deterministic adaptive opposite-parity collision, exact depth lower bound, and conditional round-budget lower bound are proved. The repository-native EFTranscript builder is currently degenerate and does not yet supply the required compilation-to-query-tree theorem; any randomized/constant-bias lift also remains open. No unconditional EntropyDepth, Oblivion, P vs NP, or Clay-problem closure is claimed."
 
 def NextMissingLemma : String :=
-  "Derive depth >= d for any deterministic adaptive tree computing a SupportedParityTarget exactly, then decide whether the target application needs a randomized/constant-bias lifting theorem."
+  "Replace or strengthen the degenerate repository-native EFTranscript semantics so an r-round q-local computation compiles to a ClauseQueryTree with depth ≤ r*q, then connect the target application to SupportedParityTarget."
 
 end ClauseDualDistanceDepthReduction
 end Frontier
