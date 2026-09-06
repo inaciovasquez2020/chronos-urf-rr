@@ -38,10 +38,11 @@ theorem success_forces_cumulative_support_reaches_dual_distance
     {X : ClauseLocalDepthInput}
     (hsuccess : Success X) :
     X.dualDistance ≤ cumulativeClauseSupport X := by
-  by_contra hnot
-  have hlt : cumulativeClauseSupport X < X.dualDistance :=
-    Nat.lt_of_not_ge hnot
-  exact hwall X hlt hsuccess
+  cases Nat.lt_or_ge (cumulativeClauseSupport X) X.dualDistance with
+  | inl hlt =>
+      exact (hwall X hlt hsuccess).elim
+  | inr hge =>
+      exact hge
 
 /--
 Equivalent fail-closed form used before the threshold is reached.
