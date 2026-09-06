@@ -42,6 +42,26 @@ def ColapR (G : GraphDatum) (R : Nat) : Type :=
 def ColapRankBoundedAt (X : FO4HomogeneousInput) (C : Nat) : Prop :=
   ∀ ρ : ColapR X.G X.R, ρ.rank ≤ C
 
+theorem type_diversity_of_bounded_fiber_estimate
+    {witnessRank typeCount fiberBound : Nat}
+    (hbound : witnessRank ≤ fiberBound * typeCount)
+    (hlarge : fiberBound < witnessRank) :
+    2 ≤ typeCount := by
+  cases typeCount with
+  | zero =>
+      have hw : witnessRank = 0 := by
+        exact Nat.eq_zero_of_le_zero (by simpa using hbound)
+      subst witnessRank
+      exact (Nat.not_lt_zero fiberBound hlarge).elim
+  | succ n =>
+      cases n with
+      | zero =>
+          have hw : witnessRank ≤ fiberBound := by
+            simpa using hbound
+          exact (Nat.not_lt_of_ge hw hlarge).elim
+      | succ n =>
+          exact Nat.succ_le_succ (Nat.succ_le_succ (Nat.zero_le n))
+
 def FO4CycleOverlapRankBoundProblem : Prop :=
   ∀ Δ R : Nat,
     ∃ C : Nat,
