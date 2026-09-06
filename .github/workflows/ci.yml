@@ -147,6 +147,9 @@ jobs:
       - name: Certify growing dual infinity tail enclosure
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_cgrow_dual_tail.py
 
+      - name: Certify growing-dual tail enclosure
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_growing_dual.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
