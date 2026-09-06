@@ -23,6 +23,13 @@ jobs:
           export PATH="$HOME/.elan/bin:$PATH"
           lake exe cache get || true
 
+      - name: Compile corrected Oblivion frontier
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake lean lean/Chronos/Frontier/FO4ColapROpenProblem.lean
+          lake lean lean/Chronos/Frontier/FO4SemanticCompletenessToColapRankControl.lean
+          lake lean lean/Chronos/Frontier/ClauseDualDistanceDepthReduction.lean
+
       - name: Build Lean project
         run: |
           export PATH="$HOME/.elan/bin:$PATH"

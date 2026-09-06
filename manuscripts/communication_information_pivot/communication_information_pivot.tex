@@ -2,50 +2,85 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
 
-\title{Communication Information Complexity as the Surviving Information-Theoretic Route}
+\title{Communication Complexity Pivot: Audited Scope}
 \author{Inacio F. Vasquez}
 \date{}
 
 \newtheorem{definition}{Definition}
-\newtheorem{theorem}{Theorem}
+\newtheorem{boundary}{Boundary}
 
 \begin{document}
 \maketitle
 
 \section*{Search Problem}
 
-Let $F$ be an unsatisfiable CNF.
-Define $\mathrm{Search}_F(A)$ to output a violated clause under assignment $A$.
+Let $F$ be an unsatisfiable CNF.  Define $\mathrm{Search}_F(A)$ to output a
+clause of $F$ violated by assignment $A$.
 
 \section*{Information Complexity}
 
-Fix a partition $X \cup Y$ of variables.
+Fix a two-party partition of the input variables and an input distribution
+$\mu$.  For a protocol $\Pi$, its information cost may be measured by the
+mutual information between the hidden input and the protocol transcript.  An
+information-complexity lower bound is potentially useful only after a separate
+transfer theorem connects that information measure to the proof-complexity
+object being lower-bounded.
 
-\begin{definition}
-The information complexity of $\mathrm{Search}_F$ under distribution $\mu$ is
+\section*{Withdrawn Unlifted Claim}
 
+\begin{boundary}
+The previously stated theorem
 \[
-IC_\mu(\mathrm{Search}_F)
-=
-\inf_{\Pi}
-I_\mu(A ; \mathrm{Transcript}_\Pi(A)).
+IC_\mu(\mathrm{Search}_{\mathrm{Tse}(G,\ell)})=\Omega(n)
 \]
-\end{definition}
+for Tseitin formulas on constant-degree expanders is withdrawn.  The
+critical-block-sensitivity results used to motivate this claim prove hardness
+for a suitable two-party \emph{gadget lift}; they do not establish the above
+unlifted information-complexity statement for an arbitrary balanced edge
+partition and product distribution.
+\end{boundary}
 
-\section*{Structural Claim}
+\section*{Known Lifted Communication Statement}
 
-\begin{theorem}
-For Tseitin formulas on constant-degree expanders,
-
+For sufficiently strong constant-degree expanders, Tseitin search has critical
+block sensitivity
 \[
-IC_\mu(\mathrm{Search}_{TS(G,f)}) = \Omega(n).
+\Omega\!\left(\frac{n}{\log n}\right).
 \]
-\end{theorem}
+Composing the edge variables with the constant-size versatile gadget
+$\mathrm{VER}$ yields a two-party search problem for which every bounded-error
+randomized communication protocol requires
+\[
+\Omega\!\left(\frac{n}{\log n}\right)
+\]
+bits of communication.  This is a randomized communication-complexity lower
+bound for the lifted problem, not an information-complexity lower bound for the
+unlifted problem.
 
-\noindent
-This invariant does not collapse under multiplicity,
-is not support-symmetric,
-and survives the impossibility theorem
-for transcript-based entropy measures.
+\section*{DAG-Like Proof-Complexity Boundary}
+
+Ordinary transcript information complexity does not by itself lower-bound the
+size of a general resolution DAG.  A general resolution-size route needs a
+DAG-compatible invariant or a proved lifting theorem with the correct
+implication direction.
+
+The repository already has an unconditional proof-complexity endpoint for the
+same Tseitin expander family:
+\[
+W(F_n)=\Omega(n)
+\quad\Longrightarrow\quad
+\operatorname{Size}_{\mathrm{Res}}(F_n)=2^{\Omega(n)},
+\]
+using the standard expansion width lower bound and the
+Ben-Sasson--Wigderson size--width theorem.
+
+\section*{Current Status}
+
+Communication information complexity remains a possible research direction
+only if a new, explicitly proved information-cost lower bound and a
+DAG-compatible transfer theorem are supplied.  It is not presently a certified
+replacement for the refuted Oblivion/FO-locality route.
+
+No EntropyDepth, P versus NP, or Clay-problem closure is claimed.
 
 \end{document}

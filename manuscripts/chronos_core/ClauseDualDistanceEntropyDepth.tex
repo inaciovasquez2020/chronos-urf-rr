@@ -21,26 +21,29 @@ d^\perp_{\mathrm{cl}}(A) := \min\{\|w\|_0 : w \in \mathcal{C}^\perp_{\mathrm{cl}
 Fix a nonzero $w \in \mathcal{C}^\perp_{\mathrm{cl}}(A)$ and set $s := \|w\|_0$.
 Let $\mu_0,\mu_1$ be the uniform distributions on $\mathbb{F}_2^m$ conditioned on $\langle w,b\rangle = 0$ and $\langle w,b\rangle = 1$, respectively.
 
-\begin{proposition}[Local indistinguishability under a clause-parity cut]
+\begin{proposition}[Exact local indistinguishability under a clause-parity cut]
 Let $T \subseteq [m]$ with $|T| \le s-1$.
 For any Boolean test $f:\mathbb{F}_2^T \to \{0,1\}$, viewing $f$ as a function on $\mathbb{F}_2^m$ via restriction to coordinates in $T$, one has
 \[
-\left|\mathbb{P}_{b\sim \mu_0}[f(b_T)=1] - \mathbb{P}_{b\sim \mu_1}[f(b_T)=1]\right|
-\le 2^{-(s-|T|)}.
+\mathbb{P}_{b\sim \mu_0}[f(b_T)=1]
+=
+\mathbb{P}_{b\sim \mu_1}[f(b_T)=1].
 \]
+Equivalently, every $T$-measurable Boolean test has parity-cut bias exactly zero.
 Moreover, $\|\mu_0-\mu_1\|_{\mathrm{TV}}=1$.
 \end{proposition}
 
 \begin{proof}
 Let $U := \mathrm{supp}(w)$ so $|U|=s$.
 Fix any $a \in \mathbb{F}_2^T$ and count completions $b \in \mathbb{F}_2^m$ with $b_T=a$.
-If $T \not\supseteq U$, then there exists at least one free coordinate in $U\setminus T$, so among completions with $b_T=a$, exactly half satisfy $\langle w,b\rangle=0$ and half satisfy $\langle w,b\rangle=1$ after fixing the remaining $U\cap T$ bits; the remaining coordinates outside $U$ are unconstrained.
-More explicitly, for fixed $a$, the number of completions with $\langle w,b\rangle=0$ equals the number with $\langle w,b\rangle=1$ and both equal $2^{m-|T|-1}$ if $U\not\subseteq T$; when $|T|\le s-1$ we have $U\not\subseteq T$.
-Thus for each $a$,
+Since $|T|\le s-1$, one has $U\not\subseteq T$, so choose a free coordinate in $U\setminus T$.
+Flipping that coordinate is a bijection between completions with $\langle w,b\rangle=0$ and completions with $\langle w,b\rangle=1$ while leaving $b_T=a$ unchanged.
+Hence
 \[
-\left|\mu_0[b_T=a]-\mu_1[b_T=a]\right| \le 2^{-(s-|T|)} \cdot 2^{-|T|}.
+\mu_0[b_T=a]=\mu_1[b_T=a]
 \]
-Summing over the level sets of $f$ yields the displayed bias bound.
+for every $a\in\mathbb F_2^T$.
+Summing over the level set $f^{-1}(1)$ gives the displayed equality.
 Finally, $\mu_0$ and $\mu_1$ have disjoint supports since $\langle w,b\rangle$ is constant on each, hence $\|\mu_0-\mu_1\|_{\mathrm{TV}}=1$.
 \end{proof}
 
@@ -48,38 +51,53 @@ Finally, $\mu_0$ and $\mu_1$ have disjoint supports since $\langle w,b\rangle$ i
 Let $A\in \mathbb{F}_2^{m\times n}$ and let $d := d^\perp_{\mathrm{cl}}(A)$.
 For any $T\subseteq [m]$ with $|T|\le d-1$, and any Boolean test $f$ depending only on $b_T$, there exist parity-cut distributions $\mu_0,\mu_1$ on $\mathbb{F}_2^m$ with $\|\mu_0-\mu_1\|_{\mathrm{TV}}=1$ such that
 \[
-\left|\mathbb{P}_{\mu_0}[f=1]-\mathbb{P}_{\mu_1}[f=1]\right|\le 2^{-(d-|T|)}.
+\mathbb{P}_{\mu_0}[f=1]=\mathbb{P}_{\mu_1}[f=1].
 \]
 \end{corollary}
 
 \subsection{Conditional EntropyDepth lower bound template}
 
 \begin{definition}[Clause-local transcript process]
-A transcript process $(S_t)_{t\ge 0}$ is \emph{$q$-clause-local} if at each step $t$, the update from $S_t$ to $S_{t+1}$ depends on the clause-side instance $b\in\mathbb{F}_2^m$ only through some adaptively chosen set $T_t\subseteq [m]$ with $|T_t|\le q$.
+A transcript process $(S_t)_{t\ge 0}$ is \emph{$q$-clause-local} if at each step $t$, the update from $S_t$ to $S_{t+1}$ reads at most $q$ new clause-side coordinates of $b\in\mathbb{F}_2^m$.
 \end{definition}
 
-\begin{theorem}[Conditional: linear depth from linear clause-dual distance]
+For an adaptive process, the fixed-support corollary above does not by itself identify a single deterministic coordinate set supporting the entire transcript.  The required adaptive decision-tree/measurability statement is therefore separated explicitly.
+
+\begin{definition}[Cumulative clause-dual support wall]
+Fix a target success predicate for transcripts.  Say the process satisfies the \emph{clause-dual support wall at distance $d$} if, for every depth $t$, whenever the cumulative information exposed by the transcript is supported on fewer than $d$ clause coordinates, no positive-bias decision between the two parity-cut classes can be made from $S_t$.
+\end{definition}
+
+\begin{theorem}[Conditional: depth from clause-dual distance]
 \textbf{Conditional.}
-Fix $q\in\mathbb{N}$.
-Assume a $q$-clause-local transcript process $(S_t)$ satisfies the following \emph{constant-bias correctness requirement}:
-
-\begin{quote}
-There exists $\varepsilon>0$ such that for all $t$ there is a Boolean decision rule $D_t$ measurable w.r.t.\ $S_t$ with
+Let $A\in\mathbb F_2^{m\times n}$ have clause-dual distance
 \[
-\left|\mathbb{P}_{b\sim\mu_0}[D_t=1]-\mathbb{P}_{b\sim\mu_1}[D_t=1]\right|\ge \varepsilon
+d=d^\perp_{\mathrm{cl}}(A).
 \]
-whenever $\mu_0,\mu_1$ are any two distributions on $\mathbb{F}_2^m$ with $\|\mu_0-\mu_1\|_{\mathrm{TV}}=1$ supported on disjoint decision classes of the target predicate.
-\end{quote}
-
-Then for any $A$ with $d^\perp_{\mathrm{cl}}(A)=d$, if $q\le d-1$ the requirement fails; in particular, no constant-bias decision is possible from any $S_t$.
-Consequently, any process meeting the requirement must have $q\ge d$.
+Let $(S_t)_{t\ge0}$ be a $q$-clause-local transcript process, and assume the cumulative clause-dual support wall has been proved for the actual transcript semantics.
+If a positive-bias correct decision is first possible from $S_t$, then
+\[
+d\le (t+1)q.
+\]
+Consequently, for $q>0$,
+\[
+t+1\ge \left\lceil\frac d q\right\rceil.
+\]
+In particular, if $d=\Omega(n)$ and $q=O(1)$, this conditional reduction yields $t=\Omega(n)$.
 \end{theorem}
 
 \begin{proof}
-Let $w\in \ker(A^\top)\setminus\{0\}$ with $\|w\|_0=d$ and take $\mu_0,\mu_1$ to be the parity-cut distributions from Proposition above.
-For any $t$, $q$-clause-locality implies $S_t$ is measurable w.r.t.\ $b_{T_{\le t}}$ where $T_{\le t}:=\bigcup_{j\le t} T_j$ and $|T_{\le t}|\le (t+1)q$.
-If $q\le d-1$ then at $t=0$ already $|T_{\le 0}|\le d-1$, hence by Proposition any decision rule measurable w.r.t.\ $S_0$ has bias at most $2^{-(d-|T_{\le 0}|)}<1$, and in particular cannot exceed a fixed $\varepsilon$ uniformly over instances.
-The same argument applies for any fixed $t$ whenever $|T_{\le t}|\le d-1$.
-Thus constant-bias correctness forces $q\ge d$ in the stated sense.
+Through depth $t$, at most $(t+1)q$ fresh clause coordinates can have been exposed.
+If $(t+1)q<d$, the assumed cumulative clause-dual support wall says that no positive-bias correct decision can be made from $S_t$, contradicting success at depth $t$.
+Therefore $d\le (t+1)q$.
+For $q>0$, the ceiling-form lower bound is the standard arithmetic reformulation.
 \end{proof}
 
+\paragraph{Formal boundary.}
+The arithmetic implication
+\[
+\text{success at depth }t\;\wedge\;\text{clause-dual support wall}
+\Longrightarrow d\le (t+1)q
+\]
+is mirrored by the Lean frontier theorem
+\texttt{success\_forces\_cumulative\_support\_reaches\_dual\_distance}.
+The remaining semantic obligation is to prove the cumulative clause-dual support wall for the actual adaptive transcript model.  No claim is made that $q<d$ alone prevents success for all time.

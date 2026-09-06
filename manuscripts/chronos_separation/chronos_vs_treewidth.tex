@@ -3,69 +3,105 @@
 \usepackage{geometry}
 \geometry{margin=1in}
 
-\title{Chronos vs Treewidth: Resolution Rank, WL, and EntropyDepth Separation}
+\title{Chronos vs Treewidth: Audited Boundary}
 \author{Inacio F. Vasquez}
 \date{}
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{corollary}{Corollary}
+\newtheorem{boundary}{Boundary}
 
 \begin{document}
-
 \maketitle
 
-\section{Resolution Rank and Treewidth}
+\section{Audit Status}
 
-\begin{theorem}[Rank--Treewidth Law]
-For bounded-degree graphs $G$,
+This note previously promoted several heuristic separation statements to
+``theorem'' status.  The repository audit does not currently contain the
+formal definitions, simulations, or independent certificates needed to retain
+those statements as proved results.
+
+In particular, the previous claims
 \[
-\min_\pi R^*(\mathrm{Ts}(G,f)) = \Theta(\mathrm{tw}(G)).
+\min_\pi R^*(\mathrm{Ts}(G,f))=\Theta(\mathrm{tw}(G)),
 \]
-\end{theorem}
-
-\section{Expander-of-Expanders Construction}
-
-Let $k = m = \sqrt{n}$.  
-Blocks $G_i$ are constant-degree expanders on $m$ vertices.  
-Skeleton $H$ is a constant-degree expander on $k$ nodes.  
-One bridge edge per skeleton edge.
-
-Then:
 \[
-\mathrm{tw}(G) = \Theta(\sqrt{n})
+R^*(F_n)=\Theta(\sqrt n),
+\qquad
+ED(F_n)=\Theta(n),
 \]
-and
+and the assertion that fixed-$k$ Weisfeiler--Leman refinement therefore
+requires $\Theta(n)$ sequential collapse are withdrawn as certified claims.
+
+\section{Why the Previous Implications Do Not Follow Automatically}
+
+A logical non-definability or locality statement can rule out one-shot
+expression in a fixed formalism, but it does not by itself provide a
+quantitative lower bound on the number of sequential refinement rounds.
+Likewise, a graph-width or resolution-width lower bound does not automatically
+transport to a separately defined EntropyDepth invariant.
+
+The post-Oblivion audit has already isolated the missing structure: any such
+transfer requires an explicit target process class, a formal simulation into a
+proof-complexity or query model, and a quantitative inequality relating the
+process cost to the certified lower bound in that model.
+
+\begin{boundary}[Retired separation theorem]
+No theorem of the form
 \[
-R^*(\pi) = \Theta(\sqrt{n}).
+ED(F_n)=\Theta(n)
+\quad\text{while}\quad
+R^*(F_n)=\Theta(\sqrt n)
 \]
+is presently certified by this repository.  No strict EntropyDepth-versus-
+treewidth or EntropyDepth-versus-resolution-rank separation is claimed here.
+\end{boundary}
 
-\section{Parity Undefinability}
+\section{Retained Certified Endpoints}
 
-\begin{theorem}[FO$^k$ Parity Undefinability]
-For fixed $k$, parity over bounded-degree expanders is not FO$^k$ definable.
-\end{theorem}
+Two separate endpoints survive the audit.
 
-Consequently, block parity cannot be computed in one FO$^k$ refinement step.
-
-\section{EntropyDepth Separation}
-
-\begin{theorem}[Chronos Separation]
-For expander-of-expanders families,
+\subsection*{Deterministic parity/query depth}
+For a parity target supported on $d$ independent clause coordinates, the
+Lean-certified deterministic adaptive-query model requires depth at least
+$d$ for exact computation.  Under an additional round-to-query-tree
+compilation hypothesis with per-round support budget $q$, this yields the
+conditional bound
 \[
-R^*(F_n) = \Theta(\sqrt{n})
-\quad \text{but} \quad
-ED(F_n) = \Theta(n).
+d\le rq.
 \]
-\end{theorem}
+This is a query-depth theorem, not an EntropyDepth or WL-round theorem.
 
-\section{WL Boundary}
+\subsection*{Resolution width and size}
+For bounded-degree expander Tseitin contradictions, the audited standard
+proof-complexity endpoint is
+\[
+W(F_n)=\Omega(n)
+\quad\Longrightarrow\quad
+\operatorname{Size}_{\mathrm{Res}}(F_n)=2^{\Omega(n)},
+\]
+using the expansion width lower bound and the Ben-Sasson--Wigderson
+size--width tradeoff.  This is a theorem about general resolution
+refutations, not unrestricted algorithms.
 
-Parity is not definable in fixed $k$-WL.  
-Thus Weisfeiler--Leman refinement also requires $\Theta(n)$ sequential collapse.
+\section{Weakest Missing Objects}
 
-\bigskip
-\noindent
-\textbf{Conclusion.}
-EntropyDepth strictly exceeds treewidth and resolution rank in the expander-of-expanders regime.
+To revive a quantitative treewidth/WL/EntropyDepth separation, the repository
+would first need all of the following:
+
+\begin{enumerate}
+\item a formal definition of the proposed resolution-rank quantity $R^*$;
+\item a proof relating $R^*$ to treewidth for the stated graph family;
+\item a formal sequential WL/refinement model if round complexity is claimed;
+\item a proved simulation or direct lower-bound theorem connecting that model
+      to EntropyDepth or another certified cost measure.
+\end{enumerate}
+
+Until those objects exist, these are open boundaries rather than consequences
+of parity undefinability or graph expansion alone.
+
+\section{Scope}
+
+No $\Theta(n)$ EntropyDepth theorem, no $\Theta(n)$ WL-round theorem, no
+unrestricted algorithmic-time lower bound, and no P versus NP or Clay-problem
+closure is claimed.
 
 \end{document}
