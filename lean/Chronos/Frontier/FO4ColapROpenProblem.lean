@@ -1,5 +1,6 @@
 import Chronos.Frontier.FO4HomogeneousOpenProblem
 import Mathlib.Data.Fintype.Card
+import Mathlib.Data.Fintype.Prod
 
 namespace Chronos
 namespace Frontier
