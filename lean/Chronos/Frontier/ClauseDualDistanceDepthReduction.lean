@@ -109,14 +109,58 @@ theorem exists_unqueried_support_coordinate
   have hle : d ≤ t := support_card_le_query_card_of_cover S queries hcover
   exact (Nat.not_le_of_gt hlt) hle
 
+/-- Flip one clause-side Boolean coordinate. -/
+def flipClauseBit
+    {m : Nat}
+    (x : Fin m → Bool)
+    (j : Fin m) : Fin m → Bool :=
+  fun k => if k = j then !x k else x k
+
+/--
+An abstract Boolean target whose value changes whenever any coordinate in its
+indexed parity support is flipped.  Ordinary parity on those coordinates is the
+canonical example.
+-/
+structure SupportedParityTarget (m d : Nat) where
+  support : IndexedClauseParitySupport m d
+  target : (Fin m → Bool) → Bool
+  flip_support_changes :
+    ∀ x : Fin m → Bool, ∀ i : Fin d,
+      target (flipClauseBit x (support.coord i)) = !(target x)
+
+/--
+A fixed list of fewer than `d` coordinate queries cannot determine a target
+which flips on every coordinate of a `d`-element parity support: two inputs
+agree on all queried coordinates while the target values differ.
+-/
+theorem fixed_queries_leave_opposite_parity_pair
+    {m d t : Nat}
+    (P : SupportedParityTarget m d)
+    (queries : Fin t → Fin m)
+    (hlt : t < d) :
+    ∃ x y : Fin m → Bool,
+      (∀ j : Fin t, x (queries j) = y (queries j)) ∧
+      P.target x ≠ P.target y := by
+  rcases exists_unqueried_support_coordinate P.support queries hlt with ⟨i, hi⟩
+  let x : Fin m → Bool := fun _ => false
+  let y : Fin m → Bool := flipClauseBit x (P.support.coord i)
+  refine ⟨x, y, ?_, ?_⟩
+  · intro j
+    have hne : queries j ≠ P.support.coord i := fun h => hi j h.symm
+    simp [y, flipClauseBit, hne]
+  · have hy : P.target y = !(P.target x) := by
+      simpa [y] using P.flip_support_changes x i
+    rw [hy]
+    cases h : P.target x <;> simp [h]
+
 def FrontierStatus : String :=
   "CONDITIONAL_CLAUSE_DUAL_DEPTH_REDUCTION"
 
 def Boundary : String :=
-  "The arithmetic depth reduction and parity-support query pigeonhole are proved. The semantic implication from actual adaptive transcript success to covering the parity support is not proved here; no unconditional EntropyDepth, Oblivion, P vs NP, or Clay-problem closure is claimed."
+  "The arithmetic depth reduction, parity-support query pigeonhole, and fixed-query opposite-parity collision are proved. The adaptive decision-tree transport and probability/constant-bias transcript statement are not proved here; no unconditional EntropyDepth, Oblivion, P vs NP, or Clay-problem closure is claimed."
 
 def NextMissingLemma : String :=
-  "Prove that an exact adaptive clause-query decision tree which determines a supported parity must query every support coordinate along each successful leaf; then combine with exists_unqueried_support_coordinate."
+  "AdaptiveParityQueryTreeWall: prove that a deterministic adaptive clause-query tree of depth < d has two inputs following the same leaf with opposite supported parity; then lift, if needed, to randomized/constant-bias transcript semantics."
 
 end ClauseDualDistanceDepthReduction
 end Frontier
