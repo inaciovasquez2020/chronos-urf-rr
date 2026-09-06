@@ -100,9 +100,12 @@ theorem type_diversity_of_bounded_fiber_encoding
     (h : FO4BoundedFiberEncoding X ρ σ)
     (hlarge : h.fiberBound < ρ.rank) :
     2 ≤ σ.typeCount := by
-  apply type_diversity_of_bounded_fiber_estimate
-  · simpa [Nat.mul_comm] using rank_le_typeCount_mul_fiberBound h
-  · exact hlarge
+  exact type_diversity_of_bounded_fiber_estimate
+    (witnessRank := ρ.rank)
+    (typeCount := σ.typeCount)
+    (fiberBound := h.fiberBound)
+    (by simpa [Nat.mul_comm] using rank_le_typeCount_mul_fiberBound h)
+    hlarge
 
 def FO4CycleOverlapRankBoundProblem : Prop :=
   ∀ Δ R : Nat,
