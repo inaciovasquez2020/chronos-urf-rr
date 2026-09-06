@@ -2,46 +2,82 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
 
-\title{Information Complexity Implies Resolution Length Lower Bounds}
+\title{Audited Communication Reduction for Resolution}
 \author{Inacio F. Vasquez}
 \date{}
 
 \newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{boundary}{Boundary}
 
 \begin{document}
 \maketitle
 
-\section*{Reduction}
+\section*{Audit correction}
 
-Let $F$ be an unsatisfiable CNF and
-$\mathrm{Search}_F$ its associated search problem.
+Let $F$ be an unsatisfiable CNF and let $\mathrm{Search}_F$ denote its
+falsified-clause search problem.  Fix any partition of the variables between
+two communicating parties.
+
+The previously stated implication
+\[
+IC_\mu(\mathrm{Search}_F)\le O(\log L(F))
+\]
+was not justified.  Its proof sketch implicitly balanced an arbitrary
+resolution DAG to logarithmic depth.  General resolution proofs do not admit
+such a size-preserving balancing theorem.
+
+The standard proof-complexity correspondence is instead DAG-preserving:
+a size-$s$ resolution refutation corresponds to a size-$s$ conjunction-DAG
+solving $\mathrm{Search}_F$, and feasible interpolation gives a monotone
+circuit of size $O(s)$ for the associated unsatisfiability certificate.
+Ordinary deterministic communication protocols correspond to formula/tree
+objects, not arbitrary circuit/DAG size.
+
+\section*{Valid tree/depth transfer}
 
 \begin{theorem}
-For any product distribution $\mu$,
-\[
-IC_\mu(\mathrm{Search}_F)
-\le O(\log L(F)).
-\]
+If $F$ has a tree-like resolution refutation of depth $d$, then for every
+variable partition there is a deterministic two-party protocol solving
+$\mathrm{Search}_F$ with communication cost at most $d$.
 \end{theorem}
 
-\begin{proof}[Sketch]
-A resolution refutation of length $L$
-induces a deterministic protocol
-that walks the refutation DAG.
-Each resolution pivot requires
-one bit of communication.
-Balancing the DAG gives depth $O(\log L)$.
-Hence communication complexity
-$CC(F) \le O(\log L)$.
-Since information complexity
-is bounded by communication complexity,
-the result follows.
+\begin{proof}
+A depth-$d$ tree-like resolution refutation is equivalent to a depth-$d$
+decision tree solving $\mathrm{Search}_F$.  The two parties simulate that
+decision tree.  At each queried variable, the party holding that variable
+communicates its value, using at most one bit per level.  Thus the total
+communication is at most $d$.
 \end{proof}
 
 \begin{corollary}
+For every input distribution $\mu$,
 \[
-L(F) \ge 2^{\Omega(IC_\mu(\mathrm{Search}_F))}.
+IC_\mu(\mathrm{Search}_F)\le d
 \]
+whenever $F$ has a tree-like resolution refutation of depth $d$.
 \end{corollary}
+
+\section*{DAG-like size boundary}
+
+\begin{boundary}
+For general DAG-like resolution, a lower bound on ordinary transcript
+information complexity does not by itself imply
+\[
+L(F)\ge 2^{\Omega(IC_\mu(\mathrm{Search}_F))}.
+\]
+To obtain a general resolution-size lower bound through the communication
+route, one needs a lower bound for a DAG-compatible object---for example the
+associated monotone circuit / rectangle-DAG model, or a proved information
+measure that lower-bounds that DAG-like model.  No such transfer theorem is
+claimed here.
+\end{boundary}
+
+\section*{Next missing object}
+
+The next proof obligation is to identify and prove a DAG-compatible
+information-complexity lower bound for the Tseitin search family, or else to
+replace this route by an existing lifting theorem that transfers an
+appropriate query/width lower bound to monotone-circuit and resolution size.
 
 \end{document}
