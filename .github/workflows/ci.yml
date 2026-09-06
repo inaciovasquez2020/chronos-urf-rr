@@ -23,6 +23,13 @@ jobs:
           export PATH="$HOME/.elan/bin:$PATH"
           lake exe cache get || true
 
+      - name: Compile corrected Oblivion frontier
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake lean lean/Chronos/Frontier/FO4ColapROpenProblem.lean
+          lake lean lean/Chronos/Frontier/FO4SemanticCompletenessToColapRankControl.lean
+          lake lean lean/Chronos/Frontier/ClauseDualDistanceDepthReduction.lean
+
       - name: Build Lean project
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
@@ -136,6 +143,9 @@ jobs:
 
       - name: Certify infinity projection interface
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_projection_interface.py
+
+      - name: Certify growing dual infinity tail enclosure
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_cgrow_dual_tail.py
 
       - name: Certify growing-dual tail enclosure
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_infinity_growing_dual.py
