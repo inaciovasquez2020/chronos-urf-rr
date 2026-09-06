@@ -9,6 +9,12 @@ open FO4ColapROpenProblem
 open FO4RadiusRTypeEnumerationSurface
 open FO4SemanticCompletenessSurface
 
+def rankWitnessNeighborhood
+    (X : FO4HomogeneousInput)
+    (ρ : ColapR X.G X.R)
+    (i : Fin ρ.rank) : FO4RadiusRNeighborhood X.G :=
+  ⟨(ρ.basisWitness i).left.center, X.R⟩
+
 def ColapRankControlFromSemanticCompleteness (Delta R : Nat) : Prop :=
   SemanticCompleteFO4RadiusRTypeCodes Delta R →
     ∃ C : Nat,
