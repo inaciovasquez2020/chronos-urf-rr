@@ -42,6 +42,12 @@ def ColapR (G : GraphDatum) (R : Nat) : Type :=
 def ColapRankBoundedAt (X : FO4HomogeneousInput) (C : Nat) : Prop :=
   ∀ ρ : ColapR X.G X.R, ρ.rank ≤ C
 
+structure FO4RankTypeSignature
+    (X : FO4HomogeneousInput)
+    (ρ : ColapR X.G X.R) where
+  typeCount : Nat
+  typeOf : Fin ρ.rank → Fin typeCount
+
 theorem type_diversity_of_bounded_fiber_estimate
     {witnessRank typeCount fiberBound : Nat}
     (hbound : witnessRank ≤ fiberBound * typeCount)
