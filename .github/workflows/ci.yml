@@ -126,6 +126,9 @@ jobs:
       - name: Certify exact ordinary Borel tail transfer
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_ordinary_transfer.py
 
+      - name: Certify ordinary local Borel majorant
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_ordinary_local_majorant.py
+
       - name: Certify double-Laplace horizon reconstruction
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_double_laplace.py
 
