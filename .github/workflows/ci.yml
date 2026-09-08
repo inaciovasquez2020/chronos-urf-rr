@@ -120,6 +120,9 @@ jobs:
       - name: Certify ordinary Borel companion
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_ordinary_companion.py
 
+      - name: Certify exact ordinary Borel prefix
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_ordinary_prefix.py
+
       - name: Certify double-Laplace horizon reconstruction
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_double_laplace.py
 
