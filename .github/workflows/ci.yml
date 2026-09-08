@@ -84,6 +84,9 @@ jobs:
       - name: Certify accumulation invariant growth cone
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_invariant_cone.py
 
+      - name: Certify top-log local Borel majorant
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_top_log_local_majorant.py
+
       - name: Certify one-sided Borel boundary asymptotic
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_boundary_asymptotic.py
 
