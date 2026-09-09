@@ -135,6 +135,9 @@ jobs:
       - name: Certify double-Laplace startup-state enclosure
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_startup_state_enclosure.py
 
+      - name: Certify horizon-scaled log exterior system
+        run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_horizon_scaled_log_system.py
+
       - name: Certify finite-radius exterior continuation
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_exterior_continuation.py
 
