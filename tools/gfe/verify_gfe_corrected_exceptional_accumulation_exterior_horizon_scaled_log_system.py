@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Certify a horizon-regular scaled logarithmic six-state exterior system.
+"""Certify the horizon-scaled logarithmic six-state exterior system.
 
 Sector: M=1, beta=5/2, omega=i/4, ell=2, lambda=6, alpha=1/2.
 
@@ -19,9 +19,12 @@ With logarithmic time t=log(x), the scaled state obeys
     dU/dt = H(x) U,
     H(x)=x*S(x)^(-1)*G(2+x)*S(x)-diag(a).
 
-Entrywise this is purely rational because every exponent
-1-a_i+a_j is integral.  This verifier constructs H exactly and certifies that
-all apparent x=0 poles cancel, so H extends analytically to the horizon.
+Entrywise this is purely rational because every exponent 1-a_i+a_j is
+integral.  The raw power scaling does not make the full six-state generator
+analytic at x=0: exactly two simple-pole entries remain in the h1'' row.
+This verifier classifies that residue exactly, proves that subtracting R/x
+leaves a horizon-regular rational matrix, and checks that the physical
+leading generalized-Frobenius scaled seed lies in ker(R).
 
 This is a conditioning/structure certificate only.  It does not numerically
 propagate the startup enclosure and does not evaluate C_grow.
@@ -178,10 +181,12 @@ def main() -> None:
         H[i, i] = simp(H[i, i] - powers[i])
     H = matrix_simp(H)
 
-    # Exact horizon regularity: every simplified rational denominator is
-    # nonzero at x=0.  This is the key cancellation certificate.
-    horizon_poles: list[tuple[int, int, sp.Expr]] = []
-    horizon_limits = sp.zeros(6, 6)
+    # Classify the exact horizon singular part.  The previous stronger claim
+    # that every H_ij was regular is false: the exact system has two simple
+    # poles, both in the h1'' row.  Preserve them as an explicit residue R.
+    pole_positions: list[tuple[int, int]] = []
+    pole_denominators: list[tuple[int, int, sp.Expr]] = []
+    residue = sp.zeros(6, 6)
     nonzero_entry_count = 0
     for i in range(6):
         for j in range(6):
@@ -190,14 +195,58 @@ def main() -> None:
                 continue
             nonzero_entry_count += 1
             _num, den = sp.fraction(sp.together(value))
-            den0 = simp(den.subs(x, 0))
-            if den0 == 0:
-                horizon_poles.append((i, j, sp.factor(den)))
+            if simp(den.subs(x, 0)) != 0:
                 continue
-            horizon_limits[i, j] = simp(value.subs(x, 0))
-    if horizon_poles:
-        raise AssertionError(f"scaled logarithmic generator retains horizon poles: {horizon_poles}")
-    horizon_limits = matrix_simp(horizon_limits)
+            pole_positions.append((i, j))
+            pole_denominators.append((i, j, sp.factor(den)))
+            once = simp(x * value)
+            _once_num, once_den = sp.fraction(sp.together(once))
+            if simp(once_den.subs(x, 0)) == 0:
+                raise AssertionError(f"scaled generator has pole order >1 at H[{i},{j}]")
+            residue[i, j] = simp(once.subs(x, 0))
+            if residue[i, j] == 0:
+                raise AssertionError(f"purported simple-pole residue vanished at H[{i},{j}]")
+
+    expected_pole_positions = [(5, 0), (5, 4)]
+    if pole_positions != expected_pole_positions:
+        raise AssertionError(
+            f"scaled horizon pole support changed: got {pole_positions}, expected {expected_pole_positions}"
+        )
+    residue = matrix_simp(residue)
+    if residue.rank() != 1:
+        raise AssertionError(f"scaled horizon residue rank changed: {residue.rank()}")
+
+    regular = matrix_simp(H - residue / x)
+    regular_horizon_limit = sp.zeros(6, 6)
+    regular_poles: list[tuple[int, int, sp.Expr]] = []
+    for i in range(6):
+        for j in range(6):
+            value = simp(regular[i, j])
+            if value == 0:
+                continue
+            _num, den = sp.fraction(sp.together(value))
+            if simp(den.subs(x, 0)) == 0:
+                regular_poles.append((i, j, sp.factor(den)))
+                continue
+            regular_horizon_limit[i, j] = simp(value.subs(x, 0))
+    if regular_poles:
+        raise AssertionError(f"residue-subtracted scaled generator retains horizon poles: {regular_poles}")
+    regular_horizon_limit = matrix_simp(regular_horizon_limit)
+
+    # The canonical ordinary n=0 physical vector is (h0, x*h1)=(1,2).
+    # Differentiating the corresponding leading powers gives the exact scaled
+    # six-state seed below.  The singular residue must annihilate it.
+    physical_leading_scaled_seed = sp.Matrix([
+        sp.Integer(1),
+        sp.Rational(1, 2),
+        sp.Rational(-1, 4),
+        sp.Integer(2),
+        sp.Integer(-1),
+        sp.Rational(3, 2),
+    ])
+    residue_on_seed = matrix_simp(residue * physical_leading_scaled_seed)
+    if any(value != 0 for value in residue_on_seed):
+        raise AssertionError(f"physical leading scaled seed not in horizon residue kernel: {residue_on_seed}")
 
     # The four kinematic shift rows should become constant in log time after
     # the power scaling.  Pin them explicitly because they are useful for the
@@ -208,7 +257,9 @@ def main() -> None:
             raise AssertionError(f"scaled kinematic shift H[{i},{j}] changed")
 
     zeta = sp.symbols("zeta")
-    horizon_characteristic = sp.factor(horizon_limits.charpoly(zeta).as_expr())
+    regular_horizon_characteristic = sp.factor(
+        regular_horizon_limit.charpoly(zeta).as_expr()
+    )
 
     def exponent_text(value: int | None) -> str:
         return "-inf" if value is None else str(value)
@@ -227,13 +278,20 @@ def main() -> None:
         "[" + ",".join(exponent_text(v) for v in row) + "]" for row in exponent_matrix
     ) + "]")
     print(f"SCALED_LOG_GENERATOR_NONZERO_ENTRIES := {nonzero_entry_count}")
-    print("HORIZON_POLE_COUNT := 0")
-    print("HORIZON_REGULARITY := every simplified rational H_ij has denominator nonzero at x=0")
-    print(f"HORIZON_LIMIT_H0 := {matrix_text(horizon_limits)}")
-    print(f"HORIZON_LIMIT_CHARACTERISTIC := {sp.sstr(horizon_characteristic)}")
-    print("RAW_SCALED_EQUIVALENCE := Y=S(x)U and Y'=G(2+x)Y iff U_t=H(x)U for every x>0")
-    print("CONDITIONING_ROUTE := propagate U in logarithmic x near the horizon, then map to a regular exterior representation away from x=0")
-    print("BOUNDARY := scaled logarithmic system only; no validated propagation to r=4096, no Z_phys(4096) enclosure, no C_grow value/nonvanishing, and no global exceptional-mode closure claimed")
+    print(f"HORIZON_SIMPLE_POLE_COUNT := {len(pole_positions)}")
+    print("HORIZON_SIMPLE_POLE_POSITIONS := " + sp.sstr(pole_positions))
+    print("HORIZON_SIMPLE_POLE_DENOMINATORS := " + sp.sstr(pole_denominators))
+    print(f"HORIZON_RESIDUE_RANK := {residue.rank()}")
+    print(f"HORIZON_RESIDUE_MATRIX := {matrix_text(residue)}")
+    print("PHYSICAL_LEADING_SCALED_SEED := [1,1/2,-1/4,2,-1,3/2]")
+    print("PHYSICAL_LEADING_SEED_RESIDUE := 0")
+    print("REGULAR_REMAINDER := H_reg(x)=H(x)-R/x")
+    print("REGULAR_REMAINDER_HORIZON_POLE_COUNT := 0")
+    print(f"REGULAR_REMAINDER_HORIZON_LIMIT := {matrix_text(regular_horizon_limit)}")
+    print(f"REGULAR_REMAINDER_HORIZON_CHARACTERISTIC := {sp.sstr(regular_horizon_characteristic)}")
+    print("RAW_SCALED_EQUIVALENCE := Y=S(x)U and Y'=G(2+x)Y iff U_t=(R/x+H_reg(x))U for every x>0")
+    print("CONDITIONING_ROUTE := preserve the rank-one residue constraint and construct a constraint-adapted blow-up before validated near-horizon propagation")
+    print("BOUNDARY := exact scaled simple-pole/residue classification only; no constraint-adapted regular propagator, no validated propagation to r=4096, no Z_phys(4096) enclosure, no C_grow value/nonvanishing, and no global exceptional-mode closure claimed")
 
 
 if __name__ == "__main__":
