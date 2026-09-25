@@ -1,0 +1,63 @@
+{
+  "certificate_hash": "2dffe7e24855c480dce4d548e397aa55d2331b48c55757ef9a911b4bc844616c",
+  "claim_boundary": [
+    "This certificate proves a uniform axial (ell,m,n)=(2,2,1) root tube only for epsilon in [0,1e-4] in the projected massless order-reduced EFT branch.",
+    "The predictor slope is a certified tube center choice, not an independently enclosed value of dOmega_221/depsilon at epsilon=0.",
+    "It does not certify the polar sector, axial-polar splitting, or the full unreduced trace-log spectrum.",
+    "It does not establish full gravity closure or observational detectability."
+  ],
+  "date": "2026-09-25",
+  "gates": {
+    "horizon_majorant_lt_one": true,
+    "horizon_majorant_q_upper": 0.7138198542173089,
+    "horizon_remainder_upper": 1.4895778040996383e-05,
+    "horizon_steps": 512,
+    "infinity_damping_lower": 0.589385874169097,
+    "infinity_damping_positive": true,
+    "infinity_remainder_upper": 1.7613920193161312e-05,
+    "infinity_steps": 1344,
+    "mismatch_center": [5.12509004724632e-09, 4.057602749175231e-09],
+    "mismatch_epsilon_linear": [1.1776781743263978e-08, 5.37085284806916e-09],
+    "mismatch_root_linear": [-0.00010336399695740088, -6.448456636751752e-05],
+    "rouche_error_upper": 2.41823809093891e-05,
+    "rouche_linear_lower": 0.00010336399695740086,
+    "rouche_margin_lower": 7.918161604801174e-05,
+    "rouche_margin_positive": true
+  },
+  "method": [
+    "shifted-horizon epsilon-linear cleared Frobenius recurrence with an all-orders weighted majorant",
+    "96-bit fixed-point two-direction affine model for the root disk and epsilon interval",
+    "separate nonlinear-remainder transport along the horizon Riccati flow",
+    "epsilon-dependent outgoing Laurent-Jost endpoint plus a vertical-ray Volterra tail enclosure",
+    "separate nonlinear-remainder transport along the infinity Riccati flow",
+    "Rouche boundary inequality around an epsilon-affine frequency predictor"
+  ],
+  "provenance": {
+    "epsilon0_verifier_blob_sha": "c22e5aa53fa6fa3110954eb8fa1fa9771431346b",
+    "epsilon0_verifier_path": "tools/gfe/verify_gfe_axial_221_epsilon0_simple_root.py",
+    "source_generator_blob_sha": "57528624e3c2fbfd230249798d41971802b5d93d",
+    "source_generator_path": "tools/gfe/derive_gfe_axial_quadratic_action.sh",
+    "verifier_blob_sha": "47c8c287fadda3149f096de34f2491aa24ab0487",
+    "verifier_commit_sha": "a2a76818b42182342beb0de7834bdce63ec4b3d2",
+    "verifier_path": "tools/gfe/verify_gfe_axial_221_epsilon_continuation.py"
+  },
+  "root_tube": {
+    "predictor_origin": [0.34671099687810464, -0.27391487535351056],
+    "predictor_slope": [0.0196971854, -0.0671226649],
+    "simple_root_for_each_epsilon": true,
+    "uniform_disk_radius": 5e-06,
+    "unique_zero_counting_multiplicity_for_each_epsilon": 1
+  },
+  "schema": "chronos.gfe_axial_221_epsilon_continuation_certificate.v1",
+  "scope": {
+    "branch": "projected massless order-reduced EFT",
+    "ell": 2,
+    "epsilon_interval": [0.0, 0.0001],
+    "m": 2,
+    "overtone": 1,
+    "parameter": "epsilon=beta^2/M^4",
+    "parity": "axial",
+    "unreduced_trace_log_spectrum": false
+  },
+  "status": "certified_uniform_projected_massless_axial_221_root_tube"
+}
