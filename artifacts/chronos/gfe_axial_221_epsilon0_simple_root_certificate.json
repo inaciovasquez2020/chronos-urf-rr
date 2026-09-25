@@ -1,0 +1,66 @@
+{
+  "certificate_hash": "269f7a8354fa12f500bd36c176c785a9b0b6b724811b67c80daf25a45b9e29cf",
+  "claim_boundary": [
+    "This certificate is only for epsilon=0 in the projected massless axial (ell,m,n)=(2,2,1) sector.",
+    "It does not certify an epsilon>0 root tube or dOmega_221/depsilon at epsilon=0.",
+    "It does not certify the polar sector, axial-polar splitting, or the full unreduced trace-log spectrum.",
+    "It does not establish full gravity closure or observational detectability."
+  ],
+  "date": "2026-09-24",
+  "gates": {
+    "horizon_majorant_lt_one": true,
+    "horizon_majorant_q_upper": 0.7141139467515436,
+    "horizon_steps": 512,
+    "infinity_damping_lower": 0.5893870317770651,
+    "infinity_damping_positive": true,
+    "infinity_steps": 1792,
+    "mismatch_center": [
+      -7.755877652080884e-10,
+      1.3235156849565833e-09
+    ],
+    "mismatch_linear": [
+      -0.00010337085843468261,
+      -0.00006449592617729339
+    ],
+    "mismatch_remainder_upper": 0.00007882171842246401,
+    "rouche_error_upper": 0.0000788238175259142,
+    "rouche_linear_lower": 0.0001033708584346826,
+    "rouche_margin_lower": 0.0000245470409087684,
+    "rouche_margin_positive": true
+  },
+  "method": [
+    "epsilon=0 Schwarzschild axial Regge-Wheeler Frobenius series at the horizon",
+    "all-orders weighted horizon coefficient majorant",
+    "96-bit fixed-point affine center/sensitivity propagation with outward-rounded scalar majorants",
+    "outgoing Laurent-Jost endpoint plus vertical-ray Volterra tail enclosure",
+    "separate nonlinear-remainder transport to avoid affine wrapping",
+    "Rouche boundary inequality on the radius-5e-6 frequency disk"
+  ],
+  "provenance": {
+    "source_generator_blob_sha": "57528624e3c2fbfd230249798d41971802b5d93d",
+    "source_generator_path": "tools/gfe/derive_gfe_axial_quadratic_action.sh",
+    "verifier_blob_sha": "c22e5aa53fa6fa3110954eb8fa1fa9771431346b",
+    "verifier_path": "tools/gfe/verify_gfe_axial_221_epsilon0_simple_root.py"
+  },
+  "root_disk": {
+    "center": [
+      0.34671099687810464,
+      -0.27391487535351056
+    ],
+    "radius": 5e-06,
+    "simple_root": true,
+    "unique_zero_counting_multiplicity": 1
+  },
+  "schema": "chronos.gfe_axial_221_epsilon0_simple_root_certificate.v1",
+  "scope": {
+    "branch": "projected massless order-reduced EFT",
+    "dimensionless_frequency": "Omega=M*omega",
+    "ell": 2,
+    "epsilon": 0.0,
+    "m": 2,
+    "overtone": 1,
+    "parity": "axial",
+    "unreduced_trace_log_spectrum": false
+  },
+  "status": "certified_epsilon0_projected_massless_axial_221_simple_root"
+}
