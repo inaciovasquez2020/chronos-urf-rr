@@ -153,6 +153,9 @@ jobs:
       - name: Certify growing connection coefficient finiteness
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_cgrow_finiteness.py
 
+      - name: Certify axial 221 epsilon-zero simple root
+        run: python3 tools/gfe/verify_gfe_axial_221_epsilon0_simple_root.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
