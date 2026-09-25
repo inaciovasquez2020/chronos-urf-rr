@@ -1,0 +1,69 @@
+{
+  "schema": "chronos.gfe_axial_221_epsilon0_derivative_certificate.v1",
+  "date": "2026-09-25",
+  "status": "certified_projected_massless_axial_221_epsilon0_implicit_derivative",
+  "scope": {
+    "branch": "projected massless order-reduced EFT",
+    "parity": "axial",
+    "ell": 2,
+    "m": 2,
+    "overtone": 1,
+    "parameter": "epsilon=beta^2/M^4",
+    "endpoint": "epsilon=0"
+  },
+  "root_dependency": {
+    "certificate_path": "artifacts/chronos/gfe_axial_221_epsilon0_root_refinement_certificate.json",
+    "center": [
+      0.34671099687810464,
+      -0.27391487535351056
+    ],
+    "radius": 0.0000011
+  },
+  "implicit_derivative": {
+    "formula": "dOmega/depsilon=-D_epsilon/D_Omega",
+    "center": [
+      0.019697184697929637,
+      -0.06712266263744726
+    ],
+    "disk_radius": 0.019034322983603982,
+    "real_lower_bound": 0.0006628617143256536,
+    "real_upper_bound": 0.0387315076815337,
+    "imag_lower_bound": -0.08615698562105141,
+    "imag_upper_bound": -0.048088339653843196,
+    "D_Omega_nonzero": true,
+    "real_part_positive": true,
+    "imag_part_negative": true
+  },
+  "gates": {
+    "max_scaled_horizon_coefficient": 1,
+    "infinity_damping_lower": 0.6189995403893317,
+    "infinity_forcing_upper": 0.0000013726771806800214,
+    "jost_tail_radius": 0.000003,
+    "horizon_steps": 512,
+    "infinity_steps": 2432,
+    "D_Omega_center": [
+      -20.674171687389972,
+      -12.899185235412055
+    ],
+    "D_Omega_radius": 0.4825554785710201,
+    "D_Omega_lower": 23.885668804235216,
+    "D_epsilon_center": [
+      1.273050637057732,
+      -1.1336278174466226
+    ],
+    "D_epsilon_radius": 0.4208913012452924
+  },
+  "provenance": {
+    "verifier_path": "tools/gfe/verify_gfe_axial_221_epsilon0_derivative.py",
+    "verifier_blob_sha": "00020e429687e603185b8c660906aad399a331ee",
+    "root_refinement_verifier_blob_sha": "77de2b4b3135ba17308811f6f944a6e1369e3ef5",
+    "source_generator_path": "tools/gfe/derive_gfe_axial_quadratic_action.sh",
+    "source_generator_blob_sha": "57528624e3c2fbfd230249798d41971802b5d93d",
+    "parent_commit": "f85a7c36745af5720adcbddb35064b656ad92147"
+  },
+  "claim_boundary": [
+    "This certificate encloses only dOmega_221/depsilon at epsilon=0 in the projected massless order-reduced axial branch.",
+    "It does not certify a polar derivative or axial-polar splitting.",
+    "It does not certify the full unreduced trace-log spectrum or full gravity closure."
+  ]
+}

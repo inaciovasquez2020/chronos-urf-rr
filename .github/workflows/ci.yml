@@ -161,6 +161,11 @@ jobs:
       - name: Certify axial 221 epsilon continuation
         run: python3 -m pytest -q tests/test_gfe_axial_221_epsilon_continuation.py
 
+      - name: Certify axial 221 epsilon-zero derivative
+        run: |
+          python3 -m pytest -q tests/test_gfe_axial_221_epsilon0_root_refinement.py
+          python3 -m pytest -q tests/test_gfe_axial_221_epsilon0_derivative.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
