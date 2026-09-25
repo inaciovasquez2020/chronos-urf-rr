@@ -1,5 +1,5 @@
 {
-  "certificate_hash": "269f7a8354fa12f500bd36c176c785a9b0b6b724811b67c80daf25a45b9e29cf",
+  "certificate_hash": "917d49a3d62a175327d3ad19990ef33e52c6b8a3b269833828d055e073f2fa52",
   "claim_boundary": [
     "This certificate is only for epsilon=0 in the projected massless axial (ell,m,n)=(2,2,1) sector.",
     "It does not certify an epsilon>0 root tube or dOmega_221/depsilon at epsilon=0.",
@@ -16,7 +16,7 @@
     "infinity_steps": 1792,
     "mismatch_center": [
       -7.755877652080884e-10,
-      1.3235156849565833e-09
+      1.3235156849565833e-9
     ],
     "mismatch_linear": [
       -0.00010337085843468261,
@@ -47,7 +47,7 @@
       0.34671099687810464,
       -0.27391487535351056
     ],
-    "radius": 5e-06,
+    "radius": 0.000005,
     "simple_root": true,
     "unique_zero_counting_multiplicity": 1
   },
@@ -56,7 +56,7 @@
     "branch": "projected massless order-reduced EFT",
     "dimensionless_frequency": "Omega=M*omega",
     "ell": 2,
-    "epsilon": 0.0,
+    "epsilon": 0,
     "m": 2,
     "overtone": 1,
     "parity": "axial",
