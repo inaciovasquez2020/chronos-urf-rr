@@ -248,7 +248,7 @@ class A:
 
 
 OMEGA0 = complex(0.3010534546123664, -0.47827698322307185)
-RROOT = 5e-6
+RROOT = 2e-5
 O = A(OMEGA0, complex(RROOT, 0), 0)
 OABS = up(au_complex(OMEGA0) + RROOT)
 
