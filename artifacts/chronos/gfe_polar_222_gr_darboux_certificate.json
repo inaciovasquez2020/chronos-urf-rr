@@ -1,0 +1,57 @@
+{
+  "schema": "chronos.gfe_polar_222_gr_darboux_certificate.v1",
+  "date": "2026-09-25",
+  "status": "certified_gr_epsilon0_polar_222_root_via_exact_darboux_transfer",
+  "scope": {
+    "parity": "polar",
+    "ell": 2,
+    "m": 2,
+    "overtone": 2,
+    "epsilon": 0.0,
+    "dimensionless_frequency": "Omega=M*omega",
+    "branch": "Schwarzschild GR baseline inherited from certified axial 222 root",
+    "beta2_polar_correction": false,
+    "unreduced_trace_log_spectrum": false
+  },
+  "source_axial_certificate": {
+    "path": "artifacts/chronos/gfe_axial_222_epsilon0_simple_root_certificate.json",
+    "blob_sha": "1d7882bcd8841efc7c71fd18d536b5cdcef66ab2"
+  },
+  "darboux": {
+    "sigma_ell2": 2.0,
+    "factorization": true,
+    "intertwining_forward": true,
+    "intertwining_reverse": true,
+    "composition_minus": true,
+    "composition_plus": true,
+    "wronskian_multiplier": true,
+    "endpoint_limits": true,
+    "wronskian_transfer": "Wr(Au,Av)=(Omega^2+sigma^2)*Wr(u,v)"
+  },
+  "polar_root_at_epsilon_0": {
+    "unique_simple_root": true,
+    "disk_center": [
+      0.3010534546123664,
+      -0.47827698322307185
+    ],
+    "disk_radius": 0.00002,
+    "same_disk_as_axial": true,
+    "multiplicity_preserved": true,
+    "endpoint_conditions_preserved": true,
+    "distance_to_plus_i_sigma_lower": 2.496475541375408,
+    "distance_to_minus_i_sigma_lower": 1.5511969810580066,
+    "horizon_map_factor_abs_lower": 1.5511969810580066,
+    "infinity_map_factor_abs_lower": 2.496475541375408,
+    "inverse_multiplier_abs_lower": 3.8725253230666854
+  },
+  "provenance": {
+    "verifier_path": "tools/gfe/verify_gfe_polar_222_gr_darboux.py",
+    "verifier_blob_sha": "cc1c7e6fbf82a848f73ae00727c5b7de3b5538da"
+  },
+  "claim_boundary": [
+    "This certificate proves only the Schwarzschild GR polar (ell,m,n)=(2,2,2) root at epsilon=0 by exact Darboux transfer from the certified axial root.",
+    "It does not derive the relative O(beta^2) polar quadratic action, polar master potential, polar root continuation, or polar frequency derivative.",
+    "It does not certify axial-polar splitting for epsilon>0.",
+    "The unreduced trace-log spectrum and its additional massive mode remain outside this certificate."
+  ]
+}
