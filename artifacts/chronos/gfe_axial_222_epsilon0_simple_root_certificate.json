@@ -1,0 +1,45 @@
+{
+  "schema": "chronos.gfe_axial_222_epsilon0_simple_root_certificate.v1",
+  "date": "2026-09-25",
+  "status": "certified_epsilon0_projected_massless_axial_222_simple_root",
+  "scope": {
+    "branch": "projected massless order-reduced EFT",
+    "parity": "axial",
+    "ell": 2,
+    "m": 2,
+    "overtone": 2,
+    "epsilon": 0,
+    "dimensionless_frequency": "Omega=M*omega",
+    "unreduced_trace_log_spectrum": false
+  },
+  "root_disk": {
+    "center": [
+      0.3010534546123664,
+      -0.47827698322307185
+    ],
+    "radius": 0.00002,
+    "unique_zero_counting_multiplicity": 1,
+    "simple_root": true
+  },
+  "verified_gates": {
+    "horizon_majorant_q_lt_1": true,
+    "horizon_endpoint_and_propagation": true,
+    "outgoing_jost_damping_positive": true,
+    "infinity_propagation": true,
+    "rouche_margin_positive": true
+  },
+  "provenance": {
+    "verifier_path": "tools/gfe/verify_gfe_axial_222_epsilon0_simple_root.py",
+    "verifier_blob_sha": "2e4fb24157bbc6aeafca713c218fbe1fea58ecb6",
+    "source_architecture": "tools/gfe/verify_gfe_axial_221_epsilon0_simple_root.py",
+    "preflight_ci_run_id": 36213038653,
+    "preflight_step": "Preflight axial 222 epsilon-zero root",
+    "preflight_conclusion": "success"
+  },
+  "claim_boundary": [
+    "This certificate is only for epsilon=0 in the projected massless axial (ell,m,n)=(2,2,2) sector.",
+    "It does not certify an epsilon>0 continuation tube or dOmega_222/depsilon at epsilon=0.",
+    "It does not certify the polar sector or axial-polar splitting.",
+    "It does not certify the full unreduced trace-log spectrum or full gravity closure."
+  ]
+}
