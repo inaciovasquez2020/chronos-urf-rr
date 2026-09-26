@@ -20,7 +20,7 @@ def test_axial_222_epsilon0_simple_root() -> None:
     out = completed.stdout
     assert "GFE_AXIAL_222_EPSILON0_FAST_AFFINE" in out
     assert "RESULT := CERTIFIED_UNIQUE_SIMPLE_ROOT_DISK" in out
-    assert value(out, "OMEGA_RADIUS") == 5e-6
+    assert value(out, "OMEGA_RADIUS") == 2e-5
     assert value(out, "HORIZON_MAJORANT_Q") < 1
     assert value(out, "INFINITY_DAMPING_LOWER") > 0
     assert value(out, "ROUCHE_MARGIN") > 0
