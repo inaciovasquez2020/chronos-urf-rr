@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Preflight axial 222 epsilon-zero root
+        run: python3 tools/gfe/verify_gfe_axial_222_epsilon0_simple_root.py
+
       - name: Install Lean (stable)
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
