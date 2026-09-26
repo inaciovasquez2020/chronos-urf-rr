@@ -169,6 +169,11 @@ jobs:
       - name: Certify polar 221 GR Darboux transfer
         run: python3 -m pytest -q tests/test_gfe_polar_221_gr_darboux_certificate.py
 
+      - name: Certify axial 222 epsilon-zero simple root
+        run: |
+          python3 tools/gfe/verify_gfe_axial_222_epsilon0_simple_root.py
+          python3 -m pytest -q tests/test_gfe_axial_222_epsilon0_simple_root.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
