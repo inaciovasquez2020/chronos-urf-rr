@@ -14,8 +14,8 @@ jobs:
       - name: Preflight axial 222 epsilon-zero root
         run: python3 tools/gfe/verify_gfe_axial_222_epsilon0_simple_root.py
 
-      - name: Install pytest for Python preflights
-        run: python3 -m pip install --disable-pip-version-check pytest
+      - name: Install Python preflight dependencies
+        run: python3 -m pip install --disable-pip-version-check sympy pytest
 
       - name: Preflight polar 222 GR Darboux transfer
         run: python3 -m pytest -q tests/test_gfe_polar_222_gr_darboux_certificate.py
