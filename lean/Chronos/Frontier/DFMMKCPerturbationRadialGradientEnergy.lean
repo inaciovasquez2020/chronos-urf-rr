@@ -26,4 +26,47 @@ theorem dfmMkcPerturbationRadialGradientEnergy_nonneg
   unfold dfmMkcPerturbationRadialGradientEnergy
   positivity
 
+/--
+Weighted quadratic control of the exact charge-reduced momentum-source
+combination by the radial gradient energy.  The constant is explicit and
+depends only on the background coefficients.
+-/
+theorem dfmMkcChargeReducedMomentumSource_abs_le_gradientEnergy
+    (x : RestrictedDFMMKCEnergyState)
+    (deltaScalarFieldPrime deltaPhaseFieldPrime : ℝ) :
+    |x.alpha * x.phiDot / x.scaleFactor * deltaScalarFieldPrime
+        + x.qTheta / x.scaleFactor ^ 4 * deltaPhaseFieldPrime| ≤
+      (4 * x.alpha * x.phiDot ^ 2
+        + 4 * x.qTheta ^ 2 /
+            (x.beta * x.phi ^ 2 * x.scaleFactor ^ 6)) *
+        dfmMkcPerturbationRadialGradientEnergy
+          x deltaScalarFieldPrime deltaPhaseFieldPrime := by
+  let E := dfmMkcPerturbationRadialGradientEnergy
+    x deltaScalarFieldPrime deltaPhaseFieldPrime
+  have hE : 0 ≤ E := by
+    dsimp [E]
+    exact dfmMkcPerturbationRadialGradientEnergy_nonneg
+      x deltaScalarFieldPrime deltaPhaseFieldPrime
+  have hsq :
+      (x.alpha * x.phiDot / x.scaleFactor * deltaScalarFieldPrime
+        + x.qTheta / x.scaleFactor ^ 4 * deltaPhaseFieldPrime) ^ 2 ≤
+      ((4 * x.alpha * x.phiDot ^ 2
+        + 4 * x.qTheta ^ 2 /
+            (x.beta * x.phi ^ 2 * x.scaleFactor ^ 6)) * E) ^ 2 := by
+    dsimp [E, dfmMkcPerturbationRadialGradientEnergy]
+    field_simp [ne_of_gt x.alpha_pos, ne_of_gt x.beta_pos,
+      ne_of_gt x.scaleFactor_pos, ne_of_ne x.phi_ne_zero]
+    nlinarith [sq_nonneg
+      (x.beta * x.phi ^ 2 * x.scaleFactor ^ 3 * deltaScalarFieldPrime *
+          x.alpha * x.phiDot
+        - x.alpha * x.scaleFactor ^ 3 * deltaPhaseFieldPrime *
+          x.qTheta * x.phi)]
+  have hR :
+      0 ≤
+        (4 * x.alpha * x.phiDot ^ 2
+          + 4 * x.qTheta ^ 2 /
+              (x.beta * x.phi ^ 2 * x.scaleFactor ^ 6)) * E := by
+    positivity
+  exact abs_le_of_sq_le_sq hsq hR
+
 end Chronos.Frontier
