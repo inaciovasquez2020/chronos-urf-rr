@@ -220,4 +220,26 @@ def dfmMkcGradientToGravityProofObligation : Prop :=
     (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x),
     ∃ C : ℝ, DFMMKCGradientToGravityCoerciveEstimate S x P C
 
+/--
+No single background-only constant can control the radial gradient energy
+uniformly over the current perturbation-carrier interface.  The obstruction
+is purely at the interface level: the carrier admits arbitrarily large
+scalar radial derivatives while E_grav and Flux_boundary remain fixed.
+-/
+theorem dfmMkcGradientToGravityCoerciveEstimate_not_uniform_over_carrier
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x) :
+    ¬ ∃ C : ℝ, ∀ P' : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x,
+      DFMMKCGradientToGravityCoerciveEstimate S x P' C := by
+  intro hC
+  obtain ⟨C, hC⟩ := hC
+  let B : ℝ := C * E_grav data + Flux_boundary data S
+  obtain ⟨P', hP'⟩ :=
+    dfmMkcPerturbationRadialGradientEnergy_unbounded_over_carrier
+      S x P B
+  have hbound := hC P'
+  exact (not_lt_of_ge hbound) hP'
+
 end Chronos.Frontier
