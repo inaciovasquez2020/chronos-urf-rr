@@ -156,6 +156,43 @@ theorem dfmMkcPerturbationCarrier_scalarDerivative_free
   exact ⟨P', rfl⟩
 
 /--
+The current carrier interface permits arbitrarily large radial gradient energy
+while the background state is held fixed.  This is an interface obstruction,
+not an Einstein-matter instability statement.
+-/
+theorem dfmMkcPerturbationRadialGradientEnergy_unbounded_over_carrier
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (B : ℝ) :
+    ∃ P' : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x,
+      B < dfmMkcPerturbationRadialGradientEnergy
+        x P'.deltaScalarFieldPrime P'.deltaPhaseFieldPrime := by
+  let a : ℝ := x.alpha / (2 * x.scaleFactor ^ 2)
+  have ha : 0 < a := by
+    dsimp [a]
+    positivity
+  obtain ⟨n, hn⟩ := exists_nat_gt (max (B / a) 1)
+  have hn1 : (1 : ℝ) < n := by
+    exact lt_trans (le_max_right (B / a) 1) hn
+  have hBn : B < a * (n : ℝ) := by
+    have hB : B / a < (n : ℝ) := lt_of_le_of_lt (le_max_left (B / a) 1) hn
+    nlinarith
+  have hnn : (n : ℝ) ≤ (n : ℝ) ^ 2 := by
+    nlinarith [sq_nonneg ((n : ℝ) - 1)]
+  have henergy :
+      B < dfmMkcPerturbationRadialGradientEnergy x (n : ℝ) 0 := by
+    unfold dfmMkcPerturbationRadialGradientEnergy
+    have hquad : B < a * (n : ℝ) ^ 2 := lt_of_lt_of_le hBn (mul_le_mul_of_nonneg_left hnn (le_of_lt ha))
+    simpa [a] using hquad
+  obtain ⟨P', hP'⟩ :=
+    dfmMkcPerturbationCarrier_scalarDerivative_free S x P (n : ℝ)
+  refine ⟨P', ?_⟩
+  rw [hP']
+  exact henergy
+
+/--
 Smallest analytic target needed to connect the action-derived DFM-MKC radial
 gradient energy to the selected Einstein-matter curvature-energy control.
 This is a proof obligation only; no Einstein-matter coercivity estimate is
