@@ -239,10 +239,9 @@ theorem dfmMkcChargeReducedMomentumPotentialRadialDerivative_eq_gradientSource
         (fun r => x.qTheta * Q.deltaPhaseProfile r / x.scaleFactor ^ 4)
         (x.qTheta / x.scaleFactor ^ 4 *
           P.deltaPhaseFieldPrime) S.areaRadius := by
-    convert hphase.const_mul (x.qTheta / x.scaleFactor ^ 4) using 1 <;>
-      · funext r
-        ring_nf
-      · ring_nf
+    convert hphase.const_mul (x.qTheta / x.scaleFactor ^ 4) using 1
+    · funext r
+      ring_nf
   have hsum :
       HasDerivAt
         (fun r =>
@@ -255,6 +254,6 @@ theorem dfmMkcChargeReducedMomentumPotentialRadialDerivative_eq_gradientSource
     hscalar'.add hphase'
   have hgiven := Q.hasMomentumPotentialRadialDerivative
   rw [hprofile] at hgiven
-  simpa using hgiven.unique hsum
+  exact hgiven.unique hsum
 
 end Chronos.Frontier
