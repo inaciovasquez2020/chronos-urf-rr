@@ -232,7 +232,7 @@ theorem dfmMkcChargeReducedMomentumPotentialRadialDerivative_eq_gradientSource
         (x.alpha * x.phiDot / x.scaleFactor *
           P.deltaScalarFieldPrime) S.areaRadius := by
     convert hscalar.const_mul (x.alpha * x.phiDot / x.scaleFactor) using 1 <;>
-      ring
+      ring_nf
   have hphase' :
       HasDerivAt
         (fun r => x.qTheta * Q.deltaPhaseProfile r / x.scaleFactor ^ 4)
