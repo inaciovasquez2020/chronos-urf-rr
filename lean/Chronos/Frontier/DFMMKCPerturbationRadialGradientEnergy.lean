@@ -137,4 +137,33 @@ theorem dfmMkcChargeReducedRadialMomentumSource_surface_abs_le_gradientEnergy
     positivity
   exact mul_le_mul hnorm hderiv henergy
       (le_trans (le_of_lt Q.projectionNormalization_pos) hnorm)
+
+/--
+Smallest analytic target needed to connect the action-derived DFM-MKC radial
+gradient energy to the selected Einstein-matter curvature-energy control.
+This is a proof obligation only; no Einstein-matter coercivity estimate is
+asserted here.
+-/
+def DFMMKCGradientToGravityCoerciveEstimate
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (C : ℝ) : Prop :=
+  dfmMkcPerturbationRadialGradientEnergy
+      x P.deltaScalarFieldPrime P.deltaPhaseFieldPrime ≤
+    C * E_grav data + Flux_boundary data S
+
+/--
+Named status for the radial-gradient-to-gravity bridge.  The proposition above
+is the exact inequality required before the source bound can be promoted from
+a local gradient estimate to a curvature-energy estimate.
+-/
+def dfmMkcGradientToGravityProofObligation : Prop :=
+  ∀ {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x),
+    ∃ C : ℝ, DFMMKCGradientToGravityCoerciveEstimate S x P C
+
 end Chronos.Frontier
