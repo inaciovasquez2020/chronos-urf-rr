@@ -234,7 +234,6 @@ theorem dfmMkcChargeReducedMomentumPotentialRadialDerivative_eq_gradientSource
     convert hscalar.const_mul (x.alpha * x.phiDot / x.scaleFactor) using 1
     · funext r
       ring_nf
-    · ring_nf
   have hphase' :
       HasDerivAt
         (fun r => x.qTheta * Q.deltaPhaseProfile r / x.scaleFactor ^ 4)
