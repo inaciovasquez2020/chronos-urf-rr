@@ -255,6 +255,6 @@ theorem dfmMkcChargeReducedMomentumPotentialRadialDerivative_eq_gradientSource
     hscalar'.add hphase'
   have hgiven := Q.hasMomentumPotentialRadialDerivative
   rw [hprofile] at hgiven
-  exact hgiven.unique hsum
+  simpa using hgiven.unique hsum
 
 end Chronos.Frontier
