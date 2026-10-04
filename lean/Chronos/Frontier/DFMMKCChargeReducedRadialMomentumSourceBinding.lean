@@ -239,7 +239,9 @@ theorem dfmMkcChargeReducedMomentumPotentialRadialDerivative_eq_gradientSource
         (x.qTheta / x.scaleFactor ^ 4 *
           P.deltaPhaseFieldPrime) S.areaRadius := by
     convert hphase.const_mul (x.qTheta / x.scaleFactor ^ 4) using 1 <;>
-      ring_nf
+      · funext r
+        ring_nf
+      · ring_nf
   have hsum :
       HasDerivAt
         (fun r =>
