@@ -96,4 +96,45 @@ theorem dfmMkcChargeReducedMomentumPotentialRadialDerivative_abs_le_gradientEner
   exact dfmMkcChargeReducedMomentumSource_abs_le_gradientEnergy
     x P.deltaScalarFieldPrime P.deltaPhaseFieldPrime
 
+
+/--
+Conditional surface source control.  The only additional input is an upper
+bound on the positive projection normalization; no curvature-energy estimate
+is used.
+-/
+theorem dfmMkcChargeReducedRadialMomentumSource_surface_abs_le_gradientEnergy
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (Q : DFMMKCChargeReducedRadialMomentumSourceBinding S x P)
+    (B : DFMMKCChargeReducedRadialMomentumSourceIntervalBinding S x P Q)
+    (hscalar :
+      HasDerivAt Q.deltaScalarProfile P.deltaScalarFieldPrime S.areaRadius)
+    (hphase :
+      HasDerivAt Q.deltaPhaseProfile P.deltaPhaseFieldPrime S.areaRadius)
+    (normalizationBound : ℝ)
+    (hnorm : Q.projectionNormalization ≤ normalizationBound) :
+    |B.radialSource S.areaRadius| ≤
+      normalizationBound *
+        (4 * x.alpha * x.phiDot ^ 2
+          + 4 * x.qTheta ^ 2 /
+              (x.beta * x.phi ^ 2 * x.scaleFactor ^ 6)) *
+        dfmMkcPerturbationRadialGradientEnergy
+          x P.deltaScalarFieldPrime P.deltaPhaseFieldPrime := by
+  rw [dfmMkcChargeReducedRadialMomentumSourceIntervalBinding_abs_source_eq
+    S x P Q B S.areaRadius
+    ⟨B.anchor_le_surface, le_rfl⟩]
+  have hderiv :=
+    dfmMkcChargeReducedMomentumPotentialRadialDerivative_abs_le_gradientEnergy
+      S x P Q hscalar hphase
+  have henergy : 0 ≤
+      (4 * x.alpha * x.phiDot ^ 2
+        + 4 * x.qTheta ^ 2 /
+            (x.beta * x.phi ^ 2 * x.scaleFactor ^ 6)) *
+        dfmMkcPerturbationRadialGradientEnergy
+          x P.deltaScalarFieldPrime P.deltaPhaseFieldPrime := by
+    positivity
+  exact mul_le_mul hnorm hderiv henergy
+      (le_trans (le_of_lt Q.projectionNormalization_pos) hnorm)
 end Chronos.Frontier
