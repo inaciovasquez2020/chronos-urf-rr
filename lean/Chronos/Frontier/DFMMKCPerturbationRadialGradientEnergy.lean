@@ -139,6 +139,23 @@ theorem dfmMkcChargeReducedRadialMomentumSource_surface_abs_le_gradientEnergy
       (le_trans (le_of_lt Q.projectionNormalization_pos) hnorm)
 
 /--
+The carrier interface leaves the scalar radial derivative unconstrained:
+for every real target, the same carrier can be reused with only
+deltaScalarFieldPrime changed. No field equation is used.
+-/
+theorem dfmMkcPerturbationCarrier_scalarDerivative_free
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (t : ℝ) :
+    ∃ P' : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x,
+      P'.deltaScalarFieldPrime = t := by
+  let P' : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x :=
+    { P with deltaScalarFieldPrime := t }
+  exact ⟨P', rfl⟩
+
+/--
 Smallest analytic target needed to connect the action-derived DFM-MKC radial
 gradient energy to the selected Einstein-matter curvature-energy control.
 This is a proof obligation only; no Einstein-matter coercivity estimate is
