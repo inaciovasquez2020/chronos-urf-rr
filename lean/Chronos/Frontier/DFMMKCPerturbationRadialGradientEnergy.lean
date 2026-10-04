@@ -69,4 +69,31 @@ theorem dfmMkcChargeReducedMomentumSource_abs_le_gradientEnergy
     positivity
   exact abs_le_of_sq_le_sq hsq hR
 
+
+/--
+The exact radial derivative entering the charge-reduced momentum source is
+controlled by the action-derived radial gradient energy once the scalar and
+phase profiles realize the carrier's radial perturbation derivatives.
+-/
+theorem dfmMkcChargeReducedMomentumPotentialRadialDerivative_abs_le_gradientEnergy
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (Q : DFMMKCChargeReducedRadialMomentumSourceBinding S x P)
+    (hscalar :
+      HasDerivAt Q.deltaScalarProfile P.deltaScalarFieldPrime S.areaRadius)
+    (hphase :
+      HasDerivAt Q.deltaPhaseProfile P.deltaPhaseFieldPrime S.areaRadius) :
+    |Q.momentumPotentialRadialDerivative| ≤
+      (4 * x.alpha * x.phiDot ^ 2
+        + 4 * x.qTheta ^ 2 /
+            (x.beta * x.phi ^ 2 * x.scaleFactor ^ 6)) *
+        dfmMkcPerturbationRadialGradientEnergy
+          x P.deltaScalarFieldPrime P.deltaPhaseFieldPrime := by
+  rw [dfmMkcChargeReducedMomentumPotentialRadialDerivative_eq_gradientSource
+    S x P Q hscalar hphase]
+  exact dfmMkcChargeReducedMomentumSource_abs_le_gradientEnergy
+    x P.deltaScalarFieldPrime P.deltaPhaseFieldPrime
+
 end Chronos.Frontier
