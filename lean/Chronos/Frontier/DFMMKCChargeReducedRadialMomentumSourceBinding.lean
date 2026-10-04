@@ -199,4 +199,61 @@ theorem dfmMkcChargeReducedRadialMomentumSourceIntervalBinding_abs_source_eq
   · rw [hsign, abs_one, one_mul]
   · rw [hsign, abs_neg, abs_one, one_mul]
 
+/--
+If the scalar and phase profiles realize the carrier's radial perturbation
+derivatives at the selected surface, the charge-reduced momentum potential has
+the exact radial derivative entering the source-to-gradient-energy estimate.
+No energy bound is asserted here.
+-/
+theorem dfmMkcChargeReducedMomentumPotentialRadialDerivative_eq_gradientSource
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x)
+    (Q : DFMMKCChargeReducedRadialMomentumSourceBinding S x P)
+    (hscalar :
+      HasDerivAt Q.deltaScalarProfile P.deltaScalarFieldPrime S.areaRadius)
+    (hphase :
+      HasDerivAt Q.deltaPhaseProfile P.deltaPhaseFieldPrime S.areaRadius) :
+    Q.momentumPotentialRadialDerivative =
+      x.alpha * x.phiDot / x.scaleFactor * P.deltaScalarFieldPrime
+        + x.qTheta / x.scaleFactor ^ 4 * P.deltaPhaseFieldPrime := by
+  have hprofile :
+      Q.momentumPotentialProfile =
+        fun r =>
+          x.alpha * x.phiDot * Q.deltaScalarProfile r / x.scaleFactor
+            + x.qTheta * Q.deltaPhaseProfile r / x.scaleFactor ^ 4 := by
+    funext r
+    exact Q.momentumPotential_eq r
+  have hscalar' :
+      HasDerivAt
+        (fun r => x.alpha * x.phiDot * Q.deltaScalarProfile r /
+          x.scaleFactor)
+        (x.alpha * x.phiDot / x.scaleFactor *
+          P.deltaScalarFieldPrime) S.areaRadius := by
+    convert hscalar.const_mul (x.alpha * x.phiDot / x.scaleFactor) using 1
+    · funext r
+      ring_nf
+  have hphase' :
+      HasDerivAt
+        (fun r => x.qTheta * Q.deltaPhaseProfile r / x.scaleFactor ^ 4)
+        (x.qTheta / x.scaleFactor ^ 4 *
+          P.deltaPhaseFieldPrime) S.areaRadius := by
+    convert hphase.const_mul (x.qTheta / x.scaleFactor ^ 4) using 1
+    · funext r
+      ring_nf
+  have hsum :
+      HasDerivAt
+        (fun r =>
+          x.alpha * x.phiDot * Q.deltaScalarProfile r / x.scaleFactor
+            + x.qTheta * Q.deltaPhaseProfile r / x.scaleFactor ^ 4)
+        (x.alpha * x.phiDot / x.scaleFactor *
+            P.deltaScalarFieldPrime
+          + x.qTheta / x.scaleFactor ^ 4 *
+            P.deltaPhaseFieldPrime) S.areaRadius :=
+    hscalar'.add hphase'
+  have hgiven := Q.hasMomentumPotentialRadialDerivative
+  rw [hprofile] at hgiven
+  exact hgiven.unique hsum
+
 end Chronos.Frontier
