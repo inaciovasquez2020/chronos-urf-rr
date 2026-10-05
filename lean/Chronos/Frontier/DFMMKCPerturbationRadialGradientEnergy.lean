@@ -242,4 +242,36 @@ theorem dfmMkcGradientToGravityCoerciveEstimate_not_uniform_over_carrier
   have hbound := hC P'
   exact (not_lt_of_ge hbound) hP'
 
+/--
+Exact missing field-equation interface for the radial gradient-to-gravity route.
+
+The current perturbation carrier treats the two radial derivatives as free
+coordinates. This structure records the additional dynamical information that
+must be supplied before a background-only gravity coercivity estimate can be
+attempted. The fields are propositions rather than proved identities: this
+file does not manufacture an Einstein-matter equation.
+-/
+structure DFMMKCFieldEquationBinding
+    {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x) where
+  scalarRadialFieldEquation : Prop
+  phaseRadialFieldEquation : Prop
+  scalarRadialDerivative_bound : Prop
+  phaseRadialDerivative_bound : Prop
+  coupledGradientEnergy_bound : Prop
+
+/--
+The field-equation binding is intentionally not derivable from the present
+carrier interface. It is a proof-obligation surface for the missing
+Einstein-matter dynamics, not an unconditional theorem.
+-/
+def dfmMkcFieldEquationBindingProofObligation : Prop :=
+  ∀ {data : SelectedEinsteinMatterCauchyData}
+    (S : AdmissibleQuasiLocalSurface data)
+    (x : RestrictedDFMMKCEnergyState)
+    (P : DFMMKCPerturbedQuasiLocalSurfaceCarrier S x),
+    Nonempty (DFMMKCFieldEquationBinding S x P)
+
 end Chronos.Frontier
