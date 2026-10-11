@@ -22,9 +22,9 @@ For the coordinate and phase convention used in the cited treatment, the free-fa
 = \frac{m}{\hbar}\left(\frac{g^2 T^3}{6}+gzT\right),
 \]
 
-where (m) is the atomic mass, (g) is the local gravitational acceleration, (T) is the free-fall time parameter, and (z) is the corresponding initial vertical coordinate in that convention. Sign and reference-arm conventions can change the sign of a reported relative phase; comparisons must use the paper's full pulse sequence and definitions, not this expression in isolation.
+where $m$ is the atomic mass, $g$ is the local gravitational acceleration, $T$ is the free-fall time parameter, and $z$ is the corresponding initial vertical coordinate in that convention. Sign and reference-arm conventions can change the sign of a reported relative phase; comparisons must use the paper's full pulse sequence and definitions, not this expression in isolation.
 
-The dimensions are consistent: the bracket has units of action per unit mass, so multiplication by (m/\hbar) yields a dimensionless phase. The (T^3) term is the distinctive free-fall signature. This formula is a standard-theory benchmark, not a new result of Chronos.
+The dimensions are consistent: the bracket has units of action per unit mass, so multiplication by (m/\hbar) yields a dimensionless phase. The $T^3$ term is the distinctive free-fall signature. This formula is a standard-theory benchmark, not a new result of Chronos.
 
 ## 3. Comparison with the current Chronos flagship
 
