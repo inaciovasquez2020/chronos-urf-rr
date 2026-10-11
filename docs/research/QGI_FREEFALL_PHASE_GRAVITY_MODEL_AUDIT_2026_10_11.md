@@ -9,22 +9,19 @@
 
 Dobkowski et al., “Observation of the quantum phase of free fall and the consistency with the equivalence principle,” *Science Advances* 12 (2026), DOI: [10.1126/sciadv.aec8045](https://doi.org/10.1126/sciadv.aec8045).
 
-The Quantum Galileo Interferometer (QGI) places ultracold rubidium matter waves into two arms: one is held approximately stationary in the laboratory frame by the apparatus, while the other undergoes ballistic free fall. The arms are recombined and their relative quantum phase is measured. The reported phase has the characteristic cubic dependence on free-fall time and agrees with the equivalence-principle prediction in the tested low-energy regime.
+The Quantum Galileo Interferometer (QGI) places ultracold rubidium matter waves into two arms: one is held approximately stationary in the laboratory frame by the apparatus, while the other undergoes ballistic free fall. The arms are recombined and their relative quantum phase is measured. The reported phase agrees with the predicted quantum free-fall phase in the tested low-energy regime [primary paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC13537235/) and [Oxford research summary](https://www.physics.ox.ac.uk/news/scientists-observe-einsteins-gravity-quantum-world).
 
-This is an experimental measurement of a predicted matter-wave phase. It does **not** demonstrate a complete quantum-gravity theory, establish that gravity is quantized, or by itself indicate a deviation from standard gravity.
+This is an experimental measurement of a predicted matter-wave phase. The authors describe it as a test of the interface between quantum theory and gravity; it does **not** demonstrate a unified quantum-gravity theory or establish that gravity itself is quantized [primary paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC13537235/).
 
 ## 2. Standard-theory reference
 
-For the coordinate and phase convention used in the cited treatment, the free-fall phase is expressed as
-
+The primary paper gives the gauge phase relating the Newtonian/laboratory and freely falling wavefunctions as
 \[
-\Delta\phi_{\rm std}(T,z)
-= \frac{m}{\hbar}\left(\frac{g^2 T^3}{6}+gzT\right),
+\varphi_{\rm gauge}(z,t)=\frac{m}{\hbar}\left(-\frac{g^2t^3}{6}-gzt\right),
 \]
+in its stated convention (Eq. 1). For the idealized symmetric ballistic segment with endpoints at times \(\pm T\), it gives the relative ballistic phase \(\varphi_{\rm ballistic}=-mg^2T^3/(3\hbar)\) (Eq. 2). The actual QGI observable includes the magnetic-gradient kicks and pulse timing; the paper's full interferometer expression, not the gauge phase alone, must be used for quantitative comparison. Source: [Dobkowski et al., primary paper, Eqs. (1)–(4)](https://pmc.ncbi.nlm.nih.gov/articles/PMC13537235/).
 
-where $m$ is the atomic mass, $g$ is the local gravitational acceleration, $T$ is the free-fall time parameter, and $z$ is the corresponding initial vertical coordinate in that convention. Sign and reference-arm conventions can change the sign of a reported relative phase; comparisons must use the paper's full pulse sequence and definitions, not this expression in isolation.
-
-The dimensions are consistent: the bracket has units of action per unit mass, so multiplication by (m/\hbar) yields a dimensionless phase. The $T^3$ term is the distinctive free-fall signature. This formula is a standard-theory benchmark, not a new result of Chronos.
+The cubic time dependence is the characteristic free-fall signature. These are standard-theory expressions, not new results of Chronos. The earlier shorthand \(m(g^2T^3/6+gzT)/\hbar\) gives the magnitude of the gauge-phase terms under a sign convention, not the complete measured QGI phase.
 
 ## 3. Comparison with the current Chronos flagship
 
@@ -85,6 +82,6 @@ A nonzero expression is not sufficient: it must be well-defined, independently p
 
 ## References
 
-1. O. Dobkowski et al., “Observation of the quantum phase of free fall and the consistency with the equivalence principle,” *Science Advances* (2026), [doi:10.1126/sciadv.aec8045](https://doi.org/10.1126/sciadv.aec8045).
-2. University of Oxford / ScienceDaily, “Scientists observe Einstein’s gravity in the quantum world for the first time,” 8 September 2026, [source](https://www.sciencedaily.com/releases/2026/09/260907201552.htm).
+1. O. Dobkowski et al., “Observation of the quantum phase of free fall and the consistency with the equivalence principle,” *Science Advances* 12(36), eaec8045 (2026), [primary full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC13537235/), [DOI](https://doi.org/10.1126/sciadv.aec8045). Gauge phase and idealized ballistic phase: Eqs. (1)–(2); full apparatus-specific phase is developed later in the article and supplement.
+2. University of Oxford, [research summary](https://www.physics.ox.ac.uk/news/scientists-observe-einsteins-gravity-quantum-world), for experimental context and limits.
 3. Chronos flagship formalization: [`ReggeWheelerFlagshipExactResidual.lean`](https://github.com/inaciovasquez2020/chronos-urf-rr/blob/main/lean/Chronos/Frontier/ReggeWheelerFlagshipExactResidual.lean).
