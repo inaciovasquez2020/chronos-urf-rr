@@ -3,7 +3,7 @@
 **Status:** `EXPERIMENTAL_BENCHMARK_IDENTIFIED_MODEL_SPECIFIC_PREDICTION_NOT_YET_DERIVED`  
 **Date:** 2026-10-11  
 **Repository:** `chronos-urf-rr`  
-**Scope:** Compare the existing Regge–Wheeler / Chronos gravity frontier with the 2026 quantum free-fall phase experiment without treating compatibility as evidence for a new theory.
+**Scope:** Compare the existing Regge–Wheeler / Chronos gravity frontier with the 2026 quantum free-fall phase experiment without treating compatibility as evidence for a new theory. The action-specific DFM–MKC comparison is recorded in the [DFM–MKC QGI audit](https://github.com/inaciovasquez2020/dfm-mkc-cosmology/blob/main/docs/status/QGI_FREEFALL_PHASE_DFM_MKC_AUDIT_2026_10_11.md).
 
 ## 1. Experimental benchmark
 
