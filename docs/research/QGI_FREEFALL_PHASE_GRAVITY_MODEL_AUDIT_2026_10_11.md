@@ -45,7 +45,7 @@ Therefore **no distinct numerical prediction from the current Chronos flagship c
 
 ## 4. Correct conditional route to a discriminating prediction
 
-If a candidate theory reduces in the experiment's regime to a nonrelativistic Hamiltonian with a potential correction \(\delta\Phi\), a preliminary potential-only contribution would have the form
+If a candidate theory reduces in the experiment's regime to the nonrelativistic Hamiltonian \(H=p^2/(2m)+m\Phi(x,t)\), its potential contribution to the phase along an arm follows from \(\phi=-\hbar^{-1}\int H\,dt\). Subtracting the reference-arm contribution gives the following conditional, potential-only correction (derived here from that Hamiltonian; it is not quoted from the QGI paper):
 
 \[
 \delta\phi_{\rm pot}
