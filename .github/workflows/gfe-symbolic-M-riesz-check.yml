@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - proof/gfe-symbolic-M-riesz-check-20261016
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 permissions:
   contents: read
