@@ -43,7 +43,10 @@ for i in range(6):
         print(f"entry {i},{j}: valuation {row[-1]}", flush=True)
     vals.append(row)
 report={
- "scope":"generic symbolic-parameter valuation over M,z; r=3, lambda=6, omega=i/4; exceptional specializations are not classified",
+ "scope":"generic symbolic-parameter valuation over M,z at fixed r=3, lambda=6, omega=i/4; exceptional specializations are not classified",
+ "fixed_substitutions":{"r":"3","lambda":"6","omega":"I/4"},
+ "ordinary_generator_guard":["M != 0","r != 0","r - 2*M != 0","lambda != 0","beta != 0","descriptor_determinant != 0"],
+ "fixed_radius_excluded_specializations":[{"M":"3/2","reason":"r - 2*M = 0 after r=3 substitution; outside the guarded ordinary-generator domain","scope":"fixed r=3 only; not a model-wide exclusion"}],
  "source_sha256":hashlib.sha256(ART.read_bytes()).hexdigest(),
  "determinant_beta_valuation":vdet,
  "resolvent_numerator_entry_valuations":vals,
