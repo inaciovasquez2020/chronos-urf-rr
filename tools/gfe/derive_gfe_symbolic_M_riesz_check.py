@@ -7,12 +7,12 @@ import sympy as s
 ROOT = Path(__file__).resolve().parents[2]
 ART = ROOT / "artifacts/chronos/gfe_corrected_AEH_half_laurent_generator.json"
 OUT = ROOT / "artifacts/chronos/gfe_symbolic_M_riesz_check.json"
-M, beta, z = s.symbols("M beta z")
+M, beta, z, r, lam, omega = s.symbols("M beta z r lam omega")
 I = s.I
-loc = {"M": M, "beta": beta, "z": z, "I": I}
+loc = {"M": M, "beta": beta, "z": z, "I": I, "r": r, "lam": lam, "lambda": lam, "omega": omega}
 data = json.loads(ART.read_text())
 def parse(v):
-    return s.sympify(v, locals=loc).subs({"r": 3, "lam": 6, "lambda": 6, "omega": I/4}, simultaneous=True)
+    return s.sympify(v, locals=loc).subs({r: 3, lam: 6, omega: I/4}, simultaneous=True)
 def poly_expr(coeffs):
     return sum((parse(c) * beta**j for j,c in enumerate(coeffs)), s.Integer(0))
 N = s.Matrix(6, 6, lambda i,j: poly_expr([a[i][j] for a in data["reduced_numerator_beta_coefficients"]]))
