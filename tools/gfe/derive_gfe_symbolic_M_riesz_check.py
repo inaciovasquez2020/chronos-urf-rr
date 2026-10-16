@@ -43,7 +43,7 @@ for i in range(6):
         print(f"entry {i},{j}: valuation {row[-1]}", flush=True)
     vals.append(row)
 report={
- "scope":"exact symbolic M; r=3, lambda=6, omega=i/4",
+ "scope":"generic symbolic-parameter valuation over M,z; r=3, lambda=6, omega=i/4; exceptional specializations are not classified",
  "source_sha256":hashlib.sha256(ART.read_bytes()).hexdigest(),
  "determinant_beta_valuation":vdet,
  "resolvent_numerator_entry_valuations":vals,
