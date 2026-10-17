@@ -46,3 +46,27 @@ def test_full_source_determinant_specialization():
     print("CERTIFIED_LOWER_BOUND =", lower_bound)
     print("DECIMAL_LOWER_BOUND >", sp.N(lower_bound, 12))
     print("PASS: full rational source determinant matches exact specialization and bound")
+
+
+def test_finite_beta_source_determinant_guard():
+    """Certify the full-source det(E)/beta^3 away from beta=0 locally."""
+    ROOT = Path(__file__).resolve().parents[1]
+    ART = ROOT / "artifacts/chronos/gfe_corrected_AEH_half_euler_generator.json"
+    M, beta, r, lam, omega = sp.symbols("M beta r lam omega")
+    x = sp.symbols("x", real=True)
+    I = sp.I
+
+    data = json.loads(ART.read_text())
+    source = sp.sympify(
+        data["descriptor_determinant"],
+        locals={"M": M, "beta": beta, "r": r, "lam": lam,
+                "lambda": lam, "omega": omega, "I": I},
+    )
+    specialized = sp.cancel(source.subs(
+        {r: sp.Integer(3), lam: sp.Integer(6), omega: I / 4},
+        simultaneous=True,
+    ))
+    quotient = sp.cancel(specialized / beta**3)
+    expected = -sp.Rational(125, 729) * (3 - 2 * M)**4
+    error = sp.cancel(quotient - expected).subs(M, 1 + x)
+    error_num, error_den = map(sp.Poly, sp.fraction(sp.cancel(error)), [x, beta])
