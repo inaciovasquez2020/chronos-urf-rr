@@ -123,6 +123,9 @@ jobs:
       - name: Certify accumulation rank-loss coalescence
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_rankloss_coalescence.py
 
+      - name: Certify corrected GQQ exterior rank-loss obstruction
+        run: python3 tools/gfe/verify_gfe_corrected_gqq_exterior_rankloss_obstruction.py
+
       - name: Certify ordinary Borel companion
         run: python3 tools/gfe/verify_gfe_corrected_exceptional_accumulation_borel_ordinary_companion.py
 
