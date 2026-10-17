@@ -2,7 +2,7 @@
 
 ## Status
 
-This note records the exact algebraic cancellation certificate and the local contour argument it supports. It is **not** a claim of global parameter uniformity or closure of any horizon/outgoing problem. The argument is conditional on the ordinary-generator rational denominators remaining nonzero in a neighborhood of the contour and limiting point; that guard must be checked against the source descriptor before treating the local theorem as unconditional.
+This note records the exact algebraic cancellation certificate and the local contour argument it supports. It is **not** a claim of global parameter uniformity or closure of any horizon/outgoing problem. The ordinary-generator descriptor guard has also been checked at the base point: after the fixed substitutions, the leading coefficient of the source descriptor determinant is \(\det E/\beta^3\to875/81\ne0\), and the reduced generator denominator has \(D/\beta\to-125/729\ne0\). These exact nonzero values supply the needed punctured-neighborhood guard near \(M=1\).
 
 ## Fixed specialization and exact symbolic gate
 
@@ -47,7 +47,7 @@ Assume the source descriptor denominators are also nonzero on \(\{(M,\beta,z):M=
 ## What this does and does not prove
 
 - **Exact algebraic result:** the symbolic beta-valuation cancellation gate at the stated fixed specialization.
-- **Local analytic consequence:** local-uniform Riesz-projector convergence follows by the compact-contour argument once the source rational-denominator guard is verified at the base contour.
+- **Local analytic consequence:** local-uniform Riesz-projector convergence near \\(M=1\\) follows by the compact-contour argument, using the exact nonzero descriptor and reduced-denominator coefficients stated above.
 - **Not claimed:** global parameter uniformity; classification of all exceptional specializations; a finite-\(\beta\) invariant projector; a Fredholm resolution; endpoint admissibility; or horizon/outgoing closure.
 - **Remaining explicit check:** inspect the source descriptor and certify nonvanishing of every rational denominator needed for \(A\) and \(B\) on the base contour and a neighborhood. Until that is recorded, the local theorem is conditional on this guard.
 
