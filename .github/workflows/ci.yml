@@ -186,6 +186,9 @@ jobs:
       - name: Certify polar 222 GR Darboux transfer
         run: python3 -m pytest -q tests/test_gfe_polar_222_gr_darboux_certificate.py
 
+      - name: Verify full-source determinant specialization
+        run: python3 -m pytest -q -s tests/test_gfe_source_det_specialization.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
