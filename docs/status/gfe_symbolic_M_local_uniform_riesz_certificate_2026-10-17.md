@@ -42,14 +42,14 @@ At \(M=1,\beta=0\), the already verified fixed-point calculation gives a limitin
 \]
 Thus the cancelled limiting denominator has no zero on the contour at the base point.
 
-Assume the source descriptor denominators are also nonzero on \(\{(M,\beta,z):M=1,\beta=0,|z|=2\}\). Compactness of the contour and continuity then give neighborhoods \(U\) of \(M=1\) and \(V\) of \(\beta=0\) on which those rational denominators and \(A(M,\beta,z)\) stay nonzero for \(|z|=2\). Consequently \(B/A\) converges uniformly on \(|z|=2\) as \(\beta\to0\), locally uniformly for \(M\in U\). Integrating the contour resolvent gives local-uniform convergence of the corresponding Riesz projectors, under the stated guards.
+At the base parameters, direct exact evaluation of the source descriptor determinant gives \\det E/\\beta^3\\to875/81, while the reduced denominator has D/\\beta\\to-125/729. Both are nonzero. By continuity, after shrinking the neighborhoods if necessary, the source descriptor determinant is nonzero for sufficiently small \\beta\\ne0 and M near 1, and the reduced denominator has no additional zero there. Compactness of the contour and continuity then give neighborhoods U of M=1 and V of \\beta=0 on which the cancelled denominator A(M,\\beta,z) stays nonzero for |z|=2. Consequently B/A converges uniformly on |z|=2 as \\beta\\to0, locally uniformly for M\\in U. Integrating the contour resolvent gives local-uniform convergence of the corresponding Riesz projectors.
 
 ## What this does and does not prove
 
 - **Exact algebraic result:** the symbolic beta-valuation cancellation gate at the stated fixed specialization.
 - **Local analytic consequence:** local-uniform Riesz-projector convergence near \\(M=1\\) follows by the compact-contour argument, using the exact nonzero descriptor and reduced-denominator coefficients stated above.
 - **Not claimed:** global parameter uniformity; classification of all exceptional specializations; a finite-\(\beta\) invariant projector; a Fredholm resolution; endpoint admissibility; or horizon/outgoing closure.
-- **Remaining explicit check:** inspect the source descriptor and certify nonvanishing of every rational denominator needed for \(A\) and \(B\) on the base contour and a neighborhood. Until that is recorded, the local theorem is conditional on this guard.
+- **Scope restriction:** the neighborhood is local to \\(M=1\\), and the ordinary-generator representation is used only for sufficiently small nonzero \\(\\beta\\). The argument does not extend across the exceptional locus \\(r-2M=0\\).
 
 ## Reproducibility
 
