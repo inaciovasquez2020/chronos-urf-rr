@@ -48,12 +48,14 @@ def main() -> None:
     if simp(delta_sector.subs(r, x) - expected) != 0:
         raise AssertionError("dimensionless exceptional-sector Delta factorization changed")
 
-    left = sp.Rational(257, 100)
-    right = sp.Rational(129, 50)
+    left = sp.Rational(2571, 1000)
+    right = sp.Rational(2572, 1000)
     p_left = sp.factor(p.subs(x, left))
     p_right = sp.factor(p.subs(x, right))
     if not (p_left < 0 and p_right > 0):
         raise AssertionError("exact rational endpoint signs no longer bracket an exterior Delta zero")
+    if sp.Poly(p, x, domain="QQ").count_roots(left, right) != 1:
+        raise AssertionError("Sturm root count is not exactly one in the isolating interval")
     if not (left > 2 and right > left):
         raise AssertionError("rank-loss bracket is not strictly exterior")
 
@@ -76,7 +78,7 @@ def main() -> None:
     print("DELTA_FACTOR := -25*(x-2)*p(x)/16")
     print(f"P_LEFT := p(257/100) = {p_left}")
     print(f"P_RIGHT := p(129/50) = {p_right}")
-    print("EXTERIOR_DELTA_ZERO_EXISTS := x_* in (257/100, 129/50) = (2.57, 2.58)")
+    print("EXTERIOR_DELTA_ZERO_EXISTS := unique x_* in (2571/1000, 643/250) = (2.571, 2.572)")
     print("GQQ_DETERMINANT_DENOMINATOR := positive throughout the bracket")
     print("ORDINARY_GENERATOR_GUARD := supplied by the exterior-continuation certificate on every r>2")
     print("GQQ_RANK_AT_DELTA_ZERO := 1")
