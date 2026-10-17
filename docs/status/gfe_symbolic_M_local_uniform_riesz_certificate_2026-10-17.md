@@ -42,14 +42,14 @@ At \(M=1,\beta=0\), the already verified fixed-point calculation gives a limitin
 \]
 Thus the cancelled limiting denominator has no zero on the contour at the base point.
 
-At the base parameters, direct exact evaluation of the source descriptor determinant gives \\det E/\\beta^3\\to875/81, while the reduced denominator has D/\\beta\\to-125/729. Both are nonzero. By continuity, after shrinking the neighborhoods if necessary, the source descriptor determinant is nonzero for sufficiently small \\beta\\ne0 and M near 1, and the reduced denominator has no additional zero there. Compactness of the contour and continuity then give neighborhoods U of M=1 and V of \\beta=0 on which the cancelled denominator A(M,\\beta,z) stays nonzero for |z|=2. Consequently B/A converges uniformly on |z|=2 as \\beta\\to0, locally uniformly for M\\in U. Integrating the contour resolvent gives local-uniform convergence of the corresponding Riesz projectors.
+At the base parameters, direct exact evaluation of the source descriptor determinant gives \det E/\beta^3\to875/81, while the reduced denominator has D/\beta\to-125/729. Both are nonzero. By continuity, after shrinking the neighborhoods if necessary, the source descriptor determinant is nonzero for sufficiently small \beta\ne0 and M near 1, and the reduced denominator has no additional zero there. Compactness of the contour and continuity then give neighborhoods U of M=1 and V of \beta=0 on which the cancelled denominator A(M,\beta,z) stays nonzero for |z|=2. Consequently B/A converges uniformly on |z|=2 as \beta\to0, locally uniformly for M\in U. Integrating the contour resolvent gives local-uniform convergence of the corresponding Riesz projectors.
 
 ## What this does and does not prove
 
 - **Exact algebraic result:** the symbolic beta-valuation cancellation gate at the stated fixed specialization.
-- **Local analytic consequence:** local-uniform Riesz-projector convergence near \\(M=1\\) follows by the compact-contour argument, using the exact nonzero descriptor and reduced-denominator coefficients stated above.
+- **Local analytic consequence:** local-uniform Riesz-projector convergence near \(M=1\) follows by the compact-contour argument, using the exact nonzero descriptor and reduced-denominator coefficients stated above.
 - **Not claimed:** global parameter uniformity; classification of all exceptional specializations; a finite-\(\beta\) invariant projector; a Fredholm resolution; endpoint admissibility; or horizon/outgoing closure.
-- **Scope restriction:** the neighborhood is local to \\(M=1\\), and the ordinary-generator representation is used only for sufficiently small nonzero \\(\\beta\\). The argument does not extend across the exceptional locus \\(r-2M=0\\).
+- **Scope restriction:** the neighborhood is local to \(M=1\), and the ordinary-generator representation is used only for sufficiently small nonzero \(\beta\). The argument does not extend across the exceptional locus \(r-2M=0\).
 
 ## Reproducibility
 
@@ -57,4 +57,4 @@ At the base parameters, direct exact evaluation of the source descriptor determi
 - Draft diagnostic PR: [#1318](https://github.com/inaciovasquez2020/chronos-urf-rr/pull/1318)
 - Artifact digest: `sha256:24009f5b1e1c27a2488eb7cd6fa12564140aaa606812f0596ff6243f353d1620`
 
-This certificate is intentionally narrow. Do not merge this diagnostic branch until the denominator guard is checked and the resulting proof/test scope is reflected in the PR description.
+This certificate is intentionally narrow. Keep the PR draft until its updated proof scope and CI results are inspected; no global closure claim is implied.
