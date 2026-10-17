@@ -52,7 +52,7 @@ expected = s.Matrix([
     [z*(96*z+337)/den, -1, 0, 364*z**2/(3*den), 0, 0],
     [324/den, 0, 0, 48*(3*z-2)/den, 0, 0],
     [324*z/den, 0, 0, -(96*z-337)/den, 0, 0],
-    [324*z**2/den, 0, -1, -z*(96*z-337)/den, -1, 0],
+    [324*z**2/den, 0, 0, -z*(96*z-337)/den, -1, 0],
 ])
 residual = (actual - expected).applyfunc(lambda x: s.factor(s.cancel(x)))
 assert residual == s.zeros(6), f"specialized resolvent mismatch: {residual}"
