@@ -23,11 +23,11 @@ p(x)={}&x^9+2x^8+4x^7+452x^6-248x^5-112x^4\\
 \]
 The exact rational endpoint evaluations satisfy
 \[
-p\!\left(\frac{257}{100}\right)<0,
+p\!\left(\frac{2571}{1000}\right)<0,
 \qquad
-p\!\left(\frac{129}{50}\right)>0.
+p\!\left(\frac{643}{250}\right)>0.
 \]
-Continuity therefore gives at least one \(x_*\in(2.57,2.58)\) with \(p(x_*)=0\). In particular, \(x_*>2\), so this is an exterior rank-loss point, not the horizon factor \(x=2\).
+Continuity gives a root in \((2.571,2.572)\), and an exact Sturm root count gives exactly one root in that interval. Thus the rank-loss radius is isolated uniquely in a short rational interval strictly above the horizon.
 
 ## Guard audit at the bracket
 
@@ -35,7 +35,7 @@ The determinant denominator is
 \[
 r^2(r-2)^2(-40+5r^3)(20+5r^3).
 \]
-It is strictly positive for every \(r\in(2.57,2.58)\): each factor is positive there, and \(-40+5r^3=5(r^3-8)>0\) for all \(r>2\). The existing exact exterior-continuation verifier certifies the source descriptor \(E\) is invertible and all descriptor coefficients are regular for every real \(r>2\) in this same fixed sector. Thus the zero occurs within the ordinary-generator guard, where the corrected artifact's exact rank classification applies: rank two if \(\Delta\ne0\), rank one if \(\Delta=0\).
+It is strictly positive for every \(r\in(2.571,2.572)\): each factor is positive there, and \(-40+5r^3=5(r^3-8)>0\) for all \(r>2\). The existing exact exterior-continuation verifier certifies the source descriptor \(E\) is invertible and all descriptor coefficients are regular for every real \(r>2\) in this same fixed sector. Thus the zero occurs within the ordinary-generator guard, where the corrected artifact's exact rank classification applies: rank two if \(\Delta\ne0\), rank one if \(\Delta=0\).
 
 ## Consequences and limits
 
@@ -49,4 +49,4 @@ It is strictly positive for every \(r\in(2.57,2.58)\): each factor is positive t
 
 Run the command: python3 tools/gfe/verify_gfe_corrected_gqq_exterior_rankloss_obstruction.py
 
-The verifier reads artifacts/chronos/gfe_corrected_AEH_half_pq_gqq.json, checks the exact factorization and rational endpoint signs, and checks positivity of the GQQ determinant denominator at both bracket endpoints. The companion exterior-continuation gate establishes the ordinary-generator guard on the whole open exterior in this sector.
+The verifier reads artifacts/chronos/gfe_corrected_AEH_half_pq_gqq.json, checks the exact factorization, rational endpoint signs, and exact Sturm root count, and checks positivity of the GQQ determinant denominator at both bracket endpoints. The companion exterior-continuation gate establishes the ordinary-generator guard on the whole open exterior in this sector.
