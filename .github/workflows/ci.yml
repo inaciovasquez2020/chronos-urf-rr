@@ -192,6 +192,9 @@ jobs:
       - name: Verify full-source determinant specialization
         run: python3 -m pytest -q -s tests/test_gfe_source_det_specialization.py
 
+      - name: Exclude exterior rank-loss point from full-pencil contour
+        run: python3 tools/gfe/verify_gfe_full_six_state_exterior_contour.py
+
       - name: Run remaining Python verifiers
         run: |
           python3 tools/verifier/verify_chronos_semantic_derivation_rules_boundary.py
