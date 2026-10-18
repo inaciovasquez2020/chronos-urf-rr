@@ -1,96 +1,58 @@
 # Chronos URF-RR
 
-Flagship executable URF/Chronos frontier repository.
+**Proof-facing research repository for the Chronos / Unified Rigidity Framework (URF).**
 
-This repository records verified build surfaces, Lean interface surfaces, JSON artifacts, status documents, and verifier tests for the Chronos/URF reduction program. It is a proof-facing frontier and infrastructure repository, not a repository-level theorem-closure claim.
+This repository maintains formalization surfaces, reproducible symbolic/numerical certificates, JSON receipts, tests, and explicit boundaries between established results and unresolved mathematical claims. A successful build or passing certificate validates only the properties actually checked; it does not by itself establish global theorem closure or physical interpretation.
 
-## Current repository status
+## Current research snapshot
 
-Status: `CONDITIONAL_FRONTIER_EXECUTABLE_SURFACE`
+As of 2026-10-18, recent GfE work has advanced from the corrected axial projector/GQQ certificate to several more specific, finite-scope results:
 
-Current checked main head at README update time:
+- **Corrected projector and GQQ certificate:** exact P/Q rank and idempotence checks, the corrected GQQ calculation, and the associated rank distinction were recorded. The leading commutator obstruction remains explicit: \([G_{-1},P_0]=G_{-1}\ne 0\).
+- **Fixed-point Riesz projector limit:** a rank-two contour limit was certified at the single parameter point \(M=1, r=3, \lambda=6, \omega=i/4\) (commit [461ace4](https://github.com/inaciovasquez2020/chronos-urf-rr/commit/461ace45e0474522449f86fa8c896ceb928c4f43)).
+- **Local-uniform Riesz limit:** exact symbolic-M beta-valuation cancellation and a local contour argument near \(M=1\) were recorded. This is local, not a global uniformity result (commit [4d850b7](https://github.com/inaciovasquez2020/chronos-urf-rr/commit/4d850b71d6d85588cb6982ecddcb16b218cf83ff)).
+- **Finite-beta full-source determinant guard:** exact determinant specialization and a finite-beta guard were added in commits [ee844ae](https://github.com/inaciovasquez2020/chronos-urf-rr/commit/ee844aeaa3f41e858ca3ee759951492fd0d2c1da) and [eb20d8a](https://github.com/inaciovasquez2020/chronos-urf-rr/commit/eb20d8aeaa56635ede6e74e2868f75fe3d8c548e).
+- **Exterior corrected-GQQ rank loss:** the exterior rank-loss obstruction and its exact isolated root were certified in [commit 2136cdd](https://github.com/inaciovasquez2020/chronos-urf-rr/commit/2136cdd389bd94721228b6aff9b5b84d46bf2e8d).
+- **Full-pencil exterior contour:** the latest recorded result certifies, by exact elimination, exclusion of full six-state pencil zeros on \(|z|=2\) at the exterior corrected-GQQ rank-loss point (commit [2cb279a](https://github.com/inaciovasquez2020/chronos-urf-rr/commit/2cb279ae40a9af83831bf06b1929ad59bc77d1eb)).
 
-```text
-c02adde9
-```
+These are bounded certificate and local-analysis results. Their scope should not be enlarged beyond the hypotheses, parameter regions, and observables recorded in the corresponding artifacts.
 
-Latest build closeout recorded:
+## Explicit open boundaries
 
-```text
-CONCRETE_ANALYTIC_EINSTEIN_MATTER_ESTIMATE_PACKAGE_CLOSEOUT_STACK
-BUILD_CLOSEOUT_SURFACE_ONLY_NO_ANALYTIC_PACKAGE_PROOF
-NEXT_BUILD_ALLOWED_AFTER_STOP_LOCK
-```
+The repository does **not** claim any of the following as established by the results above:
 
-Recent closeout chain:
+- a finite-\(\beta\) invariant-projector or all-orders invariant-graph closure;
+- a globally uniform complement estimate or global uniform Riesz-projector limit;
+- a Fredholm resolution;
+- endpoint admissibility;
+- horizon or outgoing-boundary closure;
+- an unconditional global mode or physical-instability conclusion;
+- unrestricted Chronos-RR, unrestricted H4.1/FGL, P vs NP, or resolution of any Clay problem.
 
-```text
-#458 concrete analytic package closeout stack
-#457 restricted concentration monotonicity proof surface
-#456 local balance law dQ/dt derivation surface
-#455 concrete analytic estimate package proof-obligation lock
-#454 concrete analytic estimate package bridge
-#453 restricted continuation norm control
-#452 restricted local concentration monotonicity estimate
-#451 concrete analytic estimate package target
-```
+In particular, the exact exterior contour certificate is a point-specific exclusion result. It does not remove the rank-loss obstruction, prove a global complement bound, or close the full spectral problem.
 
-## What the repository verifies
+## Repository role
 
-The executable layer verifies that registered surfaces compile, artifacts match their expected schemas, status documents preserve required boundary language, and test/verifier suites pass.
+- `urf-core` — shared definitions, theorem/library layer, and foundations.
+- `chronos-urf-rr` — executable frontier, status, and conditional/certificate surfaces.
+- `frontier-status-dashboard` — public status presentation and synchronization.
 
-Typical verification commands:
+## Verification
+
+Typical local checks, when run in the repository environment:
 
 ```zsh
 lake build
-python3 -m pytest -q
+PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q
 git diff --check
 git status --short
 ```
 
-A successful build means the checked targets compile. It does not mean that frontier, conditional, assumed, axiom-dependent, admit-dependent, sorry-dependent, or proof-surface objects prove their headline mathematical targets.
+Interpret the result narrowly: a successful build means the checked targets compile; a passing test means the assertions in that test passed. Neither substitutes for a missing proof obligation.
 
-## Current analytic-package surface
+## Evidence and provenance
 
-The current Einstein-matter analytic-package build is stopped at:
-
-```text
-BUILD_CLOSEOUT_SURFACE_ONLY_NO_ANALYTIC_PACKAGE_PROOF
-```
-
-The closeout stack records the following remaining objects as proof surfaces only:
-
-```text
-RESTRICTED_CONTINUATION_NORM_CONTROL_PROOF
-PACKAGE_COMPATIBILITY_PROOF
-TARGET_INTERFACE_COMPATIBILITY_PROOF
-CONCRETE_ANALYTIC_EINSTEIN_MATTER_ESTIMATE_PACKAGE_PROOF
-CONCRETE_ANALYTIC_EINSTEIN_MATTER_ESTIMATE_PACKAGE_BUILD_STOP_LOCK
-```
-
-This is a build-closeout and status-lock result only.
-
-## Non-claims
-
-This repository does not claim:
-
-- analytic Einstein-matter bootstrap package proof
-- concrete analytic Einstein-matter estimate package proof
-- analytic derivation of the local balance law
-- unconditional restricted concentration monotonicity theorem
-- unconditional restricted continuation norm theorem
-- threshold crossing proof
-- gravity closure
-- unrestricted Chronos-RR
-- unrestricted H4.1/FGL
-- P vs NP
-- any Clay problem
-
-## Governance and boundary discipline
-
-This repository is governed by explicit status locks, boundary documents, JSON artifacts, Lean frontier modules, and verifier tests.
-
-Relevant files include:
+The repository uses formal modules, symbolic or numerical generators, machine-readable artifacts, status documents, and tests to preserve reproducibility and claim boundaries. Relevant locations include:
 
 ```text
 CLAIMS.md
@@ -105,82 +67,12 @@ tests/
 boundaries.toml
 ```
 
-## Repository role
+Use the specific artifact and its recorded assumptions as the authority for each result. Historical status snapshots and older README-audit files may not reflect the latest research commits.
 
-```text
-urf-core             = core definitions, theorem/library layer, shared foundations
-chronos-urf-rr      = executable frontier/status/conditional surface
-frontier-dashboard  = public dashboard/status synchronization
-```
+## Claim discipline
 
-## Minimal local verification
+- A certificate is evidence for its stated finite or conditional claim, not for an unstated global theorem.
+- Assumptions, axioms, `admit`, `sorry`, placeholders, and proof surfaces must remain distinguishable from completed proofs.
+- Do not promote CI success, documentation status, or a clean worktree into mathematical closure.
 
-```zsh
-cd ~/chronos-urf-rr
-lake build
-python3 -m pytest -q
-git diff --check
-git status --short
-```
-
-## Status rule
-
-Build success, CI success, dashboards, ledgers, status documents, axioms, admits, sorries, placeholders, proof surfaces, candidate estimates, or closeout stacks do not constitute theorem-level closure.
-
-## Formal Status
-
-Status: Conditional / Frontier Formalization
-
-`axiom` is a trusted assumption, not a proof.
-`admit` is a proof hole.
-`sorry` is a proof hole.
-
-Conditional inventory: `docs/status/CONDITIONAL_FRONTIER_STATUS_2026_04_27.md`
-
-## FGL-Only Status
-
-PASS: FGL is the sole open finite-patch assumption
-
-## Open Frontier Items
-
-- (R1) Long-Chord Exclusion Lemma
-- (R2) Diameter-Separation Filling Obstruction
-- (R3) Uniform Local-Type Capacity Lemma
-
-## Current Build Closeout
-
-Status: `BUILD_CLOSEOUT_SURFACE_ONLY_NO_ANALYTIC_PACKAGE_PROOF`
-
-Latest closeout chain:
-
-```text
-#458 concrete analytic package closeout stack
-#457 restricted concentration monotonicity proof surface
-#456 local balance law dQ/dt derivation surface
-#455 concrete analytic estimate package proof-obligation lock
-#454 concrete analytic estimate package bridge
-#453 restricted continuation norm control
-#452 restricted local concentration monotonicity estimate
-#451 concrete analytic estimate package target
-Next build status:
-NEXT_BUILD_ALLOWED_AFTER_STOP_LOCK
-This README update is documentation only. It does not prove analytic Einstein-matter bootstrap package proof, concrete analytic Einstein-matter estimate package proof, gravity closure, Chronos-RR, H4.1/FGL, P vs NP, or any Clay problem.
-
-## FGL-Only Statement
-
-`terminal_assumption: FGL(k,R,B)`
-
-`proof_shell_file: proofs/Chronos/conditional/FGL_PROOF_SHELL_2026_04.md`
-
-`finite-patch H4.1 is conditional only on `proofs/Chronos/conditional/FGL_PROOF_SHELL_2026_04.md`.`
-
-`PASS: FGL is the sole open finite-patch assumption`
-
-`proofs/Chronos/conditional/FGL_PROOF_SHELL_2026_04.md`
-
-## Governance and Claim Discipline
-
-- [Physics Admission Standard](docs/PHYSICS_ADMISSION_STANDARD.md)
-- [Program Percentage Ledger](docs/PROGRAM_PERCENTAGE_LEDGER.md)
-- [Formal Physics Candidate Selection](docs/FORMAL_PHYSICS_CANDIDATE_SELECTION.md)
-- [README Staleness Audit](artifacts/readme_audit/README_STALENESS_AUDIT_2026_07_04.md)
+**Overall status:** active conditional research frontier; several exact, bounded GfE certificates are recorded, while global spectral closure and the listed boundary obligations remain open.
