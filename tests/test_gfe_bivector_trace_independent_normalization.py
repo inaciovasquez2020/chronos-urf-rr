@@ -58,27 +58,40 @@ def test_ordinary_bivector_trace_coefficients_are_not_table_calibrated() -> None
     )
     assert s.simplify(relative_hessian - expected_hessian) == s.zeros(2)
 
-def test_h0_radial_principal_coefficient_from_direct_component() -> None:
-    # Independent one-component reconstruction.  For
-    # h_tt = -f H0 Y20, the pure radial principal part is
-    # delta R_trtr = (f/2) H0_rr Y20, up to Riemann-sign convention.
-    # Raising the pair gives delta R_tr{}^tr = -(f/2) H0_rr Y20.
-    # The Schwarzschild bivector eigenvalue in the tr slot is 2M/r**3.
-    # The normalized spherical harmonic has integral(Y20**2 dOmega) = 1.
-    M, r = s.symbols("M r", positive=True, real=True)
+
+def test_h0_radial_principal_coefficient_uses_computed_background_operator() -> None:
+    # This is a one-component principal-symbol check, not a full quadratic
+    # action. The background curvature operator is recomputed from the metric.
+    M, r, theta = s.symbols("M r theta", positive=True, real=True)
     q_h0_rr = s.symbols("q_h0_rr", real=True)
     f = 1 - 2 * M / r
-    background_tr_eigenvalue = 2 * M / r**3
-    raised_principal_component = -f * q_h0_rr / 2
+    background, inverse, pairs = _schwarzschild_bivector_operator(M, r, theta)
 
-    # Ordinary six-dimensional matrix trace: only the tr diagonal entry
-    # contributes at this principal order.  Include the spherical volume
-    # factor r**2 sin(theta); normalized angular integration contributes 1.
-    ordinary_trace_coefficient = s.factor(
+    tr_pair_index = pairs.index((0, 1))
+    background_tr_eigenvalue = s.factor(background[tr_pair_index, tr_pair_index])
+    assert s.factor(background_tr_eigenvalue - 2 * M / r**3) == 0
+
+    # For h_tt=-f H0 Y20, the radial principal part is
+    # delta R_trtr=(f/2) H0_rr Y20. Raising the second pair yields
+    # delta R_tr{}^tr= g^tt*g^rr*delta R_trtr = -(f/2) H0_rr Y20.
+    # Encode that single curvature component in the six-dimensional operator;
+    # no repository coefficient or axial normalization is used.
+    y20 = s.sqrt(s.Rational(5, 16) / s.pi) * (3 * s.cos(theta) ** 2 - 1)
+    raised_principal_component = s.factor(
+        inverse[0, 0] * inverse[1, 1] * (f * q_h0_rr * y20 / 2)
+    )
+    radial_principal = s.zeros(6)
+    radial_principal[tr_pair_index, tr_pair_index] = raised_principal_component
+
+    density = s.factor(
         3
-        * background_tr_eigenvalue
-        * raised_principal_component**2
+        * s.trace(background * radial_principal * radial_principal)
         * r**2
+        * s.sin(theta)
+    )
+    phi = s.symbols("phi", real=True)
+    ordinary_trace_coefficient = s.factor(
+        s.integrate(density, (phi, 0, 2 * s.pi), (theta, 0, s.pi))
     )
     expected_ordinary_trace = 3 * M * (r - 2 * M) ** 2 / (2 * r**3)
     assert s.factor(
@@ -91,8 +104,7 @@ def test_h0_radial_principal_coefficient_from_direct_component() -> None:
     expected_relative_action = M * (r - 2 * M) ** 2 / (6 * r**3)
     assert s.factor(relative_action_coefficient - expected_relative_action) == 0
 
-    # For L = C (H0_rr)**2, the Euler-Lagrange principal coefficient
-    # multiplying H0_rrrr is d**2 L / d(H0_rr)**2 = 2C.
+    # For L=C*(H0_rr)**2, the EL principal coefficient of H0_rrrr is 2C.
     fourth_radial_coefficient = s.diff(
         relative_action_coefficient * q_h0_rr**2, q_h0_rr, 2
     )
