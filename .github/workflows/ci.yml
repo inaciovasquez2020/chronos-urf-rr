@@ -17,6 +17,9 @@ jobs:
       - name: Install Python preflight dependencies
         run: python3 -m pip install --disable-pip-version-check sympy pytest
 
+      - name: Verify independent bivector trace normalization
+        run: python3 -m pytest -q tests/test_gfe_bivector_trace_independent_normalization.py
+
       - name: Preflight polar 222 GR Darboux transfer
         run: python3 -m pytest -q tests/test_gfe_polar_222_gr_darboux_certificate.py
 
