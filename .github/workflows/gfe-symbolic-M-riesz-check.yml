@@ -2,6 +2,7 @@ name: GfE symbolic-M Riesz check
 on:
   push:
     branches:
+      - main
       - proof/gfe-symbolic-M-riesz-check-20261016
   pull_request:
     branches:
