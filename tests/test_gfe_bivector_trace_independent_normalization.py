@@ -57,3 +57,45 @@ def test_ordinary_bivector_trace_coefficients_are_not_table_calibrated() -> None
         -M * r / (3 * (r - 2 * M) ** 2),
     )
     assert s.simplify(relative_hessian - expected_hessian) == s.zeros(2)
+
+def test_h0_radial_principal_coefficient_from_direct_component() -> None:
+    # Independent one-component reconstruction.  For
+    # h_tt = -f H0 Y20, the pure radial principal part is
+    # delta R_trtr = (f/2) H0_rr Y20, up to Riemann-sign convention.
+    # Raising the pair gives delta R_tr{}^tr = -(f/2) H0_rr Y20.
+    # The Schwarzschild bivector eigenvalue in the tr slot is 2M/r**3.
+    # The normalized spherical harmonic has integral(Y20**2 dOmega) = 1.
+    M, r = s.symbols("M r", positive=True, real=True)
+    q_h0_rr = s.symbols("q_h0_rr", real=True)
+    f = 1 - 2 * M / r
+    background_tr_eigenvalue = 2 * M / r**3
+    raised_principal_component = -f * q_h0_rr / 2
+
+    # Ordinary six-dimensional matrix trace: only the tr diagonal entry
+    # contributes at this principal order.  Include the spherical volume
+    # factor r**2 sin(theta); normalized angular integration contributes 1.
+    ordinary_trace_coefficient = s.factor(
+        3
+        * background_tr_eigenvalue
+        * raised_principal_component**2
+        * r**2
+    )
+    expected_ordinary_trace = 3 * M * (r - 2 * M) ** 2 / (2 * r**3)
+    assert s.factor(
+        ordinary_trace_coefficient / q_h0_rr**2 - expected_ordinary_trace
+    ) == 0
+
+    relative_action_coefficient = s.factor(
+        ordinary_trace_coefficient / (9 * q_h0_rr**2)
+    )
+    expected_relative_action = M * (r - 2 * M) ** 2 / (6 * r**3)
+    assert s.factor(relative_action_coefficient - expected_relative_action) == 0
+
+    # For L = C (H0_rr)**2, the Euler-Lagrange principal coefficient
+    # multiplying H0_rrrr is d**2 L / d(H0_rr)**2 = 2C.
+    fourth_radial_coefficient = s.diff(
+        relative_action_coefficient * q_h0_rr**2, q_h0_rr, 2
+    )
+    expected_fourth_radial = M * (r - 2 * M) ** 2 / (3 * r**3)
+    assert s.factor(fourth_radial_coefficient - expected_fourth_radial) == 0
+    assert s.simplify(fourth_radial_coefficient.subs(r, 3 * M)) > 0
