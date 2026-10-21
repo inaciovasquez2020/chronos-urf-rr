@@ -2,6 +2,7 @@ name: GfE symbolic-M Riesz check
 on:
   push:
     branches:
+      - main
       - proof/gfe-symbolic-M-riesz-check-20261016
   pull_request:
     branches:
@@ -13,21 +14,32 @@ permissions:
 jobs:
   exact-symbolic-check:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: python -m pip install sympy
+      - name: Regenerate Euler generator from the source action
+        run: python tools/gfe/derive_gfe_corrected_euler_generator.py
+      - name: Independently check Euler-Lagrange equations from the source action
+        run: python tools/gfe/check_gfe_euler_independent.py
+      - name: Regenerate exact Laurent generator from the descriptor
+        run: python tools/gfe/derive_gfe_corrected_laurent_generator.py
       - name: Run exact symbolic-M resolvent calculation
         run: python tools/gfe/derive_gfe_symbolic_M_riesz_check.py
       - name: Run fixed-point limiting-resolvent bridge
         run: python tools/gfe/check_gfe_symbolic_M_fixed_point_bridge.py
-      - name: Upload exact result
+      - name: Upload exact result and derivation receipts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: gfe-symbolic-M-riesz-check
-          path: artifacts/chronos/gfe_symbolic_M_riesz_check.json
+          name: gfe-end-to-end-riesz-audit
+          path: |
+            artifacts/chronos/gfe_corrected_AEH_half_euler_generator.json
+            artifacts/chronos/gfe_corrected_AEH_half_euler_generator_receipt.txt
+            artifacts/chronos/gfe_corrected_AEH_half_laurent_generator.json
+            artifacts/chronos/gfe_corrected_AEH_half_laurent_generator_receipt.txt
+            artifacts/chronos/gfe_symbolic_M_riesz_check.json
           if-no-files-found: ignore
