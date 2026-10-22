@@ -1,0 +1,60 @@
+{
+  "receipt_schema": "anti-carbon12-data-retrieval-attempt-v1",
+  "audit_id": "alice-b2-b3-retrieval-attempt-2026-10-22T2",
+  "date": "2026-10-22",
+  "repository": "inaciovasquez2020/chronos-urf-rr",
+  "branch": "research/anticarbon12-feasibility-framework",
+  "result": "BLOCKED_POINT_LEVEL_EXTRACTION",
+  "primary_sources_checked": [
+    {
+      "source": "ALICE Figure archive page",
+      "url": "https://alice-figure.web.cern.ch/node/20650",
+      "result": "Accessible; identifies Figure 2a B2 PDF and Figure 2b B3 PDF, but page displays 'This Figure is not Public'.",
+      "evidence_urls": [
+        "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB2data_3.pdf",
+        "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB3data_3.pdf"
+      ],
+      "extraction": "PDF text layer yields axes, units, multiplicity labels and ALICE figure IDs; not numerical datapoints."
+    },
+    {
+      "source": "arXiv paper",
+      "url": "https://arxiv.org/pdf/2109.13026",
+      "version": "v2, 2022-04-05",
+      "result": "Accessible through web PDF viewer; Figure 2 and Figure 3 visually inspectable.",
+      "relevant_location": "PDF page 8 (zero-indexed page 8) includes Figures 2 and 3; text on PDF page 7 states the Gaussian B3 prediction is above data by almost a factor of two except the last pT interval.",
+      "extraction": "No point table available in the extracted text. The rendered plot alone is not a calibrated numeric extraction."
+    },
+    {
+      "source": "HEPData",
+      "record": "ins1928822",
+      "urls": [
+        "https://www.hepdata.net/record/ins1928822?version=1",
+        "https://www.hepdata.net/record/ins1928822?version=1&format=json",
+        "https://www.hepdata.net/record/ins1928822?version=1&format=yaml",
+        "https://www.hepdata.net/download/submission/ins1928822/1"
+      ],
+      "result": "HTTP 403 or inaccessible through the available retrieval path on 2026-10-22."
+    },
+    {
+      "source": "Local binary retrieval",
+      "result": "Download attempts for official ALICE figure PDF and CERN CDS/arXiv PDF failed in the working container.",
+      "consequence": "Cannot calculate SHA-256 for downloaded binary source files, nor run reproducible pixel-level digitization in this environment."
+    }
+  ],
+  "extraction_status": {
+    "B2": "BLOCKED",
+    "B3": "BLOCKED",
+    "points_extracted": 0,
+    "statistical_uncertainties_extracted": false,
+    "systematic_uncertainties_extracted": false,
+    "digitization_uncertainty_established": false,
+    "independent_replay_run": false
+  },
+  "scientific_gate": {
+    "light_nucleus_model": "NOT_VALIDATED_INDEPENDENTLY",
+    "A12_overlap": "NOT_ESTABLISHED",
+    "yield_computation": "NOT_AUTHORIZED"
+  },
+  "stopping_reason": "No defensible point-level table with statistical and systematic uncertainties has been obtained. Do not convert visual estimates from the plot into a nominal dataset or claim independent validation.",
+  "next_minimum_requirement": "Obtain the HEPData table export through an accessible client/session or provide local source PDF/EPS files for calibrated digitization; retain source hashes, axis calibration, digitization uncertainty, and a second independent extraction."
+}
