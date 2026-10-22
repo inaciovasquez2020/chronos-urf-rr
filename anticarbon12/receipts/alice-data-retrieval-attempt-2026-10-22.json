@@ -101,5 +101,52 @@
     "yield_computation": "NOT_AUTHORIZED"
   },
   "stopping_reason": "Publisher plots are accessible but the point-level data payload was not obtained, and the candidate HEPData identifier remains unverified. Do not treat approximate visual readings as exact data or as an independent replay. A GSI metadata record now identifies dataset DOI 10.17182/HEPDATA.115571, but no verified HEPData table payload was obtained. The official B2/B3 PDFs were viewable in the ALICE figure archive, but binary downloads into the controlled runtime failed; a browser screenshot is insufficient to certify two independent reproducible digitizations.",
-  "next_minimum_requirement": "Obtain the canonical HEPData table export or place the official cB2data_3.pdf and cB3data_3.pdf (or EPS originals) in the controlled runtime; hash sources, perform two independent calibrated digitizations, and then compute pointwise model residuals."
+  "next_minimum_requirement": "Obtain the canonical HEPData table export or place the official cB2data_3.pdf and cB3data_3.pdf (or EPS originals) in the controlled runtime; hash sources, perform two independent calibrated digitizations, and then compute pointwise model residuals.",
+  "follow_up_attempts": [
+    {
+      "checked_at": "2026-10-22",
+      "action": "Re-attempted the dataset DOI landing page, candidate record JSON endpoint, and candidate submission YAML download through the available web retrieval route.",
+      "urls": [
+        "https://doi.org/10.17182/HEPDATA.115571",
+        "https://www.hepdata.net/record/ins1928822?format=json",
+        "https://www.hepdata.net/download/submission/ins1928822/1/yaml"
+      ],
+      "result": "UNAVAILABLE_THROUGH_CURRENT_RETRIEVAL_ROUTE",
+      "details": "The DOI and HEPData endpoints returned tool-level inaccessible/internal-error responses. This does not establish that the dataset or files are absent; it only records failure to retrieve them here."
+    },
+    {
+      "checked_at": "2026-10-22",
+      "action": "Checked HEPData's published CLI/API documentation for an alternate supported retrieval path.",
+      "evidence_url": "https://github.com/HEPData/hepdata-cli",
+      "result": "ALTERNATE_METHOD_DOCUMENTED_NOT_EXECUTED",
+      "details": "The documented CLI supports searching by arXiv/INSPIRE/HEPData identifiers and downloading CSV/YAML/JSON. It was not executed because the controlled runtime has no working external DNS/network access. No download success is claimed."
+    }
+  ],
+  "official_theory_comparison_figures": [
+    {
+      "measurement": "B2",
+      "url": "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB2theory_3.pdf",
+      "status": "BROWSER_VIEWED_QUALITATIVELY",
+      "observation": "The Gaussian prediction appears closer to the plotted B2 data than the other displayed wave-function choices over much of the shown range; this is a visual qualitative observation, not a digitized residual test."
+    },
+    {
+      "measurement": "B3",
+      "url": "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB3theory_3.pdf",
+      "status": "BROWSER_VIEWED_QUALITATIVELY",
+      "observation": "The Gaussian helion curve appears above most plotted points, with a smaller discrepancy in the highest displayed pT/A interval; this is a visual qualitative observation, not a digitized residual test."
+    }
+  ],
+  "latest_status": {
+    "as_of": "2026-10-22",
+    "canonical_hepdata_payload": "NOT_RETRIEVED",
+    "tables_14_to_20_inspected_numerically": false,
+    "B2_points_extracted": 0,
+    "B3_points_extracted": 0,
+    "statistical_uncertainties_extracted": false,
+    "systematic_uncertainties_extracted": false,
+    "residual_replay": false,
+    "source_binary_sha256_computed": false,
+    "gate_1": "BLOCKED",
+    "next_action": "Retrieve canonical HEPData ZIP/YAML/CSV or obtain the official B2/B3 PDF/EPS binaries in a network-enabled controlled runtime; then hash and inspect source files before any numerical residual analysis."
+  }
 }
