@@ -13,7 +13,7 @@
     "arxiv_version_identified": "2109.13026v2, dated 2022-04-05",
     "official_figure_links_identified": true,
     "hepdata_record_identified": "UNVERIFIED_CANDIDATE_ins1928822; GSI metadata separately identifies dataset DOI 10.17182/HEPDATA.115571",
-    "hepdata_point_data_retrieval": "BLOCKED: candidate ins1928822 not verified; dataset DOI lead found in GSI metadata but no table list or point-level payload obtained",
+    "hepdata_point_data_retrieval": "BLOCKED: dataset DOI 10.17182/HEPDATA.115571 verified in GSI metadata, but DOI resolution and HEPData JSON endpoints could not be retrieved through the available web/runtime route. Candidate ins1928822 remains unverified.",
     "source_sha256_values_computed": false,
     "note": "Metadata and links are recorded. Binary source hashes are intentionally null because source bytes were not retrieved; no hash is invented.",
     "publisher_pdf": {
@@ -25,13 +25,26 @@
       "sha256": null,
       "sha256_status": "not computed; binary bytes not available in working container"
     },
-    "hepdata_record_id": "UNVERIFIED_CANDIDATE_ins1928822",
+    "hepdata_record_id": "UNRESOLVED: DOI 10.17182/HEPDATA.115571 is verified as a dataset DOI by GSI metadata, but canonical HEPData record/table list not resolved; ins1928822 remains unverified.",
     "dataset_doi_lead": {
       "doi": "10.17182/HEPDATA.115571",
       "metadata_url": "https://repository.gsi.de/record/246295?ln=de",
       "status": "METADATA_LEAD_VERIFIED_TABLE_PAYLOAD_NOT_RETRIEVED",
       "note": "GSI metadata links the ALICE dataset and gives this DOI; current HEPData record mapping and point-level payload were not independently retrieved."
-    }
+    },
+    "official_figure_files": [
+      {
+        "measurement": "B2",
+        "url": "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB2data_3.pdf",
+        "browser_view": "PDF opened; plot rendered; binary download to controlled runtime failed"
+      },
+      {
+        "measurement": "B3",
+        "url": "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB3data_3.pdf",
+        "browser_view": "PDF opened; plot rendered; binary download to controlled runtime failed"
+      }
+    ],
+    "digitization_status": "NOT_PERFORMED_NO_CONTROLLED_SOURCE_BYTES_NO_TWO_PASS_CALIBRATION"
   },
   "extracted_points": {
     "B2": {
@@ -81,6 +94,7 @@
   "stopping_decision": {
     "status": "STOP_BEFORE_A12",
     "reasons": [
+      "Official ALICE B2/B3 PDF plots were opened and visually inspected, but the binary PDFs could not be downloaded into the controlled runtime; no calibrated digitization or residual replay is claimed.",
       "GSI metadata identifies dataset DOI 10.17182/HEPDATA.115571, but this lead has not yet yielded a verified table payload.",
       "Publisher PDF and plots are accessible, but no point-level B2/B3 data payload was obtained.",
       "The candidate HEPData identifier ins1928822 is unverified; direct access returned HTTP 403 and the search route was inaccessible through the current retrieval path.",
@@ -99,10 +113,9 @@
     "reason": "Publisher PDF was read through a web PDF viewer; binary bytes could not be downloaded to the working container for hashing or programmatic image digitization."
   },
   "next_required_objects": [
-    "Resolve dataset DOI 10.17182/HEPDATA.115571 to a verified HEPData record/table export; keep ins1928822 marked unverified unless independently confirmed.",
-    "Create B2/B3 CSVs with pT/A, central value, statistical uncertainty, systematic uncertainty, multiplicity class, and any visibility scale factor.",
-    "Replay at least one selected source table or digitized figure independently and report residuals and digitization tolerance.",
-    "Only then implement the paper's B2/B3 equations with explicit units and compare against published results.",
-    "Do not attempt A=12 until a valid many-body overlap and uncertainty propagation are justified."
+    "Resolve DOI 10.17182/HEPDATA.115571 to the canonical HEPData record and table list through an accessible HEPData/INSPIRE route.",
+    "Download official cB2data_3.pdf and cB3data_3.pdf or their EPS originals into the controlled runtime and record SHA-256 hashes.",
+    "Perform two independent axis calibrations and point extractions, preserving central values, statistical errors, systematic boxes, and digitization error.",
+    "Replay the Gaussian coalescence comparison against extracted points and publish pointwise residuals before any A=12 inference."
   ]
 }
