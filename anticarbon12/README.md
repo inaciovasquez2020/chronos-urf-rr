@@ -104,3 +104,18 @@ As implementation begins, keep each stage independently replayable:
 - `tests/` — tests for units, source schema, residuals, failure paths, and receipt replay.
 
 Do not create empty placeholder outputs that can be mistaken for completed evidence.
+
+
+## Dated audit update — 2026-10-22
+
+The source manifest and bounded audit receipt are in `sources/manifest.json` and `receipts/alice-pp13tev-source-audit-2026-10-22.json`.
+
+- Gate 0: `PASS_BOUNDED` for identifying the primary paper, version, official figure links, kinematic context, and HEPData record. This is not a complete literature novelty search, and source-file SHA-256 hashes remain uncomputed because the source bytes were not retrieved.
+- Gate 1: `BLOCKED`. The HEPData record was identified as `ins1928822`, but the current retrieval path returned HTTP 403. No B2/B3 point table was imported; no point counts, coordinates, uncertainties, digitization tolerance, or residuals are claimed.
+- Gate 2: `BLOCKED` for independent replay. The paper-level comparison gives a concrete caution: its Gaussian deuteron model describes B2 comparatively well, but its Gaussian helion B3 prediction is almost a factor of two above the data at low pT/A, apart from the last interval. Thus the unqualified Gaussian A=3 baseline is not validated for extrapolation.
+- Gate 3: `BLOCKED`. No normalized, independently checkable A=12 many-body phase-space overlap and uncertainty model has been established.
+- Gate 4: `BLOCKED`. No anti-carbon-12 yield is authorized.
+
+**Stop decision:** stop before A=12 and before yield computation. Continue only with obtaining the point-level HEPData export or a documented, calibrated figure digitization that keeps statistical, systematic, and digitization uncertainties distinct. The paper itself notes that the general B2 overlap recipe does not extend to B3 for arbitrary wave functions and that ab initio calculations are needed for those cases. A numerical formula evaluable at A=12 is not, by itself, evidence for a validated prediction.
+
+Primary paper version reviewed: arXiv:2109.13026v2 (2022-04-05); published as JHEP 01 (2022) 106. The paper defines B_A using the invariant nucleus spectrum divided by the A-th power of the invariant proton spectrum evaluated at pT/A. In its Appendix A, B2 is expressed as an overlap integral of the deuteron Wigner density and the two-nucleon source correlation for a Gaussian source. These conventions must be implemented explicitly before any numerical comparison.
