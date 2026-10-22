@@ -251,7 +251,7 @@ def direct_epsilon_expansion_comparison(data):
             )
             inverse_terms[0][i,j] = s.simplify(
                 s.diff(sum(
-                    inv_exact[c,e]*inv_exact[d,q]*sum(
+                    inv_exact[c,e]*inv0[d,q]*sum(
                         g0[a,z]*data["background_riemann"][z,b,e,q]
                         for z in range(4)
                     )
