@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-10-22",
+  "project": "anti-carbon-12 feasibility study",
+  "primary_publication": {
+    "collaboration": "ALICE Collaboration",
+    "title": "Production of light (anti)nuclei in pp collisions at sqrt(s) = 13 TeV",
+    "journal": "Journal of High Energy Physics",
+    "publication_date": "2022-01-20",
+    "citation": "JHEP 01 (2022) 106",
+    "doi": "10.1007/JHEP01(2022)106",
+    "arxiv": "2109.13026",
+    "version_reviewed": "v2, dated 2022-04-05",
+    "urls": [
+      "https://doi.org/10.1007/JHEP01(2022)106",
+      "https://arxiv.org/pdf/2109.13026",
+      "https://alice-publications.web.cern.ch/node/7377"
+    ],
+    "sha256": null,
+    "sha256_status": "NOT_COMPUTED: binary manuscript was not downloaded into the working environment"
+  },
+  "target_measurements": [
+    {
+      "observable": "B2",
+      "species": "deuteron and antideuteron",
+      "figure": "Figure 2a",
+      "figure_archive_id": "ALI-PUB-527581",
+      "figure_pdf": "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB2data_3.pdf",
+      "plotted_x": "pT/A in GeV/c",
+      "plotted_y": "B2 in GeV^2/c^3",
+      "uncertainties": "vertical bars statistical; boxes systematic",
+      "source_data_status": "BLOCKED: point-level table not retrieved; figure provides a plotted source only",
+      "sha256": null
+    },
+    {
+      "observable": "B3",
+      "species": "helion and antihelion",
+      "figure": "Figure 2b",
+      "figure_archive_id": "ALI-PUB-527585",
+      "figure_pdf": "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB3data_3.pdf",
+      "plotted_x": "pT/A in GeV/c",
+      "plotted_y": "B3 in GeV^4/c^6",
+      "uncertainties": "vertical bars statistical; boxes systematic",
+      "source_data_status": "BLOCKED: point-level table not retrieved; figure provides a plotted source only",
+      "sha256": null
+    }
+  ],
+  "tabulation_source": {
+    "provider": "HEPData",
+    "record": "ins1928822",
+    "url": "https://www.hepdata.net/record/ins1928822?version=1",
+    "access_result": "HTTP 403 via current retrieval path on 2026-10-22",
+    "status": "BLOCKED",
+    "sha256": null
+  },
+  "experiment_context": {
+    "collision_system": "pp",
+    "center_of_mass_energy": "sqrt(s) = 13 TeV",
+    "data_years": [
+      2016,
+      2017,
+      2018
+    ],
+    "event_samples": {
+      "minimum_bias": "approximately 2.6 billion events",
+      "high_multiplicity": "approximately 650 million events"
+    },
+    "rapidity": "|y| < 0.5",
+    "track_eta": "|eta| < 0.8",
+    "classes": [
+      "HM I",
+      "HM II",
+      "HM III",
+      "HM",
+      "MB",
+      "MB I",
+      "MB II"
+    ],
+    "notes": [
+      "Figure 2 curves are plotted for multiple multiplicity classes; some are scaled for visibility.",
+      "B2 and B3 rise with pT/A in the reported multiplicity classes.",
+      "Do not compare curves after applying visibility scale factors without undoing those factors."
+    ]
+  },
+  "limitations": [
+    "No point-level values or point-level uncertainty table have been imported.",
+    "No source file hashes are claimed because the underlying binary files were not downloaded.",
+    "Digitized coordinates, if produced later, must be labelled digitized and include calibration and digitization uncertainty.",
+    "The systematic uncertainties in Table 1 are particle-yield systematic contributions, not a substitute for B2/B3 pointwise uncertainty boxes."
+  ]
+}
