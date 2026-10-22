@@ -12,8 +12,8 @@
     "doi_verified_against_publisher_and_alice_pages": true,
     "arxiv_version_identified": "2109.13026v2, dated 2022-04-05",
     "official_figure_links_identified": true,
-    "hepdata_record_identified": "ins1928822",
-    "hepdata_point_data_retrieval": "BLOCKED_HTTP_403; candidate record identifier ins1928822 is not independently verified and must not be treated as confirmed",
+    "hepdata_record_identified": "UNVERIFIED_CANDIDATE_ins1928822; GSI metadata separately identifies dataset DOI 10.17182/HEPDATA.115571",
+    "hepdata_point_data_retrieval": "BLOCKED: candidate ins1928822 not verified; dataset DOI lead found in GSI metadata but no table list or point-level payload obtained",
     "source_sha256_values_computed": false,
     "note": "Metadata and links are recorded. Binary source hashes are intentionally null because source bytes were not retrieved; no hash is invented.",
     "publisher_pdf": {
@@ -25,7 +25,13 @@
       "sha256": null,
       "sha256_status": "not computed; binary bytes not available in working container"
     },
-    "hepdata_record_id": "UNVERIFIED_CANDIDATE_ins1928822"
+    "hepdata_record_id": "UNVERIFIED_CANDIDATE_ins1928822",
+    "dataset_doi_lead": {
+      "doi": "10.17182/HEPDATA.115571",
+      "metadata_url": "https://repository.gsi.de/record/246295?ln=de",
+      "status": "METADATA_LEAD_VERIFIED_TABLE_PAYLOAD_NOT_RETRIEVED",
+      "note": "GSI metadata links the ALICE dataset and gives this DOI; current HEPData record mapping and point-level payload were not independently retrieved."
+    }
   },
   "extracted_points": {
     "B2": {
@@ -75,6 +81,7 @@
   "stopping_decision": {
     "status": "STOP_BEFORE_A12",
     "reasons": [
+      "GSI metadata identifies dataset DOI 10.17182/HEPDATA.115571, but this lead has not yet yielded a verified table payload.",
       "Publisher PDF and plots are accessible, but no point-level B2/B3 data payload was obtained.",
       "The candidate HEPData identifier ins1928822 is unverified; direct access returned HTTP 403 and the search route was inaccessible through the current retrieval path.",
       "No independent B2/B3 uncertainty decomposition or numerical residual replay has been performed.",
@@ -92,7 +99,7 @@
     "reason": "Publisher PDF was read through a web PDF viewer; binary bytes could not be downloaded to the working container for hashing or programmatic image digitization."
   },
   "next_required_objects": [
-    "Obtain HEPData record ins1928822 tables through an accessible export or a documented independent figure-digitization procedure.",
+    "Resolve dataset DOI 10.17182/HEPDATA.115571 to a verified HEPData record/table export; keep ins1928822 marked unverified unless independently confirmed.",
     "Create B2/B3 CSVs with pT/A, central value, statistical uncertainty, systematic uncertainty, multiplicity class, and any visibility scale factor.",
     "Replay at least one selected source table or digitized figure independently and report residuals and digitization tolerance.",
     "Only then implement the paper's B2/B3 equations with explicit units and compare against published results.",
