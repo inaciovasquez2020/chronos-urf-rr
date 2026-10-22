@@ -131,7 +131,7 @@ def verify_first_order_tensor_identities(data):
     for i,j in product(range(4), repeat=2):
         direct_inverse_residual[i,j] = s.simplify(
             s.diff((g0 + eps*h).inv()[i,j], eps).subs(eps,0)
-            - (ginv[i,j] - g0.inv()[i,j])
+            - s.diff(ginv[i,j], eps).subs(eps,0)
         )
     # Riemann antisymmetries and pair exchange are checked on lowered delta R.
     low = data["delta_riemann_lowered"]
