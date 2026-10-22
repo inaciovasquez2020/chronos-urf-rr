@@ -21,7 +21,7 @@ def build_first_order_operator():
     H1 = s.Function("H1")(t, r)
     H2 = s.Function("H2")(t, r)
     K = s.Function("K")(t, r)
-    Y = s.sqrt(5 / (16 * s.pi)) * (3 * s.cos(th)**2 - 1)
+    Y = s.sqrt(s.Rational(5, 16) / s.pi) * (3 * s.cos(th)**2 - 1)
     f = 1 - 2*M/r
     x = (t, r, th, ph)
     g0 = s.diag(-f, 1/f, r**2, r**2*s.sin(th)**2)
@@ -146,3 +146,147 @@ def verify_first_order_tensor_identities(data):
         "inverse_metric_direct_expansion": direct_inverse_residual,
         "riemann_symmetry_residuals": tuple(symmetry_residuals),
     }
+
+
+
+def direct_epsilon_expansion_comparison(data):
+    """Independently expand the exact metric-derived tensors in epsilon.
+
+    This deliberately recomputes the inverse metric, connection, mixed Riemann,
+    lowered Riemann, and all 36 bivector-operator entries from g(epsilon).
+    It is expensive by design; callers must run it and assert every residual
+    is exactly zero before treating the first-order gate as passed.
+    """
+    eps = data["epsilon"]
+    x = data["coordinates"]
+    g = data["metric"]
+    g0 = data["background_metric"]
+    pairs = data["bivector_pairs"]
+    inv_exact = g.inv()
+
+    def gamma(metric, inverse):
+        result = {}
+        for a, b, c in product(range(4), repeat=3):
+            result[a,b,c] = s.cancel(sum(
+                inverse[a,d] * (
+                    s.diff(metric[d,c], x[b])
+                    + s.diff(metric[d,b], x[c])
+                    - s.diff(metric[b,c], x[d])
+                ) for d in range(4)
+            ) / 2)
+        return result
+
+    G = gamma(g, inv_exact)
+    Rexact = {}
+    for a,b,c,d in product(range(4), repeat=4):
+        Rexact[a,b,c,d] = (
+            s.diff(G[a,b,d], x[c]) - s.diff(G[a,b,c], x[d])
+            + sum(G[a,c,e]*G[e,b,d] - G[a,d,e]*G[e,b,c]
+                  for e in range(4))
+        )
+    Rlow_exact = {}
+    for a,b,c,d in product(range(4), repeat=4):
+        Rlow_exact[a,b,c,d] = sum(
+            g[a,z]*Rexact[z,b,c,d] for z in range(4)
+        )
+
+    # Directly extract d/d epsilon at epsilon=0 from the exact tensors.
+    direct_dR = {
+        key: s.diff(value, eps).subs(eps, 0)
+        for key, value in Rexact.items()
+    }
+    direct_dRlow = {
+        key: s.diff(value, eps).subs(eps, 0)
+        for key, value in Rlow_exact.items()
+    }
+    analytic_dR = data["delta_riemann_mixed"]
+    analytic_dRlow = data["delta_riemann_lowered"]
+    riemann_residuals = {
+        key: s.simplify(direct_dR[key] - analytic_dR[key])
+        for key in analytic_dR
+    }
+    lowered_riemann_residuals = {
+        key: s.simplify(direct_dRlow[key] - analytic_dRlow[key])
+        for key in analytic_dRlow
+    }
+
+    Rop_exact = s.zeros(6)
+    for i, (a,b) in enumerate(pairs):
+        for j, (c,d) in enumerate(pairs):
+            Rop_exact[i,j] = sum(
+                inv_exact[c,e]*inv_exact[d,q]*Rlow_exact[a,b,e,q]
+                for e in range(4) for q in range(4)
+            )
+    direct_dRop = s.zeros(6)
+    for i,j in product(range(6), repeat=2):
+        direct_dRop[i,j] = s.diff(Rop_exact[i,j], eps).subs(eps, 0)
+    operator_residuals = s.zeros(6)
+    analytic_dRop = data["operator_first_order"]
+    for i,j in product(range(6), repeat=2):
+        operator_residuals[i,j] = s.simplify(
+            direct_dRop[i,j] - analytic_dRop[i,j]
+        )
+
+    # Isolate the two inverse-metric variation terms separately.
+    h = data["perturbation"]
+    inv0 = g0.inv()
+    dinv = -inv0*h*inv0
+    inverse_term_residuals = (s.zeros(6), s.zeros(6))
+    inverse_terms = (inverse_term_residuals[0], inverse_term_residuals[1])
+    for i, (a,b) in enumerate(pairs):
+        for j, (c,d) in enumerate(pairs):
+            term1 = sum(
+                dinv[c,e]*inv0[d,q]*sum(
+                    g0[a,z]*data["background_riemann"][z,b,e,q]
+                    for z in range(4)
+                )
+                for e in range(4) for q in range(4)
+            )
+            term2 = sum(
+                inv0[c,e]*dinv[d,q]*sum(
+                    g0[a,z]*data["background_riemann"][z,b,e,q]
+                    for z in range(4)
+                )
+                for e in range(4) for q in range(4)
+            )
+            inverse_terms[0][i,j] = s.simplify(
+                s.diff(sum(
+                    inv_exact[c,e]*inv_exact[d,q]*sum(
+                        g0[a,z]*data["background_riemann"][z,b,e,q]
+                        for z in range(4)
+                    )
+                    for e in range(4) for q in range(4)
+                ), eps).subs(eps, 0) - term1
+            )
+            inverse_terms[1][i,j] = s.simplify(
+                s.diff(sum(
+                    inv0[c,e]*inv_exact[d,q]*sum(
+                        g0[a,z]*data["background_riemann"][z,b,e,q]
+                        for z in range(4)
+                    )
+                    for e in range(4) for q in range(4)
+                ), eps).subs(eps, 0) - term2
+            )
+
+    return {
+        "riemann_component_count": len(riemann_residuals),
+        "riemann_residuals": riemann_residuals,
+        "lowered_riemann_component_count": len(lowered_riemann_residuals),
+        "lowered_riemann_residuals": lowered_riemann_residuals,
+        "operator_entry_count": 36,
+        "operator_residuals": operator_residuals,
+        "first_inverse_metric_term_residuals": inverse_terms[0],
+        "second_inverse_metric_term_residuals": inverse_terms[1],
+    }
+
+
+def verify_background_operator(data):
+    """Compare the six background diagonal entries with the contract values."""
+    M, = (s.symbols("M", positive=True),)
+    r = data["coordinates"][1]
+    expected = s.diag(
+        2*M/r**3, -M/r**3, -M/r**3,
+        -M/r**3, -M/r**3, 2*M/r**3
+    )
+    actual = data["operator_background"]
+    return s.Matrix(6, 6, lambda i,j: s.simplify(actual[i,j]-expected[i,j]))
