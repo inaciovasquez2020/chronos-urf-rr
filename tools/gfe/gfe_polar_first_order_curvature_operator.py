@@ -149,7 +149,7 @@ def verify_first_order_tensor_identities(data):
 
 
 
-def direct_epsilon_expansion_comparison(data):
+def direct_epsilon_expansion_comparison(data, progress=None):
     """Independently expand the exact metric-derived tensors in epsilon.
 
     This deliberately recomputes the inverse metric, connection, mixed Riemann,
@@ -157,6 +157,10 @@ def direct_epsilon_expansion_comparison(data):
     It is expensive by design; callers must run it and assert every residual
     is exactly zero before treating the first-order gate as passed.
     """
+    def report(stage, residuals, count):
+        if progress is not None:
+            progress(stage, residuals, count)
+
     eps = data["epsilon"]
     x = data["coordinates"]
     g = data["metric"]
@@ -205,10 +209,12 @@ def direct_epsilon_expansion_comparison(data):
         key: s.simplify(direct_dR[key] - analytic_dR[key])
         for key in analytic_dR
     }
+    report("mixed_riemann_direct_expansion", riemann_residuals, len(riemann_residuals))
     lowered_riemann_residuals = {
         key: s.simplify(direct_dRlow[key] - analytic_dRlow[key])
         for key in analytic_dRlow
     }
+    report("lowered_riemann_direct_expansion", lowered_riemann_residuals, len(lowered_riemann_residuals))
 
     Rop_exact = s.zeros(6)
     for i, (a,b) in enumerate(pairs):
@@ -226,6 +232,8 @@ def direct_epsilon_expansion_comparison(data):
         operator_residuals[i,j] = s.simplify(
             direct_dRop[i,j] - analytic_dRop[i,j]
         )
+
+    report("operator_direct_expansion", operator_residuals, 36)
 
     # Isolate the two inverse-metric variation terms separately.
     h = data["perturbation"]
@@ -267,6 +275,9 @@ def direct_epsilon_expansion_comparison(data):
                     for e in range(4) for q in range(4)
                 ), eps).subs(eps, 0) - term2
             )
+
+    report("first_inverse_metric_variation_term", inverse_terms[0], 36)
+    report("second_inverse_metric_variation_term", inverse_terms[1], 36)
 
     return {
         "riemann_component_count": len(riemann_residuals),
