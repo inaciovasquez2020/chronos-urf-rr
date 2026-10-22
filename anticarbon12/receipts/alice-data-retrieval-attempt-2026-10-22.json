@@ -33,12 +33,20 @@
         "https://www.hepdata.net/record/ins1928822?version=1&format=yaml",
         "https://www.hepdata.net/download/submission/ins1928822/1"
       ],
-      "result": "HTTP 403 or inaccessible through the available retrieval path on 2026-10-22."
+      "result": "Direct candidate record URL returned HTTP 403; search route inaccessible through this retrieval path. Candidate identifier ins1928822 is not independently verified as a HEPData record."
     },
     {
       "source": "Local binary retrieval",
       "result": "Download attempts for official ALICE figure PDF and CERN CDS/arXiv PDF failed in the working container.",
       "consequence": "Cannot calculate SHA-256 for downloaded binary source files, nor run reproducible pixel-level digitization in this environment."
+    },
+    {
+      "source": "Publisher PDF (Springer, version of record)",
+      "url": "https://link.springer.com/content/pdf/10.1007/JHEP01%282022%29106.pdf",
+      "result": "Accessible through web PDF viewer; 32-page version of record. Figure 2 on PDF page index 9 and Figure 3 on page index 10 were visually inspected.",
+      "extraction": "Plots, axes and uncertainties are visible. No point-level numerical data table is provided in the paper text. A screenshot-level manual digitization has not yet been performed.",
+      "sha256": null,
+      "sha256_status": "Binary bytes could not be downloaded into the working container."
     }
   ],
   "extraction_status": {
@@ -48,13 +56,16 @@
     "statistical_uncertainties_extracted": false,
     "systematic_uncertainties_extracted": false,
     "digitization_uncertainty_established": false,
-    "independent_replay_run": false
+    "independent_replay_run": false,
+    "source_plot_access": "VERIFIED",
+    "point_level_data": "NOT_OBTAINED",
+    "HEPData_identifier": "UNVERIFIED_CANDIDATE_ins1928822"
   },
   "scientific_gate": {
     "light_nucleus_model": "NOT_VALIDATED_INDEPENDENTLY",
     "A12_overlap": "NOT_ESTABLISHED",
     "yield_computation": "NOT_AUTHORIZED"
   },
-  "stopping_reason": "No defensible point-level table with statistical and systematic uncertainties has been obtained. Do not convert visual estimates from the plot into a nominal dataset or claim independent validation.",
+  "stopping_reason": "Publisher plots are accessible but the point-level data payload was not obtained, and the candidate HEPData identifier remains unverified. Do not treat approximate visual readings as exact data or as an independent replay.",
   "next_minimum_requirement": "Obtain the HEPData table export through an accessible client/session or provide local source PDF/EPS files for calibrated digitization; retain source hashes, axis calibration, digitization uncertainty, and a second independent extraction."
 }
