@@ -147,6 +147,18 @@
     "residual_replay": false,
     "source_binary_sha256_computed": false,
     "gate_1": "BLOCKED",
-    "next_action": "Retrieve canonical HEPData ZIP/YAML/CSV or obtain the official B2/B3 PDF/EPS binaries in a network-enabled controlled runtime; then hash and inspect source files before any numerical residual analysis."
+    "next_action": "Resolve the HEPData submission ID with the documented CLI/search or dataset DOI metadata in a network-enabled runtime; then download canonical YAML/CSV and verify Tables 14–20 before analysis."
+  },
+  "identifier_resolution": {
+    "checked_at": "2026-10-22",
+    "publication_identifier": "arXiv:2109.13026",
+    "dataset_doi_lead": "10.17182/HEPDATA.115571",
+    "candidate_hepdata_url_id": "ins1928822",
+    "candidate_id_status": "UNVERIFIED",
+    "search_attempt": "Web search for exact dataset DOI and arXiv identifier did not surface a directly indexed HEPData record or table payload.",
+    "supported_next_command": "hepdata-cli --verbose find '2109.13026' -i hepdata",
+    "download_after_resolution": "hepdata-cli --verbose download <RESOLVED_ID> -i hepdata -f yaml -d ./hepdata-downloads",
+    "table_names_after_resolution": "hepdata-cli fetch-names <RESOLVED_ID> -i hepdata",
+    "caveat": "Commands are documented by HEPData-CLI but have not been executed here; do not substitute candidate ID for the resolved result."
   }
 }
