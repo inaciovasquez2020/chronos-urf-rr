@@ -55,11 +55,35 @@
       "result": "Accessible metadata record links a dataset for this ALICE publication and names the HEPData DOI.",
       "extraction": "Metadata lead only; the DOI landing page and point-level table payload were not independently resolved in this retrieval session.",
       "status": "METADATA_LEAD_VERIFIED_TABLE_PAYLOAD_NOT_RETRIEVED"
+    },
+    {
+      "source": "HEPData DOI resolution",
+      "url": "https://doi.org/10.17182/HEPDATA.115571",
+      "result": "DOI is cited by GSI repository metadata; DOI resolver not accessible through current web/runtime route.",
+      "status": "BLOCKED"
+    },
+    {
+      "source": "HEPData record JSON candidate",
+      "url": "https://www.hepdata.net/record/ins1928822?format=json",
+      "result": "Direct record endpoint inaccessible through current web/runtime route; candidate record ID remains unverified.",
+      "status": "BLOCKED_UNVERIFIED"
+    },
+    {
+      "source": "Official ALICE B2 figure PDF",
+      "url": "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB2data_3.pdf",
+      "result": "PDF opened in web viewer and plot inspected; binary download to controlled runtime failed.",
+      "status": "VIEWABLE_NOT_DOWNLOADED"
+    },
+    {
+      "source": "Official ALICE B3 figure PDF",
+      "url": "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB3data_3.pdf",
+      "result": "PDF opened in web viewer and plot inspected; binary download to controlled runtime failed.",
+      "status": "VIEWABLE_NOT_DOWNLOADED"
     }
   ],
   "extraction_status": {
-    "B2": "BLOCKED",
-    "B3": "BLOCKED",
+    "B2": "BLOCKED_SOURCE_BINARY_NOT_AVAILABLE_FOR_REPRODUCIBLE_DIGITIZATION",
+    "B3": "BLOCKED_SOURCE_BINARY_NOT_AVAILABLE_FOR_REPRODUCIBLE_DIGITIZATION",
     "points_extracted": 0,
     "statistical_uncertainties_extracted": false,
     "systematic_uncertainties_extracted": false,
@@ -67,13 +91,15 @@
     "independent_replay_run": false,
     "source_plot_access": "VERIFIED",
     "point_level_data": "NOT_OBTAINED",
-    "HEPData_identifier": "UNVERIFIED_CANDIDATE_ins1928822; dataset DOI lead 10.17182/HEPDATA.115571 identified but unresolved"
+    "HEPData_identifier": "UNRESOLVED_CANONICAL_RECORD; DOI 10.17182/HEPDATA.115571 is a verified metadata lead; ins1928822 remains unverified",
+    "official_figure_pdf_browser_view": "VERIFIED_FOR_B2_AND_B3",
+    "official_figure_pdf_binary_download": "FAILED"
   },
   "scientific_gate": {
     "light_nucleus_model": "NOT_VALIDATED_INDEPENDENTLY",
     "A12_overlap": "NOT_ESTABLISHED",
     "yield_computation": "NOT_AUTHORIZED"
   },
-  "stopping_reason": "Publisher plots are accessible but the point-level data payload was not obtained, and the candidate HEPData identifier remains unverified. Do not treat approximate visual readings as exact data or as an independent replay. A GSI metadata record now identifies dataset DOI 10.17182/HEPDATA.115571, but no verified HEPData table payload was obtained.",
-  "next_minimum_requirement": "Resolve DOI 10.17182/HEPDATA.115571 to the current HEPData record and table export; if inaccessible, obtain local source PDF/EPS files for calibrated digitization, source hashes, digitization uncertainty, and a second independent extraction."
+  "stopping_reason": "Publisher plots are accessible but the point-level data payload was not obtained, and the candidate HEPData identifier remains unverified. Do not treat approximate visual readings as exact data or as an independent replay. A GSI metadata record now identifies dataset DOI 10.17182/HEPDATA.115571, but no verified HEPData table payload was obtained. The official B2/B3 PDFs were viewable in the ALICE figure archive, but binary downloads into the controlled runtime failed; a browser screenshot is insufficient to certify two independent reproducible digitizations.",
+  "next_minimum_requirement": "Obtain the canonical HEPData table export or place the official cB2data_3.pdf and cB3data_3.pdf (or EPS originals) in the controlled runtime; hash sources, perform two independent calibrated digitizations, and then compute pointwise model residuals."
 }
