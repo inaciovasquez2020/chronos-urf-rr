@@ -1,0 +1,90 @@
+{
+  "receipt_schema": "anti-carbon12-gate-receipt-v1",
+  "audit_id": "alice-pp13tev-b2-b3-source-audit-2026-10-22",
+  "generated_at": "2026-10-22",
+  "repository": "inaciovasquez2020/chronos-urf-rr",
+  "branch": "research/anticarbon12-feasibility-framework",
+  "status": "PASS_BOUNDED_WITH_BLOCKED_DATA_EXTRACTION",
+  "scope": "Primary-source metadata and paper-level model statements only; no point-level numerical replay.",
+  "source_audit": {
+    "status": "PASS_BOUNDED",
+    "primary_paper_identified": true,
+    "doi_verified_against_publisher_and_alice_pages": true,
+    "arxiv_version_identified": "2109.13026v2, dated 2022-04-05",
+    "official_figure_links_identified": true,
+    "hepdata_record_identified": "ins1928822",
+    "hepdata_point_data_retrieval": "BLOCKED_HTTP_403",
+    "source_sha256_values_computed": false,
+    "note": "Metadata and links are recorded. Binary source hashes are intentionally null because source bytes were not retrieved; no hash is invented."
+  },
+  "extracted_points": {
+    "B2": {
+      "status": "NOT_STARTED_BLOCKED",
+      "point_count": null,
+      "values": null,
+      "statistical_uncertainties": null,
+      "systematic_uncertainties": null,
+      "digitization_uncertainty": null
+    },
+    "B3": {
+      "status": "NOT_STARTED_BLOCKED",
+      "point_count": null,
+      "values": null,
+      "statistical_uncertainties": null,
+      "systematic_uncertainties": null,
+      "digitization_uncertainty": null
+    }
+  },
+  "paper_level_validation": {
+    "B2_gaussian_wavefunction": {
+      "status": "PUBLISHED_QUALITATIVE_AGREEMENT",
+      "statement": "The ALICE paper reports that the Gaussian deuteron wave function gives the best description of B2 among the compared wave functions; this is not an independent numerical reproduction."
+    },
+    "B3_gaussian_wavefunction": {
+      "status": "FAIL_AS_UNQUALIFIED_EXTRAPOLATION_BASELINE",
+      "statement": "The ALICE paper reports that the Gaussian helion B3 prediction is above the data by almost a factor of two except for the last pT interval, which is consistent within uncertainties."
+    },
+    "complete_coalescence_model": {
+      "status": "NOT_VALIDATED_HERE",
+      "statement": "No point-level extraction, independent model implementation, residual calculation, or held-out validation has been performed."
+    }
+  },
+  "source_facts": {
+    "collision_system": "pp",
+    "center_of_mass_energy": "13 TeV",
+    "data_years": "2016-2018",
+    "rapidity_interval": "|y| < 0.5",
+    "paper_reported_samples": {
+      "minimum_bias_events": "approximately 2.6 billion",
+      "high_multiplicity_events": "approximately 650 million"
+    },
+    "B_definition": "B_A = invariant spectrum of the nucleus divided by the A-th power of the invariant proton spectrum, with proton spectrum evaluated at pT/A.",
+    "source_overlap_model": "For B2, the paper defines an overlap integral of the deuteron Wigner density with a two-nucleon source correlation; the Gaussian source assumption is homogeneous with R = R_parallel = R_perpendicular.",
+    "A12_gate": "BLOCKED: a normalized, independently checkable 12-body phase-space overlap and uncertainty model have not been established."
+  },
+  "stopping_decision": {
+    "status": "STOP_BEFORE_A12",
+    "reasons": [
+      "HEPData point-level values could not be retrieved in this run.",
+      "No independently replayable B2/B3 table with uncertainty decomposition exists yet.",
+      "The paper's Gaussian B3 prediction itself has a substantial low-pT discrepancy, so a naive Gaussian extrapolation is not validated.",
+      "No justified A=12 many-body overlap or propagated uncertainty bound has been established."
+    ],
+    "authorized_claim": "The source audit identifies a reproducible starting point and a concrete model-validation obstacle. It does not establish an anti-carbon-12 production yield."
+  },
+  "reproducibility": {
+    "code_run": false,
+    "tests_run": false,
+    "numerical_residuals": null,
+    "source_hashes": null,
+    "receipt_hash": null,
+    "reason": "This receipt records a bounded literature/source audit, not a numerical computation. A self-hash is not claimed."
+  },
+  "next_required_objects": [
+    "Obtain HEPData record ins1928822 tables through an accessible export or a documented independent figure-digitization procedure.",
+    "Create B2/B3 CSVs with pT/A, central value, statistical uncertainty, systematic uncertainty, multiplicity class, and any visibility scale factor.",
+    "Replay at least one selected source table or digitized figure independently and report residuals and digitization tolerance.",
+    "Only then implement the paper's B2/B3 equations with explicit units and compare against published results.",
+    "Do not attempt A=12 until a valid many-body overlap and uncertainty propagation are justified."
+  ]
+}
