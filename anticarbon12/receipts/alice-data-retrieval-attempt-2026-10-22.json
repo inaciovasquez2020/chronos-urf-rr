@@ -47,6 +47,14 @@
       "extraction": "Plots, axes and uncertainties are visible. No point-level numerical data table is provided in the paper text. A screenshot-level manual digitization has not yet been performed.",
       "sha256": null,
       "sha256_status": "Binary bytes could not be downloaded into the working container."
+    },
+    {
+      "source": "GSI repository metadata / dataset DOI",
+      "url": "https://repository.gsi.de/record/246295?ln=de",
+      "dataset_doi": "10.17182/HEPDATA.115571",
+      "result": "Accessible metadata record links a dataset for this ALICE publication and names the HEPData DOI.",
+      "extraction": "Metadata lead only; the DOI landing page and point-level table payload were not independently resolved in this retrieval session.",
+      "status": "METADATA_LEAD_VERIFIED_TABLE_PAYLOAD_NOT_RETRIEVED"
     }
   ],
   "extraction_status": {
@@ -59,13 +67,13 @@
     "independent_replay_run": false,
     "source_plot_access": "VERIFIED",
     "point_level_data": "NOT_OBTAINED",
-    "HEPData_identifier": "UNVERIFIED_CANDIDATE_ins1928822"
+    "HEPData_identifier": "UNVERIFIED_CANDIDATE_ins1928822; dataset DOI lead 10.17182/HEPDATA.115571 identified but unresolved"
   },
   "scientific_gate": {
     "light_nucleus_model": "NOT_VALIDATED_INDEPENDENTLY",
     "A12_overlap": "NOT_ESTABLISHED",
     "yield_computation": "NOT_AUTHORIZED"
   },
-  "stopping_reason": "Publisher plots are accessible but the point-level data payload was not obtained, and the candidate HEPData identifier remains unverified. Do not treat approximate visual readings as exact data or as an independent replay.",
-  "next_minimum_requirement": "Obtain the HEPData table export through an accessible client/session or provide local source PDF/EPS files for calibrated digitization; retain source hashes, axis calibration, digitization uncertainty, and a second independent extraction."
+  "stopping_reason": "Publisher plots are accessible but the point-level data payload was not obtained, and the candidate HEPData identifier remains unverified. Do not treat approximate visual readings as exact data or as an independent replay. A GSI metadata record now identifies dataset DOI 10.17182/HEPDATA.115571, but no verified HEPData table payload was obtained.",
+  "next_minimum_requirement": "Resolve DOI 10.17182/HEPDATA.115571 to the current HEPData record and table export; if inaccessible, obtain local source PDF/EPS files for calibrated digitization, source hashes, digitization uncertainty, and a second independent extraction."
 }
