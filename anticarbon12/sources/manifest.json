@@ -14,10 +14,13 @@
     "urls": [
       "https://doi.org/10.1007/JHEP01(2022)106",
       "https://arxiv.org/pdf/2109.13026",
-      "https://alice-publications.web.cern.ch/node/7377"
+      "https://alice-publications.web.cern.ch/node/7377",
+      "https://link.springer.com/content/pdf/10.1007/JHEP01%282022%29106.pdf"
     ],
     "sha256": null,
-    "sha256_status": "NOT_COMPUTED: binary manuscript was not downloaded into the working environment"
+    "sha256_status": "NOT_COMPUTED: publisher PDF rendered by web PDF viewer, but binary bytes could not be downloaded into the working container",
+    "publisher_pdf_access": "VERIFIED_BY_WEB_PDF_VIEWER_2026-10-22",
+    "publisher_pdf_pages": 32
   },
   "target_measurements": [
     {
@@ -29,7 +32,7 @@
       "plotted_x": "pT/A in GeV/c",
       "plotted_y": "B2 in GeV^2/c^3",
       "uncertainties": "vertical bars statistical; boxes systematic",
-      "source_data_status": "BLOCKED: point-level table not retrieved; figure provides a plotted source only",
+      "source_data_status": "PLOT_VERIFIED_IN_PUBLISHER_PDF; point-level numerical values and uncertainty components not yet extracted",
       "sha256": null
     },
     {
@@ -41,16 +44,21 @@
       "plotted_x": "pT/A in GeV/c",
       "plotted_y": "B3 in GeV^4/c^6",
       "uncertainties": "vertical bars statistical; boxes systematic",
-      "source_data_status": "BLOCKED: point-level table not retrieved; figure provides a plotted source only",
+      "source_data_status": "PLOT_VERIFIED_IN_PUBLISHER_PDF; point-level numerical values and uncertainty components not yet extracted",
       "sha256": null
     }
   ],
   "tabulation_source": {
     "provider": "HEPData",
-    "record": "ins1928822",
-    "url": "https://www.hepdata.net/record/ins1928822?version=1",
-    "access_result": "HTTP 403 via current retrieval path on 2026-10-22",
-    "status": "BLOCKED",
+    "candidate_record": "ins1928822",
+    "record_id_status": "UNVERIFIED; do not cite as confirmed HEPData record identifier",
+    "urls_checked": [
+      "https://www.hepdata.net/record/ins1928822",
+      "https://www.hepdata.net/record/ins1928822?format=json",
+      "https://www.hepdata.net/search/?q=2109.13026"
+    ],
+    "access_result": "The direct record request returned HTTP 403; the search route was inaccessible in this retrieval path. No table list or data payload was obtained.",
+    "status": "BLOCKED_UNVERIFIED_RECORD",
     "sha256": null
   },
   "experiment_context": {
