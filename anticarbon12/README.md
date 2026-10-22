@@ -119,3 +119,12 @@ The source manifest and bounded audit receipt are in `sources/manifest.json` and
 **Stop decision:** stop before A=12 and before yield computation. Continue only with obtaining the point-level HEPData export or a documented, calibrated figure digitization that keeps statistical, systematic, and digitization uncertainties distinct. The paper itself notes that the general B2 overlap recipe does not extend to B3 for arbitrary wave functions and that ab initio calculations are needed for those cases. A numerical formula evaluable at A=12 is not, by itself, evidence for a validated prediction.
 
 Primary paper version reviewed: arXiv:2109.13026v2 (2022-04-05); published as JHEP 01 (2022) 106. The paper defines B_A using the invariant nucleus spectrum divided by the A-th power of the invariant proton spectrum evaluated at pT/A. In its Appendix A, B2 is expressed as an overlap integral of the deuteron Wigner density and the two-nucleon source correlation for a Gaussian source. These conventions must be implemented explicitly before any numerical comparison.
+
+
+### Publisher-PDF access correction — 2026-10-22
+
+The version-of-record PDF is accessible through the Springer web PDF viewer (32 pages); Figure 2 is on PDF page index 9 and Figure 3 on index 10. The PDF confirms the axes, plotted uncertainty boxes/bars, and the paper's own model comparison. However, the binary PDF could not be downloaded into the working container, so no SHA-256 or programmatic pixel calibration was performed.
+
+**Provenance correction:** `ins1928822` is now treated as an unverified candidate identifier, not as a confirmed HEPData record. The direct candidate URL returned HTTP 403 and the search route could not be accessed through this retrieval path. No table payload or point-level values were retrieved. The earlier source manifest and receipts have been corrected accordingly.
+
+The next viable path is a documented manual digitization from the publisher PDF, using axis calibration, retaining the image/screenshot provenance and digitization tolerance, and independently repeating the extraction. Until then, point-level numerical replay remains blocked. Do not call a screenshot-derived estimate exact or independently validated.
