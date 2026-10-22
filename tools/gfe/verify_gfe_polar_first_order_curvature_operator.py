@@ -25,11 +25,50 @@ def all_zero(value):
     return s.simplify(value) == 0
 
 
+def emit_stage(stage: str, residuals, count: int) -> bool:
+    passed = all_zero(residuals)
+    print(json.dumps({
+        "schema": "gfe-polar-first-order-stage-receipt-v1",
+        "stage": stage,
+        "checked_count": count,
+        "passed": passed,
+        "frontier": "PASS" if passed else "FAIL",
+    }, sort_keys=True), flush=True)
+    return passed
+
+
 def main() -> int:
     data = build_first_order_operator()
     tensor = verify_first_order_tensor_identities(data)
-    direct = direct_epsilon_expansion_comparison(data)
     background = verify_background_operator(data)
+
+    preflight = {
+        "inverse_metric_direct_expansion": (
+            tensor["inverse_metric_direct_expansion"], 16
+        ),
+        "lowered_riemann_symmetries": (
+            tensor["riemann_symmetry_residuals"], 768
+        ),
+        "background_operator_contract_eigenvalues": (background, 36),
+    }
+    preflight_passed = {}
+    for stage, (residuals, count) in preflight.items():
+        preflight_passed[stage] = emit_stage(stage, residuals, count)
+    if not all(preflight_passed.values()):
+        print(json.dumps({
+            "schema": "gfe-polar-first-order-curvature-audit-v1",
+            "checks": preflight_passed,
+            "passed": sum(preflight_passed.values()),
+            "total": len(preflight_passed),
+            "frontier": "FIRST_ORDER_VERIFICATION_FAILED",
+            "second_order_operator_constructed": False,
+        }, indent=2, sort_keys=True), flush=True)
+        return 1
+
+    def stage_callback(stage, residuals, count):
+        emit_stage(stage, residuals, count)
+
+    direct = direct_epsilon_expansion_comparison(data, progress=stage_callback)
 
     checks = {
         "inverse_metric_direct_expansion": all_zero(
