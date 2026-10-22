@@ -55,10 +55,13 @@
     "urls_checked": [
       "https://www.hepdata.net/record/ins1928822",
       "https://www.hepdata.net/record/ins1928822?format=json",
-      "https://www.hepdata.net/search/?q=2109.13026"
+      "https://www.hepdata.net/search/?q=2109.13026",
+      "https://www.hepdata.net/record/ins1928822?format=json",
+      "https://doi.org/10.17182/HEPDATA.115571",
+      "https://www.hepdata.net/record/ins115571?format=json"
     ],
-    "access_result": "The direct record request returned HTTP 403; the search route was inaccessible in this retrieval path. No table list or data payload was obtained.",
-    "status": "BLOCKED_TABLE_PAYLOAD_NOT_RETRIEVED_METADATA_LEAD_FOUND",
+    "access_result": "GSI repository metadata confirms dataset DOI 10.17182/HEPDATA.115571. DOI resolution and HEPData JSON endpoints could not be retrieved through the available web/runtime route. Official ALICE Figure 2a and 2b PDFs are directly viewable via the ALICE figure archive, but binary downloads to the controlled runtime failed.",
+    "status": "BLOCKED_CANONICAL_HEPDATA_RECORD_AND_POINT_PAYLOAD_NOT_RETRIEVED",
     "sha256": null,
     "dataset_doi_lead": {
       "doi": "10.17182/HEPDATA.115571",
@@ -67,6 +70,25 @@
       "evidence": "GSI repository record links a dataset titled 'Production of light (anti)nuclei in pp collisions at sqrt(s) = 13 TeV' and identifies DOI 10.17182/HEPDATA.115571.",
       "limitation": "The DOI-to-current-HEPData-record mapping, table list, and point-level payload were not independently retrieved in this session. Do not infer that ins1928822 is correct from this DOI.",
       "checked_date": "2026-10-22"
+    },
+    "official_figure_files": [
+      {
+        "measurement": "B2",
+        "url": "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB2data_3.pdf",
+        "status": "OFFICIAL_PDF_VIEWABLE_IN_BROWSER_BINARY_NOT_DOWNLOADED"
+      },
+      {
+        "measurement": "B3",
+        "url": "https://alice-figure.web.cern.ch/system/files/figures/lbariogl/cB3data_3.pdf",
+        "status": "OFFICIAL_PDF_VIEWABLE_IN_BROWSER_BINARY_NOT_DOWNLOADED"
+      }
+    ],
+    "digitization_status": {
+      "status": "NOT_PERFORMED",
+      "reason": "A screenshot view is not a source binary or reproducible pixel input in the controlled runtime. Without the source PDF/EPS bytes, two independent calibrated digitizations and source hashes cannot be truthfully certified.",
+      "points_extracted": 0,
+      "independent_passes": 0,
+      "residual_replay": false
     }
   },
   "experiment_context": {
