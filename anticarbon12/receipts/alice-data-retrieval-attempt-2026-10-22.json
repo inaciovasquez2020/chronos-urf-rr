@@ -28,12 +28,23 @@
       "source": "HEPData",
       "record": "ins1928822",
       "urls": [
+        "https://www.hepdata.net/record/ins1928822",
         "https://www.hepdata.net/record/ins1928822?version=1",
-        "https://www.hepdata.net/record/ins1928822?version=1&format=json",
-        "https://www.hepdata.net/record/ins1928822?version=1&format=yaml",
-        "https://www.hepdata.net/download/submission/ins1928822/1"
+        "https://www.hepdata.net/record/115571",
+        "https://doi.org/10.17182/hepdata.115571.v1"
       ],
-      "result": "Direct candidate record URL returned HTTP 403; search route inaccessible through this retrieval path. Candidate identifier ins1928822 is not independently verified as a HEPData record."
+      "result": "RECORD_IDENTITY_CONFIRMED_VIA_FETCHED_PAGE_AND_CROSS-REFERENCED_METADATA; table index confirms B2 Tables 14–16 and B3 Tables 17–20.",
+      "dataset_doi": "10.17182/HEPDATA.115571",
+      "versioned_dataset_doi": "10.17182/HEPDATA.115571.v1",
+      "evidence": [
+        "Fetched record page title: Production of light (anti)nuclei in pp collisions at sqrt(s) = 13 TeV.",
+        "Page metadata includes report number CERN-EP-2021-194 and an abstract naming B2 and B3.",
+        "Search result lists record/ins1928822?version=1 and record/115571; the latter matches the HEPData DOI suffix 115571.",
+        "Separate OSTI paper record links supplementary collection DOI 10.17182/hepdata.115571.v1.",
+        "Fetched table index maps B2 to Tables 14–16 and B3 to Tables 17–20; table DOIs run from 10.17182/hepdata.115571.v1/t14 through /t20."
+      ],
+      "extraction": "Record identity and table index confirmed. Only titles/descriptions were inspected; table bodies, numeric values, and uncertainty columns have not been retrieved or inspected.",
+      "status": "IDENTITY_AND_INDEX_CONFIRMED_TABLE_PAYLOAD_NOT_RETRIEVED"
     },
     {
       "source": "Local binary retrieval",
@@ -59,14 +70,14 @@
     {
       "source": "HEPData DOI resolution",
       "url": "https://doi.org/10.17182/HEPDATA.115571",
-      "result": "DOI is cited by GSI repository metadata; DOI resolver not accessible through current web/runtime route.",
-      "status": "BLOCKED"
+      "result": "Dataset DOI 10.17182/HEPDATA.115571 and versioned collection DOI 10.17182/hepdata.115571.v1 are corroborated by fetched record/search metadata and OSTI supplementary-collection link; table payload not retrieved.",
+      "status": "DOI_AND_COLLECTION_IDENTITY_CONFIRMED_PAYLOAD_NOT_RETRIEVED"
     },
     {
       "source": "HEPData record JSON candidate",
       "url": "https://www.hepdata.net/record/ins1928822?format=json",
-      "result": "Direct record endpoint inaccessible through current web/runtime route; candidate record ID remains unverified.",
-      "status": "BLOCKED_UNVERIFIED"
+      "result": "Record identity ins1928822 confirmed via fetched record page metadata and cross-referenced search result; JSON endpoint remains inaccessible through this retrieval route.",
+      "status": "RECORD_CONFIRMED_JSON_ENDPOINT_BLOCKED"
     },
     {
       "source": "Official ALICE B2 figure PDF",
@@ -91,16 +102,18 @@
     "independent_replay_run": false,
     "source_plot_access": "VERIFIED",
     "point_level_data": "NOT_OBTAINED",
-    "HEPData_identifier": "UNRESOLVED_CANONICAL_RECORD; DOI 10.17182/HEPDATA.115571 is a verified metadata lead; ins1928822 remains unverified",
+    "HEPData_identifier": "CONFIRMED: ins1928822; cross-linked record/115571; dataset DOI 10.17182/HEPDATA.115571; versioned collection DOI 10.17182/hepdata.115571.v1",
     "official_figure_pdf_browser_view": "VERIFIED_FOR_B2_AND_B3",
-    "official_figure_pdf_binary_download": "FAILED"
+    "official_figure_pdf_binary_download": "FAILED",
+    "HEPData_record_identity": "CONFIRMED_VIA_FETCHED_PAGE_AND_CROSS-REFERENCED_METADATA",
+    "HEPData_table_index": "CONFIRMED_B2_TABLES_14_TO_16_B3_TABLES_17_TO_20"
   },
   "scientific_gate": {
     "light_nucleus_model": "NOT_VALIDATED_INDEPENDENTLY",
     "A12_overlap": "NOT_ESTABLISHED",
     "yield_computation": "NOT_AUTHORIZED"
   },
-  "stopping_reason": "Publisher plots are accessible but the point-level data payload was not obtained, and the candidate HEPData identifier remains unverified. Do not treat approximate visual readings as exact data or as an independent replay. A GSI metadata record now identifies dataset DOI 10.17182/HEPDATA.115571, but no verified HEPData table payload was obtained. The official B2/B3 PDFs were viewable in the ALICE figure archive, but binary downloads into the controlled runtime failed; a browser screenshot is insufficient to certify two independent reproducible digitizations.",
+  "stopping_reason": "Record identity and table index are confirmed: HEPData record ins1928822, cross-linked to record/115571 and dataset DOI 10.17182/HEPDATA.115571 (versioned collection 10.17182/hepdata.115571.v1); the index maps B2 to Tables 14–16 and B3 to Tables 17–20. Only titles/descriptions were inspected. Table bodies, numeric values, and statistical/systematic uncertainty columns were not retrieved or inspected. Do not treat approximate visual readings as exact data or as an independent replay. The official B2/B3 PDFs were viewable in the ALICE figure archive, but binary downloads into the controlled runtime failed.",
   "next_minimum_requirement": "Obtain the canonical HEPData table export or place the official cB2data_3.pdf and cB3data_3.pdf (or EPS originals) in the controlled runtime; hash sources, perform two independent calibrated digitizations, and then compute pointwise model residuals.",
   "follow_up_attempts": [
     {
@@ -147,18 +160,37 @@
     "residual_replay": false,
     "source_binary_sha256_computed": false,
     "gate_1": "BLOCKED",
-    "next_action": "Resolve the HEPData submission ID with the documented CLI/search or dataset DOI metadata in a network-enabled runtime; then download canonical YAML/CSV and verify Tables 14–20 before analysis."
+    "next_action": "Retrieve canonical YAML/CSV for confirmed record ins1928822 / collection DOI 10.17182/hepdata.115571.v1, inspect Tables 14–20 and their actual columns, then hash the downloaded files and perform the independent numerical replay.",
+    "HEPData_record_identity": "CONFIRMED",
+    "HEPData_table_index": "CONFIRMED_B2_T14_T16_B3_T17_T20"
   },
   "identifier_resolution": {
     "checked_at": "2026-10-22",
     "publication_identifier": "arXiv:2109.13026",
-    "dataset_doi_lead": "10.17182/HEPDATA.115571",
-    "candidate_hepdata_url_id": "ins1928822",
-    "candidate_id_status": "UNVERIFIED",
-    "search_attempt": "Web search for exact dataset DOI and arXiv identifier did not surface a directly indexed HEPData record or table payload.",
-    "supported_next_command": "hepdata-cli --verbose find '2109.13026' -i hepdata",
-    "download_after_resolution": "hepdata-cli --verbose download <RESOLVED_ID> -i hepdata -f yaml -d ./hepdata-downloads",
-    "table_names_after_resolution": "hepdata-cli fetch-names <RESOLVED_ID> -i hepdata",
-    "caveat": "Commands are documented by HEPData-CLI but have not been executed here; do not substitute candidate ID for the resolved result."
+    "dataset_doi": "10.17182/HEPDATA.115571",
+    "versioned_collection_doi": "10.17182/hepdata.115571.v1",
+    "canonical_hepdata_record_id": "ins1928822",
+    "cross_referenced_record_path": "record/115571",
+    "record_identity_status": "CONFIRMED_VIA_FETCHED_PAGE_AND_CROSS-REFERENCED_METADATA",
+    "table_index_status": "CONFIRMED",
+    "table_mapping": {
+      "B2": [
+        "Table 14",
+        "Table 15",
+        "Table 16"
+      ],
+      "B3": [
+        "Table 17",
+        "Table 18",
+        "Table 19",
+        "Table 20"
+      ]
+    },
+    "table_dois": "10.17182/hepdata.115571.v1/t14 through 10.17182/hepdata.115571.v1/t20",
+    "table_payload_status": "NOT_RETRIEVED_OR_INSPECTED",
+    "search_attempt": "Fetched record page metadata and corroborating search/OSTI metadata confirm identity and collection; only table index titles/descriptions inspected, not table bodies.",
+    "supported_next_command": "hepdata-cli --verbose download ins1928822 -i hepdata -f yaml -d ./hepdata-downloads",
+    "table_names_command": "hepdata-cli fetch-names ins1928822 -i hepdata",
+    "caveat": "Record identity is not unresolved. Actual table columns, point values, and statistical/systematic uncertainty fields remain unverified until the table payload is downloaded and inspected."
   }
 }
