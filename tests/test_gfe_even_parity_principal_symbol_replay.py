@@ -77,7 +77,9 @@ def test_reported_k_sector_principal_polynomial_factors_exactly() -> None:
         - (r - 2 * M) / r ** s.Rational(3, 2) * k**2
     ) ** 2
     assert s.expand(polynomial - square_form) == 0
-    assert s.factor(r**2 * omega**2 - (r - 2 * M) ** 2 * k**2) == (
-        (r * omega - (r - 2 * M) * k)
+    assert s.expand(
+        r**2 * omega**2
+        - (r - 2 * M) ** 2 * k**2
+        - (r * omega - (r - 2 * M) * k)
         * (r * omega + (r - 2 * M) * k)
-    )
+    ) == 0
