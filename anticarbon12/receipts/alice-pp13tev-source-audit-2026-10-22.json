@@ -13,13 +13,23 @@
     "arxiv_version_identified": "2109.13026v2, dated 2022-04-05",
     "official_figure_links_identified": true,
     "hepdata_record_identified": "ins1928822",
-    "hepdata_point_data_retrieval": "BLOCKED_HTTP_403",
+    "hepdata_point_data_retrieval": "BLOCKED_HTTP_403; candidate record identifier ins1928822 is not independently verified and must not be treated as confirmed",
     "source_sha256_values_computed": false,
-    "note": "Metadata and links are recorded. Binary source hashes are intentionally null because source bytes were not retrieved; no hash is invented."
+    "note": "Metadata and links are recorded. Binary source hashes are intentionally null because source bytes were not retrieved; no hash is invented.",
+    "publisher_pdf": {
+      "url": "https://link.springer.com/content/pdf/10.1007/JHEP01%282022%29106.pdf",
+      "status": "ACCESSIBLE_IN_WEB_PDF_VIEWER",
+      "pages": 32,
+      "figure_2_page_index": 9,
+      "figure_3_page_index": 10,
+      "sha256": null,
+      "sha256_status": "not computed; binary bytes not available in working container"
+    },
+    "hepdata_record_id": "UNVERIFIED_CANDIDATE_ins1928822"
   },
   "extracted_points": {
     "B2": {
-      "status": "NOT_STARTED_BLOCKED",
+      "status": "BLOCKED_POINT_LEVEL_TABLE_NOT_RETRIEVED",
       "point_count": null,
       "values": null,
       "statistical_uncertainties": null,
@@ -27,7 +37,7 @@
       "digitization_uncertainty": null
     },
     "B3": {
-      "status": "NOT_STARTED_BLOCKED",
+      "status": "BLOCKED_POINT_LEVEL_TABLE_NOT_RETRIEVED",
       "point_count": null,
       "values": null,
       "statistical_uncertainties": null,
@@ -42,7 +52,7 @@
     },
     "B3_gaussian_wavefunction": {
       "status": "FAIL_AS_UNQUALIFIED_EXTRAPOLATION_BASELINE",
-      "statement": "The ALICE paper reports that the Gaussian helion B3 prediction is above the data by almost a factor of two except for the last pT interval, which is consistent within uncertainties."
+      "statement": "Publisher PDF section 4.1 states the Gaussian helion prediction is above data by almost a factor of two except for the last pT interval, which is consistent within uncertainties. This is a reported paper-level comparison, not independent numerical validation."
     },
     "complete_coalescence_model": {
       "status": "NOT_VALIDATED_HERE",
@@ -65,9 +75,10 @@
   "stopping_decision": {
     "status": "STOP_BEFORE_A12",
     "reasons": [
-      "HEPData point-level values could not be retrieved in this run.",
-      "No independently replayable B2/B3 table with uncertainty decomposition exists yet.",
-      "The paper's Gaussian B3 prediction itself has a substantial low-pT discrepancy, so a naive Gaussian extrapolation is not validated.",
+      "Publisher PDF and plots are accessible, but no point-level B2/B3 data payload was obtained.",
+      "The candidate HEPData identifier ins1928822 is unverified; direct access returned HTTP 403 and the search route was inaccessible through the current retrieval path.",
+      "No independent B2/B3 uncertainty decomposition or numerical residual replay has been performed.",
+      "The published Gaussian B3 comparison has a substantial discrepancy outside the last pT interval.",
       "No justified A=12 many-body overlap or propagated uncertainty bound has been established."
     ],
     "authorized_claim": "The source audit identifies a reproducible starting point and a concrete model-validation obstacle. It does not establish an anti-carbon-12 production yield."
@@ -78,7 +89,7 @@
     "numerical_residuals": null,
     "source_hashes": null,
     "receipt_hash": null,
-    "reason": "This receipt records a bounded literature/source audit, not a numerical computation. A self-hash is not claimed."
+    "reason": "Publisher PDF was read through a web PDF viewer; binary bytes could not be downloaded to the working container for hashing or programmatic image digitization."
   },
   "next_required_objects": [
     "Obtain HEPData record ins1928822 tables through an accessible export or a documented independent figure-digitization procedure.",
