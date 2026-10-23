@@ -103,39 +103,64 @@ def build_second_order_operator():
 
 
 def direct_second_order_operator_comparison(data):
-    """Compare all 36 analytic entries with the epsilon**2 coefficient of exact g."""
-    x, eps = data["coordinates"], data["epsilon"]
+    """Independent exact coefficient algebra through epsilon**2; never invert g(epsilon)."""
+    x = data["coordinates"]
     g0, h = data["background_metric"], data["perturbation"]
-    g = g0 + eps*h
-    inv = g.inv()
     pairs = data["bivector_pairs"]
-    G = {}
-    for a,b,c in product(range(4), repeat=3):
-        G[a,b,c] = s.cancel(sum(
-            inv[a,d]*(s.diff(g[d,c],x[b])+s.diff(g[d,b],x[c])-s.diff(g[b,c],x[d]))
-            for d in range(4)
-        )/2)
-    R = {}
-    for a,b,c,d in product(range(4), repeat=4):
-        R[a,b,c,d] = (
-            s.diff(G[a,b,d],x[c])-s.diff(G[a,b,c],x[d])
-            + sum(G[a,c,e]*G[e,b,d]-G[a,d,e]*G[e,b,c] for e in range(4))
-        )
-    Rlow = {
-        (a,b,c,d): sum(g[a,z]*R[z,b,c,d] for z in range(4))
-        for a,b,c,d in product(range(4), repeat=4)
-    }
-    op = s.zeros(6)
+    # Coefficients of g^{-1}: G0 - eps G0 h G0 + eps**2 G0 h G0 h G0.
+    gi = [s.simplify(g0.inv()), None, None]
+    gi[1] = -gi[0]*h*gi[0]
+    gi[2] = gi[0]*h*gi[0]*h*gi[0]
+    gm = [g0, h, s.zeros(4)]
+    # Gamma[n] = 1/2 sum_{p+q=n} g^{-1}[p] * (partial g[q] + partial g[q] - partial g[q]).
+    gamma = [dict() for _ in range(3)]
+    for n in range(3):
+        for a,b,c in product(range(4), repeat=3):
+            value = 0
+            for p in range(n+1):
+                q = n-p
+                value += sum(
+                    gi[p][a,d]*(s.diff(gm[q][d,c],x[b])
+                                +s.diff(gm[q][d,b],x[c])
+                                -s.diff(gm[q][b,c],x[d]))
+                    for d in range(4)
+                )/2
+            gamma[n][a,b,c] = s.expand(value)
+    # R^a_{bcd}[n] from coefficient convolution of Gamma and its derivatives.
+    rm = [dict() for _ in range(3)]
+    for n in range(3):
+        for a,b,c,d in product(range(4), repeat=4):
+            value = s.diff(gamma[n][a,b,d],x[c])-s.diff(gamma[n][a,b,c],x[d])
+            for p in range(n+1):
+                q=n-p
+                value += sum(
+                    gamma[p][a,c,e]*gamma[q][e,b,d]
+                    -gamma[p][a,d,e]*gamma[q][e,b,c]
+                    for e in range(4)
+                )
+            rm[n][a,b,c,d] = s.expand(value)
+    # Lower the first Riemann index by coefficient convolution.
+    rl = [dict() for _ in range(3)]
+    for n in range(3):
+        for a,b,c,d in product(range(4), repeat=4):
+            rl[n][a,b,c,d] = s.expand(sum(
+                gm[p][a,e]*rm[n-p][e,b,c,d]
+                for p in range(n+1) for e in range(4)
+            ))
+    # R_op coefficient at order two: sum gi[p] gi[q] R_low[k], p+q+k=2.
+    op2 = s.zeros(6)
     for i,(a,b) in enumerate(pairs):
         for j,(c,d) in enumerate(pairs):
-            op[i,j] = sum(
-                inv[c,e]*inv[d,q]*Rlow[a,b,e,q]
-                for e,q in product(range(4), repeat=2)
-            )
+            value = 0
+            for p,q,k in product(range(3), repeat=3):
+                if p+q+k != 2:
+                    continue
+                value += sum(
+                    gi[p][c,e]*gi[q][d,z]*rl[k][a,b,e,z]
+                    for e,z in product(range(4), repeat=2)
+                )
+            op2[i,j] = s.expand(value)
     residuals = s.zeros(6)
     for i,j in product(range(6), repeat=2):
-        exact_coefficient = s.diff(op[i,j],eps,2).subs(eps,0)/2
-        residuals[i,j] = s.simplify(
-            exact_coefficient-data["operator_second_order"][i,j]
-        )
+        residuals[i,j] = s.simplify(op2[i,j]-data["operator_second_order"][i,j])
     return residuals
