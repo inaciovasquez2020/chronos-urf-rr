@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import sympy as s
+from gfe_polar_first_order_curvature_operator import build_first_order_operator
 from gfe_polar_second_order_curvature_operator import build_second_order_operator, direct_second_order_operator_comparison
 from gfe_polar_quadratic_density_coefficient import build_raw_quadratic_density, direct_raw_density_comparison
 
@@ -16,7 +17,8 @@ def emit(stage, passed, **fields):
 
 def main():
     # Gate the action-density work on the already-established exact operator replay.
-    op = build_second_order_operator()
+    first = build_first_order_operator()
+    op = build_second_order_operator(first)
     op_residuals = direct_second_order_operator_comparison(op)
     op_nonzero = [(i,j,str(op_residuals[i,j])) for i in range(6) for j in range(6)
                   if s.simplify(op_residuals[i,j]) != 0]
@@ -25,7 +27,7 @@ def main():
     if op_nonzero:
         raise SystemExit(1)
 
-    data = build_raw_quadratic_density()
+    data = build_raw_quadratic_density(first, op)
     raw = data["raw_epsilon_squared_density_coefficient"]
     # Reconstruct density formula by an independent coefficient convolution.
     check = direct_raw_density_comparison(data)
@@ -33,7 +35,7 @@ def main():
          formula="sqrt(-det(g0))*(1 + eps*tr(A)/2 + eps^2*((tr(A))^2/8-tr(A^2)/4))",
          coefficient="epsilon**2")
     emit("raw_quadratic_density_independent_comparison", check["passed"],
-         method="matrix-polynomial coefficient convolution",
+         method="matrix-polynomial trace coefficient convolution plus determinant-density expansion",
          nonzero_residual=str(check["density_coefficient_residual"]))
     if not check["passed"]:
         raise SystemExit(1)
