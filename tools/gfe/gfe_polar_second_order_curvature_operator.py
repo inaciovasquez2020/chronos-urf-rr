@@ -14,8 +14,8 @@ import sympy as s
 from gfe_polar_first_order_curvature_operator import build_first_order_operator
 
 
-def build_second_order_operator():
-    data = build_first_order_operator()
+def build_second_order_operator(first_data=None):
+    data = first_data if first_data is not None else build_first_order_operator()
     x = data["coordinates"]
     g0 = data["background_metric"]
     h = data["perturbation"]
