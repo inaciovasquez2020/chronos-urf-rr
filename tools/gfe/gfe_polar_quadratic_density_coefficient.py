@@ -68,25 +68,35 @@ def build_raw_quadratic_density(first_data=None, second_data=None, progress=None
 
 
 def direct_raw_density_comparison(data):
-    """Check determinant-density formula and state the exact trace identity used.
-
-    The trace-cube coefficient follows algebraically from expansion of
-    (R0 + eps*R1 + eps^2*R2)^3 and cyclicity of the ordinary matrix trace.
-    """
+    """Compare the compressed trace formula with all six ungrouped products."""
     g0, h = data["background_metric"], data["perturbation"]
-    cyclic_groups = {
-        "R0_R0_R2": ("R0_R0_R2", "R0_R2_R0", "R2_R0_R0"),
-        "R0_R1_R1": ("R0_R1_R1", "R1_R0_R1", "R1_R1_R0"),
-    }
-    trace_identity_passed = all(len(group) == 3 for group in cyclic_groups.values())
+    R0 = data["operator_background"]
+    R1 = data["operator_first_order"]
+    R2 = data["operator_second_order"]
+    T2_formula = data["trace_cube_coefficients"][2]
+
+    # Extract the epsilon^2 coefficient before using trace cyclicity:
+    # three words contain two R0 factors and one R2; three contain one R0
+    # and two R1 factors. Each matrix product is evaluated explicitly.
+    direct_terms = (
+        s.trace(R0*R0*R2),
+        s.trace(R0*R2*R0),
+        s.trace(R2*R0*R0),
+        s.trace(R0*R1*R1),
+        s.trace(R1*R0*R1),
+        s.trace(R1*R1*R0),
+    )
+    T2_direct = sum(direct_terms, s.Integer(0))
+    trace_residual = s.simplify(T2_direct-T2_formula)
+
     A = g0.inv()*h
     d2_independent = s.trace(A)**2/8 - s.trace(A*A)/4
     determinant_formula = data["density_coefficients_relative_to_background"][2]
     determinant_residual = s.cancel(d2_independent-determinant_formula)
     return {
-        "trace_coefficient_method": "polynomial expansion grouped by cyclic trace identity",
-        "trace_coefficient_residual": "0 by exact cyclic trace identity" if trace_identity_passed else "not verified",
+        "trace_coefficient_method": "explicit sum of all six ungrouped matrix-product traces",
+        "trace_coefficient_residual": trace_residual,
         "determinant_density_residual": determinant_residual,
-        "density_coefficient_residual": ("0 by exact cyclic trace identity", determinant_residual),
-        "passed": trace_identity_passed and determinant_residual == 0,
+        "density_coefficient_residual": (trace_residual, determinant_residual),
+        "passed": trace_residual == 0 and determinant_residual == 0,
     }
