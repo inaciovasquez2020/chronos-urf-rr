@@ -7,6 +7,8 @@ on:
       - "tools/gfe/verify_gfe_polar_first_order_curvature_operator.py"
       - "tools/gfe/gfe_polar_second_order_curvature_operator.py"
       - "tools/gfe/verify_gfe_polar_second_order_curvature_operator.py"
+      - "tools/gfe/gfe_polar_quadratic_density_coefficient.py"
+      - "tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py"
       - ".github/workflows/gfe-polar-first-order-curvature.yml"
   pull_request:
     paths:
