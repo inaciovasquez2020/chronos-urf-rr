@@ -81,9 +81,13 @@ def direct_raw_density_comparison(data):
     T2_formula = data["trace_cube_coefficients"][2]
     # Check the expensive curvature-dependent part before multiplying by the
     # determinant factor; this avoids expanding a huge common symbolic factor.
-    residual = s.simplify(trace2_convolution-T2_formula)
+    trace_residual = s.simplify(trace2_convolution-T2_formula)
+    determinant_formula = data["density_coefficients_relative_to_background"][2]
+    determinant_residual = s.simplify(d2_independent-determinant_formula)
     return {
         "trace_cube_epsilon_squared_convolution": trace2_convolution,
-        "density_coefficient_residual": residual,
-        "passed": residual == 0,
+        "trace_coefficient_residual": trace_residual,
+        "determinant_density_residual": determinant_residual,
+        "density_coefficient_residual": (trace_residual, determinant_residual),
+        "passed": trace_residual == 0 and determinant_residual == 0,
     }
