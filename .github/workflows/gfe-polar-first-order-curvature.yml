@@ -14,6 +14,10 @@ on:
     paths:
       - "tools/gfe/gfe_polar_first_order_curvature_operator.py"
       - "tools/gfe/verify_gfe_polar_first_order_curvature_operator.py"
+      - "tools/gfe/gfe_polar_second_order_curvature_operator.py"
+      - "tools/gfe/verify_gfe_polar_second_order_curvature_operator.py"
+      - "tools/gfe/gfe_polar_quadratic_density_coefficient.py"
+      - "tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py"
       - ".github/workflows/gfe-polar-first-order-curvature.yml"
 
 permissions:
@@ -34,3 +38,5 @@ jobs:
         run: python tools/gfe/verify_gfe_polar_first_order_curvature_operator.py
       - name: Run independent second-order curvature operator audit
         run: python tools/gfe/verify_gfe_polar_second_order_curvature_operator.py
+      - name: Run raw quadratic density coefficient verification
+        run: python tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py
