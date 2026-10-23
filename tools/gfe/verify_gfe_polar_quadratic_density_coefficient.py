@@ -12,11 +12,15 @@ from gfe_polar_quadratic_density_coefficient import build_raw_quadratic_density,
 def emit(stage, passed, **fields):
     print(json.dumps({"schema":"gfe-polar-quadratic-density-stage-receipt-v1",
         "stage":stage,"passed":bool(passed),"frontier":"PASS" if passed else "FAIL",**fields},
-        sort_keys=True, default=str))
+        sort_keys=True, default=str), flush=True)
+
+
+def progress(stage, **fields):
+    emit(stage, True, **fields)
 
 
 def main():
-    # Gate the action-density work on the already-established exact operator replay.
+    # Gate the density work on the exact second-order operator replay.
     first = build_first_order_operator()
     op = build_second_order_operator(first)
     op_residuals = direct_second_order_operator_comparison(op)
@@ -27,22 +31,27 @@ def main():
     if op_nonzero:
         raise SystemExit(1)
 
-    data = build_raw_quadratic_density(first, op)
+    progress("raw_density_construction_started")
+    data = build_raw_quadratic_density(first, op, progress=progress)
     raw = data["raw_epsilon_squared_density_coefficient"]
-    # Reconstruct density formula by an independent coefficient convolution.
+    progress("raw_density_construction_completed",
+             coefficient_convention=data["coefficient_convention"])
+
     check = direct_raw_density_comparison(data)
-    emit("determinant_density_expansion", True,
+    emit("determinant_density_expansion", check["determinant_density_residual"] == 0,
          formula="sqrt(-det(g0))*(1 + eps*tr(A)/2 + eps^2*((tr(A))^2/8-tr(A^2)/4))",
-         coefficient="epsilon**2")
+         coefficient="epsilon**2",
+         residual=str(check["determinant_density_residual"]))
     emit("raw_quadratic_density_independent_comparison", check["passed"],
-         method="matrix-polynomial trace coefficient convolution plus determinant-density expansion",
-         nonzero_residual=str(check["density_coefficient_residual"]))
+         method="explicit trace-cyclicity identity plus independent determinant-density residual",
+         trace_identity_residual=check["trace_coefficient_residual"],
+         determinant_residual=str(check["determinant_density_residual"]))
     if not check["passed"]:
         raise SystemExit(1)
 
+    progress("raw_density_serialization_started")
     canonical = s.srepr(raw)
     digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
-    # Preserve the exact raw symbolic expression as a replay artifact.
     with open("gfe_polar_raw_epsilon_squared_density.srepr.txt","w",encoding="utf-8") as f:
         f.write(canonical+"\n")
     emit("raw_quadratic_density_preserved", True,
@@ -53,7 +62,7 @@ def main():
          next_frontier="RAW_EPSILON_SQUARED_DENSITY_VERIFIED")
     print(json.dumps({"frontier":"RAW_EPSILON_SQUARED_DENSITY_VERIFIED",
         "passed":True,"quadratic_action_derived":False,
-        "spherical_integral_completed":False,"sha256_srepr":digest},sort_keys=True))
+        "spherical_integral_completed":False,"sha256_srepr":digest},sort_keys=True), flush=True)
 
 
 if __name__ == "__main__":
