@@ -17,12 +17,12 @@ def _trace_cube_coefficients(R0, R1, R2):
     T0 = s.trace(R0**3)
     T1 = 3*s.trace(R0**2*R1)
     T2 = 3*s.trace(R0**2*R2) + 3*s.trace(R0*R1**2)
-    return tuple(s.expand(v) for v in (T0, T1, T2))
+    return T0, T1, T2
 
 
-def build_raw_quadratic_density():
-    first = build_first_order_operator()
-    second = build_second_order_operator()
+def build_raw_quadratic_density(first_data=None, second_data=None):
+    first = first_data if first_data is not None else build_first_order_operator()
+    second = second_data if second_data is not None else build_second_order_operator(first)
     g0, h = first["background_metric"], first["perturbation"]
     A = g0.inv()*h
     trA = s.trace(A)
@@ -35,7 +35,7 @@ def build_raw_quadratic_density():
     R2 = second["operator_second_order"]
     T0, T1, T2 = _trace_cube_coefficients(R0, R1, R2)
     density0 = s.sqrt(-g0.det())
-    raw = s.expand(density0*(T2 + d1*T1 + d2*T0))
+    raw = density0*(T2 + d1*T1 + d2*T0)
     return {
         "coordinates": first["coordinates"],
         "epsilon": first["epsilon"],
@@ -72,15 +72,16 @@ def direct_raw_density_comparison(data):
             k = 2-i-j
             if 0 <= k < 3:
                 cube2 += coeff[i]*coeff[j]*coeff[k]
-    trace2_convolution = s.expand(s.trace(cube2))
+    trace2_convolution = s.trace(cube2)
     A = g0.inv()*h
-    d2_independent = s.expand(s.trace(A)**2/8 - s.trace(A*A)/4)
+    d2_independent = s.trace(A)**2/8 - s.trace(A*A)/4
     # Reconstruct T0 and T1 from the lower-order matrices, not from cached trace terms.
     T0_independent = s.trace(R0*R0*R0)
-    T1_independent = s.expand(s.trace(R1*R0*R0)+s.trace(R0*R1*R0)+s.trace(R0*R0*R1))
-    raw_independent = s.expand(s.sqrt(-g0.det())*(trace2_convolution
-        + s.trace(A)/2*T1_independent + d2_independent*T0_independent))
-    residual = s.simplify(raw_independent-data["raw_epsilon_squared_density_coefficient"])
+    T1_independent = s.trace(R1*R0*R0)+s.trace(R0*R1*R0)+s.trace(R0*R0*R1)
+    T2_formula = data["trace_cube_coefficients"][2]
+    # Check the expensive curvature-dependent part before multiplying by the
+    # determinant factor; this avoids expanding a huge common symbolic factor.
+    residual = s.simplify(trace2_convolution-T2_formula)
     return {
         "trace_cube_epsilon_squared_convolution": trace2_convolution,
         "density_coefficient_residual": residual,
