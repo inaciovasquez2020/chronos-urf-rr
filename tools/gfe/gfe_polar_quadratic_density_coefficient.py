@@ -20,22 +20,35 @@ def _trace_cube_coefficients(R0, R1, R2):
     return T0, T1, T2
 
 
-def build_raw_quadratic_density(first_data=None, second_data=None):
+def build_raw_quadratic_density(first_data=None, second_data=None, progress=None):
+    """Build raw coefficient; progress(stage, **fields) reports completed boundaries."""
+    def report(stage, **fields):
+        if progress is not None:
+            progress(stage, **fields)
+
     first = first_data if first_data is not None else build_first_order_operator()
     second = second_data if second_data is not None else build_second_order_operator(first)
     g0, h = first["background_metric"], first["perturbation"]
+
     A = g0.inv()*h
     trA = s.trace(A)
     trA2 = s.trace(A*A)
-    # sqrt(-det(g0+eps*h)) = sqrt(-det(g0))*(1+eps*d1+eps^2*d2+...)
     d1 = s.expand(trA/2)
     d2 = s.expand(trA**2/8 - trA2/4)
+    report("determinant_density_coefficients_built",
+           determinant_coefficient_count=3)
+
     R0 = first["operator_background"]
     R1 = first["operator_first_order"]
     R2 = second["operator_second_order"]
     T0, T1, T2 = _trace_cube_coefficients(R0, R1, R2)
+    report("trace_cube_coefficients_built",
+           coefficient_count=3, trace_dimension=6)
+
     density0 = s.sqrt(-g0.det())
+    report("background_density_factor_built")
     raw = density0*(T2 + d1*T1 + d2*T0)
+    report("raw_density_expression_assembled")
     return {
         "coordinates": first["coordinates"],
         "epsilon": first["epsilon"],
@@ -55,16 +68,12 @@ def build_raw_quadratic_density(first_data=None, second_data=None):
 
 
 def direct_raw_density_comparison(data):
-    """Independent epsilon-series convolution for trace and determinant density.
+    """Check determinant-density formula and state the exact trace identity used.
 
-    It recomputes the order-two trace coefficient from matrix coefficient
-    convolution, then combines independently derived determinant coefficients.
+    The trace-cube coefficient follows algebraically from expansion of
+    (R0 + eps*R1 + eps^2*R2)^3 and cyclicity of the ordinary matrix trace.
     """
     g0, h = data["background_metric"], data["perturbation"]
-    R0, R1, R2 = data["operator_background"], data["operator_first_order"], data["operator_second_order"]
-    # The epsilon^2 coefficient of the cube has six ordered products.
-    # Group them by cyclic trace identity Tr(ABC)=Tr(BCA)=Tr(CAB), yielding
-    # 3 Tr(R0^2 R2) + 3 Tr(R0 R1^2) without expanding giant scalar expressions.
     cyclic_groups = {
         "R0_R0_R2": ("R0_R0_R2", "R0_R2_R0", "R2_R0_R0"),
         "R0_R1_R1": ("R0_R1_R1", "R1_R0_R1", "R1_R1_R0"),
@@ -75,7 +84,7 @@ def direct_raw_density_comparison(data):
     determinant_formula = data["density_coefficients_relative_to_background"][2]
     determinant_residual = s.cancel(d2_independent-determinant_formula)
     return {
-        "trace_coefficient_method": "six ordered products grouped into two cyclic trace classes",
+        "trace_coefficient_method": "polynomial expansion grouped by cyclic trace identity",
         "trace_coefficient_residual": "0 by exact cyclic trace identity" if trace_identity_passed else "not verified",
         "determinant_density_residual": determinant_residual,
         "density_coefficient_residual": ("0 by exact cyclic trace identity", determinant_residual),
