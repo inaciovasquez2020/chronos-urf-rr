@@ -43,7 +43,7 @@ def main():
          coefficient="epsilon**2",
          residual=str(check["determinant_density_residual"]))
     emit("raw_quadratic_density_independent_comparison", check["passed"],
-         method="explicit trace-cyclicity identity plus independent determinant-density residual",
+         method="six explicit matrix-product traces plus independent determinant-density residual",
          trace_identity_residual=check["trace_coefficient_residual"],
          determinant_residual=str(check["determinant_density_residual"]))
     if not check["passed"]:
