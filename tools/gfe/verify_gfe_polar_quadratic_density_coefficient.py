@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 """Stage verifier for the unintegrated epsilon^2 action-density coefficient."""
+import argparse
 import hashlib
 import json
+import time
 import sympy as s
 from gfe_polar_first_order_curvature_operator import build_first_order_operator
 from gfe_polar_second_order_curvature_operator import build_second_order_operator, direct_second_order_operator_comparison
@@ -20,16 +22,38 @@ def progress(stage, **fields):
 
 
 def main():
-    # Gate the density work on the exact second-order operator replay.
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--trust-prior-second-order-replay",
+        action="store_true",
+        help="Skip repeating the second-order replay already completed by the preceding workflow step.",
+    )
+    args = parser.parse_args()
+
+    started = time.monotonic()
+    progress("first_order_build_started")
     first = build_first_order_operator()
+    progress("first_order_build_completed", elapsed_seconds=round(time.monotonic()-started, 3))
+
+    second_started = time.monotonic()
+    progress("second_order_build_started")
     op = build_second_order_operator(first)
-    op_residuals = direct_second_order_operator_comparison(op)
-    op_nonzero = [(i,j,str(op_residuals[i,j])) for i in range(6) for j in range(6)
-                  if s.simplify(op_residuals[i,j]) != 0]
-    emit("second_order_operator_replay_gate", not op_nonzero,
-         checked_count=36, nonzero_residuals=op_nonzero)
-    if op_nonzero:
-        raise SystemExit(1)
+    progress("second_order_build_completed", elapsed_seconds=round(time.monotonic()-second_started, 3))
+
+    if args.trust_prior_second_order_replay:
+        progress("second_order_operator_replay_reused",
+                 evidence="preceding workflow step Run independent second-order curvature operator audit")
+    else:
+        replay_started = time.monotonic()
+        progress("second_order_operator_replay_started", checked_count=36)
+        op_residuals = direct_second_order_operator_comparison(op)
+        op_nonzero = [(i,j,str(op_residuals[i,j])) for i in range(6) for j in range(6)
+                      if s.simplify(op_residuals[i,j]) != 0]
+        emit("second_order_operator_replay_gate", not op_nonzero,
+             checked_count=36, nonzero_residuals=op_nonzero,
+             elapsed_seconds=round(time.monotonic()-replay_started, 3))
+        if op_nonzero:
+            raise SystemExit(1)
 
     progress("raw_density_construction_started")
     data = build_raw_quadratic_density(first, op, progress=progress)
