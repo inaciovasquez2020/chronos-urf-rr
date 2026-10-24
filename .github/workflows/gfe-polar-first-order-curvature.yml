@@ -26,7 +26,7 @@ permissions:
 jobs:
   exact-first-order-audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -39,4 +39,4 @@ jobs:
       - name: Run independent second-order curvature operator audit
         run: python tools/gfe/verify_gfe_polar_second_order_curvature_operator.py
       - name: Run raw quadratic density coefficient verification
-        run: python tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py
+        run: python tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py --trust-prior-second-order-replay
