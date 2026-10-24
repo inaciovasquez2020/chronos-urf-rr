@@ -61,7 +61,11 @@ def main():
     progress("raw_density_construction_completed",
              coefficient_convention=data["coefficient_convention"])
 
+    comparison_started = time.monotonic()
+    progress("independent_density_comparison_started")
     check = direct_raw_density_comparison(data)
+    progress("independent_density_comparison_completed",
+             elapsed_seconds=round(time.monotonic()-comparison_started, 3))
     emit("determinant_density_expansion", check["determinant_density_residual"] == 0,
          formula="sqrt(-det(g0))*(1 + eps*tr(A)/2 + eps^2*((tr(A))^2/8-tr(A^2)/4))",
          coefficient="epsilon**2",
@@ -74,12 +78,14 @@ def main():
         raise SystemExit(1)
 
     progress("raw_density_serialization_started")
+    serialization_started = time.monotonic()
     canonical = s.srepr(raw)
     digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
     with open("gfe_polar_raw_epsilon_squared_density.srepr.txt","w",encoding="utf-8") as f:
         f.write(canonical+"\n")
     emit("raw_quadratic_density_preserved", True,
          sha256_srepr=digest, expression_characters=len(canonical),
+         serialization_elapsed_seconds=round(time.monotonic()-serialization_started, 3),
          coordinates=["t","r","theta","phi"],
          angular_integration_performed=False,
          quadratic_action_derived=False,
