@@ -52,7 +52,7 @@
     {
       "stage": "raw_quadratic_density_independent_comparison",
       "schema": "gfe-polar-quadratic-density-stage-receipt-v1",
-      "method": "six explicit matrix-product traces plus independent determinant-density residual",
+      "method": "explicit scalar index contractions for all six ungrouped trace words plus independent determinant-density residual",
       "trace_identity_residual": "0",
       "determinant_residual": "0",
       "frontier": "PASS",
