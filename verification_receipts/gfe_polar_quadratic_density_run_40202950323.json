@@ -1,0 +1,92 @@
+{
+  "schema": "urf-verification-receipt-v1",
+  "receipt_type": "gfe-polar-raw-quadratic-density-workflow-summary",
+  "repository": "inaciovasquez2020/chronos-urf-rr",
+  "pull_request": 1330,
+  "pull_request_url": "https://github.com/inaciovasquez2020/chronos-urf-rr/pull/1330",
+  "source_commit": "efba753c55cd17332b584756f51714ad5ca1ac39",
+  "workflow_run_id": 40202950323,
+  "workflow_run_url": "https://github.com/inaciovasquez2020/chronos-urf-rr/actions/runs/40202950323",
+  "job_id": 121197788061,
+  "job_url": "https://github.com/inaciovasquez2020/chronos-urf-rr/actions/runs/40202950323/job/121197788061",
+  "checked_out_merge_commit": "a7823040e89746f86c9a749bf36db6e12233b619",
+  "observed_at_utc": "2026-10-25T14:55:43Z",
+  "stages": [
+    {
+      "stage": "first_order_curvature_audit",
+      "schema": "gfe-polar-first-order-curvature-audit-v1",
+      "frontier": "FIRST_ORDER_VERIFIED",
+      "passed": 8,
+      "total": 8,
+      "checks": {
+        "inverse_metric_direct_expansion": true,
+        "lowered_riemann_symmetries": true,
+        "background_operator_contract_eigenvalues": true,
+        "mixed_riemann_direct_expansion_all_256": true,
+        "lowered_riemann_direct_expansion_all_256": true,
+        "operator_direct_expansion_all_36": true,
+        "first_inverse_metric_variation_term_all_36": true,
+        "second_inverse_metric_variation_term_all_36": true
+      },
+      "second_order_operator_constructed": false
+    },
+    {
+      "stage": "second_order_operator_audit",
+      "schema": "gfe-polar-second-order-stage-receipt-v1",
+      "stage_receipt": "direct_exact_epsilon_squared_operator_comparison",
+      "frontier": "SECOND_ORDER_OPERATOR_VERIFIED",
+      "checked_count": 36,
+      "nonzero_residuals": [],
+      "passed": true,
+      "quadratic_action_derived": false
+    },
+    {
+      "stage": "determinant_density_expansion",
+      "schema": "gfe-polar-quadratic-density-stage-receipt-v1",
+      "coefficient": "epsilon**2",
+      "formula": "sqrt(-det(g0))*(1 + eps*tr(A)/2 + eps^2*((tr(A))^2/8-tr(A^2)/4))",
+      "residual": "0",
+      "frontier": "PASS",
+      "passed": true
+    },
+    {
+      "stage": "raw_quadratic_density_independent_comparison",
+      "schema": "gfe-polar-quadratic-density-stage-receipt-v1",
+      "method": "six explicit matrix-product traces plus independent determinant-density residual",
+      "trace_identity_residual": "0",
+      "determinant_residual": "0",
+      "frontier": "PASS",
+      "passed": true
+    },
+    {
+      "stage": "raw_quadratic_density_preserved",
+      "schema": "gfe-polar-quadratic-density-stage-receipt-v1",
+      "coefficient": "epsilon**2",
+      "coordinates": [
+        "t",
+        "r",
+        "theta",
+        "phi"
+      ],
+      "expression_characters": 5920181,
+      "serialization_elapsed_seconds": 4.459,
+      "sha256_srepr": "84a03f8caea6cce9f6730af986fcec49afca6b8288c88d9e22d72cd51639e005",
+      "angular_integration_performed": false,
+      "quadratic_action_derived": false,
+      "frontier": "RAW_EPSILON_SQUARED_DENSITY_VERIFIED",
+      "passed": true
+    }
+  ],
+  "final_receipt": {
+    "frontier": "RAW_EPSILON_SQUARED_DENSITY_VERIFIED",
+    "passed": true,
+    "sha256_srepr": "84a03f8caea6cce9f6730af986fcec49afca6b8288c88d9e22d72cd51639e005",
+    "spherical_integral_completed": false,
+    "quadratic_action_derived": false
+  },
+  "boundaries": [
+    "This receipt records the successful workflow outputs; it does not contain the 5,920,181-character serialized symbolic expression itself.",
+    "The SHA-256 digest identifies the SymPy srepr emitted by the verifier; independent reproduction of that expression and digest has not yet been performed.",
+    "Angular integration, quadratic action derivation, and complete metric-to-action derivation remain unverified."
+  ]
+}
