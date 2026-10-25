@@ -63,7 +63,7 @@ def main():
 
     comparison_started = time.monotonic()
     progress("independent_density_comparison_started")
-    check = direct_raw_density_comparison(data)
+    check = direct_raw_density_comparison(data, progress=progress)
     progress("independent_density_comparison_completed",
              elapsed_seconds=round(time.monotonic()-comparison_started, 3))
     emit("determinant_density_expansion", check["determinant_density_residual"] == 0,
