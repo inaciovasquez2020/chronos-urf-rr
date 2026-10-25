@@ -12,11 +12,24 @@ from gfe_polar_first_order_curvature_operator import build_first_order_operator
 from gfe_polar_second_order_curvature_operator import build_second_order_operator, direct_second_order_operator_comparison
 
 
-def _trace_cube_coefficients(R0, R1, R2):
-    # Cyclicity of the ordinary six-dimensional matrix trace.
+def _trace_cube_coefficients(R0, R1, R2, report=None):
+    def mark(stage):
+        if report is not None:
+            report(stage)
+    # Keep each expensive exact matrix product as an observable boundary.
+    mark("trace_T0_started")
     T0 = s.trace(R0**3)
+    mark("trace_T0_completed")
+    mark("trace_T1_started")
     T1 = 3*s.trace(R0**2*R1)
-    T2 = 3*s.trace(R0**2*R2) + 3*s.trace(R0*R1**2)
+    mark("trace_T1_completed")
+    mark("trace_R0R0R2_started")
+    T20 = s.trace(R0**2*R2)
+    mark("trace_R0R0R2_completed")
+    mark("trace_R0R1R1_started")
+    T21 = s.trace(R0*R1**2)
+    mark("trace_R0R1R1_completed")
+    T2 = 3*T20 + 3*T21
     return T0, T1, T2
 
 
@@ -41,7 +54,7 @@ def build_raw_quadratic_density(first_data=None, second_data=None, progress=None
     R0 = first["operator_background"]
     R1 = first["operator_first_order"]
     R2 = second["operator_second_order"]
-    T0, T1, T2 = _trace_cube_coefficients(R0, R1, R2)
+    T0, T1, T2 = _trace_cube_coefficients(R0, R1, R2, report=report)
     report("trace_cube_coefficients_built",
            coefficient_count=3, trace_dimension=6)
 
@@ -67,7 +80,7 @@ def build_raw_quadratic_density(first_data=None, second_data=None, progress=None
     }
 
 
-def direct_raw_density_comparison(data):
+def direct_raw_density_comparison(data, progress=None):
     """Compare the compressed trace formula with all six ungrouped products."""
     g0, h = data["background_metric"], data["perturbation"]
     R0 = data["operator_background"]
@@ -78,14 +91,22 @@ def direct_raw_density_comparison(data):
     # Extract the epsilon^2 coefficient before using trace cyclicity:
     # three words contain two R0 factors and one R2; three contain one R0
     # and two R1 factors. Each matrix product is evaluated explicitly.
-    direct_terms = (
-        s.trace(R0*R0*R2),
-        s.trace(R0*R2*R0),
-        s.trace(R2*R0*R0),
-        s.trace(R0*R1*R1),
-        s.trace(R1*R0*R1),
-        s.trace(R1*R1*R0),
+    direct_terms = []
+    products = (
+        ("R0R0R2", R0*R0*R2),
+        ("R0R2R0", R0*R2*R0),
+        ("R2R0R0", R2*R0*R0),
+        ("R0R1R1", R0*R1*R1),
+        ("R1R0R1", R1*R0*R1),
+        ("R1R1R0", R1*R1*R0),
     )
+    for label, product_matrix in products:
+        if progress is not None:
+            progress("direct_trace_" + label + "_started")
+        direct_terms.append(s.trace(product_matrix))
+        if progress is not None:
+            progress("direct_trace_" + label + "_completed")
+    direct_terms = tuple(direct_terms)
     T2_direct = sum(direct_terms, s.Integer(0))
     trace_residual = s.simplify(T2_direct-T2_formula)
 
