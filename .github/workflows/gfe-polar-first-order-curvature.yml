@@ -40,3 +40,10 @@ jobs:
         run: python tools/gfe/verify_gfe_polar_second_order_curvature_operator.py
       - name: Run raw quadratic density coefficient verification
         run: python tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py --trust-prior-second-order-replay
+      - name: Preserve raw quadratic density for independent angular reduction
+        uses: actions/upload-artifact@v4
+        with:
+          name: gfe-polar-raw-epsilon-squared-density-${{ github.sha }}
+          path: gfe_polar_raw_epsilon_squared_density.srepr.txt
+          if-no-files-found: error
+          retention-days: 7
