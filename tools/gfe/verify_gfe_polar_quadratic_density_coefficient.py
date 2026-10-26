@@ -6,7 +6,7 @@ import hashlib
 import json
 import time
 import sympy as s
-from gfe_polar_angular_reduction import integrate_spherical_density, reduce_spherical_density
+from gfe_polar_angular_reduction import reduce_spherical_density
 from gfe_polar_first_order_curvature_operator import build_first_order_operator
 from gfe_polar_second_order_curvature_operator import build_second_order_operator, direct_second_order_operator_comparison
 from gfe_polar_quadratic_density_coefficient import build_raw_quadratic_density, direct_raw_density_comparison
@@ -108,7 +108,9 @@ def main():
         degree = s.Poly(angular_polynomial, x_ang, domain="EX").degree()
         progress("exact_angular_polynomial_gate", degree=degree,
                  variable=str(x_ang), measure_removed="sin(theta)")
-        integrated = integrate_spherical_density(raw, theta)
+        integrated = s.simplify(2 * s.pi * s.integrate(angular_polynomial, (x_ang, -1, 1)))
+        if integrated.has(s.Integral):
+            raise ValueError("SymPy did not complete the exact polynomial integral")
     except Exception as exc:
         emit("exact_angular_reduction_gate", False,
              input_sha256_srepr=digest, error_type=type(exc).__name__,
