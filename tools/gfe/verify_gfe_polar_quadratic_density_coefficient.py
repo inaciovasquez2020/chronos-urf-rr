@@ -7,6 +7,8 @@ import json
 import time
 import sympy as s
 from gfe_polar_angular_reduction import reduce_spherical_density
+from gfe_polar_action_reference_comparison import compare_integrated_action_to_report
+from pathlib import Path
 from gfe_polar_first_order_curvature_operator import build_first_order_operator
 from gfe_polar_second_order_curvature_operator import build_second_order_operator, direct_second_order_operator_comparison
 from gfe_polar_quadratic_density_coefficient import build_raw_quadratic_density, direct_raw_density_comparison
@@ -129,6 +131,37 @@ def main():
          reference_81_slot_comparison_completed=False,
          quadratic_action_derived=False,
          next_frontier="COMPARE_INTEGRATED_EXPRESSION_TO_81_REFERENCE_SLOTS")
+
+    comparison_started = time.monotonic()
+    progress("reference_81_slot_comparison_started",
+             integrated_sha256_srepr=integrated_digest)
+    report_path = Path(__file__).resolve().parents[2] / "docs/status/even_parity_cubic_quadratic_action_independent_derivation_2026-10-21.md"
+    try:
+        reference_check = compare_integrated_action_to_report(
+            integrated, data["coordinates"], report_path
+        )
+    except Exception as exc:
+        emit("reference_81_slot_comparison_gate", False,
+             integrated_sha256_srepr=integrated_digest,
+             error_type=type(exc).__name__, error=str(exc),
+             elapsed_seconds=round(time.monotonic()-comparison_started, 3),
+             reference_81_slot_comparison_completed=False,
+             quadratic_action_derived=False)
+        raise SystemExit(1)
+    emit("reference_81_slot_comparison_gate", reference_check["passed"],
+         input_sha256_srepr=digest,
+         integrated_sha256_srepr=reference_check["integrated_sha256_srepr"],
+         reference_sha256=reference_check["reference_sha256"],
+         reference_slot_count=reference_check["reference_slot_count"],
+         nonzero_residual_count=reference_check["nonzero_residual_count"],
+         nonzero_residuals=reference_check["nonzero_residuals"],
+         elapsed_seconds=round(time.monotonic()-comparison_started, 3),
+         reference_81_slot_comparison_completed=reference_check["passed"],
+         quadratic_action_derived=reference_check["passed"],
+         next_frontier=("ANGULAR_INTEGRAL_MATCHED_81_REFERENCE_SLOTS"
+                        if reference_check["passed"] else "REFERENCE_RESIDUALS_REQUIRE_REVIEW"))
+    if not reference_check["passed"]:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
