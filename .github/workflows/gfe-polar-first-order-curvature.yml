@@ -9,6 +9,8 @@ on:
       - "tools/gfe/verify_gfe_polar_second_order_curvature_operator.py"
       - "tools/gfe/gfe_polar_quadratic_density_coefficient.py"
       - "tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py"
+      - "tools/gfe/gfe_polar_angular_reduction.py"
+      - "tools/gfe/verify_gfe_polar_angular_reduction.py"
       - ".github/workflows/gfe-polar-first-order-curvature.yml"
   pull_request:
     paths:
@@ -18,6 +20,8 @@ on:
       - "tools/gfe/verify_gfe_polar_second_order_curvature_operator.py"
       - "tools/gfe/gfe_polar_quadratic_density_coefficient.py"
       - "tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py"
+      - "tools/gfe/gfe_polar_angular_reduction.py"
+      - "tools/gfe/verify_gfe_polar_angular_reduction.py"
       - ".github/workflows/gfe-polar-first-order-curvature.yml"
 
 permissions:
@@ -34,6 +38,8 @@ jobs:
           python-version: "3.12"
       - name: Install symbolic dependency
         run: python -m pip install --disable-pip-version-check sympy
+      - name: Test exact angular substitution on l=2 harmonic and derivatives
+        run: python tools/gfe/verify_gfe_polar_angular_reduction.py
       - name: Run independent first-order curvature audit
         run: python tools/gfe/verify_gfe_polar_first_order_curvature_operator.py
       - name: Run independent second-order curvature operator audit
