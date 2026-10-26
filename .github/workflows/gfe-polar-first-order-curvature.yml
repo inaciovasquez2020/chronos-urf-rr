@@ -11,6 +11,7 @@ on:
       - "tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py"
       - "tools/gfe/gfe_polar_angular_reduction.py"
       - "tools/gfe/verify_gfe_polar_angular_reduction.py"
+      - "tools/gfe/gfe_polar_action_reference_comparison.py"
       - ".github/workflows/gfe-polar-first-order-curvature.yml"
   pull_request:
     paths:
