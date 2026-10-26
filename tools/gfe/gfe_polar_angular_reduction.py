@@ -64,7 +64,7 @@ def verify_l2_harmonic_reduction():
     expected = (
         (sp.sqrt(sp.Rational(5, 16) / sp.pi) * (3*x**2 - 1))**2,
         (sp.sqrt(sp.Rational(5, 16) / sp.pi) * (-6*x*sp.sqrt(1-x**2)))**2,
-        (sp.sqrt(sp.Rational(5, 16) / sp.pi) * (2 - 12*x**2))**2,
+        (sp.sqrt(sp.Rational(5, 16) / sp.pi) * (6 - 12*x**2))**2,
     )
     inputs = (sp.sin(theta)*y**2, sp.sin(theta)*y1**2, sp.sin(theta)*y2**2)
     outputs = []
