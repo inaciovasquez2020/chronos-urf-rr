@@ -20,6 +20,11 @@ def reduce_spherical_density(raw_density, theta):
     sine = sp.sin(theta)
     cosine = sp.cos(theta)
 
+    # The spherical integral uses theta in [0, pi], so sin(theta) >= 0.
+    # The metric determinant can simplify sqrt(sin(theta)**2) to Abs(sin(theta));
+    # normalize that domain-dependent factor before removing the measure.
+    raw_density = raw_density.xreplace({sp.Abs(sine): sine})
+
     # Keep sine as an algebraic auxiliary variable. This handles positive and
     # negative even powers uniformly, without trigonometric rewriting that can
     # introduce cos(2*theta) or cos(4*theta). Refuse any odd power rather than
