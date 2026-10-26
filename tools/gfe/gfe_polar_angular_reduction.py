@@ -19,9 +19,7 @@ def reduce_spherical_density(raw_density, theta):
     sine = sp.sin(theta)
     cosine = sp.cos(theta)
 
-    reduced = sp.cancel(sp.together(sp.trigsimp(raw_density / sine)))
-    reduced = sp.expand_trig(reduced)
-    reduced = sp.trigsimp(reduced)
+    reduced = sp.cancel(sp.together(raw_density / sine))
 
     # Replace trigonometric powers only after rational cancellation. If odd
     # powers of sin(theta) survive, refuse to silently choose a square-root
@@ -29,7 +27,6 @@ def reduce_spherical_density(raw_density, theta):
     # of cos(theta) after removing the spherical measure.
     reduced = sp.cancel(sp.together(reduced.subs(cosine, x)))
     reduced = sp.cancel(sp.together(reduced.subs(sine**2, 1 - x**2)))
-    reduced = sp.trigsimp(reduced)
     if reduced.has(sine, cosine):
         raise ValueError("angular reduction left unresolved sin(theta)/cos(theta)")
     numerator, denominator = sp.fraction(sp.cancel(sp.together(reduced)))
