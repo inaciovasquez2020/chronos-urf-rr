@@ -47,10 +47,15 @@ jobs:
         run: python tools/gfe/verify_gfe_polar_second_order_curvature_operator.py
       - name: Run raw quadratic density coefficient verification
         run: python tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py --trust-prior-second-order-replay
-      - name: Preserve raw quadratic density for independent angular reduction
+      - name: Preserve raw density, integrated expression, and receipts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: gfe-polar-raw-epsilon-squared-density-${{ github.sha }}
-          path: gfe_polar_raw_epsilon_squared_density.srepr.txt
-          if-no-files-found: error
+          name: gfe-polar-angular-reduction-evidence-${{ github.sha }}
+          path: |
+            gfe_polar_raw_epsilon_squared_density.srepr.txt
+            gfe_polar_integrated_epsilon_squared_density.srepr.txt
+            gfe_polar_angular_reduction_receipt.json
+            gfe_polar_action_comparison_receipt.json
+          if-no-files-found: warn
           retention-days: 7
