@@ -16,25 +16,40 @@ def reduce_spherical_density(raw_density, theta):
     2*pi is intentionally applied by integrate_spherical_density.
     """
     x = sp.Symbol("x_ang", real=True)
+    u = sp.Symbol("sin_theta_aux", real=True)
     sine = sp.sin(theta)
     cosine = sp.cos(theta)
 
+    # Keep sine as an algebraic auxiliary variable. This handles positive and
+    # negative even powers uniformly, without trigonometric rewriting that can
+    # introduce cos(2*theta) or cos(4*theta). Refuse any odd power rather than
+    # silently selecting a square-root branch.
     reduced = sp.cancel(sp.together(raw_density / sine))
-
-    # Replace trigonometric powers only after rational cancellation. If odd
-    # powers of sin(theta) survive, refuse to silently choose a square-root
-    # branch: a valid axisymmetric density must reduce to a rational function
-    # of cos(theta) after removing the spherical measure.
-    reduced = sp.cancel(sp.together(reduced.subs(cosine, x)))
-    reduced = sp.cancel(sp.together(reduced.subs(sine**2, 1 - x**2)))
-    if reduced.has(sine, cosine):
-        raise ValueError("angular reduction left unresolved sin(theta)/cos(theta)")
+    reduced = sp.cancel(sp.together(reduced.subs(cosine, x).subs(sine, u)))
     numerator, denominator = sp.fraction(sp.cancel(sp.together(reduced)))
-    if numerator.has(sine, cosine) or denominator.has(sine, cosine):
-        raise ValueError("angular rational form still contains trigonometric atoms")
     try:
-        polynomial = sp.Poly(numerator, x, domain="EX")
-        denominator_poly = sp.Poly(denominator, x, domain="EX")
+        numerator_poly = sp.Poly(numerator, u, domain="EX")
+        denominator_poly = sp.Poly(denominator, u, domain="EX")
+    except sp.PolynomialError as exc:
+        raise ValueError("angular expression is not rational in sin(theta)") from exc
+
+    def eliminate_even_sine(poly):
+        result = sp.Integer(0)
+        for (power,), coefficient in poly.terms():
+            if power % 2:
+                raise ValueError(f"odd sin(theta) power survives measure removal: {power}")
+            result += coefficient * (1 - x**2)**(power // 2)
+        return sp.expand(result)
+
+    numerator_x = eliminate_even_sine(numerator_poly)
+    denominator_x = eliminate_even_sine(denominator_poly)
+    reduced_x = sp.cancel(sp.together(numerator_x / denominator_x))
+    if reduced_x.has(u, sine, cosine):
+        raise ValueError("angular reduction left unresolved trigonometric auxiliaries")
+    numerator_x, denominator_x = sp.fraction(reduced_x)
+    try:
+        polynomial = sp.Poly(numerator_x, x, domain="EX")
+        denominator_poly = sp.Poly(denominator_x, x, domain="EX")
     except sp.PolynomialError as exc:
         raise ValueError("angular dependence is not polynomial/rational in x=cos(theta)") from exc
     if denominator_poly.degree() != 0:
