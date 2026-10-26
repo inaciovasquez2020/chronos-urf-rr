@@ -114,6 +114,14 @@ def main():
         if integrated.has(s.Integral):
             raise ValueError("SymPy did not complete the exact polynomial integral")
     except Exception as exc:
+        failure_receipt = {
+            "schema": "gfe-polar-angular-reduction-receipt-v1",
+            "passed": False, "input_sha256_srepr": digest,
+            "error_type": type(exc).__name__, "error": str(exc),
+            "spherical_integral_completed": False, "quadratic_action_derived": False,
+        }
+        with open("gfe_polar_angular_reduction_receipt.json", "w", encoding="utf-8") as f:
+            json.dump(failure_receipt, f, sort_keys=True, indent=2)
         emit("exact_angular_reduction_gate", False,
              input_sha256_srepr=digest, error_type=type(exc).__name__,
              error=str(exc), elapsed_seconds=round(time.monotonic()-angular_started, 3),
@@ -123,6 +131,17 @@ def main():
     integrated_digest = hashlib.sha256(integrated_srepr.encode("utf-8")).hexdigest()
     with open("gfe_polar_integrated_epsilon_squared_density.srepr.txt","w",encoding="utf-8") as f:
         f.write(integrated_srepr+"\\n")
+    angular_receipt = {
+        "schema": "gfe-polar-angular-reduction-receipt-v1",
+        "passed": True, "input_sha256_srepr": digest,
+        "integrated_sha256_srepr": integrated_digest,
+        "angular_polynomial_degree": degree,
+        "spherical_integral_completed": True,
+        "reference_81_slot_comparison_completed": False,
+        "quadratic_action_derived": False,
+    }
+    with open("gfe_polar_angular_reduction_receipt.json", "w", encoding="utf-8") as f:
+        json.dump(angular_receipt, f, sort_keys=True, indent=2)
     emit("exact_angular_reduction_gate", True,
          input_sha256_srepr=digest, integrated_sha256_srepr=integrated_digest,
          angular_polynomial_degree=degree,
@@ -141,6 +160,16 @@ def main():
             integrated, data["coordinates"], report_path
         )
     except Exception as exc:
+        failure_receipt = {
+            "schema": "gfe-polar-action-reference-comparison-receipt-v1",
+            "passed": False, "input_sha256_srepr": digest,
+            "integrated_sha256_srepr": integrated_digest,
+            "error_type": type(exc).__name__, "error": str(exc),
+            "reference_81_slot_comparison_completed": False,
+            "quadratic_action_derived": False,
+        }
+        with open("gfe_polar_action_comparison_receipt.json", "w", encoding="utf-8") as f:
+            json.dump(failure_receipt, f, sort_keys=True, indent=2)
         emit("reference_81_slot_comparison_gate", False,
              integrated_sha256_srepr=integrated_digest,
              error_type=type(exc).__name__, error=str(exc),
@@ -148,6 +177,15 @@ def main():
              reference_81_slot_comparison_completed=False,
              quadratic_action_derived=False)
         raise SystemExit(1)
+    comparison_receipt = {
+        "schema": "gfe-polar-action-reference-comparison-receipt-v1",
+        **reference_check,
+        "input_sha256_srepr": digest,
+        "reference_81_slot_comparison_completed": reference_check["passed"],
+        "quadratic_action_derived": reference_check["passed"],
+    }
+    with open("gfe_polar_action_comparison_receipt.json", "w", encoding="utf-8") as f:
+        json.dump(comparison_receipt, f, sort_keys=True, indent=2)
     emit("reference_81_slot_comparison_gate", reference_check["passed"],
          input_sha256_srepr=digest,
          integrated_sha256_srepr=reference_check["integrated_sha256_srepr"],
