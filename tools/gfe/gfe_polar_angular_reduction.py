@@ -35,20 +35,20 @@ def reduce_spherical_density(raw_density, theta, progress=None):
     # negative even powers uniformly, without trigonometric rewriting that can
     # introduce cos(2*theta) or cos(4*theta). Refuse any odd power rather than
     # silently selecting a square-root branch.
-    mark("angular_measure_division_started")
-    reduced = raw_density / sine
-    mark("angular_measure_division_completed")
+    mark("angular_measure_division_and_normalization_started")
+    reduced = sp.cancel(sp.together(raw_density / sine))
+    mark("angular_measure_division_and_normalization_completed")
 
     mark("angular_trigonometric_substitution_started")
     reduced = reduced.subs(cosine, x).subs(sine, u)
     mark("angular_trigonometric_substitution_completed")
 
-    mark("angular_initial_rational_normalization_started")
+    mark("angular_post_substitution_normalization_started")
     reduced = sp.cancel(sp.together(reduced))
-    mark("angular_initial_rational_normalization_completed")
+    mark("angular_post_substitution_normalization_completed")
 
     mark("angular_fraction_polynomial_conversion_started")
-    numerator, denominator = sp.fraction(reduced)
+    numerator, denominator = sp.fraction(sp.cancel(sp.together(reduced)))
     try:
         numerator_poly = sp.Poly(numerator, u, domain="EX")
         denominator_poly = sp.Poly(denominator, u, domain="EX")
