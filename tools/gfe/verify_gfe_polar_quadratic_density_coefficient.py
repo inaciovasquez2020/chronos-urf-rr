@@ -106,7 +106,7 @@ def main():
     progress("exact_angular_reduction_started", input_sha256_srepr=digest)
     angular_started = time.monotonic()
     try:
-        x_ang, angular_polynomial = reduce_spherical_density(raw, theta)
+        x_ang, angular_polynomial = reduce_spherical_density(raw, theta, progress=progress)
         degree = s.Poly(angular_polynomial, x_ang, domain="EX").degree()
         progress("exact_angular_polynomial_gate", degree=degree,
                  variable=str(x_ang), measure_removed="sin(theta)")
