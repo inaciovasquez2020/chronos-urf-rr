@@ -8,13 +8,17 @@ No numerical quadrature or expression serialization is used.
 import sympy as sp
 
 
-def reduce_spherical_density(raw_density, theta):
+def reduce_spherical_density(raw_density, theta, progress=None):
     """Return (x, polynomial) for raw_density dtheta after phi integration.
 
     The returned polynomial is the theta integrand with dtheta converted to dx:
     raw_density/sin(theta), expressed in x=cos(theta). The azimuthal factor
     2*pi is intentionally applied by integrate_spherical_density.
     """
+    def mark(stage):
+        if progress is not None:
+            progress(stage)
+
     x = sp.Symbol("x_ang", real=True)
     u = sp.Symbol("sin_theta_aux", real=True)
     sine = sp.sin(theta)
@@ -23,20 +27,34 @@ def reduce_spherical_density(raw_density, theta):
     # The spherical integral uses theta in [0, pi], so sin(theta) >= 0.
     # The metric determinant can simplify sqrt(sin(theta)**2) to Abs(sin(theta));
     # normalize that domain-dependent factor before removing the measure.
+    mark("angular_abs_sine_normalization_started")
     raw_density = raw_density.xreplace({sp.Abs(sine): sine})
+    mark("angular_abs_sine_normalization_completed")
 
     # Keep sine as an algebraic auxiliary variable. This handles positive and
     # negative even powers uniformly, without trigonometric rewriting that can
     # introduce cos(2*theta) or cos(4*theta). Refuse any odd power rather than
     # silently selecting a square-root branch.
-    reduced = sp.cancel(sp.together(raw_density / sine))
-    reduced = sp.cancel(sp.together(reduced.subs(cosine, x).subs(sine, u)))
-    numerator, denominator = sp.fraction(sp.cancel(sp.together(reduced)))
+    mark("angular_measure_division_started")
+    reduced = raw_density / sine
+    mark("angular_measure_division_completed")
+
+    mark("angular_trigonometric_substitution_started")
+    reduced = reduced.subs(cosine, x).subs(sine, u)
+    mark("angular_trigonometric_substitution_completed")
+
+    mark("angular_initial_rational_normalization_started")
+    reduced = sp.cancel(sp.together(reduced))
+    mark("angular_initial_rational_normalization_completed")
+
+    mark("angular_fraction_polynomial_conversion_started")
+    numerator, denominator = sp.fraction(reduced)
     try:
         numerator_poly = sp.Poly(numerator, u, domain="EX")
         denominator_poly = sp.Poly(denominator, u, domain="EX")
     except sp.PolynomialError as exc:
         raise ValueError("angular expression is not rational in sin(theta)") from exc
+    mark("angular_fraction_polynomial_conversion_completed")
 
     def eliminate_even_sine(poly):
         result = sp.Integer(0)
@@ -46,11 +64,18 @@ def reduce_spherical_density(raw_density, theta):
             result += coefficient * (1 - x**2)**(power // 2)
         return sp.expand(result)
 
+    mark("angular_even_sine_elimination_started")
     numerator_x = eliminate_even_sine(numerator_poly)
     denominator_x = eliminate_even_sine(denominator_poly)
+    mark("angular_even_sine_elimination_completed")
+
+    mark("angular_final_rational_reduction_started")
     reduced_x = sp.cancel(sp.together(numerator_x / denominator_x))
+    mark("angular_final_rational_reduction_completed")
     if reduced_x.has(u, sine, cosine):
         raise ValueError("angular reduction left unresolved trigonometric auxiliaries")
+
+    mark("angular_final_polynomial_gate_started")
     numerator_x, denominator_x = sp.fraction(reduced_x)
     try:
         polynomial = sp.Poly(numerator_x, x, domain="EX")
@@ -59,6 +84,7 @@ def reduce_spherical_density(raw_density, theta):
         raise ValueError("angular dependence is not polynomial/rational in x=cos(theta)") from exc
     if denominator_poly.degree() != 0:
         raise ValueError("angular integrand is rational but not polynomial in x=cos(theta)")
+    mark("angular_final_polynomial_gate_completed")
     return x, polynomial.as_expr() / denominator_poly.as_expr()
 
 
