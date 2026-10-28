@@ -149,8 +149,10 @@ def run_isolated(operation_name, expr):
             "output_size_available": False,
             "error": "worker did not return before the parent safety limit",
         }
-    if not result_queue.empty():
-        return result_queue.get()
+    try:
+        return result_queue.get(timeout=5)
+    except Exception:
+        pass
     return {
         "schema": "gfe-polar-normalization-benchmark-v1",
         "stage": operation_name,
@@ -198,7 +200,7 @@ def main():
                 baseline_rss_kib=rss_kib(), baseline_peak_rss_kib=peak_rss_kib())
         result = run_isolated(operation_name, reduced)
         results.append(result)
-        receipt(operation_name + "_result", **result)
+        receipt(operation_name + "_result", **{k: v for k, v in result.items() if k not in ("schema", "stage")})
     passed = all(item.get("passed") is True for item in results)
     receipt("normalization_benchmark_completed", passed=passed,
             input_sha256_srepr=digest,
