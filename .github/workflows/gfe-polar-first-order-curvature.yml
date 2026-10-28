@@ -12,6 +12,7 @@ on:
       - "tools/gfe/gfe_polar_angular_reduction.py"
       - "tools/gfe/verify_gfe_polar_angular_reduction.py"
       - "tools/gfe/gfe_polar_action_reference_comparison.py"
+      - "tools/gfe/benchmark_gfe_polar_angular_normalization.py"
       - ".github/workflows/gfe-polar-first-order-curvature.yml"
   pull_request:
     paths:
@@ -23,6 +24,7 @@ on:
       - "tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py"
       - "tools/gfe/gfe_polar_angular_reduction.py"
       - "tools/gfe/verify_gfe_polar_angular_reduction.py"
+      - "tools/gfe/benchmark_gfe_polar_angular_normalization.py"
       - ".github/workflows/gfe-polar-first-order-curvature.yml"
 
 permissions:
@@ -31,7 +33,7 @@ permissions:
 jobs:
   exact-first-order-audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -59,3 +61,24 @@ jobs:
             gfe_polar_action_comparison_receipt.json
           if-no-files-found: warn
           retention-days: 7
+
+  angular-normalization-benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install symbolic dependency
+        run: python -m pip install --disable-pip-version-check sympy
+      - name: Benchmark exact normalization operations on digest-locked input
+        run: python tools/gfe/benchmark_gfe_polar_angular_normalization.py
+      - name: Preserve isolated benchmark receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gfe-polar-normalization-benchmark-${{ github.sha }}
+          path: gfe_polar_normalization_benchmark.json
+          if-no-files-found: warn
+          retention-days: 14
