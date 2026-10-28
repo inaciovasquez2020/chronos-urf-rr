@@ -36,7 +36,7 @@ def reduce_spherical_density(raw_density, theta, progress=None):
     # introduce cos(2*theta) or cos(4*theta). Refuse any odd power rather than
     # silently selecting a square-root branch.
     mark("angular_measure_division_and_normalization_started")
-    reduced = sp.cancel(sp.together(raw_density / sine))
+    reduced = sp.together(raw_density / sine)
     mark("angular_measure_division_and_normalization_completed")
 
     mark("angular_trigonometric_substitution_started")
