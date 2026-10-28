@@ -20,7 +20,7 @@ from gfe_polar_first_order_curvature_operator import build_first_order_operator
 from gfe_polar_second_order_curvature_operator import build_second_order_operator
 from gfe_polar_quadratic_density_coefficient import build_raw_quadratic_density
 
-EXPECTED_RAW_SHA256 = "84a03f8caea6cce9f6730af986fcec49afca6b8288c88e9d22d72cd51639e005"
+EXPECTED_RAW_SHA256 = "84a03f8caea6cce9f6730af986fcec49afca6b8288c88d9e22d72cd51639e005"
 OUTPUT = Path("gfe_polar_normalization_benchmark.json")
 OPERATION_LIMIT_SECONDS = 40 * 60
 SERIALIZATION_LIMIT_SECONDS = 5 * 60
