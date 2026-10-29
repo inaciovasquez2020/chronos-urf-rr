@@ -187,13 +187,18 @@ def main():
     receipt("normalization_benchmark_started", passed=True,
             input_sha256_srepr=digest,
             input_expression_srepr_characters=len(raw_srepr),
-            operations=["together(reduced)", "cancel(reduced)"],
+            operations=["together(reduced)"],
+            excluded_operations=[{
+                "operation": "cancel(reduced)",
+                "status": "excluded_after_timeout",
+                "reason": "The raw-space cancel call is not part of the production reduction sequence; the production path substitutes trigonometric functions before rational normalization.",
+            }],
             per_operation_limit_seconds=OPERATION_LIMIT_SECONDS,
             per_serialization_limit_seconds=SERIALIZATION_LIMIT_SECONDS,
             total_wall_clock_limit_minutes=120)
 
     results = []
-    for operation_name in ("together", "cancel"):
+    for operation_name in ("together",):
         receipt(operation_name + "_started", passed=True,
                 input_sha256_srepr=digest,
                 configured_limit_seconds=OPERATION_LIMIT_SECONDS,
@@ -206,7 +211,7 @@ def main():
             input_sha256_srepr=digest,
             total_elapsed_seconds=round(time.monotonic() - started, 3),
             operation_results=[{k: v for k, v in item.items() if k != "schema"} for item in results],
-            frontier="MEASURED_NORMALIZATION_COSTS" if passed else "MEASURED_LIMIT_OR_FAILURE",
+            frontier="MEASURED_TOGETHER_ONLY" if passed else "MEASURED_LIMIT_OR_FAILURE",
             angular_integral_completed=False,
             polynomial_gate_completed=False,
             reference_81_slot_comparison_completed=False,
