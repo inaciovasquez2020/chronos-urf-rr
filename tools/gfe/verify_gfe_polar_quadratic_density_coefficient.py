@@ -137,7 +137,7 @@ def main():
     integrated_srepr = s.srepr(integrated)
     integrated_digest = hashlib.sha256(integrated_srepr.encode("utf-8")).hexdigest()
     with open("gfe_polar_integrated_epsilon_squared_density.srepr.txt","w",encoding="utf-8") as f:
-        f.write(integrated_srepr+"\\n")
+        f.write(integrated_srepr+"\n")
     angular_receipt = {
         "schema": "gfe-polar-angular-reduction-receipt-v1",
         "passed": True, "input_sha256_srepr": digest,
