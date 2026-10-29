@@ -1,0 +1,33 @@
+name: Leaver residual receipt (qnm 0.4.4)
+
+on:
+  push:
+    branches:
+      - verify/leaver-qnm-0.4.4-receipt
+  workflow_dispatch:
+
+jobs:
+  leaver-residual:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install pinned package
+        run: python -m pip install --disable-pip-version-check "qnm==0.4.4"
+      - name: Record executable and package versions
+        run: |
+          python --version
+          python -m pip show qnm
+          python -c "import os,sys; print('executable=' + os.path.realpath(sys.executable))"
+      - name: Evaluate Leaver continued-fraction residual
+        run: python tools/verify_leaver_residual_qnm.py
+      - name: Upload JSON receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: leaver-qnm-0.4.4-receipt
+          path: leaver_residual_receipt.json
+          if-no-files-found: error
+          retention-days: 90
