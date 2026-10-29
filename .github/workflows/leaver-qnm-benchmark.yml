@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: fb08ec739446572b0a439f563bd350917a60fa2e
+          ref: work/leaver-benchmark-locked-20261029
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12.9"
