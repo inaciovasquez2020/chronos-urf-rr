@@ -13,6 +13,8 @@ from gfe_polar_first_order_curvature_operator import build_first_order_operator
 from gfe_polar_second_order_curvature_operator import build_second_order_operator, direct_second_order_operator_comparison
 from gfe_polar_quadratic_density_coefficient import build_raw_quadratic_density, direct_raw_density_comparison
 
+EXPECTED_RAW_SHA256 = "84a03f8caea6cce9f6730af986fcec49afca6b8288c88d9e22d72cd51639e005"
+
 
 def emit(stage, passed, **fields):
     print(json.dumps({"schema":"gfe-polar-quadratic-density-stage-receipt-v1",
@@ -84,6 +86,11 @@ def main():
     serialization_started = time.monotonic()
     canonical = s.srepr(raw)
     digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+    emit("raw_density_integrity_gate", digest == EXPECTED_RAW_SHA256,
+         expected_sha256_srepr=EXPECTED_RAW_SHA256,
+         actual_sha256_srepr=digest, expression_characters=len(canonical))
+    if digest != EXPECTED_RAW_SHA256:
+        raise SystemExit("raw density SHA-256 mismatch; refusing angular reduction")
     with open("gfe_polar_raw_epsilon_squared_density.srepr.txt","w",encoding="utf-8") as f:
         f.write(canonical+"\n")
     emit("raw_quadratic_density_preserved", True,
