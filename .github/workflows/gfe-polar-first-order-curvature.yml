@@ -48,7 +48,7 @@ jobs:
       - name: Run independent second-order curvature operator audit
         run: python tools/gfe/verify_gfe_polar_second_order_curvature_operator.py
       - name: Run raw quadratic density coefficient verification
-        run: python tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py --trust-prior-second-order-replay
+        run: python tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py
       - name: Preserve raw density, integrated expression, and receipts
         if: always()
         uses: actions/upload-artifact@v4
