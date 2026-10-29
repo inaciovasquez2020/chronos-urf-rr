@@ -1,0 +1,32 @@
+name: Locked Leaver QNM benchmark
+on:
+  push:
+    branches:
+      - work/leaver-benchmark-locked-20261029
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fb08ec739446572b0a439f563bd350917a60fa2e
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.9"
+          cache: pip
+          cache-dependency-path: requirements-qnm-benchmark.txt
+      - name: Install pinned numerical dependencies
+        run: python -m pip install --requirement requirements-qnm-benchmark.txt
+      - name: Run Schwarzschild Leaver benchmark
+        run: python tools/qnm_leaver_benchmark.py | tee leaver-benchmark-receipt.json
+      - name: Upload benchmark receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: leaver-qnm-benchmark-receipt
+          path: leaver-benchmark-receipt.json
+          if-no-files-found: warn
+          retention-days: 30
