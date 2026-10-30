@@ -208,6 +208,123 @@ def main():
     if not reference_check["passed"]:
         raise SystemExit(1)
 
+    # Single bounded next gate: independently derive E_H0 from the integrated
+    # metric-derived action; the published E_H0 is a comparison oracle only.
+    try:
+        h0_check = verify_e_h0_against_report(
+            integrated, data["coordinates"], report_path
+        )
+    except Exception as exc:
+        h0_check = {
+            "passed": False, "error_type": type(exc).__name__, "error": str(exc),
+            "scope": "independent H0 variational derivative",
+        }
+    comparison_receipt["e_h0_verification"] = h0_check
+    with open("gfe_polar_action_comparison_receipt.json", "w", encoding="utf-8") as f:
+        json.dump(comparison_receipt, f, sort_keys=True, indent=2)
+    emit("independent_e_h0_euler_lagrange_comparison",
+         h0_check["passed"], **{k: v for k, v in h0_check.items() if k != "passed"})
+    if not h0_check["passed"]:
+        raise SystemExit(1)
+
+
+
+
+def verify_e_h0_against_report(integrated, coordinates, report_path):
+    """Independently vary the integrated action and compare the printed E_H0.
+
+    The source expression is the newly metric-derived angular integral, not the
+    published 81-term table. The table is read only as a final comparison oracle.
+    """
+    import re
+    from sympy.core.function import AppliedUndef
+
+    t, r, _, _ = coordinates
+    fields = [f for f in integrated.atoms(AppliedUndef)
+              if f.func.__name__ == "H0" and f.args == (t, r)]
+    if len(fields) != 1:
+        raise ValueError("expected exactly one H0(t,r) field in integrated action")
+    h0 = fields[0]
+
+    # Full higher-derivative variational derivative:
+    # E_H0(L) = sum_J (-D)_J (partial L / partial H0_J).
+    jets = [h0] + sorted(
+        (d for d in integrated.atoms(s.Derivative) if d.expr == h0),
+        key=lambda d: (len(d.variables), str(d)),
+    )
+    e_h0 = s.Integer(0)
+    for jet in jets:
+        variation = s.diff(integrated, jet)
+        if variation == 0:
+            continue
+        variables = () if jet == h0 else jet.variables
+        e_h0 += (-1)**len(variables) * s.diff(variation, *variables)
+
+    report_text = Path(report_path).read_text(encoding="utf-8")
+    match = re.search(
+        r"### " + re.escape(chr(96) + "E_H0 = 0" + chr(96))
+        + r"\s*" + re.escape(chr(96) * 3 + "text")
+        + r"\s*(.*?)\s*" + re.escape(chr(96) * 3),
+        report_text, re.S,
+    )
+    if match is None:
+        raise ValueError("published E_H0 equation block missing")
+    reference_text = match.group(1).strip()
+
+    all_jets = {}
+    replacements = {}
+    for derivative in sorted(e_h0.atoms(s.Derivative),
+                             key=lambda d: len(d.variables), reverse=True):
+        if not isinstance(derivative.expr, AppliedUndef):
+            raise ValueError("unexpected non-field derivative in generated E_H0")
+        name = derivative.expr.func.__name__
+        if name not in ("H0", "H1", "H2", "K"):
+            raise ValueError(f"unexpected field: {name}")
+        counts = dict(derivative.variable_count)
+        suffix = ["t"]*counts.pop(t, 0) + ["r"]*counts.pop(r, 0)
+        if counts:
+            raise ValueError(f"unsupported derivative coordinates: {counts}")
+        symbol_name = name + "_" + "_".join(suffix)
+        replacements[derivative] = all_jets.setdefault(symbol_name, s.Symbol(symbol_name))
+    for function in e_h0.atoms(AppliedUndef):
+        name = function.func.__name__
+        if name not in ("H0", "H1", "H2", "K"):
+            raise ValueError(f"unexpected field: {name}")
+        replacements[function] = all_jets.setdefault(name, s.Symbol(name))
+
+    for name in re.findall(r"\b(?:H0|H1|H2|K)(?:_(?:t|r))*\b", reference_text):
+        all_jets.setdefault(name, s.Symbol(name))
+
+    generated = s.expand(e_h0.xreplace(replacements))
+    m_candidates = [z for z in generated.free_symbols if z.name == "M"]
+    if len(m_candidates) != 1:
+        raise ValueError("cannot identify mass parameter in generated E_H0")
+    M = m_candidates[0]
+    reference = s.sympify(reference_text, locals={"M": M, "r": r, **all_jets})
+    variables = [all_jets[k] for k in sorted(all_jets)]
+    delta = s.Poly(s.expand(generated - reference), *variables, domain="EX")
+    residuals = []
+    for powers, coefficient in delta.terms():
+        reduced = s.factor(s.cancel(s.together(coefficient)))
+        if reduced != 0:
+            monomial = "*".join(
+                f"{v}^{p}" for v, p in zip(variables, powers) if p
+            ) or "1"
+            residuals.append({"monomial": monomial, "residual": str(reduced)})
+            break  # First structural mismatch is authoritative.
+
+    return {
+        "passed": not residuals,
+        "scope": "independent H0 variational derivative of metric-derived integrated action",
+        "first_nonzero_residual": residuals[0] if residuals else None,
+        "generated_srepr_sha256": hashlib.sha256(
+            s.srepr(generated).encode("utf-8")
+        ).hexdigest(),
+        "published_e_h0_sha256": hashlib.sha256(
+            reference_text.encode("utf-8")
+        ).hexdigest(),
+    }
+
 
 if __name__ == "__main__":
     main()
