@@ -258,7 +258,7 @@ def verify_e_h0_against_report(integrated, coordinates, report_path):
         if variation == 0:
             continue
         variables = () if jet == h0 else jet.variables
-        e_h0 += (-1)**len(variables) * s.diff(variation, *variables)
+        e_h0 += (-1)**len(variables) * (s.diff(variation, *variables) if variables else variation)
 
     report_text = Path(report_path).read_text(encoding="utf-8")
     match = re.search(
