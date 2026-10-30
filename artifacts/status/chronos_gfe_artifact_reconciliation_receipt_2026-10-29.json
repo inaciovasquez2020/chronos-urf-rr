@@ -1,0 +1,43 @@
+{
+  "schema": "chronos-gfe-artifact-reconciliation-receipt-v1",
+  "receipt_date": "2026-10-29",
+  "repository": "inaciovasquez2020/chronos-urf-rr",
+  "workflow_runs": [
+    {
+      "run_id": 40853232450,
+      "artifact_id": 12889438473,
+      "artifact_name": "gfe-polar-angular-reduction-evidence-54cd66379d46b2b7cad5fe6f45ebc15748e97cd3",
+      "source_blob_sha": "90888654cc77d23c90f4ad0305dd006e2e99c0f1",
+      "artifact_size_bytes": 118349,
+      "artifact_sha256": "72985fdb3ee28d7e66e3306d162837ac4c4e63cae171a05d485440b6867465d0",
+      "artifact_digest_matches_github_metadata": true
+    },
+    {
+      "run_id": 40845359266,
+      "artifact_id": 12886805977,
+      "artifact_name": "gfe-polar-angular-reduction-evidence-559adbcbc838baaa9714d2936630c994f9705410",
+      "source_blob_sha": "80a3e645369cdb363c0e0501fef19652f5b84a0f",
+      "artifact_size_bytes": 118349,
+      "artifact_sha256": "988015984d7558a3214f8756c72b99a6087ab2951401cfd19c366b8847c546f3",
+      "artifact_digest_matches_github_metadata": true
+    }
+  ],
+  "normalized_integrated_srepr_sha256": "a17e68d8c8dfa16e5a5c05eb867ef38ae24af8d0d825b9636f120f6ebb6fbe05",
+  "writer_discrepancy": {
+    "file": "tools/gfe/verify_gfe_polar_quadratic_density_coefficient.py",
+    "first_source_line": "f.write(integrated_srepr+\"\\n\")",
+    "second_source_line": "f.write(integrated_srepr+\"\\\\n\")",
+    "interpretation": "First writes a newline; second writes literal backslash+n. After removing the differing terminator, the integrated expression contents have the same normalized SHA-256."
+  },
+  "verification": {
+    "downloaded_archives_hashed_locally": true,
+    "local_hashes_match_github_artifact_digest": true,
+    "artifact_integrity_only": true,
+    "81_slot_comparison_established": false,
+    "independent_mathematical_derivation_established": false
+  },
+  "source_commits": {
+    "run_40853232450": "54cd66379d46b2b7cad5fe6f45ebc15748e97cd3",
+    "run_40845359266": "559adbcbc838baaa9714d2936630c994f9705410"
+  }
+}
