@@ -32,3 +32,17 @@ Thus for fixed k, Δ = 4, **any positive R** and finite threshold T are defeated
 **Evidence:** isolated reproducibility script `toolkit/oblivion/proofs/oblivion_bounded_reduction_certificate.py`. The checks are Python experiments and are not a Lean proof of a universal statement. No theorem status should be upgraded.
 
 **Required repair:** either define a genuinely different structural invariant or impose explicit restrictions excluding vertex-transitive families such as these; merely raising T cannot resolve this counterexample.
+
+## Bounded linear rank-width separation (2026-11-02)
+
+**Independent of the overlap scanner and its selected-cycle proxy.** Define the graph family `G_n` for every `n ≥ 7` exactly as above, and use the vertex order `0,1,...,n-1`.
+
+For every prefix `S_t = {0,...,t-1}`, the only vertices in `S_t` that can have neighbors in its complement belong to `{0,1,t-2,t-1} ∩ S_t`: an edge connects only cyclic offsets one and two. Thus the binary adjacency submatrix across any prefix cut has at most four nonzero rows, and its rank over F₂ is at most four. Therefore the **linear rank-width** satisfies `lrw(G_n) ≤ 4` and hence `rw(G_n) ≤ 4` for all `n ≥ 7`.
+
+Separately, each triangle `(i,i+1,i+2)` is contained in a radius-one ball, and the `n` triangle vectors are F₂-independent by their distinct length-two edges. Hence `COR_R(G_n) ≥ n` for all `R ≥ 1`. Rotations preserve the graph and send any vertex to any other, so all rooted neighborhoods are isomorphic and the graph is FO^k_R-homogeneous for every `k,R`.
+
+**Separation:** arbitrary growth in the repository-defined local-cycle-span rank can coexist with bounded linear rank-width and complete rooted-vertex homogeneity. It does **not** follow that high COR rank forces FO^k_R type diversity; this conclusion holds without invoking the overlap scanner, a WL implementation, or an unproved CFI correspondence.
+
+**Independent finite sanity check:** direct F₂ elimination on triangle edge vectors and prefix-cut adjacency rows at `n = 7,8,10,16,32,64` produced triangle ranks `7,8,10,16,32,64` and maximum prefix cut-ranks `3,4,4,4,4,4`, respectively. These finite checks support—but do not replace—the general combinatorial argument.
+
+**Scope:** This graph-theoretic separation neither proves a universal URF rigidity statement nor addresses the independent Chronos GfE quadratic-action and spectral-closure obligations.
