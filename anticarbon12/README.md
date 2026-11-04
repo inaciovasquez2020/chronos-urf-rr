@@ -128,3 +128,8 @@ The version-of-record PDF is accessible through the Springer web PDF viewer (32 
 **Provenance correction:** `ins1928822` is now treated as an unverified candidate identifier, not as a confirmed HEPData record. The direct candidate URL returned HTTP 403 and the search route could not be accessed through this retrieval path. No table payload or point-level values were retrieved. The earlier source manifest and receipts have been corrected accordingly.
 
 The next viable path is a documented manual digitization from the publisher PDF, using axis calibration, retaining the image/screenshot provenance and digitization tolerance, and independently repeating the extraction. Until then, point-level numerical replay remains blocked. Do not call a screenshot-derived estimate exact or independently validated.
+
+
+### Record-identification status reconciliation — 2026-11-03
+
+The audit entries above preserve their historical retrieval status. The later `receipts/alice-data-retrieval-attempt-2026-10-22.json` records a **metadata-level confirmation claim** for HEPData record `ins1928822`, collection DOI `10.17182/HEPDATA.115571`, and an index mapping B2 to Tables 14–16 and B3 to Tables 17–20. Earlier entries in this README, the manifest, and the initial source-audit receipt saying `UNVERIFIED` describe earlier checks; they must not be interpreted as a synchronized final-state report. This repository has **not** retrieved or independently replayed the point-level table payload, its uncertainty columns, or numerical model residuals. The claimed record-to-DOI mapping should be independently reproduced before promoting it beyond metadata provenance. Gate 1 remains `BLOCKED`, and no A=12 yield is claimed.
