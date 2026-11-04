@@ -7,27 +7,52 @@ coefficients are derived independently from A=g0^{-1}h. All returned quantities
 are raw, unintegrated functions of (t,r,theta); no angular integration or action
 reduction is performed here.
 """
+from itertools import product
 import sympy as s
 from gfe_polar_first_order_curvature_operator import build_first_order_operator
 from gfe_polar_second_order_curvature_operator import build_second_order_operator, direct_second_order_operator_comparison
+
+
+def _trace_product3(A, B, C):
+    """Compute Tr(A*B*C) by scalar index contraction, without matrix intermediates."""
+    n = A.rows
+    return sum(
+        (A[i, j] * B[j, k] * C[k, i]
+         for i, j, k in product(range(n), repeat=3)),
+        s.Integer(0),
+    )
 
 
 def _trace_cube_coefficients(R0, R1, R2, report=None):
     def mark(stage):
         if report is not None:
             report(stage)
-    # Keep each expensive exact matrix product as an observable boundary.
+
     mark("trace_T0_started")
-    T0 = s.trace(R0**3)
+    T0 = sum((R0[i, i]**3 for i in range(R0.rows)), s.Integer(0)) \
+        if all(s.simplify(R0[i, j]) == 0 for i in range(R0.rows)
+               for j in range(R0.cols) if i != j) else s.trace(R0**3)
     mark("trace_T0_completed")
     mark("trace_T1_started")
-    T1 = 3*s.trace(R0**2*R1)
+    T1 = 3 * sum((R0[i, i]**2 * R1[i, i] for i in range(R0.rows)), s.Integer(0)) \
+        if all(s.simplify(R0[i, j]) == 0 for i in range(R0.rows)
+               for j in range(R0.cols) if i != j) else 3 * _trace_product3(R0, R0, R1)
     mark("trace_T1_completed")
     mark("trace_R0R0R2_started")
-    T20 = s.trace(R0**2*R2)
+    T20 = sum((R0[i, i]**2 * R2[i, i] for i in range(R0.rows)), s.Integer(0)) \
+        if all(s.simplify(R0[i, j]) == 0 for i in range(R0.rows)
+               for j in range(R0.cols) if i != j) else _trace_product3(R0, R0, R2)
     mark("trace_R0R0R2_completed")
     mark("trace_R0R1R1_started")
-    T21 = s.trace(R0*R1**2)
+    if all(s.simplify(R0[i, j]) == 0 for i in range(R0.rows)
+           for j in range(R0.cols) if i != j):
+        T21 = sum(
+            (R0[i, i] * R1[i, j] * R1[j, i]
+             for i, j in product(range(R0.rows), repeat=2)),
+            s.Integer(0),
+        )
+    else:
+        T21 = _trace_product3(R0, R1, R1)
     mark("trace_R0R1R1_completed")
     T2 = 3*T20 + 3*T21
     return T0, T1, T2
@@ -81,32 +106,28 @@ def build_raw_quadratic_density(first_data=None, second_data=None, progress=None
 
 
 def direct_raw_density_comparison(data, progress=None):
-    """Compare the compressed trace formula with all six ungrouped products."""
+    """Compare the trace coefficient using explicit scalar index contractions."""
     g0, h = data["background_metric"], data["perturbation"]
     R0 = data["operator_background"]
     R1 = data["operator_first_order"]
     R2 = data["operator_second_order"]
     T2_formula = data["trace_cube_coefficients"][2]
 
-    # Extract the epsilon^2 coefficient before using trace cyclicity:
-    # three words contain two R0 factors and one R2; three contain one R0
-    # and two R1 factors. Each matrix product is evaluated explicitly.
     direct_terms = []
     products = (
-        ("R0R0R2", R0*R0*R2),
-        ("R0R2R0", R0*R2*R0),
-        ("R2R0R0", R2*R0*R0),
-        ("R0R1R1", R0*R1*R1),
-        ("R1R0R1", R1*R0*R1),
-        ("R1R1R0", R1*R1*R0),
+        ("R0R0R2", R0, R0, R2),
+        ("R0R2R0", R0, R2, R0),
+        ("R2R0R0", R2, R0, R0),
+        ("R0R1R1", R0, R1, R1),
+        ("R1R0R1", R1, R0, R1),
+        ("R1R1R0", R1, R1, R0),
     )
-    for label, product_matrix in products:
+    for label, A, B, C in products:
         if progress is not None:
             progress("direct_trace_" + label + "_started")
-        direct_terms.append(s.trace(product_matrix))
+        direct_terms.append(_trace_product3(A, B, C))
         if progress is not None:
             progress("direct_trace_" + label + "_completed")
-    direct_terms = tuple(direct_terms)
     T2_direct = sum(direct_terms, s.Integer(0))
     trace_residual = s.simplify(T2_direct-T2_formula)
 
@@ -115,7 +136,7 @@ def direct_raw_density_comparison(data, progress=None):
     determinant_formula = data["density_coefficients_relative_to_background"][2]
     determinant_residual = s.cancel(d2_independent-determinant_formula)
     return {
-        "trace_coefficient_method": "explicit sum of all six ungrouped matrix-product traces",
+        "trace_coefficient_method": "explicit scalar index contractions for all six ungrouped products",
         "trace_coefficient_residual": trace_residual,
         "determinant_density_residual": determinant_residual,
         "density_coefficient_residual": (trace_residual, determinant_residual),
