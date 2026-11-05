@@ -111,7 +111,7 @@ def main():
     basis = {}
     kept = []
     for c in cycles:
-        if any(overlap(c,k) for k in kept):
+        if not kept or any(overlap(c,k) for k in kept):
             if xor_basis_insert(basis, c):
                 kept.append(c)
 
