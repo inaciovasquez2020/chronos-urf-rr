@@ -23,7 +23,7 @@ def test_full_source_nonzero_beta_certificate():
     ) / beta**3)
     exact = (2*M - 3)**4 * (8*M*beta + 135)**2 * (16*M*beta - 135) / sp.Integer(3)**15
     assert sp.cancel(specialized - exact) == 0
-    assert sp.denom(sp.cancel(exact)) == sp.Integer(3)**15
+    assert sp.denom(sp.together(exact)) == sp.Integer(3)**15
 
     f0 = -sp.Rational(125, 729)*(3-2*M)**4
     x = 8*M*beta
