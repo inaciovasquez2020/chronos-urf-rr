@@ -1,0 +1,50 @@
+name: Research Agent Toolkit regressions
+
+on:
+  push:
+    paths:
+      - "tools/research-agent-toolkit/**"
+      - ".github/workflows/research-agent-toolkit-regression.yml"
+  pull_request:
+    paths:
+      - "tools/research-agent-toolkit/**"
+      - ".github/workflows/research-agent-toolkit-regression.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-toolkit-and-hardening:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pytest only
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: Original toolkit regressions and authenticated mutation security
+        working-directory: tools/research-agent-toolkit
+        env:
+          PYTHONPATH: src:urf-ai
+        run: |
+          python -m pytest -q tests/test_toolkit.py tests/test_hardened_mutation.py
+
+  urf-ai-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pytest only
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: URF-AI read-only and mathematical regressions
+        working-directory: tools/research-agent-toolkit
+        env:
+          PYTHONPATH: src:urf-ai
+        run: |
+          python -m pytest -q urf-ai/tests urf-ai/paired_eval/test_paired_eval.py

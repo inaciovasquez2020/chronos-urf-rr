@@ -50,25 +50,30 @@ rat search --db research.db "dependency graph verifier"
 This package enforces workflow invariants. It does not prove mathematical claims, validate scientific interpretation, or certify correctness beyond the verifiers you explicitly invoke.
 
 
-## Agent research-file write contract
+## Agent research-file write contract (security quarantine)
 
-Automated or AI-initiated research-file writes MUST use the
-`rat mutate` entrypoint, or the tool-server `mutate` method which
-uses the same governed implementation.
+**Legacy automatic writes are DISABLED by default.** The CLI command `rat
+mutate` and JSON-RPC tool-server `mutate` keep their names but now fail closed:
+without a trusted signed approval they do not change files. The old contract
+that unconditionally applied a patch and restored clean HEAD is superseded.
 
-`rat mutate` accepts a unified diff, derives the mutable file closure
-from an existing provenance manifest, applies exactly one patch,
-runs the supplied verifier immediately, and restores clean `HEAD`
-on the first mutation, closure, or verification failure.
+Only a **separately trusted approval controller** may call
+`research_agent_toolkit.hardened_mutation.governed_patch_mutation` with a
+versioned explicit policy, an exact-request scoped signed approval, a verifier
+allowlist, and an **explicitly disposable** Git worktree. Its candidate
+verification does not commit or merge research files. The normal `rat gate`
+policy checks are now applied inside the mutation call as well.
 
-This requirement applies only to research chains that have been
-explicitly admitted into provenance. Adding another provenance chain
-therefore expands mandatory agent enforcement only to that chain.
+The old arbitrary-subprocess mutation API is disabled; it must not be used to
+recover an authoritative checkout. A failed transaction never invokes Git
+`reset --hard` or `clean -fd` and never silently deletes outside-scope
+artifacts. See `SECURITY_MUTATION_MIGRATION.md` for the deliberate breaking API
+change and test obligations.
 
-Ordinary human Git commands are unchanged. The toolkit does not
-install `pre-commit`, `pre-push`, or other repository-wide Git hooks.
+This is an approval and inventory guard, not an OS sandbox. An allowlisted
+verifier can still write outside the disposable worktree. Untrusted verifier
+executables require separate sandboxing and independent scrutiny; no safety
+claim for an arbitrary verifier follows from these checks.
 
-An unrestricted external shell can bypass this contract; mandatory
-enforcement here means that agents using the research-agent-toolkit
-write interface have exactly one supported research-file mutation
-route: `mutate`.
+Ordinary human Git commands are unaffected; no repository-wide hooks are
+installed. Human approval is still required before any promotion or merge.
