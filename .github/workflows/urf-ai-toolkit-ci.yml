@@ -3,7 +3,16 @@ name: URF-AI Toolkit CI
 on:
   push:
     branches:
+      - main
       - experiment/urf-ai-benchmark-v1
+    paths:
+      - "tools/research-agent-toolkit/**"
+      - ".github/workflows/urf-ai-toolkit-ci.yml"
+  pull_request:
+    paths:
+      - "tools/research-agent-toolkit/**"
+      - ".github/workflows/urf-ai-toolkit-ci.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read

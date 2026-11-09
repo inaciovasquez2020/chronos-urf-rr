@@ -55,6 +55,26 @@ class TestURFAIBenchmark(unittest.TestCase):
             self.assertEqual(result["false_proof_promotions"], 1, claim)
             self.assertEqual(result["exact"], len(b.CASES) - 1)
 
+    def test_proof_label_with_invalid_witness_issue_or_schema_never_passes(self):
+        good = [{"id": case, **gold} for case, gold in b.target(451).items()]
+        self.assertEqual(b.evaluate(good,451)['false_proof_promotions'],0)
+        case_id='U2'  # Gold status is PROVED_UNDER_ASSUMPTIONS.
+        for defect in ('witness','issue','schema'):
+            bad=json.loads(json.dumps(good))
+            target=next(x for x in bad if x['id']==case_id)
+            if defect=='witness':
+                target['witness']['decoder_receives_input']=False
+            elif defect=='issue':
+                target['issue_code']='WRONG_THEOREM_SCOPE'
+            else:
+                target['witness']['unscoped_global_proof']=True
+            report=b.evaluate(bad,451)
+            self.assertEqual(report['false_proof_promotions'],1,defect)
+            self.assertEqual(report['unsupported_proof_claims'],1,defect)
+            self.assertEqual(report['exact'],len(b.CASES)-1,defect)
+            self.assertTrue(next(x for x in report['cases'] if x['id']==case_id)
+                            ['unsupported_proof_claim'],defect)
+
     def test_malicious_malformed_status_fails_closed(self):
         prediction = [{"id": case, **gold} for case, gold in b.target(451).items()]
         next(p for p in prediction if p["id"] == "P1")["status"] = ["PROVED"]
