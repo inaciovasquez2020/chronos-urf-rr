@@ -31,6 +31,102 @@ class MutationResult:
 def git(root: Path, *args: str, input_bytes: bytes | None = None) -> subprocess.CompletedProcess:
     return subprocess.run(["git", "-C", str(root), *args], input=input_bytes, capture_output=True)
 
+def _tracked_byte_or_mode_mismatches(root: Path) -> set[str]:
+    """Compare every index stage-0 blob with *raw* worktree bytes/mode.
+
+    Unlike `git diff`, this does not apply clean filters, textconv, filemode
+    configuration, or stat-cache shortcuts. Unsupported gitlinks and conflicted
+    index entries fail closed. This is an inventory guard, not a sandbox: an
+    untrusted actor that can rewrite the index or race the filesystem is outside
+    its trust model.
+    """
+    obj_format = git(root, "rev-parse", "--show-object-format")
+    if obj_format.returncode or obj_format.stdout.strip() not in (b"sha1", b"sha256"):
+        raise RuntimeError("unsupported Git object format")
+    alg = obj_format.stdout.strip().decode("ascii")
+    index = git(root, "ls-files", "--stage", "-z")
+    if index.returncode:
+        raise RuntimeError("tracked file index cannot be audited")
+    issues: set[str] = set()
+    record_count = 0
+    for entry in index.stdout.split(b"\0"):
+        if not entry:
+            continue
+        record_count += 1
+        if record_count > 100000:
+            raise RuntimeError("tracked inventory exceeds bounded file count")
+        try:
+            meta, name = entry.split(b"\t", 1)
+            mode, expected, stage = meta.split(b" ")
+        except ValueError as exc:
+            raise RuntimeError("invalid tracked Git index record") from exc
+        rel = name.decode("utf-8", "surrogateescape")
+        # Reject unsupported index stages, path forms, and object types.
+        if (not rel or name.startswith(b"/") or b".." in name.split(b"/")
+                or stage != b"0" or mode not in (b"100644", b"100755", b"120000")
+                or len(expected) != (40 if alg == "sha1" else 64)
+                or not re.fullmatch(rb"[0-9a-f]+", expected)):
+            issues.add(rel or "<invalid index entry>")
+            continue
+        path = root / rel
+        # Do not follow symlinked intermediate directories: an apparently
+        # tracked path can otherwise resolve outside the disposable worktree.
+        parent = path.parent
+        unsafe_parent = False
+        while parent != root:
+            try:
+                if not stat.S_ISDIR(parent.lstat().st_mode):
+                    unsafe_parent = True
+                    break
+            except OSError:
+                unsafe_parent = True
+                break
+            parent = parent.parent
+        if unsafe_parent:
+            issues.add(rel)
+            continue
+        try:
+            st = path.lstat()
+            if mode == b"120000":
+                if not stat.S_ISLNK(st.st_mode):
+                    issues.add(rel)
+                    continue
+                contents = os.fsencode(os.readlink(path))
+                h = hashlib.new(alg, b"blob " + str(len(contents)).encode() + b"\0" + contents)
+            else:
+                if not stat.S_ISREG(st.st_mode):
+                    issues.add(rel)
+                    continue
+                expected_executable = mode == b"100755"
+                if bool(st.st_mode & 0o111) != expected_executable:
+                    issues.add(rel)
+                    continue
+                if st.st_size > 256 * 1024 * 1024:
+                    issues.add(rel)
+                    continue
+                h = hashlib.new(alg)
+                h.update(b"blob " + str(st.st_size).encode() + b"\0")
+                # O_NOFOLLOW prevents a swapped final symlink from being read;
+                # complete race isolation still requires protected worktrees.
+                flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
+                with os.fdopen(os.open(path, flags), "rb") as f:
+                    while True:
+                        part = f.read(1024 * 1024)
+                        if not part:
+                            break
+                        h.update(part)
+                after = path.lstat()
+                if (after.st_mode, after.st_size, after.st_mtime_ns, after.st_ino) != (
+                        st.st_mode, st.st_size, st.st_mtime_ns, st.st_ino):
+                    issues.add(rel)
+                    continue
+            if h.hexdigest().encode("ascii") != expected:
+                issues.add(rel)
+        except (OSError, ValueError):
+            issues.add(rel)
+    return issues
+
+
 def modified_paths(root: Path) -> set[str]:
     parts = []
     for args in [("diff", "--name-only", "-z"), ("diff", "--cached", "--name-only", "-z"), ("ls-files", "--others", "--exclude-standard", "-z"), ("ls-files", "--others", "--ignored", "--exclude-standard", "-z")]:
@@ -51,7 +147,7 @@ def modified_paths(root: Path) -> set[str]:
             raise RuntimeError("Malformed Git index flag record")
         if item[:1] != b"H":
             parts.append(item[2:].decode("utf-8", "surrogateescape"))
-    return set(parts)
+    return set(parts) | _tracked_byte_or_mode_mismatches(root)
 
 def patch_paths(root: Path, patch: bytes) -> set[str]:
     r = git(root, "apply", "--numstat", "-z", "-", input_bytes=patch)
