@@ -126,7 +126,7 @@ class TestURFAIBenchmark(unittest.TestCase):
     def test_missing_submission_is_not_perfect(self):
         result = b.evaluate([], 451)
         self.assertEqual(result["exact"], 0)
-        self.assertEqual(result["total"], 14)
+        self.assertEqual(result["total"], len(b.CASES))
 
     def test_duplicate_id_rejected(self):
         with self.assertRaisesRegex(ValueError, "duplicate"):

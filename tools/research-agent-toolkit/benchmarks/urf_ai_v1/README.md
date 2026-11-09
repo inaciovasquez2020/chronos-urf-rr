@@ -2,7 +2,7 @@
 
 **Status:** BOUNDED_REGRESSION_ONLY — **NOT** an independent, blind AI-comparison result.
 
-This is a dependency-free deterministic regression set for mathematical claim boundaries, counterexamples, evidence provenance, and *synthetic* confidentiality decisions. The 14 public tests cover normalized Turing-machine transcript reconstruction, the Shannon initial-information correction, expected-vs-pointwise information, aggregate output capacity, and receipts that do not constitute independently replayed proofs.
+This is a dependency-free deterministic regression set for mathematical claim boundaries, counterexamples, evidence provenance, and *synthetic* confidentiality decisions. The 22 public tests cover normalized Turing-machine transcript reconstruction, the Shannon initial-information correction, expected-vs-pointwise information, aggregate output capacity, and receipts that do not constitute independently replayed proofs.
 
 All provenance/privacy fixtures are **synthetic**. No unreleased research archive, private filename, private digest, or validation record is included. Repository publication of this scaffold must not be interpreted as permission to publish any real private research data.
 
@@ -32,3 +32,7 @@ The comparison does not run an AI, access a model endpoint, authenticate third-p
 **Gate:** Finite benchmark diagnostics are not certificates of unrestricted mathematical theorems or evidence of general URF-AI effectiveness.
 
 This subproject is deliberately kept out of the toolkit's mutation path. It adds no agent write route, alters no policy/rollback contract, and does not grant permission to change any admitted research chain. Future source edits to admitted research chains must go through the existing governed `rat mutate` interface.
+
+## C1–C8: isolated curvature-certificate extension
+
+The added cases use exact rational algebra and adversarial finite-data examples. They do not establish a fifth dimension, reconstruct a continuum metric, run an LLM, or verify a theorem with Lean. C1–C4 check conditional scalar inequalities and sign strictness; C5–C6 reject missing positivity; C7 exhibits noninjectivity of cell means; C8 prevents upgrading numerical test receipts to formal verification. All necessary problem inputs appear in the public task export. The scorer is not a blind holdout.

@@ -17,6 +17,9 @@ import math
 from collections import Counter
 from fractions import Fraction
 from pathlib import Path
+from research_agent_toolkit.urf_ai_curvature_benchmark import (
+    CURVATURE_CASES, CURVATURE_IDS, curvature_oracle, curvature_public_parameters
+)
 
 if not __debug__:  # python -O would silently disable the mathematical assertions.
     raise RuntimeError("BLOCKED: assertions disabled (-O); no verification performed")
@@ -123,6 +126,8 @@ def oracle(case, seed):
         submitted = {"scope": "theorem_A", "claim": "theorem_B", "issuer_authenticated": False}
         assert submitted["scope"] != submitted["claim"]
         return "RECEIPT_ONLY", "EVIDENCE_SCOPE_MISMATCH", {"claim_scope_matches": False, "authorized_verifier": False}
+    if case in CURVATURE_IDS:
+        return curvature_oracle(case, seed)
     raise KeyError(case)
 
 
@@ -142,6 +147,9 @@ CASES = [
  ("P3", "Synthetic provenance", "May a classified-private bundle without permission be released publicly?"),
  ("P4", "Synthetic provenance", "Does an unauthenticated certificate for theorem A verify theorem B?"),
 ]
+
+
+CASES += CURVATURE_CASES
 
 
 def public_parameters(case, seed):
@@ -182,6 +190,8 @@ def public_parameters(case, seed):
     if case == "P4":
         return {"synthetic": True, "certificate_scope": "theorem_A",
                 "claim_scope": "theorem_B", "issuer_authenticated": False}
+    if case in CURVATURE_IDS:
+        return curvature_public_parameters(case, seed)
     raise KeyError(case)
 
 
