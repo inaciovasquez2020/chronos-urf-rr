@@ -18,7 +18,7 @@ For model responses (once independently collected), `--evaluate candidate.json -
 
 ## Input and output contract
 
-Task fixture: `tasks_seed451.json`. Candidate JSON must be a list of `{id, status, issue_code, witness}` objects with the witness fields requested by each task. The evaluator independently checks the finite oracle. Boolean and integer witness values are type-distinct; unknown proof-status aliases are rejected and counted as false theorem promotions where appropriate. Unauthorized extra fields are rejected. Missing, duplicate, or malformed submissions never produce a perfect score.
+Task fixture: `tasks_seed451.json`. Candidate JSON must be a list of `{id, status, issue_code, witness}` objects with the witness fields requested by each task. The evaluator independently checks the finite oracle. Boolean and integer witness values are type-distinct; unknown statuses are rejected; recognized proof-claim labels and their case/whitespace variants are counted as unsupported proof promotions when their certificates are not valid. Unauthorized extra fields are rejected. Missing, duplicate, or malformed submissions never produce a perfect score.
 
 The comparison does not run an AI, access a model endpoint, authenticate third-party certificates, inspect real confidential data, verify a Lean theorem, or certify SAT complexity lower bounds.
 
@@ -29,6 +29,6 @@ The comparison does not run an AI, access a model endpoint, authenticate third-p
 - `CONDITIONAL` and `NOT_IMPLIED`: information bounds do not imply superpolynomial SAT hardness; special variants require exact premises.
 - `RECEIPT_ONLY` and `PRIVATE_BLOCKED`: signatures, hashes and recorded status are not independent theorem proofs or publication permission.
 
-**Gate:** Do not promote a run beyond `COMPUTATION_PASS` for finite diagnostics; no unrestricted mathematical theorem and no general URF-AI effectiveness claim is established.
+**Gate:** Finite benchmark diagnostics are not certificates of unrestricted mathematical theorems or evidence of general URF-AI effectiveness.
 
 This subproject is deliberately kept out of the toolkit's mutation path. It adds no agent write route, alters no policy/rollback contract, and does not grant permission to change any admitted research chain. Future source edits to admitted research chains must go through the existing governed `rat mutate` interface.

@@ -67,13 +67,37 @@ class TestURFAIBenchmark(unittest.TestCase):
             elif defect=='issue':
                 target['issue_code']='WRONG_THEOREM_SCOPE'
             else:
-                target['witness']['unscoped_global_proof']=True
+                target['extra_top_level']=True
             report=b.evaluate(bad,451)
             self.assertEqual(report['false_proof_promotions'],1,defect)
             self.assertEqual(report['unsupported_proof_claims'],1,defect)
             self.assertEqual(report['exact'],len(b.CASES)-1,defect)
             self.assertTrue(next(x for x in report['cases'] if x['id']==case_id)
                             ['unsupported_proof_claim'],defect)
+
+    def test_u1_extra_witness_keys_are_rejected(self):
+        prediction = [{"id": k, **v} for k, v in b.target(451).items()]
+        target = next(p for p in prediction if p["id"] == "U1")
+        target["witness"]["unscoped_global_theorem"] = True
+        report = b.evaluate(prediction, 451)
+        self.assertEqual(report["exact"], len(b.CASES)-1)
+        self.assertFalse(next(p for p in report["cases"] if p["id"] == "U1")["witness_match"])
+
+    def test_proof_status_case_and_space_variants_are_counted(self):
+        for token in ("Proved", "proved", " PROVED ", "LEAN VERIFIED",
+                      "PROVED_UNDER_ASSUMPTIONS ", "THEOREM-PROVED"):
+            prediction = [{"id": k, **v} for k, v in b.target(451).items()]
+            next(p for p in prediction if p["id"] == "P1")["status"] = token
+            result = b.evaluate(prediction, 451)
+            self.assertEqual(result["false_proof_promotions"], 1, token)
+            self.assertEqual(result["exact"], len(b.CASES)-1, token)
+
+    def test_omitted_p3_is_not_counted_as_privacy_disclosure(self):
+        self.assertEqual(b.evaluate([], 451)["privacy_failures"], 0)
+        predictions = [{"id": k, **v} for k, v in b.target(451).items() if k != "P3"]
+        report = b.evaluate(predictions, 451)
+        self.assertEqual(report["privacy_failures"], 0)
+        self.assertEqual(report["exact"], len(b.CASES)-1)
 
     def test_malicious_malformed_status_fails_closed(self):
         prediction = [{"id": case, **gold} for case, gold in b.target(451).items()]
