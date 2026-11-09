@@ -1,0 +1,35 @@
+{
+  "elapsed_s": 0.349,
+  "failures": [],
+  "families": {
+    "cnf_sat": 244,
+    "gf2_system": 244,
+    "graph_threshold": 244,
+    "modular_identity": 244,
+    "shortest_path": 244
+  },
+  "independent_algorithms": [
+    "GF2 Gaussian elimination",
+    "CNF depth-first pruning",
+    "modular repeated multiplication",
+    "shortest paths Bellman-Ford",
+    "graph component size"
+  ],
+  "model_calls": 0,
+  "no_model_comparison": true,
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python_version": "3.13.5",
+  "reference_certificates_accepted": 1220,
+  "status": "COMPUTATION_PASS",
+  "suite_sha256": "46e6a178208868e61dd6bbc6ebecba93aa85311fdda64b6a243870ed91987b03",
+  "tamper_rejections": 3660,
+  "total_cases": 1220,
+  "verdicts": {
+    "FALSE": 244,
+    "REACHABLE": 122,
+    "SAT": 244,
+    "TRUE": 244,
+    "UNREACHABLE": 122,
+    "UNSAT": 244
+  }
+}
