@@ -1,0 +1,24 @@
+name: CDT Stage 0 v2 fail-closed regression
+on:
+  push:
+    branches:
+      - audit/cdt-stage0-v2-fail-closed-20261109
+  pull_request:
+    branches:
+      - audit/cdt-stage0-null-controls-v2-20261107
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synthetic-only-fail-closed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Verify frozen v1 lock and original v2 regressions
+        run: python3 -B -m unittest discover -s tests -p 'test_cdt_stage0_classifier_v2.py' -v
+      - name: Verify fail-closed and adversarial regression
+        run: python3 -B -m unittest discover -s tests -p 'test_cdt_stage0_classifier_v2_fail_closed.py' -v
