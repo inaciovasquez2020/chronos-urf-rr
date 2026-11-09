@@ -51,7 +51,8 @@ def sat_family_receipt(m: int) -> dict:
     worst = 0
     for bits in xs:
         ans, qs = scan_sat(bits)
-        assert ans == brute_sat(bits)
+        if ans != brute_sat(bits):
+            raise RuntimeError("scanner disagrees with exact CNF truth table")
         sat += int(ans)
         count += 1
         query_sum += qs
@@ -61,8 +62,10 @@ def sat_family_receipt(m: int) -> dict:
                       for i in range(m))
     expected = Fraction(query_sum, count)
     analytic = Fraction(2 * (2**m - 1), 2**m)
-    assert expected == analytic
-    assert sat == 1 and sensitivity == m and worst == m
+    if expected != analytic:
+        raise RuntimeError("mean query count disagrees with analytic fraction")
+    if not (sat == 1 and sensitivity == m and worst == m):
+        raise RuntimeError("restricted SAT family invariants violated")
     p = 1 / count
     output_entropy_bits = -p * log2(p) - (1-p) * log2(1-p) if m >= 2 else 1.0
     return {
@@ -72,7 +75,7 @@ def sat_family_receipt(m: int) -> dict:
         "unsat_instances": count - sat,
         "all_positive_is_sat": brute_sat(zero),
         "all_positive_sensitivity": sensitivity,
-        "deterministic_query_lower_bound": m,
+        "deterministic_query_lower_bound": sensitivity,
         "matching_worst_case_scan_queries": worst,
         "uniform_mean_scan_queries_numerator": expected.numerator,
         "uniform_mean_scan_queries_denominator": expected.denominator,
@@ -96,8 +99,10 @@ def eager_read_entropy(n: int, visited: int, extra_steps: int = 0) -> dict:
         bits = "".join(tup)
         transcript = bits[:visited]
         fibers[transcript] = fibers.get(transcript, 0) + 1
-    assert len(fibers) == 2**visited
-    assert set(fibers.values()) == {2**(n-visited)}
+    if len(fibers) != 2**visited:
+        raise RuntimeError("input-observation fiber count disagrees")
+    if set(fibers.values()) != {2**(n-visited)}:
+        raise RuntimeError("input-observation fiber sizes disagree")
     return {
         "input_bits": n,
         "distinct_input_cells_observed": visited,
@@ -208,11 +213,13 @@ def copy_machine_entropy_regression(n: int) -> dict:
             h=copy_machine_history(x,t)
             fiber=groups[t]
             fiber[h]=fiber.get(h,0)+1
-            assert reconstruct_work_from_transcript(h)==copy_machine_work_at(x,t)
+            if reconstruct_work_from_transcript(h)!=copy_machine_work_at(x,t):
+                raise RuntimeError("copier reconstruction disagrees")
     residual=[]
     for t,g in enumerate(groups):
         seen=min(n,t+1)
-        assert len(g)==2**seen and set(g.values())=={2**(n-seen)}
+        if len(g)!=2**seen or set(g.values())!={2**(n-seen)}:
+            raise RuntimeError("copier transcript fibers disagree")
         residual.append(n-seen)
     return {'input_bits':n,'history_times':list(range(n+2)),
             'conditional_entropy_bits':residual,

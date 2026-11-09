@@ -24,17 +24,23 @@ def run(source:Path)->dict:
     collision_n=[]
     for n in range(2,13):
         a='0'*n;b='0'+'1'*(n-1)
-        assert reconstruction_counterexample(a,b,0)
-        assert reconstruction_counterexample(a,b,1)
+        if not reconstruction_counterexample(a,b,0):
+            raise RuntimeError(f"reconstruction collision failed at n={n}, t=0")
+        if not reconstruction_counterexample(a,b,1):
+            raise RuntimeError(f"reconstruction collision failed at n={n}, t=1")
         collision_n.append(n)
     entropy=[entropy_accounting(n,1) for n in range(1,13)]
-    assert all(r['corrected_chain_rule_exact'] and r['source_omitted_identity_gap_bits']==1 for r in entropy)
+    if not all(r['corrected_chain_rule_exact'] and r['source_omitted_identity_gap_bits']==1 for r in entropy):
+        raise RuntimeError('entropy chain-rule audit failed')
     tradeoffs=[initial_reconstruction_tradeoff(n) for n in range(2,13)]
-    assert all(not r['old_decoder_injective'] and r['repaired_decoder_injective'] and r['repaired_remaining_input_entropy_bits']==0 for r in tradeoffs)
+    if not all(not r['old_decoder_injective'] and r['repaired_decoder_injective'] and r['repaired_remaining_input_entropy_bits']==0 for r in tradeoffs):
+        raise RuntimeError('reconstruction tradeoff audit failed')
     compatibility=[polynomial_compatibility(2**j,j) for j in range(3,14)]
-    assert all(r['linear_capacity_compatible'] for r in compatibility)
+    if not all(r['linear_capacity_compatible'] for r in compatibility):
+        raise RuntimeError('polynomial compatibility audit failed')
     cases={id:evaluate_bridge_response(RECORDS[id],id)['pass'] for id in sorted(BRIDGE_CASES)}
-    assert all(cases.values())
+    if not all(cases.values()):
+        raise RuntimeError('source-specific case audit failed')
     return {'schema':'urf-ai.universality-source-regression/v1',
             'status':'COMPUTATION_PASS_SOURCE_SPECIFIC_NOT_LEAN_OR_LLM',
             'source_sha256':observed,

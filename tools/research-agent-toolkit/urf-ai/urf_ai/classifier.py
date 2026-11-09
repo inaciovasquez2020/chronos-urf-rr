@@ -27,4 +27,6 @@ def classify(claim: dict, envelope: object, key: bytes, allowlist: dict, roles: 
         return status("INCOMPLETE_LEDGER", f"invalid binding: {type(exc).__name__}")
     if not ok: return status("INCOMPLETE_LEDGER",reason)
     if is_conditional: return status("COMPLETE_CONDITIONAL_LEDGER", "authenticated conditional evidence with remaining explicit hypotheses")
+    if any(b.get("active",False) and b.get("blocks_proved",False) for b in claim.get("boundaries", [])):
+        return status("INCOMPLETE_LEDGER", "active proof-blocking boundary lock")
     return status("COMPLETE_UNCONDITIONAL_LEDGER",reason)

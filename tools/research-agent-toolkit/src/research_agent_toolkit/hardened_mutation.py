@@ -7,6 +7,7 @@ remain in an explicitly disposable Git worktree. No reset/clean operations.
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -115,7 +116,7 @@ def governed_patch_mutation(
             return denial("provenance", "provenance closure contains no mutable files")
         patch_paths, run_mutation = _guard()
         paths = patch_paths(root, patch.encode("utf-8"))
-    except (RuntimeError, ValueError, OSError, KeyError) as exc:
+    except (RuntimeError, ValueError, OSError, KeyError, subprocess.SubprocessError) as exc:
         return denial("preflight", repr(exc))
     if not paths or not paths <= closure:
         return denial("closure", "patch paths escape exact provenance closure", 3)

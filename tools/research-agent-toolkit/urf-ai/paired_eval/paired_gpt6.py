@@ -67,7 +67,7 @@ def request_model(model, instructions, user_input, api_key, max_output_tokens=18
 def parse_generated(raw):
     if not isinstance(raw,str) or len(raw)>20000:return None
     try:return json.loads(raw)
-    except (json.JSONDecodeError,ValueError):return None
+    except (json.JSONDecodeError,ValueError,RecursionError):return None
 
 def safe_grade(case, api_response):
     t=time.perf_counter()
@@ -171,12 +171,20 @@ def atomic_new(path,obj):
     with os.fdopen(fd,'w',encoding='utf-8') as f:json.dump(obj,f,indent=2,sort_keys=True);f.write('\n')
 
 def load_suite(path):
-    v=json.loads(Path(path).read_text())
-    assert v['schema']=='urf-ai-heldout-math/v1'
-    assert v['suite_sha256']==sha(v['cases'])
-    ids=[c['id'] for c in v['cases']]
-    assert len(ids)==len(set(ids))
-    assert all(c['family'] in FAMILIES for c in v['cases'])
+    v=json.loads(Path(path).read_text(encoding='utf-8'))
+    if not isinstance(v,dict) or v.get('schema')!='urf-ai-heldout-math/v1':
+        raise ValueError('unsupported benchmark suite schema')
+    cases=v.get('cases')
+    if not isinstance(cases,list) or not cases:
+        raise ValueError('benchmark suite has no cases')
+    if v.get('suite_sha256')!=sha(cases):
+        raise ValueError('benchmark suite fingerprint mismatch')
+    if any(not isinstance(c,dict) or not isinstance(c.get('id'),str)
+           or not isinstance(c.get('family'),str) for c in cases):
+        raise ValueError('malformed benchmark case metadata')
+    ids=[c['id'] for c in cases]
+    if len(ids)!=len(set(ids)) or any(c['family'] not in FAMILIES for c in cases):
+        raise ValueError('duplicate case id or unsupported benchmark family')
     return v
 
 def selftest(suite):

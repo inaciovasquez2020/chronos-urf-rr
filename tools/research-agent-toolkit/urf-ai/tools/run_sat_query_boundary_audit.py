@@ -20,8 +20,10 @@ def run(source:Path)->dict:
     adapter={c:{'validation':answer(c)['validation']['pass'],
                 'claim_state':answer(c)['governance']['claim_state']}
              for c in sorted(SAT_QUERY_CASES)}
-    assert all(x['validation'] and x['claim_state']=='OPEN' for x in adapter.values())
-    assert sum(x['encoded_instances'] for x in families)==8190
+    if not all(x['validation'] and x['claim_state']=='OPEN' for x in adapter.values()):
+        raise RuntimeError('source-scoped adapter validation or OPEN boundary failed')
+    if sum(x['encoded_instances'] for x in families)!=8190:
+        raise RuntimeError('finite enumerated SAT instance count differs from 8190')
     return {
         'schema':'urf-ai.sat-query-boundary/v1',
         'status':'COMPUTATION_PASS_BOUNDED_NOT_LEAN_OR_GPT6',

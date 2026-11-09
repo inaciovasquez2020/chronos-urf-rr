@@ -294,18 +294,37 @@ def run_mutation(root: str | Path, patch: bytes, closure: set[str], config: dict
         return MutationResult("DENY", "replay", 2, detail="approval already spent or ledger rejected request")
     snapshots = {rel: ((root/rel).read_bytes(), stat.S_IMODE((root/rel).stat().st_mode)) for rel in paths}
     def fail(stage: str, code: int, detail: str):
-        before_restore=modified_paths(root)
+        # An inventory error must never prevent restoring authorized snapshots.
+        # It also must not be reported as an exact verified rollback.
+        inventory_failed=False
+        try:
+            before_restore=modified_paths(root)
+        except RuntimeError as exc:
+            before_restore=set()
+            inventory_failed=True
+            detail+=f"; pre-restore inventory failed: {exc}"
         outsider=tuple(sorted(before_restore-set(snapshots)))
         try: _restore(root,snapshots)
-        except Exception as exc: return MutationResult("INCOMPLETE_ROLLBACK",stage,code, outsider, str(exc))
-        residue=tuple(sorted(modified_paths(root)))
+        except Exception as exc: return MutationResult("INCOMPLETE_ROLLBACK",stage,code,outsider,str(exc))
+        try:
+            residue=tuple(sorted(modified_paths(root)))
+        except RuntimeError as exc:
+            return MutationResult("INCOMPLETE_ROLLBACK",stage,code,outsider,
+                                  f"post-restore inventory failed: {exc}; {detail}")
+        if inventory_failed:
+            return MutationResult("INCOMPLETE_ROLLBACK",stage,code,
+                                  tuple(sorted(set(residue)|set(outsider))),detail)
         if residue or outsider:
-            return MutationResult("INCOMPLETE_UNAUTHORIZED_RESIDUE",stage,code,tuple(sorted(set(residue)|set(outsider))),detail)
+            return MutationResult("INCOMPLETE_UNAUTHORIZED_RESIDUE",stage,code,
+                                  tuple(sorted(set(residue)|set(outsider))),detail)
         return MutationResult("FAILED_ROLLED_BACK",stage,code,detail=detail)
     apply=git(root,"apply","--whitespace=error-all","-",input_bytes=patch)
     if apply.returncode:
         return fail("mutation",apply.returncode,apply.stderr.decode("utf-8","replace")[:500])
-    outside=modified_paths(root)-paths
+    try:
+        outside=modified_paths(root)-paths
+    except RuntimeError as exc:
+        return fail("scope",3,f"post-mutation inventory failed: {exc}")
     if outside:
         return fail("scope",3,"post-mutation changed path outside closure")
     if any(not (root/rel).is_file() or (root/rel).is_symlink() for rel in paths):
@@ -320,7 +339,10 @@ def run_mutation(root: str | Path, patch: bytes, closure: set[str], config: dict
                     ast.parse((root/rel).read_text(encoding="utf-8"), filename=rel)
         except (SyntaxError, UnicodeError, OSError) as exc:
             return fail("verification",7,"internal syntax failure: "+str(exc)[:500])
-    outside=modified_paths(root)-paths
+    try:
+        outside=modified_paths(root)-paths
+    except RuntimeError as exc:
+        return fail("verification",3,f"post-verification inventory failed: {exc}")
     if outside:
         return fail("verification",3,"internal check found outside changed paths")
     if any(not (root/rel).is_file() or (root/rel).is_symlink() or
