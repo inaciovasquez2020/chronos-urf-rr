@@ -14,7 +14,6 @@ from pathlib import Path
 from .budgets import Budget, BudgetExceeded
 from .engine import evaluate
 from .provenance import build_provenance, forward_closure, load_manifest
-from .lean_exact import exact_lean_dependencies
 from .transaction import DependencyTransactionResult
 
 
@@ -57,6 +56,10 @@ def governed_patch_mutation(
             False, phase, code, (), (), "", reason,
         )
 
+    # Lean imports may execute project code; an unauthenticated module request
+    # must not trigger a Lake probe in the source worktree.
+    if modules:
+        return denial("authorization", "inline Lean probe forbidden; separately authorized exact dependency graph required")
     if approval_ledger is None:
         return denial("authorization", "trusted durable approval ledger required")
     if config_path is None or approval is None or authorization_key is None:
@@ -102,7 +105,7 @@ def governed_patch_mutation(
         graph = build_provenance(
             root,
             load_manifest(mf),
-            exact_lean_dependencies(root, modules) if modules else None,
+            None,
         )
         ids = {n.id for n in graph.nodes}
         normalized = changed.replace("\\", "/")

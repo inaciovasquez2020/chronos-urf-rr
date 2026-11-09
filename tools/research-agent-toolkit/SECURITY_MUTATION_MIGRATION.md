@@ -29,6 +29,14 @@ approval or merge authorization.
 - No `git reset --hard`, `git clean -fd`, checkout, or broad deletion is used
   for error recovery. Unauthorized side effects must be reported, not erased.
 
+## Inline Lean probe authorization boundary
+
+The `modules` argument to `governed_patch_mutation` is **fail-closed denied**.
+`exact_lean_dependencies` can invoke `lake env lean` and load project code.
+A separately authorized, precomputed exact dependency graph pathway does not yet
+exist. Theorem-module mutations remain blocked until that pathway is reviewed.
+This denial neither runs Lean nor claims mathematical verification.
+
 ## Remaining trust boundaries
 
 A SQLite transaction does **not** prevent privileged ledger replacement or

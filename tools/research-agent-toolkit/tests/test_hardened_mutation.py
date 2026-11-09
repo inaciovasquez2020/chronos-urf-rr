@@ -189,3 +189,26 @@ def test_tracked_symlink_policy_and_manifest_denied(repo):
     assert call(r,c,p,configfile='policy-link.json').phase=='policy'
     assert call(r,c,p,manifest='manifest-link.json').phase=='provenance'
     assert (r/'src/artifact.txt').read_text()=='before\n'
+
+def test_inline_lean_probe_denied_before_any_execution(repo, monkeypatch):
+    """Untrusted module requests cannot execute Lake prior to scoped approval."""
+    import research_agent_toolkit.hardened_mutation as hardened
+
+    root, config, patch = repo
+
+    def forbidden_probe(*args, **kwargs):
+        raise AssertionError("unauthorized Lean probe executed")
+
+    monkeypatch.setattr(hardened, "exact_lean_dependencies", forbidden_probe, raising=False)
+    out = hardened.governed_patch_mutation(
+        root, "manifest.json", "src/artifact.txt", patch,
+        ["RAT_INTERNAL_DIFF_CHECK"],
+        modules=["Untrusted.Source"],
+        config_path="policy.json",
+        approval={},
+        authorization_key=b"x" * 32,
+        approval_ledger=root.parent / "approval.sqlite",
+    )
+    assert not out.preserved and out.phase == "authorization" and out.returncode == 2
+    assert (root / "src/artifact.txt").read_text() == "before\n"
+
