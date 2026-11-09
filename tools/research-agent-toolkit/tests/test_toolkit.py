@@ -47,22 +47,29 @@ def test_local_index(tmp_path: Path):
 
 
 def test_verified_mutation_reverts_first_failure(tmp_path: Path):
+    """Contract migration: unrestricted callback API must deny before execution."""
     from research_agent_toolkit.transaction import verified_mutation
 
     target = tmp_path / "x.txt"
     target.write_text("before")
+    invoked = []
 
     def mutate():
+        invoked.append("ran")
         target.write_text("after")
 
-    result = verified_mutation(
-        [target],
-        mutate,
-        ["python3", "-c", "raise SystemExit(7)"],
-        cwd=tmp_path,
-    )
-    assert not result.preserved
-    assert result.returncode == 7
+    try:
+        verified_mutation(
+            [target],
+            mutate,
+            ["python3", "-c", "raise SystemExit(7)"],
+            cwd=tmp_path,
+        )
+    except PermissionError as exc:
+        assert "disabled" in str(exc)
+    else:
+        raise AssertionError("unrestricted callback must be denied")
+    assert invoked == []
     assert target.read_text() == "before"
 
 
