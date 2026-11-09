@@ -1,0 +1,545 @@
+{
+  "adapter_cases": {
+    "bridge_eager_read_no_go": {
+      "claim_state": "OPEN",
+      "validation": true
+    },
+    "bridge_sat_sign_query": {
+      "claim_state": "OPEN",
+      "validation": true
+    }
+  },
+  "cnf_encoding": "single_propositional_variable_m_independent_sign_bits",
+  "copier_results": [
+    {
+      "conditional_entropy_bits": [
+        0,
+        0,
+        0
+      ],
+      "full_input_recovered_by_transcript_at_time": 0,
+      "history_times": [
+        0,
+        1,
+        2
+      ],
+      "input_bits": 1,
+      "per_transition_information_bits": [
+        0,
+        0
+      ],
+      "source_model": "deterministic_two_tape_read_only_input_work_copier",
+      "work_contents_reconstructed_from_transcript": true
+    },
+    {
+      "conditional_entropy_bits": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "full_input_recovered_by_transcript_at_time": 1,
+      "history_times": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "input_bits": 2,
+      "per_transition_information_bits": [
+        1,
+        0,
+        0
+      ],
+      "source_model": "deterministic_two_tape_read_only_input_work_copier",
+      "work_contents_reconstructed_from_transcript": true
+    },
+    {
+      "conditional_entropy_bits": [
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "full_input_recovered_by_transcript_at_time": 2,
+      "history_times": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "input_bits": 3,
+      "per_transition_information_bits": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_model": "deterministic_two_tape_read_only_input_work_copier",
+      "work_contents_reconstructed_from_transcript": true
+    },
+    {
+      "conditional_entropy_bits": [
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "full_input_recovered_by_transcript_at_time": 3,
+      "history_times": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "input_bits": 4,
+      "per_transition_information_bits": [
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_model": "deterministic_two_tape_read_only_input_work_copier",
+      "work_contents_reconstructed_from_transcript": true
+    },
+    {
+      "conditional_entropy_bits": [
+        4,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "full_input_recovered_by_transcript_at_time": 4,
+      "history_times": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "input_bits": 5,
+      "per_transition_information_bits": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_model": "deterministic_two_tape_read_only_input_work_copier",
+      "work_contents_reconstructed_from_transcript": true
+    },
+    {
+      "conditional_entropy_bits": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "full_input_recovered_by_transcript_at_time": 5,
+      "history_times": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "input_bits": 6,
+      "per_transition_information_bits": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_model": "deterministic_two_tape_read_only_input_work_copier",
+      "work_contents_reconstructed_from_transcript": true
+    },
+    {
+      "conditional_entropy_bits": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "full_input_recovered_by_transcript_at_time": 6,
+      "history_times": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "input_bits": 7,
+      "per_transition_information_bits": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_model": "deterministic_two_tape_read_only_input_work_copier",
+      "work_contents_reconstructed_from_transcript": true
+    },
+    {
+      "conditional_entropy_bits": [
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "full_input_recovered_by_transcript_at_time": 7,
+      "history_times": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "input_bits": 8,
+      "per_transition_information_bits": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_model": "deterministic_two_tape_read_only_input_work_copier",
+      "work_contents_reconstructed_from_transcript": true
+    },
+    {
+      "conditional_entropy_bits": [
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "full_input_recovered_by_transcript_at_time": 8,
+      "history_times": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "input_bits": 9,
+      "per_transition_information_bits": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_model": "deterministic_two_tape_read_only_input_work_copier",
+      "work_contents_reconstructed_from_transcript": true
+    },
+    {
+      "conditional_entropy_bits": [
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "full_input_recovered_by_transcript_at_time": 9,
+      "history_times": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "input_bits": 10,
+      "per_transition_information_bits": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_model": "deterministic_two_tape_read_only_input_work_copier",
+      "work_contents_reconstructed_from_transcript": true
+    }
+  ],
+  "derived_theorem_verification": "PAPER_PROOF_NOT_FORMALIZED",
+  "family_results": [
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 1,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 1,
+      "encoded_instances": 2,
+      "m": 1,
+      "matching_worst_case_scan_queries": 1,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 1.0,
+      "uniform_mean_scan_queries_denominator": 1,
+      "uniform_mean_scan_queries_numerator": 1,
+      "unsat_instances": 1
+    },
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 2,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 2,
+      "encoded_instances": 4,
+      "m": 2,
+      "matching_worst_case_scan_queries": 2,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 0.8112781244591328,
+      "uniform_mean_scan_queries_denominator": 2,
+      "uniform_mean_scan_queries_numerator": 3,
+      "unsat_instances": 3
+    },
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 3,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 3,
+      "encoded_instances": 8,
+      "m": 3,
+      "matching_worst_case_scan_queries": 3,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 0.5435644431995964,
+      "uniform_mean_scan_queries_denominator": 4,
+      "uniform_mean_scan_queries_numerator": 7,
+      "unsat_instances": 7
+    },
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 4,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 4,
+      "encoded_instances": 16,
+      "m": 4,
+      "matching_worst_case_scan_queries": 4,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 0.3372900666170139,
+      "uniform_mean_scan_queries_denominator": 8,
+      "uniform_mean_scan_queries_numerator": 15,
+      "unsat_instances": 15
+    },
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 5,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 5,
+      "encoded_instances": 32,
+      "m": 5,
+      "matching_worst_case_scan_queries": 5,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 0.20062232431271465,
+      "uniform_mean_scan_queries_denominator": 16,
+      "uniform_mean_scan_queries_numerator": 31,
+      "unsat_instances": 31
+    },
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 6,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 6,
+      "encoded_instances": 64,
+      "m": 6,
+      "matching_worst_case_scan_queries": 6,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 0.11611507530476972,
+      "uniform_mean_scan_queries_denominator": 32,
+      "uniform_mean_scan_queries_numerator": 63,
+      "unsat_instances": 63
+    },
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 7,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 7,
+      "encoded_instances": 128,
+      "m": 7,
+      "matching_worst_case_scan_queries": 7,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 0.06591441234324169,
+      "uniform_mean_scan_queries_denominator": 64,
+      "uniform_mean_scan_queries_numerator": 127,
+      "unsat_instances": 127
+    },
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 8,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 8,
+      "encoded_instances": 256,
+      "m": 8,
+      "matching_worst_case_scan_queries": 8,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 0.03687450625387198,
+      "uniform_mean_scan_queries_denominator": 128,
+      "uniform_mean_scan_queries_numerator": 255,
+      "unsat_instances": 255
+    },
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 9,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 9,
+      "encoded_instances": 512,
+      "m": 9,
+      "matching_worst_case_scan_queries": 9,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 0.020393135236084953,
+      "uniform_mean_scan_queries_denominator": 256,
+      "uniform_mean_scan_queries_numerator": 511,
+      "unsat_instances": 511
+    },
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 10,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 10,
+      "encoded_instances": 1024,
+      "m": 10,
+      "matching_worst_case_scan_queries": 10,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 0.011173818721219527,
+      "uniform_mean_scan_queries_denominator": 512,
+      "uniform_mean_scan_queries_numerator": 1023,
+      "unsat_instances": 1023
+    },
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 11,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 11,
+      "encoded_instances": 2048,
+      "m": 11,
+      "matching_worst_case_scan_queries": 11,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 0.006075362677284398,
+      "uniform_mean_scan_queries_denominator": 1024,
+      "uniform_mean_scan_queries_numerator": 2047,
+      "unsat_instances": 2047
+    },
+    {
+      "all_positive_is_sat": true,
+      "all_positive_sensitivity": 12,
+      "bound_scope": "m_input_sign_bits_one_propositional_variable_1CNF_not_general_SAT_time",
+      "deterministic_query_lower_bound": 12,
+      "encoded_instances": 4096,
+      "m": 12,
+      "matching_worst_case_scan_queries": 12,
+      "sat_instances": 1,
+      "sat_output_entropy_bits_approx": 0.0032818649698048933,
+      "uniform_mean_scan_queries_denominator": 2048,
+      "uniform_mean_scan_queries_numerator": 4095,
+      "unsat_instances": 4095
+    }
+  ],
+  "family_sizes": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "gpt6_baseline_executed": false,
+  "gpt6_urf_assisted_executed": false,
+  "python_version": "3.13.5",
+  "repository_mutation": "NONE",
+  "schema": "urf-ai.sat-query-boundary/v1",
+  "source_bytes": 281101,
+  "source_sha256": "34096bfa667267624b5b6ad3b76ccb7b0d9eca8e90f129f85ad4b8b9a7eabc30",
+  "status": "COMPUTATION_PASS_BOUNDED_NOT_LEAN_OR_GPT6",
+  "total_cnf_inputs_enumerated": 8190,
+  "unrestricted_SAT_lower_bound": "OPEN"
+}
