@@ -5,6 +5,7 @@ A passing test means the listed defects are reproducible, NOT production readine
 import hashlib
 import importlib.util
 import itertools
+import json
 import math
 import pathlib
 import unittest
@@ -59,9 +60,26 @@ class Audit(unittest.TestCase):
         ctrl[0]["eta"]=1e-4
         ctrl[1]["eta"]=-1e-4
         self.assertEqual(self.classify(data,U,T)["status"],"SINGLE_LAB_CANDIDATE_ONLY")
-    def test_physically_unauthorized(self):
-        # No synthetic test is allowed to imply authorization or a measurement.
-        self.assertEqual("SYNTHETIC_FIXTURE","SYNTHETIC_FIXTURE")
+    def test_frozen_protocol_prohibits_physical_execution(self):
+        path=ROOT.parents[1]/"artifacts/external_validation/carbon_gravity_stage0_internal_execution_package_2026_07_12.json"
+        raw=path.read_bytes()
+        source_blob=hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\0"+raw).hexdigest()
+        self.assertEqual(source_blob,"e55249b1db78788c04ed19c225253ecfcba7d028")
+        package=json.loads(raw)
+        self.assertEqual(package["execution_state"],"NOT_EXECUTED")
+        self.assertIs(package["run_start_rule"]["currently_authorized"],False)
+        self.assertIs(package["analysis_lock"]["measurement_dataset_present"],False)
+        self.assertIsNone(package["blind_protocol"]["code_to_configuration_mapping"])
+        self.assertEqual(package["blind_protocol"]["block_count"],16)
+        self.assertEqual(package["blind_protocol"]["minimum_accepted_hours_per_block"],6)
+        seq=package["blind_protocol"]["block_sequence"]
+        self.assertEqual(len(seq),16)
+        self.assertEqual([seq.count("B"+str(i)) for i in range(1,5)],[4,4,4,4])
+        for key in ("G1_capsule_fabrication_and_inspection","G2_dummy_pendulum_magnetic_calibration","G3_coupon_manufacture_and_assays","G4_analysis_and_blind_key_lock"):
+            self.assertEqual(package["gates"][key],"PENDING")
+        self.assertEqual(package["gates"]["G5_sixteen_block_run"],"BLOCKED")
+        self.assertEqual(hashlib.sha256(package["analysis_lock"]["canonical_code"].encode()).hexdigest(),package["analysis_lock"]["algorithm_sha256"])
+
 
 if __name__=="__main__":
     unittest.main(verbosity=2)
