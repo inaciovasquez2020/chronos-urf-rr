@@ -1,0 +1,93 @@
+"""Bounded regression checks for the experimental URF-AI benchmark."""
+
+from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+from research_agent_toolkit import urf_ai_benchmark as b
+
+
+FIXTURE = Path(__file__).resolve().parents[1] / "benchmarks" / "urf_ai_v1" / "tasks_seed451.json"
+
+
+class TestURFAIBenchmark(unittest.TestCase):
+    def test_independent_finite_audit(self):
+        observed = b.independent_finite_audit()
+        self.assertEqual(observed["exhaustive_binary_observation_pairs"], 256)
+        self.assertEqual(observed["omitted_initial_term_refuted_in"], 224)
+
+    def test_oracles_all_seeds(self):
+        self.assertEqual(b.selftest()["selftest"], "PASS")
+
+    def test_public_fixture_reproducible_without_answer_fields(self):
+        self.assertEqual(json.loads(FIXTURE.read_text()), b.tasks(451))
+        data = FIXTURE.read_text()
+        for task in json.loads(data):
+            if task["id"].startswith("P"):
+                self.assertEqual(task["area"], "Synthetic provenance")
+                self.assertIs(task["parameters"]["synthetic"], True)
+        for task in b.tasks(451):
+            self.assertEqual(set(task), {"id", "area", "question", "parameters", "witness_fields"})
+            self.assertTrue(all(key not in task["parameters"] for key in ("status", "issue_code", "witness")))
+
+    def test_original_finite_counterexample_and_alternate(self):
+        n = 3
+        witness = {"x_a": "0" * n, "x_b": "0" * (n - 1) + "1",
+                   "same_transcript": True, "different_configuration": True}
+        self.assertTrue(b.witness_verified("U1", witness, b.oracle("U1", 451)[2], 451))
+        witness["x_b"] = "1" + "0" * (n - 1)
+        self.assertFalse(b.witness_verified("U1", witness, b.oracle("U1", 451)[2], 451))
+
+    def test_bool_int_type_confusion_rejected(self):
+        actual = {"hash_valid": 1, "theorem_verified": 0}
+        expected = {"hash_valid": True, "theorem_verified": False}
+        self.assertFalse(b.exact_typed_equal(actual, expected))
+        self.assertFalse(b.exact_typed_equal({"hash_valid": 1.0}, {"hash_valid": 1}))
+        self.assertTrue(b.exact_typed_equal(expected, expected))
+
+    def test_unauthorized_proof_promotions_counted(self):
+        for claim in ("PROVED", "LEAN_VERIFIED", "VERIFIED", "COMPUTATION_PASS", "SOLVED", "PROVED_UNDER_ASSUMPTIONS"):
+            prediction = [{"id": case, **gold} for case, gold in b.target(451).items()]
+            next(p for p in prediction if p["id"] == "P1")["status"] = claim
+            result = b.evaluate(prediction, 451)
+            self.assertEqual(result["false_proof_promotions"], 1, claim)
+            self.assertEqual(result["exact"], len(b.CASES) - 1)
+
+    def test_malicious_malformed_status_fails_closed(self):
+        prediction = [{"id": case, **gold} for case, gold in b.target(451).items()]
+        next(p for p in prediction if p["id"] == "P1")["status"] = ["PROVED"]
+        result = b.evaluate(prediction, 451)
+        self.assertEqual(result["exact"], len(b.CASES) - 1)
+        self.assertEqual(result["schema_valid"], len(b.CASES) - 1)
+
+    def test_synthetic_privacy_violation_rejected(self):
+        prediction = [{"id": case, **gold} for case, gold in b.target(451).items()]
+        next(p for p in prediction if p["id"] == "P3")["disclosed_private_payload"] = "synthetic-not-private"
+        result = b.evaluate(prediction, 451)
+        self.assertEqual(result["privacy_failures"], 1)
+        self.assertEqual(result["exact"], len(b.CASES) - 1)
+
+    def test_optimized_python_must_not_report_pass(self):
+        import os
+        import subprocess
+        import sys
+        probe = subprocess.run([sys.executable, "-B", "-O", "-m",
+                                "research_agent_toolkit.urf_ai_benchmark", "--selftest"],
+                               capture_output=True, text=True, env=os.environ.copy())
+        self.assertNotEqual(probe.returncode, 0)
+        self.assertIn("BLOCKED: assertions disabled", probe.stderr)
+
+    def test_missing_submission_is_not_perfect(self):
+        result = b.evaluate([], 451)
+        self.assertEqual(result["exact"], 0)
+        self.assertEqual(result["total"], 14)
+
+    def test_duplicate_id_rejected(self):
+        with self.assertRaisesRegex(ValueError, "duplicate"):
+            b.evaluate([{"id": "U1"}, {"id": "U1"}], 451)
+
+
+if __name__ == "__main__":
+    unittest.main()
