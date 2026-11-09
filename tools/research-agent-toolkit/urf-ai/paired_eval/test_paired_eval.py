@@ -1,5 +1,5 @@
 from __future__ import annotations
-import copy, io, json, random, unittest
+import copy, io, json, random, tempfile, unittest
 from unittest.mock import patch
 from pathlib import Path
 from math_eval import make_suite, reference, grade, FAMILIES, _distances
@@ -21,6 +21,30 @@ class OracleTests(unittest.TestCase):
         for c in SUITE['cases']:
             r=reference(c);r['global_theorem_proved']=True
             self.assertFalse(grade(c,r)['verified'])
+    def test_exact_nested_certificate_fields_for_every_family_and_verdict(self):
+        covered=set()
+        for c in SUITE['cases']:
+            r=reference(c)
+            self.assertTrue(grade(c,r)['verified'],c['id'])
+            covered.add((c['family'],r['verdict']))
+            slot='counterexample' if r['verdict']=='FALSE' else 'certificate'
+            # A valid finite witness cannot authorize an unrelated assertion.
+            forged=copy.deepcopy(r)
+            forged[slot]['unrestricted_poincare_proved']=True
+            outcome=grade(c,forged)
+            self.assertFalse(outcome['verified'],c['id'])
+            self.assertTrue(outcome['unsupported_claim'],c['id'])
+            self.assertFalse(outcome['factual_false'],c['id'])
+            missing=copy.deepcopy(r)
+            missing[slot].pop(next(iter(missing[slot])))
+            self.assertFalse(grade(c,missing)['verified'],c['id'])
+            wrong_type=copy.deepcopy(r)
+            wrong_type[slot]=['invalid']
+            self.assertFalse(grade(c,wrong_type)['verified'],c['id'])
+        self.assertEqual(covered,
+                         {(family,verdict) for family,options in
+                          __import__('math_eval').CERTIFICATE_FIELDS.items()
+                          for verdict in options})
     def test_20_wrong_conclusions_rejected(self):
         opposite={'TRUE':'FALSE','FALSE':'TRUE','SAT':'UNSAT','UNSAT':'SAT','REACHABLE':'UNREACHABLE','UNREACHABLE':'REACHABLE'}
         for c in SUITE['cases']:
@@ -94,6 +118,70 @@ class OracleTests(unittest.TestCase):
         summary=pair.summarize([plain,urf],SUITE)
         self.assertEqual(summary['arms']['plain']['verified_solutions'],1)
         self.assertEqual(summary['arms']['urf']['second_round_recoveries'],1)
+    def test_plain_feedback_and_urf_have_equal_maximum_retry_budget(self):
+        c=SUITE['cases'][0]
+        class A: max_output_tokens=900;effort='medium';timeout_seconds=3
+        calls=[]
+        def mock_request(model,instructions,input_text,key,*rest):
+            calls.append((instructions,input_text))
+            ans={'verdict':'UNKNOWN'} if 'FIRST ATTEMPT' not in input_text else reference(c)
+            return {'status':'completed','effective_model':model,
+                    'usage':{'input_tokens':5,'output_tokens':5,'total_tokens':10},
+                    'elapsed_seconds':.01,'output_text':json.dumps(ans)}
+        with patch.object(pair,'request_model',side_effect=mock_request):
+            plain=pair.case_run(c,'plain','mock-model','mock-key',A)
+            control=pair.case_run(c,'plain_feedback','mock-model','mock-key',A)
+            assisted=pair.case_run(c,'urf','mock-model','mock-key',A)
+        self.assertEqual([len(x['rounds']) for x in (plain,control,assisted)],[1,2,2])
+        self.assertEqual(calls[1][0],pair.BASE_INSTRUCTIONS)
+        self.assertEqual(calls[3][0],pair.URF_INSTRUCTIONS)
+        self.assertTrue(control['final_verified'] and assisted['final_verified'])
+    def test_failed_paid_retry_is_accounted_and_receipt_is_preserved(self):
+        c=SUITE['cases'][0]
+        class A:
+            execute_paid=True;model='mock-model';max_output_tokens=900
+            effort='medium';timeout_seconds=3;max_cases=1;max_calls=5
+            input_price=None;output_price=None
+        count=[0]
+        def mock_request(model,instructions,input_text,key,*rest):
+            count[0]+=1
+            if count[0]==3:raise RuntimeError('synthetic retry failure')
+            ans=reference(c) if count[0]==1 else {'verdict':'UNKNOWN'}
+            return {'status':'completed','effective_model':model,
+                    'usage':{'input_tokens':7,'output_tokens':3,'total_tokens':10},
+                    'elapsed_seconds':.01,'output_text':json.dumps(ans)}
+        with tempfile.TemporaryDirectory() as td:
+            A.output=str(Path(td)/'unpublished.json')
+            with patch.dict('os.environ',{'OPENAI_API_KEY':'mock-only'}),patch.object(pair,'request_model',side_effect=mock_request):
+                result=pair.run_api({**SUITE,'cases':[c]},A)
+            self.assertEqual(result['status'],'INCOMPLETE_MODEL_TRIALS')
+            self.assertEqual(result['api_requests_observed'],3)
+            self.assertEqual(result['api_completed_responses'],2)
+            self.assertEqual(result['api_failed_attempts'],1)
+            self.assertEqual(result['observed_usage_including_partial_cases']['input_tokens'],14)
+            self.assertFalse(result['billing_reconciled'])
+            events=[json.loads(line) for line in Path(result['attempt_log']).read_text().splitlines()]
+            self.assertEqual([e['kind'] for e in events],
+                             ['START','COMPLETE','START','COMPLETE','START','ERROR'])
+    def test_completed_trial_never_claims_provider_billing_reconciled(self):
+        c=SUITE['cases'][0]
+        class A:
+            execute_paid=True;model='mock-model';max_output_tokens=900
+            effort='medium';timeout_seconds=3;max_cases=1;max_calls=5
+            input_price=None;output_price=None
+        def mock_request(model,instructions,input_text,key,*rest):
+            return {'status':'completed','effective_model':model,
+                    'usage':{'input_tokens':7,'output_tokens':3,'total_tokens':10},
+                    'elapsed_seconds':.01,'output_text':json.dumps(reference(c))}
+        with tempfile.TemporaryDirectory() as td:
+            A.output=str(Path(td)/'unpublished.json')
+            with patch.dict('os.environ',{'OPENAI_API_KEY':'mock-only'}),patch.object(pair,'request_model',side_effect=mock_request):
+                result=pair.run_api({**SUITE,'cases':[c]},A)
+            self.assertEqual(result['status'],'MODEL_TRIALS_RECORDED')
+            self.assertEqual(result['api_requests_observed'],3)
+            self.assertEqual(result['api_failed_attempts'],0)
+            self.assertFalse(result['billing_reconciled'])
+            self.assertEqual(result['billing_reconciliation_status'],'NOT_RECONCILED_WITH_PROVIDER')
     def test_malformed_response_does_not_pass(self):
         c=SUITE['cases'][0]
         self.assertFalse(pair.safe_grade(c,{'status':'completed','output_text':'```json\n{"verdict":"TRUE"}\n```'})['grade']['verified'])

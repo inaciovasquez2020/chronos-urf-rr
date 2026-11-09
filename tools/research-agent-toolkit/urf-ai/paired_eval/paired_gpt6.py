@@ -10,6 +10,10 @@ from pathlib import Path
 from math_eval import make_suite, reference, grade, sha, FAMILIES
 
 API='https://api.openai.com/v1/responses'
+# The no-retry arm measures the value of external feedback. The two retry
+# arms have identical request/retry budgets and differ only in instructions.
+ARM_ORDER=('plain','plain_feedback','urf')
+
 BASE_INSTRUCTIONS=(
     'You are a mathematical problem-solving assistant. Solve the precise finite problem '
     'presented, with the requested JSON certificate. Do not invent a witness. If uncertain, '
@@ -74,17 +78,30 @@ def safe_grade(case, api_response):
         v=grade(case,parse_generated(api_response.get('output_text','')))
     return {'grade':v,'verifier_seconds':round(time.perf_counter()-t,6)}
 
-def case_run(case,arm,model,key,args):
-    inputs=prompt(case);instruction=BASE_INSTRUCTIONS if arm=='plain' else URF_INSTRUCTIONS
-    first=request_model(model,instruction,inputs,key,args.max_output_tokens,args.effort,args.timeout_seconds)
+def case_run(case,arm,model,key,args,journal=None):
+    if arm not in ARM_ORDER:raise ValueError('unknown experimental arm')
+    inputs=prompt(case);instruction=URF_INSTRUCTIONS if arm=='urf' else BASE_INSTRUCTIONS
+    def invoke(input_text):
+        # An attempted call is recorded BEFORE sending it. Every completed
+        # response is recorded BEFORE grading, even if a later retry fails.
+        meta={'problem_id':case['id'],'arm':arm}
+        if journal is not None:journal('START',meta)
+        try:
+            result=request_model(model,instruction,input_text,key,args.max_output_tokens,args.effort,args.timeout_seconds)
+        except Exception as exc:
+            if journal is not None:journal('ERROR',{**meta,'error_type':type(exc).__name__})
+            raise
+        if journal is not None:journal('COMPLETE',{**meta,'response':result})
+        return result
+    first=invoke(inputs)
     first_v=safe_grade(case,first)
     rounds=[{**first,**first_v}]
-    if arm=='urf' and not first_v['grade']['verified']:
+    if arm in ('plain_feedback','urf') and not first_v['grade']['verified']:
         repair_input=(inputs+'\n\nFIRST ATTEMPT (not necessarily correct):\n'+first['output_text'][:12000]+
             '\n\nINDEPENDENT VERIFIER RESULT: REJECTED. The certificate or conclusion was not validated. '
             'This status does not reveal the correct answer. Retry ONCE with a corrected, checkable '
             'certificate, or reply {"verdict":"UNKNOWN"}.')
-        repaired=request_model(model,instruction,repair_input,key,args.max_output_tokens,args.effort,args.timeout_seconds)
+        repaired=invoke(repair_input)
         rounds.append({**repaired,**safe_grade(case,repaired)})
     return {'problem_id':case['id'],'family':case['family'],'arm':arm,'rounds':rounds,
             'final_verified':rounds[-1]['grade']['verified'],
@@ -95,7 +112,7 @@ def case_run(case,arm,model,key,args):
 def summarize(records,suite):
     ordered={case['id']:case for case in suite['cases']}
     out={}
-    for arm in ('plain','urf'):
+    for arm in ARM_ORDER:
         rows=[r for r in records if r.get('arm')==arm]
         successes=[r for r in rows if r.get('final_verified')]
         timings=[r['time_to_first_verified_seconds'] for r in successes]
@@ -127,25 +144,31 @@ def summarize(records,suite):
             'first_round_verified':sum(bool(r['rounds'][0]['grade']['verified']) for r in rows),
             'second_round_recoveries':sum(len(r['rounds'])>1 and r['rounds'][-1]['grade']['verified'] for r in rows)
         }
-    both_complete=all(out[arm]['problems_completed']==len(suite['cases']) for arm in out)
+    all_complete=all(out[arm]['problems_completed']==len(suite['cases']) for arm in ARM_ORDER)
+    feedback_complete=all(out[arm]['problems_completed']==len(suite['cases']) for arm in ('plain_feedback','urf'))
     paired={
-        'paired_case_count':len(set(r['problem_id'] for r in records if r.get('arm')=='plain') &
+        'paired_case_count':len(set(r['problem_id'] for r in records if r.get('arm')=='plain_feedback') &
                                 set(r['problem_id'] for r in records if r.get('arm')=='urf')),
-        'urf_minus_plain_verified_solutions':out['urf']['verified_solutions']-out['plain']['verified_solutions'] if both_complete else None,
-        'urf_minus_plain_final_unsupported_claims':out['urf']['unsupported_conclusive_claims']-out['plain']['unsupported_conclusive_claims'] if both_complete else None,
-        'urf_minus_plain_factually_false_conclusions':out['urf']['factually_false_conclusions']-out['plain']['factually_false_conclusions'] if both_complete else None,
-        'urf_minus_plain_verified_counterexamples':out['urf']['counterexamples_verified']-out['plain']['counterexamples_verified'] if both_complete else None,
+        'urf_minus_plain_feedback_verified_solutions':out['urf']['verified_solutions']-out['plain_feedback']['verified_solutions'] if feedback_complete else None,
+        'urf_minus_plain_feedback_unsupported_claims':out['urf']['unsupported_conclusive_claims']-out['plain_feedback']['unsupported_conclusive_claims'] if feedback_complete else None,
+        'urf_minus_plain_feedback_false_conclusions':out['urf']['factually_false_conclusions']-out['plain_feedback']['factually_false_conclusions'] if feedback_complete else None,
+        'plain_feedback_minus_plain_verified_solutions':out['plain_feedback']['verified_solutions']-out['plain']['verified_solutions'] if all_complete else None,
+        'urf_minus_plain_verified_solutions':out['urf']['verified_solutions']-out['plain']['verified_solutions'] if all_complete else None,
+        'urf_minus_plain_final_unsupported_claims':out['urf']['unsupported_conclusive_claims']-out['plain']['unsupported_conclusive_claims'] if all_complete else None,
+        'urf_minus_plain_factually_false_conclusions':out['urf']['factually_false_conclusions']-out['plain']['factually_false_conclusions'] if all_complete else None,
+        'urf_minus_plain_verified_counterexamples':out['urf']['counterexamples_verified']-out['plain']['counterexamples_verified'] if all_complete else None,
     }
-    return {'status':'MODEL_TRIALS_RECORDED' if both_complete else 'INCOMPLETE_MODEL_TRIALS',
+    return {'status':'MODEL_TRIALS_RECORDED' if all_complete else 'INCOMPLETE_MODEL_TRIALS',
             'suite_sha256':suite['suite_sha256'],'cases_in_suite':len(suite['cases']),
             'arms':out,'paired_comparison':paired,
-            'experimental_limitation':'Two-arm systems comparison: URF condition includes verifier feedback and up to one repair. Differences cannot isolate URF prompting from feedback and extra model calls.'}
+            'experimental_limitation':'Three-arm pilot: compare plain_feedback versus urf for instruction effects at the same retry budget; plain versus plain_feedback isolates feedback opportunities. This remains a small, held-out finite benchmark.'}
 
 def atomic_new(path,obj):
     path=Path(path)
     if path.exists():raise FileExistsError('refuse to overwrite existing result: '+str(path))
     if not path.parent.exists():raise FileNotFoundError('output parent directory absent: '+str(path.parent))
-    with path.open('x',encoding='utf-8') as f:json.dump(obj,f,indent=2,sort_keys=True);f.write('\n')
+    fd=os.open(path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+    with os.fdopen(fd,'w',encoding='utf-8') as f:json.dump(obj,f,indent=2,sort_keys=True);f.write('\n')
 
 def load_suite(path):
     v=json.loads(Path(path).read_text())
@@ -188,20 +211,36 @@ def run_api(suite,args):
     cases=suite['cases'][:args.max_cases]
     if args.max_cases<len(suite['cases']):
         suite={**suite,'cases':cases,'suite_sha256':sha(cases)}
-    rng=random.Random(int(suite['suite_sha256'][:16],16))
     plan=[(case,arm) for i,case in enumerate(cases)
-          for arm in (('plain','urf') if i%2==0 else ('urf','plain'))]
+          for arm in ARM_ORDER[i%3:]+ARM_ORDER[:i%3]]
     records=[];requested=0;maxcalls=args.max_calls
     if Path(args.output).exists():raise FileExistsError("refuse paid calls with existing output path: "+args.output)
     if not Path(args.output).parent.exists():raise FileNotFoundError("output parent missing")
-    start=time.time();expected_model=None
-    for case,arm in plan:
-        if requested+(2 if arm=="urf" else 1)>maxcalls:
+    log_path=Path(args.output+'.attempts.jsonl')
+    if log_path.exists():raise FileExistsError('refuse to overwrite existing attempt log: '+str(log_path))
+    start=time.time();expected_model=None;responses_seen=0;incomplete_calls=0
+    observed_usage={'input_tokens':0,'output_tokens':0,'total_tokens':0}
+    # Exclusive creation; each event is flushed and fsynced before another API call.
+    with os.fdopen(os.open(log_path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600),
+                   'w',encoding='utf-8') as events:
+      def journal(kind,payload):
+        nonlocal requested,responses_seen,incomplete_calls
+        if kind=='START':
+            if requested>=maxcalls:raise RuntimeError('BUDGET_EXHAUSTED_BEFORE_REQUEST')
+            requested+=1
+        elif kind=='COMPLETE':
+            responses_seen+=1
+            for key in observed_usage:observed_usage[key]+=int(payload['response'].get('usage',{}).get(key,0))
+        elif kind=='ERROR':incomplete_calls+=1
+        events.write(json.dumps({'seq':requested,'kind':kind,'time_unix':time.time(),
+                                 'suite_sha256':suite['suite_sha256'],'data':payload},sort_keys=True)+'\n')
+        events.flush();os.fsync(events.fileno())
+      for case,arm in plan:
+        if requested+(2 if arm!='plain' else 1)>maxcalls:
             print('BUDGET_STOP: max calls guard conservatively hit',file=sys.stderr);break
-        try:res=case_run(case,arm,args.model,key,args)
+        try:res=case_run(case,arm,args.model,key,args,journal=journal)
         except Exception as exc:
             print('INCOMPLETE_MODEL_CALL: '+repr(exc),file=sys.stderr);break
-        requested+=len(res['rounds'])
         for step in res['rounds']:
             actual=step.get('effective_model')
             if actual is not None:
@@ -213,12 +252,21 @@ def run_api(suite,args):
             records.append(res)
             continue
         break
+    log_sha256=hashlib.sha256(log_path.read_bytes()).hexdigest()
     report={'schema':'urf-ai-paired-gpt6/v1','requested_model':args.model,'effective_model':expected_model,
             'effort':args.effort,'max_output_tokens_per_call':args.max_output_tokens,
             'time_utc_epoch_start':start,'time_utc_epoch_end':time.time(),
             'suite_sha256':suite['suite_sha256'],'records':records,
             'summary':summarize(records,suite),'api_requests_observed':requested,
-            'status':'MODEL_TRIALS_RECORDED' if len(records)==2*len(cases) else 'INCOMPLETE_MODEL_TRIALS'}
+            'api_attempts_recorded':requested,'api_completed_responses':responses_seen,
+            'api_failed_attempts':incomplete_calls,'observed_usage_including_partial_cases':observed_usage,
+            'attempt_log':str(log_path),'attempt_log_sha256':log_sha256,
+            # Only provider billing records can reconcile charges; a completed
+            # response gives an observed usage record, not an invoice.
+            'billing_reconciled':False,
+            'billing_reconciliation_status':'NOT_RECONCILED_WITH_PROVIDER',
+            'usage_scope':'Observed token usage includes only completed HTTP responses; failed requests can incur unobserved charges',
+            'status':'MODEL_TRIALS_RECORDED' if len(records)==3*len(cases) else 'INCOMPLETE_MODEL_TRIALS'}
     if args.input_price is not None and args.output_price is not None:
         for a,v in report['summary']['arms'].items():
             v['estimated_api_usd']=round((v['input_tokens']*args.input_price+v['output_tokens']*args.output_price)/1e6,6)
@@ -234,7 +282,7 @@ def main():
     a=sub.add_parser('run',help='invoke two independent GPT-6 API conditions ONLY with explicit authorization');a.add_argument('--suite',required=True);a.add_argument('--output',required=True)
     a.add_argument('--model',required=True);a.add_argument('--execute-paid',action='store_true')
     a.add_argument('--effort',choices=['low','medium','high'],default='medium');a.add_argument('--max-output-tokens',type=int,default=1800)
-    a.add_argument('--max-cases',type=int,default=20);a.add_argument('--max-calls',type=int,default=60);a.add_argument('--timeout-seconds',type=int,default=90)
+    a.add_argument('--max-cases',type=int,default=20);a.add_argument('--max-calls',type=int,default=100);a.add_argument('--timeout-seconds',type=int,default=90)
     a.add_argument('--input-price',type=float);a.add_argument('--output-price',type=float)
     a=sub.add_parser('score',help='recompute grades of a previously recorded transcript, no model calls');a.add_argument('--suite',required=True);a.add_argument('--results',required=True)
     args=p.parse_args()
@@ -261,7 +309,7 @@ def main():
                 corrected.append(r)
             out=summarize(corrected,suite)
         else:
-            if args.max_output_tokens<64 or args.max_output_tokens>3000 or args.max_cases<1 or args.max_cases>len(suite['cases']) or args.max_calls<2 or args.max_calls>3*len(suite['cases']) or args.timeout_seconds<1 or args.timeout_seconds>120:
+            if args.max_output_tokens<64 or args.max_output_tokens>3000 or args.max_cases<1 or args.max_cases>len(suite['cases']) or args.max_calls<3 or args.max_calls>5*len(suite['cases']) or args.timeout_seconds<1 or args.timeout_seconds>120:
                 raise SystemExit('invalid bounded resource arguments')
             out=run_api(suite,args)['summary']
     print(json.dumps(out,indent=2,sort_keys=True))

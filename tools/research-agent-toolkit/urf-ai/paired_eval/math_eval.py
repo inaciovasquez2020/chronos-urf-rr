@@ -224,6 +224,32 @@ def expected_verdict(case):
     if fam=='shortest_path':return 'REACHABLE' if _distances(d['n'],d['edges'],0)[0][-1]<math.inf else 'UNREACHABLE'
     raise ValueError('unknown family')
 
+# Only the declared finite certificate fields are authorized.  Mathematical
+# verification of a subset of fields is not permission to assert unrelated
+# theorems in the same certificate envelope.
+CERTIFICATE_FIELDS = {
+    'graph_threshold': {
+        'TRUE': ('certificate', frozenset({'method','min_component','two_component_lower_bound'})),
+        'FALSE': ('counterexample', frozenset({'edges'}))},
+    'gf2_system': {
+        'SAT': ('certificate', frozenset({'x'})),
+        'UNSAT': ('certificate', frozenset({'y'}))},
+    'cnf_sat': {
+        'SAT': ('certificate', frozenset({'x'})),
+        'UNSAT': ('certificate', frozenset({'falsifying_clause_per_assignment'}))},
+    'modular_identity': {
+        'TRUE': ('certificate', frozenset({'method','count'})),
+        'FALSE': ('counterexample', frozenset({'x'}))},
+    'shortest_path': {
+        'REACHABLE': ('certificate', frozenset({'distance','path','potentials'})),
+        'UNREACHABLE': ('certificate', frozenset({'closed_set'}))},
+}
+
+def certificate_schema_valid(case,response):
+    spec = CERTIFICATE_FIELDS.get(case['family'],{}).get(response.get('verdict'))
+    return (spec is not None and isinstance(response.get(spec[0]),dict)
+            and set(response[spec[0]]) == spec[1])
+
 def grade(case,response):
     start_v=('TRUE','SAT','REACHABLE')
     neg_v=('FALSE','UNSAT','UNREACHABLE')
@@ -237,6 +263,10 @@ def grade(case,response):
                 'factual_false':bool(conclusive and verdict!=expected),'counterexample_detected':False,'reason':'unexpected or missing top-level fields'}
     if verdict=='UNKNOWN':return {'verified':False,'conclusive':False,'unsupported_claim':False,'factual_false':False,'counterexample_detected':False,'reason':'abstention'}
     if not conclusive:return {'verified':False,'conclusive':False,'unsupported_claim':False,'factual_false':False,'counterexample_detected':False,'reason':'invalid verdict'}
+    if not certificate_schema_valid(case,response):
+        return {'verified':False,'conclusive':True,'unsupported_claim':True,
+                'factual_false':verdict!=expected,'counterexample_detected':False,
+                'reason':'unexpected or missing nested certificate fields'}
     try:
         ok,reason=CHECKS[case['family']](case,response)
     except (ValueError,TypeError,KeyError,IndexError,OverflowError,AttributeError) as e:
