@@ -38,6 +38,19 @@ def modified_paths(root: Path) -> set[str]:
         if r.returncode:
             raise RuntimeError("git inventory failed")
         parts.extend(p.decode("utf-8", "surrogateescape") for p in r.stdout.split(b"\0") if p)
+    # `git diff`, `git status`, and ordinary ls-files inventory may hide
+    # modified tracked files when index flags SKIP_WORKTREE or ASSUME_UNCHANGED
+    # are set. Refuse any noncanonical index entry, even if currently unchanged.
+    index = git(root, "ls-files", "-v", "-z")
+    if index.returncode:
+        raise RuntimeError("Git index flags cannot be audited")
+    for item in index.stdout.split(b"\0"):
+        if not item:
+            continue
+        if len(item) < 3 or item[1:2] != b" ":
+            raise RuntimeError("Malformed Git index flag record")
+        if item[:1] != b"H":
+            parts.append(item[2:].decode("utf-8", "surrogateescape"))
     return set(parts)
 
 def patch_paths(root: Path, patch: bytes) -> set[str]:
@@ -218,5 +231,5 @@ def run_mutation(root: str | Path, patch: bytes, closure: set[str], config: dict
            ((root/rel).read_bytes(),stat.S_IMODE((root/rel).stat().st_mode))!=applied[rel]
            for rel in paths):
         return fail("verification",3,"verifier modified the candidate patch files")
-    return MutationResult("STRUCTURAL_CANDIDATE_NOT_PROMOTED","structural-check",0,
-                          detail="authorized patch passed internal structural checks only; no theorem verifier executed")
+    return MutationResult("STRUCTURAL_CANDIDATE_NOT_PROMOTED","structural-check",4,
+                          detail="candidate staged: structural checks only; no mathematical or theorem verification")

@@ -73,10 +73,16 @@ def test_no_approval_has_no_write(repo):
     assert (r/'src/artifact.txt').read_text()=='before\n'
 
 
-def test_scoped_approved_candidate_succeeds_only_in_disposable_repo(repo):
+def test_scoped_approved_candidate_is_unverified_not_success(repo):
+    from dataclasses import asdict
     r,c,p=repo
     out=call(r,c,p)
-    assert out.preserved and out.stdout=='STRUCTURAL_CANDIDATE_NOT_PROMOTED'
+    wire=asdict(out)
+    assert wire['preserved'] is False, wire
+    assert wire['returncode'] == 4 and wire['phase'] == 'STRUCTURAL_STAGED_UNVERIFIED', wire
+    assert wire['stdout'] == 'STRUCTURAL_CANDIDATE_NOT_PROMOTED', wire
+    assert 'NO mathematical/theorem verification' in wire['stderr'], wire
+    assert wire['changed_paths'] == ('src/artifact.txt',), wire
     assert (r/'src/artifact.txt').read_text()=='after\n'
 
 

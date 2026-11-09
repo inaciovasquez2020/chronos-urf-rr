@@ -1,42 +1,47 @@
-# Legacy `rat mutate`: fail-closed migration candidate (2026-11-09)
+# Research Agent Toolkit: fail-closed write-boundary migration
 
-Status: ISOLATED CANDIDATE, NOT MERGED OR DEPLOYED. Repository source baseline
-for two modified files has been checked against Git object SHAs
-`537007b8b3b700dab28d8558730fb59892e3b317` (agent_mutation.py) and
-`701c57c125b78020129e8053424bcc2afd7e5e11` (transaction.py).
+Status: **DRAFT / SECURITY REVIEW OPEN**. This note describes the proposed
+migration in PR #1338; do not treat test success as independent security
+approval or merge authorization.
 
-The original `verified_dependency_subprocess` accepted arbitrary mutation
-commands and used repository-wide `reset --hard` / `clean -fd` on failure.
-The original agent write entrypoint did not call `engine.evaluate`.
+## Contracts
 
-The candidate has three changes:
+- Legacy `rat mutate` CLI, tool-server mutation without credentials, the generic
+  `verified_mutation` callback, and `verified_dependency_subprocess` deny writes.
+- A separately trusted controller may issue an exact-request HMAC approval for
+  a disposable, initially clean Git worktree and a provenance-scoped patch.
+  The patch is subject to the original toolkit policy engine and a trusted
+  SQLite approval ledger **outside** the worktree. Consumption is atomic and
+  occurs before the attempted write; failed attempts do not return tokens.
+- All user-supplied external verifier execution is **forbidden**. The two
+  internal options are `RAT_INTERNAL_DIFF_CHECK` and
+  `RAT_INTERNAL_PYTHON_SYNTAX`. These check structural validity, not theorem
+  correctness or claims of mathematical proof.
+- Successful staging returns **nonzero code 4**, status
+  `STRUCTURAL_CANDIDATE_NOT_PROMOTED` at the guard and adapter phase
+  `STRUCTURAL_STAGED_UNVERIFIED`, with `preserved=False`. The candidate **does
+  remain modified** in the disposable worktree. No automatic commit or
+  promotion is authorized.
+- Preflight inspects staged/unstaged/untracked/ignored files **and** tracked
+  Git index flags (`git ls-files -v -z`). Noncanonical index flags, including
+  `skip-worktree` and `assume-unchanged`, cause fail-closed denial even when
+  `git status` reports clean.
+- No `git reset --hard`, `git clean -fd`, checkout, or broad deletion is used
+  for error recovery. Unauthorized side effects must be reported, not erased.
 
-1. Old `rat mutate` CLI and JSON-RPC calls are **denied by default**, because
-   neither presents an authenticated, exact-request authorization token.
-2. An explicitly trusted controller can call
-   `research_agent_toolkit.hardened_mutation.governed_patch_mutation` with:
-   `config_path`, `approval`, `authorization_key`, and `timeout_seconds`.
-   The controller, not the research agent, must issue the signed approval.
-   Its config must explicitly declare `disposable_worktree_confirmed`,
-   `explicit_write_approval`, scope allow/deny patterns, mutation and verifier
-   budgets, and exact allowed verifier argv. A real policy evaluation now
-   runs against the actual added patch source and paths.
-3. `verified_dependency_subprocess` no longer executes mutation commands.
-   The separate audited URF-AI guard performs exact-file restoration within an
-   **expendable** Git worktree, does not run broad reset/clean, and reports
-   preserved unauthorized file residue as an INCOMPLETE result.
+## Remaining trust boundaries
 
-This deliberately breaks historical tests asserting that unauthenticated
-legacy CLI/server writes succeed. Those tests require **migration to denial
-assertions**, plus new signed-approval tests; do not weaken them or introduce
-implicit approvals to make tests green. The original unmodified 16-test suite
-has NOT BEEN EXECUTED in this isolated research container. Do not merge until
-it is run and every intentional contract change is accounted for, and until
-proper sandboxing or trusted verifier isolation is reviewed.
+A SQLite transaction does **not** prevent privileged ledger replacement or
+rollback. The signing key and ledger storage must be protected under a
+genuinely trusted principal. No operating-system sandbox or safety guarantee
+for arbitrary Python callbacks, untrusted verifiers, or external command
+execution is supplied. Thus automated write execution and merge require a
+separate independent security review and explicit authorization.
 
-The guard does not sandbox verifier processes: an allowlisted subprocess can
-read or write outside the disposable worktree, and its side effects are not
-independently contained by this implementation. No safety claim for arbitrary
-untrusted executable programs follows.
+## Regression gates
 
-No code changes have been made to the Mac checkout or an existing GitHub PR.
+The dedicated workflow runs the migrated original toolkit suite, adversarial
+mutation tests, index-flag tests, URF-AI tests, and paired evaluation fixtures.
+A successful *structural* check is never a proof certificate, irrespective
+of the workflow's green status. The finite mathematics cases remain
+source-specific and should not be relabeled as Lean verification.

@@ -24,15 +24,12 @@ The baseline package uses only Python's standard library. Optional PDF extractio
 ## Core invariant
 
 ```text
-candidate change
-    -> dependency closure
-    -> scope check
-    -> policy check
-    -> budget check
-    -> exactly one mutation
-    -> verifier
-    -> pass: preserve
-       fail: revert exact mutation and terminate
+candidate change -> provenance closure -> scope/policy/budget checks
+    -> trusted signed single-use authorization (external durable ledger)
+    -> exactly one patch in disposable worktree
+    -> internal diff/syntax check ONLY (not a theorem verifier)
+    -> STRUCTURAL_STAGED_UNVERIFIED: nonzero status, no proof claim
+       OR failure / constrained exact-file recovery
 ```
 
 ## Quick start
@@ -59,10 +56,17 @@ that unconditionally applied a patch and restored clean HEAD is superseded.
 
 Only a **separately trusted approval controller** may call
 `research_agent_toolkit.hardened_mutation.governed_patch_mutation` with a
-versioned explicit policy, an exact-request scoped signed approval, a verifier
-allowlist, and an **explicitly disposable** Git worktree. Its candidate
-verification does not commit or merge research files. The normal `rat gate`
-policy checks are now applied inside the mutation call as well.
+versioned explicit policy, a scoped HMAC authorization, an external durable
+approval ledger, an internal-check allowlist, and an **explicitly disposable**
+Git worktree. Only `RAT_INTERNAL_DIFF_CHECK` and
+`RAT_INTERNAL_PYTHON_SYNTAX` are accepted: no caller-supplied verifier command
+is executed. The normal `rat gate` policy checks run within this mutation call.
+
+A candidate may remain modified in the disposable worktree after internal
+structural checks; this is NOT mathematical verification. The guard reports
+`STRUCTURAL_CANDIDATE_NOT_PROMOTED` with return code 4. The toolkit adapter
+reports `preserved=False`, `phase=STRUCTURAL_STAGED_UNVERIFIED`, and return
+code 4. A nonzero staging result must not be promoted to a proof/CI PASS.
 
 The old arbitrary-subprocess mutation API is disabled; it must not be used to
 recover an authoritative checkout. A failed transaction never invokes Git
@@ -70,10 +74,13 @@ recover an authoritative checkout. A failed transaction never invokes Git
 artifacts. See `SECURITY_MUTATION_MIGRATION.md` for the deliberate breaking API
 change and test obligations.
 
-This is an approval and inventory guard, not an OS sandbox. An allowlisted
-verifier can still write outside the disposable worktree. Untrusted verifier
-executables require separate sandboxing and independent scrutiny; no safety
-claim for an arbitrary verifier follows from these checks.
+This is an approval and inventory guard, not an OS sandbox. Untrusted
+verifier executables are prohibited, not sandboxed. The ledger and HMAC key
+must be controlled by a distinct trusted principal; same-UID replacement or
+rollback of that state is outside the guarantee. Git index flags that hide
+tracked modifications (`skip-worktree`, `assume-unchanged`) cause preflight
+denial. Independent security review is REQUIRED before enabling automated
+writes or merging.
 
 Ordinary human Git commands are unaffected; no repository-wide hooks are
 installed. Human approval is still required before any promotion or merge.

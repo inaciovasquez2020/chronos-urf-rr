@@ -139,12 +139,18 @@ def governed_patch_mutation(
         timeout_seconds=timeout_seconds,
         approval_ledger=approval_ledger,
     )
+    # Successful internal diff/syntax checks STAGE a candidate; they cannot
+    # certify research claims. The legacy result schema must not expose that
+    # staging operation as preserved=True or a zero verification return code.
+    staged = result.status == "STRUCTURAL_CANDIDATE_NOT_PROMOTED"
     return DependencyTransactionResult(
-        preserved=(result.status == "STRUCTURAL_CANDIDATE_NOT_PROMOTED"),
-        phase=result.stage,
-        returncode=result.returncode,
-        changed_paths=result.residue,
+        preserved=False,
+        phase="STRUCTURAL_STAGED_UNVERIFIED" if staged else result.stage,
+        returncode=4 if staged else (result.returncode or 2),
+        changed_paths=tuple(sorted(paths)) if staged else result.residue,
         closure=tuple(sorted(closure)),
         stdout=result.status,
-        stderr=result.detail,
+        stderr=("Patch remains staged in the disposable worktree; "
+                "NO mathematical/theorem verification was performed. "
+                + result.detail) if staged else result.detail,
     )
