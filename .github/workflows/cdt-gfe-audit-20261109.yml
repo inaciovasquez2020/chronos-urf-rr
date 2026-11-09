@@ -1,0 +1,24 @@
+name: Archived Chronos CDT-GfE audit evidence
+on:
+  pull_request:
+    paths:
+      - "external-audit/cdt-gfe-20261109/**"
+      - ".github/workflows/cdt-gfe-audit-20261109.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolated-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Verify pinned classifier, preflight, contract gaps and status separation
+        run: python3 -B -m unittest discover -s external-audit/cdt-gfe-20261109 -p 'test_1335*.py' -v
+      - name: Install symbolic dependency
+        run: python3 -m pip install --disable-pip-version-check sympy==1.14.0
+      - name: Verify pinned source-action-to-determinant extraction
+        run: python3 -B external-audit/cdt-gfe-20261109/verify_1334_factorization.py
