@@ -15,3 +15,7 @@ The July 12 v1 algorithm and preregistration stay immutable. The independent wit
 Tests: run both `python3 -B -m unittest discover -s tests -p 'test_cdt_stage0_classifier_v2*.py' -v` (repo Python path). The new suite includes 21 tests and 10,000 seeded cases. Neither CI green nor synthetic-case acceptance proves a physical effect.
 
 **PR_REVIEW := PENDING; PHYSICAL_EXECUTION := NOT_AUTHORIZED; PRODUCTION_PREFLIGHT := OPEN.**
+
+## Additional numerical audit (2026-11-09)
+
+Sign reversal is evaluated through direct comparisons rather than multiplication because `1.2e-7 * (-1e-320)` underflows to `-0.0` in binary64; a product-based `<0` check reports a false negative although both means have opposite signs. The separate product calculation remains a conservative finiteness/overflow guard. Two isolated regressions cover signed subnormal means and exact-zero controls. The frozen experiment is unchanged.

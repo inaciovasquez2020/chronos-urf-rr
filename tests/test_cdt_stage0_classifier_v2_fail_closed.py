@@ -119,5 +119,21 @@ class FailClosed(unittest.TestCase):
         self.assertEqual(self.status(data),"SINGLE_LAB_CANDIDATE_ONLY")
 
 
+    def test_signed_subnormal_signal_does_not_hide_reversal(self):
+        # Product underflows to -0.0, although the signs are genuinely opposite.
+        for x,y in ((1.2e-7,-1e-320),(-1e-320,1.2e-7)):
+            self.assertEqual(x*y,-0.0)
+            data=rows((x,y,0,0))
+            outcome=classify(data,U,T)
+            self.assertTrue(outcome["swap_reversal"],(x,y))
+            self.assertEqual(outcome["status"],"SINGLE_LAB_CANDIDATE_ONLY")
+
+    def test_zero_signal_is_not_reversal(self):
+        for x,y in ((1.2e-7,0.),(0.,-1.2e-7)):
+            outcome=classify(rows((x,y,0,0)),U,T)
+            self.assertFalse(outcome["swap_reversal"],(x,y))
+            self.assertEqual(outcome["status"],"NO_CANDIDATE")
+
+
 if __name__=="__main__":
     unittest.main(verbosity=2)

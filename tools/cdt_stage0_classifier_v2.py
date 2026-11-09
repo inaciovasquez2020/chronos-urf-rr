@@ -67,7 +67,12 @@ def classify(rows, u_c, threshold):
                 null_estimator, null_limit)):
         return _invalid("nonfinite_derived_statistic")
 
-    swap_reversal = signal_product < 0.0
+    # The product is retained for an overflow guard, but must not determine
+    # reversal: opposite finite signs can multiply to negative zero.
+    swap_reversal = (
+        (means["C1"] > 0.0 > means["C2"]) or
+        (means["C2"] > 0.0 > means["C1"])
+    )
     null_control_pass = {
         c: abs(means[c]) < null_limit for c in ("C3", "C4")
     }
