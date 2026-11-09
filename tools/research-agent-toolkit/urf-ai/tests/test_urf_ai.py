@@ -176,6 +176,30 @@ class TestGuard(unittest.TestCase):
         self.assertEqual(r.status,"INCOMPLETE_UNAUTHORIZED_RESIDUE",r)
         self.assertEqual((self.root/"unique-untracked.txt").read_text(),"research")
         self.assertEqual((self.root/"src/x.py").read_text(),"value = 1\n")
+    def test_ignored_verifier_side_effect_fails_closed(self):
+        # A successful verifier is not authorized to create Git-ignored artifacts.
+        (self.root / ".gitignore").write_text("ignored/\n")
+        subprocess.run(["git", "add", ".gitignore"], cwd=self.root, check=True)
+        subprocess.run(["git", "commit", "-qm", "exclude ignored output"], cwd=self.root, check=True)
+        cmd=[sys.executable, "-c", "from pathlib import Path; Path('ignored').mkdir(); Path('ignored/private.txt').write_text('keep')"]
+        self.config["verifier_commands"].append(cmd)
+        result=self.attempt(verifier=cmd)
+        self.assertEqual(result.status, "INCOMPLETE_UNAUTHORIZED_RESIDUE", result)
+        self.assertIn("ignored/private.txt", result.residue)
+        self.assertEqual((self.root / "src/x.py").read_text(), "value = 1\n")
+        self.assertEqual((self.root / "ignored/private.txt").read_text(), "keep")
+
+    def test_preexisting_ignored_artifact_denied_without_cleanup(self):
+        (self.root / ".gitignore").write_text("ignored/\n")
+        subprocess.run(["git", "add", ".gitignore"], cwd=self.root, check=True)
+        subprocess.run(["git", "commit", "-qm", "exclude ignored output"], cwd=self.root, check=True)
+        (self.root / "ignored").mkdir()
+        (self.root / "ignored/local-research.txt").write_text("unique")
+        result=self.attempt()
+        self.assertEqual(result.status, "DENY", result)
+        self.assertEqual((self.root / "ignored/local-research.txt").read_text(), "unique")
+        self.assertEqual((self.root / "src/x.py").read_text(), "value = 1\n")
+
     def test_timeout_never_passes(self):
         cmd=[sys.executable,"-c","import time; time.sleep(2)"];self.config["verifier_commands"].append(cmd)
         r=self.attempt(verifier=cmd,timeout=1)

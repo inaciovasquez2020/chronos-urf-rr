@@ -30,7 +30,7 @@ def git(root: Path, *args: str, input_bytes: bytes | None = None) -> subprocess.
 
 def modified_paths(root: Path) -> set[str]:
     parts = []
-    for args in [("diff", "--name-only", "-z"), ("diff", "--cached", "--name-only", "-z"), ("ls-files", "--others", "--exclude-standard", "-z")]:
+    for args in [("diff", "--name-only", "-z"), ("diff", "--cached", "--name-only", "-z"), ("ls-files", "--others", "--exclude-standard", "-z"), ("ls-files", "--others", "--ignored", "--exclude-standard", "-z")]:
         r = git(root, *args)
         if r.returncode:
             raise RuntimeError("git inventory failed")
