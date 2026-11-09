@@ -30,7 +30,7 @@ jobs:
         env:
           PYTHONPATH: src:urf-ai
         run: |
-          python -m pytest -q tests/test_toolkit.py tests/test_hardened_mutation.py
+          python -m pytest -q tests/test_toolkit.py tests/test_hardened_mutation.py tests/test_verified_mutation_quarantine.py
 
   urf-ai-regressions:
     runs-on: ubuntu-latest

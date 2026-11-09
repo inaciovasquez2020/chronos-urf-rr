@@ -3,6 +3,8 @@
 No git reset, git clean, checkout, or broad deletion. Does NOT sandbox subprocesses.
 """
 from __future__ import annotations
+import ast
+import secrets
 import fnmatch
 import hashlib
 import hmac
@@ -15,6 +17,7 @@ import subprocess
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from .evidence import canonical, digest
+from .approval_ledger import LedgerError, ledger_identity, consume_approval
 
 @dataclass(frozen=True)
 class MutationResult:
@@ -62,7 +65,7 @@ def _restore(root: Path, snapshots: dict[str, tuple[bytes,int]]):
         p.write_bytes(data)
         os.chmod(p, mode)
 
-def issue_approval(root: str | Path, patch: bytes, closure: set[str], config: dict, verifier: list[str], secret: bytes, *, ttl_seconds: int = 300) -> dict:
+def issue_approval(root: str | Path, patch: bytes, closure: set[str], config: dict, verifier: list[str], secret: bytes, *, approval_ledger: str | Path, ttl_seconds: int = 300) -> dict:
     """For trusted human authorization controller ONLY; never expose this to an agent."""
     if len(secret)<32 or ttl_seconds<1 or ttl_seconds>900: raise ValueError("unsafe approval arguments")
     root=Path(root).resolve()
@@ -71,15 +74,25 @@ def issue_approval(root: str | Path, patch: bytes, closure: set[str], config: di
     req={"root":str(root),"head":head.stdout.decode().strip(),
          "patch_sha256":hashlib.sha256(patch).hexdigest(),
          "closure_digest":digest(sorted(closure)),"config_digest":digest(config),
-         "verifier_digest":digest(verifier),"expires_unix":int(time.time())+ttl_seconds}
+         "verifier_digest":digest(verifier),"expires_unix":int(time.time())+ttl_seconds,
+         "ledger_id":ledger_identity(approval_ledger),"nonce":secrets.token_hex(32),
+         "session_id":digest({"root":str(root),"head":head.stdout.decode().strip(),"config":digest(config)}),
+         "budget_cap":config.get("budgets",{}).get("mutations",0)}
     mac=hmac.new(secret,canonical(req),hashlib.sha256).hexdigest()
     return {"request":req,"mac":mac}
 
-def approval_valid(root: Path, patch: bytes, closure: set[str], config: dict, verifier: list[str], approval: object, secret: bytes) -> bool:
+def approval_valid(root: Path, patch: bytes, closure: set[str], config: dict, verifier: list[str], approval: object, secret: bytes, *, approval_ledger: str | Path) -> bool:
     if not isinstance(secret,bytes) or len(secret)<32 or not isinstance(approval,dict) or set(approval)!={"request","mac"}: return False
     req=approval["request"]
-    if not isinstance(req,dict) or not isinstance(approval["mac"],str) or set(req)!={"root","head","patch_sha256","closure_digest","config_digest","verifier_digest","expires_unix"}: return False
+    if not isinstance(req,dict) or not isinstance(approval["mac"],str) or set(req)!={"root","head","patch_sha256","closure_digest","config_digest","verifier_digest","expires_unix","ledger_id","nonce","session_id","budget_cap"}: return False
     if type(req.get("expires_unix")) is not int or not (time.time()<req["expires_unix"]<=time.time()+900): return False
+    if not isinstance(req.get("nonce"),str) or len(req["nonce"])!=64: return False
+    if not isinstance(req.get("session_id"),str) or len(req["session_id"])!=64: return False
+    if type(req.get("budget_cap")) is not int or req["budget_cap"] != config.get("budgets",{}).get("mutations",0): return False
+    try:
+        if req["ledger_id"]!=ledger_identity(approval_ledger): return False
+    except LedgerError:
+        return False
     try:
         if not hmac.compare_digest(hmac.new(secret,canonical(req),hashlib.sha256).hexdigest(),approval["mac"]): return False
         head=git(root,"rev-parse","HEAD")
@@ -91,7 +104,7 @@ def approval_valid(root: Path, patch: bytes, closure: set[str], config: dict, ve
                 and req["verifier_digest"]==digest(verifier))
     except (TypeError,ValueError): return False
 
-def run_mutation(root: str | Path, patch: bytes, closure: set[str], config: dict, verifier: list[str], *, approval: dict | None=None, authorization_key: bytes | None=None, timeout_seconds: int = 10) -> MutationResult:
+def run_mutation(root: str | Path, patch: bytes, closure: set[str], config: dict, verifier: list[str], *, approval: dict | None=None, authorization_key: bytes | None=None, approval_ledger: str | Path | None=None, timeout_seconds: int = 10) -> MutationResult:
     """Mutate an explicitly disposable, clean worktree; only tracked regular files.
 
     Not suitable as a security sandbox for an untrusted verifier executable.
@@ -110,7 +123,16 @@ def run_mutation(root: str | Path, patch: bytes, closure: set[str], config: dict
         return MutationResult("DENY", "preflight", 2, detail="requires explicitly disposable worktree")
     if not config.get("explicit_write_approval"):
         return MutationResult("DENY", "preflight", 2, detail="requires explicit write approval")
-    if not approval_valid(root,patch,closure,config,verifier,approval,authorization_key):
+    if approval_ledger is None:
+        return MutationResult("DENY", "authorization", 2, detail="trusted durable approval ledger required")
+    # The durable ledger must never be part of the mutable research worktree.
+    try:
+        ledgerpath=Path(approval_ledger).resolve(strict=True)
+        if ledgerpath.is_relative_to(root):
+            return MutationResult("DENY", "authorization", 2, detail="approval ledger must be external to the worktree")
+    except (OSError, RuntimeError, ValueError):
+        return MutationResult("DENY", "authorization", 2, detail="unavailable trusted approval ledger")
+    if not approval_valid(root,patch,closure,config,verifier,approval,authorization_key,approval_ledger=approval_ledger):
         return MutationResult("DENY", "authorization", 2, detail="missing or invalid scoped signed approval")
     if modified_paths(root):
         return MutationResult("DENY", "preflight", 2, detail="worktree is dirty or has untracked files")
@@ -134,6 +156,11 @@ def run_mutation(root: str | Path, patch: bytes, closure: set[str], config: dict
             return MutationResult("DENY", "preflight", 2, detail=f"not an ordinary tracked file: {rel}")
         if git(root,"ls-files","--error-unmatch","--",rel).returncode:
             return MutationResult("DENY", "preflight", 2, detail=f"untracked patch path: {rel}")
+    # Only in-process, side-effect-free checks are permitted. No user-provided
+    # argv is ever launched. OS sandboxing is NOT supplied by this tool.
+    INTERNAL = (["RAT_INTERNAL_DIFF_CHECK"], ["RAT_INTERNAL_PYTHON_SYNTAX"])
+    if verifier not in INTERNAL:
+        return MutationResult("DENY", "verifier", 2, detail="external or untrusted verifier execution prohibited")
     if (not isinstance(verifier,list) or verifier not in config.get("verifier_commands", []) or not all(isinstance(s,str) and s for s in verifier)):
         return MutationResult("DENY", "policy", 2, detail="verifier argv not explicitly allowlisted")
     if config.get("budgets", {}).get("mutations",0)<1 or not (0<timeout_seconds<=config.get("budgets",{}).get("max_verifier_seconds",0)):
@@ -148,6 +175,14 @@ def run_mutation(root: str | Path, patch: bytes, closure: set[str], config: dict
         return MutationResult("DENY", "policy", 2, detail="invalid policy regex")
     if git(root,"apply","--check","--whitespace=error-all","-",input_bytes=patch).returncode:
         return MutationResult("DENY", "preflight", 2, detail="patch did not pass git apply --check")
+    # Each approved attempt is irreversibly consumed BEFORE the first write;
+    # crashes, failures and exact rollbacks do not replenish the budget.
+    try:
+        consumed = consume_approval(approval_ledger, approval)
+    except LedgerError as exc:
+        return MutationResult("DENY", "authorization", 2, detail=str(exc))
+    if not consumed:
+        return MutationResult("DENY", "replay", 2, detail="approval already spent or ledger rejected request")
     snapshots = {rel: ((root/rel).read_bytes(), stat.S_IMODE((root/rel).stat().st_mode)) for rel in paths}
     def fail(stage: str, code: int, detail: str):
         before_restore=modified_paths(root)
@@ -167,19 +202,21 @@ def run_mutation(root: str | Path, patch: bytes, closure: set[str], config: dict
     if any(not (root/rel).is_file() or (root/rel).is_symlink() for rel in paths):
         return fail("scope",3,"deletion or symlink creation prohibited")
     applied={(rel):((root/rel).read_bytes(),stat.S_IMODE((root/rel).stat().st_mode)) for rel in paths}
-    try:
-        proc=subprocess.run(verifier,cwd=root,capture_output=True,text=True,timeout=timeout_seconds)
-    except subprocess.TimeoutExpired:
-        return fail("verification",124,"INCOMPLETE_TIMEOUT")
-    except OSError as exc:
-        return fail("verification",125,repr(exc))
+    # Do not execute *any* external verifier. Builtin checks are restricted
+    # to integrity/inventory and (optionally) Python syntax, not theorem truth.
+    if verifier == ["RAT_INTERNAL_PYTHON_SYNTAX"]:
+        try:
+            for rel in sorted(paths):
+                if rel.endswith(".py"):
+                    ast.parse((root/rel).read_text(encoding="utf-8"), filename=rel)
+        except (SyntaxError, UnicodeError, OSError) as exc:
+            return fail("verification",7,"internal syntax failure: "+str(exc)[:500])
     outside=modified_paths(root)-paths
     if outside:
-        return fail("verification",3,"verifier wrote outside authorized file set")
-    if proc.returncode:
-        return fail("verification",proc.returncode,proc.stderr[-500:])
+        return fail("verification",3,"internal check found outside changed paths")
     if any(not (root/rel).is_file() or (root/rel).is_symlink() or
            ((root/rel).read_bytes(),stat.S_IMODE((root/rel).stat().st_mode))!=applied[rel]
            for rel in paths):
         return fail("verification",3,"verifier modified the candidate patch files")
-    return MutationResult("VERIFIED_CANDIDATE_NOT_PROMOTED","verification",0,detail="exact authorized patch and allowlisted verifier returned PASS")
+    return MutationResult("STRUCTURAL_CANDIDATE_NOT_PROMOTED","structural-check",0,
+                          detail="authorized patch passed internal structural checks only; no theorem verifier executed")

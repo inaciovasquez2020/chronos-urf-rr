@@ -41,6 +41,7 @@ def governed_patch_mutation(
     approval: dict | None = None,
     authorization_key: bytes | None = None,
     timeout_seconds: int = 10,
+    approval_ledger: str | Path | None = None,
 ) -> DependencyTransactionResult:
     """Deny unapproved mutations; stage verified patches in disposable roots only.
 
@@ -55,6 +56,8 @@ def governed_patch_mutation(
             False, phase, code, (), (), "", reason,
         )
 
+    if approval_ledger is None:
+        return denial("authorization", "trusted durable approval ledger required")
     if config_path is None or approval is None or authorization_key is None:
         return denial("authorization", "explicit config and scoped approval required")
     if not isinstance(patch, str) or not patch.strip():
@@ -134,9 +137,10 @@ def governed_patch_mutation(
         root, patch.encode("utf-8"), closure, config, verifier,
         approval=approval, authorization_key=authorization_key,
         timeout_seconds=timeout_seconds,
+        approval_ledger=approval_ledger,
     )
     return DependencyTransactionResult(
-        preserved=(result.status == "VERIFIED_CANDIDATE_NOT_PROMOTED"),
+        preserved=(result.status == "STRUCTURAL_CANDIDATE_NOT_PROMOTED"),
         phase=result.stage,
         returncode=result.returncode,
         changed_paths=result.residue,

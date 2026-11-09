@@ -6,6 +6,7 @@ from urf_ai.evidence import attest, authenticate, bindings, digest
 from urf_ai.classifier import classify, REQUIRED
 from urf_ai.csts import ClaimJournal, TransitionRejected
 from urf_ai.guard import run_mutation, issue_approval
+from urf_ai.approval_ledger import create_ledger
 from urf_ai.benchmark import cycle_witness, evaluate_response, baseline_keyword_score
 from urf_ai.assistant import answer, benchmark
 
@@ -120,7 +121,8 @@ class TestGuard(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory(prefix="urf-ai-guard-test-")
         self.addCleanup(self.tmp.cleanup)
-        self.root=Path(self.tmp.name)
+        self.root=Path(self.tmp.name)/"worktree"
+        self.root.mkdir()
         subprocess.run(["git","init","-q"],cwd=self.root,check=True)
         subprocess.run(["git","config","user.email","fixture@example.invalid"],cwd=self.root,check=True)
         subprocess.run(["git","config","user.name","Test"],cwd=self.root,check=True)
@@ -129,27 +131,32 @@ class TestGuard(unittest.TestCase):
         (self.root/"protected.txt").write_text("safe\n")
         subprocess.run(["git","add","."],cwd=self.root,check=True)
         subprocess.run(["git","commit","-qm","fixture"],cwd=self.root,check=True)
-        self.verifier=[sys.executable,"-c","from pathlib import Path; assert Path('src/x.py').read_text() == 'value = 2\\n'"]
+        self.verifier=["RAT_INTERNAL_DIFF_CHECK"]
         self.config={"disposable_worktree_confirmed":True,"explicit_write_approval":True,
                      "scope":{"allow":["src/**"],"deny":["protected.txt",".git/**"]},
                      "policy":{"forbidden_patterns":[r"\bsorry\b",r"\badmit\b",r"\baxiom\b"]},
                      "budgets":{"mutations":1,"max_verifier_seconds":3},
                      "gates":{"verify_actions":["modify"],"deny_actions":[]},
                      "verifier_commands":[self.verifier]}
+        self.ledger=self.root.parent / (self.root.name + "-approval.sqlite")
+        create_ledger(self.ledger)
         self.patch=b"diff --git a/src/x.py b/src/x.py\n--- a/src/x.py\n+++ b/src/x.py\n@@ -1 +1 @@\n-value = 1\n+value = 2\n"
     def attempt(self,patch=None,config=None,verifier=None,closure=None,timeout=2,approval=True):
         p=patch if patch is not None else self.patch
         c=closure if closure is not None else {"src/x.py"}
         cfg=config if config is not None else self.config
         v=verifier if verifier is not None else self.verifier
-        token=issue_approval(self.root,p,c,cfg,v,KEY) if approval else None
-        return run_mutation(self.root,p,c,cfg,v,approval=token,authorization_key=KEY,timeout_seconds=timeout)
+        token=issue_approval(self.root,p,c,cfg,v,KEY,approval_ledger=self.ledger) if approval else None
+        return run_mutation(self.root,p,c,cfg,v,approval=token,authorization_key=KEY,approval_ledger=self.ledger,timeout_seconds=timeout)
     def test_success_preserved(self):
-        r=self.attempt();self.assertEqual(r.status,"VERIFIED_CANDIDATE_NOT_PROMOTED",r);self.assertEqual((self.root/"src/x.py").read_text(),"value = 2\n")
-    def test_fail_rollback_only_exact_file(self):
-        command=[sys.executable,"-c","raise SystemExit(7)"];self.config["verifier_commands"].append(command)
+        r=self.attempt();self.assertEqual(r.status,"STRUCTURAL_CANDIDATE_NOT_PROMOTED",r);self.assertEqual((self.root/"src/x.py").read_text(),"value = 2\n")
+    def test_external_verifier_failure_prohibited_before_execution(self):
+        command=[sys.executable,"-c","raise SystemExit(7)"]
+        self.config["verifier_commands"].append(command)
         r=self.attempt(verifier=command)
-        self.assertEqual(r.status,"FAILED_ROLLED_BACK",r);self.assertEqual((self.root/"src/x.py").read_text(),"value = 1\n")
+        self.assertEqual(r.status,"DENY",r)
+        self.assertEqual(r.stage,"verifier")
+        self.assertEqual((self.root/"src/x.py").read_text(),"value = 1\n")
     def test_no_approval_no_mutation(self):
         self.config["explicit_write_approval"]=False
         self.assertEqual(self.attempt().status,"DENY");self.assertEqual((self.root/"src/x.py").read_text(),"value = 1\n")
@@ -169,26 +176,21 @@ class TestGuard(unittest.TestCase):
     def test_forbidden_pattern_denied(self):
         patch=b"diff --git a/src/x.py b/src/x.py\n--- a/src/x.py\n+++ b/src/x.py\n@@ -1 +1 @@\n-value = 1\n+value = 2 # sorry\n"
         self.assertEqual(self.attempt(patch=patch).status,"DENY")
-    def test_verifier_outside_write_preserved_and_fails_closed(self):
-        cmd=[sys.executable,"-c","from pathlib import Path; Path('unique-untracked.txt').write_text('research'); print('PASS')"]
+    def test_verifier_outside_write_prohibited(self):
+        cmd=[sys.executable,"-c","from pathlib import Path; Path('unique-untracked.txt').write_text('research')"]
         self.config["verifier_commands"].append(cmd)
         r=self.attempt(verifier=cmd)
-        self.assertEqual(r.status,"INCOMPLETE_UNAUTHORIZED_RESIDUE",r)
-        self.assertEqual((self.root/"unique-untracked.txt").read_text(),"research")
+        self.assertEqual(r.status,"DENY",r)
+        self.assertEqual(r.stage,"verifier")
+        self.assertFalse((self.root/"unique-untracked.txt").exists())
         self.assertEqual((self.root/"src/x.py").read_text(),"value = 1\n")
-    def test_ignored_verifier_side_effect_fails_closed(self):
-        # A successful verifier is not authorized to create Git-ignored artifacts.
-        (self.root / ".gitignore").write_text("ignored/\n")
-        subprocess.run(["git", "add", ".gitignore"], cwd=self.root, check=True)
-        subprocess.run(["git", "commit", "-qm", "exclude ignored output"], cwd=self.root, check=True)
-        cmd=[sys.executable, "-c", "from pathlib import Path; Path('ignored').mkdir(); Path('ignored/private.txt').write_text('keep')"]
+    def test_ignored_verifier_side_effect_prohibited(self):
+        cmd=[sys.executable,"-c","from pathlib import Path; Path('ignored').mkdir(); Path('ignored/private.txt').write_text('keep')"]
         self.config["verifier_commands"].append(cmd)
-        result=self.attempt(verifier=cmd)
-        self.assertEqual(result.status, "INCOMPLETE_UNAUTHORIZED_RESIDUE", result)
-        self.assertIn("ignored/private.txt", result.residue)
-        self.assertEqual((self.root / "src/x.py").read_text(), "value = 1\n")
-        self.assertEqual((self.root / "ignored/private.txt").read_text(), "keep")
-
+        r=self.attempt(verifier=cmd)
+        self.assertEqual(r.status,"DENY",r)
+        self.assertEqual(r.stage,"verifier")
+        self.assertFalse((self.root/"ignored").exists())
     def test_preexisting_ignored_artifact_denied_without_cleanup(self):
         (self.root / ".gitignore").write_text("ignored/\n")
         subprocess.run(["git", "add", ".gitignore"], cwd=self.root, check=True)
@@ -200,11 +202,8 @@ class TestGuard(unittest.TestCase):
         self.assertEqual((self.root / "ignored/local-research.txt").read_text(), "unique")
         self.assertEqual((self.root / "src/x.py").read_text(), "value = 1\n")
 
-    def test_timeout_never_passes(self):
-        cmd=[sys.executable,"-c","import time; time.sleep(2)"];self.config["verifier_commands"].append(cmd)
-        r=self.attempt(verifier=cmd,timeout=1)
-        self.assertEqual(r.status,"FAILED_ROLLED_BACK",r)
-        self.assertIn("INCOMPLETE_TIMEOUT",r.detail)
+    def test_timeout_requires_positive_configured_budget(self):
+        self.assertEqual(self.attempt(timeout=0).status,"DENY")
 
 class TestSemantics(unittest.TestCase):
     def test_graph_families(self):

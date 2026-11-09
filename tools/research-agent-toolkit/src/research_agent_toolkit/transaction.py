@@ -20,28 +20,21 @@ def verified_mutation(
     verifier: list[str],
     cwd: str | Path | None = None,
 ) -> VerificationResult:
-    """Apply one mutation, verify immediately, and exactly restore touched files on failure.
+    """Fail closed: arbitrary Python callback writes cannot be file-confined.
 
-    Only listed files are snapshotted/restored. Creation/deletion of listed paths is handled.
-    The caller is responsible for ensuring the mutation does not touch unlisted paths.
+    This legacy method does not run `mutate`, `verifier`, or filesystem
+    operations. Snapshotting listed paths cannot control undeclared writes,
+    symlink escapes, callback exceptions, or verifier spawn failures.
+
+    Authorized research patches must instead use the separately approved,
+    provenance-scoped mutation service in an explicitly disposable worktree.
+    No claim of operating-system sandboxing is made for that service.
     """
-    targets = [Path(p) for p in paths]
-    snapshots: dict[Path, bytes | None] = {
-        p: p.read_bytes() if p.exists() else None for p in targets
-    }
-    mutate()
-    proc = subprocess.run(verifier, cwd=cwd, text=True, capture_output=True)
-    if proc.returncode == 0:
-        return VerificationResult(True, 0, proc.stdout, proc.stderr)
-
-    for path, data in snapshots.items():
-        if data is None:
-            if path.exists():
-                path.unlink()
-        else:
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_bytes(data)
-    return VerificationResult(False, proc.returncode, proc.stdout, proc.stderr)
+    raise PermissionError(
+        "verified_mutation is disabled: unrestricted callbacks cannot be "
+        "confined or rolled back; use approved governed_patch_mutation "
+        "in an isolated disposable worktree"
+    )
 
 
 @dataclass(frozen=True)

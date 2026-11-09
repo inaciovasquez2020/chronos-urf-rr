@@ -18,6 +18,7 @@ from research_agent_toolkit.hardened_mutation import governed_patch_mutation
 from research_agent_toolkit.transaction import verified_dependency_subprocess
 from research_agent_toolkit.agent_mutation import governed_patch_mutation as public_mutation
 from urf_ai.guard import issue_approval
+from urf_ai.approval_ledger import create_ledger
 
 
 def cmd(root, *args):
@@ -26,23 +27,26 @@ def cmd(root, *args):
 
 @pytest.fixture
 def repo(tmp_path):
-    cmd(tmp_path, "git", "init", "-q")
-    cmd(tmp_path, "git", "config", "user.email", "rat@invalid.example")
-    cmd(tmp_path, "git", "config", "user.name", "RAT Security Test")
-    (tmp_path / "src").mkdir()
+    worktree=tmp_path / "worktree"
+    worktree.mkdir()
+    create_ledger(tmp_path / "approval.sqlite")
+    cmd(worktree, "git", "init", "-q")
+    cmd(worktree, "git", "config", "user.email", "rat@invalid.example")
+    cmd(worktree, "git", "config", "user.name", "RAT Security Test")
+    (worktree / "src").mkdir()
     for rel, content in [("generator.py", "generate\n"), ("artifact.txt", "before\n"), ("test_result.py", "pass\n")]:
-        (tmp_path / "src" / rel).write_text(content)
+        (worktree / "src" / rel).write_text(content)
     manifest={"chains":[{"claim":"test.claim", "generator":"src/generator.py", "artifact":"src/artifact.txt", "test":"src/test_result.py"}]}
-    (tmp_path / "manifest.json").write_text(json.dumps(manifest))
+    (worktree / "manifest.json").write_text(json.dumps(manifest))
     config={"disposable_worktree_confirmed":True,"explicit_write_approval":True,
             "scope":{"allow":["src/**"],"deny":[".git/**"]},
             "gates":{"verify_actions":["modify"],"deny_actions":[]},
             "policy":{"forbidden_patterns":[r"\b(?:sorry|admit|axiom|opaque)\b"]},
             "budgets":{"mutations":1,"max_verifier_seconds":5},
-            "verifier_commands":[[sys.executable,"-c","pass"]]}
-    (tmp_path / "policy.json").write_text(json.dumps(config))
-    cmd(tmp_path,"git","add",".")
-    cmd(tmp_path,"git","commit","-qm","initial")
+            "verifier_commands":[["RAT_INTERNAL_DIFF_CHECK"]]}
+    (worktree / "policy.json").write_text(json.dumps(config))
+    cmd(worktree,"git","add",".")
+    cmd(worktree,"git","commit","-qm","initial")
     patch="""diff --git a/src/artifact.txt b/src/artifact.txt
 --- a/src/artifact.txt
 +++ b/src/artifact.txt
@@ -50,16 +54,16 @@ def repo(tmp_path):
 -before
 +after
 """
-    return tmp_path,config,patch
+    return worktree,config,patch
 
 
 def call(r,config,patch,*,secret=None,sign=True,verifier=None,configfile='policy.json',manifest='manifest.json',changed='src/artifact.txt'):
     secret=secret or b'x'*32
-    verifier=verifier or [sys.executable,'-c','pass']
+    verifier=verifier or ['RAT_INTERNAL_DIFF_CHECK']
     closure={'src/artifact.txt','src/test_result.py'}
-    approval=issue_approval(r,patch.encode(),closure,config,verifier,secret) if sign else None
+    approval=issue_approval(r,patch.encode(),closure,config,verifier,secret,approval_ledger=r.parent/"approval.sqlite") if sign else None
     return governed_patch_mutation(r,manifest,changed,patch,verifier,config_path=configfile,
-                                   approval=approval,authorization_key=secret,timeout_seconds=5)
+                                   approval=approval,authorization_key=secret,approval_ledger=r.parent/"approval.sqlite",timeout_seconds=5)
 
 
 def test_no_approval_has_no_write(repo):
@@ -72,20 +76,20 @@ def test_no_approval_has_no_write(repo):
 def test_scoped_approved_candidate_succeeds_only_in_disposable_repo(repo):
     r,c,p=repo
     out=call(r,c,p)
-    assert out.preserved and out.stdout=='VERIFIED_CANDIDATE_NOT_PROMOTED'
+    assert out.preserved and out.stdout=='STRUCTURAL_CANDIDATE_NOT_PROMOTED'
     assert (r/'src/artifact.txt').read_text()=='after\n'
 
 
 def test_existing_public_entrypoint_fails_closed(repo):
     r,c,p=repo
-    out=public_mutation(r,'manifest.json','src/artifact.txt',p,[sys.executable,'-c','pass'])
+    out=public_mutation(r,'manifest.json','src/artifact.txt',p,['RAT_INTERNAL_DIFF_CHECK'])
     assert not out.preserved and out.phase=='authorization'
     assert (r/'src/artifact.txt').read_text()=='before\n'
 
 
 def test_direct_subprocess_bypass_refused(repo):
     r,c,p=repo
-    out=verified_dependency_subprocess(r,['src/artifact.txt'],[sys.executable,'-c',"open('src/artifact.txt','w').write('danger')"],[sys.executable,'-c','pass'])
+    out=verified_dependency_subprocess(r,['src/artifact.txt'],[sys.executable,'-c',"open('src/artifact.txt','w').write('danger')"],['RAT_INTERNAL_DIFF_CHECK'])
     assert not out.preserved and out.phase=='LEGACY_MUTATION_DISABLED'
     assert (r/'src/artifact.txt').read_text()=='before\n'
 
@@ -121,18 +125,17 @@ def test_bad_provenance_and_config_paths_rejected(repo):
     assert call(r,c,p,configfile='../outside.json').phase=='policy'
 
 
-def test_verifier_fail_restores_exact_patch_target(repo):
+def test_external_verifier_refused_without_running(repo):
     r,c,p=repo
-    verifier=[sys.executable,'-c','raise SystemExit(7)']
+    marker=r.parent/"verifier_should_not_run.txt"
+    verifier=[sys.executable,'-c',f"from pathlib import Path; Path({str(marker)!r}).write_text('BAD')"]
     c['verifier_commands'].append(verifier)
     (r/'policy.json').write_text(json.dumps(c))
     cmd(r,'git','add','policy.json');cmd(r,'git','commit','-qm','verifier')
     out=call(r,c,p,verifier=verifier)
-    assert not out.preserved and out.returncode==7
-    assert out.stdout=='FAILED_ROLLED_BACK',out
+    assert not out.preserved and out.phase=='verifier',out
+    assert not marker.exists()
     assert (r/'src/artifact.txt').read_text()=='before\n'
-    assert cmd(r,'git','status','--porcelain')==''
-
 
 def test_preexisting_ignored_research_file_survives(repo):
     r,c,p=repo
@@ -145,26 +148,23 @@ def test_preexisting_ignored_research_file_survives(repo):
     assert (r/'src/artifact.txt').read_text()=='before\n'
 
 
-def test_ignored_verifier_side_effect_not_accepted_or_deleted(repo):
+def test_ignored_verifier_side_effect_prohibited(repo):
     r,c,p=repo
-    (r/'.gitignore').write_text('ignored/\n')
-    cmd(r,'git','add','.gitignore');cmd(r,'git','commit','-qm','ignore')
     verifier=[sys.executable,'-c',"from pathlib import Path; Path('ignored').mkdir(); Path('ignored/unique.txt').write_text('PRESERVE')"]
     c['verifier_commands'].append(verifier)
     (r/'policy.json').write_text(json.dumps(c))
     cmd(r,'git','add','policy.json');cmd(r,'git','commit','-qm','verifier')
     out=call(r,c,p,verifier=verifier)
-    assert not out.preserved and out.stdout=='INCOMPLETE_UNAUTHORIZED_RESIDUE',out
-    assert (r/'ignored/unique.txt').read_text()=='PRESERVE'
+    assert not out.preserved and out.phase=='verifier',out
+    assert not (r/'ignored').exists()
     assert (r/'src/artifact.txt').read_text()=='before\n'
-
 
 def test_scoped_mac_rejects_altered_key(repo):
     r,c,p=repo
-    v=[sys.executable,'-c','pass']
-    approval=issue_approval(r,p.encode(),{'src/artifact.txt','src/test_result.py'},c,v,b'x'*32)
+    v=['RAT_INTERNAL_DIFF_CHECK']
+    approval=issue_approval(r,p.encode(),{'src/artifact.txt','src/test_result.py'},c,v,b'x'*32,approval_ledger=r.parent/'approval.sqlite')
     out=governed_patch_mutation(r,'manifest.json','src/artifact.txt',p,v,
-                                 config_path='policy.json',approval=approval,authorization_key=b'z'*32)
+                                 config_path='policy.json',approval=approval,authorization_key=b'z'*32,approval_ledger=r.parent/'approval.sqlite')
     assert not out.preserved and out.stdout=='DENY' and (r/'src/artifact.txt').read_text()=='before\n'
 
 
