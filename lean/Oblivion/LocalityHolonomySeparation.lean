@@ -1,14 +1,13 @@
 import Init
 
 /-!
-Research candidate only. NOT compiler-verified. Replaces the summary-only
-LocalEquiv with independent local gauge equivalence on the oriented edge
-windows of actual induced radius-r balls of C_n, under 3 <= n and 2*r+1 < n.
-
-A path window has 2*r edges and 2*r+1 vertices. Its local gauge is a
-function of path position; different root windows may choose different gauges.
-The window-to-SimpleGraph.ball identification is mathematical here, not a
-separately formalized Lean isomorphism.
+Finite-cycle locality model compiled and axiom-audited under Lean 4.29.0.
+LocalEquiv compares independent Z/2 path gauges on the oriented windows
+for 3 <= n and 2*r+1 < n. Each window is a proper path: any two edge-bit
+assignments admit a path gauge, so the relation constrains no transport bits
+beyond requiring the two localSummary fields to equal n and the size bounds.
+The localSummary field check is metadata, not a computed graph invariant.
+The identification with Chronos's existing graph-ball interfaces remains OPEN.
 -/
 
 namespace Oblivion
@@ -65,9 +64,11 @@ private theorem radiusPathGauge_step
     cases h₂ : H.transportBit (radiusWindowEdge n r root j) <;>
     simp [h₀, h₁, h₂]
 
-/-- Genuine independent radius-r gauge equivalence. The witness at each
-    root is a gauge on the 2*r+1 path vertices; it need not agree on overlaps
-    with the gauges chosen at other roots. -/
+/-- Independent radius-r path-gauge equivalence. For every root, the gauge
+    on the 2*r+1 path vertices may be chosen independently. Because a path
+    is acyclic, cumulative XOR constructs such a gauge for *arbitrary*
+    transport-bit differences: this imposes no local transport constraint.
+    The localSummary equalities are field checks, not graph invariants. -/
 def LocalEquiv (n r : Nat) (G H : LabeledCFI) : Prop :=
   G.localSummary = n ∧ H.localSummary = n ∧
   3 ≤ n ∧ 2 * r + 1 < n ∧
