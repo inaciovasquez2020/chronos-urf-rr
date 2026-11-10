@@ -1,0 +1,40 @@
+name: CDT Stage 0 v2 synthetic-only regression
+
+on:
+  pull_request:
+    paths:
+      - "tools/cdt_stage0_classifier_v2.py"
+      - "tests/test_cdt_stage0_classifier_v2*.py"
+      - "docs/status/CDT_STAGE0*"
+      - ".github/workflows/cdt-stage0-v2-fail-closed.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/cdt_stage0_classifier_v2.py"
+      - "tests/test_cdt_stage0_classifier_v2*.py"
+      - "docs/status/CDT_STAGE0*"
+      - ".github/workflows/cdt-stage0-v2-fail-closed.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-only-fail-closed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Verify frozen v1 source and original v2 regression
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 -B -m unittest discover -s tests -p 'test_cdt_stage0_classifier_v2.py' -v
+      - name: Verify fail-closed row-level adversarial tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 -B -m unittest discover -s tests -p 'test_cdt_stage0_classifier_v2_fail_closed.py' -v
