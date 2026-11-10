@@ -1,3 +1,15 @@
+import Init
+
+/-!
+Finite-cycle locality model compiled and axiom-audited under Lean 4.29.0.
+LocalEquiv compares independent Z/2 path gauges on the oriented windows
+for 3 <= n and 2*r+1 < n. Each window is a proper path: any two edge-bit
+assignments admit a path gauge, so the relation constrains no transport bits
+beyond requiring the two localSummary fields to equal n and the size bounds.
+The localSummary field check is metadata, not a computed graph invariant.
+The identification with Chronos's existing graph-ball interfaces remains OPEN.
+-/
+
 namespace Oblivion
 
 abbrev BaseEdge := Nat × Nat
@@ -21,32 +33,118 @@ def UntwistedCFI (n : Nat) : LabeledCFI :=
 def SingleTwistCFI (n : Nat) (e₀ : BaseEdge) : LabeledCFI :=
   ⟨n, fun e => decide (e = e₀)⟩
 
-def LocalEquiv (G H : LabeledCFI) : Prop :=
-  G.localSummary = H.localSummary
+/-- The jth oriented edge of the induced radius-r cycle ball at root.
+    Its vertices occur in the order root-r,...,root+r (mod n).
+    Under 3 <= n and 2*r+1 < n this is a proper path. -/
+def radiusWindowEdge (n r root j : Nat) : BaseEdge :=
+  let u := (root + n - r + j) % n
+  (u, (u + 1) % n)
+
+/-- Vertex gauge along an oriented path: g(0)=0, and each step integrates
+    the difference of the two edge connections. -/
+def radiusPathGauge (n r root : Nat) (G H : LabeledCFI) : Nat → Bool
+  | 0 => false
+  | Nat.succ j =>
+      xor (radiusPathGauge n r root G H j)
+        (xor (G.transportBit (radiusWindowEdge n r root j))
+             (H.transportBit (radiusWindowEdge n r root j)))
+
+private theorem radiusPathGauge_step
+    (n r root : Nat) (G H : LabeledCFI) (j : Nat) :
+    xor (radiusPathGauge n r root G H j)
+        (radiusPathGauge n r root G H (j + 1)) =
+    xor (G.transportBit (radiusWindowEdge n r root j))
+        (H.transportBit (radiusWindowEdge n r root j)) := by
+  change xor (radiusPathGauge n r root G H j)
+      (xor (radiusPathGauge n r root G H j)
+        (xor (G.transportBit (radiusWindowEdge n r root j))
+             (H.transportBit (radiusWindowEdge n r root j)))) = _
+  cases h₀ : radiusPathGauge n r root G H j <;>
+    cases h₁ : G.transportBit (radiusWindowEdge n r root j) <;>
+    cases h₂ : H.transportBit (radiusWindowEdge n r root j) <;>
+    simp [h₀, h₁, h₂]
+
+/-- Independent radius-r path-gauge equivalence. For every root, the gauge
+    on the 2*r+1 path vertices may be chosen independently. Because a path
+    is acyclic, cumulative XOR constructs such a gauge for *arbitrary*
+    transport-bit differences: this imposes no local transport constraint.
+    The localSummary equalities are field checks, not graph invariants. -/
+def LocalEquiv (n r : Nat) (G H : LabeledCFI) : Prop :=
+  G.localSummary = n ∧ H.localSummary = n ∧
+  3 ≤ n ∧ 2 * r + 1 < n ∧
+  ∀ root : Nat, root < n →
+    ∃ g : Nat → Bool, ∀ j : Nat, j < 2 * r →
+      xor (G.transportBit (radiusWindowEdge n r root j))
+          (H.transportBit (radiusWindowEdge n r root j)) =
+      xor (g j) (g (j + 1))
 
 theorem localEquiv_untwisted_singleTwist
-  (n : Nat) (e₀ : BaseEdge) :
-  LocalEquiv (UntwistedCFI n) (SingleTwistCFI n e₀) := by
-  rfl
+    (n r : Nat) (hn : 3 ≤ n) (hr : 2 * r + 1 < n) :
+    LocalEquiv n r (UntwistedCFI n) (SingleTwistCFI n (0, 1)) := by
+  refine ⟨rfl, rfl, hn, hr, ?_⟩
+  intro root _
+  refine ⟨radiusPathGauge n r root (UntwistedCFI n)
+      (SingleTwistCFI n (0, 1)), ?_⟩
+  intro j _
+  exact (radiusPathGauge_step n r root
+    (UntwistedCFI n) (SingleTwistCFI n (0, 1)) j).symm
 
-theorem PhiH_untwisted_zero
-  (n : Nat) :
-  PhiH n (UntwistedCFI n) = false := by
-  unfold PhiH UntwistedCFI
-  simp [fundamentalCycleXorAux]
+private theorem fold_untwisted (n j : Nat) (acc : Bool) :
+    fundamentalCycleXorAux n (UntwistedCFI n) j acc = acc := by
+  induction j generalizing acc with
+  | zero => rfl
+  | succ j ih =>
+      simpa [fundamentalCycleXorAux, UntwistedCFI] using (ih acc)
 
-theorem PhiH_singleTwist_one
-  (n : Nat) :
-  PhiH (n + 1) (SingleTwistCFI (n + 1) (0, 1)) = true := by
-  unfold PhiH SingleTwistCFI
-  simp [fundamentalCycleXorAux]
+theorem PhiH_untwisted_zero (n : Nat) :
+    PhiH n (UntwistedCFI n) = false := by
+  simpa [PhiH] using (fold_untwisted n n false)
 
-theorem locality_holonomy_separation :
-  ∀ n : Nat, ∃ G H : LabeledCFI, LocalEquiv G H ∧ PhiH (n + 1) G ≠ PhiH (n + 1) H := by
-  intro n
-  refine ⟨UntwistedCFI (n + 1), SingleTwistCFI (n + 1) (0, 1), ?_⟩
-  constructor
-  · exact localEquiv_untwisted_singleTwist (n + 1) (0, 1)
-  · simp [PhiH_untwisted_zero, PhiH_singleTwist_one]
+private theorem fold_singleTwist
+    (n : Nat) (hn : 2 ≤ n) (j : Nat) (acc : Bool) :
+    fundamentalCycleXorAux n (SingleTwistCFI n (0, 1)) j acc =
+      xor acc (decide (0 < j)) := by
+  induction j generalizing acc with
+  | zero =>
+      simp [fundamentalCycleXorAux]
+  | succ j ih =>
+      cases j with
+      | zero =>
+          have hmod : 1 % n = 1 := Nat.mod_eq_of_lt (by omega)
+          simp [fundamentalCycleXorAux, SingleTwistCFI, hmod]
+      | succ k =>
+          have hstep :
+              (SingleTwistCFI n (0, 1)).transportBit
+                (Nat.succ k, (Nat.succ k + 1) % n) = false := by
+            simp [SingleTwistCFI]
+          have hfold :
+              fundamentalCycleXorAux n (SingleTwistCFI n (0, 1))
+                (Nat.succ (Nat.succ k)) acc =
+              fundamentalCycleXorAux n (SingleTwistCFI n (0, 1))
+                (Nat.succ k) acc := by
+            change fundamentalCycleXorAux n (SingleTwistCFI n (0, 1))
+                (Nat.succ k)
+                (xor acc ((SingleTwistCFI n (0, 1)).transportBit
+                  (Nat.succ k, (Nat.succ k + 1) % n))) =
+              fundamentalCycleXorAux n (SingleTwistCFI n (0, 1))
+                (Nat.succ k) acc
+            rw [hstep]
+            cases acc <;> rfl
+          rw [hfold]
+          simpa using (ih acc)
+
+theorem PhiH_singleTwist_one (n : Nat) (hn : 2 ≤ n) :
+    PhiH n (SingleTwistCFI n (0, 1)) = true := by
+  have hp : 0 < n := by omega
+  simpa [PhiH, hp] using (fold_singleTwist n hn n false)
+
+theorem locality_holonomy_separation
+    (n r : Nat) (hn : 3 ≤ n) (hr : 2 * r + 1 < n) :
+    ∃ G H : LabeledCFI,
+      LocalEquiv n r G H ∧ PhiH n G ≠ PhiH n H := by
+  refine ⟨UntwistedCFI n, SingleTwistCFI n (0, 1), ?_, ?_⟩
+  · exact localEquiv_untwisted_singleTwist n r hn hr
+  · rw [PhiH_untwisted_zero, PhiH_singleTwist_one n (by omega)]
+    decide
 
 end Oblivion
