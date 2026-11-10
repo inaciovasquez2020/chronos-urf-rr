@@ -2,7 +2,7 @@
 
 **Status: research note, conditional integration, no theorem-level closure.**
 
-Source-of-truth candidate: `inaciovasquez2020/urf-core` PR #590, source files `experiments/finite_transport_holonomy/urf_{finite_transport,holonomy_noise,multicycle,local_global}_bridge_00{1,2,3,4}.py` (see explicit paths below). The original `COMPUTATION_PASS` observations belonged to URF Core commit `a8a20ad91aae60e5843ea5c2e7f80718b5e3edd2`; corrected PR revisions require fresh validation. This is an experimental cross-repository reference, not an imported or verified Chronos theorem.
+Source-of-truth candidate: `inaciovasquez2020/urf-core` PR #590, source files listed individually under **Explicit research sources** below. The original `COMPUTATION_PASS` observations belonged to URF Core commit `a8a20ad91aae60e5843ea5c2e7f80718b5e3edd2`; corrected PR revisions require fresh validation. This is an experimental cross-repository reference, not an imported or verified Chronos theorem.
 
 The exact Python cases cover: gauge-invariant cyclic transport, sharp bounded-error reconstruction, theta-graph redundant loop signatures, and locally gauge-trivial / globally nontrivial cyclic connections. See the URF Core overlay README and four scripts for hypotheses, algorithms, and reproducibility.
 
