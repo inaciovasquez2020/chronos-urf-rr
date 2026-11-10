@@ -1,0 +1,398 @@
+[
+  {
+    "id": "U1",
+    "area": "Universality",
+    "question": "Does the initial local transcript alone reconstruct the entire input-tape configuration?",
+    "parameters": {
+      "input_length": 3,
+      "machine": "deterministic two-tape machine; read input cell zero and halt"
+    },
+    "witness_fields": [
+      "x_a",
+      "x_b",
+      "same_transcript",
+      "different_configuration"
+    ]
+  },
+  {
+    "id": "U2",
+    "area": "Universality",
+    "question": "If the fixed machine and original input are supplied, does the standard initial configuration become determined?",
+    "parameters": {
+      "input_length": 3,
+      "machine": "deterministic two-tape machine; read input cell zero and halt"
+    },
+    "witness_fields": [
+      "decoder_receives_input",
+      "pairs_distinct"
+    ]
+  },
+  {
+    "id": "U3",
+    "area": "Universality",
+    "question": "Does the entropy-depth identity without I(X;Y0) hold for X uniform bit and Y0=X at T=0?",
+    "parameters": {
+      "X": "uniform binary",
+      "Y0": "X",
+      "T": 0
+    },
+    "witness_fields": [
+      "H_X",
+      "omitted_rhs",
+      "I_X_Y0"
+    ]
+  },
+  {
+    "id": "U4",
+    "area": "Universality",
+    "question": "Verify the corrected two-bit entropy chain rule with Y0=first bit and Y1=second bit.",
+    "parameters": {
+      "X": "uniform two-bit",
+      "Y0": "first bit",
+      "Y1": "second bit"
+    },
+    "witness_fields": [
+      "H_X",
+      "I_X_Y0",
+      "I_X_Y1_given_Y0",
+      "H_X_given_history"
+    ]
+  },
+  {
+    "id": "U5",
+    "area": "Universality",
+    "question": "Given fixed deterministic transition and known local frame, bound the support of the next local frame.",
+    "parameters": {
+      "k": 2,
+      "alphabet_size": 3,
+      "model": "fixed deterministic transition; c_t known"
+    },
+    "witness_fields": [
+      "k",
+      "alphabet_size",
+      "max_next_frame_support"
+    ]
+  },
+  {
+    "id": "U6",
+    "area": "Universality",
+    "question": "Can a time-zero transcript fully identify a constant-entropy input family, invalidating an unqualified positive T bound?",
+    "parameters": {
+      "input_length": 4,
+      "distribution": "uniform over exactly two inputs, distinguishable by first scanned bit",
+      "T": 0
+    },
+    "witness_fields": [
+      "n",
+      "H_X",
+      "T",
+      "H_X_given_Y0"
+    ]
+  },
+  {
+    "id": "Z1",
+    "area": "Zeus",
+    "question": "Can a rare outcome reveal more than one bit despite a binary outcome alphabet?",
+    "parameters": {
+      "num_inputs": 128,
+      "distribution": "uniform",
+      "observation": "one bit, 1 only for one special input"
+    },
+    "witness_fields": [
+      "num_inputs",
+      "rare_outcome_information_bits",
+      "outcome_entropy_less_than_one"
+    ]
+  },
+  {
+    "id": "Z2",
+    "area": "Poseidon",
+    "question": "Does one bit per worker bound all workers together by one bit?",
+    "parameters": {
+      "workers": 3,
+      "per_worker_output_bits": 1,
+      "joint_output": "concatenation of worker outputs"
+    },
+    "witness_fields": [
+      "workers",
+      "per_worker_capacity_bits",
+      "aggregate_capacity_bits"
+    ]
+  },
+  {
+    "id": "Z3",
+    "area": "Poseidon",
+    "question": "Can a population larger than the number of possible transcript histories be exactly identified?",
+    "parameters": {
+      "population": 16,
+      "rounds": 3,
+      "bits_per_round": 1
+    },
+    "witness_fields": [
+      "population",
+      "rounds",
+      "bits_per_round",
+      "max_transcripts",
+      "identification_impossible"
+    ]
+  },
+  {
+    "id": "Z4",
+    "area": "Chronos/SAT",
+    "question": "Does an entropy bound H(X)<=n and linear-time recovery establish superpolynomial SAT hardness?",
+    "parameters": {
+      "n": 15,
+      "entropy_upper_bound_bits": "n"
+    },
+    "witness_fields": [
+      "n",
+      "max_entropy_bits",
+      "linear_time_countermodel"
+    ]
+  },
+  {
+    "id": "P1",
+    "area": "Synthetic provenance",
+    "question": "Does a claimed validation status without bytes, verifier, or replay authenticate the theorem?",
+    "parameters": {
+      "synthetic": true,
+      "underlying_bytes_available": false,
+      "verifier_available": false,
+      "replay_log_available": false
+    },
+    "witness_fields": [
+      "archive_authenticated",
+      "verifier_replayed"
+    ]
+  },
+  {
+    "id": "P2",
+    "area": "Synthetic provenance",
+    "question": "Does a matching SHA256 of available bytes alone verify the mathematical theorem?",
+    "parameters": {
+      "synthetic": true,
+      "digest_matches": true,
+      "theorem_certificate_supplied": false
+    },
+    "witness_fields": [
+      "hash_valid",
+      "theorem_verified"
+    ]
+  },
+  {
+    "id": "P3",
+    "area": "Synthetic provenance",
+    "question": "May a classified-private bundle without permission be released publicly?",
+    "parameters": {
+      "synthetic": true,
+      "private": true,
+      "release_permission": false
+    },
+    "witness_fields": [
+      "public_release_allowed"
+    ]
+  },
+  {
+    "id": "P4",
+    "area": "Synthetic provenance",
+    "question": "Does an unauthenticated certificate for theorem A verify theorem B?",
+    "parameters": {
+      "synthetic": true,
+      "certificate_scope": "theorem_A",
+      "claim_scope": "theorem_B",
+      "issuer_authenticated": false
+    },
+    "witness_fields": [
+      "claim_scope_matches",
+      "authorized_verifier"
+    ]
+  },
+  {
+    "id": "C1",
+    "area": "5D curvature (algebraic)",
+    "question": "Can the pointwise curvature error inequality attain equality with all scalar hypotheses satisfied?",
+    "parameters": {
+      "model": "marked prescribed five-dimensional lapse metric",
+      "kernel_connected": false,
+      "data": "synthetic exact rationals",
+      "scope": "abstract scalar inequality, not periodic-lapse existence",
+      "y": "5/4",
+      "D": "3/2",
+      "N": "1",
+      "u": "2",
+      "m": "1",
+      "M": "2",
+      "E": "1/2",
+      "delta": "1/4"
+    },
+    "witness_fields": [
+      "equality",
+      "error",
+      "bound"
+    ]
+  },
+  {
+    "id": "C2",
+    "area": "5D curvature (sign)",
+    "question": "Does a strictly positive lower endpoint of the curvature interval certify positive true curvature?",
+    "parameters": {
+      "model": "marked prescribed five-dimensional lapse metric",
+      "kernel_connected": false,
+      "data": "synthetic exact rationals",
+      "scope": "abstract scalar inequality",
+      "y": "2",
+      "D": "-1",
+      "N": "2",
+      "u": "-1",
+      "m": "1",
+      "M": "1",
+      "E": "1/4",
+      "delta": "1/4"
+    },
+    "witness_fields": [
+      "estimate",
+      "radius",
+      "sign"
+    ]
+  },
+  {
+    "id": "C3",
+    "area": "5D curvature (sign)",
+    "question": "Does a strictly negative upper endpoint certify negative true curvature?",
+    "parameters": {
+      "model": "marked prescribed five-dimensional lapse metric",
+      "kernel_connected": false,
+      "data": "synthetic exact rationals",
+      "scope": "abstract scalar inequality",
+      "y": "2",
+      "D": "1",
+      "N": "2",
+      "u": "1",
+      "m": "1",
+      "M": "1",
+      "E": "1/4",
+      "delta": "1/4"
+    },
+    "witness_fields": [
+      "estimate",
+      "radius",
+      "sign"
+    ]
+  },
+  {
+    "id": "C4",
+    "area": "5D curvature (sign)",
+    "question": "Does equality at the certification threshold certify nonzero curvature?",
+    "parameters": {
+      "model": "marked prescribed five-dimensional lapse metric",
+      "kernel_connected": false,
+      "data": "synthetic exact rationals",
+      "scope": "strict sign boundary",
+      "y": "1",
+      "D": "1/4",
+      "N": "1",
+      "u": "0",
+      "m": "1",
+      "M": "1",
+      "E": "1/4",
+      "delta": "0"
+    },
+    "witness_fields": [
+      "estimate",
+      "radius",
+      "certifies_nonzero"
+    ]
+  },
+  {
+    "id": "C5",
+    "area": "5D curvature (guards)",
+    "question": "Can the division-based certificate be evaluated when the observed mean is zero?",
+    "parameters": {
+      "model": "marked prescribed five-dimensional lapse metric",
+      "kernel_connected": false,
+      "data": "synthetic exact rationals",
+      "scope": "invalid input guard",
+      "y": "0",
+      "D": "1",
+      "m": "1",
+      "M": "1",
+      "B": "1",
+      "eta": "0",
+      "h": "1/4",
+      "k": 1,
+      "n": 8
+    },
+    "witness_fields": [
+      "y",
+      "certificate_defined",
+      "rejected"
+    ]
+  },
+  {
+    "id": "C6",
+    "area": "5D curvature (guards)",
+    "question": "Can the theorem be applied without a strictly positive lower lapse bound?",
+    "parameters": {
+      "model": "marked prescribed five-dimensional lapse metric",
+      "kernel_connected": false,
+      "data": "synthetic exact rationals",
+      "scope": "invalid input guard",
+      "y": "1",
+      "D": "1",
+      "m": "0",
+      "M": "1",
+      "B": "1",
+      "eta": "0",
+      "h": "1/4",
+      "k": 1,
+      "n": 8
+    },
+    "witness_fields": [
+      "m",
+      "certificate_defined",
+      "rejected"
+    ]
+  },
+  {
+    "id": "C7",
+    "area": "5D curvature (identifiability)",
+    "question": "Do exact finite cell means identify the unique positive periodic C4 lapse?",
+    "parameters": {
+      "model": "marked prescribed five-dimensional lapse metric",
+      "kernel_connected": false,
+      "data": "synthetic exact rationals",
+      "scope": "cell-average noninjectivity",
+      "P": "s^5*(1-s)^5*(2*s-1)",
+      "h": "1/4",
+      "amplitude": "1/110960640",
+      "test_s": "1/4",
+      "repeat_each_cell": true
+    },
+    "witness_fields": [
+      "same_means",
+      "C4_periodic",
+      "curvature_equal",
+      "curvature_at_quarter",
+      "zero_integral"
+    ]
+  },
+  {
+    "id": "C8",
+    "area": "5D curvature (provenance)",
+    "question": "Do synthetic numerical assertions without a Lean kernel proof justify LEAN_VERIFIED?",
+    "parameters": {
+      "model": "marked prescribed five-dimensional lapse metric",
+      "kernel_connected": false,
+      "data": "synthetic exact rationals",
+      "scope": "status/provenance",
+      "synthetic_numeric_checks": 97536,
+      "lean_kernel_executed": false
+    },
+    "witness_fields": [
+      "synthetic_fixture",
+      "numeric_checks",
+      "lean_verified",
+      "theorem_scope"
+    ]
+  }
+]
