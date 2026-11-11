@@ -45,5 +45,4 @@ def main():
     print('T_LIMIT_CONDITIONAL_EXACTLY_J_PREDECESSORS := Gamma(j+1/2, 1)')
     print('LINEAR_EXTENSION_SELECTION_WEIGHT_LIMIT := OPEN')
 
-
 if __name__ == '__main__': main()
