@@ -18,7 +18,7 @@ def point():
     radius = min(t,1-t)*rng.random()**(1/3)
     v=[rng.gauss(0,1) for _ in range(3)]
     norm=sqrt(sum(z*z for z in v))
-    return (t,*(radius*z/norm))
+    return (t,*(radius*z/norm for z in v))
 
 def before(x,y):
     dt=y[0]-x[0]
