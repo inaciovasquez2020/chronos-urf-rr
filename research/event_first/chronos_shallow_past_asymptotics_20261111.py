@@ -66,6 +66,5 @@ def main():
     print('SHALLOW_PAST_SQRT_SCALING := PROVED_ANALYTICALLY_NOT_LEAN')
     print('LINEAR_EXTENSION_PREFIX_SELECTION := OPEN')
 
-
 if __name__ == '__main__':
     main()
