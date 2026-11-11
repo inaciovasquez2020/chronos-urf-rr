@@ -85,6 +85,5 @@ def main():
     print('GEOMETRIC_FIRST_BIRTH_ENVELOPE := PROVED_BY_COUNTING')
     print('ASYMPTOTIC_MINKOWSKI_PREFIX_SAMPLING := OPEN')
 
-
 if __name__=='__main__':
     main()
