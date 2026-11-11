@@ -35,9 +35,9 @@ For P_N obtained from uniformly sprinkled points in a fixed 4D Minkowski causal 
 
 Even a positive lower bound would refute deterministic-ideal concentration only; it would NOT alone refute convergence of uniformly sampled prefix suborders to Minkowski statistics.
 
-## Audit inventory pending individual source upload
+## Research-file inventory uploaded for independent audit
 
-The 30 conversation-produced standalone source/report files are preserved in the companion chat archive named `chronos_event_first_research_20261111.zip` (SHA-256: `d0897c4629cbf1cde063682267448bfdf14240da5972d46bcfbe763992c88b8e`; 52,473 bytes). This repository staging commit does NOT yet contain the 30 archived files. Do not interpret this index as their publication or their successful execution.
+All 30 conversation-produced standalone Python scripts and Markdown reports are now staged individually in `research/event_first/` on this isolated branch, GitHub tree checked at commit `dbca15c9c5d12a409d142257961066782965700f`. The chat archive `chronos_event_first_research_20261111.zip` (SHA-256: `d0897c4629cbf1cde063682267448bfdf14240da5972d46bcfbe763992c88b8e`; 52,473 bytes) remains a separate downloadable backup; archive is NOT stored in Git. Presence in the branch is NOT verification or publication.
 
 ## Release gates
 
