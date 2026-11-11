@@ -52,6 +52,35 @@ jobs:
           export PATH="$HOME/.elan/bin:$PATH"
           lake lean lean/GravityAxiomAudit.lean
 
+      - name: Audit URF-Chronos holonomy decoder axioms (focused)
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          python3 - <<'PY'
+          import re
+          import subprocess
+          result = subprocess.run(
+              ["lake", "lean", "lean/Oblivion/URFChronosHolonomyDecoder.lean"],
+              capture_output=True, text=True, timeout=600, check=False)
+          output = result.stdout + "\n" + result.stderr
+          print(output)
+          if result.returncode != 0:
+              raise SystemExit("FOCUSED_LEAN_COMPILATION := FAIL")
+          allowed = {"propext", "Classical.choice", "Quot.sound"}
+          targets = (
+              "Oblivion.urf_chronos_observation_collision",
+              "Oblivion.urf_chronos_no_exact_holonomy_decoder",
+          )
+          for target in targets:
+              expression = r"'" + re.escape(target) + r"' (does not depend on any axioms|depends on axioms:\s*\[([^\]]+)\])"
+              matches = re.findall(expression, output)
+              if len(matches) != 1:
+                  raise SystemExit("FOCUSED_AXIOM_AUDIT := INCOMPLETE: " + target)
+              reported = {s.strip() for s in matches[0][1].split(",") if s.strip()}
+              if not reported <= allowed:
+                  raise SystemExit("FOCUSED_AXIOM_AUDIT := FAIL: " + target + " " + str(reported))
+          print("FOCUSED_URF_CHRONOS_LEAN := PASS; AXIOM_AUDIT := PASS")
+          PY
+
       - name: Verify operator norm perturbation boundary
         run: python3 tools/verifier/verify_operator_norm_perturbation_boundary.py
 
