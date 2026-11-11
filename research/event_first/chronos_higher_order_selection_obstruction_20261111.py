@@ -110,5 +110,4 @@ def main():
     print('OVERLAP_COUNT_INSUFFICIENT_FOR_N4 := PROVED')
     print('MINKOWSKI_ASYMPTOTIC_SELECTION_WEIGHTS := OPEN')
 
-
 if __name__=='__main__':main()
