@@ -105,5 +105,4 @@ def main():
     print('FUTURE_SET_DOMINANCE := PASS')
     print('MINKOWSKI_LINEAR_EXTENSION_ASYMPTOTICS := OPEN')
 
-
 if __name__=='__main__':main()
