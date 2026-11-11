@@ -4,6 +4,10 @@
 
 This repository maintains formalization surfaces, reproducible symbolic/numerical certificates, JSON receipts, tests, and explicit boundaries between established results and unresolved mathematical claims. A successful build or passing certificate validates only the properties actually checked; it does not by itself establish global theorem closure or physical interpretation.
 
+## Finite holonomy and locality
+
+[The merged locality bridge note](docs/research/finite_holonomy_locality_bridge_001_004.md) records a candidate interface between bounded graph neighborhoods and finite transport. On a cycle of length greater than `2r + 1`, the observation model independently quotients each radius-`r` restriction by vertex gauge. The note documents a local observation collision for distinct global holonomies under that model. Formal integration and physical interpretation remain open.
+
 ## Current research snapshot
 
 As of 2026-10-18, recent GfE work has advanced from the corrected axial projector/GQQ certificate to several more specific, finite-scope results:
