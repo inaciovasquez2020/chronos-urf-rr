@@ -32,7 +32,7 @@ Four standalone Python 3.9-compatible standard-library programs were run with Py
 | `rr_csg_global_uniqueness.py` | `179ee9e148bf0ea4c68a30709d1b6a7445966e73ea49d24bb15c1a07306eab03` | `GLOBAL_REAL_ROOT_COUNT := 10`, `NONNEGATIVE_COUPLING_CANDIDATES := 1` |
 | `rr_csg_elimination_ideal_audit_py39.py` | `a995f13622a7ebee61dfb9a931c201c026d66aa4caf8456a0f46690ee13942e0` | `GROEBNER_IDEAL_EQUIVALENCE := PASS`, 26-element Buchberger basis, 325 pairs |
 
-**Important:** These four certificates are separately retained local research files and are **not included in this documentation-only change**; the SHA-256 fingerprints are not substitutes for shipping the underlying scripts. No new exact-head CI can validate the full theorem without their source. The repository snapshot and PR must be treated as *research documentation only* until the scripts and their tests are added.
+**Source availability:** All four exact certificate scripts are now included under `research/event_first/csg_certificates/`. The first is the Python 3.9-compatible replacement of the original generated script. Verify hashes and execute the entire suite at the PR HEAD; CI green alone does not replace independent mathematical review.
 
 ## Exact mathematical workflow
 
@@ -49,4 +49,4 @@ Four standalone Python 3.9-compatible standard-library programs were run with Py
 - **Finite mathematical result:** conditional on integrity of the independent exact arithmetic implementations and input conventions; computationally checked, not Lean-verified.
 - **Physics:** 4D continuum emergence, persistent Minkowski sampling statistics at large \(N\), observational interpretation of chain targets, and gravitation are **OPEN**.
 - **Nov-elty:** NOT ESTABLISHED. Independent mathematical review: OPEN.
-- **Promotion requires:** include or independently reproduce all four certificate sources; verify their SHA-256 hashes, rerun at exact PR HEAD with assertions enabled, inspect dependency and provenance, review the resulting diff, and obtain independent mathematical scrutiny. Do not treat a green documentation CI run as full proof validation.
+- **Promotion requires:** verify the four SHA-256 source hashes, rerun at exact PR HEAD with assertions enabled, inspect dependencies and the complete diff, confirm required CI, and obtain independent mathematical scrutiny. A successful suite is computational verification, not a Lean proof.
