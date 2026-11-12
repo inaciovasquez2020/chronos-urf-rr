@@ -64,6 +64,14 @@ class TestAuthenticatedAnswerGate(unittest.TestCase):
         p = proposal(self.j.claim("c"))
         self.j.records["c"]["proposition"] = "forged"
         self.assertFalse(assess_from_journal(self.j, p).allowed)
+    def test_unlogged_proved_record_denied(self):
+        self.promote()
+        forged = deepcopy(self.j.records["c"])
+        forged["claim_id"] = "forged"
+        self.j.records["forged"] = forged
+        self.assertFalse(self.j.audit_events())
+        self.assertFalse(assess_from_journal(self.j, proposal(forged)).allowed)
+
     def test_tampered_event_denied(self):
         self.promote()
         self.j.events[0]["reason"] = "forged"
