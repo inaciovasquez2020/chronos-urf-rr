@@ -72,6 +72,21 @@ class TestAuthenticatedAnswerGate(unittest.TestCase):
         self.assertFalse(self.j.audit_events())
         self.assertFalse(assess_from_journal(self.j, proposal(forged)).allowed)
 
+    def test_atomic_claim_snapshot_is_copy(self):
+        self.promote()
+        snapshot = self.j.audited_claim("c")
+        snapshot["state"] = "OPEN"
+        self.assertEqual(self.j.claim("c")["state"], "PROVED")
+        self.assertTrue(self.j.audit_events())
+
+    def test_atomic_claim_rejects_unlogged_record(self):
+        self.promote()
+        forged = deepcopy(self.j.records["c"])
+        forged["claim_id"] = "unlogged"
+        self.j.records["unlogged"] = forged
+        with self.assertRaises(ValueError):
+            self.j.audited_claim("unlogged")
+
     def test_tampered_event_denied(self):
         self.promote()
         self.j.events[0]["reason"] = "forged"
