@@ -186,6 +186,8 @@ class ClaimJournal:
         # The last event for each claim must bind to its current unmodified record.
         last={}
         for event in self.events: last[event["claim_id"]]=event["post_state_digest"]
+        if set(self.records) != set(last):
+            return False
         if any(digest(self.records[cid])!=state_hash for cid,state_hash in last.items()):
             return False
         return True
