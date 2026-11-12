@@ -175,7 +175,7 @@ theorem ChronosTraceClassifierCompleteness
 
 theorem ChronosTraceManifest_2026_05_05_audit :
   auditChronosTraceManifest ChronosTraceManifest_2026_05_05 = true := by
-  native_decide
+  decide
 
 structure ChronosTraceClassifierSolved where
   manifest : ChronosTraceManifest
