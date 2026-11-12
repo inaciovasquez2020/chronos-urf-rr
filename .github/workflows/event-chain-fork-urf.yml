@@ -1,0 +1,35 @@
+name: Event chain-fork URF obstruction
+
+on:
+  pull_request:
+    paths:
+      - "tools/verifier/event_chain_fork_urf_obstruction.py"
+      - "docs/math/EVENT_CHAIN_FORK_URF_OBSTRUCTION.md"
+      - ".github/workflows/event-chain-fork-urf.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-bounded-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Reproduce exact finite ordinal-sum collision audit
+        run: |
+          set -eu
+          python3 -B tools/verifier/event_chain_fork_urf_obstruction.py | tee "${RUNNER_TEMP}/event_chain_fork.log"
+          grep -Fx 'RESULT := COMPUTATION_PASS' "${RUNNER_TEMP}/event_chain_fork.log"
+          grep -Fx 'COMPOSITIONS_AUDITED := 63' "${RUNNER_TEMP}/event_chain_fork.log"
+      - name: Reject optimized Python false PASS
+        run: |
+          set -eu
+          if PYTHONOPTIMIZE=1 python3 -B tools/verifier/event_chain_fork_urf_obstruction.py > "${RUNNER_TEMP}/optimized.log" 2>&1; then
+            echo "OPTIMIZED_EXECUTION_FALSE_PASS"
+            exit 1
+          fi
+          grep -F 'INCOMPLETE: optimized Python disables asserts' "${RUNNER_TEMP}/optimized.log"
