@@ -8,7 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from .csts import ClaimJournal
+from .csts import ClaimJournal, TransitionRejected
 from .evidence import digest
 
 
@@ -37,9 +37,9 @@ def assess_from_journal(journal: ClaimJournal, proposal: dict[str, Any]) -> Verd
     if type(cid) is not str or not cid:
         return _deny("INVALID_CLAIM_ID")
     try:
-        if not journal.audit_events():
-            return _deny("JOURNAL_INTEGRITY_FAILED")
-        record = journal.claim(cid)
+        record = journal.audited_claim(cid)
+    except TransitionRejected:
+        return _deny("JOURNAL_INTEGRITY_FAILED")
     except (KeyError, ValueError, TypeError, AttributeError, RecursionError):
         return _deny("MISSING_OR_INVALID_CLAIM")
     if not journal.events or not isinstance(record, dict):
