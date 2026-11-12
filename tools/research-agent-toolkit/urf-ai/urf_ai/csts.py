@@ -8,6 +8,7 @@ from copy import deepcopy
 from dataclasses import dataclass
 import hashlib
 import hmac
+from threading import RLock
 from .evidence import canonical, digest, attest, authenticate, validated_receipt
 
 class TransitionRejected(ValueError):
@@ -25,6 +26,7 @@ class ClaimJournal:
     def __init__(self, secret: bytes, roles: dict[str,str], checker_allowlist: dict[str,str], policy_version: str="candidate.v0.1"):
         if len(secret) < 32: raise ValueError("secret too short")
         self._secret = secret
+        self._lock = RLock()
         self.roles = deepcopy(roles)
         self.allowlist = deepcopy(checker_allowlist)
         self.policy_version = policy_version
@@ -63,6 +65,24 @@ class ClaimJournal:
         return True
 
     def apply(self, *, event_id: str, kind: str, claim_id: str, actor: str, expected_version: int, payload: dict, reason: str, expected_prev_hash: str | None=None) -> Decision:
+        """Serialize controller-mediated authenticated journal mutations."""
+        with self._lock:
+            return self._apply_locked(event_id=event_id, kind=kind,
+                                      claim_id=claim_id, actor=actor,
+                                      expected_version=expected_version,
+                                      payload=payload, reason=reason,
+                                      expected_prev_hash=expected_prev_hash)
+
+    def audited_claim(self, cid: str) -> dict:
+        """Audit then deep-copy under one lock; caller must own journal internals."""
+        with self._lock:
+            if not self.audit_events():
+                raise TransitionRejected("journal integrity failed")
+            if not self.events:
+                raise TransitionRejected("empty journal")
+            return self.claim(cid)
+
+    def _apply_locked(self, *, event_id: str, kind: str, claim_id: str, actor: str, expected_version: int, payload: dict, reason: str, expected_prev_hash: str | None=None) -> Decision:
         if event_id in self.event_ids or not event_id or not reason:
             raise TransitionRejected("duplicate/invalid event identity or reason")
         prev = self.events[-1]["event_hash"] if self.events else "0"*64
