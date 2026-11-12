@@ -50,3 +50,14 @@ Four standalone Python 3.9-compatible standard-library programs were run with Py
 - **Physics:** 4D continuum emergence, persistent Minkowski sampling statistics at large \(N\), observational interpretation of chain targets, and gravitation are **OPEN**.
 - **Nov-elty:** NOT ESTABLISHED. Independent mathematical review: OPEN.
 - **Promotion requires:** verify the four SHA-256 source hashes, rerun at exact PR HEAD with assertions enabled, inspect dependencies and the complete diff, confirm required CI, and obtain independent mathematical scrutiny. A successful suite is computational verification, not a Lean proof.
+
+## Prior-art comparison (2026-11-12)
+
+**Directly relevant existing theorem:** N. Georgiou and G. Brightwell, *Continuum Limits for Classical Sequential Growth Models*, *Random Structures & Algorithms*, DOI [10.1002/rsa.20278](https://doi.org/10.1002/rsa.20278) (2010). [Author manuscript](https://nicholasgeorgiou.webspace.durham.ac.uk/wp-content/uploads/sites/199/2021/04/contlim.pdf), especially Definitions 1.2–1.3 and Theorems 1.5–1.6.
+
+- Their finite-poset sampling definition uses uniformly chosen distinct induced subsets; this is materially the same uniform sampling convention used here.
+- Theorem 1.5 states that for sufficiently large n every CSG distribution is close in expected pair-disagreement to a semiorder, uniformly in its coupling sequence. Theorem 1.6 gives the almost-semiorder constraint on continuum limits. Their paper concludes that Minkowski regions of dimension >= 2 do not arise as these continuum limits.
+- **ALREADY ESTABLISHED (not novel here):** the general no-Minkowski-continuum conclusion for classical sequential growth under that notion of continuum convergence. The specific finite 4-to-5 chain-moment exact nonextension certificate is a different, much narrower claim; its *novelty is unestablished* pending a dedicated theorem-level prior-art review.
+- Rideout and Sorkin, *Classical sequential growth dynamics for causal sets*, *Phys. Rev. D* 61, 024002 (1999/2000), DOI [10.1103/PhysRevD.61.024002](https://doi.org/10.1103/PhysRevD.61.024002), provide the underlying nonnegative CSG transition framework.
+
+**Literature-screening limitation:** These references establish the core overlapping continuum claim but do not constitute an exhaustive search for the exact finite numerical certificate. A green program run or this preliminary screening is not independent mathematical review.
