@@ -1,0 +1,47 @@
+name: Exact finite 4D chain covariance audit
+
+on:
+  pull_request:
+    paths:
+      - 'tools/verifier/finite_chain_covariance_4d.py'
+      - 'docs/math/FINITE_SAMPLE_CHAIN_COVARIANCE_2026_11_12.md'
+      - '.github/workflows/finite-chain-covariance.yml'
+  push:
+    branches:
+      - research/finite-chain-covariance-4d-20261112
+
+permissions:
+  contents: read
+
+jobs:
+  exact-covariance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact checkout revision
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - name: Exhaustive finite overlap and rational-moment audit
+        run: |
+          set -euo pipefail
+          python3 -B tools/verifier/finite_chain_covariance_4d.py | tee "${RUNNER_TEMP}/covariance.log"
+          grep -Fx 'MONOMIAL_MOMENT_AUDIT := PASS' "${RUNNER_TEMP}/covariance.log"
+          grep -Fx 'FINITE_N_OVERLAP_ORACLE := PASS' "${RUNNER_TEMP}/covariance.log"
+          grep -Fx 'GAMMA2_EXACT_4D_INTEGRAL := PASS 11/58800' "${RUNNER_TEMP}/covariance.log"
+          grep -Fx 'FULL_FINITE_N_COVARIANCE := PASS' "${RUNNER_TEMP}/covariance.log"
+          grep -Fx 'RESULT := COMPUTATION_PASS' "${RUNNER_TEMP}/covariance.log"
+      - name: Fail closed if assertions are disabled
+        run: |
+          set -euo pipefail
+          if PYTHONOPTIMIZE=1 python3 -B tools/verifier/finite_chain_covariance_4d.py > "${RUNNER_TEMP}/optimized.log" 2>&1; then
+            echo "FALSE_PASS_WITH_ASSERTIONS_DISABLED"
+            exit 1
+          fi
+          grep -F 'INCOMPLETE: Python assertions disabled' "${RUNNER_TEMP}/optimized.log"
