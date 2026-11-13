@@ -31,3 +31,8 @@ jobs:
         env:
           PYTHONPATH: .
         run: /usr/bin/python3 -B tests/macos_controller_isolation.py
+      - name: Authenticated fsync crash/restart on macOS (no downloads)
+        working-directory: tools/research-agent-toolkit/urf-ai
+        env:
+          PYTHONPATH: .
+        run: /usr/bin/python3 -B tests/macos_durable_recovery.py
