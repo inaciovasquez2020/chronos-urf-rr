@@ -34,7 +34,8 @@ jobs:
           python3 -B tools/verifier/finite_chain_covariance_4d.py | tee "${RUNNER_TEMP}/covariance.log"
           grep -Fx 'MONOMIAL_MOMENT_AUDIT := PASS' "${RUNNER_TEMP}/covariance.log"
           grep -Fx 'FINITE_N_OVERLAP_ORACLE := PASS' "${RUNNER_TEMP}/covariance.log"
-          grep -Fx 'GAMMA2_EXACT_4D_INTEGRAL := OPEN' "${RUNNER_TEMP}/covariance.log"
+          grep -Fx 'GAMMA2_EXACT_4D_INTEGRAL := PASS 11/58800' "${RUNNER_TEMP}/covariance.log"
+          grep -Fx 'FULL_FINITE_N_COVARIANCE := PASS' "${RUNNER_TEMP}/covariance.log"
           grep -Fx 'RESULT := COMPUTATION_PASS' "${RUNNER_TEMP}/covariance.log"
       - name: Fail closed if assertions are disabled
         run: |
