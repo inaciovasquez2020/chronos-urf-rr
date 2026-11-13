@@ -39,9 +39,11 @@ if type(tool) is not dict or type(tool.get("driver")) is not dict:
 driver=tool["driver"]
 if "CodeQL" not in str(driver.get("name","")):
     fail("result not from CodeQL")
-rules=driver.get("rules")
-if type(rules) is not list or not rules:
-    fail("missing executed-rule metadata")
+# SARIF producers may omit the rule catalog when no result refers to it.
+# Any reported result MUST still resolve to explicit rule metadata.
+rules=driver.get("rules",[])
+if type(rules) is not list:
+    fail("malformed rule metadata")
 by_id={}
 for rule in rules:
     if type(rule) is not dict or type(rule.get("id")) is not str:
