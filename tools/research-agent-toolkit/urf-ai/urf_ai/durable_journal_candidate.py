@@ -60,6 +60,7 @@ class DurableJournalOwner:
         self.allowlist=deepcopy(checker_allowlist)
         self.policy_version=policy_version
         self._lock=RLock()
+        self._poisoned=False
         self.journal=ClaimJournal(secret,roles,checker_allowlist,policy_version)
         if os.path.lexists(self.path):
             self._restore(_read_snapshot(self.path))
@@ -139,12 +140,27 @@ class DurableJournalOwner:
 
     def apply(self, **kwargs):
         with self._lock, self.journal._lock:
+            if self._poisoned:
+                raise RecoveryRejected("OWNER_POISONED")
             candidate=self._candidate(self._fields(self.journal))
             decision=candidate.apply(**kwargs)
-            self._persist(candidate)
+            if self._poisoned:
+                raise RecoveryRejected("OWNER_POISONED")
+            try:
+                self._persist(candidate)
+            except BaseException:
+                # If rename succeeded but directory fsync failed, disk and
+                # memory may disagree. Poison the in-memory event audit.
+                self._poisoned=True
+                self.journal.records["__storage_unavailable__"] = {
+                    "state":"WITHDRAWN"
+                }
+                raise
             self._swap(candidate)
             return decision
 
     def audited_claim(self, cid):
         with self._lock:
+            if self._poisoned:
+                raise RecoveryRejected("OWNER_POISONED")
             return self.journal.audited_claim(cid)
