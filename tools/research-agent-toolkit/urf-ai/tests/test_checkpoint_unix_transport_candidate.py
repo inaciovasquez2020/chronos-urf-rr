@@ -114,24 +114,26 @@ def test_malformed_request_fails_closed(wire,monkeypatch):
     assert mock.calls==0
 
 def test_client_denies_missing_unix_server(tmp_path):
-    c=UnixCheckpointClient(str(tmp_path/"missing.sock"))
+    c=UnixCheckpointClient(str(tmp_path/"missing.sock"),expected_writer_uid=os.getuid()+1)
     with pytest.raises(TransportRejected,match="WRITER_UNAVAILABLE"):
         c.read()
 
-def test_client_never_accepts_malformed_server_reply(tmp_path):
+def test_client_rejects_same_uid_writer(tmp_path):
+    with pytest.raises(TransportRejected,match="WRITER_UID_NOT_SEPARATED"):
+        UnixCheckpointClient(str(tmp_path/"server.sock"),
+                             expected_writer_uid=os.getuid())
+
+def test_client_rejects_attacker_owned_socket_before_connect(tmp_path):
     path=str(tmp_path/"server.sock")
-    listener=socket.socket(socket.AF_UNIX,socket.SOCK_STREAM)
-    listener.bind(path)
-    listener.listen(1)
-    def responder():
-        conn,_=listener.accept()
-        with conn:
-            conn.recv(4096)
-            conn.sendall(b'{"ok":true,"checkpoint":[0,null],"extra":1}\n')
-        listener.close()
-    t=threading.Thread(target=responder)
-    t.start()
-    with pytest.raises(TransportRejected,match="INVALID_WRITER_REPLY"):
-        UnixCheckpointClient(path).read()
-    t.join(timeout=3)
-    assert not t.is_alive()
+    os.chmod(tmp_path,0o711)
+    with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as listener:
+        listener.bind(path)
+        listener.listen(1)
+        with pytest.raises(TransportRejected,match="UNTRUSTED_WRITER_ENDPOINT"):
+            UnixCheckpointClient(path,expected_writer_uid=os.getuid()+1).read()
+
+def test_client_constructor_rejects_invalid_writer_uid(tmp_path):
+    for uid in (-1, True, "501", None):
+        with pytest.raises(TransportRejected,match="WRITER_UID_NOT_SEPARATED"):
+            UnixCheckpointClient(str(tmp_path/"server.sock"),
+                                 expected_writer_uid=uid)
