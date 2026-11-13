@@ -91,6 +91,25 @@ therefore contains the true \(\theta_0\) with probability at least \(1-\alpha\).
 \]
 An empty set does not cover the truth; the coverage claim is probabilistic, not a promise that the set is nonempty for all random datasets.
 
+### A sharper U-statistic concentration option
+
+The full U-statistic \(U_k\), k=2,3, is the average over all k-subsets, with 0/1 kernels. Let \(m_k=\lfloor N/k\rfloor\). Under a uniform random permutation of the N iid inputs, partition its first \(k m_k\) positions into \(m_k\) **disjoint** k-blocks. Conditioned on the input sample, the average block indicator has expectation \(U_k\), by symmetry. Jensen's inequality for the exponential moment followed by the independent-block Hoeffding inequality therefore gives the **distribution-free U-statistic tail bound**
+\[
+ \Pr_\theta(|U_k-P_k(\theta)|>e)\le2\exp(-2m_k e^2).
+\]
+Thus the same confidence-set proof works with the sharper radii
+\[
+\epsilon_k^{(U)}=\sqrt{\frac{\log(4/\alpha)}{2\lfloor N/k\rfloor}},
+\quad k\in\{2,3\},
+\]
+for any N≥3. In particular \(\epsilon_3^{(U)}\ge\epsilon_2^{(U)}\). The deterministic confidence-set diameter bound remains \(\operatorname{diam}_\infty C\le\min(2r_0,4M\epsilon_3^{(U)})\).
+
+For \(\alpha=1/20\) and the sufficient target \(4M\epsilon_3^{(U)}\le r_0\), the exact arithmetic threshold using \(\log80<5\) is
+\[
+N\ge 232336500292968750000000
+\]
+(about \(2.32\times10^{23}\) observations), versus \(697009500878906250000000\) (about \(6.97\times10^{23}\)) using McDiarmid's bound. These astronomically large **sufficient** thresholds emphasize that the result is mathematically certified but not practically useful; no lower bound on the information-theoretic sample requirement is implied.
+
 This is a *valid finite-N theorem* but the upper bound is extremely conservative. As an explicit illustration, for confidence \(95\%\), \(\log(80)<5\). Enforcing the stronger sufficient target \(4M\epsilon_3\le r_0\) requires \(N\ge 697009500878906250000000\) (approximately \(6.97\times10^{23}\)). The tightness and practical usefulness of this bound have NOT been established. The exact rational verifier records one sufficient integer N without using floating-point logarithms.
 
 ## Verification and open boundary
