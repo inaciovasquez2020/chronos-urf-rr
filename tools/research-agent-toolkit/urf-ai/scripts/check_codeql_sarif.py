@@ -39,18 +39,26 @@ if type(tool) is not dict or type(tool.get("driver")) is not dict:
 driver=tool["driver"]
 if "CodeQL" not in str(driver.get("name","")):
     fail("result not from CodeQL")
-# SARIF producers may omit the rule catalog when no result refers to it.
-# Any reported result MUST still resolve to explicit rule metadata.
-rules=driver.get("rules",[])
-if type(rules) is not list:
-    fail("malformed rule metadata")
+# SARIF 2.1.0 permits rules in the CodeQL driver or tool extensions.
+# Reject any result whose rule cannot be resolved to the reported metadata.
+components=[driver]
+extensions=tool.get("extensions",[])
+if type(extensions) is not list:
+    fail("malformed tool extensions")
+components.extend(extensions)
 by_id={}
-for rule in rules:
-    if type(rule) is not dict or type(rule.get("id")) is not str:
-        fail("malformed rule")
-    if rule["id"] in by_id:
-        fail("duplicate rule ID")
-    by_id[rule["id"]]=rule
+for component in components:
+    if type(component) is not dict:
+        fail("malformed tool component")
+    rules=component.get("rules",[])
+    if type(rules) is not list:
+        fail("malformed rule metadata")
+    for rule in rules:
+        if type(rule) is not dict or type(rule.get("id")) is not str:
+            fail("malformed rule")
+        if rule["id"] in by_id and by_id[rule["id"]] != rule:
+            fail("conflicting rule metadata")
+        by_id[rule["id"]]=rule
 findings=[]
 diagnostics=0
 for result in run["results"]:
@@ -66,15 +74,22 @@ for result in run["results"]:
     if type(tags) is not list:
         fail("malformed rule tags")
     if ("security" in tags or "security-severity" in props):
-        findings.append((result["ruleId"],result.get("message",{}).get("text","")[:250]))
+        locations=result.get("locations") or []
+        first=locations[0].get("physicalLocation",{}) if type(locations) is list and locations else {}
+        artifact=first.get("artifactLocation",{}) if type(first) is dict else {}
+        region=first.get("region",{}) if type(first) is dict else {}
+        where=str(artifact.get("uri","?"))+":"+str(region.get("startLine","?"))
+        message=result.get("message") or {}
+        summary=message.get("text","") if type(message) is dict else ""
+        findings.append((result["ruleId"],where,str(summary)[:250]))
     else:
         diagnostics+=1
 print("CODEQL_SARIF_FILE :=",files[0].name)
-print("CODEQL_CODEQL_RULES :=",len(rules))
+print("CODEQL_CODEQL_RULES :=",len(by_id))
 print("CODEQL_NON_SECURITY_DIAGNOSTICS :=",diagnostics)
 print("CODEQL_SECURITY_FINDINGS :=",len(findings))
-for rule,message in findings[:30]:
-    print("SECURITY_FINDING :",rule,repr(message))
+for rule,where,message in findings[:30]:
+    print("SECURITY_FINDING :",rule,where,repr(message))
 if findings:
     print("CODEQL_SECURITY_GATE := FAIL")
     raise SystemExit(1)
