@@ -63,9 +63,10 @@ def test_old_valid_authenticated_snapshot_is_rejected(path):
     register(first,"r1")
     old_valid = path.read_bytes()
     # A second valid journal event produces a newer authenticated snapshot.
-    first.apply(event_id="withdraw",kind="WITHDRAW",claim_id="c",
+    first.apply(event_id="revise",kind="REVISE",claim_id="c",
                 actor="author",expected_version=1,
-                payload={},reason="synthetic withdrawal")
+                payload={"changes":{"proposition":"synthetic statement revised"}},
+                reason="synthetic revision")
     assert checkpoint.current[0] == 2
     first.close()
     path.write_bytes(old_valid)
