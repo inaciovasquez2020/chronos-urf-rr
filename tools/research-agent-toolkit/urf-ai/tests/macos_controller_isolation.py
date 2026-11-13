@@ -102,7 +102,10 @@ print(json.dumps({"key_denied":key_denied,"response":response}))
 """
 proc=subprocess.run(["sudo","-n","-u",worker_account,sys.executable,"-c",
                      worker_program,socket_path,str(keyfile),json.dumps(req)],
-                    capture_output=True,text=True,timeout=20,check=True)
+                    capture_output=True,text=True,timeout=20,check=False)
+if proc.returncode != 0:
+    fail("CROSS_UID_WORKER_FAILED: returncode=%d stderr=%r stdout=%r" %
+         (proc.returncode, proc.stderr[-2000:], proc.stdout[-1000:]))
 result=json.loads(proc.stdout)
 if result["key_denied"] is not True:
     fail("worker could read controller key")
