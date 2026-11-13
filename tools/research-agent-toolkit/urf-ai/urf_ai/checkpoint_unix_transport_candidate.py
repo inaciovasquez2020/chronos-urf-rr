@@ -2,7 +2,7 @@
 
 The writer and controller MUST run as distinct OS UIDs, and only the writer
 process receives DynamoDB UpdateItem credentials. A 0711 writer-owned directory
-and 0666 socket permit connect; OS peer credentials provide authorization.
+and 0660 group socket permit connect; OS peer credentials provide authorization.
 This module does not configure processes, provision AWS, or establish remote TLS.
 OS credential auth binds a UID, NOT a specific executable or human caller.
 CAS prevents replay of an already applied update; it does not prevent arbitrary
@@ -106,7 +106,7 @@ def serve_checkpoint_unix(*, socket_path, controller_uid, service, max_connectio
     listener=socket.socket(socket.AF_UNIX,socket.SOCK_STREAM)
     try:
         listener.bind(socket_path)
-        os.chmod(socket_path,0o666)
+        os.chmod(socket_path,0o660)
         listener.listen(8)
         accepted=0
         while max_connections is None or accepted<max_connections:
