@@ -52,6 +52,20 @@ N_ceiling = (N_required.numerator + N_required.denominator - 1)//N_required.deno
 assert Q(4*M)**2*Q(45,2)/N_ceiling <= r*r
 assert N_ceiling > 10**20
 
+# Sharper bounded-U-statistic Hoeffding concentration: partition a random
+# permutation into floor(N/k) disjoint k-tuples; each block indicator is
+# Bernoulli, and Jensen's inequality transfers its moment generating
+# function bound to the complete U-statistic. For alpha=1/20,
+# log(4/alpha)=log(80)<5. The 3-chain bound dominates the 2-chain bound.
+# eps_3^2 < 5 / (2*floor(N/3)).
+block_count = ((4*M/r)**2 * Q(5,2))
+block_min = ((block_count.numerator + block_count.denominator - 1)
+             // block_count.denominator)
+N_hoeffding = 3*block_min
+assert N_hoeffding < N_ceiling
+assert (4*M)**2 * Q(5,2)/block_min <= r*r
+assert N_hoeffding == 232336500292968750000000
+
 # A second, independent discrete iid check of bounded differences:
 # for every N in [3,7], a single input-coordinate replacement
 # changes an unordered k-chain U-statistic by <=k/N.
@@ -78,6 +92,8 @@ print("CONTRACTION_LT_HALF := PASS")
 print("NONASYMPTOTIC_CONFIDENCE_DIAMETER_BOUND := PASS")
 print("CONSERVATIVE_N_ALPHA_005_FOR_DIAMETER_AT_MOST_R :=",N_ceiling)
 print("FINITE_DISCRETE_BOUNDED_DIFFERENCES := PASS")
+print("U_STAT_HOEFFDING_BOUND := PASS")
+print("SHARPER_N_ALPHA_005_FOR_DIAMETER_AT_MOST_R :=",N_hoeffding)
 print("NONLINEAR_RESPONSE_NUMERICAL_INTEGRATION := NOT_RUN")
 print("LEAN_VERIFIED := NOT_RUN")
 print("RESULT := COMPUTATION_PASS")
