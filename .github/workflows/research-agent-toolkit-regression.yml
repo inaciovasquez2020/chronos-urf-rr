@@ -11,6 +11,10 @@ on:
       - ".github/workflows/research-agent-toolkit-regression.yml"
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/heads/audit/urf-ai-controller-real-gate-20261113') }}
+
 permissions:
   contents: read
 

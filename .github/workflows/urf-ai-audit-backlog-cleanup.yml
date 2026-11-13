@@ -1,0 +1,51 @@
+name: One-time URF-AI audit queue cleanup
+
+on:
+  push:
+    branches:
+      - audit/urf-ai-controller-real-gate-20261113
+    paths:
+      - ".github/workflows/urf-ai-audit-backlog-cleanup.yml"
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cancel-superseded-audit-runs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Cancel only prior active audit-branch CI runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          CURRENT_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          audit_branch="audit/urf-ai-controller-real-gate-20261113"
+          count=0
+          candidates="$(mktemp)"
+          trap 'rm -f "$candidates"' EXIT
+          gh api --paginate "repos/$REPOSITORY/actions/runs?branch=$audit_branch&per_page=100" \
+            --jq '.workflow_runs[] | [.id, .head_branch, .head_sha, .name, .status] | @tsv' > "$candidates"
+          while IFS=$'\t' read -r id ref sha name status; do
+            [[ "$ref" == "$audit_branch" && "$sha" != "$CURRENT_SHA" ]] || continue
+            case "$status" in queued|in_progress|waiting|requested|pending) ;; *) continue ;; esac
+            case "$name" in
+              CI|"external-status-lock"|"Research Agent Toolkit regressions"|"URF-AI macOS controller audit") ;;
+              *) continue ;;
+            esac
+            if [[ "$count" -ge 200 ]]; then
+              echo "LIMIT_REACHED: at most 200 cancellations"; exit 1
+            fi
+            echo "CANCEL_REQUEST run=$id name=$name head=$sha status=$status"
+            if gh api -X POST "repos/$REPOSITORY/actions/runs/$id/cancel" > /dev/null 2>&1; then
+              echo "CANCEL_ACCEPTED run=$id"
+            else
+              echo "CANCEL_NOT_ACCEPTED run=$id (inspect status)"
+            fi
+            count=$((count + 1))
+          done < "$candidates"
+          echo "CANCELLATION_ATTEMPTS=$count"

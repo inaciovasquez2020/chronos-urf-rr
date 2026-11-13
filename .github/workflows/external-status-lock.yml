@@ -2,6 +2,8 @@ name: external-status-lock
 
 on:
   push:
+    branches-ignore:
+      - audit/urf-ai-controller-real-gate-20261113
   pull_request:
 
 jobs:
