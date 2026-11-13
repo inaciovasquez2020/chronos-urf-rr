@@ -90,8 +90,9 @@ assert unauthorized=={"ok":False,"error":"DENIED"},unauthorized
 
 client_script=r"""
 import json,os,sys
+endpoint,credential,writer_uid_arg,source_root=sys.argv[1:]
+sys.path.insert(0, source_root)
 from urf_ai.checkpoint_unix_transport_candidate import UnixCheckpointClient,TransportRejected
-endpoint,credential,writer_uid_arg=sys.argv[1:]
 writer_uid=int(writer_uid_arg)
 denied=False
 try:
@@ -116,7 +117,7 @@ print(json.dumps({"credential_denied":denied,
                   "read":list(read),"first":first,"replay":replay}))
 """
 proc=subprocess.run(["sudo","-n","-u",controller_account,sys.executable,
-                     "-B","-c",client_script,endpoint,str(credential),str(writer_uid)],
+                     "-B","-c",client_script,endpoint,str(credential),str(writer_uid),os.getcwd()],
                     text=True,capture_output=True,timeout=25)
 assert proc.returncode==0,(proc.returncode,proc.stdout,proc.stderr)
 result=json.loads(proc.stdout)
