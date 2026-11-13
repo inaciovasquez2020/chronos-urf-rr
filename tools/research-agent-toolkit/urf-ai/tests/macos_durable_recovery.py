@@ -42,6 +42,7 @@ except ValueError:
     pass
 else:
     raise AssertionError("duplicate event accepted after restart")
+j.close()
 tampered=json.loads(path.read_text())
 tampered["data"]["records"]["c"]["state"]="PROVED"
 path.write_text(json.dumps(tampered))
