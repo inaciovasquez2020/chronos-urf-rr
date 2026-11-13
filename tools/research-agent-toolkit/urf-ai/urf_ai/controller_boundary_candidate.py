@@ -126,7 +126,7 @@ def serve_urf(socket_path: str, policy: IdentityPolicy, journal, max_connections
     listener = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
     try:
         listener.bind(socket_path)
-        os.chmod(socket_path, 0o666)
+        os.chmod(socket_path, 0o660)
         listener.listen(8)
         count = 0
         while max_connections is None or count < max_connections:
@@ -194,7 +194,7 @@ def serve_owned_urf(socket_path: str, policy: IdentityPolicy, owner, max_connect
         installed = False
         try:
             listener.bind(temporary)
-            os.chmod(temporary, 0o666)
+            os.chmod(temporary, 0o660)
             listener.listen(8)
             if os.path.lexists(path):
                 prior = os.lstat(path)
