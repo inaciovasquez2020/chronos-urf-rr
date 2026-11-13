@@ -1,0 +1,19 @@
+name: finite-S3-holonomy
+on:
+  pull_request:
+    paths:
+      - 'tools/holonomy/verify_s3_relative_conjugation.py'
+      - 'docs/research/nonabelian_relative_gauge_obstruction_20261113.md'
+      - '.github/workflows/finite-s3-holonomy.yml'
+  push:
+    paths:
+      - 'tools/holonomy/verify_s3_relative_conjugation.py'
+      - 'docs/research/nonabelian_relative_gauge_obstruction_20261113.md'
+      - '.github/workflows/finite-s3-holonomy.yml'
+jobs:
+  finite-orbit-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exhaustive S3 conjugacy orbits
+        run: python3 -B tools/holonomy/verify_s3_relative_conjugation.py
