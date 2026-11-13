@@ -1,0 +1,33 @@
+name: URF-AI macOS controller audit
+
+on:
+  push:
+    branches:
+      - audit/urf-ai-controller-real-gate-20261113
+    paths:
+      - "tools/research-agent-toolkit/urf-ai/**"
+      - ".github/workflows/urf-ai-macos-controller-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  macos-kernel-peer-boundary:
+    runs-on: macos-15
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: macOS environment
+        run: |
+          sw_vers
+          /usr/bin/python3 --version
+          id -u
+          id -u _nobody
+      - name: Real kernel peer identity and key isolation (no downloads)
+        working-directory: tools/research-agent-toolkit/urf-ai
+        env:
+          PYTHONPATH: .
+        run: /usr/bin/python3 -B tests/macos_controller_isolation.py
