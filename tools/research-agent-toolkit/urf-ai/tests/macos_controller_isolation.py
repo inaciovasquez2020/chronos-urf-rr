@@ -87,7 +87,12 @@ def send(payload):
         data=client.recv(4096)
         return json.loads(data)
 
-same_uid=send(req)
+# Untrusted peers are rejected immediately, potentially before they finish
+# sending a request. Read the denial rather than racing sendall vs close.
+with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as same_client:
+    same_client.settimeout(3)
+    same_client.connect(socket_path)
+    same_uid=json.loads(same_client.recv(4096))
 if same_uid.get("allowed") is not False or same_uid.get("reason")!="UNAUTHORIZED_PEER":
     fail("same-UID request not denied: "+repr(same_uid))
 
