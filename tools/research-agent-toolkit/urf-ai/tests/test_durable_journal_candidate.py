@@ -37,6 +37,7 @@ def test_fsync_snapshot_recovers_after_reinstantiation(storage):
     o=owner(storage)
     register(o)
     assert storage.stat().st_mode & 0o777 == 0o600
+    o.close()
     next_owner=owner(storage)
     assert next_owner.journal.audit_events()
     assert next_owner.audited_claim("c")["state"]=="OPEN"
@@ -45,6 +46,7 @@ def test_fsync_snapshot_recovers_after_reinstantiation(storage):
 def test_duplicate_event_rejected_after_restart(storage):
     o=owner(storage)
     register(o)
+    o.close()
     recovered=owner(storage)
     with pytest.raises(ValueError):
         register(recovered)
@@ -56,12 +58,14 @@ def test_mutated_snapshot_fails_closed(storage):
     envelope=json.loads(storage.read_text())
     envelope["data"]["records"]["c"]["state"]="PROVED"
     storage.write_text(json.dumps(envelope))
+    o.close()
     with pytest.raises(RecoveryRejected):
         owner(storage)
 
 def test_wrong_key_fails_closed(storage):
     o=owner(storage)
     register(o)
+    o.close()
     with pytest.raises(RecoveryRejected):
         owner(storage,key=b"different-synthetic-secret-for-test"*2)
 
@@ -69,6 +73,7 @@ def test_insecure_permissions_fail_closed(storage):
     o=owner(storage)
     register(o)
     os.chmod(storage,0o644)
+    o.close()
     with pytest.raises(RecoveryRejected):
         owner(storage)
 
@@ -102,9 +107,41 @@ def test_failed_directory_fsync_poisoned_even_after_atomic_replace(monkeypatch,s
         o.audited_claim("c")
     # Restore the real fsync before fresh-process loading.
     monkeypatch.undo()
+    o.close()
     fresh=owner(storage)
     assert fresh.journal.audit_events()
     assert fresh.audited_claim("c")["state"]=="OPEN"
+
+def test_cross_process_owner_contention_then_clean_takeover(storage):
+    first=owner(storage)
+    register(first)
+    script=(
+        "from urf_ai.durable_journal_candidate import DurableJournalOwner,RecoveryRejected;"
+        "import sys;"
+        "path=sys.argv[1];"
+        "key="+repr(KEY)+";"
+        "roles="+repr(ROLES)+";"
+        "\\ntry:\\n"
+        " DurableJournalOwner(path=path,secret=key,roles=roles,checker_allowlist={})\\n"
+        "except RecoveryRejected as e:\\n"
+        " sys.exit(31 if str(e)=='JOURNAL_ALREADY_OWNED' else 32)\\n"
+        "sys.exit(0)\\n"
+    ).replace("\\n","\n")
+    blocked=subprocess.run([sys.executable,"-B","-c",script,str(storage)],
+                           capture_output=True,text=True,timeout=15)
+    assert blocked.returncode==31,(blocked.stdout,blocked.stderr)
+    first.close()
+    fresh=owner(storage)
+    assert fresh.journal.audit_events()
+    assert fresh.audited_claim("c")["state"]=="OPEN"
+    fresh.close()
+    assert storage.with_name(storage.name+".lock").exists()
+
+def test_closed_owner_rejects_mutations(storage):
+    first=owner(storage)
+    first.close()
+    with pytest.raises(RecoveryRejected):
+        register(first)
 
 def test_real_process_exit_and_fresh_process_replay(storage):
     script=(
