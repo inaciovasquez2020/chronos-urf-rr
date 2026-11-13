@@ -27,7 +27,7 @@ Four standalone Python 3.9-compatible standard-library programs were run with Py
 
 | Certificate filename | SHA-256 of tested source | Mac observed output |
 |---|---|---|
-| `rr_csg_common_four_exact_existence_py39.py` | `3935698e95936cade78d5a1e024ce21bca0e6b95fc961da2a26bf799f557b3bc` | `INDEPENDENT_40_STATE_ENUMERATION := PASS`, `EXACT_INTERVAL_NEWTON := PASS` |
+| `rr_csg_common_four_exact_existence_py39.py` | `90e98f44fe874258c6089fbcf0054676a844b7e056c354a50f76dafb1d952319` | `INDEPENDENT_40_STATE_ENUMERATION := PASS`, `EXACT_INTERVAL_NEWTON := PASS` |
 | `rr_csg_five_event_nonextension.py` | `4a897d7171220caee4f6fed0b2267d2c10d15ec6b914c1f93f9563c981e66ca3` | `N5_NATURALLY_LABELED_STATES := 357`, `T4_FREE_NONNEGATIVE := ALL_THREE_TARGETS_IMPOSSIBLE` |
 | `rr_csg_global_uniqueness.py` | `179ee9e148bf0ea4c68a30709d1b6a7445966e73ea49d24bb15c1a07306eab03` | `GLOBAL_REAL_ROOT_COUNT := 10`, `NONNEGATIVE_COUPLING_CANDIDATES := 1` |
 | `rr_csg_elimination_ideal_audit_py39.py` | `a995f13622a7ebee61dfb9a931c201c026d66aa4caf8456a0f46690ee13942e0` | `GROEBNER_IDEAL_EQUIVALENCE := PASS`, 26-element Buchberger basis, 325 pairs |
