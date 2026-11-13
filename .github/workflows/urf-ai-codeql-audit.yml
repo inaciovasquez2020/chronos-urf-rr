@@ -1,0 +1,39 @@
+name: URF-AI independent CodeQL security audit
+
+on:
+  push:
+    branches:
+      - audit/urf-ai-controller-real-gate-20261113
+    paths:
+      - "tools/research-agent-toolkit/urf-ai/urf_ai/**"
+      - ".github/codeql/urf-ai.yml"
+      - ".github/workflows/urf-ai-codeql-audit.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  codeql-python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Initialize independent CodeQL Python analysis
+        uses: github/codeql-action/init@v4
+        with:
+          languages: python
+          build-mode: none
+          config-file: ./.github/codeql/urf-ai.yml
+      - name: Analyze URF-AI security-sensitive Python
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/urf-ai/python-security-extended"
