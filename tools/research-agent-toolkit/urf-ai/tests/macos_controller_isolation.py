@@ -19,9 +19,20 @@ def fail(msg):
 if os.uname().sysname != "Darwin":
     fail("macOS-only gate cannot pass elsewhere")
 uid=os.getuid()
-worker_uid=pwd.getpwnam("_nobody").pw_uid
-if uid == worker_uid:
-    fail("not separate UIDs")
+candidates=("nobody","_www","_daemon","daemon")
+worker_account=None
+worker_uid=None
+for candidate in candidates:
+    try:
+        entry=pwd.getpwnam(candidate)
+    except KeyError:
+        continue
+    if entry.pw_uid not in (0,uid):
+        worker_account=candidate
+        worker_uid=entry.pw_uid
+        break
+if worker_account is None:
+    fail("NO_DISTINCT_NONROOT_WORKER_ACCOUNT")
 
 root=Path(tempfile.mkdtemp(prefix="urf-ai-macos-"))
 os.chmod(root,0o711)
@@ -89,7 +100,7 @@ with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as c:
     response=json.loads(c.recv(4096))
 print(json.dumps({"key_denied":key_denied,"response":response}))
 """
-proc=subprocess.run(["sudo","-n","-u","_nobody",sys.executable,"-c",
+proc=subprocess.run(["sudo","-n","-u",worker_account,sys.executable,"-c",
                      worker_program,socket_path,str(keyfile),json.dumps(req)],
                     capture_output=True,text=True,timeout=20,check=True)
 result=json.loads(proc.stdout)
