@@ -78,8 +78,33 @@ def test_failed_replace_never_acknowledges(monkeypatch,storage):
     monkeypatch.setattr("urf_ai.durable_journal_candidate.os.replace",denied)
     with pytest.raises(OSError):
         register(o)
-    assert o.journal.records=={}
+    assert not o.journal.audit_events()
+    with pytest.raises(RecoveryRejected):
+        o.audited_claim("c")
     assert not storage.exists()
+
+def test_failed_directory_fsync_poisoned_even_after_atomic_replace(monkeypatch,storage):
+    o=owner(storage)
+    native=os.fsync
+    count=[0]
+    def fail_after_snapshot_write(fd):
+        count[0]+=1
+        if count[0]==2:
+            raise OSError("synthetic directory fsync failure")
+        return native(fd)
+    monkeypatch.setattr("urf_ai.durable_journal_candidate.os.fsync",
+                        fail_after_snapshot_write)
+    with pytest.raises(OSError):
+        register(o)
+    assert count[0]==2
+    assert not o.journal.audit_events()
+    with pytest.raises(RecoveryRejected):
+        o.audited_claim("c")
+    # Restore the real fsync before fresh-process loading.
+    monkeypatch.undo()
+    fresh=owner(storage)
+    assert fresh.journal.audit_events()
+    assert fresh.audited_claim("c")["state"]=="OPEN"
 
 def test_real_process_exit_and_fresh_process_replay(storage):
     script=(
