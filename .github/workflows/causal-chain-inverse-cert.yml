@@ -35,6 +35,7 @@ jobs:
           grep -F 'INVERSE_JACOBIAN_RATIONAL := PASS' "${RUNNER_TEMP}/inverse.log"
           grep -Fx 'CONTRACTION_LT_HALF := PASS' "${RUNNER_TEMP}/inverse.log"
           grep -Fx 'NONASYMPTOTIC_CONFIDENCE_DIAMETER_BOUND := PASS' "${RUNNER_TEMP}/inverse.log"
+          grep -Fx 'U_STAT_HOEFFDING_BOUND := PASS' "${RUNNER_TEMP}/inverse.log"
           grep -Fx 'FINITE_DISCRETE_BOUNDED_DIFFERENCES := PASS' "${RUNNER_TEMP}/inverse.log"
           grep -Fx 'RESULT := COMPUTATION_PASS' "${RUNNER_TEMP}/inverse.log"
       - name: Reject optimized Python
