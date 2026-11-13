@@ -5,11 +5,13 @@ owner of journal objects and keys. This module never accepts a state transition.
 """
 from __future__ import annotations
 from dataclasses import dataclass
+import ctypes
 import json
 import os
 import socket
 import stat
 import struct
+import sys
 
 MAX_REQUEST = 16384
 
@@ -31,12 +33,23 @@ class IdentityPolicy:
         return type(uid) is int and uid == self.worker_uid
 
 def peer_uid(conn: socket.socket) -> int:
-    if hasattr(conn, "getpeereid"):
-        return conn.getpeereid()[0]
-    if hasattr(socket, "SO_PEERCRED"):
-        pid_uid_gid = conn.getsockopt(socket.SOL_SOCKET, socket.SO_PEERCRED,
-                                     struct.calcsize("3i"))
-        return struct.unpack("3i", pid_uid_gid)[1]
+    """Kernel-attested Unix peer UID; never use caller-declared identity."""
+    if sys.platform == "darwin":
+        libc = ctypes.CDLL(None, use_errno=True)
+        fn = libc.getpeereid
+        fn.argtypes = (ctypes.c_int, ctypes.POINTER(ctypes.c_uint),
+                       ctypes.POINTER(ctypes.c_uint))
+        fn.restype = ctypes.c_int
+        uid = ctypes.c_uint()
+        gid = ctypes.c_uint()
+        if fn(conn.fileno(), ctypes.byref(uid), ctypes.byref(gid)) != 0:
+            code = ctypes.get_errno()
+            raise OSError(code, "getpeereid failed")
+        return uid.value
+    if sys.platform.startswith("linux") and hasattr(socket, "SO_PEERCRED"):
+        data = conn.getsockopt(socket.SOL_SOCKET, socket.SO_PEERCRED,
+                               struct.calcsize("3i"))
+        return struct.unpack("3i", data)[1]
     raise BoundaryError("PEER_CREDENTIALS_UNSUPPORTED")
 
 def read_request(conn: socket.socket) -> dict:
