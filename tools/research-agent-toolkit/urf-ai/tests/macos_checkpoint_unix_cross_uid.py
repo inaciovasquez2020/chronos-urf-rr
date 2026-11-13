@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import pwd
+import shutil
 import socket
 import subprocess
 import sys
@@ -60,6 +61,19 @@ credential=directory/"synthetic-writer-credential"
 credential.write_bytes(os.urandom(32))
 os.chmod(credential,0o600)
 endpoint=str(directory/"checkpoint.sock")
+# Hosted macOS runner workspace ancestors are private (sudo drops PYTHONPATH).
+# Publish only candidate Python SOURCE, never test secrets, journal data,
+# AWS configuration or credentials. All temporary bytes remain under /private/tmp.
+public_root=directory/"public-source"
+package_root=public_root/"urf_ai"
+public_root.mkdir(mode=0o755)
+package_root.mkdir(mode=0o755)
+source_root=Path(__file__).resolve().parents[1]/"urf_ai"
+for source in sorted(source_root.glob("*.py")):
+    target=package_root/source.name
+    shutil.copyfile(source,target)
+    os.chmod(target,0o644)
+
 backend=DynamoDBCheckpoint(client=FakeDynamoDB(),table_name="fixture",
                             checkpoint_id="fixture")
 service=CheckpointWriteService(backend=backend,checkpoint_id="fixture")
@@ -117,7 +131,7 @@ print(json.dumps({"credential_denied":denied,
                   "read":list(read),"first":first,"replay":replay}))
 """
 proc=subprocess.run(["sudo","-n","-u",controller_account,sys.executable,
-                     "-B","-c",client_script,endpoint,str(credential),str(writer_uid),os.getcwd()],
+                     "-B","-c",client_script,endpoint,str(credential),str(writer_uid),str(public_root)],
                     text=True,capture_output=True,timeout=25)
 assert proc.returncode==0,(proc.returncode,proc.stdout,proc.stderr)
 result=json.loads(proc.stdout)
