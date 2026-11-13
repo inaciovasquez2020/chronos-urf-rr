@@ -6,6 +6,7 @@ from pathlib import Path
 import pwd
 import socket
 import subprocess
+import sys
 import tempfile
 import threading
 from urf_ai.csts import ClaimJournal
@@ -88,7 +89,7 @@ with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as c:
     response=json.loads(c.recv(4096))
 print(json.dumps({"key_denied":key_denied,"response":response}))
 """
-proc=subprocess.run(["sudo","-n","-u","_nobody","/usr/bin/python3","-c",
+proc=subprocess.run(["sudo","-n","-u","_nobody",sys.executable,"-c",
                      worker_program,socket_path,str(keyfile),json.dumps(req)],
                     capture_output=True,text=True,timeout=20,check=True)
 result=json.loads(proc.stdout)
