@@ -7,6 +7,7 @@ Only the controller UID may access the private parent directory.
 """
 from __future__ import annotations
 from copy import deepcopy
+import fcntl
 import hashlib
 import hmac
 import json
@@ -55,15 +56,66 @@ class DurableJournalOwner:
             raise RecoveryRejected("INVALID_SECRET")
         self.path=os.path.abspath(path)
         self.directory=_private_directory(self.path)
-        self.secret=secret
-        self.roles=deepcopy(roles)
-        self.allowlist=deepcopy(checker_allowlist)
-        self.policy_version=policy_version
         self._lock=RLock()
         self._poisoned=False
-        self.journal=ClaimJournal(secret,roles,checker_allowlist,policy_version)
-        if os.path.lexists(self.path):
-            self._restore(_read_snapshot(self.path))
+        self._closed=False
+        self._lock_fd=None
+        self._acquire_ownership()
+        try:
+            self.secret=secret
+            self.roles=deepcopy(roles)
+            self.allowlist=deepcopy(checker_allowlist)
+            self.policy_version=policy_version
+            self.journal=ClaimJournal(secret,roles,checker_allowlist,policy_version)
+            if os.path.lexists(self.path):
+                self._restore(_read_snapshot(self.path))
+        except BaseException:
+            self.close()
+            raise
+
+    def _acquire_ownership(self):
+        # File is intentionally persistent: unlinking a lock file permits
+        # independent inodes and therefore simultaneous purported owners.
+        lock_path=self.path+".lock"
+        flags=os.O_CREAT | os.O_RDWR
+        if hasattr(os, "O_NOFOLLOW"):
+            flags |= os.O_NOFOLLOW
+        fd=os.open(lock_path,flags,0o600)
+        try:
+            meta=os.fstat(fd)
+            path_meta=os.lstat(lock_path)
+            if (not stat.S_ISREG(meta.st_mode) or meta.st_uid!=os.getuid()
+                or stat.S_IMODE(meta.st_mode)!=0o600 or meta.st_nlink!=1
+                or (meta.st_dev,meta.st_ino)!=(path_meta.st_dev,path_meta.st_ino)):
+                raise RecoveryRejected("UNSAFE_LOCK_FILE")
+            try:
+                fcntl.flock(fd,fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except (BlockingIOError, OSError) as exc:
+                raise RecoveryRejected("JOURNAL_ALREADY_OWNED") from exc
+            self._lock_fd=fd
+        except BaseException:
+            os.close(fd)
+            raise
+
+    def close(self):
+        # A closed owner cannot resume; construct a new owner to recover.
+        with self._lock:
+            if self._closed:
+                return
+            self._closed=True
+            self._poisoned=True
+            fd=self._lock_fd
+            self._lock_fd=None
+            if fd is not None:
+                fcntl.flock(fd,fcntl.LOCK_UN)
+                os.close(fd)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, _type, _value, _traceback):
+        self.close()
+
 
     def _fields(self, journal):
         return {"schema":"urf-ai.snapshot.v1","policy_version":self.policy_version,
@@ -140,12 +192,12 @@ class DurableJournalOwner:
 
     def apply(self, **kwargs):
         with self._lock, self.journal._lock:
-            if self._poisoned:
-                raise RecoveryRejected("OWNER_POISONED")
+            if self._closed or self._poisoned:
+                raise RecoveryRejected("OWNER_CLOSED_OR_POISONED")
             candidate=self._candidate(self._fields(self.journal))
             decision=candidate.apply(**kwargs)
-            if self._poisoned:
-                raise RecoveryRejected("OWNER_POISONED")
+            if self._closed or self._poisoned:
+                raise RecoveryRejected("OWNER_CLOSED_OR_POISONED")
             try:
                 self._persist(candidate)
             except BaseException:
@@ -161,6 +213,6 @@ class DurableJournalOwner:
 
     def audited_claim(self, cid):
         with self._lock:
-            if self._poisoned:
-                raise RecoveryRejected("OWNER_POISONED")
+            if self._closed or self._poisoned:
+                raise RecoveryRejected("OWNER_CLOSED_OR_POISONED")
             return self.journal.audited_claim(cid)
