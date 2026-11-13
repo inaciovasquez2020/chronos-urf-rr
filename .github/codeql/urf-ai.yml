@@ -1,0 +1,5 @@
+name: urf-ai-security-extended
+paths:
+  - tools/research-agent-toolkit/urf-ai/urf_ai
+queries:
+  - uses: security-extended
