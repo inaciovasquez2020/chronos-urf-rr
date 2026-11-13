@@ -135,3 +135,77 @@ def test_authenticated_old_snapshot_rejected_by_independent_remote_digest(tmp_pa
     snapshot.write_bytes(older)
     with pytest.raises(ExternalAnchorRejected,match="CHECKPOINT_SNAPSHOT_MISMATCH"):
         ExternallyAnchoredJournal(owner=owner(),checkpoint=checkpoint)
+
+def test_remote_committed_but_ack_lost_is_uncertain_and_recoverable(tmp_path):
+    """The write may commit remotely before a transport failure is reported."""
+    os.chmod(tmp_path,0o700)
+    snapshot=tmp_path/"snapshot.json"
+    key=b"synthetic-uncertain-commit-key-2026"*2
+    roles={"author":"AUTHOR"}
+    class LostAcknowledgement(StubDynamoDB):
+        def __init__(self):
+            super().__init__()
+            self.lose_once=True
+        def update_item(self, **kwargs):
+            result=super().update_item(**kwargs)
+            if self.lose_once:
+                self.lose_once=False
+                raise TimeoutError("response lost after successful commit")
+            return result
+    backend=LostAcknowledgement()
+    checkpoint=anchor(backend)
+    def new_owner():
+        return DurableJournalOwner(path=str(snapshot),secret=key,
+                                   roles=roles,checker_allowlist={})
+    anchored=ExternallyAnchoredJournal(owner=new_owner(),checkpoint=checkpoint)
+    claim={"claim_id":"c","semantic_version":1,"kind":"THEOREM",
+           "state":"OPEN","proposition":"synthetic",
+           "scope":{"domain":"synthetic"},"assumptions":[],
+           "dependencies":[],"frontier":[],"boundaries":[],
+           "source_revision":{"repo":"test","commit":"a"*40},"author":"author"}
+    with pytest.raises(ExternalAnchorRejected,match="ADVANCE_UNCERTAIN"):
+        anchored.apply(event_id="r1",kind="REGISTER",claim_id="c",
+                       actor="author",expected_version=0,payload=claim,
+                       reason="synthetic")
+    assert checkpoint.read()[0]==1
+    with pytest.raises(ExternalAnchorRejected,match="OWNER_UNAVAILABLE"):
+        anchored.audited_claim("c")
+    anchored.close()
+    recovered=ExternallyAnchoredJournal(owner=new_owner(),checkpoint=checkpoint)
+    assert recovered.audited_claim("c")["state"]=="OPEN"
+    recovered.close()
+
+
+def test_full_trust_domain_rollback_counterexample(tmp_path):
+    """Rollback of both matching states cannot be detected locally."""
+    os.chmod(tmp_path,0o700)
+    snapshot=tmp_path/"snapshot.json"
+    key=b"synthetic-double-rollback-key-2026"*2
+    roles={"author":"AUTHOR"}
+    server=StubDynamoDB()
+    checkpoint=anchor(server)
+    def new_owner():
+        return DurableJournalOwner(path=str(snapshot),secret=key,
+                                   roles=roles,checker_allowlist={})
+    anchored=ExternallyAnchoredJournal(owner=new_owner(),checkpoint=checkpoint)
+    claim={"claim_id":"c","semantic_version":1,"kind":"THEOREM",
+           "state":"OPEN","proposition":"original",
+           "scope":{"domain":"synthetic"},"assumptions":[],
+           "dependencies":[],"frontier":[],"boundaries":[],
+           "source_revision":{"repo":"test","commit":"a"*40},"author":"author"}
+    anchored.apply(event_id="r1",kind="REGISTER",claim_id="c",
+                   actor="author",expected_version=0,payload=claim,
+                   reason="synthetic")
+    old_snapshot=snapshot.read_bytes()
+    old_anchor={name:dict(value) for name,value in server.state.items()}
+    anchored.apply(event_id="r2",kind="REVISE",claim_id="c",
+                   actor="author",expected_version=1,
+                   payload={"changes":{"proposition":"revised"}},
+                   reason="synthetic")
+    assert checkpoint.read()[0]==2
+    anchored.close()
+    snapshot.write_bytes(old_snapshot)
+    server.state=old_anchor  # Attacker compromises remote trust boundary.
+    reopened=ExternallyAnchoredJournal(owner=new_owner(),checkpoint=checkpoint)
+    assert reopened.audited_claim("c")["proposition"]=="original"
+    reopened.close()
