@@ -46,3 +46,8 @@ jobs:
         env:
           PYTHONPATH: .
         run: python3 -B tests/macos_owned_controller_restart.py
+      - name: Distinct UID checkpoint writer, credential denial and CAS replay
+        working-directory: tools/research-agent-toolkit/urf-ai
+        env:
+          PYTHONPATH: .
+        run: python3 -B tests/macos_checkpoint_unix_cross_uid.py
