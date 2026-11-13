@@ -1,88 +1,145 @@
-# Fixed-N covariance of 4D causal-chain statistics (2026-11-12)
+# Exact finite-sample covariance of 4D causal-chain fractions
 
-**RESULT: PROVED (elementary overlap formula and exact rational flat-diamond moments); COMPUTATION_PASS (independent bounded exact oracle).** The exact finite-N variance of three-chain counts is **OPEN**, with one explicit missing four-point overlap integral. No Lean, Mac, gravitational dynamics, fifth dimension or emergent-spacetime proof is claimed. Novelty NOT ESTABLISHED.
+**Status (2026-11-12):** PROVED by finite-index overlap counting, rational flat-diamond monomial integration and exact polynomial integration on ordered simplices. An independent stdlib-only exact-arithmetic verifier and numerical cross-check are described below. This is **not** Lean verification or a derivation of emergent spacetime or gravitational dynamics. Novelty NOT ESTABLISHED. Mac execution NOT_RUN.
 
-## Sampling model and notation
+## Exact sampling model
 
-Use the 4D Minkowski diamond, volume measure and two-parameter conformal family fixed in [the local-identifiability checkpoint](../status/CAUSAL_CHAIN_LOCAL_IDENTIFIABILITY_2026_11_10.md). Condition on **exactly N>=3 independent volume-uniform points**; this is not an unconditioned Poisson process. Define unbiased U-statistics U2 and U3 as the fractions of unordered index pairs and triples whose induced causal orders are chains. Baseline p2=1/10 and p3=1/350.
+Fix the four-dimensional flat Minkowski causal diamond D between p=(-1,0) and q=(1,0) (volume 2π/3), and condition on **exactly N≥3 independent uniform events**. This is fixed-cardinality/binomial sprinkling, not unconditioned Poisson sampling. Let U2 be the fraction of unordered pairs that are causally comparable, U3 the fraction of unordered triples that form totally ordered 3-chains. Their exact means are p2=1/10 and p3=1/350. We follow the previously merged [restricted local-identifiability result](../status/CAUSAL_CHAIN_LOCAL_IDENTIFIABILITY_2026_11_10.md).
 
-For a point x=(t,spatial x) of radial coordinate r, put
-
-```
-A=((1+t)^2-r^2)^2,  B=((1-t)^2-r^2)^2
-h=(A+B)/16,  K=AB+(A^2+B^2)/20, q=K/128.
-```
-
-**PROVED:** h(x)=P(X comparable to x), q(x)=P((x,X,Y) form a 3-chain). For q, the specified x can be the earliest, middle or latest event; the three disjoint contributions are B²/2560, AB/128, and A²/2560. In particular E h=p2 and E q=p3.
-
-Exact diamond integration reduces every even monomial to
+## Complete exact covariance for N≥3
 
 ```
-E[t^i r^j] = 12 i! (j+2)! / (i+j+4)!,  i,j even.
+Var(U2)    = (2N+5)/(50 N(N-1))
+
+Cov(U2,U3) = 9(N+3)/(3500 N(N-1))
+
+Var(U3)    = (527N^2+4990N+26355)/(2695000 N(N-1)(N-2)).
 ```
 
-For fixed even nonnegative i,j this follows directly by the normalized measure 12 r² dr dt on 0≤t≤1 and 0≤r≤1-t. Independent integer/rational polynomial expansion gives:
+This fully specifies the **finite-N joint covariance matrix** for the two observables at the flat baseline. No asymptotic approximation is used in these three entries.
+
+### One-point conditional kernels
+
+Let r=|spatial x| and set
+
+```
+A=((1+t)^2-r^2)^2, B=((1-t)^2-r^2)^2
+h=(A+B)/16, K=AB+(A^2+B^2)/20, q=K/128.
+```
+
+Then h(x)=P(x comparable with X), and q(x)=P({x,X,Y} forms a chain). The three disjoint roles of x contribute B²/2560 (earliest), AB/128 (middle) and A²/2560 (latest). Flat uniform integration over the diamond reduces even monomials to E[t^i r^j]=12 i!(j+2)!/(i+j+4)! for i,j even. Exact rational evaluation gives
 
 | Moment | Exact |
 |---|---:|
+| E[h] | 1/10 |
 | E[h²] | 1/50 |
+| E[q] | 1/350 |
 | E[hq] | 1/1400 |
 | E[q²] | 29/970200 |
 | Var(h) | 1/100 |
 | Cov(h,q) | 3/7000 |
 | Var(q) | 527/24255000 |
 
-## Exact finite-N covariance: solved entries and one open integral
+### Exact subset-overlap counting
 
-Count pairs of sample-index subsets by intersection cardinality; disjoint index subsets are independent. For any integer N≥3,
-
-```
-Var(U2)    = (2N+5) / (50 N(N-1))
-Cov(U2,U3) = 9(N+3) / (3500 N(N-1))
-```
-
-The shared-one pair–triple covariance is Cov(h,q)=3/7000. When a pair is contained in a triple, that triple being a chain forces its pair to be comparable, and the covariance is p3-p2*p3=9/3500. Weight these by 2*C(N-2,2)/C(N,3) and (N-2)/C(N,3). The pair–pair shared-one covariance is Var(h)=1/100, with diagonal variance p2(1-p2).
-
-The remaining diagonal is exactly
+Index disjointness gives independence. When two pairs share one index, their kernel covariance equals Var(h); identical pairs give p2(1-p2). When a pair and triple share one index, covariance equals Cov(h,q); when the pair is contained in the triple, the triple-chain event implies pair comparability and the covariance equals p3-p2p3. The resulting exact coefficients are
 
 ```
-Var(U3) = 3*C(N-3,2)/C(N,3) * (527/24255000)
-        + 3*(N-3)/C(N,3) * (gamma2 - 1/350^2)
-        + 1/C(N,3) * (1/350)*(349/350).
+Var(U2) = [2(N-2)/C(N,2)] Var(h)
+        + [1/C(N,2)] p2(1-p2).
+
+Cov(U2,U3) = [2 C(N-2,2)/C(N,3)] Cov(h,q)
+           + [(N-2)/C(N,3)] (p3-p2p3).
 ```
 
-Define gamma2 = E[H3(X,Y,Z)H3(X,Y,W)] for four iid continuous points. Equivalently gamma2=E[F(X,Y)^2], with F(x,y)=P((x,y,Z) is a 3-chain). For causally ordered x≺y, writing spatial positions as bold x and bold y,
+For two 3-chain subsets, overlaps of size 1, 2 and 3 contribute
 
 ```
-F(x,y) = [ A(x) + B(y) + ((t_y-t_x)^2 - |bold y-bold x|^2)^2 ] / 16;
+Var(U3) = [3 C(N-3,2)/C(N,3)] Var(q)
+        + [3(N-3)/C(N,3)] (gamma2-p3^2)
+        + [1/C(N,3)] p3(1-p3),
 ```
 
-otherwise reverse roles for y≺x, or set F=0 if incomparable. The three terms are the normalized past of x, interval between x and y, and future of y. This explicit 8D geometric integral is the **weakest remaining obstacle** to fully numeric exact fixed-N covariance; its value is NOT claimed. Because E[F]=p3, P(F>0)≤p2 and 0≤F≤1, Cauchy–Schwarz and bounding give 1/12250 ≤ gamma2 ≤ 1/350. The bounds are intentionally coarse.
+where gamma2 is the joint probability that (X,Y,Z) and (X,Y,W) both form chains for four iid events. It is **not** approximated by independent triples.
 
-## Leading large-N covariance and local parameter uncertainty
+### Closing the four-event overlap integral exactly
 
-The bounded-kernel U-statistic central limit theorem and first-point overlap contributions imply
+Define F(x,y)=P({x,y,Z} is a chain). For x≺y, it is the sum of normalized volumes of past(x), interval(x,y) and future(y); F=0 for incomparable x,y. Thus gamma2=E[F(X,Y)²].
 
-```
-Cov((U2,U3)) = Sigma/N + O(N^-2)
-Sigma = [[1/25, 9/3500], [9/3500, 527/2695000]].
-```
-
-With the already verified local response Jacobian from the prior checkpoint,
+Let C(x,y)=V(I(x,y))/V(D)=[(Δt)²-|Δspatial|²]²/16 for x≺y, and define ordered interval-volume moments
 
 ```
-J = [[1/25,0],[9/3500,16/165375]], det J=16/4134375
+I_m = E[1_{X≺Y} C(X,Y)^m].
+```
+
+**Exact lemma (m=0,1,2):**
+
+```
+I_0=1/20,  I_1=1/2100,  I_2=1/35280.
+```
+
+Proof by direct integration: introduce radial null coordinates a=t+r, b=t-r for X and c=s+R, d=s-R for Y. Each point satisfies -1≤b≤a≤1 (respectively -1≤d≤c≤1). Integrating the relative spatial angle μ analytically gives the difference of positive-part powers
+
+```
+[(c-a)(d-b)]_+^(2m+1) - [(d-a)(c-b)]_+^(2m+1).
+```
+
+With the correctly normalized angular/radial Jacobians, this reduces I_m to the prefactor 9/[16(2m+1)16^m] times two polynomial integrals over 0≤u,v,w, u+v+w≤2:
+
+```
+S1 = ∫ (2-u-v-w) uw
+        [(v+w)^(2m+1)(u+v)^(2m+1)
+          - v^(2m+1)(u+v+w)^(2m+1)] du dv dw,
+
+S2 = ∫ (2-u-v-w) (u+v)(v+w)(uw)^(2m+1) du dv dw.
+```
+
+Here S1 comes from b<a<d<c, S2 from b<d<a<c. Expand the polynomials exactly and apply the Dirichlet simplex integral
+
+```
+∫_{u+v+w≤2} (2-u-v-w) u^i v^j w^k du dv dw
+ = i!j!k! 2^(i+j+k+4)/(i+j+k+4)!.
+```
+
+This yields the three exact I_m values above, independently checking I0=p2/2 and I1=p3/6.
+
+A fixed specified ordering of four iid events occurs with probability P4/24 when they form a chain. Conditioning on outer endpoints and requiring the two inner points in their interval to be comparable gives P4=24*(p2/2)*I2=1/29400. Independent radial rational integration gives E[A²B]=E[AB²]=256/2205. Expanding F(X,Y)² into the past², future², interval² and six cross-role terms now gives
+
+```
+gamma2 = E[A²B]/1024 + 2 I2 + P4/2
+       = 1/8820 + 1/17640 + 1/58800
+       = 11/58800.
+
+gamma2 - p3² = 263/1470000.
+```
+
+Substitution into the size-1/2/3 overlap formula simplifies to the asserted closed finite-N Var(U3). The equality is valid for all integer N≥3 and does not depend on a numerical sampling fit.
+
+## Parameter reconstruction uncertainty
+
+The inverse-function checkpoint has Jacobian
+
+```
+J = [[1/25, 0],[9/3500,16/165375]], det(J)=16/4134375>0.
+```
+
+The *leading* covariance (bounded-kernel U-statistic central limit theorem) is
+
+```
+Cov((U2,U3)) = Sigma/N + O(N^-2),
+Sigma = [[1/25,9/3500],[9/3500,527/2695000]].
+
 J^(-1) Sigma J^(-T) = [[25,0],[0,145563075/45056]].
 ```
 
-By the delta method, **asymptotic** parameter standard deviations are approximately 5/sqrt(N) for a and 56.839375/sqrt(N) for b. Leading errors are uncorrelated but b is much more weakly identifiable. No nonasymptotic confidence region or guaranteed inversion radius follows from this calculation.
+Consequently the local delta-method standard deviations are asymptotically about 5/sqrt(N) and 56.839375/sqrt(N); leading parameter errors are uncorrelated. **This is asymptotic**, not a nonasymptotic parameter confidence interval or a certified radius of invertibility. The exact covariance of observables above does not on its own imply an exact finite-N covariance of nonlinear parameter estimators.
 
-## Reproduction and exact scope of automated tests
+## Reproducible verification and evidence tier
 
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 -B tools/verifier/finite_chain_covariance_4d.py
 ```
 
-The verifier uses standard-library Fraction polynomial integration (no floating point), checks exact moments and inverse covariance, exact finite-N pair entries for N=3,...,17, and separately checks overlap coefficients by exhaustive enumeration of iid draws with replacement from a three-atom chain for N=3,4,5 (maximum 3^5 sample tuples). These discrete tests independently audit *combinatorial coefficients*, **not** the continuous 4D integral gamma2. Optimized Python cannot falsely PASS.
+The standard-library verifier performs exact Fraction-based polynomial integration for one-point moments, exact simplex integral certificates I0/I1/I2, P4 and gamma2, exact formula checks for N=3..17, and an independent exhaustive discrete-sample overlap oracle on N=3,4,5 (up to 3^5 sample tuples). It rejects optimized Python and runs in a dedicated short CI job. The discrete oracle checks overlap *counting*, not the continuum geometry; the simplex integrator independently verifies that geometric step. Additional independent numerical sampling (~2 million pairs per seed) agreed with gamma2 within sampling uncertainty, but is **not a proof**. No Mac or Lean run is claimed.
 
-**OPEN:** independent exact evaluation of gamma2; finite-N parameter confidence bounds with controlled nonlinear inversion; manifoldlikeness, intrinsic 4D emergence, Einstein dynamics and any fifth physical dimension. All preexisting scientific status boundaries remain unchanged.
+**OPEN:** Nonasymptotic reconstruction confidence bounds with a quantitatively controlled inverse neighborhood, robust estimates under an unknown conformal family, dimension reconstruction, spacetime emergence, curvature dynamics and Einstein equations. This calculation closes the stated fixed-N covariance problem at the flat baseline only.
