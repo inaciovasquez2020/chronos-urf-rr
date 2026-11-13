@@ -34,7 +34,13 @@ for candidate in candidates:
 if worker_account is None:
     fail("NO_DISTINCT_NONROOT_WORKER_ACCOUNT")
 
-root=Path(tempfile.mkdtemp(prefix="urf-ai-macos-"))
+# The macOS runner's per-user TMPDIR can have non-traversable ancestors.
+# Use a system shared parent, retaining a controller-owned 0711 child.
+shared=Path("/private/tmp")
+shared_stat=shared.stat()
+if not shared.is_dir() or not (shared_stat.st_mode & 0o001):
+    fail("NONTRAVERSABLE_SHARED_SOCKET_PARENT")
+root=Path(tempfile.mkdtemp(prefix="urf-ai-macos-",dir=str(shared)))
 os.chmod(root,0o711)
 keyfile=root/"key"
 keyfile.write_bytes(os.urandom(32))
