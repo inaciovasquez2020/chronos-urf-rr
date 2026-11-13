@@ -139,7 +139,7 @@ def serve_urf(socket_path: str, policy: IdentityPolicy, journal, max_connections
         listener.close()
         # Socket deletion is deliberately not automated.
 
-def serve_owned_urf(socket_path: str, policy: IdentityPolicy, owner, max_connections=None):
+def serve_owned_urf(socket_path: str, policy: IdentityPolicy, owner, max_connections=None, *, external_anchor=None):
     """Restartable socket service tied to an exclusively locked durable owner.
 
     Limited threat model: only the controller UID may change the 0711
@@ -150,6 +150,11 @@ def serve_owned_urf(socket_path: str, policy: IdentityPolicy, owner, max_connect
     from .answer_gate import assess_from_journal
     if type(owner) is not DurableJournalOwner:
         raise BoundaryError("INVALID_DURABLE_OWNER")
+    if external_anchor is not None:
+        from .external_anchor_candidate import ExternallyAnchoredJournal
+        if (type(external_anchor) is not ExternallyAnchoredJournal
+            or external_anchor._owner is not owner):
+            raise BoundaryError("INVALID_EXTERNAL_ANCHOR")
     if os.getuid() != policy.controller_uid:
         raise BoundaryError("INCORRECT_CONTROLLER_UID")
     path = os.path.abspath(socket_path)
@@ -170,11 +175,15 @@ def serve_owned_urf(socket_path: str, policy: IdentityPolicy, owner, max_connect
             raise BoundaryError("OWNER_NOT_ACTIVE")
         if not owner.journal.audit_events():
             raise BoundaryError("INVALID_JOURNAL")
+        if external_anchor is not None:
+            external_anchor._check()
 
         def owned_assessor(proposal):
             with owner._lock:
                 if owner._closed or owner._poisoned or owner._lock_fd is None:
                     return {"allowed": False, "level": "BLOCKED"}
+                if external_anchor is not None:
+                    external_anchor._check()
                 verdict = assess_from_journal(owner.journal, proposal)
                 return {"allowed": verdict.allowed, "level": verdict.level}
 
