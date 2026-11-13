@@ -89,39 +89,48 @@ with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as c:
 assert unauthorized=={"ok":False,"error":"DENIED"},unauthorized
 
 client_script=r"""
-import json,socket,sys
-endpoint,credential=sys.argv[1:]
+import json,os,sys
+from urf_ai.checkpoint_unix_transport_candidate import UnixCheckpointClient,TransportRejected
+endpoint,credential,writer_uid_arg=sys.argv[1:]
+writer_uid=int(writer_uid_arg)
 denied=False
 try:
     with open(credential,"rb") as f: f.read()
 except PermissionError:
     denied=True
-def request(payload):
-    with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as conn:
-        conn.settimeout(5)
-        conn.connect(endpoint)
-        conn.sendall((json.dumps(payload)+"\n").encode())
-        return json.loads(conn.recv(4096))
-read=request({"op":"read"})
-advance={"op":"advance","expected":[0,None],"proposed":[1,"a"*64]}
-first=request(advance)
-replay=request(advance)
-print(json.dumps({"credential_denied":denied,"read":read,
-                  "first":first,"replay":replay}))
+wrong_uid=writer_uid+1
+if wrong_uid == os.getuid():
+    wrong_uid+=1
+try:
+    UnixCheckpointClient(endpoint,expected_writer_uid=wrong_uid).read()
+except TransportRejected:
+    wrong_writer_denied=True
+else:
+    wrong_writer_denied=False
+client=UnixCheckpointClient(endpoint,expected_writer_uid=writer_uid)
+read=client.read()
+first=client.compare_and_advance((0,None),(1,"a"*64))
+replay=client.compare_and_advance((0,None),(1,"a"*64))
+print(json.dumps({"credential_denied":denied,
+                  "wrong_writer_denied":wrong_writer_denied,
+                  "read":list(read),"first":first,"replay":replay}))
 """
 proc=subprocess.run(["sudo","-n","-u",controller_account,sys.executable,
-                     "-B","-c",client_script,endpoint,str(credential)],
+                     "-B","-c",client_script,endpoint,str(credential),str(writer_uid)],
                     text=True,capture_output=True,timeout=25)
 assert proc.returncode==0,(proc.returncode,proc.stdout,proc.stderr)
 result=json.loads(proc.stdout)
 assert result["credential_denied"] is True,result
-assert result["read"]=={"ok":True,"checkpoint":[0,None]},result
-assert result["first"]=={"ok":True,"advanced":True},result
-assert result["replay"]=={"ok":True,"advanced":False},result
+assert result["wrong_writer_denied"] is True,result
+assert result["read"]==[0,None],result
+assert result["first"] is True,result
+assert result["replay"] is False,result
 thread.join(timeout=5)
 assert not thread.is_alive() and not exceptions,exceptions
 assert backend.read()==(1,"a"*64)
 print("MACOS_WRITER_KERNEL_PEER_AUTH := PASS")
 print("MACOS_CONTROLLER_CREDENTIAL_DENIAL := PASS")
 print("MACOS_CHECKPOINT_CAS_REPLAY_DENIAL := PASS")
+print("MACOS_CLIENT_WRITER_UID_AUTH := PASS")
+print("MACOS_FALSE_WRITER_IDENTITY_DENIED := PASS")
 print("AWS_IAM_AND_REMOTE_DURABILITY := NOT_RUN")
