@@ -5,6 +5,7 @@ controller requests. The fake DynamoDB backend proves protocol behavior,
 NOT AWS credentials, IAM or remote persistence.
 """
 import json
+import grp
 import os
 from pathlib import Path
 import pwd
@@ -130,7 +131,7 @@ print(json.dumps({"credential_denied":denied,
                   "wrong_writer_denied":wrong_writer_denied,
                   "read":list(read),"first":first,"replay":replay}))
 """
-proc=subprocess.run(["sudo","-n","-u",controller_account,sys.executable,
+proc=subprocess.run(["sudo","-n","-u",controller_account,"-g",grp.getgrgid(os.getgid()).gr_name,sys.executable,
                      "-B","-c",client_script,endpoint,str(credential),str(writer_uid),str(public_root)],
                     text=True,capture_output=True,timeout=25)
 assert proc.returncode==0,(proc.returncode,proc.stdout,proc.stderr)
@@ -142,6 +143,7 @@ assert result["first"] is True,result
 assert result["replay"] is False,result
 thread.join(timeout=5)
 assert not thread.is_alive() and not exceptions,exceptions
+assert (os.stat(endpoint).st_mode & 0o777)==0o660,"SOCKET_MODE_NOT_0660"
 assert backend.read()==(1,"a"*64)
 print("MACOS_WRITER_KERNEL_PEER_AUTH := PASS")
 print("MACOS_CONTROLLER_CREDENTIAL_DENIAL := PASS")
