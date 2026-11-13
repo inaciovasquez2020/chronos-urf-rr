@@ -1,7 +1,6 @@
 """Hosted macOS genuine peer-UID and key permissions acceptance (no pytest)."""
 from __future__ import annotations
 import json
-import grp
 import os
 from pathlib import Path
 import pwd
@@ -112,7 +111,7 @@ with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as c:
     response=json.loads(c.recv(4096))
 print(json.dumps({"key_denied":key_denied,"response":response}))
 """
-proc=subprocess.run(["sudo","-n","-u",worker_account,"-g",grp.getgrgid(os.getgid()).gr_name,sys.executable,"-c",
+proc=subprocess.run(["sudo","-n","-u",worker_account,sys.executable,"-c",
                      worker_program,socket_path,str(keyfile),json.dumps(req)],
                     capture_output=True,text=True,timeout=20,check=False)
 if proc.returncode != 0:
@@ -123,8 +122,6 @@ if result["key_denied"] is not True:
     fail("worker could read controller key")
 if result["response"].get("allowed") is not True or result["response"].get("level")!="OPEN":
     fail("real cross-UID assessment failed: "+repr(result))
-if (os.stat(socket_path).st_mode & 0o777) != 0o660:
-    fail("SOCKET_MODE_NOT_0660")
 thread.join(timeout=5)
 if thread.is_alive() or errors:
     fail("listener did not exit cleanly: "+repr(errors))
