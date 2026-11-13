@@ -65,7 +65,7 @@ def send(payload):
     with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as client:
         client.settimeout(3)
         client.connect(socket_path)
-        client.sendall((json.dumps(payload)+"\\n").encode("utf-8"))
+        client.sendall((json.dumps(payload)+"\n").encode("utf-8"))
         data=client.recv(4096)
         return json.loads(data)
 
@@ -84,7 +84,7 @@ except PermissionError:
 with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as c:
     c.settimeout(5)
     c.connect(sockpath)
-    c.sendall((wire+"\\n").encode())
+    c.sendall((wire+"\n").encode())
     response=json.loads(c.recv(4096))
 print(json.dumps({"key_denied":key_denied,"response":response}))
 """
