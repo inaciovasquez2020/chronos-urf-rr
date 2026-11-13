@@ -78,7 +78,8 @@ N4=pmul(pmul(X,padd(X,Y)),padd(padd(X,pscale(Y,2)),Z))
 NUM=[N2,N3,N4]
 TARGET=[F(1,10),F(1,350),F(1,29400)]
 
-# Independent natural-label state enumeration at x=1/9,y=1/11,z=1/13.
+# Independent symbolic natural-label enumeration in Q[x,y,z]. Every
+# coefficient, not merely one parameter evaluation, is checked.
 def ideals(p):
     for a in range(1<<len(p)):
         if all((a&p[i])==p[i] for i in range(len(p)) if a>>i&1):yield a
@@ -88,32 +89,36 @@ def transitions(p,t):
     for a in ideals(p):
         w=bin(a).count("1")
         maxima=sum(1 for i in range(n) if a>>i&1 and not any((a>>j&1) and (p[j]>>i&1) for j in range(n)))
-        numerator=sum(F(comb(w-maxima,k-maxima))*t[k] for k in range(maxima,w+1))
+        numerator=pconst(0)
+        for k in range(maxima,w+1):
+            numerator=padd(numerator,pscale(t[k],F(comb(w-maxima,k-maxima))))
         yield p+(a,),numerator
 
 def comb(n,k):
     from math import comb as c
     return c(n,k)
 
-probe=[F(1,9),F(1,11),F(1,13)]
-t=[F(1)]+probe
-states={():F(1)}
+t=[ONE,X,Y,Z]
+states={():ONE}
 for stage in range(4):
-    nxt=defaultdict(F)
+    nxt={}
     for p,massnum in states.items():
-        for q,w in transitions(p,t):nxt[q]+=massnum*w
-    states=dict(nxt)
-assert len(states)==40
-zprobe=[IV(v) for v in probe]
-dprobe=peval(D,zprobe).lo
-assert sum(states.values())==dprobe
+        for q,w in transitions(p,t):
+            nxt[q]=padd(nxt.get(q,{}),pmul(massnum,w))
+    states=nxt
+    assert len(states)==(1,2,7,40)[stage]
+total=pconst(0)
+for massnum in states.values():
+    total=padd(total,massnum)
+assert total==D, "CSG enumeration total mass differs from D"
 for k,N in zip((2,3,4),NUM):
-    count=F(0)
+    numerator=pconst(0)
     for p,w in states.items():
         chains=sum(all((p[j]>>i)&1 for i,j in combinations(S,2)) for S in combinations(range(4),k))
-        count+=w*F(chains,comb(4,k))
-    assert count==peval(N,zprobe).lo
+        numerator=padd(numerator,pscale(w,F(chains,comb(4,k))))
+    assert numerator==N, "CSG enumeration chain numerator differs from NUM"
 print('INDEPENDENT_40_STATE_ENUMERATION := PASS')
+print('EXACT_POLYNOMIAL_COEFFICIENTS := PASS')
 
 # Exact rational Jacobian for F_i = N_i / D.
 Dpartials=[pdiff(D,j) for j in range(3)]
