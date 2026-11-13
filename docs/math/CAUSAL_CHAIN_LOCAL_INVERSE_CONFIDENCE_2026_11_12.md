@@ -91,7 +91,7 @@ therefore contains the true \(\theta_0\) with probability at least \(1-\alpha\).
 \]
 An empty set does not cover the truth; the coverage claim is probabilistic, not a promise that the set is nonempty for all random datasets.
 
-This is a *valid finite-N theorem* but the upper bound is extremely conservative. As an explicit illustration, for confidence \(95\%\), \(\log(80)<5\). Enforcing the stronger sufficient target \(4M\epsilon_3\le r_0\) requires N of order \(10^{25}\). The tightness and practical usefulness of this bound have NOT been established. The exact rational verifier records one sufficient integer N without using floating-point logarithms.
+This is a *valid finite-N theorem* but the upper bound is extremely conservative. As an explicit illustration, for confidence \(95\%\), \(\log(80)<5\). Enforcing the stronger sufficient target \(4M\epsilon_3\le r_0\) requires \(N\ge 697009500878906250000000\) (approximately \(6.97\times10^{23}\)). The tightness and practical usefulness of this bound have NOT been established. The exact rational verifier records one sufficient integer N without using floating-point logarithms.
 
 ## Verification and open boundary
 
