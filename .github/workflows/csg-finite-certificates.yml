@@ -1,0 +1,22 @@
+name: Exact finite CSG certificates
+
+on:
+  pull_request:
+    paths:
+      - 'research/event_first/csg_certificates/**'
+      - 'research/event_first/csg_four_to_five_finite_obstruction_20261112.md'
+      - '.github/workflows/csg-finite-certificates.yml'
+  push:
+    paths:
+      - 'research/event_first/csg_certificates/**'
+      - 'research/event_first/csg_four_to_five_finite_obstruction_20261112.md'
+      - '.github/workflows/csg-finite-certificates.yml'
+
+jobs:
+  exact-csg:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check exact research certificates and source hashes
+        run: python3 -B research/event_first/csg_certificates/run_exact_csg_certificates.py
