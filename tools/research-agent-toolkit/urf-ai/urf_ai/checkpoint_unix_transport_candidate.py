@@ -123,19 +123,39 @@ def serve_checkpoint_unix(*, socket_path, controller_uid, service, max_connectio
 
 class UnixCheckpointClient:
     """Unprivileged transport client; holds no AWS credentials."""
-    def __init__(self, socket_path):
+    def __init__(self, socket_path, *, expected_writer_uid):
         if type(socket_path) is not str or not socket_path or len(socket_path)>100:
             raise TransportRejected("INVALID_SOCKET_PATH")
-        self.socket_path=socket_path
+        if (type(expected_writer_uid) is not int or expected_writer_uid < 0
+            or expected_writer_uid == os.getuid()):
+            raise TransportRejected("WRITER_UID_NOT_SEPARATED")
+        self.socket_path=os.path.abspath(socket_path)
+        self.writer_uid=expected_writer_uid
 
     def _request(self, payload):
+        parent=os.path.dirname(self.socket_path)
+        try:
+            parent_stat=os.lstat(parent)
+            socket_stat=os.lstat(self.socket_path)
+        except OSError as exc:
+            raise TransportRejected("WRITER_UNAVAILABLE") from exc
+        if (not stat.S_ISDIR(parent_stat.st_mode)
+            or parent_stat.st_uid != self.writer_uid
+            or stat.S_IMODE(parent_stat.st_mode) != 0o711
+            or not stat.S_ISSOCK(socket_stat.st_mode)
+            or socket_stat.st_uid != self.writer_uid):
+            raise TransportRejected("UNTRUSTED_WRITER_ENDPOINT")
         try:
             with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as conn:
                 conn.settimeout(3)
                 conn.connect(self.socket_path)
+                # The kernel attests the connected peer; ownership of a
+                # pathname alone is insufficient to authenticate the server.
+                if peer_uid(conn) != self.writer_uid:
+                    raise TransportRejected("WRITER_IDENTITY_MISMATCH")
                 _send(conn,payload)
                 response=_line(conn)
-        except (OSError,TransportRejected) as exc:
+        except OSError as exc:
             raise TransportRejected("WRITER_UNAVAILABLE") from exc
         if type(response) is not dict or response.get("ok") is not True:
             raise TransportRejected("WRITER_DENIED")
