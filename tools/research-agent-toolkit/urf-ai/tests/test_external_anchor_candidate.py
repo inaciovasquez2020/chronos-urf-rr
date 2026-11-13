@@ -107,3 +107,45 @@ def test_failed_checkpoint_advance_never_acknowledges_and_poisoned(path):
     # The snapshot may already have been persisted; recovery MUST fail closed.
     with pytest.raises(ExternalAnchorRejected,match="CHECKPOINT_SNAPSHOT_MISMATCH"):
         ExternallyAnchoredJournal(owner=open_owner(path),checkpoint=checkpoint)
+
+def test_anchored_socket_service_rejects_rollback_before_bind(path,tmp_path):
+    from urf_ai.controller_boundary_candidate import IdentityPolicy, serve_owned_urf
+    checkpoint = SimulatedTrustedCheckpoint()
+    owner = open_owner(path)
+    anchored = ExternallyAnchoredJournal(owner=owner,checkpoint=checkpoint)
+    register(anchored,"r1")
+    old_valid = path.read_bytes()
+    anchored.apply(event_id="revise",kind="REVISE",claim_id="c",
+                   actor="author",expected_version=1,
+                   payload={"changes":{"proposition":"synthetic statement revised"}},
+                   reason="synthetic revision")
+    sockdir = tmp_path/"socket"
+    sockdir.mkdir()
+    os.chmod(sockdir,0o711)
+    endpoint = sockdir/"controller.sock"
+    # Adversarial restoration of an old, correctly MAC-authenticated snapshot
+    # after startup but before the controller begins serving.
+    path.write_bytes(old_valid)
+    with pytest.raises(ExternalAnchorRejected,match="CHECKPOINT_SNAPSHOT_MISMATCH"):
+        serve_owned_urf(str(endpoint),IdentityPolicy(os.getuid(),os.getuid()+1),
+                        owner,max_connections=1,external_anchor=anchored)
+    assert not endpoint.exists()
+    with pytest.raises(ExternalAnchorRejected,match="OWNER_UNAVAILABLE"):
+        anchored.audited_claim("c")
+    owner.close()
+
+def test_anchored_socket_service_refuses_wrong_owner(path,tmp_path):
+    from urf_ai.controller_boundary_candidate import IdentityPolicy, serve_owned_urf, BoundaryError
+    checkpoint = SimulatedTrustedCheckpoint()
+    first = open_owner(path)
+    anchored = ExternallyAnchoredJournal(owner=first,checkpoint=checkpoint)
+    first.close()
+    another = open_owner(path)
+    sockdir = tmp_path/"socket"
+    sockdir.mkdir()
+    os.chmod(sockdir,0o711)
+    with pytest.raises(BoundaryError,match="INVALID_EXTERNAL_ANCHOR"):
+        serve_owned_urf(str(sockdir/"controller.sock"),
+                        IdentityPolicy(os.getuid(),os.getuid()+1),
+                        another,max_connections=1,external_anchor=anchored)
+    another.close()
