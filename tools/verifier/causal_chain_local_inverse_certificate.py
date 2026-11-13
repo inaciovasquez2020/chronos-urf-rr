@@ -55,19 +55,19 @@ assert N_ceiling > 10**20
 # A second, independent discrete iid check of bounded differences:
 # for every N in [3,7], a single input-coordinate replacement
 # changes an unordered k-chain U-statistic by <=k/N.
-# Enumerating binary strings (0<1) tests the generic index bound,
+# Enumerating three-atom chains (0<1<2) tests the generic index bound,
 # not the continuum model.
 from itertools import product, combinations
 for n in range(3,8):
     for k in (2,3):
         def U(x):
-            return Q(sum(all(x[t] < x[t+1] for t in ids[:-1])
+            return Q(sum(len({x[t] for t in ids}) == k
                          for ids in combinations(range(n), k)),
                      __import__("math").comb(n,k))
-        for x in product(range(2),repeat=n):
+        for x in product(range(3),repeat=n):
             original=U(x)
             for i in range(n):
-                y=x[:i]+(1-x[i],)+x[i+1:]
+                y=x[:i]+((x[i]+1)%3,)+x[i+1:]
                 assert abs(original-U(y)) <= Q(k,n), (n,k,x,i)
 
 print("INVERSE_JACOBIAN_RATIONAL := PASS", M)
