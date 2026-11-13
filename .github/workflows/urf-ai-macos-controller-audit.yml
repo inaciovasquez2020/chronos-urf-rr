@@ -41,3 +41,8 @@ jobs:
         env:
           PYTHONPATH: .
         run: python3 -B tests/macos_durable_recovery.py
+      - name: Killed controller, exclusive journal recovery and stale-socket rebind
+        working-directory: tools/research-agent-toolkit/urf-ai
+        env:
+          PYTHONPATH: .
+        run: python3 -B tests/macos_owned_controller_restart.py
