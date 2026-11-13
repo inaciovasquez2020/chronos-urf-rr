@@ -1,0 +1,47 @@
+name: Exact local inverse confidence certificate
+
+on:
+  pull_request:
+    paths:
+      - 'tools/verifier/causal_chain_local_inverse_certificate.py'
+      - 'docs/math/CAUSAL_CHAIN_LOCAL_INVERSE_CONFIDENCE_2026_11_12.md'
+      - '.github/workflows/causal-chain-inverse-cert.yml'
+  push:
+    branches:
+      - research/quantitative-inverse-concentration-20261112
+
+permissions:
+  contents: read
+
+jobs:
+  exact-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Validate exact HEAD
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - name: Reproduce rational constants and discrete bounded differences
+        run: |
+          set -euo pipefail
+          python3 -B tools/verifier/causal_chain_local_inverse_certificate.py | tee "${RUNNER_TEMP}/inverse.log"
+          grep -F 'INVERSE_JACOBIAN_RATIONAL := PASS' "${RUNNER_TEMP}/inverse.log"
+          grep -Fx 'CONTRACTION_LT_HALF := PASS' "${RUNNER_TEMP}/inverse.log"
+          grep -Fx 'NONASYMPTOTIC_CONFIDENCE_DIAMETER_BOUND := PASS' "${RUNNER_TEMP}/inverse.log"
+          grep -Fx 'FINITE_DISCRETE_BOUNDED_DIFFERENCES := PASS' "${RUNNER_TEMP}/inverse.log"
+          grep -Fx 'RESULT := COMPUTATION_PASS' "${RUNNER_TEMP}/inverse.log"
+      - name: Reject optimized Python
+        run: |
+          set -euo pipefail
+          if PYTHONOPTIMIZE=1 python3 -B tools/verifier/causal_chain_local_inverse_certificate.py > "${RUNNER_TEMP}/optimized.log" 2>&1; then
+            echo 'FALSE_PASS_WITH_DISABLED_ASSERTIONS'
+            exit 1
+          fi
+          grep -Fx 'INCOMPLETE: assertions disabled' "${RUNNER_TEMP}/optimized.log"
