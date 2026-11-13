@@ -6,6 +6,7 @@ on:
       - audit/urf-ai-controller-real-gate-20261113
     paths:
       - "tools/research-agent-toolkit/urf-ai/urf_ai/**"
+      - "tools/research-agent-toolkit/urf-ai/scripts/check_codeql_sarif.py"
       - ".github/codeql/urf-ai.yml"
       - ".github/workflows/urf-ai-codeql-audit.yml"
   workflow_dispatch:
@@ -34,6 +35,11 @@ jobs:
           build-mode: none
           config-file: ./.github/codeql/urf-ai.yml
       - name: Analyze URF-AI security-sensitive Python
+        id: independent_analysis
         uses: github/codeql-action/analyze@v4
         with:
           category: "/urf-ai/python-security-extended"
+      - name: Require parsed CodeQL SARIF and zero reported security findings
+        env:
+          CODEQL_RESULTS_DIR: ${{ steps.independent_analysis.outputs.sarif-output }}
+        run: python3 -B tools/research-agent-toolkit/urf-ai/scripts/check_codeql_sarif.py
