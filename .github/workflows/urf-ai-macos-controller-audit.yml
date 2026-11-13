@@ -23,16 +23,17 @@ jobs:
       - name: macOS environment
         run: |
           sw_vers
-          /usr/bin/python3 --version
+          python3 --version
+          python3 -c 'import sys; assert sys.version_info >= (3, 11), "Python 3.11+ required"'
           id -u
           id -u _nobody
       - name: Real kernel peer identity and key isolation (no downloads)
         working-directory: tools/research-agent-toolkit/urf-ai
         env:
           PYTHONPATH: .
-        run: /usr/bin/python3 -B tests/macos_controller_isolation.py
+        run: python3 -B tests/macos_controller_isolation.py
       - name: Authenticated fsync crash/restart on macOS (no downloads)
         working-directory: tools/research-agent-toolkit/urf-ai
         env:
           PYTHONPATH: .
-        run: /usr/bin/python3 -B tests/macos_durable_recovery.py
+        run: python3 -B tests/macos_durable_recovery.py
