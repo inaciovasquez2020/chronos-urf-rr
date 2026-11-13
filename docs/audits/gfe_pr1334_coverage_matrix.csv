@@ -1,0 +1,29 @@
+monomial,status,scope,receipt,receipt_sha256
+k0^2,STATIC_CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r>2 (angular degree bound conditional)",gfe_corrected_sixjet_certificate_receipt.txt,a8da37101fca9ffd61cc90ad1d5b499d81f5e4d94ebf723bc6fd845c1b3b8cd7
+k0_r*k0,STATIC_CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r>2 (angular degree bound conditional)",gfe_corrected_sixjet_certificate_receipt.txt,a8da37101fca9ffd61cc90ad1d5b499d81f5e4d94ebf723bc6fd845c1b3b8cd7
+k0_r*k1_rt,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k0_r*k1_t,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k0_r^2,STATIC_CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r>2 (angular degree bound conditional)",gfe_corrected_sixjet_certificate_receipt.txt,a8da37101fca9ffd61cc90ad1d5b499d81f5e4d94ebf723bc6fd845c1b3b8cd7
+k0_rr*k0,STATIC_CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r>2 (angular degree bound conditional)",gfe_corrected_sixjet_certificate_receipt.txt,a8da37101fca9ffd61cc90ad1d5b499d81f5e4d94ebf723bc6fd845c1b3b8cd7
+k0_rr*k0_r,STATIC_CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r>2 (angular degree bound conditional)",gfe_corrected_sixjet_certificate_receipt.txt,a8da37101fca9ffd61cc90ad1d5b499d81f5e4d94ebf723bc6fd845c1b3b8cd7
+k0_rr*k1_rt,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k0_rr*k1_t,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k0_rr^2,STATIC_CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r>2 (angular degree bound conditional)",gfe_corrected_sixjet_certificate_receipt.txt,a8da37101fca9ffd61cc90ad1d5b499d81f5e4d94ebf723bc6fd845c1b3b8cd7
+k0_rt*k0_t,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k0_rt*k1,CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r=3 (angular degree bound conditional)",gfe_mixed_h0rt_h1_certificate_receipt.txt,9c4eee6a060d5f2461e55e9045c42bd13581b34712001694aaabe63cc57c3465
+k0_rt*k1_tt,CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r=3 (angular degree bound conditional)",gfe_h0rt_h1tt_angle_receipt.txt,304758be6e3db376e668cc96b105f59ac56be1ad8957df3a26ef7beb8367f101
+k0_rt^2,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k0_t*k1,CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r=3 (angular degree bound conditional)",gfe_mixed_h0t_h1_audit_receipt.txt,3b0491b057193794d12f5c04369ea4db62909c524ad42c1bc4bfbd003e476249
+k0_t*k1_r,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k0_t*k1_tt,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k0_t^2,CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r=3 (angular degree bound conditional)",gfe_time_h0t_squared_certificate_receipt.txt,5789fca6e38e30508fff6eb8ebb08576407ec021d1e580b10e16e6e252bde404
+k1^2,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k1_r*k1,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k1_r^2,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k1_rt*k0,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k1_rt*k1_t,CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r=3 (angular degree bound conditional)",gfe_h1rt_h1t_exact_receipt.txt,a3e661353660dd6b68bbe4a18d49e1e2c4ba96a4c351803c3c23221dd77eea61
+k1_rt^2,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k1_t*k0,CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r=3 (angular degree bound conditional)",gfe_reciprocal_mixed_certificate_receipt.txt,44289622fc9e05e15b415c10166d92d9ce09de7fd5162f995d82d162038d692b
+k1_t^2,CURVATURE_COMPARISON_REPORTED,"M=1, ell=2, r=3 (angular degree bound conditional)",gfe_time_h1t_squared_certificate_receipt.txt,d25a5dcac55360883584b27adbde1b86e50f1a3f8aed213c5f7d0c3979c8876a
+k1_tt*k1,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
+k1_tt^2,NO_INDEPENDENT_CURVATURE_RECEIPT_IDENTIFIED,,,
