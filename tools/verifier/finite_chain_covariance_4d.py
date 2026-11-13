@@ -111,5 +111,77 @@ print("MONOMIAL_MOMENT_AUDIT := PASS")
 print("FINITE_N_OVERLAP_ORACLE := PASS")
 print("LEADING_SIGMA :=",sigma)
 print("LEADING_PARAMETER_VARIANCES := 25, 145563075/45056")
-print("GAMMA2_EXACT_4D_INTEGRAL := OPEN")
+print("GAMMA2_EVALUATION_BELOW := IN_PROGRESS")
+
+
+# Exact four-point shared-two overlap integral. After angular integration,
+# null-radius endpoints split into the two simplices b<a<d<c and b<d<a<c.
+# u,v,w are consecutive nonnegative gaps, sum <= 2; the translation gap
+# contributes the simplex slack factor (2-u-v-w).
+def add3(*ps):
+    out=defaultdict(F)
+    for p in ps:
+        for k,c in p.items(): out[k]+=c
+    return {k:c for k,c in out.items() if c}
+
+def mul3(a,b):
+    out=defaultdict(F)
+    for i,c in a.items():
+        for j,d in b.items():
+            out[tuple(i[k]+j[k] for k in range(3))]+=c*d
+    return {k:c for k,c in out.items() if c}
+
+def pow3(p,n):
+    out={(0,0,0):F(1)}
+    for _ in range(n):out=mul3(out,p)
+    return out
+
+def neg3(p):
+    return {k:-c for k,c in p.items()}
+
+def simplex_integral(p):
+    return sum((c*F(factorial(i)*factorial(j)*factorial(k)*2**(i+j+k+4),
+                     factorial(i+j+k+4))
+                for (i,j,k),c in p.items()),F(0))
+
+u={(1,0,0):F(1)}
+v={(0,1,0):F(1)}
+w={(0,0,1):F(1)}
+def interval_moment(power_of_volume):
+    m=2*power_of_volume+1
+    first=mul3(mul3(u,w),add3(
+        mul3(pow3(add3(v,w),m),pow3(add3(u,v),m)),
+        neg3(mul3(pow3(v,m),pow3(add3(u,v,w),m)))))
+    second=mul3(mul3(add3(u,v),add3(v,w)),pow3(mul3(u,w),m))
+    return F(9,16*m*16**power_of_volume)*(
+        simplex_integral(first)+simplex_integral(second))
+
+# m=0 is the ordered causal-pair probability p2/2; m=1 is p3/6.
+assert [interval_moment(i) for i in range(3)] == [
+    F(1,20),F(1,2100),F(1,35280)]
+# In a causal interval, the specified chronology of two additional iid
+# events has probability p2/2, so p4=24*(p2/2)*ordered_interval_moment(2).
+p4=24*(p2/2)*interval_moment(2)
+assert p4==F(1,29400)
+
+# By time reversal E[A^2 B]=E[A B^2]. Symmetrize to eliminate odd-t terms
+# before using the independent monomial integrator E.
+e_a2b=E(scale(add(mul(powpoly(A,2),B),mul(A,powpoly(B,2))),F(1,2)))
+assert e_a2b==F(256,2205)
+# Four-point double-overlap: past(x)^2, future(y)^2, middle interval^2
+# and three cross terms, each the probability of a fixed four-chain order.
+gamma2=e_a2b/1024+2*interval_moment(2)+p4/2
+assert gamma2==F(11,58800)
+assert gamma2-p3*p3==F(263,1470000)
+for N in range(3,18):
+    v33=(F(3*C(N-3,2),C(N,3))*vq+
+         F(3*(N-3),C(N,3))*(gamma2-p3*p3)+
+         F(1,C(N,3))*p3*(1-p3))
+    assert v33==F(527*N*N+4990*N+26355,
+                  2695000*N*(N-1)*(N-2)),N
+print("ORDERED_INTERVAL_MOMENTS := 1/20, 1/2100, 1/35280")
+print("P4 := 1/29400")
+print("GAMMA2_EXACT_4D_INTEGRAL := PASS 11/58800")
+print("FULL_FINITE_N_COVARIANCE := PASS")
+
 print("RESULT := COMPUTATION_PASS")
