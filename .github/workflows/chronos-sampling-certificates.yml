@@ -7,6 +7,10 @@ on:
     paths:
       - tools/verifier/chronos_sampling_20261114/**
       - .github/workflows/chronos-sampling-certificates.yml
+  pull_request:
+    paths:
+      - tools/verifier/chronos_sampling_20261114/**
+      - .github/workflows/chronos-sampling-certificates.yml
   workflow_dispatch:
 
 permissions:
