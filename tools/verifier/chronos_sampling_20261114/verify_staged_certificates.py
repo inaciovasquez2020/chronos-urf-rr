@@ -58,7 +58,7 @@ for name, digest in EXPECTED.items():
     if name.startswith("exploratory/") or name == "primary/chronos_lower_half_overlap_exact_20261114.py":
         print("DEPENDENCY_GATED_NOT_RUN:", name)
         continue
-    p = subprocess.run([sys.executable, "-B", str(path)],
+    p = subprocess.run([sys.executable, "-E", "-B", str(path)],
                        capture_output=True, text=True, timeout=30)
     if p.returncode:
         print(p.stdout)
