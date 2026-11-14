@@ -87,6 +87,19 @@ class TestAuthenticatedAnswerGate(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.j.audited_claim("unlogged")
 
+    def test_event_id_index_must_match_signed_chain(self):
+        self.promote()
+        self.assertTrue(self.j.audit_events())
+        self.j.event_ids.remove("register")
+        self.assertFalse(self.j.audit_events())
+        self.assertFalse(self.check().allowed)
+
+    def test_extra_event_id_index_entry_denied(self):
+        self.promote()
+        self.j.event_ids.add("not-in-signed-chain")
+        self.assertFalse(self.j.audit_events())
+        self.assertFalse(self.check().allowed)
+
     def test_tampered_event_denied(self):
         self.promote()
         self.j.events[0]["reason"] = "forged"
