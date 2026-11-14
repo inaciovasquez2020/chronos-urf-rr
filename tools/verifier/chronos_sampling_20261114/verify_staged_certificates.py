@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+"""Fail-closed runner for the staged, exact, standard-library certificates.
+
+This verifies source provenance and execution, not Lean/kernel proofs or
+Minkowski infinite-growth sampling stability.
+"""
+import hashlib
+import pathlib
+import subprocess
+import sys
+
+BASE = pathlib.Path(__file__).resolve().parent
+EXPECTED = {
+    "primary/chronos_insertion_transfer_exact_20261114.py":
+        "81393b324bff4c5871e5777314984f1866527dd6bb7e5a9d658df1d02b6cec12",
+    "primary/chronos_overlap_decomposition_certificate.py":
+        "8f31bba39ee4a2f176e18168e3240ea7fe4962d0d78d1b535fbc987b0d8a68f6",
+    "primary/chronos_conditional_overlap_all_moments_20261114.py":
+        "5465bbb74c17b77d9ef42967ca42230ddc688ea6138c2d0b6b42c86a5665f634",
+}
+for name, digest in EXPECTED.items():
+    path = BASE / name
+    if not path.is_file():
+        raise SystemExit("MISSING_CERTIFICATE: " + name)
+    actual = hashlib.sha256(path.read_bytes()).hexdigest()
+    if actual != digest:
+        raise SystemExit("HASH_MISMATCH: " + name)
+    p = subprocess.run([sys.executable, "-B", str(path)],
+                       capture_output=True, text=True, timeout=30)
+    if p.returncode:
+        print(p.stdout)
+        print(p.stderr, file=sys.stderr)
+        raise SystemExit("EXECUTION_FAILED: " + name)
+    print("CERTIFICATE_PASS:", name)
+print("STAGED_EXACT_CERTIFICATES := 3/3 PASS")
+print("FULL_BUNDLE_INTEGRATION := INCOMPLETE")
+print("LEAN_VERIFIED := NOT_RUN")
+print("MINKOWSKI_INFINITE_GROWTH_STABILITY := OPEN")
