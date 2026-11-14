@@ -42,11 +42,13 @@ for states in product(range(3),repeat=6):
         assert all(sums[L]==available[L][2] for L in ext)
         total=sum(a for d,u,a in available.values())
         assert total==len(extfull)
+        # Exact insertion and restriction probabilities for every prefix length.
         for n in range(1,5):
             cnt=sum(1 for E in extfull if E.index(z)<n)
             formula=sum(max(0,min(u,n)-d) for d,u,a in available.values())
             assert cnt==formula
             if n<=3:
+                # distributional TV on full restricted extensions
                 tva=Q(1,2)*sum(abs(Q(sums[L],len(extfull))-Q(1,len(ext))) for L in ext)
                 mean=Q(total,len(ext))
                 tvb=Q(1,2)*sum(abs(Q(a,1)/mean-1) for d,u,a in available.values())/len(ext)
