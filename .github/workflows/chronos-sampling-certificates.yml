@@ -1,0 +1,22 @@
+name: Chronos sampling certificate integrity
+
+on:
+  push:
+    branches:
+      - research/chronos-sampling-certificates-20261114
+    paths:
+      - tools/verifier/chronos_sampling_20261114/**
+      - .github/workflows/chronos-sampling-certificates.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-certificates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay 14 exact certificates and check all 18 source hashes
+        run: python3 -B tools/verifier/chronos_sampling_20261114/verify_staged_certificates.py
