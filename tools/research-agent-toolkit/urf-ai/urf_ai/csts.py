@@ -203,6 +203,9 @@ class ClaimJournal:
             if not isinstance(supplied,str) or not hmac.compare_digest(expected,supplied): return False
             prev=provided_hash
             seen.add(e["event_id"])
+        # The deduplication index must agree with the authenticated event chain.
+        if self.event_ids != seen:
+            return False
         # The last event for each claim must bind to its current unmodified record.
         last={}
         for event in self.events: last[event["claim_id"]]=event["post_state_digest"]
