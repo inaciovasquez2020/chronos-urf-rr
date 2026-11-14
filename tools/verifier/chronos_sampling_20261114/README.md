@@ -4,7 +4,7 @@
 
 ## Provenance and scope
 
-The source archive `chronos_sampling_certificates_candidate_20261114.zip` contains 18 scripts (9 primary, 6 supporting, 3 exploratory). Its integrity and execution were checked in an isolated Python environment. **This branch currently stages only 3 exact standard-library scripts**; 15 scripts remain outside the repository.
+The source archive `chronos_sampling_certificates_candidate_20261114.zip` contains 18 scripts (9 primary, 6 supporting, 3 exploratory). Its integrity and execution were checked in an isolated Python environment. **This branch currently stages only 6 exact standard-library scripts**; 12 scripts remain outside the repository.
 
 ## Byte-preserved exact certificates
 
@@ -12,7 +12,11 @@ The source archive `chronos_sampling_certificates_candidate_20261114.zip` contai
 - `primary/chronos_overlap_decomposition_certificate.py`: SHA-256 `8f31bba39ee4a2f176e18168e3240ea7fe4962d0d78d1b535fbc987b0d8a68f6`; conditional moment identity and complete causal cuts.
 - `primary/chronos_conditional_overlap_all_moments_20261114.py`: SHA-256 `5465bbb74c17b77d9ef42967ca42230ddc688ea6138c2d0b6b42c86a5665f634`; exact conditional moment checks.
 
-All three blobs have been verified byte-for-byte against the source archive.
+- `supporting/chronos_comparable_pair_future_count_20261114.py`: SHA-256 `5b7817920be647bcb067bed94d210e09c8bc74b6a85a026b64094d8d46235b82`.
+- `supporting/chronos_overlap_conditional_moment_audit_20261114.py`: SHA-256 `08c95a6c77d9ce0f06de0f00458813b6656bfdc406c47d244511a12ee2feef24`.
+- `primary/chronos_symmetric_incomparable_overlap_exact_20261114.py`: SHA-256 `e23a2a2c8962c983ee7fd452fbfe5f506978641ce51bf53d055f49561996363f`.
+
+All six blobs have been verified byte-for-byte against the source archive.
 
 The `verify_staged_certificates.py` runner fails on missing scripts, hash mismatches, nonzero execution, and timeouts. It requires only Python standard library. This runner has **not** yet been executed on the remote branch.
 
