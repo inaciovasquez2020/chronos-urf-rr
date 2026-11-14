@@ -16,7 +16,7 @@ The original archive's SHA-256 values are pinned in `verify_staged_certificates.
 
 `verify_staged_certificates.py` checks the SHA-256 of **all 18** committed scripts, and replays the **14 standard-library** scripts. It rejects missing files, source changes, execution failures, and timeouts. The 4 dependency-gated scripts are hash-verified but intentionally marked NOT_RUN by that runner. Their earlier isolated-environment executions are **historical receipts**, not exact-HEAD GitHub CI results.
 
-The fail-closed runner itself, repository-wide tests, pinned Lean 4.29.0, and exact-HEAD GitHub CI have not yet been observed running on this remote branch.
+The fail-closed runner has been replayed against the original archive in an isolated environment. A branch-scoped GitHub Actions workflow is committed at `.github/workflows/chronos-sampling-certificates.yml`, but an exact-HEAD run result has **not** been confirmed. Repository-wide tests and pinned Lean 4.29.0 have not been run for this branch.
 
 ## Mathematical boundaries
 
