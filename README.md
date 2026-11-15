@@ -8,7 +8,19 @@ This repository maintains formalization surfaces, reproducible symbolic/numerica
 
 [The merged locality bridge note](docs/research/finite_holonomy_locality_bridge_001_004.md) records a candidate interface between bounded graph neighborhoods and finite transport. On a cycle of length greater than `2r + 1`, the observation model independently quotients each radius-`r` restriction by vertex gauge. The note documents a local observation collision for distinct global holonomies under that model. Formal integration and physical interpretation remain open.
 
-## Current research snapshot
+## Event-first spacetime
+
+Chronos supplies the four-dimensional event observables for the proposed transfer from [DFM-MKC Cosmology](https://github.com/inaciovasquez2020/dfm-mkc-cosmology). The finite [relative-conjugation audit](https://github.com/inaciovasquez2020/chronos-urf-rr/pull/1357) gives an exact \(S_3\) reconstruction obstruction under the stated observations.
+
+From the repository root, replay the finite audit:
+
+```bash
+python3 tools/holonomy/verify_s3_relative_conjugation.py
+```
+
+**OPEN** — Match the coefficients of a specified 5D→4D reduction to a Chronos event observable, then compare its predictions with a matched four-dimensional model.
+
+## GfE research snapshot
 
 As of 2026-10-18, recent GfE work has advanced from the corrected axial projector/GQQ certificate to several more specific, finite-scope results:
 
@@ -42,6 +54,8 @@ In particular, the exact exterior contour certificate is a point-specific exclus
 - `frontier-status-dashboard` — public status presentation and synchronization.
 
 ## Verification
+
+See [Quickstart](QUICKSTART.md) for the repository setup.
 
 Typical local checks, when run in the repository environment:
 
