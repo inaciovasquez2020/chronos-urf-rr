@@ -1,0 +1,11 @@
+r=2 n=6 minima=2 height=3 width=3 first(a)=5/6 collision=13/18 prefix=2/3
+r=3 n=12 minima=3 height=4 width=5 first(a)=5/6 collision=17/24 prefix=15/22
+r=4 n=19 minima=3 height=5 width=6 first(a)=17/19 collision=291/361 prefix=136/171
+r=5 n=29 minima=4 height=6 width=8 first(a)=26/29 collision=679/841 prefix=325/406
+r=8 n=69 minima=5 height=9 width=12 first(a)=65/69 collision=4229/4761 prefix=1040/1173
+r=16 n=262 minima=6 height=17 width=21 first(a)=257/262 collision=33027/34322 prefix=32896/34191
+r=32 n=1031 minima=7 height=33 width=38 first(a)=1025/1031 collision=1050631/1062961 prefix=104960/106193
+RESULT := COMPUTATION_PASS
+GENERAL_THEOREM := proved by interleaving, independent of finite cases
+ASYMPTOTICS := minima = Theta(log n); height,width = Theta(sqrt(n)); first(a),collision,prefix -> 1
+RANDOM_ENSEMBLE := NOT_PROVED
