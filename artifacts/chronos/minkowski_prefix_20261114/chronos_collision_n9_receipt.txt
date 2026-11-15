@@ -1,0 +1,9 @@
+RESULT := COMPUTATION_PASS
+MODEL := all permutations of length 9 (uniform random 2D order)
+COUNT := 362880
+FINITE_PREFIX_MEAN := 0.346922472444
+COLLISION_MEAN := 0.502242804919
+MAX_FIRST_PROB_MEAN := 0.588518009309
+INVARIANTS := extension normalization and integer Fishburn bound PASS for every permutation
+ASYMPTOTIC_CONCLUSION := OPEN
+ELAPSED_SECONDS := 19.481
