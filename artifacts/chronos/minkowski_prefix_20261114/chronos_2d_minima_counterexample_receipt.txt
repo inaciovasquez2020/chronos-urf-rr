@@ -1,0 +1,6 @@
+n=6 m=3 permutation=(6, 5, 1, 2, 3, 4) extensions=30 prefix=2/5 collision=1/2
+n=8 m=4 permutation=(8, 7, 6, 1, 2, 3, 4, 5) extensions=336 prefix=5/14 collision=7/16
+n=10 m=3 permutation=(10, 9, 1, 2, 3, 4, 5, 6, 7, 8) extensions=90 prefix=28/45 collision=33/50
+n=12 m=5 permutation=(12, 11, 10, 9, 1, 2, 3, 4, 5, 6, 7, 8) extensions=11880 prefix=14/33 collision=17/36
+RESULT := COMPUTATION_PASS
+GENERAL_FAMILY_THEOREM := mathematical combinatorial proof required, not Lean-verified
