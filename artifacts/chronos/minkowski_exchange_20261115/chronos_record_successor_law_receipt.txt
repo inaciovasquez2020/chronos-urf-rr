@@ -1,0 +1,10 @@
+n=2: all 2 record positions PASS
+n=3: all 3 record positions PASS
+n=4: all 4 record positions PASS
+n=5: all 5 record positions PASS
+n=6: all 6 record positions PASS
+n=7: all 7 record positions PASS
+n=8: all 8 record positions PASS
+STATUS := COMPUTATION_PASS
+POSITION_CASES := 35
+ASYMPTOTIC_COLLISION_DECAY := OPEN
