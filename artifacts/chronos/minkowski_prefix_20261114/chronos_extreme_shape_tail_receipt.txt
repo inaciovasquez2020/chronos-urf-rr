@@ -1,0 +1,9 @@
+n=20  log10(P[height>=ceil(n/2) OR width>=ceil(n/2)] upper bound) = -0.992; log10(P[height>=n-floor(log n)+1] upper bound) = -15.784
+n=50  log10(P[height>=ceil(n/2) OR width>=ceil(n/2)] upper bound) = -10.788; log10(P[height>=n-floor(log n)+1] upper bound) = -58.006
+n=100  log10(P[height>=ceil(n/2) OR width>=ceil(n/2)] upper bound) = -35.178; log10(P[height>=n-floor(log n)+1] upper bound) = -146.774
+n=200  log10(P[height>=ceil(n/2) OR width>=ceil(n/2)] upper bound) = -98.712; log10(P[height>=n-floor(log n)+1] upper bound) = -357.895
+n=400  log10(P[height>=ceil(n/2) OR width>=ceil(n/2)] upper bound) = -255.583; log10(P[height>=n-floor(log n)+1] upper bound) = -849.383
+n=800  log10(P[height>=ceil(n/2) OR width>=ceil(n/2)] upper bound) = -629.231; log10(P[height>=n-floor(log n)+1] upper bound) = -1949.946
+RESULT := COMPUTATION_PASS
+CERTIFICATE := exact rational union bounds; applicability follows from uniform permutation symmetry
+LIMIT := bounds only exclude extreme-shaped counterexample families, not all first-weight concentration
