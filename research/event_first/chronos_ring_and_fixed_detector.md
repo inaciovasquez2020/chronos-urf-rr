@@ -6,7 +6,7 @@ Use a closed, uniform acoustic duct with circumference L. Put a pulse driver at 
 
 Use a narrow source port and operate in the duct's frequency range below the first transverse-mode cutoff. Calibrate the driver, probes, and acquisition chain first. Record a driver-off trace and swap the probes to check channel bias. Include source duration, port and probe size, trigger uncertainty, measured group delay, and speed uncertainty in the timing budget. Keep their combined tolerance below L/(12c). Measure the signal and noise floors on the assembled hardware before applying an amplitude decision. Duct losses, reflections at taps, and electromagnetic pickup are experimental variables.
 
-With y = 2πx/L and T = 2πct/L, the ideal rescaled equation is the circle wave equation. A unit impulsive forcing with zero initial field gives the ideal normalized step of 1/2 after its first front. The waveform depends on the driver transfer function. Validate that transfer function before comparing measured amplitudes with the ideal step. For ideal point forcing, at T = π/2 and angles π/3 and 2π/3, the least symmetric Fourier cutoff giving absolute error below 1/480 at both probes is 75. The arithmetic replay checks this ideal comparison. The duct demonstrates the circle timing mechanism in one spatial dimension. The Chronos local scalar calculation below includes three additional spatial directions. Hardware has not been built or measured.
+With y = 2πx/L and T = 2πct/L, the ideal rescaled equation is the circle wave equation. A unit impulsive forcing with zero initial field gives the ideal normalized step of 1/2 after its first front. The waveform depends on the driver transfer function. Validate that transfer function before comparing measured amplitudes with the ideal step. For ideal point forcing, at T = π/2 and angles π/3 and 2π/3, the least symmetric Fourier cutoff giving absolute error below 1/480 at both probes is 75. The first passing cutoff is 75, the last failing cutoff is 150, and every cutoff from 151 onward passes. The replay checks through 319 with exact rational bounds. For the higher cutoffs, the sine–cosine coefficients are 12-periodic with zero period sum, and the partial sum of any consecutive block has magnitude at most two. Summation by parts therefore bounds the normalized tail by 2/(π(N+1)), which is below 1/480 for N ≥ 320. The duct demonstrates the circle timing mechanism in one spatial dimension. The Chronos local scalar calculation below includes three additional spatial directions. Hardware has not been built or measured.
 
 ## Fixed local Chronos detector
 
@@ -67,17 +67,24 @@ for n in range(14):
 print("FIXED_LOCAL_CUTOFF = 13")
 
 sine_cosine_sum = F(0)
-for n in range(76):
+coefficients = [(-1)**((n-1)//2) * cosines[n % 6] if n % 2 else F(0)
+                for n in range(1, 13)]
+assert sum(coefficients) == 0
+assert all(abs(sum(coefficients[(start+j) % 12] for j in range(length))) <= 2
+           for start in range(12) for length in range(1, 13))
+for n in range(320):
     if n % 2:
         sine_cosine_sum += (-1)**((n-1)//2) * cosines[n % 6] / n
     distances = sorted(F(1, 4) - sine_cosine_sum / endpoint
                        for endpoint in (p-pi_error, p+pi_error))
     low, high = distances
-    if n < 75:
+    if n < 75 or n == 150:
         assert low > F(1, 480) or high < -F(1, 480)
-    else:
+    elif n == 75 or n >= 151:
         assert -F(1, 480) < low <= high < F(1, 480)
-print("IDEAL_RING_CUTOFF = 75")
+assert F(2, 321)/(p-pi_error) < F(1, 480)
+print("IDEAL_RING_FIRST_PASS = 75")
+print("IDEAL_RING_SUSTAINED_PASS = 151")
 ```
 
 The fixed local cutoff applies to the declared narrow profiles and margin criterion. The ideal ring cutoff applies to the specified point-forcing circle model and absolute waveform error at the two declared samples. A physical coupling to a cosmological circle remains open.
