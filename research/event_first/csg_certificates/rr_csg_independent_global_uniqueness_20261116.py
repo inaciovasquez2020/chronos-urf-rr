@@ -26,7 +26,7 @@ assert P.degree()==16
 assert s.Poly(G.polys[1].as_expr(),y).degree()==1
 assert s.Poly(G.polys[0].as_expr(),z).degree()==1
 # SymPy computes an exact lexicographic Groebner basis from the input ideal.
-assert all(s.reduce(f,G.polys)[1]==0 for f in F)
+assert all(G.reduce(f)[1]==0 for f in F)
 assert P.count_roots(-s.oo,s.oo)==10
 isolated=s.polys.polytools.intervals(P,eps=s.Rational(1,10**22))
 assert sum(m for _,m in isolated)==10
