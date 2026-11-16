@@ -50,6 +50,14 @@ NOVELTY := OPEN
 
 Source for integration: [`rr_csg_independent_box_nonextension_20261116.py`](csg_certificates/rr_csg_independent_box_nonextension_20261116.py). A substantively equivalent standalone verifier passed in the research environment on November 16, 2026. **The newly committed GitHub source has not yet been rerun at its exact commit HEAD**, so the receipt is not presented as an exact-HEAD CI result.
 
+## Four-event global nonnegative uniqueness — independent replay
+
+An independent SymPy 1.14 exact-arithmetic calculation on 2026-11-16 reconstructed the 40 naturally labeled four-birth growth states, verified the three symbolic chain-moment numerators, computed a degree-16 lexicographic elimination polynomial, isolated all **10** real roots using exact Sturm/rational methods, and certified that **exactly one** reconstructed (t₁,t₂,t₃) triple is componentwise nonnegative. The unique triple is enclosed by the same rational box used above.
+
+[Independent source verifier](csg_certificates/rr_csg_independent_global_uniqueness_20261116.py). This result is **COMPUTATION_PASS** for the independently executed algebraic algorithm. The newly committed GitHub source itself still requires exact-HEAD CI replay; no Lean proof or independent scholarly review is claimed. The original upstream archival scripts were not rerun on the user's Mac in this session.
+
+Combining the independent four-event global uniqueness and the separately checked five-event box certificate gives a **computationally certified finite-stage CSG nonextension statement** for the specified moment target and all nonnegative couplings. This is not a continuum limit theorem, a gravity result, or a verified originality claim.
+
 ## Upstream dependency and non-claims
 
 The prior four-event existence, elimination-ideal, and Sturm verification sources are in `research/event_first/csg_certificates/`: `rr_csg_common_four_exact_existence_py39.py`, `rr_csg_elimination_ideal_audit_py39.py`, and `rr_csg_global_uniqueness.py`. They were inspected at revision `166ec0e2749edb766f562fa6389c86b18cd6a8b7` but their full chain was **not replayed on the Mac during this integration**: the pinned revision and exact local scripts were unavailable. Existing archived receipts are not replaced.
