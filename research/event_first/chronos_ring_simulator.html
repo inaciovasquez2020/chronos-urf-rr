@@ -15,7 +15,7 @@ body {font:16px/1.5 system-ui,sans-serif;color:var(--foreground);max-width:780px
 <section id="chronos-ring-sim">
   <h1>Ideal acoustic-ring simulator</h1>
   <label class="form-label" for="ring-cutoff">Mode cutoff <output id="ring-mode" class="tabular-nums">75</output></label>
-  <input class="form-range" id="ring-cutoff" type="range" min="0" max="150" value="75">
+  <input class="form-range" id="ring-cutoff" type="range" min="0" max="320" value="75">
   <div class="viz-row text-small" aria-label="Legend">
     <span><i style="color:var(--viz-series-1)">━</i> Near probe</span>
     <span><i style="color:var(--viz-series-2)">┄</i> Far probe</span>
@@ -87,6 +87,6 @@ body {font:16px/1.5 system-ui,sans-serif;color:var(--foreground);max-width:780px
 })();
 </script>
 
-<p>Ideal one-dimensional point-pulse model for the acoustic loop. The simulator evaluates the two probe amplitudes at one quarter of a round trip.</p>
+<p>The first passing cutoff is <strong>75</strong>. Every cutoff from <strong>151</strong> onward passes the deadline tolerance.</p>
 </body>
 </html>
