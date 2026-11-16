@@ -330,7 +330,37 @@ def independent_finite_audit():
             "finite_frame_support_sweeps": capacity_cases}
 
 
+def unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("Duplicate JSON object field")
+        result[key] = value
+    return result
+
+
+def reject_constant(token):
+    raise ValueError("non-finite JSON constant: " + token)
+
+
+def parse_candidate(raw):
+    return json.loads(raw, object_pairs_hook=unique_object,
+                      parse_constant=reject_constant)
+
+
 def selftest():
+    assert parse_candidate('[{"status":"OPEN"},{"status":"OPEN"}]') == [
+        {"status": "OPEN"}, {"status": "OPEN"}]
+    for raw in (
+        '[{"status":"LEAN_VERIFIED","status":"PRIVATE_BLOCKED"}]',
+        '[{"witness":{"public_release_allowed":true,"public_release_allowed":false}}]',
+    ):
+        try:
+            parse_candidate(raw)
+        except ValueError as exc:
+            assert str(exc) == "Duplicate JSON object field"
+        else:
+            raise AssertionError("Duplicate candidate field accepted")
     assert len(CASES) == len(set(c[0] for c in CASES))
     for seed in (0, 1, 451, 99991):
         exported = tasks(seed)
@@ -403,9 +433,7 @@ def main():
         def read_candidate(path):
             if path.stat().st_size > 1_000_000:
                 raise ValueError("Candidate file exceeds 1,000,000-byte evaluation guard")
-            return json.loads(path.read_text(encoding="utf-8"),
-                              parse_constant=lambda token: (_ for _ in ()).throw(
-                                  ValueError("non-finite JSON constant: " + token)))
+            return parse_candidate(path.read_text(encoding="utf-8"))
         if a.compare:
             ordinary = evaluate(read_candidate(a.compare[0]), a.seed)
             assisted = evaluate(read_candidate(a.compare[1]), a.seed)
