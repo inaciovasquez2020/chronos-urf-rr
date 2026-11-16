@@ -25,8 +25,8 @@ B=s.Poly(z-G.polys[0].as_expr(),x)
 assert P.degree()==16
 assert s.Poly(G.polys[1].as_expr(),y).degree()==1
 assert s.Poly(G.polys[0].as_expr(),z).degree()==1
-# The ordered Groebner basis exactly generates the original moment ideal.
-assert all(s.rem(f,G.polys[0].as_expr(),z)==0 if False else True for f in ())
+# SymPy computes an exact lexicographic Groebner basis from the input ideal.
+assert all(s.reduce(f,G.polys)[1]==0 for f in F)
 assert P.count_roots(-s.oo,s.oo)==10
 isolated=s.polys.polytools.intervals(P,eps=s.Rational(1,10**22))
 assert sum(m for _,m in isolated)==10
@@ -62,7 +62,7 @@ def ideals(p):
             yield m
 
 def transition(p,m):
-    w=m.bit_count()
+    w=bin(m).count("1")
     maximal=sum(1 for i in range(len(p)) if (m>>i)&1 and not any(
         ((m>>j)&1) and ((p[j]>>i)&1) for j in range(len(p))))
     t=(s.Integer(1),x,y,z)
