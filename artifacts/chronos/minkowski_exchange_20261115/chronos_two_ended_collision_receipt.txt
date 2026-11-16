@@ -1,0 +1,6 @@
+n 2 negative 0 positive 1 zero 1 E_C+ 0.75 E_C- 0.75 E_J 0.75 negative witness None positive witness ((1, 0), '1/4', '1/2', '1/2', '1/2')
+n 3 negative 0 positive 3 zero 3 E_C+ 0.6574074074074073 E_C- 0.6574074074074073 E_J 0.47222222222222227 negative witness None positive witness ((1, 2, 0), '2/81', '5/9', '5/9', '1/3')
+n 4 negative 2 positive 11 zero 11 E_C+ 0.6061226851851852 E_C- 0.6061226851851852 E_J 0.3809722222222223 negative witness ((1, 2, 3, 0), '-1/64', '5/8', '5/8', '3/8') positive witness ((1, 3, 0, 2), '6/625', '13/25', '13/25', '7/25')
+n 5 negative 21 positive 50 zero 49 E_C+ 0.5724396469719789 E_C- 0.5724396469719789 E_J 0.3336506727352199 negative witness ((1, 2, 3, 4, 0), '-14/625', '17/25', '17/25', '11/25') positive witness ((1, 2, 4, 0, 3), '10/2401', '29/49', '25/49', '15/49')
+n 6 negative 184 positive 273 zero 263 E_C+ 0.548121353099923 E_C- 0.5481213530999232 E_J 0.30358941082066176 negative witness ((1, 2, 3, 4, 5, 0), '-7/324', '13/18', '13/18', '1/2') positive witness ((1, 2, 3, 5, 0, 4), '14/6561', '53/81', '41/81', '1/3')
+n 7 negative 1499 positive 1948 zero 1593 E_C+ 0.5294699563846021 E_C- 0.5294699563846045 E_J 0.28226332110359426 negative witness ((1, 2, 3, 4, 5, 6, 0), '-46/2401', '37/49', '37/49', '27/49') positive witness ((1, 2, 3, 4, 6, 0, 5), '18/14641', '85/121', '61/121', '43/121')

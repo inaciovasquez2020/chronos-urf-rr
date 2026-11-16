@@ -1,0 +1,11 @@
+n=2 orders=2 minimal_element_checks=3 PASS
+n=3 orders=6 minimal_element_checks=11 PASS
+n=4 orders=24 minimal_element_checks=50 PASS
+n=5 orders=120 minimal_element_checks=274 PASS
+n=6 orders=720 minimal_element_checks=1764 PASS
+n=7 orders=5040 minimal_element_checks=13068 PASS
+n=8 orders=40320 minimal_element_checks=109584 PASS
+TOTAL_ORDERS 46232
+TOTAL_MINIMAL_ELEMENT_CHECKS 124754
+FINITE_SUCCESSOR_BOUND PASS
+RANDOM_ENSEMBLE_COLLISION_DECAY OPEN
