@@ -1,0 +1,84 @@
+{
+  "schema": "urf-verification-receipt-v1",
+  "receipt_type": "gfe-polar-angular-reduction-aggregate",
+  "repository": "inaciovasquez2020/chronos-urf-rr",
+  "pull_request": 1330,
+  "pull_request_url": "https://github.com/inaciovasquez2020/chronos-urf-rr/pull/1330",
+  "workflow_run_id": 40853232450,
+  "workflow_run_url": "https://github.com/inaciovasquez2020/chronos-urf-rr/actions/runs/40853232450",
+  "workflow_conclusion": "success",
+  "observed_at_utc": "2026-10-29T10:25:05Z",
+  "source_head_commit": "1c9fd263e339d83d9b78ed044e5fcea1be4cff13",
+  "base_commit": "6f6904a39b1c5b8361fe9485619c8464c0f21276",
+  "checked_out_merge_commit": "54cd66379d46b2b7cad5fe6f45ebc15748e97cd3",
+  "artifact": {
+    "id": 12889438473,
+    "name": "gfe-polar-angular-reduction-evidence-54cd66379d46b2b7cad5fe6f45ebc15748e97cd3",
+    "url": "https://api.github.com/repos/inaciovasquez2020/chronos-urf-rr/actions/artifacts/12889438473",
+    "sha256_zip": "72985fdb3ee28d7e66e3306d162837ac4c4e63cae171a05d485440b6867465d0",
+    "size_bytes": 118349
+  },
+  "stage_receipts": [
+    {
+      "file": "gfe_polar_angular_reduction_receipt.json",
+      "sha256_file_bytes": "bcdfd6fd360551c150d4f34a7fccc22c9a9204a8735f4ae6b6396fe0497dc4a4",
+      "schema": "gfe-polar-angular-reduction-receipt-v1",
+      "passed": true,
+      "spherical_integral_completed": true,
+      "angular_polynomial_degree": 4,
+      "integrated_sha256_srepr": "a17e68d8c8dfa16e5a5c05eb867ef38ae24af8d0d825b9636f120f6ebb6fbe05",
+      "quadratic_action_derived": false,
+      "reference_81_slot_comparison_completed": false,
+      "interpretation": "Stage-local receipt; downstream gates were not yet completed at this stage."
+    },
+    {
+      "file": "gfe_polar_action_comparison_receipt.json",
+      "sha256_file_bytes": "3c8f9b94d7c4072fc62c2721e20bda68116d47013ccf510f675fda52e82bd0dd",
+      "schema": "gfe-polar-action-reference-comparison-receipt-v1",
+      "passed": true,
+      "reference_slot_count": 81,
+      "nonzero_residual_count": 0,
+      "nonzero_residuals": [],
+      "integrated_sha256_srepr": "a17e68d8c8dfa16e5a5c05eb867ef38ae24af8d0d825b9636f120f6ebb6fbe05",
+      "quadratic_action_derived": true,
+      "reference_81_slot_comparison_completed": true,
+      "interpretation": "Downstream comparison-stage receipt; its flags supersede neither the scope nor limitations of the broader scientific derivation."
+    }
+  ],
+  "artifact_file_integrity": {
+    "raw_density_file": {
+      "file": "gfe_polar_raw_epsilon_squared_density.srepr.txt",
+      "byte_count": 5920182,
+      "sha256_file_bytes_including_final_newline": "10c14608532f3e979dfa92aa2d1caa5c67bfe5541df336d80fa97581fb6849f1",
+      "sha256_srepr_after_removing_one_final_newline": "84a03f8caea6cce9f6730af986fcec49afca6b8288c88d9e22d72cd51639e005",
+      "matches_receipt_input_digest": true
+    },
+    "integrated_density_file": {
+      "file": "gfe_polar_integrated_epsilon_squared_density.srepr.txt",
+      "byte_count": 79620,
+      "sha256_file_bytes_including_final_newline": "245194a6df45424b32788043dd30dd6bca794029eb37d590b04f53c214b0a8a7",
+      "sha256_srepr_after_removing_one_final_newline": "a17e68d8c8dfa16e5a5c05eb867ef38ae24af8d0d825b9636f120f6ebb6fbe05",
+      "matches_both_receipt_integrated_digests": true
+    }
+  },
+  "computational_gates": {
+    "workflow_jobs_succeeded": [
+      "angular-normalization-benchmark",
+      "exact-first-order-audit"
+    ],
+    "spherical_integral_completed": true,
+    "angular_polynomial_degree": 4,
+    "reference_slot_count": 81,
+    "nonzero_residual_count": 0,
+    "raw_density_digest_matches_serialized_expression": true,
+    "integrated_density_digest_matches_serialized_expression": true
+  },
+  "boundaries": [
+    "This aggregate reconciles stage-local receipt flags; the differing completion flags are stage-scoped, not contradictory final-state claims.",
+    "The workflow tested the synthetic merge commit recorded above, not the PR head commit directly.",
+    "Successful computational gates and zero reference residuals do not independently establish the scientific correctness of the full angular integral or quadratic-action derivation.",
+    "The quadratic action and full metric-to-action derivation remain outside the independently established verification boundary."
+  ],
+  "status": "COMPUTATIONAL_GATES_PASSED_STAGE_RECEIPTS_RECONCILED_FULL_SCIENTIFIC_DERIVATION_OPEN",
+  "pull_request_status_at_aggregate_creation": "OPEN_DRAFT"
+}
