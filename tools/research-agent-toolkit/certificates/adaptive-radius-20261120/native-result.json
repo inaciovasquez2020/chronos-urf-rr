@@ -1,0 +1,54 @@
+{
+  "dependency_completeness": "NOT_ESTABLISHED",
+  "directed_cyclic_components": [],
+  "directed_edges": 28,
+  "edge_kinds": [
+    "static_import"
+  ],
+  "factual_accuracy": "NOT_MEASURED",
+  "field": "GF(2)",
+  "mutation_authorized": false,
+  "profile": {
+    "profile": [
+      {
+        "coverage": "0",
+        "cycle_space_saturated": false,
+        "factual_accuracy": "NOT_MEASURED",
+        "local_dimension": 0,
+        "radius": 0,
+        "status": "COMPLETE",
+        "support_cutoff": 1,
+        "total_dimension": 12,
+        "unresolved_dimension": 12
+      },
+      {
+        "coverage": "11/12",
+        "cycle_space_saturated": false,
+        "factual_accuracy": "NOT_MEASURED",
+        "local_dimension": 11,
+        "radius": 1,
+        "status": "COMPLETE",
+        "support_cutoff": 3,
+        "total_dimension": 12,
+        "unresolved_dimension": 1
+      },
+      {
+        "coverage": "1",
+        "cycle_space_saturated": true,
+        "factual_accuracy": "NOT_MEASURED",
+        "local_dimension": 12,
+        "radius": 2,
+        "status": "COMPLETE",
+        "support_cutoff": 5,
+        "total_dimension": 12,
+        "unresolved_dimension": 0
+      }
+    ],
+    "status": "SATURATED"
+  },
+  "reasoning_improvement": "NOT_MEASURED",
+  "status": "COMPLETE",
+  "undirected_edges": 28,
+  "vertices": 20,
+  "work_units": 3026
+}
