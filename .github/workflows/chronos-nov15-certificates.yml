@@ -1,0 +1,28 @@
+name: Chronos November 15 research certificate integrity
+
+on:
+  push:
+    branches:
+      - research/chronos-nov15-geometry-growth-certificates
+    paths:
+      - tools/verifier/chronos_sampling_20261115/**
+      - docs/research/chronos_sampling_20261115/**
+      - .github/workflows/chronos-nov15-certificates.yml
+  pull_request:
+    paths:
+      - tools/verifier/chronos_sampling_20261115/**
+      - docs/research/chronos_sampling_20261115/**
+      - .github/workflows/chronos-nov15-certificates.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  archived-exact-certificates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Hash-check 24 sources and run 12 dependency-free certificates
+        run: python3 -E -B tools/verifier/chronos_sampling_20261115/verify_nov15.py

@@ -1,0 +1,31 @@
+name: Chronos mixed U-V degree-three exact replay
+
+on:
+  push:
+    branches:
+      - research/chronos-nov15-geometry-growth-certificates
+    paths:
+      - tools/verifier/chronos_sampling_20261115/followup/**
+      - .github/workflows/chronos-mixed-uv-degree3.yml
+  pull_request:
+    paths:
+      - tools/verifier/chronos_sampling_20261115/followup/**
+      - .github/workflows/chronos-mixed-uv-degree3.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-rational-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned symbolic dependency
+        run: python -m pip install --disable-pip-version-check 'sympy==1.14.0' 'mpmath==1.3.0'
+      - name: Recompute mixed dipole and quadrupole degree-three matrices and enclosure
+        run: python -E -B tools/verifier/chronos_sampling_20261115/followup/verify_mixed_uv_degree3.py
