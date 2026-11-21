@@ -1,6 +1,6 @@
 # Exact four-event linear-extension prefix probability in a 4D Minkowski diamond
 
-**Status:** `PROVED_ON_PAPER`, with two independent exact-arithmetic certificates and independent numerical quadrature; `LEAN := NOT_RUN`. **Novelty relative to published literature:** `NOT_ESTABLISHED`. **Repository modification:** `NONE`.
+**Status:** `CONDITIONAL_ON_UPSTREAM_GEOMETRIC_REDUCTION` pending independent end-to-end review; final rational kernel has two independent exact-arithmetic evaluations and numerical quadrature; `LEAN := NOT_RUN`. **Novelty relative to published literature:** `NOT_ESTABLISHED`. **Repository:** draft research PR #1375; not merged.
 
 ## Theorem and conventions
 
@@ -146,4 +146,5 @@ Finally, substitute into `p_(4,2)=24919/294000+(6/5)J` to obtain the theorem.
 * `chronos_p42_null_coordinate_kernel_audit.py`: null-coordinate endpoint identities, exact normalization and 1997 rational branch checks.
 * Existing dependency receipts: `chronos_p42_positive_dag_reduction.py`, `chronos_p42_N_DAG_exact.py`, and `chronos_p42_four_dimensional_angular_kernel_audit.py` have been replayed.
 
-**PASS** here means exact symbolic/algebraic checks and reproducible computational cross-checks. **NOT_RUN:** Lean axiom audit. **NOT_ESTABLISHED:** originality relative to the complete literature; external peer review. **NO REPOSITORY CHANGES:** the proof is preserved as a standalone candidate pending promotion approval.
+**PASS** here means exact symbolic/algebraic checks and reproducible computational cross-checks. **NOT_RUN:** Lean axiom audit. **NOT_ESTABLISHED:** originality relative to the complete literature; external peer review. **REPOSITORY:** research checkpoint committed to draft PR #1375; no merge or main-branch changes. Run `python3 research/event_first/p42_exact_20261121/run_p42_chain.py` on the exact PR revision for repository-native replay.
+
