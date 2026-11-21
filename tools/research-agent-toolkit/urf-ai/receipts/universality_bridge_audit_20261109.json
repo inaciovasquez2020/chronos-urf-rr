@@ -1,0 +1,88 @@
+{
+  "entropy_omitted_term_gap_bits_each": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "entropy_sizes_checked": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "gpt6_baseline_executed": false,
+  "gpt6_urf_arm_executed": false,
+  "initial_reconstruction_tradeoff_lengths": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "linear_time_compatibility_input_lengths": [
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512,
+    1024,
+    2048,
+    4096,
+    8192
+  ],
+  "mutation": "NONE",
+  "new_source_theorem_lean_verified": false,
+  "python_version": "3.13.5",
+  "reconstruction_collision_input_lengths": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "reconstruction_collision_time_indices": [
+    0,
+    1
+  ],
+  "schema": "urf-ai.universality-source-regression/v1",
+  "semantic_cases": {
+    "bridge_chain_rule": true,
+    "bridge_initial_tradeoff": true,
+    "bridge_reconstruction": true,
+    "bridge_sat_boundary": true
+  },
+  "source_bytes": 281101,
+  "source_sha256": "34096bfa667267624b5b6ad3b76ccb7b0d9eca8e90f129f85ad4b8b9a7eabc30",
+  "status": "COMPUTATION_PASS_SOURCE_SPECIFIC_NOT_LEAN_OR_LLM"
+}

@@ -47,22 +47,29 @@ def test_local_index(tmp_path: Path):
 
 
 def test_verified_mutation_reverts_first_failure(tmp_path: Path):
+    """Contract migration: unrestricted callback API must deny before execution."""
     from research_agent_toolkit.transaction import verified_mutation
 
     target = tmp_path / "x.txt"
     target.write_text("before")
+    invoked = []
 
     def mutate():
+        invoked.append("ran")
         target.write_text("after")
 
-    result = verified_mutation(
-        [target],
-        mutate,
-        ["python3", "-c", "raise SystemExit(7)"],
-        cwd=tmp_path,
-    )
-    assert not result.preserved
-    assert result.returncode == 7
+    try:
+        verified_mutation(
+            [target],
+            mutate,
+            ["python3", "-c", "raise SystemExit(7)"],
+            cwd=tmp_path,
+        )
+    except PermissionError as exc:
+        assert "disabled" in str(exc)
+    else:
+        raise AssertionError("unrestricted callback must be denied")
+    assert invoked == []
     assert target.read_text() == "before"
 
 
@@ -123,8 +130,8 @@ def test_dependency_transaction_reverts_verifier_failure(tmp_path: Path):
         ["python3", "-c", "raise SystemExit(7)"],
     )
     assert not result.preserved
-    assert result.phase == "verification"
-    assert result.returncode == 7
+    assert result.phase == "LEGACY_MUTATION_DISABLED"
+    assert result.returncode == 2
     assert target.read_text() == "before\n"
     assert subprocess.run(["git", "status", "--porcelain"], cwd=tmp_path, text=True, capture_output=True).stdout == ""
 
@@ -446,18 +453,12 @@ diff --git a/artifact.json b/artifact.json
         ],
     )
 
-    assert result.preserved
-    assert result.phase == "verification"
-    assert result.closure == (
-        "artifact.json",
-        "test_result.py",
-    )
-    assert result.changed_paths == (
-        "artifact.json",
-    )
+    assert not result.preserved
+    assert result.phase == "authorization"
+    assert result.returncode == 2
     assert (
         tmp_path / "artifact.json"
-    ).read_text() == "after\n"
+    ).read_text() == "before\n"
 
 
 def test_governed_patch_mutation_reverts_closure_escape(
@@ -553,8 +554,8 @@ diff --git a/gen.py b/gen.py
     )
 
     assert not result.preserved
-    assert result.phase == "closure"
-    assert result.returncode == 3
+    assert result.phase == "authorization"
+    assert result.returncode == 2
     assert (
         tmp_path / "gen.py"
     ).read_text() == "before\n"
@@ -685,10 +686,10 @@ diff --git a/artifact.json b/artifact.json
             missing_ok=True
         )
 
-    assert rc == 0
+    assert rc == 2
     assert (
         tmp_path / "artifact.json"
-    ).read_text() == "after\n"
+    ).read_text() == "before\n"
 
 
 def test_tool_server_mutate_is_governed_write_entrypoint(
@@ -820,11 +821,8 @@ diff --git a/artifact.json b/artifact.json
         response["result"]["content"][0]["text"]
     )
 
-    assert payload["preserved"] is True
-    assert payload["closure"] == [
-        "artifact.json",
-        "test_result.py",
-    ]
+    assert payload["preserved"] is False
+    assert payload["phase"] == "authorization"
     assert (
         tmp_path / "artifact.json"
-    ).read_text() == "after\n"
+    ).read_text() == "before\n"
