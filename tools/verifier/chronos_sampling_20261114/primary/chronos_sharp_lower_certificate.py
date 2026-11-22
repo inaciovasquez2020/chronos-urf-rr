@@ -40,7 +40,7 @@ def triples(e):
     return {k:Q(counts[k],4) for k in ('A','E','V','Lambda','C')}
 
 def greatest(e):return int(any(all((b,a) in e for b in range(4) if b!=a) for a in range(4)))
-def least(e):return int(any(all((a,b) in e for a in range(4) if b!=a) for a in range(4)))
+def least(e):return int(any(all((a,b) in e for b in range(4) if b!=a) for a in range(4)))
 def center(e):return int(any(sum((a,x) in e for a in range(4) if a!=x)==2 and sum((x,b) in e for b in range(4) if b!=x)==1 for x in range(4)))
 
 four=list(posets(4))
