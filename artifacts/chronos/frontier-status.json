@@ -25,7 +25,7 @@
       "boundary": "BOUNDARY := \u00ac unrestricted_Chronos_RR",
       "doc": "docs/status/R1_WIDTH_THRESHOLD_ALIAS_LOCAL_PLACEHOLDER_CLOSURE_LOCK.md",
       "id": "R1_WIDTH_THRESHOLD_ALIAS_LOCAL_PLACEHOLDER_CLOSURE_LOCK",
-      "status": "LOCAL_PLACEHOLDER_ALIAS_PRECONDITIONS_CLOSED_ONLY",
+      "status": "LOCAL_PLACEHOLDER_ALIAS_PRECONDITIONS_PARTIAL_ONLY",
       "verifier": "tools/verify_r1_width_threshold_alias_local_placeholder_closure_lock.py"
     }
   ],

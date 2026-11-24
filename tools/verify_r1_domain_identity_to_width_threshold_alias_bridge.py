@@ -32,8 +32,11 @@ def main() -> None:
     assert "def CandidateChord" in lean
     assert "def MarkedBoundaryChord" in lean
     assert "theorem markedBoundaryChord_candidateChord_domain_identity" in lean
-    assert "MarkedBoundaryChord I c = CandidateChord I c" in lean
-    assert "rfl" in lean
+    assert "(c : R1NativeCandidateChord G)" in lean
+    assert "MarkedBoundaryChord G.Carrier (G.Carrier × G.Carrier) =" in lean
+    assert "CandidateChord G c.1 := by" in lean
+    assert "apply propext" in lean
+    assert "simpa [CandidateChord] using c.2" in lean
 
     target = bridge["target_surface"]
     assert target["artifact_file"] == str(ALIAS)
@@ -42,11 +45,16 @@ def main() -> None:
 
     claim = bridge["bridge_claim"]
     assert claim["discharged_precondition"] == (
-        "DOMAIN_IDENTITY(MarkedBoundaryChord(P,M), CandidateChord(I,c))"
+        "POINTWISE_PLACEHOLDER_EQUALITY_ON_ADJACENT_CHORD_SUBTYPE"
     )
-    assert claim["discharge_method"] == "local Lean rfl identity surface"
+    assert claim["remaining_precondition"] == alias["weakest_missing_assumption"]
+    assert claim["discharge_method"] == (
+        "Lean propext using candidate-chord adjacency witness"
+    )
+    assert "not an unrestricted finite domain identity" in claim["bridge_result"]
 
     blocked = set(bridge["does_not_prove"])
+    assert "full marked-boundary/candidate chord domain identity" in blocked
     assert "native CandidateChord semantics" in blocked
     assert "native MarkedBoundaryChord semantics" in blocked
     assert "cross(gamma,L) equals SkeletonDistance_I(endpoints(c))" in blocked
