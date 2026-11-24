@@ -6,8 +6,6 @@
       "Chronos/Frontier/CarrierSupportSignatureInvariant.lean",
       "Chronos/Frontier/H4_1_FGL_Bridge1Refutation.lean",
       "Chronos/Frontier/H4_1_FGL_SemanticObservationMapConstruction.lean",
-      "Chronos/Frontier/IntendedChronosAdmissibility.lean",
-      "Chronos/Frontier/PositiveArityRepositoryNativeCoverage.lean",
       "Chronos/Frontier/RepositoryNativeChronosCarrierBridge.lean",
       "Chronos/Frontier/RepositoryNativeConditionalBridge.lean",
       "Chronos/NativeTraceCarrierInstance.lean",

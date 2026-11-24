@@ -1,17 +1,12 @@
 {
   "artifact": "R1_WIDTH_THRESHOLD_ALIAS_LOCAL_PLACEHOLDER_CLOSURE_LOCK",
-  "status": "LOCAL_PLACEHOLDER_ALIAS_PRECONDITIONS_CLOSED_ONLY",
+  "status": "LOCAL_PLACEHOLDER_ALIAS_PRECONDITIONS_PARTIAL_ONLY",
   "base_commit": "308a307f9e1d5cea67c2cf0f4a6d1fc2a2cbc0df",
   "target_alias_surface": {
     "artifact_file": "artifacts/chronos/r1_width_threshold_alias_surface_2026_06_20.json",
     "artifact": "R1_WIDTH_THRESHOLD_ALIAS_SURFACE"
   },
   "closed_local_placeholder_preconditions": [
-    {
-      "precondition": "domain identity",
-      "bridge_artifact": "artifacts/chronos/r1_domain_identity_to_width_threshold_alias_bridge_2026_06_20.json",
-      "verifier": "tools/verify_r1_domain_identity_to_width_threshold_alias_bridge.py"
-    },
     {
       "precondition": "obstruction measure identity",
       "bridge_artifact": "artifacts/chronos/r1_obstruction_measure_identity_to_width_threshold_alias_bridge_2026_06_20.json",
@@ -23,7 +18,7 @@
       "verifier": "tools/verify_r1_obstruction_measure_bound_to_width_threshold_alias_bridge.py"
     }
   ],
-  "lock_claim": "All currently recorded R1 width-threshold alias preconditions are discharged only for the repository local-placeholder surfaces.",
+  "lock_claim": "Only obstruction-measure identity and local obstruction-measure bounds are recorded as closed over placeholder surfaces; domain identity remains OPEN.",
   "does_not_prove": [
     "native cross(gamma,L) semantics",
     "native SkeletonDistance_I(endpoints(c)) semantics",
@@ -33,7 +28,20 @@
     "native LongChordThreshold(I) semantics",
     "unconditional w(P,L) = LongChordThreshold(I)",
     "native R1/R2/R3",
-    "unrestricted Chronos-RR"
+    "unrestricted Chronos-RR",
+    "unrestricted marked-boundary/candidate-chord domain identity"
   ],
-  "boundary": "BOUNDARY := \u00ac unrestricted_Chronos_RR"
+  "boundary": "BOUNDARY := \u00ac unrestricted_Chronos_RR",
+  "open_preconditions": [
+    {
+      "precondition": "domain identity",
+      "bridge_artifact": "artifacts/chronos/r1_domain_identity_to_width_threshold_alias_bridge_2026_06_20.json",
+      "verifier": "tools/verify_r1_domain_identity_to_width_threshold_alias_bridge.py",
+      "reason": "Only pointwise placeholder equality on the already-adjacent candidate-chord subtype has been proved; native domain identity is OPEN."
+    }
+  ],
+  "next_actions": [
+    "Establish native marked-boundary/candidate-chord domain identity.",
+    "Revalidate the width-threshold alias only after every remaining native precondition is proved."
+  ]
 }

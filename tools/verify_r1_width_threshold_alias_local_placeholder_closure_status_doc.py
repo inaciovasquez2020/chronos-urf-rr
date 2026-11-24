@@ -11,11 +11,13 @@ def main() -> None:
     assert LOCK.is_file()
     assert LOCK_VERIFIER.is_file()
 
-    assert "Status: `LOCAL_PLACEHOLDER_ALIAS_PRECONDITIONS_CLOSED_ONLY`" in text
+    assert "Status: `LOCAL_PLACEHOLDER_ALIAS_PRECONDITIONS_PARTIAL_ONLY`" in text
     assert str(LOCK) in text
     assert str(LOCK_VERIFIER) in text
 
-    assert "domain identity" in text
+    assert "The domain identity remains OPEN" in text
+    assert "adjacency witness" in text
+    assert "two locally discharged placeholder-only" in text
     assert "obstruction measure identity" in text
     assert "same local obstruction measure bounds" in text
     assert "lean/Chronos/Frontier/R1ObstructionMeasureBoundSurface.lean" in text

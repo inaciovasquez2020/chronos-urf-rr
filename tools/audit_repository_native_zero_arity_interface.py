@@ -35,6 +35,18 @@ def rel(path: Path) -> str:
     return path.relative_to(ROOT).as_posix()
 
 
+
+def _is_prop_valued_carrier_def(text, match):
+    if match.group(1) != "def":
+        return False
+    end = text.find(":=", match.end(), match.end() + 500)
+    if end < 0:
+        return False
+    return re.search(
+        r":\s*Prop\s*$", text[match.end():end]
+    ) is not None
+
+
 def scan() -> dict[str, list[str]]:
     candidates: dict[str, list[str]] = {field: [] for field in FIELD_PATTERNS}
 
@@ -45,7 +57,13 @@ def scan() -> dict[str, list[str]]:
 
         text = path.read_text(errors="replace")
         for field, pattern in FIELD_PATTERNS.items():
-            if pattern.search(text):
+            matches = list(pattern.finditer(text))
+            if field == "Carrier":
+                matches = [
+                    m for m in matches
+                    if not _is_prop_valued_carrier_def(text, m)
+                ]
+            if matches:
                 candidates[field].append(relative)
 
     return candidates
