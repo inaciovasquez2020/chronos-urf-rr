@@ -1,6 +1,6 @@
 # R1 Width-Threshold Alias Local Placeholder Closure Lock
 
-Status: `LOCAL_PLACEHOLDER_ALIAS_PRECONDITIONS_CLOSED_ONLY`
+Status: `LOCAL_PLACEHOLDER_ALIAS_PRECONDITIONS_PARTIAL_ONLY`
 
 Artifact:
 
@@ -10,13 +10,17 @@ Verifier:
 
 - `tools/verify_r1_width_threshold_alias_local_placeholder_closure_lock.py`
 
-The lock records that the currently surfaced R1 width-threshold alias preconditions are closed only over the repository's local placeholder surfaces:
+The lock records two locally discharged placeholder-only preconditions:
 
-1. domain identity;
-2. obstruction measure identity;
-3. same local obstruction measure bounds.
+1. obstruction measure identity;
+2. same local obstruction measure bounds.
 
-The third item is supplied by:
+**The domain identity remains OPEN.** The Lean theorem provides pointwise
+equality for `R1NativeCandidateChord G`, whose subtype already carries an
+adjacency witness. `MarkedBoundaryChord` is still the placeholder `True`.
+This is not an unrestricted identification of native chord domains.
+
+The second item is supplied by:
 
 - `artifacts/chronos/r1_obstruction_measure_bound_to_width_threshold_alias_bridge_2026_06_20.json`
 - `lean/Chronos/Frontier/R1ObstructionMeasureBoundSurface.lean`

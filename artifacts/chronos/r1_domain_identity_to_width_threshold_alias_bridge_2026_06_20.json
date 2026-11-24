@@ -13,9 +13,10 @@
     "alias_surface": "w(P,L) := LongChordThreshold(I)"
   },
   "bridge_claim": {
-    "discharged_precondition": "DOMAIN_IDENTITY(MarkedBoundaryChord(P,M), CandidateChord(I,c))",
-    "discharge_method": "local Lean rfl identity surface",
-    "bridge_result": "the first alias precondition is locally discharged for the placeholder predicates defined in R1DomainIdentitySurface.lean"
+    "discharged_precondition": "POINTWISE_PLACEHOLDER_EQUALITY_ON_ADJACENT_CHORD_SUBTYPE",
+    "discharge_method": "Lean propext using candidate-chord adjacency witness",
+    "bridge_result": "The placeholder propositions are equal at each already-adjacent candidate chord; this is not an unrestricted finite domain identity.",
+    "remaining_precondition": "DOMAIN_IDENTITY(MarkedBoundaryChord(P,M), CandidateChord(I,c))"
   },
   "does_not_prove": [
     "native CandidateChord semantics",
@@ -23,10 +24,11 @@
     "cross(gamma,L) equals SkeletonDistance_I(endpoints(c))",
     "w(P,L) equals LongChordThreshold(I) unconditionally",
     "native R1/R2/R3 instance",
-    "unrestricted Chronos-RR"
+    "unrestricted Chronos-RR",
+    "full marked-boundary/candidate chord domain identity"
   ],
   "boundary": "BOUNDARY := \u00ac unrestricted_Chronos_RR",
   "next_actions": [
-    "Bridge the obstruction-measure identity: cross(gamma,L) = SkeletonDistance_I(endpoints(c))."
+    "Establish native marked-boundary/candidate chord domain identity without assuming every candidate pair is adjacent."
   ]
 }
