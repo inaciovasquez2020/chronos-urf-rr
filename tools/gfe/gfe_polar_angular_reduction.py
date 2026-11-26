@@ -72,8 +72,10 @@ def reduce_spherical_density(raw_density, theta, progress=None):
     mark("angular_final_rational_reduction_started")
     reduced_x = sp.cancel(sp.together(numerator_x / denominator_x))
     mark("angular_final_rational_reduction_completed")
-    if reduced_x.has(u, sine, cosine):
-        raise ValueError("angular reduction left unresolved trigonometric auxiliaries")
+    # EX-domain coefficients may otherwise retain theta (e.g. theta*sin(theta)).
+    # A polynomial in x is valid only after all original angular dependence is removed.
+    if reduced_x.has(theta, u):
+        raise ValueError("angular reduction left unresolved theta or trigonometric auxiliaries")
 
     mark("angular_final_polynomial_gate_started")
     numerator_x, denominator_x = sp.fraction(reduced_x)
