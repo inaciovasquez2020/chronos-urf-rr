@@ -34,7 +34,26 @@ def main():
     metric_integral_expected = r**2 * expected
     assert sp.simplify(metric_integral - metric_integral_expected) == 0
 
+    # Negative controls: the polynomial domain EX must not treat residual
+    # theta dependence as a constant coefficient.
+    invalid = (
+        theta * sp.sin(theta),
+        sp.sin(theta) * sp.cos(2 * theta),
+        sp.sin(theta) * sp.Function("angular_coefficient")(theta),
+    )
+    for bad in invalid:
+        for operation in (reduce_spherical_density, integrate_spherical_density):
+            try:
+                operation(bad, theta)
+            except ValueError as exc:
+                if "unresolved theta" not in str(exc):
+                    raise
+            else:
+                raise AssertionError(f"residual angular dependence accepted: {bad}")
+    assert sp.integrate(theta * sp.sin(theta), (theta, 0, sp.pi)) == sp.pi
+
     print(json.dumps({
+        "residual_theta_negative_controls": len(invalid) * 2,
         "schema": "gfe-polar-angular-reduction-test-v1",
         "passed": True,
         "l2_harmonic": harmonic,
