@@ -1,5 +1,11 @@
 \section{FO\texorpdfstring{$^k$}{k}-Locality Upgrade: Removing Clause-Locality}
 
+
+\subsection*{Mathematical correction (26 November 2026)}
+The unrestricted joint-transcript lemma below is false under the stated per-node locality definition. In the binary edge--vertex incidence matrix of a cycle with $m\ge3$ edges, the dual kernel is spanned by the all-ones vector and the minimum nonzero dual support has size $m$. Equip each clause with its input bit as a unary label. A rank-zero local update at every clause can copy its own bit; the joint indexed state then equals $b$. Its laws under the two parity classes have total variation distance one, even though each proper subset of input bits has identical marginal laws. This counterexample uses the ordinary interpretation in which the input labels are accessible at their own nodes; an alternative input-access model must be specified explicitly.
+
+A bound on one output statistic's bit length alone also does not bound how many input coordinates it depends on: parity itself is one bit. The parallel counterexample need not satisfy a global transcript-bandwidth cap, and therefore does not by itself refute every conditional theorem imposing such a cap. The argument below does not derive the necessary cumulative support bound from the listed hypotheses. The valid replacement is the adaptive coordinate-query theorem in the clause-dual distance section, requiring a total cap on newly queried coordinates across the entire process, input-independent initialization and no extra input-dependent side information. Individual local marginal equality must not be promoted to joint equality. The historical error estimate and the claimed FO-local depth derivation below are superseded; no unrestricted FO-local lower bound is established.
+
 \subsection{FO\texorpdfstring{$^k$}{k}-Local Transcript Processes}
 
 Let $A \in \mathbb{F}_2^{m\times n}$ be fixed.
