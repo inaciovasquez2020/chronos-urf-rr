@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,pdftitle={Sharp finite-prefix obstructions to order-invariant causal set growth}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newcommand{\TV}{\operatorname{TV}}
+\newcommand{\E}{\mathbb E}
+\title{Sharp finite-prefix obstructions to order-invariant causal set growth}
+\author{Inacio F. Vasquez\\ Independent Researcher}
+\date{November 26, 2026 \\ \small Research preprint draft; not yet submitted}
+\begin{document}
+\maketitle
+\begin{abstract}
+Uniform induced-suborder sampling and restriction to the first births of a naturally labeled causal set need not agree. We derive an exact three-element discrepancy in terms of the probabilities of the two oriented fork orders. For independent uniform sampling in a flat Minkowski diamond of spacetime dimension $d\ge2$, this discrepancy is strictly positive and admits an explicit beta-integral formula. In dimension four, any maximal-birth process incurs total variation errors $e_2+e_3+e_{\mathrm{cov}}\ge 3/350$ in its two-birth law, three-birth law and conditional natural-label uniformity, respectively. Every point on the nonnegative equality simplex is attained by a finite growth law. In particular, under exact order invariance the optimal worst-case two- and three-birth error is $3/700$. These statements concern finite prefixes, not continuum emergence or physical time measurements.
+\end{abstract}
+\section{Setting and relation to earlier work}
+A naturally labeled finite strict poset on $[n]=\{1,\ldots,n\}$ has $i\prec j$ only if $i<j$. Adding a maximal element at each birth is equivalent to restriction of a natural labeling to its initial segments. Classical sequential growth includes additional dynamical conditions \cite{rideout}; order invariance has a separate mathematical theory \cite{brightwell}. We impose no Bell causality, no infinite extension requirement and no spacetime dynamics. Our question concerns a finite law with three births.
+
+Let $L$ be a probability law on naturally labeled triples. Let $P$ be its pushforward to unlabeled isomorphism classes. For an unlabeled law $P$, $U(P)$ is the law that first selects the class according to $P$ and then chooses uniformly among its distinct natural-label presentations. This agrees with uniform linear extensions after mapping them to presentations: each presentation has the same automorphism multiplicity. Let $K$ forget the labels after restricting to the first two births. Given target laws $Q_2,Q_3$, put
+\[
+e_2=\TV(KL,Q_2),\quad e_3=\TV(P,Q_3),\quad e_{\rm cov}=\TV(L,U(P)).
+\]
+Here $\TV(p,q)=\frac12\sum_i|p_i-q_i|$. In particular, the covariance defect is a joint-law distance, equivalently an average of conditional defects weighted by $P$, not a supremum over classes.
+\section{A general three-element identity}
+There are five unlabeled classes. Write $A,E,V,W,C$ for the antichain, one-relation order, one-below-two fork, two-below-one fork and chain. Let $s$ be the comparable-pair probability under uniform deletion from a triple with law $Q_3$.
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Class & Natural presentations & Comparable pairs & $K U$ comparability\\
+\midrule
+$A$ &1&0&0\\
+$E$ &3&1&$1/3$\\
+$V$ &1&2&1\\
+$W$ &1&2&0\\
+$C$ &1&3&1\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{lemma}
+If $Q_2$ is the uniform two-element restriction of $Q_3$, then
+\[
+s-\Pr_{KU(Q_3)}(\text{comparable})=\frac{2Q_3(W)-Q_3(V)}3.
+\]
+In particular for a time-reversal-symmetric law, writing $f=Q_3(V)=Q_3(W)$, this discrepancy is $f/3$.
+\end{lemma}
+\begin{proof}
+Uniform pair selection gives $s=(Q_3(E)+2Q_3(V)+2Q_3(W)+3Q_3(C))/3$. Uniform naturalization followed by prefix restriction gives $Q_3(E)/3+Q_3(V)+Q_3(C)$. Subtraction proves the formula.
+\end{proof}
+\begin{theorem}[Finite-prefix obstruction]
+Under deletion consistency, every $L$ satisfies
+\[
+e_2+e_3+e_{\rm cov}\ \ge\ \frac{|2Q_3(W)-Q_3(V)|}{3}.
+\]
+\end{theorem}
+\begin{proof}
+Total variation contracts under stochastic kernels. Apply the triangle inequality between $Q_2$, $KL$, $KU(P)$ and $KU(Q_3)$. The first three distances are bounded by the indicated errors. The two-element class space has only two outcomes, so the endpoint distance is the absolute discrepancy in the lemma.
+\end{proof}
+\section{Flat Minkowski targets in arbitrary dimension}
+Let $Q_k^{(d)}$ be the law of the unlabeled causal order of $k$ independent uniform points in a positive-volume Alexandrov interval in $d$-dimensional flat Minkowski space. Null coincidences have measure zero. By a Lorentz transformation, translation and dilation take the tips to $(0,0)$ and $(1,0)$, with $c=1$. Radial null coordinates $u=t-r,v=t+r$ have $0\le u\le v\le1$. Integrating the spatial angles, the normalized density is $d(d-1)(v-u)^{d-2}$: its integral on the triangle is one. This includes $d=2$, where the two spatial directions supply the same radial factor.
+
+For a sampled point, its future volume inside the diamond, divided by the full volume, is $J=((1-u)(1-v))^{d/2}$, by Lorentz invariance and the $d$-th power scaling of volume with tip separation. Set $w=1-u$, $z=(1-v)/w$; the Jacobian is $w$ and $v-u=w(1-z)$. For $s\ge0$,
+\begin{align*}
+m_s=\E[J^s]&=d(d-1)\int_0^1 w^{d(s+1)-1}\,dw\int_0^1 z^{ds/2}(1-z)^{d-2}\,dz\\
+&=\frac{d-1}{s+1}B(ds/2+1,d-1).
+\end{align*}
+The comparable-pair probability is $p=2m_1$. Conditional on a designated earliest point and both remaining points lying in its future, the latter are independent uniform points in a smaller flat diamond and are comparable with probability $p$. Thus the chain probability is $3m_2p$ and the lower fork probability is $f=3m_2(1-p)$. Time reflection gives the same upper fork probability. Deletion consistency fixes the remaining classes by normalization and expected comparable-pair count.
+\begin{corollary}
+For every integer $d\ge2$ the errors for these Minkowski targets satisfy
+\[
+e_2+e_3+e_{\rm cov}\ \ge\ \delta_d=m_2(1-2m_1)>0.
+\]
+\end{corollary}
+\begin{proof}
+Both timelike and spacelike pairs occur in open subsets of a positive-volume diamond in dimension at least two, hence $0<p<1$. The moment $m_2$ is positive. Apply the theorem with the reflection-symmetric fork probabilities above.
+\end{proof}
+\section{Sharpness in four dimensions}
+For $d=4$, $m_1=1/20$ and $m_2=1/105$. The resulting probabilities and the prefix weights are
+\begin{center}
+\begin{tabular}{lrrrrr}
+\toprule
+Class &$A$ &$E$ &$V$ &$W$ &$C$\\
+\midrule
+$Q_3^{(4)}$ &$53/70$ &$33/175$ &$9/350$ &$9/350$ &$1/350$\\
+Prefix weight &$0$ &$1/3$ &$1$ &$0$ &$1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Their weighted sum is $16/175$, whereas $p=1/10$, giving $\delta_4=3/350$.
+\begin{theorem}[Attainable tradeoff]
+Every nonnegative $(x,y,z)$ with $x+y+z=3/350$ is realized by a finite maximal-birth law with $(e_2,e_3,e_{\rm cov})=(x,y,z)$. Consequently exact order invariance gives the sharp minimax error $3/700$; allowing all three errors gives $1/350$.
+\end{theorem}
+\begin{proof}
+Move mass $y$ from $A$ to $C$ in $Q_3^{(4)}$, forming $P$. This changes the class law by TV distance $y$ and increases its naturalized comparable-prefix probability by $y$. In $U(P)$ move mass $z$ from an $E$ presentation whose first pair is incomparable to its comparable-first presentation. The class law remains $P$, and the natural-label defect is exactly $z$. Nonnegativity follows from $Q_3^{(4)}(A)>3/350$ and $Q_3^{(4)}(E)/3>3/350$. The final comparable-prefix probability is $16/175+y+z=1/10-x$, giving $e_2=x$. Conditional probabilities from this triple law define valid finite maximal-birth transitions; transitions on null histories can be arbitrary valid transitions. The equal-error choices on the simplex attain the minimax values and the previous lower bound proves optimality. This construction does not assert order invariance at any later stage.
+\end{proof}
+\section{Scope, evidence, and priority}
+The order-invariant hypothesis is established prior art \cite{brightwell}; continuum restrictions for classical sequential growth are established by Brightwell and Georgiou \cite{georgiou}. Their asymptotic result uses a different class of dynamics and mode of convergence. The study of finite sprinkled causal sets by Fewster et al. \cite{fewster} includes exact combinatorial probabilities in two dimensions and numerical investigations in higher dimensions. Recent sampling-bias work by Bogu\~n\'a and Krioukov \cite{boguna} concerns finite-volume link observables. The present claim is limited to the explicit three-birth tradeoff above. The general contraction inequality is elementary and is not asserted as a new probabilistic principle. A targeted literature search identified these precedents but does not certify that no equivalent finite result exists.
+
+Uniform subset sampling at large $n$ is not prefix restriction. Neither the finite obstruction nor the attaining finite law proves or refutes general continuum emergence, order-invariant infinite extension, a density law, or an independent physical prediction. The proof is mathematical, not a Lean-verified result. The accompanying exact-arithmetic scripts replay the original 176,850 attainable parameter cases and additionally check 99 dimensions and 10,626 finite simplex cases. These checks support, but do not replace, the proofs. The manuscript is an AI-assisted research draft for author review; no public deposit, DOI, peer review or novelty certification is asserted.
+\begin{thebibliography}{9}
+\bibitem{rideout} D. P. Rideout and R. D. Sorkin, A classical sequential growth dynamics for causal sets, Phys. Rev. D 61, 024002 (2000). \href{https://doi.org/10.1103/PhysRevD.61.024002}{doi:10.1103/PhysRevD.61.024002}.
+\bibitem{brightwell} G. Brightwell and M. Luczak, Order-invariant measures on causal sets, Ann. Appl. Probab. (2011). \href{https://arxiv.org/abs/0901.0240}{arXiv:0901.0240}.
+\bibitem{georgiou} G. Brightwell and N. Georgiou, Continuum limits for classical sequential growth models, Random Structures \& Algorithms (2010). \href{https://nicholasgeorgiou.webspace.durham.ac.uk/wp-content/uploads/sites/199/2021/04/contlim.pdf}{Author-hosted manuscript}.
+\bibitem{fewster} C. J. Fewster, E. Hawkins, C. Minz and K. Rejzner, Local structure of sprinkled causal sets, Phys. Rev. D 103, 086020 (2021). \href{https://doi.org/10.1103/PhysRevD.103.086020}{doi:10.1103/PhysRevD.103.086020}.
+\bibitem{boguna} M. Bogu\~n\'a and D. Krioukov, Sampling biases in sprinkled causal sets (2026). \href{https://arxiv.org/abs/2610.03247}{arXiv:2610.03247}.
+\end{thebibliography}
+\end{document}
