@@ -101,3 +101,11 @@ The arithmetic implication
 is mirrored by the Lean frontier theorem
 \texttt{success\_forces\_cumulative\_support\_reaches\_dual\_distance}.
 The remaining semantic obligation is to prove the cumulative clause-dual support wall for the actual adaptive transcript model.  No claim is made that $q<d$ alone prevents success for all time.
+
+
+\subsection{Adaptive coordinate-query support wall (26 November 2026)}
+Assume a nonzero dual vector $w$ of support size $s$, and an algorithm whose initial state and random seed are independent of the input $b$. Every subsequent input-dependent observation must be a coordinate query to $b$; all query choices, stopping rules and transcript outputs are functions of previous answers and the independent seed. If the total number of queried distinct coordinates on every path is less than $s$, the transcript laws under the two parity-conditioned distributions are identical.
+
+Indeed, fix the seed. Every reachable terminal transcript determines a consistent partial assignment on a set $T$ with $|T|<s$. Pick a coordinate in $\operatorname{supp}(w)\setminus T$. Flipping it preserves every query choice and answer along that path, by induction, and preserves stopping and output. It exchanges parity classes and is an involution on the inputs producing that transcript. Thus the two conditional transcript probabilities agree. Averaging over the common independent seed proves the randomized statement. The proof applies equally to a transcript stopped at a fixed round.
+
+In particular, if each round reads at most $q>0$ new coordinates in total and the initial state has no input-dependent information, positive distinguishing bias after $t$ completed rounds requires $tq\ge s$, hence $t\ge\lceil s/q\rceil$. Taking $w$ of minimum nonzero support gives $s=d^\perp_{\rm cl}(A)$ when the dual code is nontrivial. Querying precisely the support attains the query bound. This proves the previously conditional semantic wall for this specified access model only. It does not establish a total-query cap from per-node locality or from the bit length of an arbitrary aggregated statistic. The historical indexing convention above counts an additional initial observation; the two conventions must not be conflated. Paper proof, Lean verification not run.
