@@ -20,6 +20,14 @@ python3 tools/holonomy/verify_s3_relative_conjugation.py
 
 **OPEN** — Match the coefficients of a specified 5D→4D reduction to a Chronos event observable, then compare its predictions with a matched four-dimensional model.
 
+## Four-event Minkowski probability — 2026-11-27 UTC
+
+[Mac-verified checkpoint (draft PR #1398, pinned revision)](https://github.com/inaciovasquez2020/chronos-urf-rr/blob/e6945b6946f500f917c8b427df411a0e796851b7/research/certificates/p42_physical_checkpoint_20261127/README.md): four IID uniform events in a unit Alexandrov interval in 3+1-dimensional Minkowski spacetime. The candidate probability that the first two elements of a uniformly selected linear extension are comparable is `p42 = 32*pi^2/7 - 13239637/294000`.
+
+- LEAN_VERIFIED: physical common-future geometry, joint radial/angular/rapidity measure and explicit spacelike integral reduction. The [final eight-declaration axiom receipt](https://github.com/inaciovasquez2020/chronos-urf-rr/blob/e6945b6946f500f917c8b427df411a0e796851b7/research/certificates/p42_physical_checkpoint_20261127/verified/tmp.vmCoPZ4Zsi/LEAN.log) lists only propext, Classical.choice and Quot.sound.
+- COMPUTATION_PASS: [exact arithmetic and finite-poset objective identity](https://github.com/inaciovasquez2020/chronos-urf-rr/blob/e6945b6946f500f917c8b427df411a0e796851b7/research/certificates/p42_physical_checkpoint_20261127/verified/tmp.qlXqdaOReV/COMPUTATION.log); 729 candidates, 219 labeled partial orders, 16 isomorphism classes.
+- OPEN: full analytic evaluation in Lean, complete probability theorem and independent review/novelty. Fresh rebuild NOT_RUN. Research checkpoint is a pinned draft PR at the dated record, not a merge or global physical-closure claim.
+
 ## GfE research snapshot
 
 As of 2026-10-18, recent GfE work has advanced from the corrected axial projector/GQQ certificate to several more specific, finite-scope results:
