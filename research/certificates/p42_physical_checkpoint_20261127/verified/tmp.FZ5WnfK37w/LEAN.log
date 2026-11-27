@@ -1,0 +1,9 @@
+RelativeRapidityMeasure.lean:39:24: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+RelativeRapidityMeasure.lean:43:24: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Chronos.FourEvent.relativeCos_endpoints' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.relativeCos_image' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.relative_rapidity_lintegral' depends on axioms: [propext, Classical.choice, Quot.sound]

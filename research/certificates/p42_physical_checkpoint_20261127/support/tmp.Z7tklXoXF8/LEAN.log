@@ -1,0 +1,18 @@
+AxialDiskSlicing.lean:147:40: error: unexpected token '('; expected ']'
+AxialDiskSlicing.lean:147:15: error: Insufficient number of fields for `⟨...⟩` constructor: Constructor `And.intro` has 2 explicit field, but only 1 was provided
+AxialDiskSlicing.lean:147:16: error: unsolved goals
+a b T s x : ℝ
+hs : ¬(0 ≤ s ∧ s ≤ T)
+v : Fin 2 → ℝ
+hv : ‖pack x v - axis (-a)‖ ≤ s - 0 ∧ ‖pack x v - axis a‖ ≤ s - 0 ∧ ‖axis b - pack x v‖ ≤ T - s
+⊢ 0 ≤ s
+AxialDiskSlicing.lean:137:2: error: unsolved goals
+case neg
+a b T s x : ℝ
+hs : ¬(0 ≤ s ∧ s ≤ T)
+hf : {v | (s, pack x v) ∈ axialLens a b T} = ∅
+⊢ volume {v | (s, pack x v) ∈ axialLens a b T} = 0
+'Chronos.FourEvent.pack_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.pack_measurePreserving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.transverse_disk_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.axial_transverse_slice' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

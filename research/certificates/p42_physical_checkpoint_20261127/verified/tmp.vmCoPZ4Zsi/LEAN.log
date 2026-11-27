@@ -1,0 +1,14 @@
+ExplicitSpacelikeIntegral.lean:113:20: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ExplicitSpacelikeIntegral.lean:348:35: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Chronos.FourEvent.rapidityRadial_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.rapidityRadial_proper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.rapidityRadial_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.rapidity_spacelike_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.negative_cosine_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.spacelikeRadialKernel_explicit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.spacelike_angular_evaluation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.spacelikeMoment_explicit_integral' depends on axioms: [propext, Classical.choice, Quot.sound]

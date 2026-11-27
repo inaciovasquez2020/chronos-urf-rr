@@ -1,0 +1,2 @@
+'Chronos.RapidityGeometry.exp_interval_substitution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.RapidityGeometry.null_log_triangle_substitution' depends on axioms: [propext, Classical.choice, Quot.sound]

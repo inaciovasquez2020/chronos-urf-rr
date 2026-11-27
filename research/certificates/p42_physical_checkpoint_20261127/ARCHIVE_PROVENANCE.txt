@@ -1,0 +1,8 @@
+Original archive SHA256: b919ebc8df190a3a746b3bb5bd215d634ac8fd0870dc15b1b77f968b89dd4081
+Original manifest entries: 106
+Archived files preserved byte-for-byte.
+Mac verification receipts preserved.
+Fresh rebuild: NOT_RUN
+Analytic evaluation in Lean: OPEN
+Full probability theorem: OPEN
+Independent novelty assessment: NOT_ESTABLISHED

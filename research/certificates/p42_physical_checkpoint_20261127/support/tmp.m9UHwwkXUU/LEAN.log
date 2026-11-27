@@ -1,0 +1,4 @@
+'Chronos.FourEvent.pack_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.pack_measurePreserving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.transverse_disk_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.axial_transverse_slice' depends on axioms: [propext, Classical.choice, Quot.sound]

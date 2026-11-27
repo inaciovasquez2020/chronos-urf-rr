@@ -1,0 +1,15 @@
+LensTransport.lean:15:5: warning: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LensTransport.lean:60:11: error(lean.unknownIdentifier): Unknown identifier `mul_le_mul_left₀`
+LensTransport.lean:112:21: error(lean.unknownIdentifier): Unknown identifier `mul_le_mul_left₀`
+LensTransport.lean:169:6: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  volume.IsAddHaarMeasure
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LensTransport.lean:166:17: error: failed to synthesize
+  volume.IsAddRightInvariant
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'Chronos.FourEvent.weak_boost_future_iff' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Chronos.FourEvent.lens_volume_transport' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

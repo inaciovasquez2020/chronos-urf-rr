@@ -1,0 +1,34 @@
+SpacelikeFrame.lean:48:35: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+SpacelikeFrame.lean:48:35: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+SpacelikeFrame.lean:187:33: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+SpacelikeFrame.lean:187:33: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+SpacelikeFrame.lean:229:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ⟪EuclideanSpace.single ?i ?a, ?v⟫_?m.26
+in the target expression
+  ⟪EuclideanSpace.single 0 c, axis d⟫_ℝ = c * d
+
+c d : ℝ
+⊢ ⟪EuclideanSpace.single 0 c, axis d⟫_ℝ = c * d
+SpacelikeFrame.lean:265:5: warning: unused variable `hy`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+SpacelikeFrame.lean:433:2: error: 'change' tactic failed, pattern
+  0 ^ 2 - ‖axis a - axis (-a)‖ ^ 2 = invariantSq (y - x)
+is not definitionally equal to target
+  invariantSq ((0, axis a) - (0, axis (-a))) = invariantSq (y - x)
+SpacelikeFrame.lean:517:13: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Chronos.FourEvent.normalizedBoost_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.spacelike_lens_volume_exact_invariants' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

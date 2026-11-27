@@ -1,0 +1,29 @@
+InvariantVolume.lean: OK
+LEAN.log: OK
+NullRadialSubstitution.lean: OK
+LEAN.log: OK
+AngularSubstitution.lean: OK
+LEAN.log: OK
+RadialJacobian.lean: OK
+LEAN.log: OK
+RapidityDomain.lean: OK
+LEAN.log: OK
+AngularJacobian.lean: OK
+LEAN.log: OK
+'Chronos.RapidityGeometry.rapidity_domain_equiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.RapidityGeometry.invariant_volume_conversion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.RapidityGeometry.radial_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+AngularJacobian.lean:33:44: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+AngularJacobian.lean:33:44: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'Chronos.RapidityGeometry.angular_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.RapidityGeometry.exp_interval_substitution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.RapidityGeometry.null_log_triangle_substitution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.RapidityGeometry.angular_integral_substitution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.motif_probability_eq_iterated_lintegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.motif_probability_eq_iterated_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.axialLens_volume_eq_lintegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+Verified in /var/folders/g7/t7cdygm521zfn6t572ncddgw0000gn/T/tmp.mebnPrV2zd

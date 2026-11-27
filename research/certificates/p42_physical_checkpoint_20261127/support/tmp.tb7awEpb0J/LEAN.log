@@ -1,0 +1,13 @@
+AngularMeasure.lean:136:13: warning: unused variable `hx`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+AngularMeasure.lean:204:25: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+AngularMeasure.lean:204:47: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Chronos.FourEvent.transverse_square_pushforward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.transverse_square_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.radial_square_substitution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.axial_cosine_substitution' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,11 @@
+JointRapidityMeasure.lean:77:23: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+'Chronos.FourEvent.spatialDirection_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.spatial_nonzero_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.rapidityRadial_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.rapidityWeight_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.uniform_radial_rapidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.jointAngularAverage_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.secondRapidityAverage_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.joint_physical_rapidity_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
