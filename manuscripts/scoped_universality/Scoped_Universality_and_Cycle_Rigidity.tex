@@ -1,3 +1,4 @@
+% Mathematical correction; see docs/oblivion_atom/CORRECTION_FOLLOWUP_2026-11-25.md
 \documentclass[11pt]{article}
 
 \usepackage{amsmath,amssymb,amsthm}
@@ -16,6 +17,8 @@
 \begin{document}
 
 \maketitle
+\par\noindent\textbf{Mathematical correction (25 November 2026).} The unrestricted graph cycle-rigidity lemma is false: $C_m$ is vertex-transitive, and its cycle rank is one, while the intended overlap rank grows linearly on the vertex-transitive degree-four toroidal grids $C_m\square C_m$ (even $m\ge6$), because the definition permits self-intersections $C\cap C=C$ and hence contains the entire cycle space. This refutes the graph-level implication, not by itself a typed CNF-specific variant. The claimed depth equivalence is not established: a per-step split bound and progress condition require separate hypotheses, and sublinear rank need not mean bounded rank. Fixed-variable logic does not supply a fixed Gaifman radius independent of quantifier rank. No universal SAT depth bound is certified. Historical text follows; the disputed claims are not certified.\par
+
 
 \begin{abstract}
 We formalize a corrected universality principle governing refinement-based SAT algorithms.

@@ -8,6 +8,18 @@ refinement–coarsening systems on bounded-degree graphs.
 This result strengthens the EntropyDepth obstruction
 by isolating a purely combinatorial collapse bound.
 
+\subsection*{Mathematical correction (26 November 2026)}
+The unrestricted local entropy ceiling and its downstream collapse claims below are refuted under the stated axioms. On an uncolored cycle $C_n$, take $\tau_0$ injective and $Q_0$ the identity, then take $\tau_t$ and $Q_t$ constant with singleton color sets for every $t\ge1$. Constant local update functions satisfy local determination. Vertex transitivity in the underlying graph language gives first-order faithfulness, and the color cardinalities decrease monotonically. All color sets are realized. Thus $H_0-H_1=\log n$, unbounded at fixed degree, radius and variable count. If initial colors are instead part of the logical signature, this counterexample concerns the uncolored graph formulation actually stated; colored faithfulness would be a different hypothesis.
+
+The replacement theorem assumes nonempty finite realized color sets and actual surjective factoring maps $f_t:D_t\to D_{t+1}$ with every fiber of size at most $B\ge1$. Then
+\[
+|D_t|=\sum_{d\in D_{t+1}}|f_t^{-1}(d)|\le B|D_{t+1}|,
+\qquad H_0-H_m\le m\log B.
+\]
+The first inequality follows by counting fibers, and the second by taking logarithms and telescoping. Monotonicity of cardinalities alone does not assert such a map or bound. This replacement is sharp for a partition of $B^m$ elements into blocks of size $B$ at each step, for positive integer $B$.
+
+For fixed degree and radius, uncolored rooted balls have at most $S=1+\sum_{j=1}^r\Delta^j$ vertices, so their isomorphism types number at most $\sum_{b=1}^S b2^{\binom b2}$. This bounds logical types of the induced balls uniformly in the number of variables. The claimed $\Theta(\Delta^r\log k)$ growth for fixed degree and radius is false as $k$ grows. Quantifier rank is not the same as graph distance, and unrestricted formulas on ambient graphs need not be determined by the induced radius-$r$ ball. Faithfulness prevents merging distinguishable states, but does not bound how many colors occupy one logical type. No unrestricted Chronos depth lower bound follows. The historical text below is retained for provenance, not as a valid theorem.
+
 \subsection{Refinement–Coarsening Framework}
 
 Let $G=(V,E)$ be a finite graph with maximum degree $\Delta$.

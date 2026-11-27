@@ -1,3 +1,5 @@
+> **Correction (2026-11-25): REFUTED as stated.** Vertex-transitive degree-four toroidal grids have unbounded embedded radius-two cycle span (independent vertex-disjoint squares). The claimed depth conclusions do not follow. See [conditional transfer](../status/LOCAL_INFORMATION_AND_QUOTIENT_TRANSFER_2026_11_25.md).
+
 # Local Cycle Span Bound
 
 ## Status

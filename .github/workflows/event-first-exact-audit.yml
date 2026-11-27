@@ -1,0 +1,47 @@
+name: Event-first exact causal-order audit
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/event-first-exact-audit.yml'
+      - 'docs/math/EVENT_FIRST_SPACETIME_AUDIT.md'
+      - 'tools/verifier/event_first_*.py'
+  push:
+    paths:
+      - '.github/workflows/event-first-exact-audit.yml'
+      - 'docs/math/EVENT_FIRST_SPACETIME_AUDIT.md'
+      - 'tools/verifier/event_first_*.py'
+permissions:
+  contents: read
+jobs:
+  event-first-exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned symbolic dependencies
+        run: python -m pip install sympy==1.14.0 mpmath==1.3.0
+      - name: Verify exact diamond integrals and finite growth mismatch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -B -c 'import sys; print(sys.version); sys.exit(0 if __debug__ else 1)'
+          python -B tools/verifier/event_first_exact_audit.py | tee /tmp/event-first-exact.log
+          grep -Fx 'EXACT_AUDIT = PASS' /tmp/event-first-exact.log
+          grep -Fx 'THREE_EVENT_GROWTH_MISMATCH = PASS' /tmp/event-first-exact.log
+          grep -Fx 'Growth_P3_chain_at_pair_match = 1/100' /tmp/event-first-exact.log
+          grep -Fx 'Minkowski_P3_chain = 1/350' /tmp/event-first-exact.log
+      - name: Replay exhaustive four- and five-event witnesses
+        shell: bash
+        run: |
+          set -euo pipefail
+          for n in 4 5; do
+            python -B "tools/verifier/event_first_poset_n${n}.py" | tee "/tmp/event-first-n${n}.log"
+            grep -Fx 'WITNESS_VERIFIED := PASS' "/tmp/event-first-n${n}.log"
+          done
+          grep -Fx 'ISOMORPHISM_CLASSES := 16' /tmp/event-first-n4.log
+          grep -Fx 'ISOMORPHISM_CLASSES := 63' /tmp/event-first-n5.log

@@ -4,10 +4,10 @@ import json
 
 root = Path(__file__).resolve().parents[1]
 
-lean = root / "Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean"
+lean = root / "lean/Chronos/Frontier/H4_1_FGL_SelectedDomainRestriction.lean"
 doc = root / "docs/status/CHRONOS_H4_1_FGL_SELECTED_DOMAIN_RESTRICTION_2026_05_10.md"
 artifact = root / "artifacts/chronos/h4_1_fgl_selected_domain_restriction.json"
-root_import = root / "Chronos.lean"
+root_import = root / "lean/Chronos.lean"
 
 for p in (lean, doc, artifact, root_import):
     assert p.exists(), p

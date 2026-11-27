@@ -23,7 +23,11 @@ def main() -> None:
     assert len(matches) == 1
 
     entry = matches[0]
-    assert entry["status"] == "LOCAL_PLACEHOLDER_ALIAS_PRECONDITIONS_CLOSED_ONLY"
+    assert entry["status"] == "LOCAL_PLACEHOLDER_ALIAS_PRECONDITIONS_PARTIAL_ONLY"
+    lock_data = json.loads(LOCK.read_text())
+    assert entry["status"] == lock_data["status"]
+    assert len(lock_data["open_preconditions"]) == 1
+    assert lock_data["open_preconditions"][0]["precondition"] == "domain identity"
     assert entry["artifact"] == str(LOCK)
     assert entry["doc"] == str(DOC)
     assert entry["verifier"] == str(VERIFIER)
