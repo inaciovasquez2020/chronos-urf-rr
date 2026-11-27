@@ -1,0 +1,569 @@
+{
+  "audited_declarations": 111,
+  "axioms": {
+    "Chronos.FutureMoments.futureSet_open": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.FutureMoments.future_first_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.FutureMoments.future_inter_diamond": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.FutureMoments.future_mass_polynomial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.FutureMoments.future_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.FutureMoments.future_second_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.FutureMoments.future_volume_ratio": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.FutureMoments.precedes_transitive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.GeometricTransport.future_pair_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.GeometricTransport.normalized_map": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.GeometricTransport.normalized_restriction_transport": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.GeometricTransport.pair_event_transport": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.GeometricTransport.restricted_pair_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.GeometricTransport.restriction_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiDiamond.B_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiDiamond.B_neg_comp": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiDiamond.B_smul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiDiamond.affine_haar_scaling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiDiamond.affine_precedes_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiDiamond.diamond_transport": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiDiamond.scaledEquiv": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiProbability.arbitrary_diamond_pair_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiProbability.canonical_nonempty": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiProbability.comparable_open": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiProbability.comparable_preimage": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiProbability.diamond_bounded": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiProbability.diamond_nonempty": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiProbability.diamond_volume_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiProbability.pair_probability_invariant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiProbability.uniform_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiSimilarity.causal_order_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiSimilarity.future_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiSimilarity.inverse_space": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiSimilarity.inverse_time": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiSimilarity.lorentz_square": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiSimilarity.tip_reachable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiVolume.boost_abs_det": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiVolume.boost_det_neg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiVolume.boost_inverse_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiVolume.boost_reflection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiVolume.diamond_volume_scaling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiVolume.proper_time_of_tip": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiVolume.reflection_det_square": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiVolume.reflection_square": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.MinkowskiVolume.scaled_boost_abs_det": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NormalizedMoments.inner_lintegral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NormalizedMoments.normalized_physical_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NormalizedMoments.physical_diamond_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NormalizedMoments.physical_raw_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NormalizedMoments.polynomial_nonnegative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NormalizedMoments.radialLaw_weighted": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NormalizedMoments.triangle_lintegral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NormalizedMoments.weight_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.nullLinear_abs_det": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.nullLinear_square": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.nullMap_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.null_change_of_variables": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.null_left_inverse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.null_map_volume": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.null_preimage": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.null_proper_time_square": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.null_radial_weight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.null_restricted_volume": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.null_right_inverse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.NullCoordinates.triangle_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.PhysicalMoments.cylinder_pushforward": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.PhysicalMoments.diamond_in_cylinder": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.PhysicalMoments.diamond_radial_pushforward": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.PhysicalMoments.physical_moment_radial_reduction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.PhysicalMoments.physical_radial_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.PhysicalMoments.radialMap_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.PhysicalMoments.radialWeight_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.PhysicalMoments.radial_preimage": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.PhysicalMoments.region_open": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.RadialMeasure.density_interval": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.RadialMeasure.radial_pushforward": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.RadialMoments.inner_formula": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.RadialMoments.inner_four": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.RadialMoments.inner_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.RadialMoments.inner_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.RadialMoments.integral_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.RadialMoments.moment_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.RadialMoments.moment_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.RadialMoments.moment_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.coherent_prefix_obstruction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.distribution": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.finite_partition_logic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.finite_partition_logic_earliest": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.finite_partition_logic_fork": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.finite_partition_logic_pair": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.partition_set_all": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.partition_set_earliest": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.partition_set_fork": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.partition_set_pair": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.physical_prefix_gap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.precedes_asymmetric": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.reverse_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.reverse_precedes": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.reverse_triple_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeDistribution.rotate_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeEvent.causalPair_open": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeEvent.comparable_pair_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeEvent.directed_pair_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeEvent.earliest_comparable_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeEvent.earliest_section_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeEvent.forkEvent_open": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeEvent.fork_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeEvent.futureMass_measurable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeEvent.future_restriction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeEvent.law_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ThreeEvent.law_support": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "custom_axioms": 0,
+  "finite_enumeration": "PASS",
+  "generator_reproducibility": "PASS",
+  "independent_novelty": "NOT_ESTABLISHED",
+  "linter_warnings": 0,
+  "publication_base": "859348704a9b51b57530376e24c1302457119c54",
+  "scope": "specified Minkowski three-event distribution and scalar obstruction",
+  "status": "LEAN_VERIFIED",
+  "verified_local_head": "a999b816df08bc393036cc7ebe8d0a6ed1939b6b"
+}
