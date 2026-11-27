@@ -93,7 +93,40 @@ def main(argv: list[str] | None = None) -> int:
     cal.add_argument("events_json")
     cal.add_argument("output_ics")
 
+    ra = sub.add_parser("radius-audit")
+    ra.add_argument("graph")
+    ra.add_argument("--max-radius", type=int, default=8)
+    ra.add_argument("--max-work", type=int, default=5_000_000)
+
     args = p.parse_args(argv)
+    if args.cmd == "radius-audit":
+        from .radius_audit import audit_file
+        from .adaptive_radius import IncompleteAudit
+
+        try:
+            result = audit_file(
+                args.graph,
+                max_radius=args.max_radius,
+                max_work=args.max_work,
+            )
+        except IncompleteAudit as exc:
+            _json({
+                "status": "INCOMPLETE",
+                "reason": str(exc),
+                "mutation_authorized": False,
+            })
+            return 2
+        except (ValueError, OSError, RecursionError) as exc:
+            _json({
+                "status": "INVALID_INPUT",
+                "reason": str(exc),
+                "mutation_authorized": False,
+            })
+            return 2
+
+        _json(result)
+        return 0
+
     if args.cmd == "scan":
         graph = scan(args.root)
         if args.out:
