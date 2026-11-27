@@ -1,0 +1,12 @@
+{
+  "first_moment": "1/10",
+  "second_moment": "1/50",
+  "variance": "1/100",
+  "perturbation_checks": 201,
+  "product_checks": 4372,
+  "total_checks": 4573,
+  "mismatches": 0,
+  "arithmetic": "exact rational",
+  "status": "COMPUTATION_PASS",
+  "scope": "bounded arithmetic and product-density tests"
+}

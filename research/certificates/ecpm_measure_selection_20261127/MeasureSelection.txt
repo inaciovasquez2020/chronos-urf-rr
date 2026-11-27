@@ -1,0 +1,173 @@
+
+namespace Chronos.ECPM.MeasureSelection
+
+-- Arithmetic consequences of the previously established
+-- three-event Minkowski probabilities.
+
+theorem three_event_moment_arithmetic :
+    (2 * (1 : ℝ)/105 + 2/2100 = 1/50) ∧
+    (1/50 - (1/10 : ℝ)^2 = 1/100) := by
+  norm_num
+
+-- Both perturbations preserve strict positivity.
+
+theorem perturb_density_positive
+    (q : ℝ)
+    (h0 : 0 ≤ q)
+    (h1 : q ≤ 1) :
+    0 < 1+(q-1/10) ∧
+    0 < 1-(q-1/10) := by
+  constructor <;> linarith
+
+-- Pointwise bound controlling the quadratic kernel
+-- remainder after integration against a probability law.
+
+theorem kernel_remainder_bound
+    (k a b : ℝ)
+    (hk0 : 0 ≤ k)
+    (hk1 : k ≤ 1) :
+    |k*(a*b)| ≤ (a^2+b^2)/2 := by
+  calc
+    |k*(a*b)| ≤ |a*b| := by
+      rw [abs_mul, abs_of_nonneg hk0]
+      simpa only [one_mul] using
+        mul_le_mul_of_nonneg_right
+          hk1 (abs_nonneg (a*b))
+    _ = |a| * |b| := abs_mul a b
+    _ ≤ (a^2+b^2)/2 := by
+      nlinarith only [
+        sq_nonneg (|a|-|b|),
+        sq_abs a,
+        sq_abs b]
+
+-- Once the integrated quadratic remainder is bounded,
+-- the two perturbed pair probabilities are separated.
+
+theorem perturbation_bounds
+    (r pplus pminus : ℝ)
+    (hr : |r| ≤ 1/100)
+    (hp : pplus = 1/10 + 2*(1/100) + r)
+    (hm : pminus = 1/10 - 2*(1/100) + r) :
+    11/100 ≤ pplus ∧ pminus ≤ 9/100 := by
+  rcases abs_le.mp hr with ⟨hr0,hr1⟩
+  constructor <;> linarith only [hr0,hr1,hp,hm]
+
+-- Normalize a density relative to its positive average.
+
+theorem normalized_density_error
+    (f avg eps : ℝ)
+    (ha : 0 < avg)
+    (h : |f-avg| ≤ eps*avg) :
+    |f/avg-1| ≤ eps := by
+  have he :
+      f/avg-1 = (f-avg)/avg := by
+    rw [sub_div,div_self (ne_of_gt ha)]
+  rw [he,abs_div,abs_of_pos ha]
+  exact (div_le_iff₀ ha).2 h
+
+-- A quantitative bound for the density of an independent
+-- finite sample relative to its uniform reference law.
+
+theorem product_density_error
+    (eps : ℝ)
+    (_he0 : 0 ≤ eps)
+    (he1 : eps ≤ 1)
+    (l : List ℝ)
+    (h : ∀ x ∈ l, |x-1| ≤ eps) :
+    |l.prod-1| ≤ ((2:ℝ)^l.length-1)*eps := by
+
+  induction l with
+  | nil =>
+      simp
+  | cons a l ih =>
+      have ha : |a-1| ≤ eps :=
+        h a (by simp)
+
+      have hl : ∀ x ∈ l, |x-1| ≤ eps := by
+        intro x hx
+        exact h x (by simp [hx])
+
+      have hrest := ih hl
+
+      have ha2 : |a| ≤ 2 := by
+        calc
+          |a| = |a-1+1| := by
+            rw [sub_add_cancel]
+          _ ≤ |a-1|+|(1:ℝ)| :=
+            abs_add_le _ _
+          _ ≤ 2 := by
+            rw [abs_one]
+            linarith only [ha,he1]
+
+      change
+        |a*l.prod-1| ≤
+          ((2:ℝ)^(l.length+1)-1)*eps
+
+      calc
+        |a*l.prod-1| =
+            |a*(l.prod-1)+(a-1)| := by
+              congr 1
+              ring
+        _ ≤ |a*(l.prod-1)|+|a-1| :=
+          abs_add_le _ _
+        _ = |a| * |l.prod-1|+|a-1| := by
+          rw [abs_mul]
+        _ ≤ 2*|l.prod-1|+eps :=
+          add_le_add
+            (mul_le_mul_of_nonneg_right
+              ha2 (abs_nonneg _))
+            ha
+        _ ≤ 2*(((2:ℝ)^l.length-1)*eps)+eps := by
+          linarith only [hrest]
+        _ = ((2:ℝ)^(l.length+1)-1)*eps := by
+          rw [pow_succ]
+          ring
+
+-- If statistical self-similarity transfers an arbitrarily
+-- small local probability error to the same global pair
+-- of probabilities, those probabilities must be equal.
+
+theorem selfsimilarity_probability_recovery
+    (p q C : ℝ)
+    (hC : 0 ≤ C)
+    (h : ∀ eps : ℝ,
+      0 < eps →
+      eps ≤ 1 →
+      |p-q| ≤ C*eps) :
+    p = q := by
+
+  by_contra hn
+
+  have hd : 0 < |p-q| :=
+    abs_pos.mpr (sub_ne_zero.mpr hn)
+
+  have hCp : 0 < C+1 := by
+    linarith only [hC]
+
+  let eps : ℝ := min 1 (|p-q|/(C+1))
+
+  have he : 0 < eps :=
+    lt_min (by norm_num) (div_pos hd hCp)
+
+  have he1 : eps ≤ 1 :=
+    min_le_left _ _
+
+  have he2 : eps ≤ |p-q|/(C+1) :=
+    min_le_right _ _
+
+  have hb : eps*(C+1) ≤ |p-q| :=
+    (le_div_iff₀ hCp).mp he2
+
+  have hh := h eps he he1
+
+  nlinarith only [hb,hh,he]
+
+#print axioms three_event_moment_arithmetic
+#print axioms perturb_density_positive
+#print axioms kernel_remainder_bound
+#print axioms perturbation_bounds
+#print axioms normalized_density_error
+#print axioms product_density_error
+#print axioms selfsimilarity_probability_recovery
+
+end Chronos.ECPM.MeasureSelection

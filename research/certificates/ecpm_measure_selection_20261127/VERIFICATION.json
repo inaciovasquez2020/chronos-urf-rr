@@ -1,0 +1,191 @@
+{
+  "audited_declarations": 32,
+  "axioms": {
+    "Chronos.ECPM.EventVolume.cancel_real_right": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.coordinate_split_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.dot_combo3": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.dot_self": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.eventMidpoint_ordered": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.eventMidpoint_volumes": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.exists_triangular_frame": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.gram4_eq_of_fields": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.linear4_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.linear4_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.linear4_time": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.no_minkowski_realization": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.no_two_orthogonal_positive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.polar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.positive_lorentzian_reconstruction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.positive_reconstruction_from_pivots": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.product_midpoint_scaling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.product_midpoint_upper": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.product_volume_not_minkowski": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.sq_combo3": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.time_zero_nonpositive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.triangular_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.volume_pos": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.witness_ordered": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.witness_squared_intervals": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.MeasureSelection.kernel_remainder_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.MeasureSelection.normalized_density_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.MeasureSelection.perturb_density_positive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.MeasureSelection.perturbation_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.MeasureSelection.product_density_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.MeasureSelection.selfsimilarity_probability_recovery": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.MeasureSelection.three_event_moment_arithmetic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "compiler_errors": 0,
+  "computation": {
+    "arithmetic": "exact rational",
+    "first_moment": "1/10",
+    "mismatches": 0,
+    "perturbation_checks": 201,
+    "product_checks": 4372,
+    "scope": "bounded arithmetic and product-density tests",
+    "second_moment": "1/50",
+    "status": "COMPUTATION_PASS",
+    "total_checks": 4573,
+    "variance": "1/100"
+  },
+  "continuum_measure_theorem": "PAPER_PROOF_ONLY",
+  "custom_axioms": 0,
+  "independent_review": "NOT_ESTABLISHED",
+  "intrinsic_event_dynamics": "OPEN",
+  "linter_warnings": 0,
+  "local_head": "a999b816df08bc393036cc7ebe8d0a6ed1939b6b",
+  "new_declarations": 7,
+  "novelty": "NOT_ESTABLISHED",
+  "predecessor_pr": 1390,
+  "preserved_declarations": 25,
+  "scope": "Conditional Lorentzian reconstruction, measure-selection algebra, finite-product density bounds and scalar probability recovery",
+  "spacetime_emergence": "OPEN",
+  "status": "LEAN_VERIFIED_CONDITIONAL"
+}
