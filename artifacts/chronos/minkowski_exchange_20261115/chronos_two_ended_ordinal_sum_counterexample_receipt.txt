@@ -1,0 +1,8 @@
+MODEL := ordinal sum Chain(L) < Antichain(m)
+L=2 m=3 n=5 first=1 last=1/3 joint=1/3 extensions=6 dual=PASS
+L=3 m=5 n=8 first=1 last=1/5 joint=1/5 extensions=120 dual=PASS
+L=5 m=6 n=11 first=1 last=1/6 joint=1/6 extensions=720 dual=PASS
+L=7 m=7 n=14 first=1 last=1/7 joint=1/7 extensions=5040 dual=PASS
+EXACT_FINITE_CHECK := PASS
+DETERMINISTIC_LIMIT := follows from closed forms as m tends to infinity
+RANDOM_ENSEMBLE_COLLISION_DECAY := OPEN

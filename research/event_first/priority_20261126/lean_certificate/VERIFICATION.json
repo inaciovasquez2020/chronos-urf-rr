@@ -1,0 +1,16 @@
+{
+  "repository_head": "a999b816df08bc393036cc7ebe8d0a6ed1939b6b",
+  "lean_toolchain": "leanprover/lean4:v4.29.0",
+  "finite_algebra": "LEAN_VERIFIED",
+  "axiom_audit": "PASS_3_OF_3",
+  "theorems": [
+    "universal_discrepancy",
+    "sharp_lower",
+    "sharp_attainment"
+  ],
+  "geometric_moments": "OPEN",
+  "poset_bridge": "OPEN",
+  "novelty": "NOT_ESTABLISHED",
+  "independent_review": "OPEN",
+  "global_spacetime_emergence": "OPEN"
+}

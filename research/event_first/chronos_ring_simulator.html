@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ideal acoustic-ring simulator</title>
+<style>
+:root {color-scheme:light dark;--foreground:light-dark(#172138,#edf2ff);--border:light-dark(#cad2e1,#435069);--viz-series-1:light-dark(#215bad,#82b7ff);--viz-series-2:light-dark(#a6490b,#ffad75)}
+body {font:16px/1.5 system-ui,sans-serif;color:var(--foreground);max-width:780px;margin:2rem auto;padding:0 1rem}
+.form-range {display:block;width:100%;min-height:44px;margin:0 0 .5rem}
+.viz-row {display:flex;flex-wrap:wrap;gap:.35rem 1rem}
+.text-small {font-size:.875rem}
+.tabular-nums {font-variant-numeric:tabular-nums}
+</style>
+<body>
+<section id="chronos-ring-sim">
+  <h1>Ideal acoustic-ring simulator</h1>
+  <label class="form-label" for="ring-cutoff">Mode cutoff <output id="ring-mode" class="tabular-nums">75</output></label>
+  <input class="form-range" id="ring-cutoff" type="range" min="0" max="320" value="75">
+  <div class="viz-row text-small" aria-label="Legend">
+    <span><i style="color:var(--viz-series-1)">━</i> Near probe</span>
+    <span><i style="color:var(--viz-series-2)">┄</i> Far probe</span>
+    <span>Thin lines show ideal arrivals</span>
+  </div>
+  <svg class="ring-plot" width="100%" height="242" role="img" aria-label="Near and far probe responses versus time, with the deadline at one quarter of a round trip"></svg>
+  <p class="text-small tabular-nums" id="ring-result" aria-live="polite"></p>
+</section>
+<style>
+#chronos-ring-sim .ring-plot {display:block}
+#chronos-ring-sim .ring-plot text {fill:var(--foreground);font-size:12px}
+#chronos-ring-sim .ring-plot [data-chart-frame] {fill:none;stroke:var(--border)}
+</style>
+<script>
+(() => {
+  const root = document.getElementById('chronos-ring-sim');
+  const cutoff = root.querySelector('#ring-cutoff');
+  const mode = root.querySelector('#ring-mode');
+  const result = root.querySelector('#ring-result');
+  const svg = root.querySelector('svg');
+  const pi = Math.PI;
+  function response(fraction, angle, nMax) {
+    let value = fraction;
+    for (let n = 1; n <= nMax; n++) {
+      value += Math.sin(2*pi*n*fraction)*Math.cos(n*angle)/(pi*n);
+    }
+    return value;
+  }
+  function write() {
+    const count = Number(cutoff.value);
+    mode.value = count;
+    const w = Math.max(280, Math.round(svg.clientWidth));
+    const left = 63, right = w-17, top = 21, bottom = 192;
+    const samples = Array.from({length:601}, (_,i) => i/1200);
+    const traces = [pi/3,2*pi/3].map(angle => samples.map(t => response(t,angle,count)));
+    const values = traces.flat().concat([0,0.5]);
+    const low = Math.min(...values)-0.035, high = Math.max(...values)+0.035;
+    const x = t => left + (right-left)*t*2;
+    const y = a => bottom - (bottom-top)*(a-low)/(high-low);
+    const colors = ['var(--viz-series-1)','var(--viz-series-2)'];
+    const line = (a,b,c,d,color,dash='') => '<line x1="'+a+'" y1="'+b+'" x2="'+c+'" y2="'+d+'" stroke="'+color+'" stroke-dasharray="'+dash+'"/>';
+    const text = (a,b,label,anchor='middle') => '<text x="'+a+'" y="'+b+'" text-anchor="'+anchor+'">'+label+'</text>';
+    const path = (d,k,width,dash='',opacity=1) => '<path fill="none" stroke="'+colors[k]+'" stroke-width="'+width+'" stroke-dasharray="'+dash+'" opacity="'+opacity+'" d="'+d+'"/>';
+    let out = '<rect data-chart-frame x="'+left+'" y="'+top+'" width="'+(right-left)+'" height="'+(bottom-top)+'"/>';
+    for (const a of [0,.25,.5]) {
+      out += line(left,y(a),right,y(a),'var(--border)') + text(left-8,y(a)+4,a,'end');
+    }
+    for (const t of [0,.25,.5]) {
+      out += text(x(t),bottom+19,t,t===0?'start':t===.5?'end':'middle');
+    }
+    out += line(x(.25),top,x(.25),bottom,'var(--foreground)','3 4');
+    out += text(x(.25),top-6,'Deadline');
+    out += '<text class="axis-title" data-axis="x" x="'+(left+right)/2+'" y="237" text-anchor="middle">Time (fraction of a round trip)</text>';
+    out += '<text class="axis-title" data-axis="y" transform="translate(14 106) rotate(-90)" text-anchor="middle">Normalized signal</text>';
+    [1/6,1/3].forEach((arrival,k) => {
+      out += path('M '+x(0)+' '+y(0)+' H '+x(arrival)+' V '+y(.5)+' H '+x(.5),k,1,'',.5);
+      const d = traces[k].map((a,i) => (i?'L':'M')+' '+x(samples[i]).toFixed(2)+' '+y(a).toFixed(2)).join(' ');
+      out += path(d,k,2,k?'5 3':'');
+    });
+    svg.setAttribute('viewBox','0 0 '+w+' 242');
+    svg.innerHTML = out;
+    const near = response(.25,pi/3,count), far = response(.25,2*pi/3,count);
+    const error = Math.max(Math.abs(near-.5),Math.abs(far));
+    result.textContent = 'At deadline · Near '+near.toFixed(5)+' · Far '+far.toFixed(5)+' · '+(error<1/480?'within':'outside')+' 1/480 tolerance';
+  }
+  cutoff.addEventListener('input',write);
+  new ResizeObserver(write).observe(svg);
+  write();
+})();
+</script>
+
+<p>The first passing cutoff is <strong>75</strong>. Every cutoff from <strong>151</strong> onward passes the deadline tolerance.</p>
+</body>
+</html>

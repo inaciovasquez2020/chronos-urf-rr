@@ -11,10 +11,10 @@ CHECKER = ROOT / "tools/check_long_chord_witness_obstruction.py"
 ROOT_IMPORT = ROOT / "lean/Chronos.lean"
 
 REQUIRED_LEAN = [
-    "def LongChordExclusionProofTarget : Prop := True",
-    "def DiameterSeparationFillingObstructionProofTarget : Prop := True",
-    "def UniformLocalTypeCapacityProofTarget : Prop := True",
-    "def NonFactorisationProofTarget : Prop := True",
+    "def LongChordExclusionProofTarget : Prop :=\n  Nonempty LongChordExclusionInputSurface",
+    "def DiameterSeparationFillingObstructionProofTarget : Prop :=\n  Nonempty DiameterSeparationFillingObstructionInputSurface",
+    "def UniformLocalTypeCapacityProofTarget : Prop :=\n  Nonempty UniformLocalTypeCapacityInputSurface",
+    "def NonFactorisationProofTarget : Prop :=\n  Nonempty NonFactorisationInputSurface",
     "def RepositoryNativeR1R2R3InstanceTarget : Prop :=",
     "theorem repository_native_r1_r2_r3_binding_conditional_closure",
     "def RepositoryNativeR1R2R3BindingClosureConditionalTarget : Prop :=",

@@ -1,0 +1,36 @@
+name: Independent finite CSG verification
+
+on:
+  pull_request:
+    paths:
+      - 'research/event_first/csg_certificates/rr_csg_independent_*.py'
+      - 'research/event_first/CSG_INDEPENDENT_BOX_NONEXTENSION_20261116.md'
+      - '.github/workflows/independent-csg.yml'
+  workflow_dispatch:
+
+jobs:
+  independent-csg:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Install pinned symbolic dependency
+        run: python -m pip install --disable-pip-version-check 'sympy==1.14.0'
+      - name: Check Python sources parse
+        run: |
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+          for name in ('rr_csg_independent_global_uniqueness_20261116.py',
+                       'rr_csg_independent_box_nonextension_20261116.py'):
+              path=Path('research/event_first/csg_certificates') / name
+              ast.parse(path.read_text(encoding='utf-8'),filename=str(path))
+              print('SYNTAX_PASS :=',name)
+          PY
+      - name: Verify exact four-event global uniqueness
+        run: python -B research/event_first/csg_certificates/rr_csg_independent_global_uniqueness_20261116.py
+      - name: Verify uniform five-event box nonextension
+        run: python -B research/event_first/csg_certificates/rr_csg_independent_box_nonextension_20261116.py

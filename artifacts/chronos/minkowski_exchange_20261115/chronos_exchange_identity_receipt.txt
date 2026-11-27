@@ -1,0 +1,7 @@
+n=2 permutations=2 ordered_minimal_pairs=2 STATUS=PASS
+n=3 permutations=6 ordered_minimal_pairs=12 STATUS=PASS
+n=4 permutations=24 ordered_minimal_pairs=70 STATUS=PASS
+n=5 permutations=120 ordered_minimal_pairs=450 STATUS=PASS
+n=6 permutations=720 ordered_minimal_pairs=3248 STATUS=PASS
+FINITE_EXCHANGE_IDENTITY=PASS
+ASYMPTOTIC_COLLISION_DECAY=OPEN
