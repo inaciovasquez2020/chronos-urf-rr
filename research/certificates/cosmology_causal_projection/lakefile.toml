@@ -1,0 +1,12 @@
+name = "ChronosCosmologyProjection"
+version = "0.1.0"
+defaultTargets = ["CausalProjection"]
+
+[[lean_lib]]
+name = "CausalProjection"
+srcDir = "receipt"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "69cbc416b3f58ba11e331db067644d0508e78341"

@@ -1,0 +1,30 @@
+CausalProjection.lean:17:31: warning: unused variable `hd`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+CausalProjection.lean:90:39: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+CausalProjection.lean:164:4: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+CausalProjection.lean:165:4: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+CausalProjection.lean:170:24: warning: This simp argument is unused:
+  min_eq_left h
+
+Hint: Omit it from the simp argument list.
+  simp [̵d̵e̵c̵o̵d̵e̵,̵r̵i̵s̵k̵,̵h̵,̵m̵i̵n̵_̵e̵q̵_̵l̵e̵f̵t̵[̲d̲e̲c̲o̲d̲e̲,̲ ̲r̲i̲s̲k̲,̲ h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'Chronos.CosmologyBridge.stripArea_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.CosmologyBridge.stripArea_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.CosmologyBridge.probability_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.CosmologyBridge.probability_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.CosmologyBridge.projection_collision' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.CosmologyBridge.no_perfect_visible_decoder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.CosmologyBridge.risk_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.CosmologyBridge.risk_decode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.CosmologyBridge.optimal_decoder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.CosmologyBridge.positive_information_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.CosmologyBridge.strip_optimal_decoder' depends on axioms: [propext, Classical.choice, Quot.sound]
