@@ -1,0 +1,8 @@
+'Chronos.ECPM.Persistent.marginal_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Persistent.joint_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Persistent.component_covariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Persistent.component_covariance_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Persistent.disjoint_pair_covariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Persistent.disjoint_pair_covariance_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Persistent.curvature_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Persistent.curvature_center' depends on axioms: [propext, Classical.choice, Quot.sound]

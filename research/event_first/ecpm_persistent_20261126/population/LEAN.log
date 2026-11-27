@@ -1,0 +1,8 @@
+'Chronos.ECPM.Population.mass_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Population.mix_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Population.empty_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Population.extension_consistency' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Population.arbitrary_extension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Population.population_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Population.covariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.ECPM.Population.not_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
