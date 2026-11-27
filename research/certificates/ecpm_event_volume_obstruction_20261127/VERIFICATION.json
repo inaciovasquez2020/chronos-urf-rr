@@ -1,0 +1,95 @@
+{
+  "audited_declarations": 16,
+  "axioms": {
+    "Chronos.ECPM.EventVolume.coordinate_split_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.dot_combo3": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.dot_self": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.eventMidpoint_ordered": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.eventMidpoint_volumes": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.no_minkowski_realization": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.no_two_orthogonal_positive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.polar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.product_midpoint_scaling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.product_midpoint_upper": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.product_volume_not_minkowski": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.sq_combo3": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.time_zero_nonpositive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.volume_pos": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.witness_ordered": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.witness_squared_intervals": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "compiler_errors": 0,
+  "custom_axioms": 0,
+  "independent_novelty": "NOT_ESTABLISHED",
+  "independent_review": "NOT_ESTABLISHED",
+  "linter_warnings": 0,
+  "publication_base": "859348704a9b51b57530376e24c1302457119c54",
+  "scope": "four-dimensional product-order midpoint scaling and explicit four-event Minkowski obstruction",
+  "spacetime_emergence": "OPEN",
+  "status": "LEAN_VERIFIED",
+  "verified_local_head": "a999b816df08bc393036cc7ebe8d0a6ed1939b6b"
+}
