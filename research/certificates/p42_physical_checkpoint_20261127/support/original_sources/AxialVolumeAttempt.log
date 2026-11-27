@@ -1,0 +1,7 @@
+AxialVolumeAttempt.lean:13:2: error: unsolved goals
+a b T : ℝ
+ha : 0 < a
+hb : 0 ≤ b
+hT : a + b < T
+⊢ ∫⁻ (w : Space), ENNReal.ofReal (T - ‖axis b - w‖ - max ‖w - axis (-a)‖ ‖w - axis a‖) =
+    ENNReal.ofReal (Real.pi * (T + 2 * a) * ((T - a) ^ 2 - b ^ 2) ^ 2 / (24 * T))

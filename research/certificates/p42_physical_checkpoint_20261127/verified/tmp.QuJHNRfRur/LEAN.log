@@ -1,0 +1,5 @@
+PhysicalRapidityMeasure.lean:190:19: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Chronos.FourEvent.radialLaw_rapidity_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.normalized_physical_rapidity_integral' depends on axioms: [propext, Classical.choice, Quot.sound]

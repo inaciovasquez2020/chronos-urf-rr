@@ -1,0 +1,20 @@
+SpacelikeFrame.lean:48:35: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+SpacelikeFrame.lean:48:35: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+SpacelikeFrame.lean:187:33: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+SpacelikeFrame.lean:187:33: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+SpacelikeFrame.lean:263:5: warning: unused variable `hy`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+SpacelikeFrame.lean:516:13: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Chronos.FourEvent.normalizedBoost_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.spacelike_lens_volume_exact_invariants' depends on axioms: [propext, Classical.choice, Quot.sound]

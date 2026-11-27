@@ -1,0 +1,20 @@
+SpacelikeMomentReduction.lean:107:24: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+SpacelikeMomentReduction.lean:164:29: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+SpacelikeMomentReduction.lean:228:37: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+SpacelikeMomentReduction.lean:228:37: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'Chronos.FourEvent.invariant_relative_rapidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.invariant_separation_recovery' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.tipInvariant_radial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.radialSeparation_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.physical_massFromInvariants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.spacelikeRadialKernel_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.uniform_diamond_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.spacelikeMoment_joint_reduction' depends on axioms: [propext, Classical.choice, Quot.sound]

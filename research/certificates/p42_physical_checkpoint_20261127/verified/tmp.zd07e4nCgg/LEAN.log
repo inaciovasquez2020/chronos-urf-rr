@@ -1,0 +1,4 @@
+'Chronos.FourEvent.angularAverage_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.physical_angular_average_raw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.physical_angular_average' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.physical_angular_rapidity_integral' depends on axioms: [propext, Classical.choice, Quot.sound]

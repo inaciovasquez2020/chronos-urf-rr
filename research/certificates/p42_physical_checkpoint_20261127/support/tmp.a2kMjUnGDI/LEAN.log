@@ -1,0 +1,10 @@
+PhysicalLensMass.lean:203:47: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+PhysicalLensMass.lean:203:47: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+'Chronos.FourEvent.unit_diamond_volume' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.upperNull_volume_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.physical_futureMass_lens' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.physical_spacelike_futureMass' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,29 @@
+AngularDensityAssembly.lean:178:8: warning: This simp argument is unused:
+  Set.indicator_of_mem hr
+
+Hint: Omit it from the simp argument list.
+  simp [radialAngleIntegrand, S̵e̵t̵.̵i̵n̵d̵i̵c̵a̵t̵o̵r̵_̵o̵f̵_̵m̵e̵m̵ ̵h̵r̵,̵h̵r̵.̵1̵,̵h̵r̵.̵2̵]̵h̲r̲.̲1̲,̲ ̲h̲r̲.̲2̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+AngularDensityAssembly.lean:182:8: warning: This simp argument is unused:
+  Set.indicator_of_notMem hr
+
+Hint: Omit it from the simp argument list.
+  simp [radialAngleIntegrand, S̵e̵t̵.̵i̵n̵d̵i̵c̵a̵t̵o̵r̵_̵o̵f̵_̵n̵o̵t̵M̵e̵m̵ ̵h̵r̵,̵h̵n̵]̵h̲n̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+AngularDensityAssembly.lean:277:10: warning: This simp argument is unused:
+  Set.indicator_of_mem hr
+
+Hint: Omit it from the simp argument list.
+  simp [radialAngleIntegrand, S̵e̵t̵.̵i̵n̵d̵i̵c̵a̵t̵o̵r̵_̵o̵f̵_̵m̵e̵m̵ ̵h̵r̵,̵h̵r̵.̵1̵,̵h̵r̵.̵2̵]̵h̲r̲.̲1̲,̲ ̲h̲r̲.̲2̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+AngularDensityAssembly.lean:280:10: warning: This simp argument is unused:
+  Set.indicator_of_notMem hr
+
+Hint: Omit it from the simp argument list.
+  simp [radialAngleIntegrand, S̵e̵t̵.̵i̵n̵d̵i̵c̵a̵t̵o̵r̵_̵o̵f̵_̵n̵o̵t̵M̵e̵m̵ ̵h̵r̵,̵h̵n̵]̵h̲n̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'Chronos.FourEvent.angular_ball_integral' depends on axioms: [propext, Classical.choice, Quot.sound]

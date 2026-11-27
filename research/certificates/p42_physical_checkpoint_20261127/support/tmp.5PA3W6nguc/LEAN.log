@@ -1,0 +1,13 @@
+PhysicalRapidityKernel.lean:122:37: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+PhysicalRapidityKernel.lean:122:37: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+PhysicalRapidityKernel.lean:108:45: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+PhysicalRapidityKernel.lean:113:26: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Chronos.FourEvent.physical_spacelike_rapidity_mass' depends on axioms: [propext, Classical.choice, Quot.sound]

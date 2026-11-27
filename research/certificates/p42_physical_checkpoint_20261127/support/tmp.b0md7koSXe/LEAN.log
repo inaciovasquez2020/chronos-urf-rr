@@ -1,0 +1,19 @@
+PhysicalLensMass.lean:97:4: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Inter (Event → Prop)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+PhysicalLensMass.lean:147:40: error: unsolved goals
+x y : Event
+hx : x ∈ diamond
+⊢ (ENNReal.ofReal (Real.pi / 24))⁻¹ * volume (bothFuture x y ∩ diamond) =
+    (ENNReal.ofReal (Real.pi / 24))⁻¹ * volume (threeLens x y (1, 0))
+PhysicalLensMass.lean:201:47: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+PhysicalLensMass.lean:201:47: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+'Chronos.FourEvent.unit_diamond_volume' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.upperNull_volume_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Chronos.FourEvent.physical_futureMass_lens' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Chronos.FourEvent.physical_spacelike_futureMass' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

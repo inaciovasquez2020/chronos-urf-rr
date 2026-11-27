@@ -1,0 +1,1 @@
+'Chronos.RapidityGeometry.rapidity_domain_equiv' depends on axioms: [propext, Classical.choice, Quot.sound]
