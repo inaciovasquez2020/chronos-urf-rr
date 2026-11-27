@@ -1,0 +1,171 @@
+{
+  "status": "LEAN_VERIFIED_CONDITIONAL",
+  "compilation": "PASS",
+  "toolchain": "leanprover/lean4:v4.29.0",
+  "audited_declarations": 31,
+  "new_declarations": 6,
+  "unauthorized_axioms": 0,
+  "axioms": {
+    "Chronos.ECPM.EventVolume.dot_self": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.polar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.dot_combo3": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.sq_combo3": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.time_zero_nonpositive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.no_two_orthogonal_positive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.witness_ordered": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.witness_squared_intervals": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.no_minkowski_realization": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.product_volume_not_minkowski": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.volume_pos": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.coordinate_split_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.product_midpoint_upper": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.eventMidpoint_ordered": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.eventMidpoint_volumes": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.product_midpoint_scaling": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.linear4_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.linear4_time": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.linear4_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.positive_lorentzian_reconstruction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.gram4_eq_of_fields": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.cancel_real_right": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.triangular_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.exists_triangular_frame": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.positive_reconstruction_from_pivots": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.anchor_coefficients_unique": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.anchor_reconstruction_from_measured_gram": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.anchor_quadratic_apply": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.anchor_quadratic_sub": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.measured_anchor_columns": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Chronos.ECPM.EventVolume.anchor_radial_recovery": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "predecessor_pr": 1390,
+  "intrinsic_event_law": "OPEN",
+  "general_matrix_hypothesis_discharge": "OPEN",
+  "global_spacetime_reconstruction": "OPEN",
+  "physical_volume_selection": "OPEN",
+  "scientific_novelty": "UNESTABLISHED"
+}
